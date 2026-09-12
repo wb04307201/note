@@ -138,7 +138,7 @@ bash setup.sh   # 一键配置 git hooks + 生成 skill 镜像
 | **`structural-link-check.yml`** | 每月 1 日 06:00 + push/PR | 自研 `scripts/check-broken-links.py` 校验内部相对路径(双口径:.md + 目录链接)|
 
 > `grs.yml`(GitHub README 卡片)留在主页仓库 `wb04307201`,不属于本仓库。
-> 本仓库暂无远端;推送到 GitHub 后 workflows 才会实际运行。
+> 远端:origin = Gitee(`https://gitee.com/wb04307201/note`),GitHub 镜像(`https://github.com/wb04307201/note`)。CI workflows 只在 GitHub 侧运行。
 
 **与 hook 的层级关系**:
 
