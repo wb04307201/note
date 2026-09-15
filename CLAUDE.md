@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **纯知识库仓库**(2026-09-12 从 `wb04307201` 主页仓库拆分独立):
 - **13 主模块**体系化技术知识库(基于 Obsidian 维护),内容**平铺在仓库根**(不再有 `note/` 前缀)
 - **README.md** — 总目录 + 13 模块导航
-- **785 个 README、1106 个 .md**(2026-09-02 实测校对,排除 `.health-tmp` / `.obsidian`)
+- **787 个 README、1111 个 .md**(2026-09-12 实测校对,排除 `.health-tmp` / `.obsidian` / `skills` / `scripts` / `.claude`)
 - 个人主页 + 开源项目展示在外部仓库 `wb04307201`(grs.yml README 卡片 workflow 也留在那里)
 
 主体是文档(Markdown),不是源代码。
@@ -29,7 +29,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ├── 09.ai-applications/            # RAG + Agent + Prompt + LLM 推理
 ├── 10.business-systems/           # 电商 + 社交 + 金融
 ├── 11.product-and-pm/             # 产品 + PM + 流程(含原 14.project-management 内容)
-├── 12.interview/                  # 高频面试题(10 分类 192 题,10 个主题子目录)
+├── 12.interview/                  # 高频面试题(229 题,9 个主题子目录 + tools)
 │   ├── 01.java/ 02.computer-basics/ 03.database/ 04.system-design/
 │   ├── 05.security/ 06.spring/ 09.front-end/ 10.big-data/ 11.ai/ tools/
 │   └── QUESTION-FORMAT-SPEC.md     # 面试题格式 + 反直觉 / 陷阱 / 30 秒话术
@@ -59,11 +59,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 模块写作模板(仅 12 面试题 / 13 故事,强骨架模块按需存在,不与 SPEC.md 合并) | `12.interview/QUESTION-FORMAT-SPEC.md` / `13.story/STORY-FORMAT-SPEC.md` |
 
 **知识文章 frontmatter 类型**(按 `slug` 字段分 3 类,HTML 注释格式 `<!--type: ... -->` 起首 + 多行字段 + `-->` 收尾;详见 `SPEC.md` §4):
-- `module:`(主模块 README + 子文章,跨所有 13 模块,现状 760 篇)
-- `question:`(`12.interview` 高频面试题,现状 **227 篇**)
-- `story:`(`13.story` 阿明餐厅,现状 **50 篇**)
+- `module:`(主模块 README + 子文章,跨所有 13 模块,现状 814 篇)
+- `question:`(`12.interview` 高频面试题,现状 **229 篇**)
+- `story:`(`13.story` 阿明餐厅,现状 **50 章** + STORY-FORMAT-SPEC)
 
-> `SPEC.md` / `index.md` 等索引页豁免 frontmatter(21 个)。
+> `SPEC.md` / `index.md` 等索引页豁免 frontmatter(约 20 个)。
 
 ## 常用命令
 
@@ -207,11 +207,11 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 
 ## 关键统计
 
-### 知识库(2026-09-02 实测,迁移前口径)
+### 知识库(2026-09-12 实测,排除 skills / scripts / .claude / .git)
 
-- **13 主模块** / **785 README** / **1106 .md**(排除 .health-tmp / .obsidian)
-- frontmatter 覆盖 **98.1%**(1085 / 1106:module 760 + question 227 + story 50 + 其他 48;剩余 21 为 SPEC.md / index.md 等索引页,按规范可豁免)
-- 总 leaves:**925 篇**
+- **13 主模块** / **787 README** / **1111 .md**
+- frontmatter 覆盖 **98.3%**(1092 / 1111:module 814 + question 229 + story 51,去重后 1092;剩余约 19 为 SPEC.md / index.md 等索引页,按规范可豁免)
+- 总 leaves:**约 930 篇**
 
 ### 健康度(原仓库 Session 6-9 闭环)
 
@@ -220,14 +220,14 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 | **结构断链** | **0** |
 | **orphan 目录** | **0** |
 | **实质弱关联** | **0** |
-| **frontmatter 覆盖** | **98.1%** |
-| **5 维深度准确度** | **100%**(v18 验证 80/80)|
+| **frontmatter 覆盖** | **98.3%** |
+| **5 维深度准确度** | **100%**(v17/v18/v19 连续 3 轮)|
 | **CI / Hook 层数** | **5 层** |
 
 ### 关键文档
 
 - 5 PNG(教学截图保留,其他应 Mermaid 化)
-- `skills/note-health/references/v18-sampling-report.md` — 最新 5 维验证
+- `skills/note-health/references/v19-sampling-report.md` — 最新 5 维验证(v18/v17 等历史报告同目录)
 - `skills/note-health/references/health-metrics-convergence.md` — 3 指标收敛曲线
 
 ### 自动校准工具链
