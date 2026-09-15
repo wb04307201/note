@@ -46,7 +46,7 @@ module:
 | OGNL 静态方法 | 需开启配置 | `test="@com.example.Util@isEmpty(name)"` |
 | MyBatis 3.5.x | 新增 `<bind>` 支持 | 可在 `<where>` 内使用变量绑定 |
 
-## 1. 完整标签体系
+## 完整标签体系
 
 MyBatis 动态 SQL 一共提供 9 个核心标签,本节补全除 `if/where/foreach/choose` 之外的高阶标签。
 
@@ -176,7 +176,7 @@ MyBatis 动态 SQL 一共提供 9 个核心标签,本节补全除 `if/where/fore
 | `order` | BEFORE / AFTER,Oracle 序列必须 BEFORE |
 | `resultType` | 主键 Java 类型 |
 
-## 2. OGNL 表达式深入
+## OGNL 表达式深入
 
 ### 2.1 内置参数
 
@@ -253,7 +253,7 @@ OGNL 提供对集合的内省（introspection）,无需手动遍历即可访问�
 
 > ⚠️ 注意 List 的方法调用要写 `ids.size()`,**不是** `ids.length`(后者属于数组)。
 
-## 3. 执行原理
+## 执行原理
 
 ### 3.1 SqlNode 继承树
 
@@ -332,7 +332,7 @@ Object additional = boundSql.getAdditionalParameter("name"); // <bind> 绑定的
 
 > 💡 **调试技巧**：拦截器 `Interceptor` 在 `ParameterHandler.setParameters` 之前拦下来,打印 `boundSql.getSql()` 就能看到 MyBatis 真正发给数据库的 SQL。
 
-## 4. 实战陷阱
+## 实战陷阱
 
 ### 4.1 ❌ 用 `${}` 拼接用户输入（SQL 注入）
 
@@ -433,7 +433,7 @@ Object additional = boundSql.getAdditionalParameter("name"); // <bind> 绑定的
 </settings>
 ```
 
-## 5. MyBatis-Plus 联动
+## MyBatis-Plus 联动
 
 ### 5.1 LambdaQueryWrapper 翻译成 XML
 

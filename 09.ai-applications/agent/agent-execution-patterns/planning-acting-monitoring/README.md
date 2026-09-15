@@ -265,7 +265,7 @@ for task in topo_sort(dag):
 
 ---
 
-## 1. 核心原理 + 数学公式
+## 核心原理 + 数学公式
 
 ### 1.1 Planning：任务分解 DAG 的拓扑排序
 
@@ -353,7 +353,7 @@ elif error == tool_crash: 启用备用工具（fallback chain）
 
 ---
 
-## 2. 演进史时间线
+## 演进史时间线
 
 | 时间 | 事件 | 关键贡献 | 对三阶段闭环的推动 |
 |------|------|---------|------------------|
@@ -378,7 +378,7 @@ elif error == tool_crash: 启用备用工具（fallback chain）
 
 ---
 
-## 3. 真实公司案例
+## 真实公司案例
 
 ### 3.1 Anthropic Claude Code：三阶段闭环 + Human-in-the-Loop
 
@@ -469,7 +469,7 @@ def monitor_gui(prev_screenshot, current_screenshot, expected_state):
 
 ---
 
-## 4. 跨模块反向链
+## 跨模块反向链
 
 | 链接 | 类型 | 关系说明 |
 |------|------|---------|
@@ -490,7 +490,7 @@ def monitor_gui(prev_screenshot, current_screenshot, expected_state):
 
 ---
 
-## 5. 反直觉点
+## 反直觉点
 
 ### 5.1 「Planning 越细越好」是错觉
 
@@ -548,7 +548,7 @@ def monitor_gui(prev_screenshot, current_screenshot, expected_state):
 
 ---
 
-## 6. 代码示例
+## 代码示例
 
 ### 6.1 Python 完整三阶段闭环代码（~50 行）
 
@@ -709,7 +709,7 @@ for task_result in agent_runs:
 
 ---
 
-## 7. 5 维评分
+## 5 维评分
 
 | 维度 | 分数 | 评分依据 |
 |------|------|---------|

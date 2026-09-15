@@ -39,7 +39,7 @@ module:
 </resultMap>
 ```
 
-## 1. 基础字段映射
+## 基础字段映射
 
 ### 1.1 `<id>` 与 `<result>` 的区别
 
@@ -86,7 +86,7 @@ module:
 
 > ⚠️ 字段名含连续大写时（如 `userID` → 数据库 `user_id`）,驼峰规则默认转成 `userId`,Java 字段也必须命名为 `userId`,不能叫 `userID`。
 
-## 2. 一对一 `<association>`
+## 一对一 `<association>`
 
 `<association>` 表示"属于"语义（Has-A），有**两种加载策略**：
 
@@ -163,7 +163,7 @@ List<User> users = userMapper.selectAll(); // 1 次 SQL
 2. 开启批量懒加载（`lazyLoadingEnabled=true` + 手动控制访问时机）
 3. 在 Service 层用 `@Batch` 或 IN 查询一次性取回所有 detail,然后手动装配
 
-## 3. 一对多 `<collection>`
+## 一对多 `<collection>`
 
 `<collection>` 表示"包含"语义（Has-Many）。
 
@@ -219,7 +219,7 @@ List<User> users = userMapper.selectAll(); // 1 次 SQL
 
 > 💡 **JOIN 的性能陷阱**：当用户表 1000 行,每个用户平均 50 个订单,JOIN 后返回 50000 行,网络传输和 ResultSet 解析都是负担。**这时反而是嵌套 select + 延迟加载更快**。
 
-## 4. 鉴别器 `<discriminator>`
+## 鉴别器 `<discriminator>`
 
 `<discriminator>` 根据某列的值切换 resultType,适用于**多态查询**（同表存不同类型）。
 
@@ -254,7 +254,7 @@ List<User> users = userMapper.selectAll(); // 1 次 SQL
 
 > ⚠️ 实际开发中,多态查询建议**按类型拆表**或**用单表继承 + JSON 字段**,discriminator 适合传统遗留系统改造。
 
-## 5. 延迟加载
+## 延迟加载
 
 ### 5.1 全局开关
 
@@ -320,7 +320,7 @@ UserDetail detail = userMapper.getDetail(user);   // SQL 2 (懒加载触发)
 - 用 `try-with-resources` 管理 SqlSession 时,关闭后访问延迟属性会爆 `LazyInitializationException`
 - 解决方案：① Service 层 @Transactional 内完成所有 getter 调用 ② 用 `openSession(ExecutorType.SIMPLE, false)` 延长会话 ③ 改用 JOIN 一次性加载
 
-## 6. 实战对比
+## 实战对比
 
 ### 6.1 ❌ Service 层 for 循环查询（N+1 反模式）
 
@@ -380,7 +380,7 @@ public List<UserVO> listUsersVOBatch() {
 // 100 个用户 = 3 次 SQL（user + detail + order）
 ```
 
-## 7. 性能对比表
+## 性能对比表
 
 | 方式 | SQL 数 | 适用场景 | 优点 | 缺点 |
 |------|--------|---------|------|------|
