@@ -4,7 +4,7 @@ module:
   slug: interview
   type: index
   category: 主模块
-  topic: 高频面试题（10 主题 227 篇 + 反直觉陷阱 + 30s/90s 话术）
+  topic: 高频面试题（10 主题 229 篇 + 反直觉陷阱 + 30s/90s 话术）
   summary: 主模块的刺刀版 —— 专治面试高频 / 高难度问题
 -->
 
@@ -28,19 +28,19 @@ module:
 
 | 编号 | 对齐主模块 | 主题方向 | 篇数 | 子入口 |
 |------|-----------|---------|------|-------|
-| 01 | [`01.java-and-jvm`](../01.java-and-jvm/) | Java 基础陷阱 | 39 | [01.java/](01.java/) |
-| 02 | [`02.cs-foundations`](../02.cs-foundations/) | 计算机基础（网络 / 算法设计 / 操作系统） | 11 | [02.computer-basics/](02.computer-basics/) |
-| 03 | [`03.data-stack`](../03.data-stack/) | 数据库细节 | 31 | [03.database/](03.database/) |
-| 04 | [`06.distributed-systems`](../06.distributed-systems/) | 系统设计难点 | 26 | [12.interview/04.system-design/](04.system-design/) |
-| 05 | [`05.security`](05.security) | 安全（认证 / Web 安全 / 限流 / OWASP） | 10 | [05.security/](05.security/) |
-| 06 | [`04.spring-backend`](../04.spring-backend/) | Spring 面试高频 | 15 | [06.spring/](06.spring/) |
-| 09 | [`05.frontend`](../05.frontend/) | 前端细节 | 28 | [09.front-end/](09.front-end/) |
-| 10 | — | 大数据（Flink / Spark / Hive / Iceberg / Doris / Kafka） | 6 | [10.big-data/](10.big-data/) |
-| 11 | [`08.ai-foundations`](../08.ai-foundations/) + [`09.ai-applications`](../09.ai-applications/) | AI 面试深挖 | 55 | [11.ai/](11.ai/) |
-| ✦ | tools | 开发工具（Git / Docker / Nginx / K8s） | 5 | [tools/](tools/) |
+| 01 | [`01.java-and-jvm`](../01.java-and-jvm/) | Java 基础陷阱 | 41 | [01.java/](01.java/) |
+| 02 | [`02.cs-foundations`](../02.cs-foundations/) | 计算机基础（网络 / 算法设计 / 操作系统） | 13 | [02.computer-basics/](02.computer-basics/) |
+| 03 | [`03.data-stack`](../03.data-stack/) | 数据库细节 | 33 | [03.database/](03.database/) |
+| 04 | [`06.distributed-systems`](../06.distributed-systems/) | 系统设计难点 | 27 | [12.interview/04.system-design/](04.system-design/) |
+| 05 | [`05.security`](05.security) | 安全（认证 / Web 安全 / 限流 / OWASP） | 11 | [05.security/](05.security/) |
+| 06 | [`04.spring-backend`](../04.spring-backend/) | Spring 面试高频 | 16 | [06.spring/](06.spring/) |
+| 09 | [`05.frontend`](../05.frontend/) | 前端细节 | 29 | [09.front-end/](09.front-end/) |
+| 10 | — | 大数据（Flink / Spark / Hive / Iceberg / Doris / Kafka） | 7 | [10.big-data/](10.big-data/) |
+| 11 | [`08.ai-foundations`](../08.ai-foundations/) + [`09.ai-applications`](../09.ai-applications/) | AI 面试深挖 | 56 | [11.ai/](11.ai/) |
+| ✦ | tools | 开发工具（Git / Docker / Nginx / K8s） | 6 | [tools/](tools/) |
 | ✦ | [`11.product-and-pm`](../11.product-and-pm/) | **外链**（决策实战，已迁出） | — | [14.project-management/](../11.product-and-pm/) |
 
-**总计：226 篇面试题**（仅"一题一文"题；03.database 另有多个二级目录索引页、04.system-design 另有多个二级目录索引页，2026-08-25 find 校对，per-category sums 39+11+31+26+10+15+28+6+55+5=226）
+**总计：240 篇面试题**（仅"一题一文"题；2026-09-15 find 校对，per-category sums 41+13+33+27+11+16+29+7+56+6=240；其中 `<!--question:-->` 类型 229 篇，剩余 11 个为 topic-level index-only 索引页）
 
 > 各分类的具体子主题（如 Java 集合 / 并发 / JVM；数据库 SQL 优化 / Redis / MVCC；系统设计 MQ / 缓存 / 分布式等）见子目录 README。
 
