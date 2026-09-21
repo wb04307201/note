@@ -9,11 +9,11 @@ module:
 
 # 前端咬文嚼字
 
-> 前端高频面试题与细节深挖，对齐主模块 [`05.frontend`](../../05.frontend/README.md)。28 篇真题覆盖 JS 核心 / HTTP / CSS / 浏览器机制 / 框架 / 安全 / 工程 9 大方向（find 校对 2026-08-25）。
+> 前端高频面试题与细节深挖，对齐主模块 [`05.frontend`](../../05.frontend/README.md)。29 篇真题覆盖 JS 核心 / HTTP / CSS / 浏览器机制 / 框架 / 安全 / 工程 / 跨端架构 10 大方向（find 校对 2026-09-21）。
 
 ---
 
-## 文章清单（共 28 题，find 校对 2026-08-25）
+## 文章清单（共 29 题，find 校对 2026-09-21）
 
 ### JavaScript 核心
 | 主题 | 难度 | 核心问题 |
@@ -78,6 +78,11 @@ module:
 |------|------|---------|
 | [Webpack → Vite/Rspack 迁移坑](webpack-vite-migration/) | ⭐⭐⭐⭐ | CJS vs ESM / Tree-Shaking 差异 / 环境变量迁移 |
 
+### 跨端架构（架构师视角）
+| 主题 | 难度 | 核心问题 |
+|------|------|---------|
+| 🆕 [跨端框架设计](cross-platform-framework-design/) | ⭐⭐⭐⭐⭐ | 从零设计跨端框架（微信 / H5 / App WebView）：编译时 AST 转换 + 运行时 API 适配层 + JS 引擎差异 + JSBridge 桥接（含 90s 话术 + 5 反直觉点） |
+
 ### Promise 专题
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
@@ -89,7 +94,7 @@ module:
 
 1. **入门**（3 天）：存储方案 + 消息机制
 2. **进阶**（2 周）：事件循环 + 闭包 + 原型链 + this 绑定 + Promise 手写 + 🆕 **async/await 错误处理**
-3. **冲刺面试**：重点看"从 URL 输入到页面展示"、"HTTPS 握手"、"Virtual DOM Diff"、"Vue 响应式原理"、"CSS 渲染阻塞"、"回流与重绘"、"Playwright vs Selenium"、🆕 **"async/await 必须 try/catch 吗"**
+3. **冲刺面试**：重点看"从 URL 输入到页面展示"、"HTTPS 握手"、"Virtual DOM Diff"、"Vue 响应式原理"、"CSS 渲染阻塞"、"回流与重绘"、"Playwright vs Selenium"、🆕 **"async/await 必须 try/catch 吗"**、🆕 **"跨端框架设计"**（架构师视角必看）
 
 ## 相关章节
 

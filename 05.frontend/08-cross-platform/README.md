@@ -20,6 +20,7 @@ module:
 | 主题 | 状态 | 说明 |
 |------|------|------|
 | 跨端选型决策 | ✓ 已有 | [mobile-tech-stack/](mobile-tech-stack/) — 原生 vs Flutter vs RN vs H5 vs 小程序 综合决策矩阵 |
+| 🆕 跨端框架设计 | ✓ 已新增 | [cross-platform-framework-design/](cross-platform-framework-design/) — 从零设计跨端框架：编译时 AST + 运行时适配层 + 3 端全覆盖（架构师视角） |
 | React Native | ✓ 已有 | [react-native/](react-native/) — 跨端主流 / Native 渲染 |
 | 小程序 | ✓ 已有 | [mini-program/](mini-program/) — 微信 / 支付宝 / 抖音生态 |
 | Flutter | ✓ 已有 | [flutter/](flutter/) — 一码三端 / Skia 渲染 |
@@ -30,6 +31,7 @@ module:
 
 - **入门**:先读 [mobile-tech-stack/](mobile-tech-stack/) 选型决策矩阵
 - **专项深入**:按目标平台选 1-2 个方向 — React Native / Flutter(移动)/ Tauri / PWA(桌面与离线)/ 小程序(国内)
+- 🆕 **架构师视角**:读 [cross-platform-framework-design/](cross-platform-framework-design/) — 从零设计跨端框架的代码转换与运行时适配（架构师深度版）
 - **实战**:先做小工具练手,再做完整应用;不要全部方案都学一遍
 
 ---
