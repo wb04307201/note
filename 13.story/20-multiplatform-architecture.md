@@ -601,5 +601,13 @@ graph TD
 
 > 好的多端架构，不是让四个门面看起来一样，而是让后厨永远不需要知道外面有几个门面。
 
+## 技术原理延伸
+
+跨端框架的「编译时 AST 转换 + 运行时适配层」原理详解见：
+[跨端框架设计](../05.frontend/08-cross-platform/cross-platform-framework-design/README.md)
+
+面试高频问题版（架构师视角，含 30s/90s 话术）见：
+[跨端框架设计面试题](../12.interview/09.front-end/cross-platform-framework-design/README.md)
+
 ← [返回系列导读](./index.md)
 
