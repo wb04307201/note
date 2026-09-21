@@ -109,6 +109,12 @@ keepalive_timeout 65;
 
 ---
 
+## 相关章节
+
+- HTTPS 安全边界 + MITM 防御：[HTTPS 能不能防抓包](../https-mitm-and-pinning/README.md) — Charles 抓包原理 + SSL Pinning 5 方案 + 5 反直觉点（含 30s/90s 话术 + 5 追问模板）
+
+---
+
 ← [返回: 咬文嚼字 · 安全](../README.md)
 
 > 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐⭐
