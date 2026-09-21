@@ -180,4 +180,8 @@ npm run dev:mp-weixin
 
 ---
 
+## 相关章节
+
+- 设计层视角：[跨端框架设计](../cross-platform-framework-design/README.md) — 编译时 AST + 运行时适配层架构原理（架构师视角）
+
 ← [返回 跨端开发](../README.md)

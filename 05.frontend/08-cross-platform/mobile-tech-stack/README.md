@@ -219,6 +219,8 @@ Q3: 业务复杂度？
 - 关联：[`outsourcing-pitfalls`](../../../11.product-and-pm/outsourcing-pitfalls/README.md) — 外包避坑指南
 - 主模块：[`09.front-end/08-cross-platform`](../README.md) — 跨端开发
 
----
+## 相关章节
+
+- 设计层视角：[跨端框架设计](../cross-platform-framework-design/README.md) — 编译时 AST + 运行时适配层架构原理（架构师视角）
 
 ← [返回 08 跨端](../README.md)
