@@ -303,6 +303,9 @@ public class PushMetrics {
 ## 相关章节
 
 - 深度阅读：[`05.frontend`](../../../05.frontend/README.md) — 主模块详细内容
+- **WebSocket 可靠性**：[WebSocket 丢包前端处理](../websocket-loss-handling/README.md) — 5 策略（心跳 / 重连 / ACK / 排序 / 去重）+ 7 反直觉点（TCP 协议层不丢 vs 应用层看不见 / Jitter 防雷鸣群 / 服务器重置序号冲突 / tab inactive 节流 / 网络切换无感知）
+
+---
 
 > 📅 2026-09-01 · 咬文嚼字 · message · ⭐⭐⭐（中频面试 + 实战必会）
 

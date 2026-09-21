@@ -117,5 +117,6 @@ A：3 个场景：
 - [HTTP 协议详解](../http-protocol/README.md) — WebSocket 升级基础
 - [SSE vs WebSocket 对比](../../../02.cs-foundations/03-network/protocols/sse-vs-websocket/README.md) — 选型
 - [前端实时方案总览](../../README.md) — 实时方案对比
+- **前端 WebSocket 可靠性**：[WebSocket 丢包前端处理](../../../12.interview/09.front-end/websocket-loss-handling/README.md) — 5 策略（心跳 / 重连 / ACK / 排序 / 去重）+ 7 反直觉点
 
 ← [返回前端网络](../README.md)
