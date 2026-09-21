@@ -10,7 +10,9 @@ question:
 
 # Vue 响应式原理深度剖析
 
-> 一句话：Vue 通过数据劫持（Object.defineProperty / Proxy）拦截数据的读写操作，结合发布-订阅模式实现「数据变化 → 自动更新视图」的响应式系统。
+> 一句话：Vue 通过数据劫持（Object.defineProperty / Proxy）拦截数据的读写操作，结合 **Observer 模式（Watcher/Dep 持有 Subject 引用）** 实现「数据变化 → 自动更新视图」的响应式系统。
+>
+> > 注：Vue 响应式严格说是 **Observer Pattern**，不是真正的 Pub-Sub。Pub-Sub vs Observer 对比详见 [发布-订阅者模式](../pub-sub-pattern/README.md)。
 
 ---
 
@@ -50,7 +52,7 @@ Vue 响应式系统的本质是**数据驱动视图**。开发者只需修改数
 1. **依赖收集**：在组件首次渲染时，记录哪些数据被访问过，建立「数据 → 观察者」的映射关系。
 2. **派发更新**：当数据发生变化时，通知所有依赖该数据的观察者执行更新函数，重新渲染视图。
 
-这种机制类似于**发布-订阅模式**：数据是发布者，Watcher 是订阅者，Dep 是调度中心。当数据被读取时，订阅者注册到调度中心；当数据被修改时，调度中心通知所有订阅者执行回调。
+这种机制类似于**观察者模式（Observer Pattern）**：数据是被观察的目标（Subject），Watcher 是观察者（Observer），Dep 是依赖调度中心。当数据被读取时，Watcher 注册到 Dep；当数据被修改时，Dep 通知所有 Watcher 执行回调。
 
 ```mermaid
 graph LR
@@ -375,7 +377,7 @@ form.age = 25
 
 ## 七、面试话术（30 秒版）
 
-> 「Vue 的响应式系统基于**数据劫持 + 发布-订阅**。Vue 2 用 `Object.defineProperty` 劫持 getter/setter，getter 里收集依赖（Dep），setter 里通知更新（Watcher）。但它有两个致命缺陷：无法检测属性新增删除，无法检测数组索引变化，所以 Vue 2 提供了 `$set` / `$delete` 和重写数组原型方法来弥补。Vue 3 改用 `Proxy` 彻底解决了这些问题，Proxy 可以拦截 13 种操作，包括属性增删、数组索引等，而且采用懒代理策略，性能更好。日常开发中要注意解构响应式数据会丢失响应性，需要用 `toRefs` 转换。」
+> 「Vue 的响应式系统基于**数据劫持 + Observer 模式**（Watcher/Dep 持有 Subject 引用，不是真正的 Pub-Sub）。Vue 2 用 `Object.defineProperty` 劫持 getter/setter，getter 里收集依赖（Dep），setter 里通知更新（Watcher）。但它有两个致命缺陷：无法检测属性新增删除，无法检测数组索引变化，所以 Vue 2 提供了 `$set` / `$delete` 和重写数组原型方法来弥补。Vue 3 改用 `Proxy` 彻底解决了这些问题，Proxy 可以拦截 13 种操作，包括属性增删、数组索引等，而且采用懒代理策略，性能更好。日常开发中要注意解构响应式数据会丢失响应性，需要用 `toRefs` 转换。**注意：Vue 响应式是 Observer Pattern（Dep 直接持有 Watcher 引用），不是 Pub-Sub（Pub-Sub 需要共享的 Event Channel），详见 [发布-订阅者模式](../pub-sub-pattern/README.md) §2 五维对比。**」
 
 ---
 
