@@ -3,7 +3,22 @@ name: note-precipitation-planning
 description: Use when user asks where to add or update a topic in the project's knowledge base (defaults to the repo root, configurable via `NOTE_DIR` env var) / "X 应该沉淀到 note 什么位置" / "X 怎么归档" / "放在 note 哪个位置" / "如何沉淀 X" / "新增主题到 note" — covers survey of existing structure (read at runtime), depth analysis, location decision between main module / 12.interview interview layer / 13.story narrative layer, layered precipitation strategy, and reverse-link verification
 ---
 
-> **规则来源**：执行前必读 `$KB_DIR/SPEC.md`（G1-G6 通用评分 + 11 类扫描 + commit 格式 + 互链规则 + §7 SPEC 分层）以及目标模块的 `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md`）。**若目标模块有强骨架规范**（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`），同时必读 `<module>/*-FORMAT-SPEC.md`。模块结构在运行时通过 `find note -maxdepth 1 -type d` + `cat $KB_DIR/<module>/README.md` 读取，不硬编码。
+> [!IMPORTANT]
+> **KB_DIR 守卫（2026-09-23 统一）**：KB_DIR 必须在执行任何 find/grep/python 之前导出。
+>
+> Bash 单行（放任何脚本顶部）：
+> ```bash
+> export KB_DIR="${NOTE_DIR:-$(git rev-parse --show-toplevel)}"
+> ```
+>
+> Python heredoc（任何 `python << 'PYEOF'` 块开头必加）：
+> ```python
+> import os; KB_DIR = os.environ.get('KB_DIR', '.')
+> ```
+>
+> 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
+
+> **规则来源**：执行前必读 `$KB_DIR/SPEC.md`（G1-G6 通用评分 + 11 类扫描 + commit 格式 + 互链规则 + §7 SPEC 分层）以及目标模块的 `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md`）。**若目标模块有强骨架规范**（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`），同时必读 `<module>/*-FORMAT-SPEC.md`。模块结构在运行时通过 `find "$KB_DIR" -maxdepth 1 -type d` + `cat $KB_DIR/<module>/README.md` 读取，不硬编码。
 
 > **目录变量（通用化）**：本 skill 默认使用仓库根目录的 `$KB_DIR/` 作为知识库根。**支持自定义**：
 > 1. **环境变量**：`NOTE_DIR=./docs/knowledge` 覆盖
@@ -86,7 +101,7 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 
 **知识库位置**：仓库根目录（内容平铺，CWD = 项目根）
 
-**13 主模块**（`find note -maxdepth 1 -type d` 运行时读取，列表为 2026-09-03 实测）：
+**13 主模块**（`find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，列表为 2026-09-03 实测）：
 - `01.java-and-jvm` / `02.cs-foundations` / `03.data-stack` / `04.spring-backend`
 - `05.frontend` / `06.distributed-systems` / `07.devops-and-tools` / `08.ai-foundations`
 - `09.ai-applications` / `10.business-systems` / `11.product-and-pm` / `12.interview`
@@ -564,7 +579,7 @@ for file in target_dir:
 - 互链必须在 commit 中明示（"新增章节 + 加反向链"）
 - 数字声明必须在 commit 前重新数（避免虚报）
 - 路径深度必须从目标文件向上数（`../` 数量 = 层级差）
-- **目标路径必须实际验证**（2026-07-25 ACP 教训）：写链接前用 `find note -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在，不凭脑补
+- **目标路径必须实际验证**（2026-07-25 ACP 教训）：写链接前用 `find "$KB_DIR" -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在，不凭脑补
 - **每文件 commit 后立即跑 broken links 扫描**（2026-07-25 ACP 教训）：commit 完不要等最后才检查，发现新引入立刻修，避免累计 3+ 处后才补
 - 若 Step 5.5 触发了网络搜索，文章末尾必须有 `## 📚 参考来源` 章节
 
@@ -621,7 +636,7 @@ PYEOF
   4. 修改文件列表（`git diff --name-only HEAD~1 HEAD`）
 - **🆕 orchestrator 收尾协议**：subagent 报告"完成"但 `git log` 无新 commit → **立即 abort + 收尾 commit**（不信任 subagent 自我报告）
 - **失败检测规则**：如果 subagent 报告完成但 `git log` 没新 commit → 立即 abort + 重派，不要信任 subagent 自我报告
-- **commit 1 必含文件创建**：commit 1 必须新增 1+ 个文件（不能用 pure README 修改代替），`find note -name "<topic>.md" -newer <commit-base>` 验证
+- **commit 1 必含文件创建**：commit 1 必须新增 1+ 个文件（不能用 pure README 修改代替），`find "$KB_DIR" -name "<topic>.md" -newer <commit-base>` 验证
 
 ### Step 6.6: Git author 一致性（subagent 必须用主账号）
 
@@ -942,13 +957,13 @@ wc -l $KB_DIR/12.interview/<module>/*troubleshooting*/README.md
 - 根因：**没实际验证目标路径就写**
 
 **修复（4 步强制）**：
-1. **目标路径必须实际验证**：用 `find note -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在
+1. **目标路径必须实际验证**：用 `find "$KB_DIR" -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在
 2. **手动数层级**：从源文件向上数 `../` 数量 = 目标深度差（注意 $KB_DIR/ 跨模块跳数）
 3. **每文件 commit 后立即跑 broken links 扫描**（见 Step 6.5）
 4. **不依赖"记忆"**：每次都 grep/find 验证，不要凭印象写路径
 
 **🆕 强化（2026-07-25 经验）**：
-- subagent 写完每个 `[...](./xxx/README.md)` 链接后**必须**用 `find note -name "xxx" -type d` 验证目标目录存在
+- subagent 写完每个 `[...](./xxx/README.md)` 链接后**必须**用 `find "$KB_DIR" -name "xxx" -type d` 验证目标目录存在
 - 如目标目录不存在，使用**替代方案三选一**：① 删除链接 ② 改为指向父系统（如 CMDB → ITSM with 注释）③ 新建对应 README（如确有需求）
 - subagent prompt 模板**强制要求**：每个深读链接必须在最终报告里列出 `find` 命令的实际输出
 - 历史案例（2026-07-25 业务系统补深）：QMS 引用 `../06-specialized/lims/README.md`（少一层 `../`，正确应是 `../../06-specialized/lims/README.md`），独立 `find` 验证 + 修复为正确路径
@@ -999,7 +1014,7 @@ wc -l $KB_DIR/12.interview/<module>/*troubleshooting*/README.md
 **批量修复脚本**（场景 B 适用）：
 ```bash
 # 找所有有编号系列的目录，补齐每个系列所有文件的"系列导航表"
-for dir in $(find note -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | wc -l | grep -q "^[2-9]" && echo "$1"' _ {} \;); do
+for dir in $(find "$KB_DIR" -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | wc -l | grep -q "^[2-9]" && echo "$1"' _ {} \;); do
   files=$(ls "$dir"/[0-9]*.md 2>/dev/null)
   # 检查哪些文件没有"系列导航表"
   for f in $files; do
@@ -1013,7 +1028,7 @@ done
 **检测方法**：
 ```bash
 # 找系列目录（有编号文件的目录）
-for dir in $(find note -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | head -1 | grep -q . && echo "$1"' _ {} \;); do
+for dir in $(find "$KB_DIR" -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | head -1 | grep -q . && echo "$1"' _ {} \;); do
   echo "系列: $dir"
   for file in $(ls "$dir"/[0-9]*.md 2>/dev/null); do
     for other in $(ls "$dir"/[0-9]*.md 2>/dev/null); do
@@ -1134,7 +1149,7 @@ print(f'新文件 broken links: {real_broken}')
 **检测命令**：
 ```bash
 # 检测"多主题合并"文件（单文件 > 300 行 + 包含多个独立 H2 章节）
-for f in $(find note -name "README.md" -size +10k); do
+for f in $(find "$KB_DIR" -name "README.md" -size +10k); do
   h2_count=$(grep -c "^## " "$f" 2>/dev/null)
   if [ "$h2_count" -ge 5 ]; then
     echo "  ⚠ 可能多主题合并: $f ($h2_count 个 H2 章节)"
@@ -1425,7 +1440,7 @@ done
 - [ ] **系列内所有文件都有"系列导航表"**（当目标目录已有编号系列时，见 Mistake 10）
 - [ ] **互链关联强度判定**（见 Mistake 20）：每个被链接的兄弟文件，grep "目标主题关键词"≥ 1 处才算强关联；弱关联（0 命中）即使"同栏目"也应删除
 - [ ] **新 README 文末必须含 `← [返回:` footer 回链**（避免格式约定违反，2026-07-25 教训：本会话新文件 coding-agent-mode-selection 漏 footer 回链）
-  - 自检命令：`grep -L "← \[返回:" $(find note -name "README.md" -newer <commit-base>)`
+  - 自检命令：`grep -L "← \[返回:" $(find "$KB_DIR" -name "README.md" -newer <commit-base>)`
   - **新 README 必须有**，根目录 README（`README.md`）除外
 - [ ] **新 README 内每张表格只承载一个职责**（避免同 README 内重复维护多张等价表，见 Mistake 15）
   - 自检：grep 新 README 的 `\|---` 表格分隔行数 ≥ 2 → 人工检查表格列字段是否重叠 ≥ 50%

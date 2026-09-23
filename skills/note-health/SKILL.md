@@ -3,6 +3,21 @@ name: note-health
 description: Use when user asks to audit or improve a project's knowledge base (defaults to the repo root, configurable via `NOTE_DIR` env var) — "note 哪里需要优化" / "note 有哪些问题" / "扫一遍 note" / "review note" / "体检" (structural audit) OR "评价 note 质量" / "这篇文章质量怎么样" / "质量验收" / "评分" OR "刚写的这篇质量如何" / "新写的 README 看看" (new-file quality). 单一分层体检：结构机械扫描 + leaf 判断式打分，全库穷举用 Workflow fan-out。
 ---
 
+> [!IMPORTANT]
+> **KB_DIR 守卫（2026-09-23 统一）**：KB_DIR 必须在执行任何 find/grep/python 之前导出。
+>
+> Bash 单行（放任何脚本顶部）：
+> ```bash
+> export KB_DIR="${NOTE_DIR:-$(git rev-parse --show-toplevel)}"
+> ```
+>
+> Python heredoc（任何 `python << 'PYEOF'` 块开头必加）：
+> ```python
+> import os; KB_DIR = os.environ.get('KB_DIR', '.')
+> ```
+>
+> 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
+
 > **规则来源**：执行前必读 `$KB_DIR/SPEC.md` §5（G1-G6 通用评分维度）+ §6（11 类基础扫描规则）+ §7（SPEC 分层元规范）+ `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md` 的 A 类维度）；若目标模块有强骨架规范（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`）也一并读取（已在 `references/leaf-quality.md` 等处引用其硬性要求）。模块结构通过 `find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，不硬编码。
 
 # note-health：note 知识库健康检查
@@ -17,7 +32,7 @@ description: Use when user asks to audit or improve a project's knowledge base (
 | 单篇 / 单目录 | "评价某模块下某篇" / "这篇质量怎么样" / "这篇新写的质量如何" | **只跑 Phase 2**：直接 Read + 按 `references/leaf-quality.md` 打分。**不启动 workflow**。**新文件**先读 `references/new-file-baseline.md` 拿到 7 必选 + 3 可选结构基线。 |
 | 单模块 | "审一下某模块"（运行时读取 `find "$KB_DIR" -maxdepth 1 -type d`） | Phase 1 扫该模块 + Phase 2 小规模 fan-out（视 leaf 数手工切批，≤ 6 篇/批）。 |
 | 全库（leaf ≤ 1000） | "note 哪里要优化" / "扫一遍 note" / "体检" | 完整 4 相；Phase 2 直接走「分层采样 + 优先级列表」策略（关键问题全评 + 各模块代表采样）。 |
-| 全库（leaf > 1000） | 同上，但实时 `find note -name "*.md" \| wc -l` > 1000 | **触发 Step 0.1 策略询问**：用 `AskUserQuestion` 让用户在「采样」/「穷举」/「混合」三选一，默认采样，**不再静默切换**。 |
+| 全库（leaf > 1000） | 同上，但实时 `find "$KB_DIR" -name "*.md" \| wc -l` > 1000 | **触发 Step 0.1 策略询问**：用 `AskUserQuestion` 让用户在「采样」/「穷举」/「混合」三选一，默认采样，**不再静默切换**。 |
 
 **🆕 空 KB_DIR 检测（2026-09-03 测试新增）**：
 
@@ -42,12 +57,12 @@ fi
 
 ### Step 0.1：全库规模触发的策略询问（leaf > 1000）
 
-> 🆕 **2026-08-23 新增**：当 Step 0 判 scope = 全库且实时 `find note -name "*.md" | wc -l` > 1000 时，**必须**用 `AskUserQuestion` 让用户在 3 种策略中显式选择，**不再静默切换**为采样。
+> 🆕 **2026-08-23 新增**：当 Step 0 判 scope = 全库且实时 `find "$KB_DIR" -name "*.md" | wc -l` > 1000 时，**必须**用 `AskUserQuestion` 让用户在 3 种策略中显式选择，**不再静默切换**为采样。
 
 **触发前先算 leaf 数**：
 
 ```bash
-LEAF_COUNT=$(find note -name "*.md" | wc -l)
+LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 [ "$LEAF_COUNT" -gt 1000 ] && echo "全库 leaf = $LEAF_COUNT，超阈值，触发 Step 0.1 询问"
 ```
 
@@ -103,50 +118,18 @@ LEAF_COUNT=$(find note -name "*.md" | wc -l)
 
 > **🆕 2026-09-02 起**：Phase 1 开头必跑 `check-broken-links.py`（双口径 + 全库 + 单文件）—— Session 6 教训：230 处断链批量修复后，必须作为体检的**第一闸**而非"发现时才跑"。统一入口避免 subagent 漏跑。
 
-**关联强度扫描脚本**（Phase 1.13 · v2 2026-08-25 正文内链版，实测校准：1005 → 382）：
+**关联强度扫描脚本**（Phase 1.13 · v2 2026-08-25 正文内链版，实测校准：1005 → 382，**外置 `scripts/weak-link-scan.py`**）：
 
 > v1（全文件关键词匹配）误报率极高：G4 要求的页脚"相关章节"兄弟互链天然不在正文重复关键词，2026-08-25 体检命中 1005 处绝大多数是合规导航。v2 四步降噪：**① 切掉代码块 ② 排除表格行（导航表）③ 页脚截断**（`← 返回` / `相关章节/交叉引用/系列导航/反向链` 标题之后）④ **排除祖先回链**（`../README.md` 式返回父级）；关键词检查在**含链接文本的正文**里做（链接文本提到主题 = 强关联）。实测从 1005 噪声降到 382 条基本可执行的跨模块引用候选。
 
-```python
-# Phase 1.13 v2：弱关联扫描（只扫正文内链，排除页脚导航表 / 表格 / 代码块 / 祖先回链）
-import re, os, glob, sys
-sys.stdout.reconfigure(encoding='utf-8')
-LINK_RE = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)')
-
-def body_only(content):
-    content = re.sub(r'```.*?```', '', content, flags=re.S)          # ① 去代码块
-    lines = [l for l in content.split('\n') if not l.strip().startswith('|')]  # ② 去表格行（导航表）
-    cut = len(lines)
-    for i, l in enumerate(lines):                                     # ③ 页脚截断
-        if re.search(r'[←⬅]\s*\[?返回', l) or re.match(r'^#{1,3}\s*(🔗\s*)?(相关章节|交叉引用|系列导航|反向链|相关链接)\s*$', l):
-            cut = i
-            break
-    return '\n'.join(lines[:cut])
-
-weak = 0
-for f in glob.glob('$KB_DIR/**/*.md', recursive=True):
-    if '.health-tmp' in f.replace(os.sep, '/'): continue
-    content = open(f, encoding='utf-8', errors='ignore').read()
-    body = body_only(content)
-    f_dir = os.path.dirname(os.path.abspath(f))
-    for m in LINK_RE.finditer(body):
-        t_abs = os.path.normpath(os.path.join(os.path.dirname(f), m.group(2)))
-        if not os.path.isfile(t_abs): continue                        # broken 由 #6 处理
-        t_dir = os.path.dirname(os.path.abspath(t_abs))
-        try:                                                          # ④ 祖先回链（返回父级）跳过
-            if os.path.commonpath([t_dir, f_dir]) == t_dir: continue
-        except ValueError: pass
-        try:
-            tc = open(t_abs, encoding='utf-8', errors='ignore').read(2000)
-        except Exception: continue
-        h1 = re.search(r'^#\s+(.+)$', tc, re.M)                       # ⑤ 目标主题关键词 = H1
-        kws = re.findall(r'[A-Za-z][A-Za-z0-9\-]{3,}|[一-鿿]{2,6}', (h1.group(1) if h1 else ''))
-        if not kws: continue
-        if all(k not in body for k in kws[:6]):                       # 正文（含链接文本）0 提及
-            weak += 1
-            print(f"  ⚠ 弱关联: {f} -> {m.group(2)}")
-print(f"弱关联（正文内链口径）: {weak} 处")
+```bash
+# 用法（外置脚本，2026-09-23 落盘）：
+python scripts/weak-link-scan.py --dir "$KB_DIR" --output .health-tmp/weak-link-<date>.txt
+# 可选：限定模块 / 排除目录 / 输出报告
+python scripts/weak-link-scan.py --dir 09.ai-applications --exclude-dir .health-tmp .git scripts
 ```
+
+> 四步降噪 + H1 关键词检查详见脚本 docstring。风格基线 `scripts/check-broken-links.py`。
 
 **关联强度输出**：
 - 弱关联列表 → 报告 P2 项 + 推荐"删除或补语义描述"（正文补一句目标主题与本文的关系）
@@ -160,7 +143,7 @@ print(f"弱关联（正文内链口径）: {weak} 处")
 - **全库**：先用以下命令枚举 leaf 文件清单，再把清单通过 `args.files` 传给 workflow：
 
 ```bash
-find note -name "*.md" | python -c "import sys,os; [print(l.strip()) for l in sys.stdin if l.count('/')>=3]"
+find "$KB_DIR" -name "*.md" | python -c "import sys,os; [print(l.strip()) for l in sys.stdin if l.count('/')>=3]"
 ```
 
 > 注：Windows 环境用 `python`（3.13+），macOS/Linux 也可用 `python3`。脚本应兼容两者。

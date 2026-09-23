@@ -3,7 +3,22 @@ name: note-knowledge-qa
 description: Use when user asks a technical question / "查 note" / "知识库问答" / "我有问题想问" requests interview prep / "面试题" / "出一道题" / "考考我" / "根据简历出题" / "模拟面试" / "面试非科班" wants system design guidance / "如何设计 X" or needs knowledge from the project's knowledge base (defaults to the repo root, configurable via `NOTE_DIR` env var) — retrieves relevant articles across the 13-module structure (read at runtime), follows cross-references, synthesizes comprehensive answers with citations
 ---
 
-> **规则来源**：执行前用 `find note -maxdepth 1 -type d` 读取当前模块结构，读 `$KB_DIR/SPEC.md` 了解全局规范（含 §7 SPEC 分层元规范），读目标模块的 `<module>/SPEC.md` 了解专属维度；若该模块存在 `*-FORMAT-SPEC.md`（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`）也一并读取（确保回答引用合规）。模块数 / 文件数在运行时统计，不硬编码。
+> [!IMPORTANT]
+> **KB_DIR 守卫（2026-09-23 统一）**：KB_DIR 必须在执行任何 find/grep/python 之前导出。
+>
+> Bash 单行（放任何脚本顶部）：
+> ```bash
+> export KB_DIR="${NOTE_DIR:-$(git rev-parse --show-toplevel)}"
+> ```
+>
+> Python heredoc（任何 `python << 'PYEOF'` 块开头必加）：
+> ```python
+> import os; KB_DIR = os.environ.get('KB_DIR', '.')
+> ```
+>
+> 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
+
+> **规则来源**：执行前用 `find "$KB_DIR" -maxdepth 1 -type d` 读取当前模块结构，读 `$KB_DIR/SPEC.md` 了解全局规范（含 §7 SPEC 分层元规范），读目标模块的 `<module>/SPEC.md` 了解专属维度；若该模块存在 `*-FORMAT-SPEC.md`（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`）也一并读取（确保回答引用合规）。模块数 / 文件数在运行时统计，不硬编码。
 
 # note 知识库问答
 
@@ -13,8 +28,8 @@ description: Use when user asks a technical question / "查 note" / "知识库�
 
 > ⚠️ **数字校对**：本文件使用 `find` 实测数字，避免 hardcode 漂移。统计命令：
 > ```bash
-> find note -name 'README.md' | wc -l   # 当前 README 数
-> find note -name '*.md' | wc -l         # 当前 .md 总数
+> find "$KB_DIR" -name 'README.md' | wc -l   # 当前 README 数
+> find "$KB_DIR" -name '*.md' | wc -l         # 当前 .md 总数
 > ```
 
 **核心原则**：**先搜后答** —— 不凭记忆回答，先从 $KB_DIR/ 检索相关内容，确保答案有据可查。
@@ -60,59 +75,62 @@ skill 执行：A 类型（技术问答）→ grep "HashMap" → 双层检索（0
 
 **今天沉淀 50+ AI/ML 词汇**，按检索映射表快速定位：
 
-### LLM 架构层（5 词）
+### LLM 架构层（1 词 + 5 失效已删）
+
+> ⚠️ 2026-09-23 刷新：注意力机制 / MoE 架构 / RoPE 位置编码 整目录已消失（无替代）；Transformer 主模块缺失，仅保留 12.interview 入口；Flash Attention 迁移到 `llm-inference/flash-attention`。
 
 | 词汇 | 主模块 | 12.interview |
 |------|--------|---------------|
-| Transformer | `09.ai-applications/01-fundamentals/transformer` | `12.interview/11.ai/transformer` |
-| 注意力机制 | `09.ai-applications/01-fundamentals/attention-mechanism` | (在 attention-mechanism 中) |
-| MoE 架构 | `09.ai-applications/01-fundamentals/moe-architecture` | (在 moe-architecture 中) |
-| RoPE 位置编码 | `09.ai-applications/01-fundamentals/rope-position-encoding` | (在 rope 中) |
-| Flash Attention | `09.ai-applications/01-fundamentals/flash-attention` | (在 flash-attention 中) |
+| Transformer | - | `12.interview/11.ai/transformer` |
+| Flash Attention | `09.ai-applications/llm-inference/flash-attention` | (在 llm-inference 中) |
 
 ### LLM 推理优化（10 词）
 
-| 词汇 | 主模块 | 12.interview |
-|------|--------|---------------|
-| KV Cache | `09.ai-applications/02-technology-stack/kv-cache` | `12.interview/11.ai/llm-inference` |
-| PagedAttention | `09.ai-applications/02-technology-stack/paged-attention` | (在 llm-inference 中) |
-| Continuous Batching | `09.ai-applications/02-technology-stack/continuous-batching` | (在 llm-inference 中) |
-| Speculative Decoding | `09.ai-applications/02-technology-stack/speculative-decoding` | (在 llm-inference 中) |
-| 权重量化 | `09.ai-applications/02-technology-stack/weight-quantization` | (在 llm-inference 中) |
-| MoE 推理 | `09.ai-applications/02-technology-stack/moe-inference` | (在 llm-inference 中) |
-| 推理性能指标 (TTFT/TPOT) | `09.ai-applications/02-technology-stack/inference-metrics` | (在 llm-inference 中) |
-| 推理框架对比 | `09.ai-applications/02-technology-stack/inference-frameworks` | (在 llm-inference 中) |
-| LLM 推理优化大专题 | `09.ai-applications/02-technology-stack/llm-inference-optimization` | `13.story/46-llm-inference` |
-| vLLM / TGI / SGLang | `09.ai-applications/02-technology-stack/inference-frameworks` | - |
-
-### LLM 训练与对齐（10 词）
+> 2026-09-23 刷新：`02-technology-stack/*` → `llm-inference/*`（9 项）。
 
 | 词汇 | 主模块 | 12.interview |
 |------|--------|---------------|
-| SFT | `09.ai-applications/07-research/alignment/01-sft` | `12.interview/11.ai/llm-alignment` |
-| RLHF | `09.ai-applications/07-research/alignment/02-rlhf` | (在 llm-alignment 中) |
+| KV Cache | `09.ai-applications/llm-inference/kv-cache` | `12.interview/11.ai/llm-inference` |
+| PagedAttention | `09.ai-applications/llm-inference/paged-attention` | (在 llm-inference 中) |
+| Continuous Batching | `09.ai-applications/llm-inference/continuous-batching` | (在 llm-inference 中) |
+| Speculative Decoding | `09.ai-applications/llm-inference/speculative-decoding` | (在 llm-inference 中) |
+| 权重量化 | `09.ai-applications/llm-inference/weight-quantization` | (在 llm-inference 中) |
+| MoE 推理 | `09.ai-applications/llm-inference/moe-inference` | (在 llm-inference 中) |
+| 推理性能指标 (TTFT/TPOT) | `09.ai-applications/llm-inference/inference-metrics` | (在 llm-inference 中) |
+| 推理框架对比 | `09.ai-applications/llm-inference/inference-frameworks` | (在 llm-inference 中) |
+| LLM 推理优化大专题 | `09.ai-applications/llm-inference/llm-inference-optimization` | `12.interview/11.ai/llm-inference` |
+| vLLM / TGI / SGLang | `09.ai-applications/llm-inference/inference-frameworks` | - |
+
+### LLM 训练与对齐（8 词 + 1 失效已删）
+
+> 2026-09-23 刷新：`07-research/alignment/0N-*` → `fine-tuning/0N-*.md`（6 项，注意 `.md` 文件）；`07-research/alignment` 主目录消失 → 删除整行。
+
+| 词汇 | 主模块 | 12.interview |
+|------|--------|---------------|
+| SFT | `09.ai-applications/fine-tuning/01-sft.md` | `12.interview/11.ai/llm-alignment` |
+| RLHF | `09.ai-applications/fine-tuning/02-rlhf.md` | (在 llm-alignment 中) |
 | PPO | (在 RLHF 中) | (在 llm-alignment 中) |
 | Reward Model | (在 RLHF 中) | - |
-| DPO | `09.ai-applications/07-research/alignment/03-dpo` | (在 llm-alignment 中) |
-| Constitutional AI | `09.ai-applications/07-research/alignment/04-constitutional-ai` | (在 llm-alignment 中) |
-| KTO / IPO / SimPO | `09.ai-applications/07-research/alignment/05-newer-methods` | (在 llm-alignment 中) |
+| DPO | `09.ai-applications/fine-tuning/03-dpo.md` | (在 llm-alignment 中) |
+| Constitutional AI | `09.ai-applications/fine-tuning/04-constitutional-ai.md` | (在 llm-alignment 中) |
+| KTO / IPO / SimPO | `09.ai-applications/fine-tuning/05-newer-methods.md` | (在 llm-alignment 中) |
 | ORPO / RFT | (在 newer-methods 中) | - |
-| LLM 对齐专题 | `09.ai-applications/07-research/alignment` | (在 llm-alignment 中) |
 
-### LLM 应用层（10 词）
+### LLM 应用层（9 词 + 1 失效已删）
+
+> 2026-09-23 刷新：`02-technology-stack/*` → `rag/*`（8 项）；`06-agent-evaluation/09-rag-evaluation` → `rag/04-evaluation.md`（2 项）；YaRN/RoPE 扩展整目录消失 → 删除整行。
 
 | 词汇 | 主模块 | 12.interview |
 |------|--------|---------------|
-| Lost In the Middle | `09.ai-applications/02-technology-stack/lost-in-middle` | (在 context-engineering-interview 中) |
-| YaRN / RoPE 扩展 | `09.ai-applications/02-technology-stack/yarn-context-extension` | (在 llm-benchmark 中) |
-| Chunking 策略 | `09.ai-applications/02-technology-stack/chunking-strategies` | (在 rag 中) |
-| Embedding 模型 | `09.ai-applications/02-technology-stack/embedding-models` | (在 rag 中) |
-| Hybrid Search | `09.ai-applications/02-technology-stack/hybrid-search` | (在 rag 中) |
-| Reranker | `09.ai-applications/02-technology-stack/reranker` | (在 rag 中) |
-| Query Rewrite | `09.ai-applications/02-technology-stack/query-rewrite` | - |
-| RAG Pipeline | `09.ai-applications/02-technology-stack/rag-pipeline` | - |
-| RAG 评估 | `09.ai-applications/06-agent-evaluation/09-rag-evaluation` | - |
-| RAGAS / TruLens | `09.ai-applications/06-agent-evaluation/09-rag-evaluation` | - |
+| Lost In the Middle | `09.ai-applications/rag/lost-in-middle` | (在 context-engineering-interview 中) |
+| Chunking 策略 | `09.ai-applications/rag/chunking-strategies` | (在 rag 中) |
+| Embedding 模型 | `09.ai-applications/rag/embedding-models` | (在 rag 中) |
+| Hybrid Search | `09.ai-applications/rag/hybrid-search` | (在 rag 中) |
+| Reranker | `09.ai-applications/rag/reranker` | (在 rag 中) |
+| Query Rewrite | `09.ai-applications/rag/query-rewrite` | - |
+| RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - |
+| RAG 评估 | `09.ai-applications/rag/04-evaluation.md` | - |
+| RAGAS / TruLens | `09.ai-applications/rag/04-evaluation.md` | - |
 
 ### 传统 ML 算法（10 词）
 
@@ -139,7 +157,7 @@ skill 执行：A 类型（技术问答）→ grep "HashMap" → 双层检索（0
 **示例**：
 ```
 用户："DPO 是什么？"
-skill：查表 → DPO 在 09.ai-applications/07-research/alignment/03-dpo + 12.interview/11.ai/llm-alignment
+skill：查表 → DPO 在 09.ai-applications/fine-tuning/03-dpo.md + 12.interview/11.ai/llm-alignment
 回答：包含 SFT/RLHF 上下文 + DPO 数学保证 + vs RLHF 对比 + 5 大反直觉
 ```
 ```
@@ -298,6 +316,18 @@ grep -rl "$KEYWORD" $KB_DIR/11.product-and-pm/ 2>/dev/null \
 echo ""
 echo "═══ 建议阅读顺序：主模块 → 12.interview → 13.story（叙事辅助）═══"
 ```
+
+**双层检索脚本**（外置自 §3.3，`scripts/qa-double-layer.sh`）：
+
+```bash
+# 用法：
+bash scripts/qa-double-layer.sh "<关键词>" [可选模块]
+# 示例：
+bash scripts/qa-double-layer.sh "RAG"                              # 全库
+bash scripts/qa-double-layer.sh "Transformer" 09.ai-applications    # 限定模块
+```
+
+> 4 段输出：主模块 / 12.interview / 13.story / 11.product-and-pm。退出码 0=命中 / 1=无命中 / 2=参数错误。风格基线 `scripts/sync-skills.sh`。
 
 **双层调度决策**（根据问题类型选择检索顺序）：
 
