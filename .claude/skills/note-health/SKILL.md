@@ -1,6 +1,6 @@
 ---
 name: note-health
-description: Use when user asks to audit or improve a project's knowledge base (defaults to the repo root, configurable via `NOTE_DIR` env var) — "note 哪里需要优化" / "note 有哪些问题" / "扫一遍 note" / "review note" / "体检" (structural audit) OR "评价 note 质量" / "这篇文章质量怎么样" / "质量验收" / "评分" OR "刚写的这篇质量如何" / "新写的 README 看看" (new-file quality). 单一分层体检：结构机械扫描 + leaf 判断式打分，全库穷举用 Workflow fan-out。
+description: Use when user wants to audit or evaluate the knowledge base — 结构体检 ("note 哪里需要优化" / "note 有哪些问题" / "扫一遍 note" / "体检") / 单篇质量评分 ("评价 note 质量" / "这篇文章质量怎么样" / "质量验收" / "评分") / 新文件基线 ("刚写的这篇质量如何" / "新写的 README 看看") — 单一分层体检:结构机械扫描 + leaf 判断式打分,全库穷举用 Workflow fan-out。 KB_DIR defaults to repo root, overridable via `NOTE_DIR` env var.
 ---
 
 > [!IMPORTANT]
