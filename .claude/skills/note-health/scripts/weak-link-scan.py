@@ -21,8 +21,7 @@ if sys.platform == 'win32':
     try: sys.stdout.reconfigure(encoding='utf-8')
     except: pass
 
-KB_DIR = os.environ.get('KB_DIR') or os.environ.get('NOTE_DIR') \
-    or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+KB_DIR = os.environ.get('KB_DIR') or os.environ.get('NOTE_DIR') or os.getcwd()
 
 LINK_RE = re.compile(
     r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)'
