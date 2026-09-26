@@ -226,7 +226,7 @@ v14 调整理由：v13 抽样验证 deep 类准确度仅 4.65%，是 v12 体系�
 
 ### 8.2 自动化校准脚本
 
-`skills/note-health/scripts/auto-calibrate.py`：
+`.claude/skills/note-health/scripts/auto-calibrate.py`：
 - 读取 v5 抽样报告
 - 自动应用偏差 ≥1 的校准
 - 生成 commit message
