@@ -280,7 +280,7 @@ def main():
     report_path = args.report
     if not os.path.exists(report_path):
         for cand in [
-            f'skills/note-health/references/{report_path}-sampling-report.md',
+            f'.claude/skills/note-health/references/{report_path}-sampling-report.md',
             f'.health-tmp/{report_path}-sampling-report.md',
         ]:
             if os.path.exists(cand):

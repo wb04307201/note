@@ -902,8 +902,6 @@ wc -l $KB_DIR/12.interview/<module>/*troubleshooting*/README.md
 
 **反模式**：看到用户挑战就立刻改方向（缺乏证据）—— 应该用先例数据支撑结论。
 
-## Quick Reference（原表保留）
-
 ## Common Mistakes
 
 > 🆕 **2026-09-23 P2-1 拆分**: 20 个 Mistake 全部下放到 [`references/mistakes.md`](references/mistakes.md)(470 行)。

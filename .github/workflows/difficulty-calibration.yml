@@ -148,8 +148,8 @@ jobs:
         run: |
           echo '=== 月度自动校准 ==='
           # 仅当抽样报告存在时运行
-          if [ -f .claude/skills/note-health/references/v6-sampling-report.md ]; then
-            python .claude/skills/note-health/scripts/auto-calibrate.py --report v6 --threshold 2 || true
+          if [ -f .claude/skills/note-health/references/v19-sampling-report.md ]; then
+            python .claude/skills/note-health/scripts/auto-calibrate.py --report v19 --threshold 2 || true
           else
             echo 'No v6-sampling-report.md found, skipping auto-calibrate'
           fi
