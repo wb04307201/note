@@ -18,6 +18,14 @@ MODULE="${2:-}"
 
 export KB_DIR="${NOTE_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || echo '.')}"
 
+# 非 git 仓库 + 未设 NOTE_DIR → fallback 到 '.' (CWD),stderr 警告
+if [ "$KB_DIR" = "." ] && [ -z "$NOTE_DIR" ]; then
+  if ! git rev-parse --show-toplevel >/dev/null 2>&1; then
+    echo -e "${YELLOW}警告: 不在 git 仓库,且未设 NOTE_DIR,使用 CWD 作为 KB 根${NC}" >&2
+    echo -e "${YELLOW}        如需指向其他 KB,请 export NOTE_DIR=/path/to/kb${NC}" >&2
+  fi
+fi
+
 if [ ! -d "$KB_DIR" ]; then
   echo -e "${RED}错误: KB_DIR=$KB_DIR 不存在${NC}"
   exit 2
