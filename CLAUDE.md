@@ -91,11 +91,22 @@ find . -name "README.md" -not -path "./.git/*" -exec grep -L "^<!--" {} \;
 
 `.claude/skills/` 为 3 个 skill 的**单一来源**(git tracked,Claude Code 自动发现):
 
-| Skill | 何时用 |
-|-------|--------|
-| `note-precipitation-planning` | 用户问"X 应该沉淀到 note 什么位置?" |
-| `note-health` | 用户问"note 哪里需要优化?" / "这篇文章质量怎么样?"(结构体检 + 内容打分) |
-| `note-knowledge-qa` | 用户问技术问题,从知识库检索回答 |
+| Skill | 触发类型 | 典型用户原话 |
+|-------|---------|-------------|
+| `note-precipitation-planning` | 新增主题 / 新增模块 / 批量迁移 / 结构重构 / 修复更新 | "X 应该沉淀到 note 什么位置" / "加 14.llm-ops 模块" / "课程 lesson 批量导入" / "09 拆成两个" / "X 写错了" |
+| `note-health` | 结构体检 / 单篇质量评分 / 新文件基线 | "note 哪里需要优化" / "扫一遍 note" / "评价 note 质量" / "这篇新写的质量如何" |
+| `note-knowledge-qa` | 技术问答 / 面试准备 / 系统设计 / 学习路径 | "查 note" / "出一道题" / "考考我" / "根据简历出题" / "如何设计 X" |
+
+> **4 支柱 → 3 skill 映射**：
+>
+> | 4 支柱（原始目标） | 实际承载 | 说明 |
+> |---------|---------|------|
+> | 构架 LLM wiki 知识库（Build） | `note-precipitation-planning` | Build 是 Precipitate 的不同尺度（新建模块 / 重构 / 迁移）——不是独立能力 |
+> | 沉淀知识到知识库（Precipitate） | `note-precipitation-planning` | 主用法:放新内容到正确位置 |
+> | 体检知识库（Health） | `note-health` | 唯一对应 |
+> | 使用知识库（Use） | `note-knowledge-qa` | 唯一对应 |
+>
+> **关键洞察**：Build 与 Precipitate 是同一活动（KB 修改）的不同心智模型。`note-precipitation-planning` 的 Phase 3.5 / Phase 6.9 已覆盖"批量迁移"与"主动重组"两类高阶 Build 行为。
 
 **skill 的知识库根目录(KB_DIR)默认 = 仓库根**(内容平铺),仍支持 `NOTE_DIR` 环境变量覆盖(用于把 skill 借给其他项目)。
 
