@@ -12,9 +12,9 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 # 知识库 .md 新增/修改时跑链接完整性检查（平铺结构：内容在仓库根）
 # 排除 .claude/skills/ scripts/ .health-tmp/ 等非知识内容目录
 # --diff-filter=AM 避免 staged 删除触发"文件不存在"误报
-STAGED_NOTE=$(git diff --cached --name-only --diff-filter=AM | grep "\.md$" | grep -vE "^(\.claude/skills/|scripts/|\.health-tmp/)" || true)
+STAGED_NOTE=$(git diff --cached --name-only --diff-filter=AM | grep "\.md$" | grep -vE "^(\.claude/skills/|\.github/|\.health-tmp/)" || true)
 if [ -n "$STAGED_NOTE" ]; then
-  CHECK_SCRIPT="$REPO_ROOT/scripts/check-broken-links.py"
+  CHECK_SCRIPT="$REPO_ROOT/.github/workflows/scripts/check-broken-links.py"
   if [ -f "$CHECK_SCRIPT" ]; then
     FILE_COUNT=$(echo "$STAGED_NOTE" | wc -l)
     echo "[pre-commit] 知识库有 $FILE_COUNT 个 .md 变更，跑链接完整性检查..."
