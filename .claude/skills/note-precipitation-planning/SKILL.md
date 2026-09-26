@@ -46,9 +46,9 @@ description: Use when user asks where to add or update a topic in the project's 
 
 当用户问"这个主题应该新增/更新到 note 的什么位置"时，遵循 8 步流程输出沉淀方案。本知识库（仓库根）是 13 主模块的体系化技术知识库，含 11 个技术主模块（`01.java-and-jvm` ~ `11.product-and-pm`）+ `12.interview` 面试题主模块 + `13.story` 阿明餐厅叙事主模块，每个主模块有 README + 子目录 + 已建立的双层/三层沉淀模式（12.interview 面试题 + 08.ai-foundations/09.ai-applications 深度原理 + 13.story 餐厅叙事）。
 
-> 🆕 **Step 0 新增（2026-07-26 教训）**：用户输入可能是**多个主题**（如"大模型思维工程 5 个灵魂拷问"实际包含 5 个独立子主题）。Step 0 在盘点前先识别并拆分多主题，避免把 N 个独立主题错误合并成一个文件。历史案例：`production-thinking-5q` 把思维范式/成本控制/一致性/超时熔断/监控 5 个独立主题合成一个 419 行文件，后续不得不全部拆散。
+> 🆕 **Phase 0 新增（2026-07-26 教训）**：用户输入可能是**多个主题**（如"大模型思维工程 5 个灵魂拷问"实际包含 5 个独立子主题）。Phase 0 在盘点前先识别并拆分多主题，避免把 N 个独立主题错误合并成一个文件。历史案例：`production-thinking-5q` 把思维范式/成本控制/一致性/超时熔断/监控 5 个独立主题合成一个 419 行文件，后续不得不全部拆散。
 
-> 🆕 **Step 0 强化（2026-08-10 教训）**：**多主题拆分**判定信号——当用户输入主题**包含 ≥3 个互不相关子题**且每个子题都合格，**单文件综述违反 split-hairs 单点深挖定位**。判定 checklist：
+> 🆕 **Phase 0 强化（2026-08-10 教训）**：**多主题拆分**判定信号——当用户输入主题**包含 ≥3 个互不相关子题**且每个子题都合格，**单文件综述违反 split-hairs 单点深挖定位**。判定 checklist：
 > - [ ] 文件覆盖 ≥3 个互不相关子主题？（"X 是什么"、"X 6 大"、"X 综述" 类标题）
 > - [ ] 每个子主题都有自己的 30s/90s 话术？（合并文件通常每节都有完整话术模板）
 > - [ ] 任一项 Yes → 拆分为多个 single-topic 文件，每个子题独立 frontmatter
@@ -60,7 +60,7 @@ description: Use when user asks where to add or update a topic in the project's 
 ```
 用户：我想加 "Claude Code Skills" 章节，怎么沉淀？
    ↓
-skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决策 → Step 4 方式 → Step 5 选项
+skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置决策 → Phase 4 方式 → Phase 5 选项
    ↓
 输出（节选）：
   ## 📋 现状盘点
@@ -117,11 +117,11 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 
 ## 8 步核心流程
 
-### Step 0: 主题识别与拆分（必做，第一步）
+### Phase 0: 主题识别与拆分（必做，第一步）
 
 **目的**：避免多主题错误合并成一个文件（2026-07-26 历史教训：`production-thinking-5q` 把 5 个独立主题合成 419 行文件）
 
-#### Step 0.1 修复/更新 vs 新增 沉淀 检测（2026-09-03 测试新增 · H1 修复 FAIL 后必做）
+#### Phase 0.1 修复/更新 vs 新增 沉淀 检测（2026-09-03 测试新增 · H1 修复 FAIL 后必做）
 
 **触发**：用户输入**第一句**含以下关键词时，先判定是"修复现有内容"还是"新增沉淀"：
 
@@ -130,26 +130,26 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 | "修复" / "fix" / "修正" / "改正" / "校准" / "数字统一" | 现有内容存在错误，需修正 | **不要**走沉淀规划，引导直接修复（用 Edit 工具）|
 | "更新" / "补全" / "完善" / "深化" / "扩展" | 现有内容但有缺口 | **不要**走沉淀规划，识别目标文件后做增量修改 |
 | "如何在 note 里 X" / "note 里 X 不对" / "note 中 X 错误" | 现有内容定位后修正 | 同上 |
-| "新增" / "沉淀" / "添加" / "放 note" / "归档" | 全新内容 | **走** Step 1-7 沉淀规划 |
+| "新增" / "沉淀" / "添加" / "放 note" / "归档" | 全新内容 | **走** Phase 1-7 沉淀规划 |
 
 **反例（FAIL 案例 2026-09-03）**：
 - 用户："如何在 note 里修复 Redis 缓存穿透" → skill 错误地走沉淀规划
 - 应识别"修复"关键词 → 定位 `03.data-stack/02.cache/01.redis-penetration.md`（已存在）→ 直接 Edit 修复
 
 **正例**：
-- 用户："沉淀 CAP 理论" → "新增"类，走 Step 1-7
+- 用户："沉淀 CAP 理论" → "新增"类，走 Phase 1-7
 - 用户："沉淀 Claude Code Skills" → "新增"类（即使 Quick Example 中已提及，但用户意图是新增章节）
 - 用户："修复 Redis 缓存穿透" → "修复"类，不要规划沉淀，直接修复
 
-**Step 0.1 输出格式**（命中修复类时）：
+**Phase 0.1 输出格式**（命中修复类时）：
 
 ```markdown
-## 🔧 Step 0.1: 检测到「修复/更新」意图
+## 🔧 Phase 0.1: 检测到「修复/更新」意图
 
 **用户输入关键词**："修复 Redis 缓存穿透"
 **判定**：修复现有内容（不是新增沉淀）
 
-**目标文件**：`03.data-stack/02.cache/01.redis-penetration.md`（按 Step 1 现状盘点定位）
+**目标文件**：`03.data-stack/02.cache/01.redis-penetration.md`（按 Phase 1 现状盘点定位）
 
 **建议**：
 - 选项 A：直接 Edit 修复该文件（推荐）
@@ -159,7 +159,7 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 > 注：本 skill 不直接修复，请用 Read + Edit 工具操作；或转给其他工具
 ```
 
-#### Step 0.2 多主题识别（必做，第一步）
+#### Phase 0.2 多主题识别（必做，第一步）
 
 **判断逻辑**：
 
@@ -183,7 +183,7 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 │
 ├─ 弱关联（只是同时提到，如"RAG + Redis 缓存 + 限流"）
 │   → 各自独立沉淀，互不依赖
-│   → 每个主题走独立的 Step 1-7 流程
+│   → 每个主题走独立的 Phase 1-7 流程
 │
 └─ 部分关联（核心主题 + 边缘子话题）
     → 核心主题沉淀为主文件，边缘子话题作为章节或链接
@@ -192,7 +192,7 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 **输出格式**（多主题时）：
 
 ```markdown
-## 🔍 Step 0: 主题识别
+## 🔍 Phase 0: 主题识别
 
 识别到 **N 个独立子主题**：
 
@@ -206,13 +206,13 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 **面试题处理**：每个子主题各自独立一篇面试题（不要合并）
 ```
 
-**单主题时**：直接进入 Step 1。
+**单主题时**：直接进入 Phase 1。
 
-### Step 0.5: 上下文预算评估（多主题时必做）
+### Phase 0.5: 上下文预算评估（多主题时必做）
 
 > 🆕 **2026-07-26 教训**：一次沉淀 3 个主题（Structured Output + Planning/Acting/Monitoring + Skill 命中率）后，上下文被占满 → compact → 后续工作需手动恢复。多主题沉淀必须评估上下文消耗。
 
-**触发条件**：Step 0 识别到 **≥ 2 个独立子主题**时，必做 Step 0.5。
+**触发条件**：Phase 0 识别到 **≥ 2 个独立子主题**时，必做 Phase 0.5。
 
 **复杂度评估**（每个子主题）：
 
@@ -240,7 +240,7 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 **输出格式**（多主题时）：
 
 ```markdown
-## 🔍 Step 0.5: 上下文预算评估
+## 🔍 Phase 0.5: 上下文预算评估
 
 | # | 子主题 | 复杂度 | 预估上下文消耗 | 建议批次 |
 |---|--------|--------|--------------|---------|
@@ -256,7 +256,7 @@ skill 执行：Step 1 现状盘点 → Step 2 深度评估 → Step 3 位置决�
 2. **主动提示用户**："Batch 1 完成。是否继续 Batch 2？（建议先 compact 再续）"
 3. **Batch 2+**：用户确认后 → compact → 从 git log 恢复进度 → 继续
 
-### Step 1: 现状盘点（必做，不能跳过）
+### Phase 1: 现状盘点（必做，不能跳过）
 
 **目的**：避免重复沉淀、找到补充位置、识别已有结构
 
@@ -300,9 +300,9 @@ if [ -f "$KB_DIR/README.md" ] && ! grep -q "<target-module>" "$KB_DIR/README.md"
   echo "  ⚠  目标模块 <target-module> 未在 $KB_DIR/README.md 总目录出现"
 fi
 
-# 1.7 计划阶段预检（commit 前的 sanity check，避免进入 Step 6 后才发现）
+# 1.7 计划阶段预检（commit 前的 sanity check，避免进入 Phase 6 后才发现）
 # 输出：PASS / FAIL + 修复清单
-echo "=== Step 1 预检清单 ==="
+echo "=== Phase 1 预检清单 ==="
 echo "  □ 关键词已 grep（1.1）"
 echo "  □ 主题目录已扫（1.2）"
 echo "  □ 12.interview 兄弟已列（1.3）"
@@ -325,7 +325,7 @@ done | sort -n
 
 # 判定：
 #   - troubleshooting 类先例 ≥ 3 篇且单篇 200-450 行 → 默认单面试题版（不双层）
-#   - 没有先例或先例很少 → 走原 Step 4 决策树
+#   - 没有先例或先例很少 → 走原 Phase 4 决策树
 
 # 1.9 Bonus 修复同源错误 grep（沉淀前主动检查 — 🆕 2026-08-28 新增）
 # 目的：沉淀新案例时，主动 grep 现有文件是否有同源反直觉错误（同一错误示范）
@@ -339,7 +339,7 @@ done | sort -n
 
 **输出**：5-10 个相关文件 + 每个文件的"覆盖深度"评估（"已有详细"/"一笔带过"/"完全缺失"）+ **总目录验证结果**+ **同模式先例行数对照表** + **Bonus 修复候选清单（如有）**
 
-### Step 2: 深度评估（值得沉淀吗？）
+### Phase 2: 深度评估（值得沉淀吗？）
 
 **值得沉淀的 3 个信号**：
 1. **高频**（面试常考 / 实际生产常见）
@@ -351,7 +351,7 @@ done | sort -n
 - 已有 5+ 重复内容
 - 用户场景明确不需要
 
-### Step 3: 位置决策（用决策树）
+### Phase 3: 位置决策（用决策树）
 
 ```
 用户场景是什么？
@@ -367,7 +367,7 @@ done | sort -n
 - 算法原理 → 主模块的 `01-fundamentals/` 或 `02-technology-stack/`
 - 面试 Q&A → `12.interview/<module>/<topic>.md`
 
-### Step 4: 沉淀方式决策（用决策树）
+### Phase 4: 沉淀方式决策（用决策树）
 
 ```
 主题深度？
@@ -388,7 +388,7 @@ done | sort -n
 │   反模式：硬塞双层（主模块深读 800+ 行 + 面试题 200 行）→ 主模块过载 + 面试题泛化
 ├─ 同栏目无先例 + 内容跨多领域（如 Maven + JVM + 容器） → 拆分为多个单面试题
 │   各自独立成文 + 互链（同 Mistake 16 多主题拆分）
-└─ 内容是理论/原理（非生产 Bug 案例） → 走原 Step 3 决策树（主模块深读 / 双层）
+└─ 内容是理论/原理（非生产 Bug 案例） → 走原 Phase 3 决策树（主模块深读 / 双层）
 ```
 
 **双层沉淀模板**（遵循 `CONTRIBUTING.md` §3 commit 规范：`<type>(note): <scope-detail> - <描述>`）：
@@ -416,7 +416,7 @@ Commit 3: refactor(note): <related-chapter> - 加反向链（指向新文件）
 
 > **统一性检查**：所有 commit 必须用 `feat/fix/refactor/.../chore(note)` 形式（仓库统一 scope = `note`），不要用 `feat(09.ai-applications)` 这种过细的 scope。
 
-### Step 5: 选项呈现（用 AskUserQuestion，orchestrator 执行）
+### Phase 5: 选项呈现（用 AskUserQuestion，orchestrator 执行）
 
 **关键**：如果作为 subagent 执行，**不能直接调 AskUserQuestion**，必须返回选项让 orchestrator 转交。
 
@@ -439,7 +439,7 @@ C. 双层 + 联动（最完整）
 D. 暂不沉淀
 ```
 
-### Step 5.5: 知识丰富度评估（条件触发网络搜索）
+### Phase 5.5: 知识丰富度评估（条件触发网络搜索）
 
 **目的**：在实施前判断是否需要补充外部知识，避免"用过时/不足的知识写文章"。
 
@@ -448,7 +448,7 @@ D. 暂不沉淀
 | 信号 | 说明 | 示例 |
 |------|------|------|
 | **快速演进领域** | AI / 云原生 / 框架版本等半年内可能变化的主题 | "大模型 JSON 输出"、"分层路由" |
-| **深度缺口** | Step 1 扫描发现现有内容 < 20 行（几乎空白） | "统一权限系统设计"（note 中完全缺失） |
+| **深度缺口** | Phase 1 扫描发现现有内容 < 20 行（几乎空白） | "统一权限系统设计"（note 中完全缺失） |
 | **用户明确要求** | 用户说"搜索网络知识"或"给我最新方案" | "要是你的知识支持…你可以搜索网络" |
 | **模型不确定** | 对主题的具体实现细节、最新 API、框架版本不确定 |  unsure about latest Spring Boot version |
 
@@ -491,9 +491,9 @@ D. 暂不沉淀
 - 末尾增加 `## 📚 参考来源` 章节，列出搜索到的 3-5 篇参考文章（含 URL + 一句话说明）
 - 正文中引用的具体数据/方案标注来源
 
-### Step 6: 实施（dispatch subagent）
+### Phase 6: 实施（dispatch subagent）
 
-#### ⚠️ Step 6.0 关键决策：内容驱动 vs lesson 映射（2026-08-14 教训）
+#### ⚠️ Phase 6.0 关键决策：内容驱动 vs lesson 映射（2026-08-14 教训）
 
 **核心原则**：**按内容主题分类，不要按 lesson 编号机械复制**。
 
@@ -517,7 +517,7 @@ D. 暂不沉淀
 3. 按关键词决定目标子目录
 4. 同一 lesson 不同文件可去不同目标（lesson 是**课程编排**，不是**内容分类**）
 
-#### ⚠️ Step 6.1 深度重组（2026-08-14 教训·必做·不询问用户）
+#### ⚠️ Phase 6.1 深度重组（2026-08-14 教训·必做·不询问用户）
 
 **核心原则**：沉淀 ≠ cp -r。沉淀必须做 **3 类主动整理**：
 
@@ -582,12 +582,12 @@ for file in target_dir:
 - 路径深度必须从目标文件向上数（`../` 数量 = 层级差）
 - **目标路径必须实际验证**（2026-07-25 ACP 教训）：写链接前用 `find "$KB_DIR" -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在，不凭脑补
 - **每文件 commit 后立即跑 broken links 扫描**（2026-07-25 ACP 教训）：commit 完不要等最后才检查，发现新引入立刻修，避免累计 3+ 处后才补
-- 若 Step 5.5 触发了网络搜索，文章末尾必须有 `## 📚 参考来源` 章节
+- 若 Phase 5.5 触发了网络搜索，文章末尾必须有 `## 📚 参考来源` 章节
 
 **每 commit 后 broken links 扫描脚本**（Mistake 14 + 8 联合防御）：
 
 ```bash
-# 每文件 commit 后立即跑（应在 Step 6 每次 git commit 后调用）
+# 每文件 commit 后立即跑（应在 Phase 6 每次 git commit 后调用）
 python << 'PYEOF'
 import sys, os, re, glob
 if sys.platform == 'win32':
@@ -639,7 +639,7 @@ PYEOF
 - **失败检测规则**：如果 subagent 报告完成但 `git log` 没新 commit → 立即 abort + 重派，不要信任 subagent 自我报告
 - **commit 1 必含文件创建**：commit 1 必须新增 1+ 个文件（不能用 pure README 修改代替），`find "$KB_DIR" -name "<topic>.md" -newer <commit-base>` 验证
 
-### Step 6.6: Git author 一致性（subagent 必须用主账号）
+### Phase 6.6: Git author 一致性（subagent 必须用主账号）
 
 > 🆕 **2026-07-25 升级**（Phase 4 体检 + Batch 1-5 修复经验）：peer subagent 自动注入 fallback user `note-health-batch3 <note-health@local>`，导致 2 个 commit author 错误，需 rebase 修正。
 
@@ -664,7 +664,7 @@ PYEOF
   ```
   ⚠️ 注意 rebase 会改 commit hash，原预期 hash 会失效
 
-### Step 6.5: 并发 peer session 协调（共享 worktree）
+### Phase 6.5: 并发 peer session 协调（共享 worktree）
 
 > 历史教训：多 session 在同一 worktree 并发工作时，peer 可能修改 subagent 写过的文件而不 commit，或写文件后不 commit，需要协调。
 
@@ -677,7 +677,7 @@ PYEOF
   - 如 peer 已 commit + working tree 还有未提交修改 → 询问用户偏好（reset 重写 vs polish commit）
 - **不接受 floating peer 报告**：peer 报告后用 `git log --oneline` 独立核对才声明 final pass
 
-### Step 6.7: 并行 subagent 共享文件协调（2026-07-30 新增）
+### Phase 6.7: 并行 subagent 共享文件协调（2026-07-30 新增）
 
 > 🆕 **2026-07-30 教训**（Batch 3）：3 个 subagent 并行时，#5 和 #7 共享同一个父 README（`12.interview/05.frontend/README.md`）。#7 subagent 完成了 feat commit 但**反向链变更未 commit**（留在 working tree），且题数没有更新到正确值（27→28）。
 
@@ -703,7 +703,7 @@ PYEOF
 - [ ] 父 README 题数是否与实际目录数一致
 - [ ] 所有反向链是否已 commit（不是只留在 working tree）
 
-### Step 6.8: Subagent 父 README 更新职责（2026-07-30 新增）
+### Phase 6.8: Subagent 父 README 更新职责（2026-07-30 新增）
 
 > 🆕 **2026-07-30 教训**（消息已读未读面试题）：subagent 创建了新文件但没有更新父 README 的题数和条目。父 README 显示"共 20 题"，实际应该是 23 题（包含历史遗留的 media-upload、砍一刀算法等）。
 
@@ -736,7 +736,7 @@ PYEOF
 - [ ] 父 README 条目列表完整（无遗漏）
 - [ ] 所有新文件都已添加到父 README
 
-### Step 7: 验证 + 自检（必做）
+### Phase 7: 验证 + 自检（必做）
 
 **自检清单**：
 - [ ] `git diff --check` 无警告
@@ -791,7 +791,7 @@ PYEOF
 
 #### 🆕 §7.2 单文件自检（2026-09-02 教训·必做）
 
-**触发时机**：Step 6 subagent 报告 "完成" 后，orchestrator commit 前 **必做**。
+**触发时机**：Phase 6 subagent 报告 "完成" 后，orchestrator commit 前 **必做**。
 
 **目的**：避免 subagent 自报 "全部 commit 完毕" 但实际引入新断链。**subagent 自我声明不算数**（参考 note-precipitation-planning Mistake 20 · 弱关联类教训）。
 
@@ -818,7 +818,7 @@ fi
 
 **失败处理**：
 - 断链数 > 0 → **立即修复**（最常见是路径纠正，参考 §7.1）
-- 修复不成功 → **不允许 commit**，返回 Step 6 重做
+- 修复不成功 → **不允许 commit**，返回 Phase 6 重做
 
 **反直觉 4**："subagent 说做完了" ≠ "实际做完了"。Session 6 中 19 篇 v17 校准 subagent 自报 100%，但 orchestrator 独立校验才确保全部落地（v18 验证 80/80 = 100%）。
 
@@ -1017,14 +1017,14 @@ wc -l $KB_DIR/12.interview/<module>/*troubleshooting*/README.md
 
 ## Quick Checklist（执行前必过）
 
-- [ ] Step 1 完成：现状盘点（5-10 文件）
-- [ ] Step 2 完成：深度评估（3 信号检查）
-- [ ] Step 3 完成：位置决策（决策树应用）
-- [ ] Step 4 完成：方式决策（单/双/三层）
-- [ ] Step 5 完成：选项呈现（2-4 项 + 推荐）
-- [ ] Step 5.5 评估：知识丰富度（触发搜索 or 直接写）
-- [ ] Step 6 计划：commit 策略 + 互链 + 参考来源（如有搜索）
-- [ ] Step 7 计划：验证清单（5 项）+ **互链双向性扫描**
+- [ ] Phase 1 完成：现状盘点（5-10 文件）
+- [ ] Phase 2 完成：深度评估（3 信号检查）
+- [ ] Phase 3 完成：位置决策（决策树应用）
+- [ ] Phase 4 完成：方式决策（单/双/三层）
+- [ ] Phase 5 完成：选项呈现（2-4 项 + 推荐）
+- [ ] Phase 5.5 评估：知识丰富度（触发搜索 or 直接写）
+- [ ] Phase 6 计划：commit 策略 + 互链 + 参考来源（如有搜索）
+- [ ] Phase 7 计划：验证清单（5 项）+ **互链双向性扫描**
 
 ## Quick Checklist（执行后追加 — 避免新文件成孤岛）
 
