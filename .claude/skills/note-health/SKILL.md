@@ -242,28 +242,18 @@ find "$KB_DIR" -name "*.md" | python -c "import sys,os; [print(l.strip()) for l 
 > - 4 个实战教训：标题预筛 false positive 70% / difficulty 偏乐观 / 分批 dispatch / 灰色地带处置
 > - 完整内容见 references/5-dim-rubric.md
 
-### Phase 7 — 拆分检测（多主题错误合并）
+### Phase 7 — 拆分检测（→ references/split-detection.md）
 
-> 🆕 **2026-08-10 新增**：原 split-hairs `02.computer-basics/machine-learning/README.md` 是 6 大算法综述（违反 split-hairs 单点深挖定位），已拆分为 6 个 single-topic deep-dive。
-
-**判定标准**（任一为是 → 拆分）：
-
-| 信号 | 阈值 |
-|------|------|
-| 文件覆盖 ≥3 个互不相关子主题 | 30s 话术对应不同子主题 |
-| 标题过于宽泛 | "X 是什么"、"X 综述"、"X 全景"、"X 6 大" |
-| 每个子主题都合格 | 但合并后违反单点定位 |
-
-**拆分后**：
-- 每个子主题 → 独立 `<topic>/README.md` + frontmatter（question 类型）
-- 原综述文件删除（或保留为索引页，引用 6 个 deep-dive）
-- 父 README 目录表更新
-
-**验证通过标准**：
-- ✅ 每条 commit 有真实 hash（不是"已 commit" 文字）
-- ✅ `git status --short` 输出为空
-- ✅ 扩充后行数 ≥ 300 行（或目标值）
-- ✅ broken links 扫描输出为空（或只有预期的边缘 case）
+> 🆕 **v2.0 重构（2026-09-26）**：Phase 7 判定标准 / 拆分后规则 / 验证标准
+> 已抽到 `references/split-detection.md`。
+>
+> **何时读**：体检发现文件覆盖 ≥ 3 个互不相关子主题 / 标题宽泛 / 违反单点定位时必读。
+>
+> **简版入口**：
+> - 判定信号：覆盖 ≥ 3 互不相关子主题 / 标题宽泛 / 子主题各自合格但合并违反
+> - 拆分后：每个子主题 → 独立 README.md + frontmatter
+> - 验证：commit hash / git status / 行数 / broken links
+> - 完整内容见 references/split-detection.md
 
 **验证失败处理**：
 - commit hash 缺失 → 立即补 commit
