@@ -113,8 +113,14 @@ def main():
     parser.add_argument('--quiet', action='store_true', help='仅输出断链数与退出码（CI 友好）')
     args = parser.parse_args()
 
+    # KB_DIR 解析：优先 KB_DIR > NOTE_DIR > CWD（与 weak-link-scan.py / qa-double-layer.sh 一致）
+    kb_root = os.environ.get('KB_DIR') or os.environ.get('NOTE_DIR')
+    kb_root_explicit = kb_root is not None
+    if not kb_root_explicit:
+        kb_root = os.getcwd()
+
     if args.files:
-        # 单文件模式：用户传入的具体文件
+        # 单文件模式：用户传入的具体文件（保持原行为，路径由调用方解析）
         targets = args.files
         for f in targets:
             if not os.path.isfile(f):
@@ -122,19 +128,21 @@ def main():
                 sys.exit(2)
         total = scan_files(targets, verbose=not args.quiet)
     elif args.module:
-        # 单模块模式：扫描模块下所有 .md
+        # 单模块模式：基于 kb_root 解析
         targets = [
-            f for f in glob.glob(f'{args.module}/**/*.md', recursive=True)
+            f for f in glob.glob(os.path.join(kb_root, args.module, '**', '*.md'), recursive=True)
             if not is_excluded(f)
         ]
         if not targets:
-            print(f'❌ 模块 {args.module} 未找到任何 .md')
+            print(f'❌ 模块 {args.module} 在 KB_DIR={kb_root} 未找到任何 .md')
             sys.exit(2)
         total = scan_files(targets, verbose=not args.quiet)
     else:
-        # 全库扫描
+        # 全库扫描：基于 kb_root
+        if not args.quiet and not kb_root_explicit:
+            print(f'[INFO] KB_DIR/NOTE_DIR 未设置，使用 CWD 作为 KB 根: {kb_root}', file=sys.stderr)
         targets = [
-            f for f in glob.glob('**/*.md', recursive=True)
+            f for f in glob.glob(os.path.join(kb_root, '**', '*.md'), recursive=True)
             if not is_excluded(f)
         ]
         total = scan_files(targets, verbose=not args.quiet)
