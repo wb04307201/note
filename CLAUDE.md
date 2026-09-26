@@ -56,7 +56,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |------|------|
 | 全局规范(命名 / commit / 互链 / frontmatter / G1-G6 评分 / 11 类扫描规则) | `SPEC.md` |
 | 各模块自有 SPEC(评估维度 + 写作总则 + 子目录约定;11/12/13 等已落地) | `{NN}.xxx/SPEC.md` |
-| 模块写作模板(强骨架模块按需存在;13.story v2.0 起合并入 `<module>/SPEC.md`) | `12.interview/QUESTION-FORMAT-SPEC.md` / `13.story/SPEC.md#四强骨架格式规范` |
+| 模块写作模板(强骨架模块按需存在;v2.0 起全部合并入 `<module>/SPEC.md`,无独立 `*-FORMAT-SPEC.md` 文件) | `13.story/SPEC.md#四强骨架格式规范` / `12.interview/SPEC.md#§4 强骨架格式规范` |
 
 **知识文章 frontmatter 类型**(按 `slug` 字段分 3 类,HTML 注释格式 `<!--type: ... -->` 起首 + 多行字段 + `-->` 收尾;详见 `SPEC.md` §4):
 - `module:`(主模块 README + 子文章,跨所有 13 模块,现状 814 篇)
@@ -111,6 +111,11 @@ find . -name "README.md" -not -path "./.git/*" -exec grep -L "^<!--" {} \;
 **skill 的知识库根目录(KB_DIR)默认 = 仓库根**(内容平铺),仍支持 `NOTE_DIR` 环境变量覆盖(用于把 skill 借给其他项目)。
 
 **改 skill 直接改 `.claude/skills/`**(git tracked,无镜像机制)。
+
+**Skill 内部按用途分层**:
+- **决策与流程**: 3 个 SKILL.md 主体（沉淀/体检/问答）
+- **格式规范**: `references/*-FORMAT-SPEC.md` 或 `<module>/SPEC.md` §4（如 `references/MODULE-CREATION-SPEC.md` / `references/REFACTOR-SPEC.md` / `references/5-dim-rubric.md` / `references/split-detection.md`）
+- **操作层规范**: `.claude/ORCHESTRATION.md`（subagent/git/并发协议,3 skill 共用）
 
 新沉淀主题时,优先用 `note-precipitation-planning` 输出"位置 + 方式"方案。
 
