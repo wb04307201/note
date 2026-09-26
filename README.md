@@ -86,9 +86,9 @@ module:
 
 ## 七、关键文档
 
-- [v19 月度抽样报告](./skills/note-health/references/v19-sampling-report.md) — 19/19 = 100%
-- [v18 抽样报告](./skills/note-health/references/v18-sampling-report.md) — 突破 100%
-- [健康度收敛曲线](./skills/note-health/references/health-metrics-convergence.md) — 双收敛（5 维 + 结构）
+- [v19 月度抽样报告](./.claude/skills/note-health/references/v19-sampling-report.md) — 19/19 = 100%
+- [v18 抽样报告](./.claude/skills/note-health/references/v18-sampling-report.md) — 突破 100%
+- [健康度收敛曲线](./.claude/skills/note-health/references/health-metrics-convergence.md) — 双收敛（5 维 + 结构）
 
 ---
 
