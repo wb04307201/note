@@ -317,7 +317,7 @@ echo ""
 echo "═══ 建议阅读顺序：主模块 → 12.interview → 13.story（叙事辅助）═══"
 ```
 
-**双层检索脚本**（外置自 §3.3，`scripts/qa-double-layer.sh`）：
+**双层检索脚本**（外置自 §3.3，**同目录 `scripts/qa-double-layer.sh`**）：
 
 ```bash
 # 用法：
@@ -327,7 +327,7 @@ bash scripts/qa-double-layer.sh "RAG"                              # 全库
 bash scripts/qa-double-layer.sh "Transformer" 09.ai-applications    # 限定模块
 ```
 
-> 4 段输出：主模块 / 12.interview / 13.story / 11.product-and-pm。退出码 0=命中 / 1=无命中 / 2=参数错误。风格基线 `scripts/sync-skills.sh`。
+> 4 段输出：主模块 / 12.interview / 13.story / 11.product-and-pm。退出码 0=命中 / 1=无命中 / 2=参数错误。风格基线 `.github/workflows/scripts/check-broken-links.py`（v2.0 起迁移）。
 
 **双层调度决策**（根据问题类型选择检索顺序）：
 
