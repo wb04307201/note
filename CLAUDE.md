@@ -114,6 +114,15 @@ find . -name "README.md" -not -path "./.git/*" -exec grep -L "^<!--" {} \;
 
 新沉淀主题时,优先用 `note-precipitation-planning` 输出"位置 + 方式"方案。
 
+### KB_DIR / NOTE_DIR 契约
+
+3 个 skill 在文档中宣称"KB_DIR 默认仓库根,可用 NOTE_DIR 环境变量覆盖"。**实际契约**:
+
+- `KB_DIR` > `NOTE_DIR` > `os.getcwd()`(优先级递减,fallback CWD 时 stderr 警告但不阻断)
+- `check-broken-links.py` / `qa-double-layer.sh` / `weak-link-scan.py` 已实现
+- `auto-calibrate.py` 路径解析仍假设 CWD = 仓库根(borrowed-skill 场景会失效)
+- 借 skill 给其他项目时,设 `export NOTE_DIR=/path/to/their-kb` 后所有 skill 自动适配
+
 ## 新环境初始化(clone 后必做)
 
 ```bash
