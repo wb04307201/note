@@ -228,35 +228,19 @@ find "$KB_DIR" -name "*.md" | python -c "import sys,os; [print(l.strip()) for l 
    PYEOF
    ```
 
-### Phase 6 — 5 维评分（用户提的"过于简单"判定）
+### Phase 6 — 5 维评分（→ references/5-dim-rubric.md）
 
-> 🆕 **2026-08-10 新增**：当用户问"X 题是否过于简单"或"split-hairs 哪些该迁出"时，触发本阶段。在 Phase 1/2/5 之上做**内容质量评分**，与 E1-E6 格式完整性互补。
-
-**5 维度定义**（每维 0-2 分，总分 0-10）：
-
-| 维度 | 含义 |
-|------|------|
-| **D1 知识深度** | 源码级 + JVM/字节码 + 版本演进 |
-| **D2 知识广度** | 跨主模块联动 |
-| **D3 面试频次** | 真实面试出现频率 |
-| **D4 追问空间** | 面试官可追问几层 |
-| **D5 反直觉/陷阱** | 反直觉陷阱 / 生产事故案例 |
-
-**阈值**：≥7 保留 / 4-6 灰色 / ≤3 迁出
-
-**配套 E7-E11 评分表**：见 `references/leaf-quality.md` 末尾（E7-E11 节）。
-
-**与 difficulty 深度校准的衔接（🆕 2026-08-25）**：本阶段产出的五维分同时是 `difficulty` 深度校准的数据源——五维总分映射建议星级（9-10→⭐⭐⭐⭐ / 7-8→⭐⭐⭐ / 5-6→⭐⭐ / ≤4→⭐），偏差 ≥1 星进校准清单。完整执行流程见 `references/structural-checks.md` Phase 15「深度校准流程」。全库打分时 `health-workflow.js` 已自动采集 `fiveDim`，无需单独再跑一轮五维评分。
-
-**4 个实战教训**（2026-08-10 总结）：
-
-1. **⚠️ 标题/文件名预筛 false positive 高达 70%**——`closure`、`prototype-chain`、`mysql-int-define`、`redis-eviction` 等看着基础但实际深度评分 8-10。**禁止仅基于文件名/行数判定**，必须 Read 全文。
-
-2. **frontmatter `difficulty` 标记偏乐观**——本次发现 19 处 frontmatter difficulty 与实际内容深度不一致（16 处低估 + 3 处高估）。Phase 1 应加 **frontmatter 一致性校准**（见 structural-checks.md Phase 15）。
-
-3. **按子目录分批 dispatch 是高效模式**——避免单 agent 全库评估时的疲劳偏差（11.ai 体量大易被误杀）。按子目录 6-15 篇/agent，每个 agent 上下文清晰。
-
-4. **灰色地带处置模式**——4-6 分的题有 3 种处置：① 保留（内容够）② 加 frontmatter 校准（difficulty 反映实际深度）③ 拆分综述（多主题合并文件违反 split-hairs 单点深挖定位）④ 迁出（保留 30s/90s 话术作为"速记卡"追加主模块）
+> 🆕 **v2.0 重构（2026-09-26）**：Phase 6 详细 5 维度定义 / 阈值 / 实战教训
+> 已抽到 `references/5-dim-rubric.md`。
+>
+> **何时读**：用户问"X 题是否过于简单" / "split-hairs 哪些该迁出"时必读。
+>
+> **简版入口**：
+> - 5 维度：D1 深度 / D2 广度 / D3 频次 / D4 追问空间 / D5 反直觉
+> - 阈值：≥ 7 保留 / 4-6 灰色 / ≤ 3 迁出
+> - 与 difficulty 校准衔接：5 维总分 → 星级建议
+> - 4 个实战教训：标题预筛 false positive 70% / difficulty 偏乐观 / 分批 dispatch / 灰色地带处置
+> - 完整内容见 references/5-dim-rubric.md
 
 ### Phase 7 — 拆分检测（多主题错误合并）
 
