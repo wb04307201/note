@@ -641,7 +641,7 @@ graph TB
 - [38-ai-compliance-and-regulation](38-ai-compliance-and-regulation.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [STORY-FORMAT-SPEC](STORY-FORMAT-SPEC.md)
+- [13.story/SPEC §4](SPEC.md#四强骨架格式规范)
 ## 跨章节衔接
 
 - 11.ai/03-engineering/ai-platforms/README.md —— Dify/Coze/LangGraph 平台实现 —— MCP/A2A 协议在主流平台中的落地

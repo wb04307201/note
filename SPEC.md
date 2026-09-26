@@ -94,4 +94,5 @@ docs: 文档
 —— 例如 12 的"30s/90s 话术 + 追问模板"、13 的"编号 + 章节 + 系列定位"。
 仅含评估维度的模块（如 01–11 大多数）**不需要** L1.5。
 
-**当前存在的 L1.5**：`12.interview/QUESTION-FORMAT-SPEC.md`、`13.story/STORY-FORMAT-SPEC.md`。
+**当前存在的 L1.5**：`12.interview/QUESTION-FORMAT-SPEC.md`。
+13.story 原 `STORY-FORMAT-SPEC.md` 于 v2.0（2026-09-26）合并入主 `<module>/SPEC.md` §4 — 证明"L1.5 是否并入 L1"应按模块规模与读者重合度判定，而非绝对规则。

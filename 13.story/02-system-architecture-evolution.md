@@ -824,7 +824,7 @@ graph TD
 - [29-codebase-cognitive-debt](29-codebase-cognitive-debt.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [STORY-FORMAT-SPEC](STORY-FORMAT-SPEC.md)
+- [13.story/SPEC §4](SPEC.md#四强骨架格式规范)
 ## 跨章节衔接
 
 - [04-peak-traffic-defense.md](./04-peak-traffic-defense.md) —— 正传 1，架构演进的高可用目标在流量治理中的具体落地：限流、熔断、降级是架构成熟度的试金石

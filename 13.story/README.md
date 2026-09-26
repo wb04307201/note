@@ -42,7 +42,7 @@ module:
 | [术语表](./glossary.md) | **340+** 词条速查，按 48 大主题分类 |
 | [一页纸速查](./cheatsheet.md) | 50 篇文章核心概念 + 关键决策表 + 金句心法 |
 | [故事集目录](./index.md) | 按主题分类 + 4 条主路径 + 13 类角色推荐阅读路线 |
-| [故事格式规范](./STORY-FORMAT-SPEC.md) | 章节六段强制（作者撰稿依据） |
+| [故事格式规范](./SPEC.md#四强骨架格式规范) | 章节六段强制（作者撰稿依据） |
 
 ### 1.3 学习路径
 
@@ -329,11 +329,11 @@ graph LR
 |------|------|
 | 顶层文章数（叙事篇数） | 47 段 + 3 个 a/b 拆分 = **50 篇** |
 | 实际 `.md` 文件数（含编号） | **50 个**（与上方目录表合计一致） |
-| 顶层辅助资料 | **4 个**（cheatsheet / glossary / index / STORY-FORMAT-SPEC） |
+| 顶层辅助资料 | **4 个**（cheatsheet / glossary / index / SPEC.md） |
 | 顶层总 `.md` | **55 个**（50 文章 + 4 辅助 + 1 README） |
 | 一级子目录 | **1 个**（scripts/，内含 insert-frontmatter.py + validate.py） |
 | frontmatter 模式 | story/question/pm（适用 12/13/14）|
-| 写作规范 | [STORY-FORMAT-SPEC.md](./STORY-FORMAT-SPEC.md)（章节六段强制）|
+| 写作规范 | [SPEC.md §4](./SPEC.md#四强骨架格式规范)（章节六段强制）|
 
 ---
 

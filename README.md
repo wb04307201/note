@@ -82,7 +82,7 @@ module:
 - [SPEC.md](./SPEC.md) — 全局规范（命名 / commit / 互链 / frontmatter / G1-G6 评分）
 - 各模块自有 SPEC（11/12/13 等已落地）
 - [QUESTION-FORMAT-SPEC.md](./12.interview/QUESTION-FORMAT-SPEC.md) — 面试题格式
-- [STORY-FORMAT-SPEC.md](./13.story/STORY-FORMAT-SPEC.md) — 故事类章节格式
+- [13.story/SPEC.md](./13.story/SPEC.md#四强骨架格式规范) — 故事类章节格式（v2.0 起并入主 SPEC）
 
 ## 七、关键文档
 
