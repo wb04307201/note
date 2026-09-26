@@ -238,3 +238,32 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 - `.claude/skills/note-health/scripts/auto-calibrate.py` — 支持 v15 ground truth + v14 微调标准(note-health skill 内部工具)
 - `.github/workflows/scripts/check-broken-links.py` — 链接完整性回归测试(CI / Hook / 自检统一入口)
 - (历史已删:`scripts/sync-skills.sh` v2.0 合并入 .claude/skills/;`scripts/simulate-monthly-cron.sh` 无人调用已删)
+
+## Skill 修订 Safeguards(任改 3 个 SKILL.md 后必跑)
+
+```bash
+# 1. SKILL.md frontmatter YAML 解析校验(避免 YAML 损坏 → Claude Code 加载失败)
+python -c "
+import yaml, sys
+for f in ['.claude/skills/note-precipitation-planning/SKILL.md',
+         '.claude/skills/note-health/SKILL.md',
+         '.claude/skills/note-knowledge-qa/SKILL.md']:
+    try:
+        content = open(f, encoding='utf-8').read()
+        yaml.safe_load(content.split('---', 2)[1])
+        print(f'OK: {f}')
+    except Exception as e:
+        print(f'FAIL: {f}: {e}'); sys.exit(1)
+"
+
+# 2. 章节锚点审计(避免 Phase 改名后跨文件引用断链)
+grep -rn 'Phase [0-9]\|Phase [0-9]\.' CLAUDE.md .claude/skills/ --include='*.md' | head -20
+
+# 3. Skill 派发边界 smoke test(避免 description 改了之后路由错)
+# 手动验证 3 类典型原话触发正确的 skill:
+#   "扫一遍 note" → note-health(结构体检)
+#   "X 应该沉淀到 note 什么位置" → note-precipitation-planning
+#   "查 note" → note-knowledge-qa
+```
+
+**触发时机**：任一 SKILL.md 的 description / 章节标题 / Phase 编号修改后,commit 前必跑。CI 不强制(只验链接不验 YAML),依赖开发者自觉。
