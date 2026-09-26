@@ -137,7 +137,7 @@ graph TB
 ## 六、交叉引用（Link back to main module）
 ```
 
-> 📌 2026-06-30 增补 `## 引子`：每个面试题以**一个具体场景**开场（生产 bug / 反直觉代码 / 架构困境 / 性能对比），不再直接进概念定义。详见 [`QUESTION-FORMAT-SPEC.md`](./QUESTION-FORMAT-SPEC.md) §2 与 §3。
+> 📌 2026-06-30 增补 `## 引子`：每个面试题以**一个具体场景**开场（生产 bug / 反直觉代码 / 架构困境 / 性能对比），不再直接进概念定义。详见 [`QUESTION-FORMAT-SPEC.md`](./SPEC.md#§4-强骨架格式规范) §2 与 §3。
 
 ---
 
@@ -217,7 +217,7 @@ graph TB
 - **主模块**：[`01.java-and-jvm`](../01.java-and-jvm/) / [`03.data-stack`](../03.data-stack/) / [`06.distributed-systems`](../06.distributed-systems/) / [`04.spring-backend`](../04.spring-backend/) / [`08.ai-foundations`](../08.ai-foundations/) + [`09.ai-applications`](../09.ai-applications/) / [`05.frontend`](../05.frontend/) / [`11.product-and-pm`](../11.product-and-pm/)
 - **故事章节**：[`13.story`](../13.story/) — 阿明餐厅故事（实战场景）
 - **主仓库 README**：[`README.md`](../README.md)
-- **写作规范**：[`QUESTION-FORMAT-SPEC.md`](./QUESTION-FORMAT-SPEC.md) — 文章结构强制模板 + frontmatter schema
+- **写作规范**：[`QUESTION-FORMAT-SPEC.md`](./SPEC.md#§4-强骨架格式规范) — 文章结构强制模板 + frontmatter schema
 
 ---
 

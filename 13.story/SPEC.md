@@ -99,7 +99,7 @@
 
 ---
 
-- [QUESTION-FORMAT-SPEC](../12.interview/QUESTION-FORMAT-SPEC.md)
+- [QUESTION-FORMAT-SPEC](../12.interview/SPEC.md#§4-强骨架格式规范)
 ← [返回系列导读](./index.md)
 ```
 

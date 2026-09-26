@@ -42,7 +42,7 @@ module:
 - **同栏目**：[`04.system-design`](../04.system-design/) — 系统设计面试题（分布式 / 高可用，与工具题互补）
 - **主模块**：[`07.devops-and-tools/02-workflow`](../../07.devops-and-tools/02-workflow/README.md) — 工作流与工程化主模块
 - **故事章节**：[`13.story`](../../13.story/) — 阿明餐厅实战故事
-- **格式规范**：[`QUESTION-FORMAT-SPEC.md`](../QUESTION-FORMAT-SPEC.md) — 面试题写作模板
+- **格式规范**：[`QUESTION-FORMAT-SPEC.md`](../SPEC.md#§4-强骨架格式规范) — 面试题写作模板
 
 ---
 
