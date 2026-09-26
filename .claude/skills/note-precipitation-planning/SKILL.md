@@ -852,25 +852,16 @@ python .github/workflows/scripts/check-broken-links.py  # 全库扫描,断链数
 
 ```bash
 # 对每个新加的跨模块链接验证目标存在
-python << 'PYEOF'
-import os, re, glob
-LINK = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)')
-DIRLINK = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?)/\)')
-broken = 0
-for f in <新增文件列表>:
-    c = open(f, encoding='utf-8', errors='ignore').read()
-    for m in LINK.finditer(c):
-        t = os.path.normpath(os.path.join(os.path.dirname(f), m.group(2).replace('/', os.sep)))
-        if not os.path.isfile(t):
-            print(f'  ❌ {f} -> {m.group(2)}')
-            broken += 1
-    for m in DIRLINK.finditer(c):
-        t = os.path.normpath(os.path.join(os.path.dirname(f), m.group(2).replace('/', os.sep)))
-        if not (os.path.isdir(t) and os.path.isfile(os.path.join(t, 'README.md'))):
-            print(f'  ❌ {f} -> {m.group(2)}/')
-            broken += 1
-print(f'断链数: {broken}')
-PYEOF
+python -c "
+import subprocess, sys
+# 调 check-broken-links.py 单文件模式（统一入口,避免 inline regex 漂移）
+result = subprocess.run(
+    ['python', '.github/workflows/scripts/check-broken-links.py'] + <新增文件列表>,
+    capture_output=True, text=True
+)
+print(result.stdout)
+sys.exit(result.returncode)
+"
 ```
 
 **接受标准**：断链数 = 0。如有 1+ 断链，**修复后才 commit**（不允许"已知 broken"）.
