@@ -85,13 +85,13 @@
 - 根因：**没实际验证目标路径就写**
 
 **修复（4 步强制）**：
-1. **目标路径必须实际验证**：用 `find note -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在
+1. **目标路径必须实际验证**：用 `find "$KB_DIR" -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在
 2. **手动数层级**：从源文件向上数 `../` 数量 = 目标深度差（注意 `$KB_DIR/` 跨模块跳数）
 3. **每文件 commit 后立即跑 broken links 扫描**（见 Phase 6.5）
 4. **不依赖"记忆"**：每次都 grep/find 验证，不要凭印象写路径
 
 **🆕 强化（2026-07-25 经验）**：
-- subagent 写完每个 `[...](./xxx/README.md)` 链接后**必须**用 `find note -name "xxx" -type d` 验证目标目录存在
+- subagent 写完每个 `[...](./xxx/README.md)` 链接后**必须**用 `find "$KB_DIR" -name "xxx" -type d` 验证目标目录存在
 - 如目标目录不存在，使用**替代方案三选一**：① 删除链接 ② 改为指向父系统（如 CMDB → ITSM with 注释）③ 新建对应 README（如确有需求）
 - subagent prompt 模板**强制要求**：每个深读链接必须在最终报告里列出 `find` 命令的实际输出
 - 历史案例（2026-07-25 业务系统补深）：QMS 引用 `../06-specialized/lims/README.md`（少一层 `../`，正确应是 `../../06-specialized/lims/README.md`），独立 `find` 验证 + 修复为正确路径
@@ -142,7 +142,7 @@
 **批量修复脚本**（场景 B 适用）：
 ```bash
 # 找所有有编号系列的目录，补齐每个系列所有文件的"系列导航表"
-for dir in $(find note -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | wc -l | grep -q "^[2-9]" && echo "$1"' _ {} \;); do
+for dir in $(find "$KB_DIR" -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | wc -l | grep -q "^[2-9]" && echo "$1"' _ {} \;); do
   files=$(ls "$dir"/[0-9]*.md 2>/dev/null)
   # 检查哪些文件没有"系列导航表"
   for f in $files; do
@@ -156,7 +156,7 @@ done
 **检测方法**：
 ```bash
 # 找系列目录（有编号文件的目录）
-for dir in $(find note -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | head -1 | grep -q . && echo "$1"' _ {} \;); do
+for dir in $(find "$KB_DIR" -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | head -1 | grep -q . && echo "$1"' _ {} \;); do
   echo "系列: $dir"
   for file in $(ls "$dir"/[0-9]*.md 2>/dev/null); do
     for other in $(ls "$dir"/[0-9]*.md 2>/dev/null); do
@@ -277,7 +277,7 @@ print(f'新文件 broken links: {real_broken}')
 **检测命令**：
 ```bash
 # 检测"多主题合并"文件（单文件 > 300 行 + 包含多个独立 H2 章节）
-for f in $(find note -name "README.md" -size +10k); do
+for f in $(find "$KB_DIR" -name "README.md" -size +10k); do
   h2_count=$(grep -c "^## " "$f" 2>/dev/null)
   if [ "$h2_count" -ge 5 ]; then
     echo "  ⚠ 可能多主题合并: $f ($h2_count 个 H2 章节)"

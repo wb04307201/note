@@ -1,6 +1,6 @@
 > 由 note-health/SKILL.md Phase 1 / Phase 4 调用
 
-> **11 类基础扫描规则已迁入 `note/SPEC.md` §6**（核心定义）。本文件保留**详细执行步骤 + 阈值 + 误判识别 + 自动化脚本**等扩展内容。
+> **11 类基础扫描规则已迁入 `"$KB_DIR"/SPEC.md` §6**（核心定义）。本文件保留**详细执行步骤 + 阈值 + 误判识别 + 自动化脚本**等扩展内容。
 >
 > **章节编号说明**：本文件的 Step 编号早于 SKILL.md 的 Phase 1-4 重构。映射如下：
 > - **Step 1**（现状扫描）= **Phase 1**（结构扫描）
@@ -31,7 +31,7 @@
 - ✅ RAG 范式演进四阶段 + RAG 评估三维度 + Spec-Kit 命令集对齐官方（2026-07-21）
 - ✅ 12 条 broken links 清零（2026-07-21：12.story/kubernetes 路径前缀 + spi/network/a11y 目标缺失）
 - ✅ WCAG computer-basics→front-end 迁移遗留补全（2026-07-21：frontmatter parent + 回链 + 新建 a11y/README）
-- ✅ 12.story 42-46 补入 note/README 导航 + 篇数 48→49 校对（2026-07-21）
+- ✅ 12.story 42-46 补入 "$KB_DIR"/README 导航 + 篇数 48→49 校对（2026-07-21）
 - ✅ 6 条 broken links 清零（2026-07-23：polymorphism 兄弟相对路径 4 条 + 12.story 跨模块路径 2 条）
 - ✅ cap-and-base frontmatter summary 截断修复（2026-07-23）
 - ✅ 数字一致性校对 210→209（2026-07-23：含根 README 计数）
@@ -63,17 +63,17 @@
 
 | # | 类别 | 扫描命令示例 |
 |---|------|------------|
-| 1 | **数字一致性** | `grep -rn "篇\|个\|行" note/README.md note/*/README.md` |
+| 1 | **数字一致性** | `grep -rn "篇\|个\|行" "$KB_DIR"/README.md note/*/README.md` |
 | 2 | **H1 / 标题规范** | `grep -rn "^# " note/*/README.md` |
-| 3 | **回链覆盖率 + 互链双向性** | `grep -rln "← \[返回\|返回.*目录" note/ | wc -l` vs `find note -name README.md \| wc -l`；外加单向链接扫描（child → parent 但 parent 不回链） |
+| 3 | **回链覆盖率 + 互链双向性** | `grep -rln "← \[返回\|返回.*目录" note/ | wc -l` vs `find "$KB_DIR" -name README.md \| wc -l`；外加单向链接扫描（child → parent 但 parent 不回链） |
 | 3.5 | **孤岛检测 / 总目录扫描** | 扫描所有新文件（commit 时间 ≤ N 天），验证其：① 链接了 ≥ 2 个旧章节 ② 父 README / 总目录表有反向链接 ③ 同级兄弟有反向链接 |
 | 3.6 | **总目录反向完整性**（文件存在但未被声明）| 全量反查每个 leaf 是否被上级 README/总目录引用（补 3.5 的 git-time 盲区，见 Phase 9.2）|
 | 3.7 | **跨模块迁移遗留** | frontmatter `parent`/`slug` 与实际所在模块不一致（主题搬家后的 stale 元数据 + 错回链，见 Phase 9.3）|
-| 4 | **索引/入口缺失** | `find note -type d -not -path "*/node_modules/*" \| wc -l` vs README 引用 |
-| 5 | **内容重复** | `find note -name "*.md" \| xargs grep -l "<关键概念>" \| sort -u` |
+| 4 | **索引/入口缺失** | `find "$KB_DIR" -type d -not -path "*/node_modules/*" \| wc -l` vs README 引用 |
+| 5 | **内容重复** | `find "$KB_DIR" -name "*.md" \| xargs grep -l "<关键概念>" \| sort -u` |
 | 6 | **内容补充缺口** | 找到深度 ≤ 50 行的 README（可能是占位）|
 | 7 | **架构/分类/命名** | 目录命名风格不一致 / 编号缺失 |
-| 8 | **其他**（PNG / 脚本 / 杂项）| `find note -name "*.png" \| xargs grep -L "!"` |
+| 8 | **其他**（PNG / 脚本 / 杂项）| `find "$KB_DIR" -name "*.png" \| xargs grep -L "!"` |
 | 9 | **系列完整性** | 扫描"声明了 N 个子章节但实际文件缺失"的系列（见 Phase 1.9） |
 | 10 | **归属合理性**（🆕 2026-07-26）| 检查子目录内容是否匹配父目录定位（见 Phase 1.10）：训练方法论应在 07-research 而非 03-engineering，运维监控应在 08-llmops 而非 03-engineering |
 | 11 | **合并检测**（🆕 2026-07-26，v2 2026-07-29）| 检测"多主题错误合并"：单文件 > 500 行 + ≥8 个 H2 章节 + ≥8 处"反模式/陷阱"章节（P2 参考级，见 Phase 1.11）|
@@ -90,16 +90,16 @@
 cd "$(git rev-parse --show-toplevel)"
 
 # 1. 总览
-find note -name "README.md" | wc -l
-find note -type f -name "*.md" | wc -l
-find note -name "*.png" | wc -l
+find "$KB_DIR" -name "README.md" | wc -l
+find "$KB_DIR" -type f -name "*.md" | wc -l
+find "$KB_DIR" -name "*.png" | wc -l
 
 # 2. frontmatter 覆盖（扫所有 .md，豁免 SPEC.md / index.md）
-no_fm=$(find note -name "*.md" -not -name "SPEC.md" -not -name "index.md" -exec grep -L "^<!--" {} \; 2>/dev/null | wc -l)
-echo "无 frontmatter: $no_fm / $(find note -name "*.md" -not -name "SPEC.md" -not -name "index.md" | wc -l)"
+no_fm=$(find "$KB_DIR" -name "*.md" -not -name "SPEC.md" -not -name "index.md" -exec grep -L "^<!--" {} \; 2>/dev/null | wc -l)
+echo "无 frontmatter: $no_fm / $(find "$KB_DIR" -name "*.md" -not -name "SPEC.md" -not -name "index.md" | wc -l)"
 
 # 3. 数字一致性扫描
-grep -rn "篇\|个\|行" note/README.md 2>/dev/null | grep -E "[0-9]+\s*(篇|个|行)" | head -30
+grep -rn "篇\|个\|行" "$KB_DIR"/README.md 2>/dev/null | grep -E "[0-9]+\s*(篇|个|行)" | head -30
 
 # 4. H1 数字编号违规（2026-07-25 修正：扫描全级别 H1+H2）
 # 历史 bug：原 regex `^#` 只扫顶级 H1，但 note 里实际不规范的是 H2（## N. 章节标题）
@@ -134,7 +134,7 @@ for f, line_no, content in violations[:30]:
 "
 
 # 5. 回链覆盖率（匹配两种格式：`← [返回` 和 `← 返回`）
-TOTAL_READMES=$(find note -name "README.md" | wc -l)
+TOTAL_READMES=$(find "$KB_DIR" -name "README.md" | wc -l)
 WITH_BACKLINK=$(grep -rl "← \[返回\|← 返回" note/ 2>/dev/null | wc -l)
 echo "回链覆盖: $WITH_BACKLINK / $TOTAL_READMES"
 
@@ -200,7 +200,7 @@ for src, tgt, text in (broken_list + dir_broken_list)[:30]:
 "
 
 # 7. 索引缺失
-for d in $(find note -type d -mindepth 2 -maxdepth 4 2>/dev/null); do
+for d in $(find "$KB_DIR" -type d -mindepth 2 -maxdepth 4 2>/dev/null); do
   if [ ! -f "$d/README.md" ]; then echo "缺 README: $d"; fi
 done
 
@@ -275,7 +275,7 @@ print(os.path.normpath(os.path.join(os.path.dirname(sys.argv[1]), sys.argv[2])))
 }
 
 echo "=== 单向链接扫描（child → parent 但 parent 不回链）==="
-for child in $(find note -name "*.md"); do
+for child in $(find "$KB_DIR" -name "*.md"); do
   # 找 child 文件链到的所有 target（粗略正则，可能有误差，需人工复核）
   grep -oE '\]\(([^)]+\.md)' "$child" 2>/dev/null | sed 's/](//' | while read target; do
     # 规范化 target 为绝对路径（跨平台兼容：realpath → cd+pwd → python → 兜底）
@@ -292,7 +292,7 @@ for child in $(find note -name "*.md"); do
 done
 echo "=== 同级兄弟不互链扫描（示例）==="
 # 在某个目录下找兄弟 README，验证是否互相链接
-DIR_TO_CHECK="note/08.ai-foundations/07-llmops"
+DIR_TO_CHECK=""$KB_DIR"/08.ai-foundations/07-llmops"
 for sibling in $(find "$DIR_TO_CHECK" -name "README.md" -maxdepth 2 2>/dev/null); do
   for other in $(find "$DIR_TO_CHECK" -name "README.md" -maxdepth 2 2>/dev/null); do
     [ "$sibling" = "$other" ] && continue
@@ -319,7 +319,7 @@ for new_file in $NEW_FILES; do
 done
 
 # 5. 内容重复检测（同名目录）
-find note -type d -name "*engineer*" -o -name "*memory*" -o -name "*prompt*" | sort
+find "$KB_DIR" -type d -name "*engineer*" -o -name "*memory*" -o -name "*prompt*" | sort
 
 # 6. PNG 孤儿检测（用 markdown 图片语法 `![](path)` 检测引用）
 # ⚠️ 简单 grep 文件名可能误报（路径含文件名但非图片引用）
@@ -378,7 +378,7 @@ done
 # ⚠️ 2026-07-29 更新：识别线性导航（上一章/下一章）为合法模式，只标记完全没有兄弟导航的文件
 # 历史误报：sensitive-word-filter/ 5 篇文件已有"上一章/下一章"顺序导航，被误报为"未互链"
 echo "=== 系列内兄弟互链审计 ==="
-for dir in $(find note -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | head -1 | grep -q . && echo "$1"' _ {} \;); do
+for dir in $(find "$KB_DIR" -type d -exec sh -c 'ls "$1"/[0-9]*.md 2>/dev/null | head -1 | grep -q . && echo "$1"' _ {} \;); do
   file_count=$(ls "$dir"/[0-9]*.md 2>/dev/null | wc -l)
   [ "$file_count" -lt 2 ] && continue
   echo "系列: $dir ($file_count 篇)"
@@ -407,7 +407,7 @@ done
 
 # 9.2 总目录反向完整性审计（文件存在但未被任何总目录/父 README 声明）
 # 原理：3.5 孤岛检测只查"近 N 天新文件"，git-time 老文件会漏网（如 12.story 42-46
-#       文件早已存在但从未加进 note/README 导航表 → 静默孤岛）。
+#       文件早已存在但从未加进 "$KB_DIR"/README 导航表 → 静默孤岛）。
 #       本检查不看 git 时间，全量反查"每个 leaf 是否被上级 README 引用"。
 echo "=== 9.2 总目录反向完整性（exists-but-not-indexed）==="
 python -c "
@@ -457,11 +457,11 @@ for f in glob.glob('note/*/**/README.md', recursive=True):
 print(f'  跨模块迁移遗留: {hits} 处')
 "
 
-echo "=== 9.4 数字一致性扫描（note/README.md 声明篇数 vs find 实际数）==="
-# 教训：note/README.md 经常写过时篇数（"49 篇"、"192 篇"）。
-#      本检查：find 各模块实际 README 数 → 与 note/README.md 声明对比 → 偏差即 P1 必修。
-# ⚠️ 2026-07-23 教训：计数口径必须与 note/README.md 分类导航表一致。
-#      note/README.md 声明的是**含根 README** 的总数（如 01.java: 41 含根），
+echo "=== 9.4 数字一致性扫描（"$KB_DIR"/README.md 声明篇数 vs find 实际数）==="
+# 教训："$KB_DIR"/README.md 经常写过时篇数（"49 篇"、"192 篇"）。
+#      本检查：find 各模块实际 README 数 → 与 "$KB_DIR"/README.md 声明对比 → 偏差即 P1 必修。
+# ⚠️ 2026-07-23 教训：计数口径必须与 "$KB_DIR"/README.md 分类导航表一致。
+#      "$KB_DIR"/README.md 声明的是**含根 README** 的总数（如 01.java: 41 含根），
 #      所以脚本必须用 os.walk 遍历所有 README.md（含根），不能排除根。
 python -c "
 import re, os, glob, sys
@@ -470,7 +470,7 @@ if sys.platform == 'win32':
     except: pass
 
 def count_all_readmes(mod_dir):
-    \"\"\"计数目录下所有 README.md（含根 README）—— 与 note/README.md 分类导航表口径一致\"\"\"
+    \"\"\"计数目录下所有 README.md（含根 README）—— 与 "$KB_DIR"/README.md 分类导航表口径一致\"\"\"
     if not os.path.isdir(mod_dir): return 0
     count = 0
     for root, dirs, files in os.walk(mod_dir):
@@ -479,17 +479,17 @@ def count_all_readmes(mod_dir):
     return count
 
 actual = {
-    '01.java':         count_all_readmes('note/12.interview/01.java'),
-    '02.computer-basics': count_all_readmes('note/12.interview/02.computer-basics'),
-    '03.database':     count_all_readmes('note/12.interview/03.database'),
-    '04.system-design': count_all_readmes('note/12.interview/04.system-design'),
-    '05.security':     count_all_readmes('note/12.interview/05.security'),
-    '06.spring':       count_all_readmes('note/12.interview/06.spring'),
-    '09.front-end':    count_all_readmes('note/12.interview/09.front-end'),
-    '10.big-data':     count_all_readmes('note/12.interview/10.big-data'),
-    '11.ai':           count_all_readmes('note/12.interview/11.ai'),
-    'tools':           count_all_readmes('note/12.interview/tools'),
-    '13.story':        len([f for f in glob.glob('note/13.story/[0-9]*.md')]),
+    '01.java':         count_all_readmes('"$KB_DIR"/12.interview/01.java'),
+    '02.computer-basics': count_all_readmes('"$KB_DIR"/12.interview/02.computer-basics'),
+    '03.database':     count_all_readmes('"$KB_DIR"/12.interview/03.database'),
+    '04.system-design': count_all_readmes('"$KB_DIR"/12.interview/04.system-design'),
+    '05.security':     count_all_readmes('"$KB_DIR"/12.interview/05.security'),
+    '06.spring':       count_all_readmes('"$KB_DIR"/12.interview/06.spring'),
+    '09.front-end':    count_all_readmes('"$KB_DIR"/12.interview/09.front-end'),
+    '10.big-data':     count_all_readmes('"$KB_DIR"/12.interview/10.big-data'),
+    '11.ai':           count_all_readmes('"$KB_DIR"/12.interview/11.ai'),
+    'tools':           count_all_readmes('"$KB_DIR"/12.interview/tools'),
+    '13.story':        len([f for f in glob.glob('"$KB_DIR"/13.story/[0-9]*.md')]),
 }
 
 print('=== 实际篇数（含根 README）===')
@@ -500,13 +500,13 @@ for k, v in actual.items():
 print(f'13题 + tools 总题数: {total}')
 print(f'13.story 篇数: {actual[\"13.story\"]}')
 
-print('\\n=== note/README.md 声明数字 vs 实际 ===')
-with open('note/README.md', encoding='utf-8') as f:
+print('\\n=== "$KB_DIR"/README.md 声明数字 vs 实际 ===')
+with open('"$KB_DIR"/README.md', encoding='utf-8') as f:
     content = f.read()
 mismatch = 0
 
 # 分类导航表：匹配表格行中的数字（格式如 '| X | ... | N |'）
-# note/README.md 分类导航表用表格格式，数字在第三列
+# "$KB_DIR"/README.md 分类导航表用表格格式，数字在第三列
 for mod in actual.keys():
     if mod == '13.story': continue
     # 找分类导航表中该模块对应的行
@@ -541,7 +541,7 @@ print(f'\\n总计偏差: {mismatch} 处（P1 必修，须出 fix(note) commit）
 # 9.5 同 README 内重复表格检测（2026-07-25 新增，2026-07-29 优化）
 # 历史教训：12.story/README.md 历史上同时维护 8 集群目录表 + 49 篇明细表，100% 重叠。体检只扫跨文件重复，未扫同文件内冗余。
 # v3 优化：1) find_tables 严格按 markdown table 语法（header + |---| + 数据行）识别表
-#         2) 加白名单跳过 wiki 风格总目录（note/README.md / note/CONTRIBUTING.md）
+#         2) 加白名单跳过 wiki 风格总目录（"$KB_DIR"/README.md / "$KB_DIR"/CONTRIBUTING.md）
 #         3) 加距离阈值过滤（< 100 行的同模板 Q&A 表视为合理结构，不算冗余）
 # v4 优化（2026-07-29）：
 #         4) 重叠率阈值从 0.5 提高到 0.8（不同章节复用对比表是合理结构，如 HashMap vs TreeMap 对比在多处出现）
@@ -750,7 +750,7 @@ MISMATCH_RULES = {
 }
 
 issues = []
-for readme in glob.glob('note/08.ai-foundations/*/**/README.md', recursive=True):
+for readme in glob.glob('"$KB_DIR"/08.ai-foundations/*/**/README.md', recursive=True):
     parts = readme.replace(os.sep, '/').split('/')
     if len(parts) < 4: continue
     parent_dir = parts[2]  # 03-engineering / 07-research / 08-llmops 等
@@ -856,7 +856,7 @@ PYEOF
 ### 12. 版本序列导航检查（2026-07-28 新增）
 
 **历史教训**（2026-07-28 Java 版本体检）：
-- `note/01.java-and-jvm/version/` 下 18 个 Java 版本文件（java-8/ ~ java-26/），15 个缺少前后版本导航链接
+- `"$KB_DIR"/01.java-and-jvm/version/` 下 18 个 Java 版本文件（java-8/ ~ java-26/），15 个缺少前后版本导航链接
 - 只有 java-9、java-10、java-17 有导航，其余版本各自孤立
 - 作为系列文章，每个版本应至少有 `← [Java N-1] | [Java N+1] →` 的导航链
 
@@ -1033,7 +1033,7 @@ if sys.platform == 'win32':
     except: pass
 
 issues = []
-for f in glob.glob('note/12.interview/**/*.md', recursive=True):
+for f in glob.glob('"$KB_DIR"/12.interview/**/*.md', recursive=True):
     if f.endswith('README.md') and os.path.dirname(f).count(os.sep) == 3:
         continue
     try:
@@ -1223,9 +1223,9 @@ git diff --ignore-cr-at-eol --ignore-space-at-eol
 
 **症状**：审计只检查"无回链"（leaf → parent 缺失），不检查"单向回链"（parent → leaf 缺失）。例如：
 
-- `note/08.ai-foundations/07-llmops/05-agent-evaluation/README.md` 链到 `07-llmops/README.md` —— 后者**没反向链**到前者
-- `note/08.ai-foundations/03-engineering/production-agent/README.md` 链到 `11.ai/README.md` —— 后者**没反向链**到前者
-- `note/08.ai-foundations/04-architecture/intelligent-system-layers/README.md` 被 `agent-architecture` 链到 —— **没反向链**
+- `"$KB_DIR"/08.ai-foundations/07-llmops/05-agent-evaluation/README.md` 链到 `07-llmops/README.md` —— 后者**没反向链**到前者
+- `"$KB_DIR"/08.ai-foundations/03-engineering/production-agent/README.md` 链到 `11.ai/README.md` —— 后者**没反向链**到前者
+- `"$KB_DIR"/08.ai-foundations/04-architecture/intelligent-system-layers/README.md` 被 `agent-architecture` 链到 —— **没反向链**
 
 **修复**：
 - **审计类别 #3 升级**："回链覆盖率" → **"回链覆盖率 + 互链双向性"**
