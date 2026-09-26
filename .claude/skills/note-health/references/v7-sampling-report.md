@@ -160,9 +160,9 @@ CI 月度 cron 已就绪（commit d20a8067 + scripts/auto-calibrate.py），v8 �
 
 | 文件 | 用途 |
 |------|------|
-| `skills/note-health/references/five-dim-sampling-process.md` | 流程 + L5 标准 2.0 |
-| `skills/note-health/references/v4-sampling-report.md` | v4 偏差清单 |
-| `skills/note-health/references/v5-sampling-report.md` | v5 准确度回升 |
-| `skills/note-health/references/v6-sampling-report.md` | v6 标准偏宽松 |
+| `.claude/skills/note-health/references/five-dim-sampling-process.md` | 流程 + L5 标准 2.0 |
+| `.claude/skills/note-health/references/v4-sampling-report.md` | v4 偏差清单 |
+| `.claude/skills/note-health/references/v5-sampling-report.md` | v5 准确度回升 |
+| `.claude/skills/note-health/references/v6-sampling-report.md` | v6 标准偏宽松 |
 | `scripts/auto-calibrate.py` | 自动化校准脚本 |
 | `.github/workflows/difficulty-calibration.yml` | CI + 月度 cron |

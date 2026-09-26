@@ -120,5 +120,5 @@
 ## 关联文件
 
 - 12.interview 高频题清单：每个 subdir 的 `README.md` + 各 `topic/README.md`
-- 主模块 depth 分布：`README.md` 总目录章节 + `skills/note-health/references/main-module-depth.md`
-- difficulty ↔ depth 校准流程：`skills/note-health/references/difficulty-calibration.md`
+- 主模块 depth 分布：`README.md` 总目录章节 + `.claude/skills/note-health/references/main-module-depth.md`
+- difficulty ↔ depth 校准流程：`.claude/skills/note-health/references/difficulty-calibration.md`

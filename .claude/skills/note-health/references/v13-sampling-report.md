@@ -112,7 +112,7 @@
 
 | 文件 | 用途 |
 |------|------|
-| `skills/note-health/references/five-dim-sampling-process.md` | v12 双基线 + D5 豁免流程 |
-| `skills/note-health/references/health-metrics-convergence.md` | 三指标收敛曲线 |
+| `.claude/skills/note-health/references/five-dim-sampling-process.md` | v12 双基线 + D5 豁免流程 |
+| `.claude/skills/note-health/references/health-metrics-convergence.md` | 三指标收敛曲线 |
 | `scripts/auto-calibrate.py` | v4 overview D5 豁免 |
 | `scripts/simulate-monthly-cron.sh` | 本地 cron 模拟 |

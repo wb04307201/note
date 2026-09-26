@@ -157,7 +157,7 @@ Phase 6（5-dim 校准） → 本流程：frontmatter 与 5-dim 一致性
 Phase 7（拆分检测）   → 检测 ⭐（1 星）迁出候选
 ```
 
-## 8. 与 skills/note-health 的集成
+## 8. 与 .claude/skills/note-health 的集成
 
 - **入口**：用户问"难度校准" / "difficulty 不准" / "⭐ 不对" 时触发
 - **复用 Phase 1-7 的扫描框架**：不重新发明轮子

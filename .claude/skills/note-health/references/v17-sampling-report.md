@@ -116,9 +116,9 @@
 
 | 文件 | 用途 |
 |------|------|
-| `skills/note-health/references/v15-sampling-report.md` | 独立 ground truth |
-| `skills/note-health/references/v16-sampling-report.md` | 14 篇校准验证 |
-| `skills/note-health/references/v17-sampling-report.md` | 完整 80 篇独立验证 |
-| `skills/note-health/references/health-metrics-convergence.md` | 三指标收敛曲线 |
-| `skills/note-health/references/five-dim-sampling-process.md` | v14 微调流程 |
+| `.claude/skills/note-health/references/v15-sampling-report.md` | 独立 ground truth |
+| `.claude/skills/note-health/references/v16-sampling-report.md` | 14 篇校准验证 |
+| `.claude/skills/note-health/references/v17-sampling-report.md` | 完整 80 篇独立验证 |
+| `.claude/skills/note-health/references/health-metrics-convergence.md` | 三指标收敛曲线 |
+| `.claude/skills/note-health/references/five-dim-sampling-process.md` | v14 微调流程 |
 | `scripts/auto-calibrate.py` | v6 v15 ground truth 支持 |

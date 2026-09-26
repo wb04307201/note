@@ -51,7 +51,7 @@ module:
 
 ## 4. 自动化工具：apply-depth.py
 
-> 脚本位置：`skills/note-health/references/main-module-depth.md` 附录 / `note/.health-tmp/apply-depth.py`
+> 脚本位置：`.claude/skills/note-health/references/main-module-depth.md` 附录 / `note/.health-tmp/apply-depth.py`
 
 ### 4.1 工作流程
 

@@ -167,9 +167,9 @@
 |------|------|
 | `skills/test-scenarios.md` | 60+ 场景设计清单（每技能 22） |
 | `skills/test-results-summary.md` | 本文档：测试结果汇总 |
-| `skills/note-precipitation-planning/SKILL.md` | 已修复：+21 处 hardcode + Step 0.1 修复检测 |
-| `skills/note-knowledge-qa/SKILL.md` | 已修复：+80 处 hardcode |
-| `skills/note-health/SKILL.md` + `references/structural-checks.md` | 已修复：4 处 13.story dict key |
+| `.claude/skills/note-precipitation-planning/SKILL.md` | 已修复：+21 处 hardcode + Step 0.1 修复检测 |
+| `.claude/skills/note-knowledge-qa/SKILL.md` | 已修复：+80 处 hardcode |
+| `.claude/skills/note-health/SKILL.md` + `references/structural-checks.md` | 已修复：4 处 13.story dict key |
 
 ---
 

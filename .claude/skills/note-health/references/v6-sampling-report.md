@@ -124,7 +124,7 @@ v5 应用了 10 篇校准，但整体分布仍偏高。说明 depth 字段的初
 
 | 文件 | 用途 |
 |------|------|
-| `skills/note-health/references/v4-sampling-report.md` | v4 偏差清单（17 篇） |
-| `skills/note-health/references/v5-sampling-report.md` | v5 准确度回升（70%） |
-| `skills/note-health/references/five-dim-sampling-process.md` | 流程固化 |
+| `.claude/skills/note-health/references/v4-sampling-report.md` | v4 偏差清单（17 篇） |
+| `.claude/skills/note-health/references/v5-sampling-report.md` | v5 准确度回升（70%） |
+| `.claude/skills/note-health/references/five-dim-sampling-process.md` | 流程固化 |
 | `scripts/auto-calibrate.py` | 自动化校准脚本 |

@@ -79,9 +79,9 @@
 
 | 文件 | 用途 |
 |------|------|
-| `skills/note-health/references/v17-sampling-report.md` | 80 篇独立抽样基线 |
-| `skills/note-health/references/v18-sampling-report.md` | v17 校准落地验证（本文）|
-| `skills/note-health/references/health-metrics-convergence.md` | 3 指标收敛曲线 |
+| `.claude/skills/note-health/references/v17-sampling-report.md` | 80 篇独立抽样基线 |
+| `.claude/skills/note-health/references/v18-sampling-report.md` | v17 校准落地验证（本文）|
+| `.claude/skills/note-health/references/health-metrics-convergence.md` | 3 指标收敛曲线 |
 | `scripts/auto-calibrate.py` | v6 自动校准 |
 | `scripts/check-broken-links.py` | 链接完整性回归测试 |
 | `scripts/simulate-monthly-cron.sh` | CI cron 本地模拟 |

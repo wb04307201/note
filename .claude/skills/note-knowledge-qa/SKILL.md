@@ -68,7 +68,7 @@ skill 执行：A 类型（技术问答）→ grep "HashMap" → 双层检索（0
 > 
 > 漂移检测命令：
 > ```bash
-> grep -oE '$KB_DIR/11\.ai/[^\` ]+' skills/note-knowledge-qa/SKILL.md | sort -u | while read p; do
+> grep -oE '$KB_DIR/11\.ai/[^\` ]+' .claude/skills/note-knowledge-qa/SKILL.md | sort -u | while read p; do
 >   [ -f "$p/README.md" ] || [ -f "$p" ] || echo "MISSING: $p"
 > done
 > ```

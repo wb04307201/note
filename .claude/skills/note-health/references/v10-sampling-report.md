@@ -71,8 +71,8 @@
 
 | 文件 | 用途 |
 |------|------|
-| `skills/note-health/references/five-dim-sampling-process.md` | v10 双基线流程 + L5 标准 2.0 |
-| `skills/note-health/references/v4-v9-sampling-reports.md` | 历次抽样报告 |
+| `.claude/skills/note-health/references/five-dim-sampling-process.md` | v10 双基线流程 + L5 标准 2.0 |
+| `.claude/skills/note-health/references/v4-v9-sampling-reports.md` | 历次抽样报告 |
 | `scripts/auto-calibrate.py` | v3 overview 独立基线 |
 | `scripts/simulate-monthly-cron.sh` | 本地 cron 模拟 |
 | `.github/workflows/difficulty-calibration.yml` | CI + 月度 cron |
