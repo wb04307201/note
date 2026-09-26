@@ -1,6 +1,6 @@
 ---
 name: note-precipitation-planning
-description: Use when user asks where to add or update a topic in the project's knowledge base (defaults to the repo root, configurable via `NOTE_DIR` env var) / "X 应该沉淀到 note 什么位置" / "X 怎么归档" / "放在 note 哪个位置" / "如何沉淀 X" / "新增主题到 note" — covers survey of existing structure (read at runtime), depth analysis, location decision between main module / 12.interview interview layer / 13.story narrative layer, layered precipitation strategy, and reverse-link verification
+description: Use when user wants to modify or extend the knowledge base — 新增主题 ("X 应该沉淀到 note 什么位置" / "X 怎么归档" / "放在 note 哪个位置" / "如何沉淀 X" / "新增主题到 note") / 新增模块 ("加 14.llm-ops 模块" / "新加一个目录") / 批量迁移 ("课程 lesson 批量导入" / "从外部源引入") / 结构重构 ("09 拆成两个" / "合并两个 README" / "批量错位修正") / 修复更新 ("X 写错了" / "数字校对" / "数字统一") — covers location decision between main module / 12.interview / 13.story, layered precipitation, structural refactor (merge/split/relocate), batch migration (content-driven from external sources), and reverse-link verification. KB_DIR defaults to repo root, overridable via `NOTE_DIR` env var.
 ---
 
 > [!IMPORTANT]

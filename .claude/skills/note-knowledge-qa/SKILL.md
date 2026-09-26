@@ -1,6 +1,6 @@
 ---
 name: note-knowledge-qa
-description: Use when user asks a technical question / "查 note" / "知识库问答" / "我有问题想问" requests interview prep / "面试题" / "出一道题" / "考考我" / "根据简历出题" / "模拟面试" / "面试非科班" wants system design guidance / "如何设计 X" or needs knowledge from the project's knowledge base (defaults to the repo root, configurable via `NOTE_DIR` env var) — retrieves relevant articles across the 13-module structure (read at runtime), follows cross-references, synthesizes comprehensive answers with citations
+description: Use when user wants to retrieve or use the knowledge base — 技术问答 ("查 note" / "知识库问答" / "我有问题想问") / 面试准备 ("面试题" / "出一道题" / "考考我" / "根据简历出题" / "模拟面试" / "面试非科班") / 系统设计 ("如何设计 X") / 学习路径 — retrieves relevant articles across the 13-module structure (read at runtime), follows cross-references, synthesizes comprehensive answers with citations. KB_DIR defaults to repo root, overridable via `NOTE_DIR` env var.
 ---
 
 > [!IMPORTANT]
