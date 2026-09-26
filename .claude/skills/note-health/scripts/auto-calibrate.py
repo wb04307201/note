@@ -277,11 +277,14 @@ def main():
                        help='仅应用 overview/index 文件的偏差（跳过主题深读）')
     args = parser.parse_args()
 
+    # KB_DIR 解析:与 check-broken-links.py / weak-link-scan.py 对齐
+    kb_root = os.environ.get('KB_DIR') or os.environ.get('NOTE_DIR') or os.getcwd()
+
     report_path = args.report
     if not os.path.exists(report_path):
         for cand in [
-            f'.claude/skills/note-health/references/{report_path}-sampling-report.md',
-            f'.health-tmp/{report_path}-sampling-report.md',
+            os.path.join(kb_root, '.claude/skills/note-health/references', f'{report_path}-sampling-report.md'),
+            os.path.join(kb_root, '.health-tmp', f'{report_path}-sampling-report.md'),
         ]:
             if os.path.exists(cand):
                 report_path = cand
