@@ -34,7 +34,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   ├── 05.security/ 06.spring/ 09.front-end/ 10.big-data/ 11.ai/ tools/
 │   └── QUESTION-FORMAT-SPEC.md     # 面试题格式 + 反直觉 / 陷阱 / 30 秒话术
 ├── 13.story/                      # 「阿明餐厅」技术系列(50 篇,平铺顶层)
-│   └── STORY-FORMAT-SPEC.md        # 故事类章节格式(开餐厅叙事 + 技术类比)
+│   └── SPEC.md                     # 模块完整规范(v2.0 起吸收原 STORY-FORMAT-SPEC.md §4)
 ├── skills/                        # 项目级 meta-skill 单一来源(git tracked)
 ├── .claude/skills/                # 自动镜像(gitignored)
 ├── scripts/                       # 校验 / 校准 / 同步脚本
@@ -56,12 +56,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |------|------|
 | 全局规范(命名 / commit / 互链 / frontmatter / G1-G6 评分 / 11 类扫描规则) | `SPEC.md` |
 | 各模块自有 SPEC(评估维度 + 写作总则 + 子目录约定;11/12/13 等已落地) | `{NN}.xxx/SPEC.md` |
-| 模块写作模板(仅 12 面试题 / 13 故事,强骨架模块按需存在,不与 SPEC.md 合并) | `12.interview/QUESTION-FORMAT-SPEC.md` / `13.story/STORY-FORMAT-SPEC.md` |
+| 模块写作模板(强骨架模块按需存在;13.story v2.0 起合并入 `<module>/SPEC.md`) | `12.interview/QUESTION-FORMAT-SPEC.md` / `13.story/SPEC.md#四强骨架格式规范` |
 
 **知识文章 frontmatter 类型**(按 `slug` 字段分 3 类,HTML 注释格式 `<!--type: ... -->` 起首 + 多行字段 + `-->` 收尾;详见 `SPEC.md` §4):
 - `module:`(主模块 README + 子文章,跨所有 13 模块,现状 814 篇)
 - `question:`(`12.interview` 高频面试题,现状 **229 篇**)
-- `story:`(`13.story` 阿明餐厅,现状 **50 章** + STORY-FORMAT-SPEC)
+- `story:`(`13.story` 阿明餐厅,现状 **50 章** + 强骨架格式见 `13.story/SPEC.md` §4)
 
 > `SPEC.md` / `index.md` 等索引页豁免 frontmatter(约 20 个)。
 
