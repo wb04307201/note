@@ -995,6 +995,31 @@ wc -l $KB_DIR/12.interview/<module>/*troubleshooting*/README.md
 [不要用 AskUserQuestion — orchestrator 转交]
 ```
 
+## Cross-References（与其他 skill 的联动）
+
+本 skill 不是孤岛——所有沉淀动作都在与上下游 skill 协作：
+
+### 上游触发器（什么场景会触发本 skill）
+
+| 触发来源 | 触发场景 | 跳转 Phase |
+|---------|---------|-----------|
+| `note-knowledge-qa` 未覆盖主题 | 用户问"X 是什么"但 KB 未沉淀 | Phase 0 → 现状盘点 → Phase 3 |
+| `note-health` P0/P1 修复项 | 体检报告说"该模块 X 缺失"或"该内容主题整合" | Phase 3 → Phase 6 |
+
+### 下游去向（沉淀完之后做什么）
+
+| 沉淀结果 | 下一步 skill | 触发场景 |
+|---------|------------|---------|
+| 新文件落地 | `note-health` Phase 2 | "评价这篇新写的" / 自动 P1 检查 |
+| 双层 / 三层故事联动 | `note-knowledge-qa` 直接可引用 | 后续问答命中新主题 |
+| 结构性重构（拆/合模块） | `note-health` Phase 1 全库扫 | 验证重构后无新断链 |
+
+### 关键 cross-ref 边界
+
+- **本 skill 不处理**：全库互链矩阵设计 / 全局反向链审计（属于 `note-knowledge-qa` 的检索行为或未来的全局互链 skill）
+- **本 skill 不处理**：纯内容问询（"RAG 原理"、"HashMap 怎么用"）→ 走 `note-knowledge-qa`
+- **本 skill 不处理**：质量评分（"这篇文章质量怎么样"）→ 走 `note-health` 单篇评分
+
 ## Real-World Impact
 
 5+ 主题已按此流程沉淀，commit 数 0 → 60+：
