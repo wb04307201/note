@@ -24,7 +24,7 @@ description: Use when user asks to audit or improve a project's knowledge base (
 
 对 `$KB_DIR/` 跑**单一分层体检**：结构机械扫描 + leaf 判断式打分，自底向上 4 相，输出统一 P0-P3 + 分批计划 + 逐篇评分表。重内容放在 `references/`，本文件只留决策骨架。
 
-## Step 0：scope 判断（第一闸）
+## Phase 0：scope 判断（第一闸）
 
 | scope | 触发例 | 行为 |
 |---|---|---|
@@ -32,12 +32,12 @@ description: Use when user asks to audit or improve a project's knowledge base (
 | 单篇 / 单目录 | "评价某模块下某篇" / "这篇质量怎么样" / "这篇新写的质量如何" | **只跑 Phase 2**：直接 Read + 按 `references/leaf-quality.md` 打分。**不启动 workflow**。**新文件**先读 `references/new-file-baseline.md` 拿到 7 必选 + 3 可选结构基线。 |
 | 单模块 | "审一下某模块"（运行时读取 `find "$KB_DIR" -maxdepth 1 -type d`） | Phase 1 扫该模块 + Phase 2 小规模 fan-out（视 leaf 数手工切批，≤ 6 篇/批）。 |
 | 全库（leaf ≤ 1000） | "note 哪里要优化" / "扫一遍 note" / "体检" | 完整 4 相；Phase 2 直接走「分层采样 + 优先级列表」策略（关键问题全评 + 各模块代表采样）。 |
-| 全库（leaf > 1000） | 同上，但实时 `find "$KB_DIR" -name "*.md" \| wc -l` > 1000 | **触发 Step 0.1 策略询问**：用 `AskUserQuestion` 让用户在「采样」/「穷举」/「混合」三选一，默认采样，**不再静默切换**。 |
+| 全库（leaf > 1000） | 同上，但实时 `find "$KB_DIR" -name "*.md" \| wc -l` > 1000 | **触发 Phase 0.1 策略询问**：用 `AskUserQuestion` 让用户在「采样」/「穷举」/「混合」三选一，默认采样，**不再静默切换**。 |
 
 **🆕 空 KB_DIR 检测（2026-09-03 测试新增）**：
 
 ```bash
-# Step 0 启动前必跑（< 1 秒）
+# Phase 0 启动前必跑（< 1 秒）
 KB_DIR="${NOTE_DIR:-.}"  # 默认仓库根（内容平铺），支持 NOTE_DIR 环境变量覆盖
 if [ ! -d "$KB_DIR" ] || [ -z "$(find "$KB_DIR" -maxdepth 5 -name "*.md" -print -quit 2>/dev/null)" ]; then
   echo "⚠️  KB_DIR ($KB_DIR) 为空或不存在，无可体检内容"
@@ -52,18 +52,18 @@ fi
 > - **优先级批**：浅 README（< 50 行）+ 无回链 + 无 frontmatter + 全部 broken link 来源（必评）
 > - **采样批**：每主模块随机 3-5 篇代表 leaf
 > - **leaf ≤ 1000** → 直接走采样（无需询问）
-> - **leaf > 1000** → **触发 Step 0.1 策略询问**（让用户显式选择）
+> - **leaf > 1000** → **触发 Phase 0.1 策略询问**（让用户显式选择）
 > - leaf 数 ≤ 50 → 按单模块（主循环手工切批）
 
-### Step 0.1：全库规模触发的策略询问（leaf > 1000）
+### Phase 0.1：全库规模触发的策略询问（leaf > 1000）
 
-> 🆕 **2026-08-23 新增**：当 Step 0 判 scope = 全库且实时 `find "$KB_DIR" -name "*.md" | wc -l` > 1000 时，**必须**用 `AskUserQuestion` 让用户在 3 种策略中显式选择，**不再静默切换**为采样。
+> 🆕 **2026-08-23 新增**：当 Phase 0 判 scope = 全库且实时 `find "$KB_DIR" -name "*.md" | wc -l` > 1000 时，**必须**用 `AskUserQuestion` 让用户在 3 种策略中显式选择，**不再静默切换**为采样。
 
 **触发前先算 leaf 数**：
 
 ```bash
 LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
-[ "$LEAF_COUNT" -gt 1000 ] && echo "全库 leaf = $LEAF_COUNT，超阈值，触发 Step 0.1 询问"
+[ "$LEAF_COUNT" -gt 1000 ] && echo "全库 leaf = $LEAF_COUNT，超阈值，触发 Phase 0.1 询问"
 ```
 
 **询问选项**（默认 Recommended = 选项 A 采样）：
@@ -108,11 +108,11 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 读 `references/structural-checks.md`，跑机械扫描：**frontmatter 覆盖、orphan 目录、孤链（.md + 目录双口径）、README 总目录章节锚点、模块均分 + 单向链接扫描 + 系列完整性审计 + 数字一致性 + 归属合理性 + 合并检测**等。
 **所有大输出重定向到文件**（`> .health-tmp/scan-<phase>-<date>.txt`），不堆进对话。Phase 1 不调 workflow。
 
-> **2026-07-25 起**：单向链接扫描（`Step 4.5`）+ 系列完整性审计（`Step 9` + `9.1`）从深度模式提升为默认 Phase 1.8 / 1.9 / 1.10 —— Mistake 9（parent 不回链 = 隐性孤岛）是历史教训，全库 800+ README 的体检默认应该跑，下次不会再忘。
+> **2026-07-25 起**：单向链接扫描（`Phase 4.5`）+ 系列完整性审计（`Phase 9` + `9.1`）从深度模式提升为默认 Phase 1.8 / 1.9 / 1.10 —— Mistake 9（parent 不回链 = 隐性孤岛）是历史教训，全库 800+ README 的体检默认应该跑，下次不会再忘。
 
-> **🆕 2026-07-26 起**：归属合理性审计（`Step 10`）+ 合并检测（`Step 11`）从深度模式提升为默认 Phase 1.11 / 1.12 —— 主题放错位置（如训练方法论放工程层）和多主题错误合并（如 5 个灵魂拷问合成一个文件）是结构性问题，体检默认应该跑。
+> **🆕 2026-07-26 起**：归属合理性审计（`Phase 10`）+ 合并检测（`Phase 11`）从深度模式提升为默认 Phase 1.11 / 1.12 —— 主题放错位置（如训练方法论放工程层）和多主题错误合并（如 5 个灵魂拷问合成一个文件）是结构性问题，体检默认应该跑。
 
-> **🆕 2026-08-20 起**：关联强度扫描（`Step 12`）从可选提升为默认 Phase 1.13 —— 检测"同栏目 / 同目录"兄弟互链中目标文件 0 真实引用的弱关联（见 `note-precipitation-planning` Mistake 20）。弱关联比 broken link 更隐蔽——链接存在且路径正确，但语义上是噪声，应作为 P2 问题输出。
+> **🆕 2026-08-20 起**：关联强度扫描（`Phase 12`）从可选提升为默认 Phase 1.13 —— 检测"同栏目 / 同目录"兄弟互链中目标文件 0 真实引用的弱关联（见 `note-precipitation-planning` Mistake 20）。弱关联比 broken link 更隐蔽——链接存在且路径正确，但语义上是噪声，应作为 P2 问题输出。
 
 > **🆕 2026-08-25 起**：① 断链扫描升级为**双口径**（`.md` 文件链接 + `](dir/)` 目录链接）——目录链接曾是盲区，累积 156 处未检出（见 `structural-checks.md` #6）；② Phase 1.13 弱关联扫描改用**正文内链算法**（v2），排除页脚导航表/表格/代码块，消除 1005 处误报类噪声。
 
@@ -231,13 +231,13 @@ find "$KB_DIR" -name "*.md" | python -c "import sys,os; [print(l.strip()) for l 
 
 **配套 E7-E11 评分表**：见 `references/leaf-quality.md` 末尾（E7-E11 节）。
 
-**与 difficulty 深度校准的衔接（🆕 2026-08-25）**：本阶段产出的五维分同时是 `difficulty` 深度校准的数据源——五维总分映射建议星级（9-10→⭐⭐⭐⭐ / 7-8→⭐⭐⭐ / 5-6→⭐⭐ / ≤4→⭐），偏差 ≥1 星进校准清单。完整执行流程见 `references/structural-checks.md` Step 15「深度校准流程」。全库打分时 `health-workflow.js` 已自动采集 `fiveDim`，无需单独再跑一轮五维评分。
+**与 difficulty 深度校准的衔接（🆕 2026-08-25）**：本阶段产出的五维分同时是 `difficulty` 深度校准的数据源——五维总分映射建议星级（9-10→⭐⭐⭐⭐ / 7-8→⭐⭐⭐ / 5-6→⭐⭐ / ≤4→⭐），偏差 ≥1 星进校准清单。完整执行流程见 `references/structural-checks.md` Phase 15「深度校准流程」。全库打分时 `health-workflow.js` 已自动采集 `fiveDim`，无需单独再跑一轮五维评分。
 
 **4 个实战教训**（2026-08-10 总结）：
 
 1. **⚠️ 标题/文件名预筛 false positive 高达 70%**——`closure`、`prototype-chain`、`mysql-int-define`、`redis-eviction` 等看着基础但实际深度评分 8-10。**禁止仅基于文件名/行数判定**，必须 Read 全文。
 
-2. **frontmatter `difficulty` 标记偏乐观**——本次发现 19 处 frontmatter difficulty 与实际内容深度不一致（16 处低估 + 3 处高估）。Phase 1 应加 **frontmatter 一致性校准**（见 structural-checks.md Step 15）。
+2. **frontmatter `difficulty` 标记偏乐观**——本次发现 19 处 frontmatter difficulty 与实际内容深度不一致（16 处低估 + 3 处高估）。Phase 1 应加 **frontmatter 一致性校准**（见 structural-checks.md Phase 15）。
 
 3. **按子目录分批 dispatch 是高效模式**——避免单 agent 全库评估时的疲劳偏差（11.ai 体量大易被误杀）。按子目录 6-15 篇/agent，每个 agent 上下文清晰。
 
@@ -363,7 +363,7 @@ python scripts/check-broken-links.py --module 09.ai-applications
 ```
 # 全库体检（leaf ≤ 1000）
 "扫一遍 note 看看哪里要优化"
-→ Step 0: 全库（leaf ≤ 1000），直接走采样
+→ Phase 0: 全库（leaf ≤ 1000），直接走采样
 → Phase 1: 跑 structural-checks.md 扫描，结果落 $KB_DIR/.health-tmp/scan-1-<date>.txt
 → Phase 2: find + python 枚举 leaf，调 health-workflow.js（args.files=...，batchSize=6）
 → Phase 3: 上卷
@@ -371,13 +371,13 @@ python scripts/check-broken-links.py --module 09.ai-applications
 
 # 全库体检（leaf > 1000）
 "扫一遍 note 看看哪里要优化"
-→ Step 0: 全库（leaf > 1000），触发 Step 0.1 策略询问
+→ Phase 0: 全库（leaf > 1000），触发 Phase 0.1 策略询问
 → AskUserQuestion: 用户选 A/B/C（默认 A）
 → Phase 1-4 同上，header 含「策略选择：<选项>」
 
 # 单篇质量验收
 "评价 11.ai/RAG/README.md 这篇质量怎么样"
-→ Step 0: 单篇
+→ Phase 0: 单篇
 → Phase 2: 直接 Read + leaf-quality.md 打分，不开 workflow
 → 直接在对话里给评分表 + findings
 ```
