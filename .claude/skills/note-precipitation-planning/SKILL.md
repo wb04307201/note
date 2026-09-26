@@ -650,111 +650,17 @@ fi
   2. `git status --short` 确认 staged/unstaged 状态**符合预期**
   3. `git log --oneline -3` 确认 commit 实际**落地**（前 3 commit 含本次 commit hash）
 - **commit hash 必传**：subagent final report 必含**真实 commit hash**（不是"已 commit" 而是 `7e2cab99 refactor(note): ...`）。缺失则视为 commit 失败
-- **🆕 final report 必含 4 项命令输出**（避免"修改但未 commit" silent failure）：
-  1. `git log --oneline -1` 的**完整输出**（不是只贴 hash）
-  2. `git status --short` 的**完整输出**（working tree 状态）
-  3. 实际修改文件的 `wc -l FILE` 输出
-  4. 修改文件列表（`git diff --name-only HEAD~1 HEAD`）
-- **🆕 orchestrator 收尾协议**：subagent 报告"完成"但 `git log` 无新 commit → **立即 abort + 收尾 commit**（不信任 subagent 自我报告）
-- **失败检测规则**：如果 subagent 报告完成但 `git log` 没新 commit → 立即 abort + 重派，不要信任 subagent 自我报告
-- **commit 1 必含文件创建**：commit 1 必须新增 1+ 个文件（不能用 pure README 修改代替），`find "$KB_DIR" -name "<topic>.md" -newer <commit-base>` 验证
+### Phase 6.5-6.8: 操作层规范（已抽到 ORCHESTRATION.md）
 
-### Phase 6.6: Git author 一致性（subagent 必须用主账号）
-
-> 🆕 **2026-07-25 升级**（Phase 4 体检 + Batch 1-5 修复经验）：peer subagent 自动注入 fallback user `note-health-batch3 <note-health@local>`，导致 2 个 commit author 错误，需 rebase 修正。
-
-- **subagent prompt 必含**：
-  ```bash
-  export GIT_AUTHOR_NAME="吴博"
-  export GIT_AUTHOR_EMAIL="wubo_aaa@163.com"
-  export GIT_COMMITTER_NAME="吴博"
-  export GIT_COMMITTER_EMAIL="wubo_aaa@163.com"
-  ```
-  或在 Agent prompt 中显式要求"git commit 前必须设置 author 为 `吴博 <wubo_aaa@163.com>`"
-- **subagent final report 必含 author 验证**：
-  ```bash
-  git log -1 --format="%an <%ae>" -- FILE
-  ```
-  输出必含 `吴博 <wubo_aaa@163.com>`，否则视为 author 错误
-- **修复方法**（如果 author 已错误）：
-  ```bash
-  # 修正最近 N 个 commit 的 author
-  GIT_AUTHOR_NAME="吴博" GIT_AUTHOR_EMAIL="wubo_aaa@163.com" \
-    git rebase -i HEAD~N --exec 'git commit --amend --no-edit --reset-author'
-  ```
-  ⚠️ 注意 rebase 会改 commit hash，原预期 hash 会失效
-
-### Phase 6.5: 并发 peer session 协调（共享 worktree）
-
-> 历史教训：多 session 在同一 worktree 并发工作时，peer 可能修改 subagent 写过的文件而不 commit，或写文件后不 commit，需要协调。
-
-- **commit hash 必须可验证**：每次 session 派发后保留 agentId 列表 + 期望 commit hash，便于后续核对
-- **peer 报告需独立验证**：
-  - peer 报告"commit X 已落地" → `git log --grep="<topic>" --oneline` 独立验证
-  - peer 报告"working tree 干净" → `git status -s` 独立验证
-- **冲突协调**：当 commit 已被 peer 部分覆盖 + working tree 还有 modifications：
-  - 检查 peer 修改是否被 commit（`git log` + `git diff`）
-  - 如 peer 已 commit + working tree 还有未提交修改 → 询问用户偏好（reset 重写 vs polish commit）
-- **不接受 floating peer 报告**：peer 报告后用 `git log --oneline` 独立核对才声明 final pass
-
-### Phase 6.7: 并行 subagent 共享文件协调（2026-07-30 新增）
-
-> 🆕 **2026-07-30 教训**（Batch 3）：3 个 subagent 并行时，#5 和 #7 共享同一个父 README（`12.interview/05.frontend/README.md`）。#7 subagent 完成了 feat commit 但**反向链变更未 commit**（留在 working tree），且题数没有更新到正确值（27→28）。
-
-**规则**：
-1. **识别共享文件**：派发前检查哪些父 README 会被多个 subagent 修改
-2. **共享文件由 orchestrator 统一更新**：subagent prompt 中明确要求"**不要修改 `<父 README 路径>`**，该文件由 orchestrator 统一更新"
-3. **Orchestrator 收尾 commit**：所有 subagent 完成后，orchestrator 检查 `git status --short`，将未提交的变更（反向链 + 题数修正）统一 commit
-
-**Subagent prompt 模板**（并行派发时）：
-```
-**重要**：以下文件由 orchestrator 统一更新，你**不要修改**：
-- `12.interview/<module>/README.md`（父 README 目录表）
-- 任何其他 subagent 可能修改的文件
-
-你只需负责：
-1. 创建新 README 文件
-2. 给**非共享**的兄弟 README 添加反向链
-3. Commit 上述变更
-```
-
-**Orchestrator 收尾检查清单**：
-- [ ] `git status --short` 检查是否有未提交变更
-- [ ] 父 README 题数是否与实际目录数一致
-- [ ] 所有反向链是否已 commit（不是只留在 working tree）
-
-### Phase 6.8: Subagent 父 README 更新职责（2026-07-30 新增）
-
-> 🆕 **2026-07-30 教训**（消息已读未读面试题）：subagent 创建了新文件但没有更新父 README 的题数和条目。父 README 显示"共 20 题"，实际应该是 23 题（包含历史遗留的 media-upload、砍一刀算法等）。
-
-**规则**：
-1. **单个 subagent 也必须更新父 README**：创建新文件后，必须同时更新父 README 的题数计数器和条目列表
-2. **更新前验证准确性**：先统计实际目录数，再更新题数（避免"旧账新账一起算"）
-3. **Orchestrator 最终验证**：所有 subagent 完成后，orchestrator 必须验证父 README 的准确性
-
-**Subagent prompt 模板**（单个任务）：
-```
-**父 README 更新职责**：
-1. 创建新 README 文件后，更新父 README：
-   - 题数计数器：`## 文章清单（共 N 题，find 校对 YYYY-MM-DD）`
-   - 添加新条目到对应分类表格
-2. 更新前验证：
-   ```bash
-   # 统计实际目录数
-   ACTUAL_COUNT=$(ls $KB_DIR/12.interview/<module>/ | grep -v README | wc -l)
-   # 对比父 README 中的题数
-   DECLARED_COUNT=$(grep -oP '共 \K\d+' $KB_DIR/12.interview/<module>/README.md)
-   # 如果不一致，先修正历史遗留问题
-   ```
-3. 添加新条目：
-   - 找到合适的分类（如"业务系统设计"）
-   - 添加一行：`| [新文件标题](新目录名/) | ⭐⭐⭐⭐ | 核心问题描述 |`
-```
-
-**Orchestrator 最终验证清单**：
-- [ ] 父 README 题数 = 实际目录数
-- [ ] 父 README 条目列表完整（无遗漏）
-- [ ] 所有新文件都已添加到父 README
+> 🆕 **v2.0 重构（2026-09-26）**：subagent silent failure / git author / 并发协调 / 父 README 更新职责 4 类操作层规范已抽到项目级 `.claude/ORCHESTRATION.md`。
+>
+> 本 skill 只关心**沉淀流程**（Phase 0-6.9 的内容决策与实施），不耦合 orchestration 工具层细节。3 个 skill 共用同一份 ORCHESTRATION.md。
+>
+> **何时读 ORCHESTRATION.md**：
+> - 派发 subagent 前 → 必读 §1-4 全部 4 节
+> - subagent 报告"完成"后 → §1 + §3 验证 4 项命令输出
+> - 多 session 并行 → §2 + §3
+> - 沉淀后验收 → §4
 
 ### Phase 6.9: 模块级重构 SOP（Build: 拆/合/批量错位）
 
