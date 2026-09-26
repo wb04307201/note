@@ -1,40 +1,25 @@
 #!/usr/bin/env bash
-# pre-commit hook: 自动同步 skills/ → .claude/skills/
-#                    + 知识库 .md 链接完整性检查
+# pre-commit hook: 知识库 .md 链接完整性检查
+# 启用: git config core.hooksPath .githooks（CLAUDE.md 文档化）
 #
-# 安装: cp .githooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
-# 或通过 git config core.hooksPath .githooks（推荐，可追踪）
+# 安装: git config core.hooksPath .githooks
+# 或通过 setup.sh（保留兼容入口，但新环境可直接手动配）
 
 set -e
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
-SCRIPT="$REPO_ROOT/scripts/sync-skills.sh"
 
-# 1. skills/ 变更时自动同步到 .claude/skills/
-if [ -f "$SCRIPT" ]; then
-  STAGED_SKILLS=$(git diff --cached --name-only | grep "^skills/" | wc -l)
-  if [ "$STAGED_SKILLS" -gt 0 ]; then
-    echo "[pre-commit] skills/ 有变更，同步到 .claude/skills/..."
-    bash "$SCRIPT"
-  fi
-fi
-
-# 2. 知识库 .md 新增/修改时跑链接完整性检查（平铺结构：内容在仓库根）
-#    排除 skills/ scripts/ .health-tmp/ 等非知识内容目录
-STAGED_NOTE=$(git diff --cached --name-only | grep "\.md$" | grep -vE "^(skills/|scripts/|\.health-tmp/)" || true)
+# 知识库 .md 新增/修改时跑链接完整性检查（平铺结构：内容在仓库根）
+# 排除 .claude/skills/ scripts/ .health-tmp/ 等非知识内容目录
+# --diff-filter=AM 避免 staged 删除触发"文件不存在"误报
+STAGED_NOTE=$(git diff --cached --name-only --diff-filter=AM | grep "\.md$" | grep -vE "^(\.claude/skills/|scripts/|\.health-tmp/)" || true)
 if [ -n "$STAGED_NOTE" ]; then
   CHECK_SCRIPT="$REPO_ROOT/scripts/check-broken-links.py"
   if [ -f "$CHECK_SCRIPT" ]; then
     FILE_COUNT=$(echo "$STAGED_NOTE" | wc -l)
     echo "[pre-commit] 知识库有 $FILE_COUNT 个 .md 变更，跑链接完整性检查..."
-    if [ "$FILE_COUNT" -gt 50 ]; then
-      # 大批量变更（初次迁移/结构重组）：逐文件传参会超出系统参数上限，改跑全库扫描
-      CHECK_OK=0
-      python "$CHECK_SCRIPT" --quiet || CHECK_OK=1
-    else
-      CHECK_OK=0
-      python "$CHECK_SCRIPT" --quiet $STAGED_NOTE || CHECK_OK=1
-    fi
+    CHECK_OK=0
+    python "$CHECK_SCRIPT" --quiet $STAGED_NOTE || CHECK_OK=1
     if [ "$CHECK_OK" -ne 0 ]; then
       echo ""
       echo "❌ 链接完整性检查未通过，请修复断链后再 commit"
