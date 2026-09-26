@@ -37,25 +37,25 @@
 
 **症状**：直接在某个位置创建新文件，没注意已有类似内容 → 重复沉淀
 
-**修复**：Step 1 不可跳过；用 grep + find 扫描 ≥ 5 个相关文件
+**修复**：Phase 1 不可跳过；用 grep + find 扫描 ≥ 5 个相关文件
 
 ### ❌ Mistake 2: 单一深度评估
 
 **症状**：默认"是" → 沉淀任何主题 → note 膨胀
 
-**修复**：Step 2 用 3 信号判断（高频 + 内容深 + 缺口真实）；不满足就不沉淀
+**修复**：Phase 2 用 3 信号判断（高频 + 内容深 + 缺口真实）；不满足就不沉淀
 
 ### ❌ Mistake 3: 位置错位
 
 **症状**：把技术原理放 `13.story`（叙事）/ 把面试题放 `08.ai-foundations/01-fundamentals`（原理）/ 把算法放 `04-architecture`（架构）
 
-**修复**：Step 3 决策树 + 检查主模块子目录的命名约定（`01-fundamentals` / `02-technology-stack` / `03-engineering` / `04-architecture`）
+**修复**：Phase 3 决策树 + 检查主模块子目录的命名约定（`01-fundamentals` / `02-technology-stack` / `03-engineering` / `04-architecture`）
 
 ### ❌ Mistake 4: 缺互链
 
 **症状**：新文件是孤岛，没有反向链到已有内容 → 知识碎片化
 
-**修复**：Step 4 决策时**强制要求**双层/三层沉淀带互链；Step 7 自检"至少 2 个旧章节互链"
+**修复**：Phase 4 决策时**强制要求**双层/三层沉淀带互链；Phase 7 自检"至少 2 个旧章节互链"
 
 ### ❌ Mistake 5: subagent 调 AskUserQuestion 失败
 
@@ -67,13 +67,13 @@
 
 **症状**：模糊 commit message（"update docs"） / 多个 commit 描述重叠 / 混 refactor + feat
 
-**修复**：Step 6 严格按 `<type>(<slug>): <动作>` 格式；每个 commit 只做一类变更
+**修复**：Phase 6 严格按 `<type>(<slug>): <动作>` 格式；每个 commit 只做一类变更
 
 ### ❌ Mistake 7: 数字虚报
 
 **症状**：commit message 说"删除 6 个孤儿目录"但实际只改 README
 
-**修复**：Step 6 数字声明必须由 implementer 用 `find` / `wc -l` 重新数；不允许估算
+**修复**：Phase 6 数字声明必须由 implementer 用 `find` / `wc -l` 重新数；不允许估算
 
 ### ❌ Mistake 8: 路径深度错误（2026-07-25 强化）
 
@@ -87,7 +87,7 @@
 **修复（4 步强制）**：
 1. **目标路径必须实际验证**：用 `find note -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在
 2. **手动数层级**：从源文件向上数 `../` 数量 = 目标深度差（注意 `$KB_DIR/` 跨模块跳数）
-3. **每文件 commit 后立即跑 broken links 扫描**（见 Step 6.5）
+3. **每文件 commit 后立即跑 broken links 扫描**（见 Phase 6.5）
 4. **不依赖"记忆"**：每次都 grep/find 验证，不要凭印象写路径
 
 **🆕 强化（2026-07-25 经验）**：
@@ -119,7 +119,7 @@
 **修复**：
 - **强制规则**：每个新文件 commit 时，**主动给被链接的 parent / 同级兄弟加反向链**（单独 refactor commit）
 - 双向互链是**新内容责任**，不是"以后再说"
-- Step 7 自检加「互链双向性扫描」项，**不达标则 commit 不合格**
+- Phase 7 自检加「互链双向性扫描」项，**不达标则 commit 不合格**
 
 **反直觉点**：很多人以为"我加了 2 条反向链就完事" —— 实际上被链接的 parent / 兄弟文件**也要回链**，否则会出现"两个 leaf 互相知道，但 parent 完全不知道新成员"的孤岛现象。
 
@@ -137,7 +137,7 @@
 - **强制规则**：向已有系列新增文章时，**每篇文件末尾必须有"系列导航表"**
 - 系列导航表 = 一个表格，列出系列内所有文件 + 一句话核心问题
 - 新文件加导航表 + 所有已有兄弟加/更新导航表
-- Step 7 自检加「系列导航表完整性」项
+- Phase 7 自检加「系列导航表完整性」项
 
 **批量修复脚本**（场景 B 适用）：
 ```bash
@@ -254,7 +254,7 @@ print(f'新文件 broken links: {real_broken}')
 **修复（沉淀时主动避免）**：
 - **强制规则**：沉淀新 README 时，**每张表格只承载一个职责**，不要做"明细表"补完
 - 多视角需要时，**用 section 标题区分**（"## 目录导航" + "## 速查表"），而不是重复表格
-- Step 7 自检加项：grep `\|---` 表格分隔行数 ≥ 2 的 README，人工检查表格列是否重叠 ≥ 50%
+- Phase 7 自检加项：grep `\|---` 表格分隔行数 ≥ 2 的 README，人工检查表格列是否重叠 ≥ 50%
 
 **历史兜底**：体检时如果发现同 README 内 2+ 张表格列字段重叠 ≥ 50%，标记为 P2 应修（合并 / 删除）。
 
@@ -264,13 +264,13 @@ print(f'新文件 broken links: {real_broken}')
 
 **历史案例**（2026-07-26 llm-production-thinking）：
 - 用户说"沉淀大模型思维工程 5 个灵魂拷问"
-- Step 0 缺失 → 5 个独立主题（思维范式 / 成本控制 / 一致性 / 超时熔断 / 监控定位）被合成一个 `production-thinking-5q/README.md`
+- Phase 0 缺失 → 5 个独立主题（思维范式 / 成本控制 / 一致性 / 超时熔断 / 监控定位）被合成一个 `production-thinking-5q/README.md`
 - 后续发现：每个主题都应该独立成文 + 独立面试题 → 全部拆散 + 目录重定位
 
-**修复（Step 0 强制）**：
-- **Step 0 主题识别**：在盘点前先判断用户输入是单主题还是多主题
+**修复（Phase 0 强制）**：
+- **Phase 0 主题识别**：在盘点前先判断用户输入是单主题还是多主题
 - **多主题判断信号**：有编号（"5 个"、"3 大"）、有并列（"A + B + C"）、有"N 种"/"几种"
-- **多主题处理**：每个子主题独立走 Step 1-7 流程，不要合并
+- **多主题处理**：每个子主题独立走 Phase 1-7 流程，不要合并
 - **强关联主题**：创建系列目录（如 `llm-production-thinking/`），但每个子主题独立成文（01-thinking-paradigm.md / 02-cost-control.md ...）
 - **面试题处理**：每个子主题各自独立一篇面试题（`llm-thinking-paradigm/` / `llm-cost-control/` ...），不要合成"5q"文件
 
@@ -295,8 +295,8 @@ done
 - 每个主题：Write 文件 + 路径验证 + 反向链 + commit = ~800 行上下文
 - 3 个主题 = ~2400 行 → compact 触发 → 后续父 README 更新需手动恢复
 
-**修复（Step 0.5 强制）**：
-- **Step 0.5 上下文预算评估**：多主题时先评估每个主题的复杂度 + 预估上下文消耗
+**修复（Phase 0.5 强制）**：
+- **Phase 0.5 上下文预算评估**：多主题时先评估每个主题的复杂度 + 预估上下文消耗
 - **单次沉淀上限**：简单主题 ≤ 3 个 / 中等主题 ≤ 2 个 / 含复杂主题分批
 - **分批执行协议**：Batch 1 完成 → 主动提示用户 compact → Batch 2
 - **不要硬撑**：上下文 > 1500 行时主动建议分批，不要等 compact 被动触发
@@ -354,7 +354,7 @@ done
 **根因**：subagent 没有在执行前验证父 README 的准确性，只关注"新增"而忽略"存量"。
 
 **修复（执行前必做）**：
-1. **Step 1 现状盘点必须包含父 README 验证**：
+1. **Phase 1 现状盘点必须包含父 README 验证**：
    ```bash
    # 1. 统计实际目录数
    ACTUAL_COUNT=$(ls $KB_DIR/12.interview/<module>/ | grep -v README | wc -l)
@@ -375,7 +375,7 @@ done
    comm -23 /tmp/actual.txt /tmp/declared.txt  # 实际有但父 README 没有的
    ```
 
-2. **Orchestrator 必须在 Step 6 前明确告知 subagent**：
+2. **Orchestrator 必须在 Phase 6 前明确告知 subagent**：
    - 如果发现历史遗留问题，subagent 应该一并修正（不仅是新增）
    - 或者 orchestrator 在收尾时统一处理
 
@@ -399,8 +399,8 @@ done
 - 缺失条目数 = 实际目录数 - 父 README 题数
 
 **预防措施**：
-- 在 Step 1 现状盘点中加入"父 README 准确性验证"步骤
-- 在 Step 7 验证中加入"父 README 完整性检查"
+- 在 Phase 1 现状盘点中加入"父 README 准确性验证"步骤
+- 在 Phase 7 验证中加入"父 README 完整性检查"
 
 ### ❌ Mistake 20：双层沉淀的"弱关联"互链（2026-08-20 新增）
 
@@ -448,7 +448,7 @@ done
    - 同级案例：[敏感词过滤](../sensitive-word-filter/README.md) — AC 自动机 + 高并发过滤（上传后内容审核）
    ```
 
-**检测脚本**（可在 Step 7 自检时跑）：
+**检测脚本**（可在 Phase 7 自检时跑）：
 ```bash
 # 对每个被链接的兄弟文件，做关联强度判定
 for target in $(grep -oP '\]\(\.\./[^)]+\)' $KB_DIR/<file>/README.md | grep -oP '\.\./[^)]+'); do
@@ -460,9 +460,9 @@ done
 ```
 
 **预防措施**：
-- Step 1 现状盘点：列出每个"潜在互链候选"时，**先 grep 验证关联强度**
-- Step 6 实施：写互链前问"目标文件在被链接文件里有什么真实引用"，无引用则不写
-- Step 7 自检：加「互链关联强度判定」项（见 Quick Checklist）
+- Phase 1 现状盘点：列出每个"潜在互链候选"时，**先 grep 验证关联强度**
+- Phase 6 实施：写互链前问"目标文件在被链接文件里有什么真实引用"，无引用则不写
+- Phase 7 自检：加「互链关联强度判定」项（见 Quick Checklist）
 
 **反直觉点**：很多人以为"同栏目就是强关联"——实际上栏目只是分类，分类内的文件可能零耦合（如 file-upload 和 product-search 都是"系统设计"但完全不相关）。真正的强关联 = 真实语义引用，不是目录位置。
 

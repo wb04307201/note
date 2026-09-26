@@ -187,7 +187,7 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 | 步骤 | 触发时机 | 工具 | 详见 |
 |------|---------|------|------|
 | §7.1 链接路径校验 | 引用其他模块路径时 | Python 脚本模板 | `.claude/skills/note-precipitation-planning/SKILL.md` §7.1 |
-| §7.2 单文件自检 | Step 6 subagent 完成后 | `.github/workflows/scripts/check-broken-links.py` | `.claude/skills/note-precipitation-planning/SKILL.md` §7.2 |
+| §7.2 单文件自检 | Phase 6 subagent 完成后 | `.github/workflows/scripts/check-broken-links.py` | `.claude/skills/note-precipitation-planning/SKILL.md` §7.2 |
 | pre-commit hook | `git commit` 时 | `check-broken-links.py` 单文件 | `.githooks/pre-commit` |
 | structural-link-check.yml | push/PR + 每月 1 日 06:00 | 全库扫描 + 增量 | `.github/workflows/structural-link-check.yml` |
 
