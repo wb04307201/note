@@ -22,7 +22,22 @@ description: Use when user asks to audit or improve a project's knowledge base (
 
 # note-health：note 知识库健康检查
 
-对 `$KB_DIR/` 跑**单一分层体检**：结构机械扫描 + leaf 判断式打分，自底向上 4 相，输出统一 P0-P3 + 分批计划 + 逐篇评分表。重内容放在 `references/`，本文件只留决策骨架。
+对 `$KB_DIR/` 跑**单一分层体检**：结构机械扫描 + leaf 判断式打分，自底向上 8 相，输出统一 P0-P3 + 分批计划 + 逐篇评分表。重内容放在 `references/`，本文件只留决策骨架。
+
+## When to Use
+
+**Use when**（任一触发）：
+
+- 用户问 `note 哪里需要优化` / `note 有哪些问题` / `扫一遍 note` / `体检` / `review note` → 触发**结构体检**（Phase 1-7 全跑）
+- 用户问 `评价 note 质量` / `这篇文章质量怎么样` / `质量验收` / `评分` → 触发**单篇质量评分**（仅 Phase 2）
+- 用户说 `刚写的这篇质量如何` / `新写的 README 看看` → 触发**新文件基线**（Phase 2 + `references/new-file-baseline.md`）
+
+**Don't use when**：
+
+- 用户问技术问题（"HashMap 原理"、"RAG 怎么用"）→ 走 `note-knowledge-qa`
+- 用户问"X 应该沉淀到 note 什么位置" / "新增主题到 note" → 走 `note-precipitation-planning`
+- 用户问"互链矩阵设计" / "全库反向链审计" → 走 `note-knowledge-qa`（它是 read-only 体检） — 或视为 `note-precipitation-planning` 的 Phase X 任务
+- 用户问"我要加 14.llm-ops 模块" / "09 拆成两个" / "课程 lesson 批量导入" → 走 `note-precipitation-planning`（Build 行为）
 
 ## Phase 0：scope 判断（第一闸）
 
@@ -99,7 +114,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 
 > 判定为"新文件"的启发：用户提到"刚写的 / 新沉淀的 / 这次新加的 / 初稿"，或 git 近期新增（git log --since 近几天 --diff-filter=A）。
 
-## 执行引擎：自底向上 4 相
+## 执行引擎：自底向上 8 相
 
 ### Phase 1 — 结构扫描（主循环内，便贵）
 
