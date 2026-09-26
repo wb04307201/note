@@ -659,6 +659,47 @@ for d, reason in orphan[:20]:
     print(f'  ⚠ {d} — {reason}')
 PYEOF
 
+# 9.7 orphan 文件（leaf 级）检测（🆕 2026-09-26 新增）
+# 背景：Step 9.6 只检目录级（无 README 的目录），但目录有 README + 目录内某 leaf 文件
+#       无外部引用的情况被漏检。test KB 的 03.orphan-dir/01-lonely-topic.md
+#       即此场景。
+# 判定：leaf .md 文件未被任何外部 .md 引用 → orphan leaf
+echo "=== 9.7 orphan 文件（leaf 级）检测 ==="
+python << 'PYEOF'
+import os, glob, re
+LINK_RE = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)')
+EXEMPT = {'README.md', 'SPEC.md', 'index.md'}
+
+all_md = set()
+for f in glob.glob('note/**/*.md', recursive=True):
+    if '.health-tmp' in f.replace(os.sep, '/'): continue
+    all_md.add(f.replace(os.sep, '/'))
+
+referenced = set()
+for f in all_md:
+    try:
+        c = open(f, encoding='utf-8', errors='ignore').read()
+        f_dir = os.path.dirname(f).replace(os.sep, '/')
+        for m in LINK_RE.finditer(c):
+            tgt = os.path.normpath(os.path.join(f_dir, m.group(2).replace('/', os.sep))).replace(os.sep, '/')
+            if tgt in all_md:
+                referenced.add(tgt)
+    except Exception:
+        continue
+
+orphan_leaves = []
+for f in sorted(all_md):
+    base = os.path.basename(f)
+    if base in EXEMPT:
+        continue
+    if f not in referenced:
+        orphan_leaves.append(f)
+
+print(f'orphan 文件（leaf 级）: {len(orphan_leaves)} 个')
+for f in orphan_leaves[:20]:
+    print(f'  ⚠ {f} — 无外部 inbound 链接')
+PYEOF
+
 ### 10. 归属合理性审计（2026-07-26 新增）
 
 **历史教训**（2026-07-26 llm-production-thinking 重构）：
