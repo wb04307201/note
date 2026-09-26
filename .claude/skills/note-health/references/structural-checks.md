@@ -94,9 +94,9 @@ find note -name "README.md" | wc -l
 find note -type f -name "*.md" | wc -l
 find note -name "*.png" | wc -l
 
-# 2. frontmatter 覆盖
-no_fm=$(find note -name "README.md" -exec grep -L "^<!--" {} \; 2>/dev/null | wc -l)
-echo "无 frontmatter: $no_fm / $(find note -name "README.md" | wc -l)"
+# 2. frontmatter 覆盖（扫所有 .md，豁免 SPEC.md / index.md）
+no_fm=$(find note -name "*.md" -not -name "SPEC.md" -not -name "index.md" -exec grep -L "^<!--" {} \; 2>/dev/null | wc -l)
+echo "无 frontmatter: $no_fm / $(find note -name "*.md" -not -name "SPEC.md" -not -name "index.md" | wc -l)"
 
 # 3. 数字一致性扫描
 grep -rn "篇\|个\|行" note/README.md 2>/dev/null | grep -E "[0-9]+\s*(篇|个|行)" | head -30
