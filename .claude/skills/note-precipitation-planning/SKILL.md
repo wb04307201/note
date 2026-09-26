@@ -629,32 +629,11 @@ for file in target_dir:
 
 ```bash
 # 每文件 commit 后立即跑（应在 Phase 6 每次 git commit 后调用）
-python << 'PYEOF'
-import sys, os, re, glob
-if sys.platform == 'win32':
-    try: sys.stdout.reconfigure(encoding='utf-8')
-    except: pass
-
-# 严格 regex
-LINK_RE = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)')
-PLACEHOLDERS = ['x/README', 'xxx', 'xx/yy', '../09.ai-applications/...']
-real_broken = 0
-# 只扫本会话新文件（按时间戳或 git diff --name-only）
-new_files = subprocess.check_output(['git', 'diff', '--name-only', '--since=<本次沉淀开始时间>'], cwd='.').decode().splitlines()
-for f in [x for x in new_files if x.endswith('.md')]:
-    try: c = open(f, encoding='utf-8', errors='ignore').read()
-    except: continue
-    for m in LINK_RE.finditer(c):
-        target_rel = m.group(2).strip()
-        if any(p in target_rel for p in PLACEHOLDERS): continue
-        # Windows 路径处理：统一分隔符
-        target_sep = target_rel.replace('/', os.sep)
-        target_abs = os.path.normpath(os.path.join(os.path.dirname(f), target_sep))
-        if not os.path.isfile(target_abs):
-            real_broken += 1
-            print(f'  ⚠ {f} -> {target_rel}')
-print(f'新文件 broken links: {real_broken}')
-PYEOF
+# 统一调 check-broken-links.py,避免 inline regex 漂移
+CHANGED=$(git diff --name-only --since="<本次沉淀开始时间>" | grep "\.md$" || true)
+if [ -n "$CHANGED" ]; then
+  python .github/workflows/scripts/check-broken-links.py $CHANGED
+fi
 ```
 
 如果 `real_broken > 0`，**立即修复下一个 commit**，不要等到沉淀结束。
