@@ -373,6 +373,45 @@ python scripts/check-broken-links.py --module 09.ai-applications
 
 执行本 skill 时遇到常见错误模式先查 references，再决定是否纳入 P0/P1。
 
+## Real-World Impact
+
+| scope | 输出形式 | token / 时长 |
+|-------|---------|------------|
+| 单篇 / 单目录 | `references/leaf-quality.md` 打分表 + findings 列表 | ~10k tokens，~1 分钟 |
+| 单模块（≤50 leaf） | Phase 1 + Phase 2 手工切批 | ~50k tokens，~10 分钟 |
+| 全库（leaf ≤ 1000） | Phase 1 + Phase 2 sampling fan-out | ~200k tokens，30-60 分钟 |
+| 全库（leaf > 1000） | 触发 Phase 0.1 策略询问，默认 A 采样 | ~300k tokens，1-2 小时 |
+| 全库穷举（B 选项） | Phase 1-7 全跑 + Workflow fan-out | ~3M tokens，4-6 小时（release 前审计） |
+
+**典型用户场景 + 预期产出**：
+
+- "扫一遍 note" → 全库体检 → P0-P3 分批报告 + 逐篇评分表
+- "评价 11.ai/RAG/README.md" → 单篇质量验收 → 评分 + findings
+- "这篇新写的 README 看看" → 新文件基线 → 7 必选 + 3 可选结构检查
+- "note 哪里要优化" → 体检 → 同上
+
+**避免的失败**：
+
+- ❌ 不确认 KB_DIR 就跑全库（可能数小时扫描无意义目录）
+- ❌ 跳过 Phase 8 链接校验（230 处断链教训）
+- ❌ 漏掉 frontmatter `difficulty` 与 5-dim 一致性（19 处偏差教训）
+
+## Quick Checklist（执行前必过）
+
+- [ ] 确认 KB_DIR 指向正确知识库（默认仓库根，支持 NOTE_DIR 覆盖）
+- [ ] 确认 scope（单篇 / 单模块 / 全库），全库 > 1000 leaf 时走 Phase 0.1 策略询问
+- [ ] 单篇质量评分先读 `references/new-file-baseline.md` 拿结构基线
+- [ ] Phase 1 结构扫描结果落 `$KB_DIR/.health-tmp/scan-1-<date>.txt`（保留可复查证据）
+- [ ] Phase 8 链接校验单独跑：`python .github/workflows/scripts/check-broken-links.py`
+- [ ] 输出报告含「策略选择：<选项>」一行（事后可验证）
+
+**执行后验证**：
+
+- [ ] `git log --oneline -N` 确认每条修复 commit 都有真实 hash
+- [ ] `git status --short` 工作树干净
+- [ ] `wc -l FILE` 扩充后文件行数达标
+- [ ] 重新跑 `check-broken-links.py` 无新断链
+
 ## 调用示例
 
 ```
