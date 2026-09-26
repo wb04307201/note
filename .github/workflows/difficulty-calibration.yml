@@ -9,7 +9,7 @@ on:
       - "0[1-9].*/**/*.md"
       - "1[0-3].*/**/*.md"
       - ".github/workflows/difficulty-calibration.yml"
-      - "scripts/auto-calibrate.py"
+      - ".claude/skills/note-health/scripts/auto-calibrate.py"
   workflow_dispatch:
   schedule:
     # 每月 1 日 03:00 跑 v6+ 抽样 + 自动校准
@@ -148,8 +148,8 @@ jobs:
         run: |
           echo '=== 月度自动校准 ==='
           # 仅当抽样报告存在时运行
-          if [ -f skills/note-health/references/v6-sampling-report.md ]; then
-            python scripts/auto-calibrate.py --report v6 --threshold 2 || true
+          if [ -f .claude/skills/note-health/references/v6-sampling-report.md ]; then
+            python .claude/skills/note-health/scripts/auto-calibrate.py --report v6 --threshold 2 || true
           else
             echo 'No v6-sampling-report.md found, skipping auto-calibrate'
           fi
