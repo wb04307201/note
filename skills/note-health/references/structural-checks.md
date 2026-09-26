@@ -489,7 +489,7 @@ actual = {
     '10.big-data':     count_all_readmes('note/12.interview/10.big-data'),
     '11.ai':           count_all_readmes('note/12.interview/11.ai'),
     'tools':           count_all_readmes('note/12.interview/tools'),
-    '13.story':        len([f for f in glob.glob('note/13.story/[0-9]*.md') if 'STORY-FORMAT-SPEC' not in f]),
+    '13.story':        len([f for f in glob.glob('note/13.story/[0-9]*.md')]),
 }
 
 print('=== 实际篇数（含根 README）===')

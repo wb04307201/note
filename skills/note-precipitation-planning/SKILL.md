@@ -18,7 +18,7 @@ description: Use when user asks where to add or update a topic in the project's 
 >
 > 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
 
-> **规则来源**：执行前必读 `$KB_DIR/SPEC.md`（G1-G6 通用评分 + 11 类扫描 + commit 格式 + 互链规则 + §7 SPEC 分层）以及目标模块的 `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md`）。**若目标模块有强骨架规范**（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`），同时必读 `<module>/*-FORMAT-SPEC.md`。模块结构在运行时通过 `find "$KB_DIR" -maxdepth 1 -type d` + `cat $KB_DIR/<module>/README.md` 读取，不硬编码。
+> **规则来源**：执行前必读 `$KB_DIR/SPEC.md`（G1-G6 通用评分 + 11 类扫描 + commit 格式 + 互链规则 + §7 SPEC 分层）以及目标模块的 `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md`）。**若目标模块有强骨架规范**（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md`），同时必读 `<module>/*-FORMAT-SPEC.md`；13.story 已合并入 `<module>/SPEC.md` §4。模块结构在运行时通过 `find "$KB_DIR" -maxdepth 1 -type d` + `cat $KB_DIR/<module>/README.md` 读取，不硬编码。
 
 > **目录变量（通用化）**：本 skill 默认使用仓库根目录的 `$KB_DIR/` 作为知识库根。**支持自定义**：
 > 1. **环境变量**：`NOTE_DIR=./docs/knowledge` 覆盖
@@ -377,8 +377,9 @@ done | sort -n
 
 目标模块有无强骨架规范（L1.5）？
 ├─ 12.interview → 必读 `QUESTION-FORMAT-SPEC.md`（30s/90s 话术 + 追问模板），新文章必含 ## 引子/## 追问
-├─ 13.story → 必读 `STORY-FORMAT-SPEC.md`（编号 + 章节骨架 + 系列定位块 + 文末回链）
-└─ 其他模块 → 当前无 L1.5；如本主题需强制骨架，**新建** `*-FORMAT-SPEC.md`（评估维度仍放 SPEC.md）
+├─ 13.story → 必读 `13.story/SPEC.md` §4 强骨架格式规范（编号 + 章节骨架 + 系列定位块 + 文末回链）
+└─ 其他模块 → 当前无独立 `*-FORMAT-SPEC.md`；如本主题需强制骨架，**并入** `<module>/SPEC.md` 对应章节
+              （遵循 13.story v2.0 的"并入主 SPEC"模式，不再另开 `*-FORMAT-SPEC.md`）
 
 🆕 2026-08-28 经验补充：先例对照覆盖决策（基于 §1.8 同模式先例盘点）
 ├─ 同栏目 troubleshooting 类先例 ≥ 3 篇 + 用户输入是生产 Bug 案例 → **默认单面试题版**（不双层）

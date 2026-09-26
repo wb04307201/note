@@ -18,7 +18,7 @@ description: Use when user asks to audit or improve a project's knowledge base (
 >
 > 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
 
-> **规则来源**：执行前必读 `$KB_DIR/SPEC.md` §5（G1-G6 通用评分维度）+ §6（11 类基础扫描规则）+ §7（SPEC 分层元规范）+ `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md` 的 A 类维度）；若目标模块有强骨架规范（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md` / `$KB_DIR/13.story/STORY-FORMAT-SPEC.md`）也一并读取（已在 `references/leaf-quality.md` 等处引用其硬性要求）。模块结构通过 `find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，不硬编码。
+> **规则来源**：执行前必读 `$KB_DIR/SPEC.md` §5（G1-G6 通用评分维度）+ §6（11 类基础扫描规则）+ §7（SPEC 分层元规范）+ `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md` 的 A 类维度）；若目标模块有强骨架规范（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md`）也一并读取（13.story 已合并入 `<module>/SPEC.md` §4，详见 `references/leaf-quality.md` 等处引用其硬性要求）。模块结构通过 `find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，不硬编码。
 
 # note-health：note 知识库健康检查
 
