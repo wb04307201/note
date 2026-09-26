@@ -367,46 +367,17 @@ done | sort -n
 - 算法原理 → 主模块的 `01-fundamentals/` 或 `02-technology-stack/`
 - 面试 Q&A → `12.interview/<module>/<topic>.md`
 
-### Phase 3.5: 新增主模块 SOP（Build: 加 NN.xxx 模块）
+### Phase 3.5: 新增主模块 SOP（→ references/MODULE-CREATION-SPEC.md）
 
-当用户需要**新建一个顶层模块**（如"加 14.llm-ops"），不走 Phase 3 普通决策树（那是给现有模块加主题用的），专用 SOP：
-
-**判定**：用户问的是「建模块」还是「加主题到现有模块」？
-
-| 用户原话 | 判定 | 走哪 |
-|---------|------|------|
-| "加 14.llm-ops 模块" / "建一个新模块" / "新加一个目录" | **建模块** | Phase 3.5 |
-| "X 应该放在哪个模块" / "X 沉淀到 09.ai-applications" | 加主题 | Phase 3 普通决策树 |
-
-**5 步清单**：
-
-1. **定位**：NN 编号（14/15/...）是否已被占用？命名是否符合现有 13 模块惯例（`NN.<kebab-name>/`）？可参考 `$KB_DIR/README.md` 总目录检查已用编号
-2. **建 `SPEC.md`**：参考 `01.java-and-jvm/SPEC.md` 结构（模块定位 / 从 L0 继承 / 评估维度 D1-D5 / 子目录约定 / 链接回 `../SPEC.md` §7）
-3. **建 `README.md`**：含模块定位 1 段 + 子目录表（占位即可）+ 互链规则（指向总目录 + 13 模块导航）
-4. **建 4 个标准子目录占位**（按需）：`01-fundamentals/`、`02-technology-stack/`、`03-engineering/`、`04-architecture/`（参照 09.ai-applications 现有 4 子目录结构）
-5. **注册到全局**：
-   - 更新 `$KB_DIR/README.md` 总目录（每模块一行）
-   - 更新 `CLAUDE.md` 关键规范引用表的「各模块自有 SPEC」行
-   - 更新 `.github/workflows/difficulty-calibration.yml` paths 触发器（添加新模块路径）
-   - 如有 `references/` 共享资源需要复制到新模块（评估维度 / 模板），单独 commit
-
-**commit 格式**：建议 5 commit（每个步骤 1 个），便于 review 与回滚：
-
-```
-1. docs(SPEC): 14.llm-ops - 新模块 SPEC.md（模块定位 + D1-D5 + 子目录约定）
-2. docs(README): 14.llm-ops - 模块总览 README（定位 + 子目录表 + 互链规则）
-3. chore(structure): 14.llm-ops - 4 子目录占位 + 占位 README
-4. chore(root): 总目录 / CLAUDE.md 同步新增 14.llm-ops
-5. chore(workflow): difficulty-calibration.yml paths 触发器添加 14.llm-ops/**
-```
-
-**回链必备**：新 `SPEC.md` 必须有 `← 返回 note 总目录` footer（同其他模块），新 `README.md` 必须有 `← [返回: 14.llm-ops]` footer（与本仓库 SPEC.md §G4 一致）。
-
-**Don't use when**：
-
-- 用户问"X 应该放在哪个现有模块" → 走 Phase 3 普通决策树
-- 用户问"我要拆 09.ai-applications 成两个" → Phase X（不是这里）
-- 用户问"新加一个子目录到 09.ai-applications" → Phase 3.5 的"建子目录"子流程（去掉步骤 1-2，保留 3-5）
+> 🆕 **v2.0 重构（2026-09-26）**：Phase 3.5 详细 5 步清单 / 判定表 / commit 模板 / Don't use when
+> 已抽到 `references/MODULE-CREATION-SPEC.md`。
+>
+> **何时读**：用户问"加 NN.xxx 模块" / "建新模块" / "新加一个目录"时，沉淀前必读。
+>
+> **简版入口**（本 skill 触发判定）：
+> - 判定：用户问"建模块"（不是"加主题到现有模块"）→ 走本 SOP
+> - 5 步：定位（NN 是否占用）→ 建 SPEC.md → 建 README.md → 建 4 子目录占位 → 注册全局（README + CLAUDE.md + workflow）
+> - 完整内容见 references/MODULE-CREATION-SPEC.md
 
 ### Phase 4: 沉淀方式决策（用决策树）
 
