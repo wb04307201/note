@@ -372,19 +372,7 @@ bash scripts/qa-double-layer.sh "Transformer" 09.ai-applications    # 限定模�
 python scripts/check-broken-links.py <引用的源文件>
 
 # 2. 检索结果汇总（避免引用整批含断链的文件）
-python << 'PYEOF'
-import os, re, glob
-LINK = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)')
-broken = []
-for f in glob.glob('$KB_DIR/**/*.md', recursive=True):
-    if '.health-tmp' in f.replace(os.sep, '/'): continue
-    c = open(f, encoding='utf-8', errors='ignore').read()
-    for m in LINK.finditer(c):
-        t = os.path.normpath(os.path.join(os.path.dirname(f), m.group(2).replace('/', os.sep)))
-        if not os.path.isfile(t):
-            broken.append((f, m.group(2)))
-print(f'全库断链: {len(broken)} 处（>0 应提醒用户）')
-PYEOF
+python scripts/check-broken-links.py  # 全库扫描(返回汇总)
 ```
 
 **处置规则**：
