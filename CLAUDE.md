@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **纯知识库仓库**(2026-09-12 从 `wb04307201` 主页仓库拆分独立):
 - **13 主模块**体系化技术知识库(基于 Obsidian 维护),内容**平铺在仓库根**(不再有 `note/` 前缀)
 - **README.md** — 总目录 + 13 模块导航
-- **787 个 README、1111 个 .md**(2026-09-12 实测校对,排除 `.health-tmp` / `.obsidian` / `skills` / `scripts` / `.claude`)
+- **787 个 README、1111 个 .md**(2026-09-12 实测校对,排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts`)
 - 个人主页 + 开源项目展示在外部仓库 `wb04307201`(grs.yml README 卡片 workflow 也留在那里)
 
 主体是文档(Markdown),不是源代码。
@@ -35,12 +35,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   └── QUESTION-FORMAT-SPEC.md     # 面试题格式 + 反直觉 / 陷阱 / 30 秒话术
 ├── 13.story/                      # 「阿明餐厅」技术系列(50 篇,平铺顶层)
 │   └── SPEC.md                     # 模块完整规范(v2.0 起吸收原 STORY-FORMAT-SPEC.md §4)
-├── skills/                        # 项目级 meta-skill 单一来源(git tracked)
-├── .claude/skills/                # 自动镜像(gitignored)
-├── scripts/                       # 校验 / 校准 / 同步脚本
+├── .claude/skills/                # 3 个 meta-skill 单一来源(git tracked)
+│   ├── note-health/{SKILL.md,references/,scripts/}
+│   ├── note-knowledge-qa/{SKILL.md,scripts/}
+│   └── note-precipitation-planning/{SKILL.md,references/}
 ├── .githooks/                     # pre-commit + commit-msg
-├── .github/workflows/             # 2 个 workflow(见下)
-└── setup.sh                       # 新环境一键初始化
+└── .github/workflows/             # 2 个 workflow + scripts/(check-broken-links.py)
 ```
 
 **3 大沉淀模式**(沉淀主题时按规模选):
@@ -69,13 +69,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # 全库链接完整性扫描(必须 0 断链)
-python scripts/check-broken-links.py
+python .github/workflows/scripts/check-broken-links.py
 
 # 单文件扫描(commit 前自检)
-python scripts/check-broken-links.py <file.md>
+python .github/workflows/scripts/check-broken-links.py <file.md>
 
 # 单模块扫描
-python scripts/check-broken-links.py --module 09.ai-applications
+python .github/workflows/scripts/check-broken-links.py --module 09.ai-applications
 
 # 模块结构概览
 ls -d [0-9]*/
@@ -85,14 +85,11 @@ grep -rl "RAG" 09.ai-applications/ | head -10
 
 # 检查 frontmatter 覆盖
 find . -name "README.md" -not -path "./.git/*" -exec grep -L "^<!--" {} \;
-
-# 月度 cron 本地综合模拟
-bash scripts/simulate-monthly-cron.sh
 ```
 
 ## Meta-Skills(项目级)
 
-`skills/` 为 3 个 skill 的**单一来源**(自动镜像到 `.claude/skills/`,gitignored):
+`.claude/skills/` 为 3 个 skill 的**单一来源**(git tracked,Claude Code 自动发现):
 
 | Skill | 何时用 |
 |-------|--------|
@@ -102,22 +99,17 @@ bash scripts/simulate-monthly-cron.sh
 
 **skill 的知识库根目录(KB_DIR)默认 = 仓库根**(内容平铺),仍支持 `NOTE_DIR` 环境变量覆盖(用于把 skill 借给其他项目)。
 
-**改 skill 只改 `skills/`**,pre-commit hook 会自动同步到 `.claude/skills/`。
-手动同步:`bash scripts/sync-skills.sh`
+**改 skill 直接改 `.claude/skills/`**(git tracked,无镜像机制)。
 
 新沉淀主题时,优先用 `note-precipitation-planning` 输出"位置 + 方式"方案。
 
 ## 新环境初始化(clone 后必做)
 
 ```bash
-bash setup.sh   # 一键配置 git hooks + 生成 skill 镜像
+git config core.hooksPath .githooks   # 启用 pre-commit 链接完整性检查(可选但推荐)
 ```
 
-`setup.sh` 会自动:
-1. 配置 `git core.hooksPath → .githooks`(启用 skill 同步 hook)
-2. 运行 `scripts/sync-skills.sh`(从 skills/ 生成 `.claude/skills/` 镜像)
-
-**重要**:`.claude/skills/` 已在 `.gitignore` 中,不提交到 git。clone 后必须跑 `setup.sh` 才能使用 skill。
+`.claude/skills/` 已在 git 中跟踪,clone 后无需任何额外操作即可用。
 
 ## Git Hooks(本地防护)
 
@@ -125,17 +117,17 @@ bash setup.sh   # 一键配置 git hooks + 生成 skill 镜像
 
 | Hook | 触发时机 | 职责 |
 |------|---------|------|
-| **`pre-commit`** | `git commit` 时 | 1) `skills/` 变更 → 自动同步到 `.claude/skills/` 镜像;2) staged 知识库 `.md` → `check-broken-links.py` 单文件校验(断链 > 0 拒绝 commit;排除 skills/ scripts/ .health-tmp/) |
+| **`pre-commit`** | `git commit` 时 | staged 知识库 `.md` → `.github/workflows/scripts/check-broken-links.py` 单文件校验(断链 > 0 拒绝 commit;排除 .claude/skills/ .github/ .health-tmp/) |
 | **`commit-msg`** | commit message 写入后 | 1) Conventional Commits 格式校验(type + scope + 描述,支持中文 scope);2) 数字虚报警告(篇/处/个/项/次/分/pp/%) |
 
 ## CI Workflows
 
-`.github/workflows/`(**2 个 workflow,每月 1 日阶梯式触发 + push/PR 即时反馈**):
+`.github/workflows/`(**2 个 workflow + scripts/,每月 1 日阶梯式触发 + push/PR 即时反馈**):
 
 | Workflow | 触发时机 | 职责 |
 |----------|---------|------|
-| **`difficulty-calibration.yml`** | 每月 1 日 03:00 + PR(修改知识库 + scripts 时)| 5 维 depth 字段格式验证 + 月度 auto-calibrate.py 自动校准 |
-| **`structural-link-check.yml`** | 每月 1 日 06:00 + push/PR | 自研 `scripts/check-broken-links.py` 校验内部相对路径(双口径:.md + 目录链接)|
+| **`difficulty-calibration.yml`** | 每月 1 日 03:00 + PR(修改知识库 + skill 时)| 5 维 depth 字段格式验证 + 月度 `.claude/skills/note-health/scripts/auto-calibrate.py` 自动校准 |
+| **`structural-link-check.yml`** | 每月 1 日 06:00 + push/PR | 自研 `.github/workflows/scripts/check-broken-links.py` 校验内部相对路径(双口径:.md + 目录链接)|
 
 > `grs.yml`(GitHub README 卡片)留在主页仓库 `wb04307201`,不属于本仓库。
 > 远端:origin = Gitee(`https://gitee.com/wb04307201/note`),GitHub 镜像(`https://github.com/wb04307201/note`)。CI workflows 只在 GitHub 侧运行。
@@ -183,8 +175,8 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 
 | 步骤 | 触发时机 | 工具 | 详见 |
 |------|---------|------|------|
-| §7.1 链接路径校验 | 引用其他模块路径时 | Python 脚本模板 | `skills/note-precipitation-planning/SKILL.md` §7.1 |
-| §7.2 单文件自检 | Step 6 subagent 完成后 | `check-broken-links.py` | `skills/note-precipitation-planning/SKILL.md` §7.2 |
+| §7.1 链接路径校验 | 引用其他模块路径时 | Python 脚本模板 | `.claude/skills/note-precipitation-planning/SKILL.md` §7.1 |
+| §7.2 单文件自检 | Step 6 subagent 完成后 | `.github/workflows/scripts/check-broken-links.py` | `.claude/skills/note-precipitation-planning/SKILL.md` §7.2 |
 | pre-commit hook | `git commit` 时 | `check-broken-links.py` 单文件 | `.githooks/pre-commit` |
 | structural-link-check.yml | push/PR + 每月 1 日 06:00 | 全库扫描 + 增量 | `.github/workflows/structural-link-check.yml` |
 
@@ -207,7 +199,7 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 
 ## 关键统计
 
-### 知识库(2026-09-12 实测,排除 skills / scripts / .claude / .git)
+### 知识库(2026-09-12 实测,排除 .claude/skills / .github/workflows/scripts / .health-tmp / .obsidian / .git)
 
 - **13 主模块** / **787 README** / **1111 .md**
 - frontmatter 覆盖 **98.3%**(1092 / 1111:module 814 + question 229 + story 51,去重后 1092;剩余约 19 为 SPEC.md / index.md 等索引页,按规范可豁免)
@@ -227,12 +219,11 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 ### 关键文档
 
 - 5 PNG(教学截图保留,其他应 Mermaid 化)
-- `skills/note-health/references/v19-sampling-report.md` — 最新 5 维验证(v18/v17 等历史报告同目录)
-- `skills/note-health/references/health-metrics-convergence.md` — 3 指标收敛曲线
+- `.claude/skills/note-health/references/v19-sampling-report.md` — 最新 5 维验证(v18/v17 等历史报告同目录)
+- `.claude/skills/note-health/references/health-metrics-convergence.md` — 3 指标收敛曲线
 
 ### 自动校准工具链
 
-- `scripts/auto-calibrate.py` — 支持 v15 ground truth + v14 微调标准
-- `scripts/check-broken-links.py` — 链接完整性回归测试(CI / Hook / 自检统一入口)
-- `scripts/simulate-monthly-cron.sh` — workflow 综合模拟
-- `scripts/sync-skills.sh` — skills/ → .claude/skills/ 镜像同步
+- `.claude/skills/note-health/scripts/auto-calibrate.py` — 支持 v15 ground truth + v14 微调标准(note-health skill 内部工具)
+- `.github/workflows/scripts/check-broken-links.py` — 链接完整性回归测试(CI / Hook / 自检统一入口)
+- (历史已删:`scripts/sync-skills.sh` v2.0 合并入 .claude/skills/;`scripts/simulate-monthly-cron.sh` 无人调用已删)
