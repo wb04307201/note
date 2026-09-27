@@ -252,6 +252,6 @@ v14 调整理由：v13 抽样验证 deep 类准确度仅 4.65%，是 v12 体系�
 |------|------|
 | `.claude/skills/note-health/references/main-module-depth.md` | 主模块 depth 校准流程 |
 | `.claude/skills/note-health/references/difficulty-calibration.md` | 12.interview difficulty 校准 |
-| `.claude/skills/note-health/references/v4-sampling-report.md` | v4 抽样详细偏差清单 |
+| `.claude/skills/note-health/references/archive-v4-v14-sampling-reports.md` | v4-v14 抽样历史（已折叠）|
 | `.claude/skills/note-health/references/interview-main-mapping.md` | 12.interview ↔ 主模块映射 |
 | `.claude/skills/note-health/SKILL.md` | note-health 总入口 |

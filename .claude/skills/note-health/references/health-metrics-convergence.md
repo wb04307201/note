@@ -116,7 +116,7 @@ v12: 高估 36% █████████████░░░░░░░░ 
 | 文件 | 用途 |
 |------|------|
 | `.claude/skills/note-health/references/five-dim-sampling-process.md` | v12 双基线 + D5 豁免流程 |
-| `.claude/skills/note-health/references/v4-v12-sampling-reports.md` | 历次抽样报告 |
+| `.claude/skills/note-health/references/archive-v4-v14-sampling-reports.md` | 历次抽样报告（v4-v14 已折叠）|
 | `.claude/skills/note-health/references/difficulty-calibration.md` | difficulty 校准流程 |
 | `.claude/skills/note-health/references/main-module-depth.md` | depth 校准流程 |
 | `scripts/auto-calibrate.py` | v4 overview D5 豁免 |
