@@ -48,7 +48,7 @@
 
 ```bash
 # 用 v2 脚本生成 12.interview 各 subdir 的分层抽样
-python note/.health-tmp/sample-files-v2.py
+python .health-tmp/sample-files-v2.py
 ```
 
 输出：
@@ -83,7 +83,7 @@ python note/.health-tmp/sample-files-v2.py
 
 ```bash
 # 应用校准（每批一条 commit）
-git add note/12.interview/
+git add 12.interview/
 git commit -m "fix(12.interview): N 处 difficulty 深度校准（5-dim 评分抽样结果）
 
 依据 Phase 2 5 维评分抽样验证：
@@ -141,7 +141,7 @@ Co-Authored-By: Claude Code <noreply@anthropic.com>"
 
 | 触发场景 | 频率 | 关键文件 |
 |----------|------|---------|
-| 季度体检 | 每 3 月 | `note/.health-tmp/sample-files-v2.py` + 10 agent dispatch |
+| 季度体检 | 每 3 月 | `.health-tmp/sample-files-v2.py` + 10 agent dispatch |
 | 新模块首次沉淀 | 一次性 | 全模块抽样 |
 | 批量内容深化（>10 篇源码级扩展）| 1 周内 | 该模块专项抽样 |
 | 用户反馈"难度不准" | 立即 | 单模块抽样 |
@@ -161,5 +161,5 @@ Phase 7（拆分检测）   → 检测 ⭐（1 星）迁出候选
 
 - **入口**：用户问"难度校准" / "difficulty 不准" / "⭐ 不对" 时触发
 - **复用 Phase 1-7 的扫描框架**：不重新发明轮子
-- **报告格式**：参考 `note/.health-tmp/five-dim-calibration-54.md`（v1 报告模板）
+- **报告格式**：参考 `.health-tmp/five-dim-calibration-54.md`（v1 报告模板）
 - **数据持久化**：`.health-tmp/calibration-history.json`（按季度记录）

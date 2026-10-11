@@ -68,7 +68,7 @@ Phase 1 应加 **frontmatter 一致性校准**（见 `structural-checks.md` Phas
 
 ### 教训 3：按子目录分批 dispatch 是高效模式
 
-避免单 agent 全库评估时的疲劳偏差（如 11.ai 体量大易被误杀）。
+避免单 agent 全库评估时的疲劳偏差（如 09.ai-applications 体量大易被误杀）。
 
 按子目录 6-15 篇/agent，每个 agent 上下文清晰。
 

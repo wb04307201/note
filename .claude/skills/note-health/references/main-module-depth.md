@@ -1,7 +1,7 @@
 # 主模块 depth 校准（PoC 方案 + 自动化工具）
 
 > **背景**：12.interview difficulty 校准流程成熟后，扩展到主模块（01-11）需要新方案
-> **来源**：`note/.health-tmp/main-module-calibration-design.md` 设计稿 + `01.java-and-jvm` 92 篇 PoC 验证
+> **来源**：`.health-tmp/main-module-calibration-design.md` 设计稿 + `01.java-and-jvm` 92 篇 PoC 验证
 > **状态**：PoC 完成（commit `b996d1c3`），可推广到 02-11
 
 ## 1. depth 字段定义（5 档）
@@ -51,7 +51,7 @@ module:
 
 ## 4. 自动化工具：apply-depth.py
 
-> 脚本位置：`.claude/skills/note-health/references/main-module-depth.md` 附录 / `note/.health-tmp/apply-depth.py`
+> 脚本位置：`.claude/skills/note-health/references/main-module-depth.md` 附录 / `.health-tmp/apply-depth.py`
 
 ### 4.1 工作流程
 
@@ -78,8 +78,8 @@ module:
 ### 4.3 apply-depth.py 用法
 
 ```bash
-# 默认应用 note/.health-tmp/depth-values.json
-python note/.health-tmp/apply-depth.py
+# 默认应用 .health-tmp/depth-values.json
+python .health-tmp/apply-depth.py
 
 # 输出：应用 N / 跳过 M / 失败 K
 ```

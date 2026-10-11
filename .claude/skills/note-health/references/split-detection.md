@@ -7,7 +7,7 @@
 
 ## 历史案例
 
-原 split-hairs `02.computer-basics/machine-learning/README.md` 是 6 大算法综述（违反 split-hairs 单点深挖定位），已拆分为 6 个 single-topic deep-dive。
+原 12.interview `02.computer-basics/machine-learning/README.md` 是 6 大算法综述（违反面试单点深挖 单点深挖定位），已拆分为 6 个 single-topic deep-dive。
 
 ---
 

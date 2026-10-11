@@ -2,7 +2,7 @@
 
 # 单篇质量打分（leaf-quality）
 
-**G1-G6 通用维度已迁入 `note/SPEC.md` §5**。本文件保留**模块专属规则**（A/B/C/D/E/F/G 类），便于 runtime 一次读取。
+**G1-G6 通用维度已迁入 `SPEC.md` §5**。本文件保留**模块专属规则**（A/B/C/D/E/F/G 类），便于 runtime 一次读取。
 
 ## 模块专属维度
 
@@ -10,20 +10,20 @@
 
 ```
 文件路径 → 模块规则
-├─ note/01.java-and-jvm/**        → 技术深度规则（A 类）
-├─ note/02.cs-foundations/** → 算法/基础规则（F 类）
-├─ note/03.data-stack/**    → 技术深度规则（A 类）
-├─ note/06.distributed-systems/** → 技术深度规则（A 类）
-├─ note/07.devops-and-tools/**       → 工具实践规则（B 类）
-├─ note/04.spring-backend/**      → 技术深度规则（A 类）
-├─ note/07.devops-and-tools/**    → 工具实践规则（B 类）
-├─ note/10.business-systems/** → 技术深度规则（A 类）
-├─ note/05.frontend/**   → 前端实践规则（G 类）
-├─ note/03.data-stack/**    → 技术深度规则（A 类）
-├─ note/08.ai-foundations/** 或 note/09.ai-applications/**          → AI/研究规则（C 类）
-├─ note/13.story/**       → 叙事规则（D 类）
-├─ note/12.interview/** → 面试题规则（E 类）
-└─ note/11.product-and-pm/** → 工具实践规则（B 类）
+├─ 01.java-and-jvm/**        → 技术深度规则（A 类）
+├─ 02.cs-foundations/** → 算法/基础规则（F 类）
+├─ 03.data-stack/**    → 技术深度规则（A 类）
+├─ 06.distributed-systems/** → 技术深度规则（A 类）
+├─ 07.devops-and-tools/**       → 工具实践规则（B 类）
+├─ 04.spring-backend/**      → 技术深度规则（A 类）
+├─ 07.devops-and-tools/**    → 工具实践规则（B 类）
+├─ 10.business-systems/** → 技术深度规则（A 类）
+├─ 05.frontend/**   → 前端实践规则（G 类）
+├─ 03.data-stack/**    → 技术深度规则（A 类）
+├─ 08.ai-foundations/** 或 09.ai-applications/**          → AI/研究规则（C 类）
+├─ 13.story/**       → 叙事规则（D 类）
+├─ 12.interview/** → 面试题规则（E 类）
+└─ 11.product-and-pm/** → 工具实践规则（B 类）
 ```
 
 ### A 类：技术深度规则（01.java-and-jvm / 02.cs-foundations / 03.data-stack / 04.spring-backend / 06.distributed-systems / 10.business-systems）
@@ -319,7 +319,7 @@ def is_shallow_real(content):
 
 **❌ Mistake 2: 一篇定全局**
 
-- **症状**：看完单篇 README 就推论"整个 11.ai 模块质量都差"
+- **症状**：看完单篇 README 就推论"整个 09.ai-applications 模块质量都差"
 - **修复**：批量评价时给总表，区分"篇级问题"和"模块级问题"
 
 **❌ Mistake 3: 修复建议泛泛而谈**

@@ -42,6 +42,6 @@
 ## 适用性说明
 
 **面试题（12.interview）**：通常只需必选 7 段（数学 / 实操 / 对比表非必需）
-**算法 / 原理（02.computer-basics / 11.ai）**：8/9/10 视情况（算法常需要数学；框架常需要对比）
+**算法 / 原理（02.cs-foundations / 09.ai-applications）**：8/9/10 视情况（算法常需要数学；框架常需要对比）
 **工具实践（07.devops-and-tools / 10.big-data）**：9 必备（实操命令）
 **餐厅叙事（13.story）**：7 段 + 阿明餐厅元素（见 leaf-quality.md D 类规则）
