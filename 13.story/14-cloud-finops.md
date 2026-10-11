@@ -312,7 +312,7 @@ graph TD
 - [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [18-saas-multitenant.md](./18-saas-multitenant.md) —— 番外三，SaaS 多租户的成本分摊与 FinOps：每租户的成本可视化、计费基础

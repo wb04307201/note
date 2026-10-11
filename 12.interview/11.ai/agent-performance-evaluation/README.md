@@ -388,7 +388,7 @@ deploy:
 - [Harness Engineering 是什么？](../harness-engineering/README.md) — Agent 系统的工程化框架
 - [Context Engineering 怎么做？](../context-engineering-interview/README.md) — Token 预算与成本效益
 
-### 叙事层（12.story）
+### 叙事层（13.story）
 
 - [性能优化的餐厅隐喻](../../../13.story/16-performance-optimization.md) — 可观测性与评估
 

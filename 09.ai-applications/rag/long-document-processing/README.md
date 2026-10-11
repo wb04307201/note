@@ -355,7 +355,7 @@ records = [
 - multimodal — 含文档理解（PDF/扫描件 OCR）
 
 **实战工具**：
-- [12.story/36-rag-retrieval-augmented-generation](../../../13.story/36-rag-retrieval-augmented-generation.md) — RAG 餐厅故事
+- [13.story/36-rag-retrieval-augmented-generation](../../../13.story/36-rag-retrieval-augmented-generation.md) — RAG 餐厅故事
 
 **咬文嚼字**：
 - [long-document-pdf](../../../12.interview/11.ai/long-document-pdf/README.md) — 长文档 PDF 面试题（Commit 2 创建）

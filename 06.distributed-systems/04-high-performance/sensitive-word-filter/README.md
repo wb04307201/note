@@ -336,7 +336,7 @@ tokens.forEach(token -> ac.match(token));
 - **算法基础**：[string-algorithms/AC 自动机](../../../02.cs-foundations/01-algorithms/string-algorithms/03-ac-automaton.md) —— fail 指针构建 + Java 完整实现
 - **面试题**：[12.interview/02.computer-basics/sensitive-word-filter](../../../12.interview/02.computer-basics/sensitive-word-filter/README.md) —— 5-7 道精选 Q&A
 - **应用场景**：[08.application-systems/cms/README.md](../../../10.business-systems/01-rd-innovation/cms/README.md) —— 内容管理系统中的内容审核
-- **餐厅叙事**：[12.story 联动](../../../13.story/01-ai-agent-architecture.md) —— 阿明餐厅评论区敏感词审查
+- **餐厅叙事**：[13.story 联动](../../../13.story/01-ai-agent-architecture.md) —— 阿明餐厅评论区敏感词审查
 
 ---
 

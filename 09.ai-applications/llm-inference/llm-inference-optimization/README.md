@@ -60,13 +60,13 @@ Agent / 复杂 prompt = + SGLang RadixAttention
 
 - **L1**：[Transformer](../../../08.ai-foundations/03-transformer/transformer-architecture.md) / [注意力机制](../../../08.ai-foundations/03-transformer/attention-mechanism.md) / MoE（⚠️ 待 Phase 1+ 迁入；占位 `../../../../08.ai-foundations/02-deep-learning/moe-architecture/`）
 - **LLMOps**：08-llmops（⚠️ 待 Phase 1+ 迁入；占位 `../llmops/`） — 监控 + 安全
-- **咬文嚼字**：13.split-hairs/11.ai — 面试深挖版（⚠️ 待 Phase 1+ 迁入）
+- **咬文嚼字**：12.interview/11.ai — 面试深挖版（⚠️ 待 Phase 1+ 迁入）
 
 ## 反向链
 
 - [02-rlhf](../../fine-tuning/02-rlhf.md)
 - [03-dpo](../../fine-tuning/03-dpo.md)
 - [05-newer-methods](../../fine-tuning/05-newer-methods.md)
-- 46-llm-inference（⚠️ 待 Phase 1+ 迁入；占位 `../../../../13.story/46-llm-inference.md`）
+- [46 · LLM 推理优化](../../../13.story/46-llm-inference.md)
 
 ← [返回 LLM Inference MOC](../README.md)

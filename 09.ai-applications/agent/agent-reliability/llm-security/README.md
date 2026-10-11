@@ -396,8 +396,8 @@ define flow harmful
 ## 🔗 相关主题
 
 - **研究线综述**：L7 前沿研究 - 安全与对齐 — RLHF/DPO/Constitutional AI 对齐原理 + 幻觉治理 + 红队研究综述（本文是工程实战向）
-- **餐厅叙事**：12.story - AI 致命三件套 — 注入 + 越权 + 泄露 协同攻击叙事（868 行，含 4 层防护 + 红队 + AI BOM）
-- **面试深挖**：13.split-hairs - prompt-injection — 4 题面试深挖（含 EchoLeak CVE-2025-32711 + OWASP LLM01:2025）
+- **餐厅叙事**：13.story - AI 致命三件套 — 注入 + 越权 + 泄露 协同攻击叙事（868 行，含 4 层防护 + 红队 + AI BOM）
+- **面试深挖**：12.interview - prompt-injection — 4 题面试深挖（含 EchoLeak CVE-2025-32711 + OWASP LLM01:2025）
 
 ---
 

@@ -153,7 +153,7 @@ public class OrderService {
 > Spring 完整注解速查（包含 @Lazy / @Primary / @DependsOn 等）见 [Bean 与 IoC](../../../04.spring-backend/08-annotations/bean-and-ioc.md)。## 相关章节
 
 - 深度阅读：[`06.spring/01-core`](../../../04.spring-backend/01-core/README.md) — IoC 容器、依赖注入方式
-- 相关：[`13.split-hairs/bean-lifecycle`](../bean-lifecycle/README.md) — Bean 生命周期 12 步
+- 相关：[`12.interview/bean-lifecycle`](../bean-lifecycle/README.md) — Bean 生命周期 12 步
 
 > 📅 2026-09-01 · 咬文嚼字 · Spring · @Autowired · ⭐⭐（中频面试 + 实战必会）
 

@@ -412,7 +412,7 @@ if (err) {
 
 - [09.front-end/02-language/runtime/README](../../../05.frontend/02-language/runtime/README.md) —— JS 运行时
 
-### 实战姐妹（12.story）
+### 实战姐妹（13.story）
 
 - 暂无（前端的"前端 CTO"叙事待沉淀）
 

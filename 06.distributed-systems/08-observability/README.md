@@ -65,7 +65,7 @@ graph LR
 - 上游：[`07-deployment/observability`](../07-deployment/observability/README.md) — 部署篇的可观测性理论（三支柱 + SLO）
 - 工具：[`06.spring/07-observability`](../../04.spring-backend/07-observability/README.md) — Spring Boot Actuator + Micrometer 实现
 - 工具：[`05.tools`](../../07.devops-and-tools/01-tools/README.md) — Docker / K8s 监控部署
-- 面试：[`13.split-hairs/04.system-design`](../../12.interview/04.system-design/README.md) — 系统设计面试题
+- 面试：[`12.interview/04.system-design`](../../12.interview/04.system-design/README.md) — 系统设计面试题
 
 ---
 

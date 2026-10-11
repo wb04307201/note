@@ -121,7 +121,7 @@ Loop Engineering 反其道而行之：**小步快跑 + Harness 兜底 + 自动�
 - **11.ai L2 技术栈** → 单一阶段的实现细节（如 Prompt 8 大技巧、Context 5 原则）
 - **本 README** → 全局演化的架构视角（推荐先读）
 - **11.ai L3 工程实践** → 工程化生产落地的具体抓手（Claude Code / Production Agent / Loop）
-- **12.story 系列** → 餐厅叙事的实战案例（38 RAG / 41 私有化 / 42 Prompt 工程 等）
+- **13.story 系列** → 餐厅叙事的实战案例（38 RAG / 41 私有化 / 42 Prompt 工程 等）
 
 ### 阅读路径建议
 
@@ -130,7 +130,7 @@ Loop Engineering 反其道而行之：**小步快跑 + Harness 兜底 + 自动�
   ↓
 按需跳读 4 个子 README（每个 10-15 分钟）
   ↓
-再读 11.ai L4 架构 / 12.story 实战 / 13.split-hairs 面试深挖
+再读 11.ai L4 架构 / 13.story 实战 / 12.interview 面试深挖
 ```
 
 ---
@@ -187,7 +187,7 @@ Loop Engineering 反其道而行之：**小步快跑 + Harness 兜底 + 自动�
 - 同分类：智能系统分层 — Harness / Loop 在系统中的位置
 - 兄弟子：Harness Engineering · Loop Engineering
 - 上下文子：Prompt Engineering · Context Engineering
-- 实战叙事：12.story #42 Prompt 工程 · 38 RAG
+- 实战叙事：13.story #42 Prompt 工程 · 38 RAG
 
 
 - single-epoch-and-config-evidence

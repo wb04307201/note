@@ -559,7 +559,7 @@ graph TD
 
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [12-data-kitchen.md](./12-data-kitchen.md) —— 正传 7，数据迁移前的数据架构梳理：从单库到分库分表的设计选择

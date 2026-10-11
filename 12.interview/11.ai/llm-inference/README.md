@@ -163,7 +163,7 @@ block_table[req_id] = [7, 2, 15, ..., 3]  # 类似 OS 页表
 
 - **主模块深度**：[llm-inference-optimization](../../../09.ai-applications/llm-inference/llm-inference-optimization/README.md) — 10 章完整版
 - **兄弟面试题**：[Transformer 架构](../transformer/README.md) / [MoE 架构](../multi-agent-system-design/README.md) 顺带提
-- **餐厅叙事**：[12.story LLM 推理故事](../../../13.story/46-llm-inference.md)（续集/番外待补）
+- **餐厅叙事**：[13.story LLM 推理故事](../../../13.story/46-llm-inference.md)（续集/番外待补）
 
 ---
 

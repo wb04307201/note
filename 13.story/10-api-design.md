@@ -333,7 +333,7 @@ graph TD
 - [31-ai-fatal-trio](31-ai-fatal-trio.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [08-qa-testing-strategy.md](./08-qa-testing-strategy.md) —— 正传 4，API 契约测试是测试策略的接口层落地：契约即文档，文档即测试

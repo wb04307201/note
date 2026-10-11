@@ -166,7 +166,7 @@ Skill 数  命中率  退化原因
 - [Context Engineering 怎么做？](../context-engineering-interview/README.md) — Token 预算
 - [Function Calling 怎么设计？](../function-calling/README.md) — 工具调用工程化
 
-**叙事层（12.story）**：
+**叙事层（13.story）**：
 - [扩招 50 个厨师：Skill 调度的餐厅隐喻](../../../13.story/45-skill-scheduling-restaurant.md) — 餐厅叙事版
 
 ---

@@ -70,7 +70,7 @@ graph TD
 - 上游：[`02-distributed`](../02-distributed/README.md) — 分布式基础（CAP、共识算法）
 - 平行：[`04-high-performance`](../04-high-performance/README.md) — 高性能（限流与性能的交叉）
 - 工具：[`06.spring/05-spring-cloud`](../../04.spring-backend/03-cloud/README.md) — Spring Cloud 熔断/重试实现
-- 面试：[`13.split-hairs/04.system-design`](../../12.interview/04.system-design/README.md) — 系统设计面试题
+- 面试：[`12.interview/04.system-design`](../../12.interview/04.system-design/README.md) — 系统设计面试题
 
 ## 综合入口
 

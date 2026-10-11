@@ -150,7 +150,7 @@ map.entrySet().stream()
 通过分块+外部排序，可在有限内存下高效处理1亿数据，同时利用多核并行加速。实际执行时需根据硬件资源（内存、CPU核心数）调整分块大小和并行度。## 相关章节
 
 - 深度阅读：[`01.java/集合框架`](../../../01.java-and-jvm/collection/README.md) — TreeMap、LinkedHashMap 源码
-- 相关：[`13.split-hairs/hashmap-resizing`](../hashmap-resizing/README.md) — HashMap 扩容
+- 相关：[`12.interview/hashmap-resizing`](../hashmap-resizing/README.md) — HashMap 扩容
 
 > 📅 2026-09-01 · 咬文嚼字 · Map 排序 · ⭐⭐⭐（中频面试 + 实战必会）
 

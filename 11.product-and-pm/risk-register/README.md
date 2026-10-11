@@ -165,11 +165,11 @@ graph TD
 
 ---
 
-## 八、与 12.story 的联动
+## 八、与 13.story 的联动
 
-> 本节风险管理的叙事版本见 [`12.story/44-tech-debt-career-trap`](../../13.story/44-tech-debt-career-trap.md)——技术债就是一种典型的"已接受风险"。
+> 本节风险管理的叙事版本见 [`13.story/44-tech-debt-career-trap`](../../13.story/44-tech-debt-career-trap.md)——技术债就是一种典型的"已接受风险"。
 
-| 本章概念 | 12.story 对应 |
+| 本章概念 | 13.story 对应 |
 |---------|-------------|
 | 风险登记册 | 阿明餐厅的"应急预案清单" |
 | Error Budget 思维 | 技术债的"财务账本" |

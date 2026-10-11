@@ -136,7 +136,7 @@ Q3: sklearn 默认？
 
 - **本目录**：[随机森林](../) / [XGBoost](../) / [SVM](../)
 - **02 同级**：[K-means](../clustering/k-means/README.md) / [梯度下降](../optimization/gradient-descent/README.md)
-- **13.split-hairs**：决策树面试
+- **12.interview**：决策树面试
 
 ---
 

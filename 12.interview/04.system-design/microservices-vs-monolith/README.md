@@ -395,10 +395,10 @@ Seata 4 种模式对比：
 - [../04.spring-backend/05-spring-cloud/seata-integration](../../../04.spring-backend/03-cloud/seata-integration.md) —— Seata 分布式事务
 - [../04.spring-backend/05-spring-cloud/service-registry](../../../04.spring-backend/03-cloud/service-registry/README.md) —— 注册中心 Nacos
 
-### 实战姐妹（12.story）
+### 实战姐妹（13.story）
 
-- [12.story/02-system-architecture-evolution](../../../13.story/02-system-architecture-evolution.md) —— 阿明餐厅从单体到微服务演进
-- [12.story/04-peak-traffic-defense](../../../13.story/04-peak-traffic-defense.md) —— 高峰流量治理
+- [13.story/02-system-architecture-evolution](../../../13.story/02-system-architecture-evolution.md) —— 阿明餐厅从单体到微服务演进
+- [13.story/04-peak-traffic-defense](../../../13.story/04-peak-traffic-defense.md) —— 高峰流量治理
 
 ---
 

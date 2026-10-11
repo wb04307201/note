@@ -231,17 +231,18 @@ E（简历面试）和 G（面试官出题）类型**必须先做教育背景检
 | 🥇 | `01.java-and-jvm` | Java 语言、JVM、并发、集合、Kotlin |
 | 🥈 | `09.ai-applications` | LLM、RAG、Agent、Prompt、Token、MCP、AI 工程 |
 | 🥉 | `04.spring-backend` | Spring Boot/Cloud、MyBatis、缓存、消息队列 |
-| 4 | `03.database` | MySQL、Redis、索引、事务、SQL 优化 |
+| 4 | `03.data-stack` | MySQL、Redis、索引、事务、SQL 优化、大数据 |
 | 5 | `06.distributed-systems` | 系统设计、高可用、分布式、安全、SSO |
 | 6 | `12.interview` | 面试精炼版（陷阱+话术）、咬文嚼字 |
-| 7 | `02.cs-foundations` | 网络、算法、数据结构、操作系统 *(主模块命名：主模块名为 `02.cs-foundations`；`12.interview/02.computer-basics` 是面试版同名子目录)* |
-| 8 | `05.tools` | Docker、K8s、Git、CI/CD |
+| 7 | `02.cs-foundations` | 网络、算法、数据结构、操作系统 |
+| 8 | `07.devops-and-tools` | Docker、K8s、Git、CI/CD、监控 |
 | 9 | `11.product-and-pm` | 项目管理、DORA、研发效能、**面试方法论、跨专业候选人评估** |
 | 10 | `13.story` | 概念叙事理解（阿明餐厅系列）、架构演进故事 |
-| 11 | `09.front-end` | JS/TS、React、Web Components、设计系统 |
+| 11 | `05.frontend` | JS/TS、React、Web Components、设计系统 |
 | 12 | `10.business-systems` | ERP、CRM、EAM 等企业系统 |
-| 13 | `10.big-data` | Flink、Spark、ClickHouse、数仓 |
-| 14 | `07.workflow` | 流程引擎、Camunda、BPMN |
+| 13 | `08.ai-foundations` | ML、DL、Transformer、LLM 基础 |
+
+> 注：`12.interview` 下的 `02.computer-basics` / `03.database` / `04.system-design` / `05.security` / `06.spring` / `09.front-end` 是面试版子目录，与主模块主题重叠 —— 面试题查 `12.interview`，深度原理查对应主模块。
 
 **排序依据**（参考本仓库 `wb04307201` 项目定位 Java 后端 + AI 工程）：
 - 🥇 Java 后端开发最常用（语言 + 集合 + 并发）

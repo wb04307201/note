@@ -509,6 +509,6 @@ public String knowledgeBaseQuery(@ToolParam String question) {
 - Spring AI 工程
 - BPMN+AI 融合 — 另一种跨界决策范式
 - 大模型应用框架 — Spring AI / LangChain4j / LangChain / LlamaIndex 框架对比
-- 13.split-hairs/11.ai — 面试深挖（建议补充本主题的 3 个高频问题）
+- 12.interview/11.ai — 面试深挖（建议补充本主题的 3 个高频问题）
 
 ← [返回笔记目录](../../README.md)

@@ -10,7 +10,7 @@ module:
 
 # 多 Agent 共享记忆 · 深度专章
 
-> 一句话定位：**单 Agent Memory 解决"跨调用"；多 Agent 共享记忆解决"跨进程"，本质是分布式系统问题**。完整体系基于 [主模块 · Agent Memory 架构](README.md)。面试速查版见 13.split-hairs · multi-agent-shared-memory（⚠️ 待 Phase 1+ 迁入）。
+> 一句话定位：**单 Agent Memory 解决"跨调用"；多 Agent 共享记忆解决"跨进程"，本质是分布式系统问题**。完整体系基于 [主模块 · Agent Memory 架构](README.md)。面试速查版见 12.interview · multi-agent-shared-memory（⚠️ 待 Phase 1+ 迁入）。
 
 ---
 

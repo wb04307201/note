@@ -151,7 +151,7 @@ module:
 ## 六、相关章节
 
 - 主模块：[`11.ai`](../12.interview/11.ai/README.md) — AI 知识体系
-- 主模块：[`13.split-hairs`](../12.interview/README.md) — 面试题深度剖析
+- 主模块：[`12.interview`](../12.interview/README.md) — 面试题深度剖析
 - 技术基础：[`01.java-and-jvm`](../01.java-and-jvm/README.md) · [`06.distributed-systems`](../06.distributed-systems/README.md) · [`04.spring-backend`](../04.spring-backend/) · [`05.frontend`](../05.frontend/README.md)
 
 ---

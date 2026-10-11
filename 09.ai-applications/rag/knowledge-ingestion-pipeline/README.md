@@ -392,7 +392,7 @@ graph TD
 - **入库工具**：[chunking-strategies](../chunking-strategies/README.md) / [embedding-models](../embedding-models/README.md) / [long-document-processing](../long-document-processing/README.md)
 - **入库去重**：deduplication-table
 - **AI 平台**：ai-platforms
-- **餐厅叙事**：[12.story/36-rag-retrieval-augmented-generation](../../../13.story/36-rag-retrieval-augmented-generation.md)
+- **餐厅叙事**：[13.story/36-rag-retrieval-augmented-generation](../../../13.story/36-rag-retrieval-augmented-generation.md)
 - **咬文嚼字**：[knowledge-ingestion-pipeline 面试](../../../12.interview/11.ai/knowledge-ingestion-pipeline/README.md)（commit 2 创建）
 
 ---

@@ -261,7 +261,7 @@ GPU 距离计算：512 维 × 1 亿向量 × 8 字节 = 0.5ms（100x）
 
 ### 5.1.1 Incremental Embedding 增量向量化系统设计（深度展开）
 
-> 面试速查版见 [13.split-hairs · incremental-embedding](../../../12.interview/11.ai/incremental-embedding/README.md)。
+> 面试速查版见 [12.interview · incremental-embedding](../../../12.interview/11.ai/incremental-embedding/README.md)。
 
 #### 5.1.1.1 5 大组件架构（生产级）
 
@@ -459,8 +459,8 @@ def fallback_chain(doc):
 **兄弟专题**：
 - [10亿级向量检索选型（HNSW/IVF/DiskANN）](../vector-search-algorithms/README.md)
 
-**12.story 实战**：
-- [12.story/37-vector-database-and-embedding（味道仓库 第九章反向链）](../../../13.story/37-vector-database-and-embedding.md)
+**13.story 实战**：
+- [13.story/37-vector-database-and-embedding（味道仓库 第九章反向链）](../../../13.story/37-vector-database-and-embedding.md)
 
 **实战框架**：
 - LangGraph（Checkpoint / Memory）

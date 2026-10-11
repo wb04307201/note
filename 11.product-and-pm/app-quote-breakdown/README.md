@@ -1,6 +1,6 @@
 <!--
 module:
-  parent: 14.project-management
+  parent: 11.product-and-pm
   slug: app-quote-breakdown
   type: article
   category: 决策实战

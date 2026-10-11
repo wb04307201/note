@@ -361,8 +361,8 @@ QPS：10K
 **面试题**：
 - [咬文嚼字·11.ai/vector-search-algorithms（30/60/90 秒话术）](../../../12.interview/11.ai/vector-search-algorithms/README.md)
 
-**12.story 实战**：
-- [12.story/37-vector-database-and-embedding（味道仓库 4 大调优）](../../../13.story/37-vector-database-and-embedding.md)
+**13.story 实战**：
+- [13.story/37-vector-database-and-embedding（味道仓库 4 大调优）](../../../13.story/37-vector-database-and-embedding.md)
 
 **同主模块**：
 - Context Engineering（Context 三件套）

@@ -235,10 +235,10 @@ skills/
 - Harness Engineering — 上下文工程的总论
 - Context Engineering — Token 预算与上下文压缩
 
-**面试题层（13.split-hairs）**：
+**面试题层（12.interview）**：
 - Skill 命中率面试 5 题 — 配套面试题
 
-**叙事层（12.story）**：
+**叙事层（13.story）**：
 - 扩招 50 个厨师：Skill 调度的餐厅隐喻 — 餐厅叙事版
 
 ---

@@ -330,7 +330,7 @@ graph TD
 
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [10-api-design.md](./10-api-design.md) —— 正传 6，数据架构通过 API 对外提供服务：内聚数据模型与解耦 API 是良好架构的基础

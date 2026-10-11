@@ -608,7 +608,7 @@ KR3：____________________________  完成度：______ / 1.0
 
 # ─── 以下为「项目维护 Python 工具」原内容 ───
 
-> 本目录还包含 2 个 Python 工具脚本，用于批量维护 `note/11.product-and-pm/` 下的所有 Markdown 文章。
+> 本目录还包含 2 个 Python 工具脚本，用于批量维护 `11.product-and-pm/` 下的所有 Markdown 文章。
 
 ---
 
@@ -616,7 +616,7 @@ KR3：____________________________  完成度：______ / 1.0
 
 ### 1. `insert-frontmatter.py` — 批量插入 frontmatter
 
-**用途**：给 `note/11.product-and-pm/**/*.md` 中缺 frontmatter 的文件批量插入 `pm:` 模块的 frontmatter 模板（含 `topic` / `audience` / `category` / `summary` 4 个字段）。
+**用途**：给 `11.product-and-pm/**/*.md` 中缺 frontmatter 的文件批量插入 `pm:` 模块的 frontmatter 模板（含 `topic` / `audience` / `category` / `summary` 4 个字段）。
 
 **调用方法**：
 
@@ -634,7 +634,7 @@ python note/11.product-and-pm/scripts/insert-frontmatter.py --dry-run
 
 ### 2. `validate.py` — 校验合规性
 
-**用途**：检查 `note/11.product-and-pm/**/*.md` 是否符合 11.product-and-pm 写作规范（详见 [`../SPEC.md`](../SPEC.md)）。
+**用途**：检查 `11.product-and-pm/**/*.md` 是否符合 11.product-and-pm 写作规范（详见 [`../SPEC.md`](../SPEC.md)）。
 
 **校验项**：
 1. ✓ frontmatter 注释块（`pm:` + `topic` / `audience` / `summary` 字段）
@@ -656,7 +656,7 @@ python note/11.product-and-pm/scripts/validate.py
 ## 维护约定
 
 - 脚本无外部依赖（仅 Python 3.8+ 标准库），可独立运行
-- 修改脚本后请同步测试 `note/11.product-and-pm/` 至少 1 个 leaf README
+- 修改脚本后请同步测试 `11.product-and-pm/` 至少 1 个 leaf README
 - 重大变更请更新本 README
 
 ---

@@ -28,7 +28,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ├── 08.ai-foundations/             # ML + DL + Transformer + LLM 基础
 ├── 09.ai-applications/            # RAG + Agent + Prompt + LLM 推理
 ├── 10.business-systems/           # 电商 + 社交 + 金融
-├── 11.product-and-pm/             # 产品 + PM + 流程(含原 14.project-management 内容)
+├── 11.product-and-pm/             # 产品 + PM + 流程(含原 11.product-and-pm 内容)
 ├── 12.interview/                  # 高频面试题(229 题,9 个主题子目录 + tools)
 │   ├── 01.java/ 02.computer-basics/ 03.database/ 04.system-design/
 │   ├── 05.security/ 06.spring/ 09.front-end/ 10.big-data/ 11.ai/ tools/

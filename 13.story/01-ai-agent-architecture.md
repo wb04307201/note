@@ -330,7 +330,7 @@ graph TD
 - [33b-a2a-protocol](33b-a2a-protocol.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [30-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent 架构在工程化 Harness 中的落地：上下文管理、工具调用、循环控制

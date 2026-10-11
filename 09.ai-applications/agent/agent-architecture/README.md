@@ -187,7 +187,7 @@ Q4: 是否需要灵活性 > 稳定性？
 
 ## 八、面试陷阱速览
 
-> 完整陷阱 + 反直觉 + 30 秒话术见 13.split-hairs Agent 架构（⚠️ 待 Phase 1+ 迁入）
+> 完整陷阱 + 反直觉 + 30 秒话术见 12.interview Agent 架构（⚠️ 待 Phase 1+ 迁入）
 
 ---
 
@@ -208,7 +208,7 @@ Q4: 是否需要灵活性 > 稳定性？
 
 🆕 **4 模式 6 维深度对比**：[agent-execution-patterns 专题](../agent-execution-patterns/README.md) —— ReAct Thought/Action/Observation 5 硬伤 + Plan-and-Execute 3 大重规划机制（RePlan / Adaptive / Plan Repair）+ 6 维完整打分 + 5 分钟决策树 + 7 道面试题。
 
-🆕 **Agent 评测专题**：[../agent-evaluation/](../agent-evaluation/README.md) —— Agent 评测 6 维（任务 40% / 步骤 20% / 工具 10% / 成本 10% / 满意 15% / 稳定 5%）+ 5 种方法 + 4 阶段 Pipeline 1511 行。面试精选 [13.split-hairs Agent 性能评估](../../../12.interview/11.ai/agent-performance-evaluation/README.md)（⚠️ 待 Phase 1+ 迁入）。
+🆕 **Agent 评测专题**：[../agent-evaluation/](../agent-evaluation/README.md) —— Agent 评测 6 维（任务 40% / 步骤 20% / 工具 10% / 成本 10% / 满意 15% / 稳定 5%）+ 5 种方法 + 4 阶段 Pipeline 1511 行。面试精选 [12.interview Agent 性能评估](../../../12.interview/11.ai/agent-performance-evaluation/README.md)（⚠️ 待 Phase 1+ 迁入）。
 
 ---
 
@@ -1282,9 +1282,10 @@ graph LR
 
 ### 15.6 → 13.story（叙事层联动）
 
-- [13.story/30-餐厅 Agent 网关.md](../../../13.story/30-agent-harness.md) — **阿明餐厅的"Agent 调度"叙事**（用餐厅类比多 Agent 协作；⚠️ 待 Phase 1+ 迁入）
-- [13.story/45-A2A 协议由来.md](../../../13.story/45-skill-scheduling-restaurant.md) — **A2A 协议的诞生故事**（⚠️ 待 Phase 1+ 迁入）
-- [13.story/47-Agent Mesh 诞生.md](../../../13.story/45-skill-scheduling-restaurant.md) — **Agent Mesh 从 Service Mesh 演化**（⚠️ 待 Phase 1+ 迁入）
+- [30 · Agent Harness](../../../13.story/30-agent-harness.md) — **阿明餐厅的"Agent 调度"叙事**（用餐厅类比多 Agent 协作）
+- [33b · A2A 协议 + 协议治理](../../../13.story/33b-a2a-protocol.md) — **A2A 协议的诞生故事**
+
+> 注：Agent Mesh 从 Service Mesh 演化这一主题在 13.story 暂无对应篇章（叙事缺口，非占位）。
 
 ### 15.7 反向链全景图
 

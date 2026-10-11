@@ -433,7 +433,7 @@ CompletableFuture.allOf(t1, t2)
 - [JUC 锁](../juc-locks/README.md) — ReentrantLock / Condition
 - [CompletableFuture](../completablefuture/README.md) — 异步编排全貌
 
-**面试题（13.split-hairs）**：
+**面试题（12.interview）**：
 - [三个线程按顺序执行面试 5 题](../../../12.interview/01.java/thread-sequential-execution/README.md) — 本文实战模板的面试题版
 
 **相关主题**：

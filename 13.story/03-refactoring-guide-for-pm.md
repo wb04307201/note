@@ -487,7 +487,7 @@ graph LR
 - [44-tech-debt-career-trap](44-tech-debt-career-trap.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [02-system-architecture-evolution.md](./02-system-architecture-evolution.md) —— 前传，重构是架构演进的工具：分阶段的架构升级与重构路径

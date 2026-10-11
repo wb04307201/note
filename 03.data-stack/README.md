@@ -104,7 +104,7 @@ module:
 | database 分类 | 13 | 01-fundamentals / 02-sql / 03-transaction / 04-index / 05-mysql / 06-cache / 07-redis / 08-nosql / 09-connection-pool / 10-data-migration / 11-monitoring / 12-cloud-database / 13-postgresql |
 | big-data 分类 | 8 | 01-data-warehouse / 02-hadoop-ecosystem / 03-realtime-compute / 04-data-lake / 05-olap / 06-scheduling / 07-data-governance / 08-sync-tools |
 | frontmatter 覆盖率 | 31 / 31 = 100% | 全部迁移自 note/ 已带 frontmatter |
-| 配套面试题 | 见 `13.split-hairs/03.database` 与 `13.split-hairs/10.big-data` | 沿用旧模块挂载 |
+| 配套面试题 | 见 `12.interview/03.database` 与 `12.interview/10.big-data` | 沿用旧模块挂载 |
 | 顶层 README 字数 | database 191 行 / big-data 248 行 | 保持叶子层不动 |
 
 > **统计时间戳**：2026-08-12（Plan 2 Task 2 完成）
@@ -115,7 +115,7 @@ module:
 
 - 单独沉淀 **03-cache**（缓存专题，从 01-database/06-cache 提升）与 **03-mq**（消息队列）
 - 修复所有跨 note/ 旧模块的反向链接（链接到 note 同名模块）
-- 与 11.interview / 12.story 联动，补齐咬文嚼字面试题与阿明餐厅故事章节
+- 与 12.interview / 13.story 联动，补齐咬文嚼字面试题与阿明餐厅故事章节
 
 ---
 

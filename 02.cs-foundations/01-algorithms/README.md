@@ -196,7 +196,7 @@ graph LR
 - 上游：[`02.computer-basics`](../README.md) — 本模块入口
 - 关联：[`03.database`](../../03.data-stack/01-database/README.md) — B+Tree 索引、查询优化
 - 关联：[`06.system-design`](../../06.distributed-systems/README.md) — 算法在系统设计中的应用（缓存、负载均衡、一致性哈希）
-- 面试深挖：[`13.split-hairs 贪心算法`](../../12.interview/02.computer-basics/greedy-algorithms/README.md) — 面试题 + 陷阱表 + 90 秒话术
+- 面试深挖：[`12.interview 贪心算法`](../../12.interview/02.computer-basics/greedy-algorithms/README.md) — 面试题 + 陷阱表 + 90 秒话术
 
 ---
 

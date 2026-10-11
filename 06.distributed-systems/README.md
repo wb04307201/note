@@ -128,7 +128,7 @@ flowchart TD
 - **README 覆盖**：113 个（顶层 9 + depth-3 leaf 54 + depth-4 leaf 37 + depth-5 leaf 12）
 - **frontmatter 覆盖**：113/113 = 100%
 - **本版本 → 上一版本**：
-  - 从 `note/04.system-design` 迁移到 `note/06.distributed-systems`
+  - 从 `04.system-design` 迁移到 `06.distributed-systems`
   - 模块定位升级：系统设计 → 分布式系统 + 微服务 + 云原生
   - 顶层 README 路径更新：`01.java` → `01.java-and-jvm`，`02.computer-basics` → `02.cs-foundations` 等
 

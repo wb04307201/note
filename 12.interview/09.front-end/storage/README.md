@@ -210,7 +210,7 @@ try {
 5. 隐私模式下的存储兼容性问题## 相关章节
 
 - 深度阅读：[`09.front-end/01-foundation`](../../../05.frontend/01-foundation/README.md) — 浏览器原理、Web 标准
-- 相关：[`13.split-hairs/event-loop`](../event-loop/README.md) · [`13.split-hairs/closure`](../closure/README.md) — JS 核心机制
+- 相关：[`12.interview/event-loop`](../event-loop/README.md) · [`12.interview/closure`](../closure/README.md) — JS 核心机制
 - 🆕 [JWT 安全深度（localStorage 危险 + 6 方案）](../../../06.distributed-systems/05-security/jwt-security/README.md) —— 「为什么 localStorage 存 JWT 是危险的」+ HttpOnly Cookie 首选 + 双 Token 实战
 - 🆕 [Cookies vs LocalStorage 会话管理（工程实践）](../../../05.frontend/07-security/sessions/README.md) —— SuperTokens 完整翻译稿
 

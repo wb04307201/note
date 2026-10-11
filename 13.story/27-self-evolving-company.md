@@ -524,7 +524,7 @@ graph TD
 - [35-ai-observability](35-ai-observability.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [01-ai-agent-architecture.md](./01-ai-agent-architecture.md) —— 续集一，自进化组织的多 Agent 架构基础：组织级 Agent 的分层设计

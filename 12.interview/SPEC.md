@@ -319,7 +319,7 @@ question:
   - 09.front-end 下 10 篇
   - SQL 调优 / 父子线程 5 篇（保留 split-hairs + 补引子）
 - 6 篇与 split-hairs 定位不符的"决策实战类"已迁出（见 README §4）：
-  - app-quote-breakdown / outsourcing-pitfalls → `14.project-management/`
+  - app-quote-breakdown / outsourcing-pitfalls → `11.product-and-pm/`
   - mobile-tech-stack → `09.front-end/08-cross-platform/`
 
 ### 后续路线

@@ -347,9 +347,9 @@ module:
 
 ---
 
-### 12.story 联动 & 面试精选
+### 13.story 联动 & 面试精选
 
-- **12.story 联动**：[07-from-chef-to-ceo](../../../../13.story/07-from-chef-to-ceo.md) —— 阿明餐厅从单店到连锁的"微服务架构转型"
+- **13.story 联动**：[07-from-chef-to-ceo](../../../../13.story/07-from-chef-to-ceo.md) —— 阿明餐厅从单店到连锁的"微服务架构转型"
 - **面试题**：[12.interview/04.system-design/microservices-vs-monolith](../../../../12.interview/04.system-design/microservices-vs-monolith/README.md) —— 5-7 道精选题
 
 ---

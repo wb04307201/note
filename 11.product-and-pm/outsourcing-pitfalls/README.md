@@ -1,6 +1,6 @@
 <!--
 module:
-  parent: 14.project-management
+  parent: 11.product-and-pm
   slug: outsourcing-pitfalls
   type: article
   category: 决策实战

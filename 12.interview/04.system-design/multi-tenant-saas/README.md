@@ -211,7 +211,7 @@ Q5：贵司 SaaS 计费是按订阅还是按用量？
 
 ---
 
-## 🔗 系列导航表（13.split-hairs · 04.system-design 兄弟）
+## 🔗 系列导航表（12.interview · 04.system-design 兄弟）
 
 | 章节 | 核心考点 | 频率 |
 |------|---------|------|
@@ -231,9 +231,9 @@ Q5：贵司 SaaS 计费是按订阅还是按用量？
 
 - [04.system-design · multi-tenant-architecture](../../../06.distributed-systems/01-foundation/system-design-basics/multi-tenant-architecture/README.md) — 6 大隔离模型 + 4 大应用层 + 5 反模式 + PostgreSQL RLS + 飞书/钉钉/Salesforce 生产实践
 
-## 🔗 餐厅叙事（12.story）
+## 🔗 餐厅叙事（13.story）
 
-- [12.story · 18-saas-multitenant](../../../13.story/18-saas-multitenant.md) —— 阿明的加盟帝国：架构从自用到 SaaS 的多租户化
+- [13.story · 18-saas-multitenant](../../../13.story/18-saas-multitenant.md) —— 阿明的加盟帝国：架构从自用到 SaaS 的多租户化
 
 ---
 

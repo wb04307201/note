@@ -139,7 +139,7 @@ question:
     - 异常时秒级切回旧版本，避免影响生产环境。## 相关章节
 
 - 深度阅读：[`12.interview/04.system-design/04-high-performance/mq`](../../../06.distributed-systems/04-high-performance/mq/README.md) — 消息队列架构全景
-- 相关：[`13.split-hairs/still-need-rocketmq`](../still-need-rocketmq/README.md) — Kafka vs RocketMQ 选型
+- 相关：[`12.interview/still-need-rocketmq`](../still-need-rocketmq/README.md) — Kafka vs RocketMQ 选型
 
 ## 相关章节
 

@@ -81,7 +81,7 @@ Java 并发编程是 Java 平台的核心能力之一，涵盖了从线程创建
 
 ### 1.4 并发与并行深度展开（Rob Pike 详解 + Java 实战）
 
-> 面试速查版见 [13.split-hairs · concurrency-vs-parallelism](../../12.interview/01.java/concurrency-vs-parallelism/README.md)。
+> 面试速查版见 [12.interview · concurrency-vs-parallelism](../../12.interview/01.java/concurrency-vs-parallelism/README.md)。
 
 #### 1.4.1 Rob Pike 一句话定义
 

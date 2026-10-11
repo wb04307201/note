@@ -142,7 +142,7 @@ Naive RAG          Advanced RAG         Modular RAG          Agentic RAG
 - **待迁移子环节**：Query Rewrite / Hybrid Search / Reranker / Chunking（⚠️ 待 Phase 1+ 迁入；占位 `../query-rewrite/` `../hybrid-search/` `../reranker/` `../chunking-strategies/`）
 - **Agent 架构**：[Agent 执行模式](../agent/agent-execution-patterns/README.md)
 - **咬文嚼字**：RAG 面试深挖（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/rag/`）（含演进四阶段面试题）
-- **餐厅叙事**：开卷考试 · RAG（⚠️ 待 Phase 1+ 迁入；占位 `../../../13.story/36-rag-retrieval-augmented-generation.md`）
+- **餐厅叙事**：[36 · RAG 检索增强生成](../../13.story/36-rag-retrieval-augmented-generation.md) —— 开卷考试
 
 ---
 

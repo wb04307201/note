@@ -13,7 +13,7 @@ module:
 
 > 架构师 / CTO 都遇到：换组织架构，系统就跟着崩；或者反过来，系统改造完了，组织不跟进就低效。本文用 **康威定律 + Team Topologies 4 类型**，讲清楚组织结构与系统架构怎么一一映射。
 
-> **前置知识**：[12.story/07-from-chef-to-ceo](../../13.story/07-from-chef-to-ceo.md)（终章康威定律 + SECI / ADR / Docs-as-Code）、[self-vs-saas-vs-outsourcing](../self-vs-saas-vs-outsourcing/README.md)（自研组织能力）、[team-sizing-3x-buffer](../team-sizing-3x-buffer/README.md)（阿里 2-8-2 模型）。
+> **前置知识**：[13.story/07-from-chef-to-ceo](../../13.story/07-from-chef-to-ceo.md)（终章康威定律 + SECI / ADR / Docs-as-Code）、[self-vs-saas-vs-outsourcing](../self-vs-saas-vs-outsourcing/README.md)（自研组织能力）、[team-sizing-3x-buffer](../team-sizing-3x-buffer/README.md)（阿里 2-8-2 模型）。
 
 ---
 
@@ -469,12 +469,12 @@ graph TD
 
 ## 相关章节
 
-- 主模块：[`note/14.project-management`](../README.md)（项目管理主页）
+- 主模块：[`11.product-and-pm`](../README.md)（项目管理主页）
 - 本系列：[self-vs-saas-vs-outsourcing](../self-vs-saas-vs-outsourcing/README.md) — 自研团队能力评估
 - 本系列：[team-sizing-3x-buffer](../team-sizing-3x-buffer/README.md) — 阿里 2-8-2 配比
 - 本系列：[ai-pm-dora-space](../ai-pm-dora-space/README.md) — DORA + SPACE + ROI
-- 故事章节：[`12.story/07-from-chef-to-ceo`](../../13.story/07-from-chef-to-ceo.md) — 终章康威定律 + SECI / ADR / Docs-as-Code
-- 主模块：[`note/04.system-design`](../../06.distributed-systems/README.md) — 系统设计架构基线
+- 故事章节：[`13.story/07-from-chef-to-ceo`](../../13.story/07-from-chef-to-ceo.md) — 终章康威定律 + SECI / ADR / Docs-as-Code
+- 主模块：[`04.system-design`](../../06.distributed-systems/README.md) — 系统设计架构基线
 - 面试专题：[`12.interview/04.system-design/cap-theorem`](../../06.distributed-systems/02-distributed/cap-and-base/README.md) — CAP 经典问题
 - 敏捷度量手册：[agile-metrics](../agile-metrics/README.md) — 4 类型团队的配套度量
 - 外包避坑：[outsourcing-pitfalls](../outsourcing-pitfalls/README.md) — 外包 = 临时"促成团队"

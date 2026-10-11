@@ -258,7 +258,7 @@ public boolean trySeckill(Long userId, Long productId) {
 - [限流算法面试题](../rate-limiting/README.md) — 通用限流原理面试
 - [缓存一致性面试题](../cache-consistency/README.md) — 缓存场景
 
-**餐厅叙事（12.story）**：
+**餐厅叙事（13.story）**：
 - [04 · peak-traffic-defense（餐厅流量防御）](../../../13.story/04-peak-traffic-defense.md) — 餐厅流量 = 茅台秒杀的隐喻版
 
 ---

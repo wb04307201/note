@@ -339,7 +339,7 @@ graph TD
 - [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [25-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，学徒困境在组织层面的映射：组织学习比个人学习更复杂
@@ -369,7 +369,7 @@ graph TD
 
 ## 系列内前序回链
 
-补充前序文章回链（series 5/6/9 是 12.story 正传章节，与 AI 时代系列有方法论关联）：
+补充前序文章回链（series 5/6/9 是 13.story 正传章节，与 AI 时代系列有方法论关联）：
 
 - [§ 5 性能优化](16-performance-optimization.md) — 系统级性能 vs 模型级性能
 - [§ 6 异步事件驱动](19-realtime-eventdriven.md) — 事件驱动 AI 训练管线

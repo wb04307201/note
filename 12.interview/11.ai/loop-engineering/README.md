@@ -141,7 +141,7 @@ Task → Agent → 检查结果
 - 同栏目：[Harness Engineering](../harness-engineering/README.md)
 - 关联：[Agent 架构](../agent-dag-vs-react/README.md)
 - 实战：[生产级 Agent](../../../09.ai-applications/agent/production-agent/README.md)
-- 餐厅叙事：[12.story/07 阿明餐厅自动修复 50 bug 实战](../../../13.story/07-from-chef-to-ceo.md)
+- 餐厅叙事：[13.story/07 阿明餐厅自动修复 50 bug 实战](../../../13.story/07-from-chef-to-ceo.md)
 
 ---
 

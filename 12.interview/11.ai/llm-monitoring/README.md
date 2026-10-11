@@ -122,7 +122,7 @@ question:
 - 主模块 · 线上监控与定位 —— 深度内容
 - [主模块 · llm-production-thinking 总目录](../../../09.ai-applications/agent/production-stability/README.md)
 - [主模块 · 决策树](../../../09.ai-applications/agent/production-stability/06-decision-tree.md)
-- [12.story · 05-observability](../../../13.story/05-observability.md) —— 阿明餐厅的可观测性实战
+- [13.story · 05-observability](../../../13.story/05-observability.md) —— 阿明餐厅的可观测性实战
 
 ---
 

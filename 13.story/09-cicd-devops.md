@@ -418,7 +418,7 @@ graph LR
 
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [08-qa-testing-strategy.md](./08-qa-testing-strategy.md) —— 正传 4，CI/CD 是测试自动化的执行载体：测试用例靠流水线串起来才有价值

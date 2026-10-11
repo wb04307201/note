@@ -151,7 +151,7 @@ function update(id: number, newVal: any) {
 
 ## 📚 参考来源
 
-- 深度实战：[`note/05.frontend/03-frameworks/vue/large-list-perf/README.md`](../../../05.frontend/03-frameworks/vue/large-list-perf/README.md)（456 行，含排查方法集 / 完整代码示例 / 性能基准）
+- 深度实战：[`05.frontend/03-frameworks/vue/large-list-perf/README.md`](../../../05.frontend/03-frameworks/vue/large-list-perf/README.md)（456 行，含排查方法集 / 完整代码示例 / 性能基准）
 - 响应式原理：[`vue-reactivity/`](../vue-reactivity/README.md)（深挖 Proxy / 懒代理 / Dep-Observer-Watcher）
 
 ---

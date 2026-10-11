@@ -72,7 +72,7 @@ module:
 ### 项目管理（已全部迁走，split-hairs 不再收此分类）
 
 > 2026-06-30 路径整理：本类目的 3 题已**全部迁移**：
-> - `app-quote-breakdown` / `outsourcing-pitfalls` → 新主模块 [`note/11.product-and-pm/`](../../11.product-and-pm/README.md)
+> - `app-quote-breakdown` / `outsourcing-pitfalls` → 新主模块 [`11.product-and-pm/`](../../11.product-and-pm/README.md)
 > - `mobile-tech-stack` → 主模块 [`09.front-end/08-cross-platform/mobile-tech-stack/`](../../05.frontend/08-cross-platform/mobile-tech-stack/README.md)
 >
 > 本分类及其目录 `project-management/` 已删除，split-hairs 不再收"项目管理"类内容。
@@ -102,7 +102,7 @@ module:
 2. **进阶**（2 周）：缓存一致性 + 限流算法 + 分布式 ID + 分布式锁 + 幂等性设计
 3. **冲刺面试**：重点看"分布式事务"、"熔断降级"、"分布式锁"、"幂等性设计"
 
-> 📌 **2026-06-30 路径整理**：原项目管理的 3 题全部迁走（"5万 vs 50万 App 报价"、"外包避坑指南"→ [`note/11.product-and-pm/`](../../11.product-and-pm/README.md)；"App 技术栈选型"→ [`09.front-end/08-cross-platform/mobile-tech-stack/`](../../05.frontend/08-cross-platform/mobile-tech-stack/README.md)）。split-hairs 不再收"项目管理"类内容。
+> 📌 **2026-06-30 路径整理**：原项目管理的 3 题全部迁走（"5万 vs 50万 App 报价"、"外包避坑指南"→ [`11.product-and-pm/`](../../11.product-and-pm/README.md)；"App 技术栈选型"→ [`09.front-end/08-cross-platform/mobile-tech-stack/`](../../05.frontend/08-cross-platform/mobile-tech-stack/README.md)）。split-hairs 不再收"项目管理"类内容。
 
 ## 相关章节
 

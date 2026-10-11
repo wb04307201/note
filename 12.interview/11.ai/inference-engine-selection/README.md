@@ -402,9 +402,9 @@ resp = client.chat(model='qwen2.5:7b', messages=[...])
 - 11.ai/03-engineering/local-deployment/ollama —— Ollama 部署
 - 11.ai/08-llmops/02-llmops-stack —— LLMOps 全景
 
-### 实战姐妹（12.story）
+### 实战姐妹（13.story）
 
-- [12.story/39-ai-private-deployment](../../../13.story/39-ai-private-deployment.md) —— 阿明餐厅从 Ollama 试跑到 vLLM 上生产
+- [13.story/39-ai-private-deployment](../../../13.story/39-ai-private-deployment.md) —— 阿明餐厅从 Ollama 试跑到 vLLM 上生产
 
 ---
 

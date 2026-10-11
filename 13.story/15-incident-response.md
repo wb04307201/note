@@ -472,7 +472,7 @@ graph TD
 - [35-ai-observability](35-ai-observability.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [04-peak-traffic-defense.md](./04-peak-traffic-defense.md) —— 正传 1，故障应急与流量治理的"事前-事后"配合：限流是事前防御，应急是事后止血

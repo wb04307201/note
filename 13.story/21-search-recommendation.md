@@ -638,7 +638,7 @@ graph TD
 - [29-codebase-cognitive-debt](29-codebase-cognitive-debt.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [19-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，搜索推荐的实时性依赖事件流：用户行为事件驱动索引更新

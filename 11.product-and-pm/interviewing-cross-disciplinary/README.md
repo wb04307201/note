@@ -293,8 +293,8 @@ module:
 - 团队管理：[康威定律下的团队拓扑](../conways-law-team-topologies/README.md) — 团队互补的理论基础
 - 人力配比：[3 倍缓冲排期](../team-sizing-3x-buffer/README.md) — P5/P6/P7 配比与新人培养周期
 - 效能度量：[AI 项目管理 DORA + SPACE](../ai-pm-dora-space/README.md) — 评估新人产出效率
-- 故事联动：[12.story/07 从厨师到 CEO](../../13.story/07-from-chef-to-ceo.md) — 阿明餐厅的团队建设叙事
-- 科班面试题：[13.split-hairs](../../12.interview/README.md) — 158 篇技术面试题（科班视角对照）
+- 故事联动：[13.story/07 从厨师到 CEO](../../13.story/07-from-chef-to-ceo.md) — 阿明餐厅的团队建设叙事
+- 科班面试题：[12.interview](../../12.interview/README.md) — 158 篇技术面试题（科班视角对照）
 
 ---
 

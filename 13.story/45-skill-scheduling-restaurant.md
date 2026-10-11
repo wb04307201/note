@@ -255,7 +255,7 @@ Skill frontmatter + 关键词规则路由 + 分层加载 + 离线评测集
 **深度原理（11.ai 主模块）**：
 - Skill 命中率深度章节 — 四层模型 + 五大反模式 + 工程实战
 
-**面试题（13.split-hairs）**：
+**面试题（12.interview）**：
 - [Skill 数量一多，Agent 命中率怎么保证？](../12.interview/11.ai/skill-hit-rate/README.md) — 5 题配套面试
 
 **同模块相邻章节**：

@@ -229,7 +229,7 @@ System.out.println(System.currentTimeMillis() - start);
 
 - 深度阅读：[`01.java/核心概念`](../../../01.java-and-jvm/01-language/README.md) — 基本类型、自动装箱/拆箱
 - 数据类型详解：[`01.java/基本数据类型与包装类`](../../../01.java-and-jvm/01-language/data-types/README.md) — 8 种基本类型 + 缓存机制源码
-- 相关：[`13.split-hairs/new-string`](../new-string/README.md) — 字符串常量池（同类型考点）
+- 相关：[`12.interview/new-string`](../new-string/README.md) — 字符串常量池（同类型考点）
 - 数据库 INT 列映射：[`03.data-stack/01-database`](../../../03.data-stack/01-database/README.md) — INT/BIGINT 类型与 Java 包装类选型
 
 ## 💡 面试话术

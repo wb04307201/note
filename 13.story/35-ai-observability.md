@@ -419,9 +419,9 @@ Web 请求 OTel Trace
 
 ---
 
-## 第六章：与 12.story 其他篇章的协同 —— 监控中枢串起整个餐厅
+## 第六章：与 13.story 其他篇章的协同 —— 监控中枢串起整个餐厅
 
-### 6.1 AI Observability 在 12.story 中的位置
+### 6.1 AI Observability 在 13.story 中的位置
 
 ```mermaid
 graph TB

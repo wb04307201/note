@@ -586,7 +586,7 @@ List<OrderDTO> dtos = orders.stream()
 
 ## 五、相关章节
 
-**面试题（13.split-hairs）**：
+**面试题（12.interview）**：
 - [咬文嚼字·mysql-join 算法深挖](../../../../12.interview/03.database/mysql-join/README.md) — 本文「实战篇」的算法基础篇（NLJ / BNL / Hash Join）
 
 **主模块基础**：

@@ -328,7 +328,7 @@ graph TD
 - [31-ai-fatal-trio](31-ai-fatal-trio.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [02-system-architecture-evolution.md](./02-system-architecture-evolution.md) —— 前传，架构演进与安全架构协同：每一次架构升级都需重新评估安全边界

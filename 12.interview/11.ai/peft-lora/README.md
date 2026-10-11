@@ -91,7 +91,7 @@ LoRA r=8 微调：     2GB 显存（3090 即可）
 - **主模块深度**：[PEFT / LoRA / QLoRA 深度专题](../../../09.ai-applications/fine-tuning/06-peft-lora.md) — 4 大方法完整版 + DoRA/AdaLoRA/LoRA+/LongLoRA 2024-2026 新方法
 - **兄弟面试题**：[LLM 对齐方法深挖](../llm-alignment/README.md) — SFT/RLHF/DPO/Constitutional AI 5 大对齐方法（SFT/DPO 几乎必须配合 LoRA 使用）
 - **兄弟面试题**：[LLM 推理优化深挖](../llm-inference/README.md) — Continuous Batching / PagedAttention / KV Cache / 量化（量化基础）
-- **餐厅叙事**：[12.story 系列目录](../../../13.story/README.md)（PEFT 主题餐厅叙事篇待补）
+- **餐厅叙事**：[13.story 系列目录](../../../13.story/README.md)（PEFT 主题餐厅叙事篇待补）
 
 ---
 

@@ -219,7 +219,7 @@ ROI = (业务价值 - TCO) / TCO × 100%
 
 ### 变量 2：AI 训练/推理的额外成本
 
-- 自研若用 LLM：**推理成本 × 调用次数**（参考 [12.story/36a](../../13.story/34a-ai-token-cost-structure.md)）
+- 自研若用 LLM：**推理成本 × 调用次数**（参考 [13.story/36a](../../13.story/34a-ai-token-cost-structure.md)）
 - SaaS 通常含 LLM：成本打包进订阅费
 - 外包不能碰 LLM：**经常需要二次开发**
 
@@ -255,12 +255,12 @@ ROI = (业务价值 - TCO) / TCO × 100%
 
 ## 相关章节
 
-- 主模块：[`note/14.project-management`](../README.md)（项目管理主页）
+- 主模块：[`11.product-and-pm`](../README.md)（项目管理主页）
 - 本系列：[app-quote-breakdown](../app-quote-breakdown/README.md) — 12 大成本维度
 - 本系列：[outsourcing-pitfalls](../outsourcing-pitfalls/README.md) — 外包避坑
 - 主模块：[`09.front-end/08-cross-platform/mobile-tech-stack`](../../05.frontend/08-cross-platform/mobile-tech-stack/README.md) — 前端跨端选型
-- 主模块：[`note/04.system-design`](../../06.distributed-systems/README.md) — 系统设计架构基线
-- 故事章节：[`12.story/43-ai-productivity-paradox`](../../13.story/43-ai-productivity-paradox.md) — AI Coding ROI 数据
+- 主模块：[`04.system-design`](../../06.distributed-systems/README.md) — 系统设计架构基线
+- 故事章节：[`13.story/43-ai-productivity-paradox`](../../13.story/43-ai-productivity-paradox.md) — AI Coding ROI 数据
 - 面试专题：[`12.interview/06.spring/transactional-pitfalls`](../../12.interview/06.spring/transactional-pitfalls/README.md) — 工程实践细节
 
 ---

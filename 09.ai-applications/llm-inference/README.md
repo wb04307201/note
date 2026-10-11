@@ -48,7 +48,7 @@
 - [../agent/](../agent/) — Agent 架构（推理是 Agent 基础设施）
 - [../rag/](../rag/) — RAG（检索 + 推理协同）
 - [../prompts/](../prompts/) — Prompt 工程
-- [../../08.ai-foundations/](../../../note/08.ai-foundations/) — AI 基础（Transformer / Attention）
+- [../../08.ai-foundations/](../../08.ai-foundations/) — AI 基础（Transformer / Attention）
 
 ## 尚未迁移的推理相关章节
 

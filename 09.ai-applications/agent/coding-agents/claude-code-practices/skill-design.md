@@ -359,7 +359,7 @@ evaluation:
 - [Claude Code 大型代码库实践](README.md) — Skill 的"渐进式披露"基础
 - Harness Engineering 体系 — 上下文工程总论
 
-**面试题（13.split-hairs）**：
+**面试题（12.interview）**：
 - Skill 设计面试 5 题 — 配套面试题
 
 ---

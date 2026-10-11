@@ -351,7 +351,7 @@ story:
 字段对齐详见全局 [`SPEC.md` §4](../SPEC.md#四-frontmatter类型) frontmatter 类型。
 
 > ⚠️ **`number` 必须等于文件名前缀**（如 `42-ai-engineer-responsibility.md` → `number: 42`）。
-> 2026-10-11 全库对齐时发现 `45-skill-scheduling-restaurant.md` 用的是旧 `12.story` 时代的
+> 2026-10-11 全库对齐时发现 `45-skill-scheduling-restaurant.md` 用的是旧 `13.story` 时代的
 > `id:` schema（值还是 `47-skill-scheduling-restaurant`），已迁移到本 schema。
 
 ## §5 子目录约定

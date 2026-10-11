@@ -206,7 +206,7 @@ RENAME TABLE large_table TO large_table_old,
 3. 如何评估DDL对主从复制的影响## 相关章节
 
 - 深度阅读：[`03.database/04-index`](../../../03.data-stack/01-database/04-index/README.md) — B+ 树、索引原理
-- 相关：[`13.split-hairs/mysql-index-failure`](../mysql-index-failure/README.md) — 索引失效 10 种场景
+- 相关：[`12.interview/mysql-index-failure`](../mysql-index-failure/README.md) — 索引失效 10 种场景
 
 > 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐（中频面试 + 实战必会）
 

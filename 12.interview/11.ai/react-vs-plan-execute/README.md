@@ -409,10 +409,10 @@ Stage 2 Executor：逐步执行
 - [11.ai/04-architecture/agent-architecture](../../../09.ai-applications/agent/agent-architecture/README.md) —— Agent 架构总览
 - [11.ai/04-architecture/agent-context/05-sub-agents-decomposition](../../../09.ai-applications/agent/agent-context/05-sub-agents-decomposition.md) —— Multi-Agent Sub-Agents 实战
 
-### 实战姐妹（12.story）
+### 实战姐妹（13.story）
 
-- [12.story/02-system-architecture-evolution](../../../13.story/02-system-architecture-evolution.md) —— 阿明餐厅选型 ReAct vs Plan-and-Execute 实战
-- [12.story/05-observability](../../../13.story/05-observability.md) —— AI 思维工程 5 问（监控）
+- [13.story/02-system-architecture-evolution](../../../13.story/02-system-architecture-evolution.md) —— 阿明餐厅选型 ReAct vs Plan-and-Execute 实战
+- [13.story/05-observability](../../../13.story/05-observability.md) —— AI 思维工程 5 问（监控）
 
 ---
 

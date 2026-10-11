@@ -512,7 +512,7 @@ for mod in actual.keys():
     # 找分类导航表中该模块对应的行
     # 表格格式：| 序号 | 主题 | 文章数 | 入口 |
     # 匹配策略：找包含模块路径的行，提取文章数
-    mod_path = f'13.split-hairs/{mod}/README.md'
+    mod_path = f'12.interview/{mod}/README.md'
     for line in content.split('\\n'):
         if mod_path in line:
             # 提取 | N | 中的数字

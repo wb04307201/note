@@ -101,7 +101,7 @@ LLM 是处理自然语言模糊性专用工具，不是通用计算器。核心�
 - [主模块 · llm-production-thinking 总目录](../../../09.ai-applications/agent/production-stability/README.md)
 - [主模块 · 成本 5 层路由](../../../09.ai-applications/agent/production-stability/02-cost-control-and-degradation.md)
 - [主模块 · 决策树](../../../09.ai-applications/agent/production-stability/06-decision-tree.md)
-- [12.story · 05-observability](../../../13.story/05-observability.md) —— 阿明餐厅的 5 问实战
+- [13.story · 05-observability](../../../13.story/05-observability.md) —— 阿明餐厅的 5 问实战
 
 ---
 

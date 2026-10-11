@@ -51,7 +51,7 @@
 - [../prompts/](../prompts/) — Prompt 工程
 - [../rag/](../rag/) — RAG（含 04-evaluation 评估）
 - [../llm-inference/](../llm-inference/) — LLM 推理（Agent 基础设施）
-- [../../08.ai-foundations/](../../../note/08.ai-foundations/) — AI 基础（Transformer / LLM / Embedding）
+- [../../08.ai-foundations/](../../08.ai-foundations/) — AI 基础（Transformer / LLM / Embedding）
 
 ## 与其他模块的缺口（已知）
 

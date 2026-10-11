@@ -136,14 +136,14 @@ flowchart TD
 
 ## 🎯 高频面试题（咬文嚼字）
 
-针对面试中反复深挖的细节问题，见 [13.split-hairs/03.database](../../../note/12.interview/03.database/)：
+针对面试中反复深挖的细节问题，见 [12.interview/03.database](../../12.interview/03.database/)：
 
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [缓存穿透 / 击穿 / 雪崩](../../../note/12.interview/03.database/cache-penetration-breakdown-avalanche/) | ⭐⭐⭐⭐⭐ | 面试必考三件套 |
-| [索引失效的 10 种场景](../../../note/12.interview/03.database/mysql-index-failure/) | ⭐⭐⭐⭐⭐ | LIKE 左通配 / 函数 / 类型转换 / OR / 最左前缀 |
-| [COUNT(*) vs COUNT(1) vs COUNT(字段)](../../../note/12.interview/03.database/mysql-count/) | ⭐⭐ | 性能差异 |
-| [事务隔离级别](../../../note/12.interview/03.database/mysql-isolation/) | ⭐⭐⭐⭐ | RU / RC / RR / Serializable |
+| [缓存穿透 / 击穿 / 雪崩](../../12.interview/03.database/cache-penetration-breakdown-avalanche/) | ⭐⭐⭐⭐⭐ | 面试必考三件套 |
+| [索引失效的 10 种场景](../../12.interview/03.database/mysql-index-failure/) | ⭐⭐⭐⭐⭐ | LIKE 左通配 / 函数 / 类型转换 / OR / 最左前缀 |
+| [COUNT(*) vs COUNT(1) vs COUNT(字段)](../../12.interview/03.database/mysql-count/) | ⭐⭐ | 性能差异 |
+| [事务隔离级别](../../12.interview/03.database/mysql-isolation/) | ⭐⭐⭐⭐ | RU / RC / RR / Serializable |
 
 ---
 

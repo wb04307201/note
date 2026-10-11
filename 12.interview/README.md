@@ -12,7 +12,7 @@ module:
 
 > 一句话定位：**主模块的"刺刀版" —— 专治面试中那些"好像懂但说不清"的高频 / 高难度问题**
 
-本仓库的主模块（`01.java` / `02.computer-basics` / `03.database` / `04.system-design` / `06.spring` / `11.ai` / `09.front-end` / `14.project-management`）是**广度知识地图**，每个模块 100-300 行，覆盖一个领域的核心脉络。
+本仓库的主模块（`01.java` / `02.computer-basics` / `03.database` / `04.system-design` / `06.spring` / `11.ai` / `09.front-end` / `11.product-and-pm`）是**广度知识地图**，每个模块 100-300 行，覆盖一个领域的核心脉络。
 
 但面试中总会遇到这些题：
 - "HashMap 扩容为什么是 2 倍？"
@@ -38,7 +38,7 @@ module:
 | 10 | — | 大数据（Flink / Spark / Hive / Iceberg / Doris / Kafka） | 7 | [10.big-data/](10.big-data/) |
 | 11 | [`08.ai-foundations`](../08.ai-foundations/) + [`09.ai-applications`](../09.ai-applications/) | AI 面试深挖 | 56 | [11.ai/](11.ai/) |
 | ✦ | tools | 开发工具（Git / Docker / Nginx / K8s） | 6 | [tools/](tools/) |
-| ✦ | [`11.product-and-pm`](../11.product-and-pm/) | **外链**（决策实战，已迁出） | — | [14.project-management/](../11.product-and-pm/) |
+| ✦ | [`11.product-and-pm`](../11.product-and-pm/) | **外链**（决策实战，已迁出） | — | [11.product-and-pm/](../11.product-and-pm/) |
 
 **总计：240 篇面试题**（仅"一题一文"题；2026-09-15 find 校对，per-category sums 41+13+33+27+11+16+29+7+56+6=240；其中 `<!--question:-->` 类型 229 篇，剩余 11 个为 topic-level index-only 索引页）
 
@@ -95,7 +95,7 @@ graph TB
   M06[06.spring]              -.深挖.-> S
   M09[09.front-end]           -.深挖.-> S
   M11[11.ai]                  -.深挖.-> S
-  M14[14.project-management]  -.深挖.-> S
+  M14[11.product-and-pm]  -.深挖.-> S
   S -.补充广度.-> M01
   S -.补充广度.-> M03
   S -.补充广度.-> M04
@@ -112,7 +112,7 @@ graph TB
 | 维度 | 主模块 | split-hairs |
 |------|--------|-------------|
 | **定位** | 知识地图 | 面试刺刀 |
-| **路径** | `note/01.java/` 等 | `note/12.interview/` |
+| **路径** | `01.java/` 等 | `12.interview/` |
 | **深度** | 广度覆盖 | 单点深挖 |
 | **篇幅** | 100-300 行 / 模块 | 50-150 行 / 主题 |
 | **使用场景** | 系统学习 | 面试准备 / 细节答疑 |
@@ -159,7 +159,7 @@ graph TB
 
 | 类型 | 例子 | 应该归到 |
 |------|------|----------|
-| **决策实战 + 管理学** | App 报价拆解 / 外包避坑 / App 跨端技术栈选型 | [`note/11.product-and-pm/`](../11.product-and-pm/README.md) / 主模块 `05.frontend/05-architecture/08-cross-platform/` |
+| **决策实战 + 管理学** | App 报价拆解 / 外包避坑 / App 跨端技术栈选型 | [`11.product-and-pm/`](../11.product-and-pm/README.md) / 主模块 `05.frontend/05-architecture/08-cross-platform/` |
 | **主模块已经深度覆盖的"广度"** | 4 种创建线程方式 / SQL 调优总览 | 主模块对应章节，split-hairs 不重复广度 |
 | **概念定义 + 全景图** | Transformer 是什么 / Java 反射的整体框架 | 主模块 [`01-fundamentals/transformer/`](../08.ai-foundations/03-transformer/README.md)，split-hairs 只做精炼版 |
 | **前端工程化 / 浏览器"广度"知识** | URL 到渲染全链路 | 主模块 [`09.front-end/01-foundation/browser-rendering/`](../05.frontend/01-foundation/browser-rendering/README.md) |
@@ -169,14 +169,14 @@ graph TB
 - [ ] 能否用"一个具体场景"作为开场？（Yes → 适合 split-hairs）
 - [ ] 是否高频 + 有明确陷阱 + 答案短但理由长？（Yes → 适合 split-hairs）
 - [ ] 主模块已经有对应章节，且 split-hairs 内容与之**重复 80%+**？（Yes → 应迁回主模块，split-hairs 留 stub）
-- [ ] 主题是"决策 / 管理 / 选型"，目标读者不是开发者？（Yes → 应迁到 `14.project-management/` 或主模块相关分类）
+- [ ] 主题是"决策 / 管理 / 选型"，目标读者不是开发者？（Yes → 应迁到 `11.product-and-pm/` 或主模块相关分类）
 
 ### 2026-06-30 已迁移记录
 
 | 原 split-hairs 路径 | 新位置 | 决策原因 |
 |---------------------|--------|----------|
-| `12.interview/04.system-design/project-management/app-quote-breakdown/` | `note/14.project-management/` | 决策实战，非面试陷阱 |
-| `12.interview/04.system-design/project-management/outsourcing-pitfalls/` | `note/14.project-management/` | 同上 |
+| `12.interview/04.system-design/project-management/app-quote-breakdown/` | `11.product-and-pm/` | 决策实战，非面试陷阱 |
+| `12.interview/04.system-design/project-management/outsourcing-pitfalls/` | `11.product-and-pm/` | 同上 |
 | `12.interview/04.system-design/project-management/mobile-tech-stack/` | `09.front-end/08-cross-platform/` | 跨端架构决策，应入主模块 |
 
 ---

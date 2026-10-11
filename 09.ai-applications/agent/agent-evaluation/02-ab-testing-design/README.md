@@ -10,7 +10,7 @@ module:
 
 # Agent A/B Test 系统设计 · 深度专章
 
-> 一句话定位：**AI 场景 A/B Test ≠ 传统 web A/B；本质是"输出非确定性 + 多指标 + 长期漂移"下的统计对照系统**。完整体系基于 [主模块 · Agent Evaluation](../../README.md) + LLM 评测专题（⚠️ 待 Phase 1+ 迁入）。面试速查版见 [13.split-hairs · agent-ab-testing](../../../../12.interview/11.ai/agent-ab-testing/README.md)（⚠️ 待 Phase 1+ 迁入）。
+> 一句话定位：**AI 场景 A/B Test ≠ 传统 web A/B；本质是"输出非确定性 + 多指标 + 长期漂移"下的统计对照系统**。完整体系基于 [主模块 · Agent Evaluation](../../README.md) + LLM 评测专题（⚠️ 待 Phase 1+ 迁入）。面试速查版见 [12.interview · agent-ab-testing](../../../../12.interview/11.ai/agent-ab-testing/README.md)（⚠️ 待 Phase 1+ 迁入）。
 
 ---
 
@@ -575,7 +575,7 @@ Day 30   : 长期漂移观察
 - RAG 超范围拒答
 
 **面试速查**：
-- [13.split-hairs · agent-ab-testing](../../../../12.interview/11.ai/agent-ab-testing/README.md) —— 5 组件 + 4 流量 + 90 秒话术 + 11 兄弟导航（⚠️ 待 Phase 1+ 迁入）
+- [12.interview · agent-ab-testing](../../../../12.interview/11.ai/agent-ab-testing/README.md) —— 5 组件 + 4 流量 + 90 秒话术 + 11 兄弟导航（⚠️ 待 Phase 1+ 迁入）
 
 ---
 

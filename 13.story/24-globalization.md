@@ -689,7 +689,7 @@ graph TD
 
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [13-frontend-renovation.md](./13-frontend-renovation.md) —— 正传 8，国际化的前端工程化：i18n 框架、文案管理、本地化构建

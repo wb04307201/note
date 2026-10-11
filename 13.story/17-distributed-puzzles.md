@@ -731,7 +731,7 @@ graph TD
 - [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [19-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，分布式难题的异步解法：事件驱动是分布式一致性的实践路径之一

@@ -139,7 +139,7 @@ def tsp_branch_bound(dist_matrix):
 
 - **本目录**：[A* 搜索](../) / [动态规划](../) / [回溯](../)
 - **02 同级**：[K-means](../../clustering/k-means/README.md) / [PCA](../../dimensionality-reduction/pca/README.md)
-- **13.split-hairs**：算法面试题
+- **12.interview**：算法面试题
 
 ---
 

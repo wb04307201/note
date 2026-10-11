@@ -45,11 +45,11 @@
 - [../agent/](../agent/) — Agent 架构（Prompt 是 Agent 的输入）
 - [../rag/](../rag/) — RAG（Prompt 与 RAG 的协同）
 - [../eval/](../eval/) — 评估方法（Prompt 效果评估）
-- [../../08.ai-foundations/](../../../note/08.ai-foundations/) — AI 基础
+- [../../08.ai-foundations/](../../08.ai-foundations/) — AI 基础
 
 ## 尚未迁移的 Prompt 相关章节
 
-以下 Prompt 相关主题仍在迁移前位置（Phase 8 后将切到 `note/<planned-path>` 占位），待后续任务迁入本 MOC：
+以下 Prompt 相关主题仍在迁移前位置（Phase 8 后将切到 `<planned-path>` 占位），待后续任务迁入本 MOC：
 
 - ⚠️ Function Calling（结构化 Prompt 输出） — `../agent/spec-tools/function-calling/`（待 Phase 1+ 迁入）
 - ⚠️ Context Engineering（广义 Prompt 设计） — `./context-engineering/`（待 Phase 1+ 迁入）

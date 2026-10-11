@@ -534,7 +534,7 @@ graph TD
 - [36-rag-retrieval-augmented-generation](36-rag-retrieval-augmented-generation.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [09-cicd-devops.md](./09-cicd-devops.md) —— 正传 5，测试策略与 CI/CD 强耦合：自动化测试是流水线的质量门

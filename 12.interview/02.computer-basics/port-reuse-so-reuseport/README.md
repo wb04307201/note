@@ -194,7 +194,7 @@ Q5：thundering herd 在 SO_REUSEPORT 下还存在吗？
 
 ---
 
-## 🔗 系列导航表（13.split-hairs · 02.computer-basics 兄弟）
+## 🔗 系列导航表（12.interview · 02.computer-basics 兄弟）
 
 | 章节 | 核心考点 | 频率 |
 |------|---------|------|

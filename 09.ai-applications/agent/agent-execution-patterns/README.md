@@ -95,7 +95,7 @@ Q：在构建 AI Agent 系统时，ReAct 和 Plan-and-Execute 是两种主流的
 
 ## 速查 · 关联资源
 - 🆕 **入口路由**：分层路由架构（⚠️ 待 Phase 1+ 迁入；占位 `../architecture/routing-architecture/`）
-- **餐厅叙事**：⚠️ 待 Phase 1+ 迁入（占位 `../../../../13.story/02-system-architecture-evolution.md`）
+- **餐厅叙事**：[13.story · 架构是"长"出来的](../../../13.story/02-system-architecture-evolution.md)
 - **面试题**：12.interview/11.ai/react-vs-plan-execute —— 5-7 道精选题（⚠️ 待 Phase 1+ 迁入）
 - **同级**：[agent-architecture](../agent-architecture/README.md) —— 4 模式综述 + DAG 决策树
 - **相关**：[agent-context/05-sub-agents](../agent-context/05-sub-agents-decomposition.md) —— Multi-Agent Sub-Agents 实战

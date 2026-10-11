@@ -727,7 +727,7 @@ graph TD
 - [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
 - [cheatsheet](cheatsheet.md)
 - [glossary](glossary.md)
-- [12.story](README.md)
+- [13.story](README.md)
 ## 跨章节衔接
 
 - [17-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，事件驱动是分布式一致性的关键解法：最终一致性通过事件流转实现

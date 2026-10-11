@@ -391,11 +391,11 @@ Long-Context 1M + RAG 双轨 + Sub-Agents + Memory
 - [11.ai/04-architecture/agent-memory](../../../09.ai-applications/agent/agent-memory/README.md) —— Agent 记忆架构
 - [11.ai/04-architecture/agent-architecture](../../../09.ai-applications/agent/agent-architecture/README.md) —— Agent 架构总览
 
-### 实战姐妹（12.story）
+### 实战姐妹（13.story）
 
-- [12.story/07-from-chef-to-ceo](../../../13.story/07-from-chef-to-ceo.md) —— 阿明餐厅 80 家连锁"长菜单与多订单"管理实战
-- [12.story/39-ai-private-deployment](../../../13.story/39-ai-private-deployment.md) —— 私有化部署决策
-- [12.story/30-agent-harness](../../../13.story/30-agent-harness.md) —— Agent Harness 工程
+- [13.story/07-from-chef-to-ceo](../../../13.story/07-from-chef-to-ceo.md) —— 阿明餐厅 80 家连锁"长菜单与多订单"管理实战
+- [13.story/39-ai-private-deployment](../../../13.story/39-ai-private-deployment.md) —— 私有化部署决策
+- [13.story/30-agent-harness](../../../13.story/30-agent-harness.md) —— Agent Harness 工程
 
 ---
 

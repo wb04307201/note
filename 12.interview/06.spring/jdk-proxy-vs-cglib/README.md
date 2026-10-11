@@ -317,13 +317,13 @@ public class TxService {
 
 ## 七、交叉引用
 
-- **主模块**：[`06.spring`](../../../../note/04.spring-backend/)
+- **主模块**：[`06.spring`](../../../04.spring-backend/)
 - **相关**：[AOP 原理](../../../04.spring-backend/08-annotations/aop.md) | [事务传播](../../../04.spring-backend/04-data/transaction/propagation-and-isolation.md) | [Bean 生命周期](../../../04.spring-backend/01-core/ioc/bean-lifecycle.md)
 - **延伸**：[cglib](https://github.com/cglib/cglib) | [Spring AOP](https://docs.spring.io/spring-framework/reference/core/aop.html)
 
 ---
 
-*本文档属于 `note/13.split-hairs` 系列，深度等级 ⭐⭐⭐⭐*
+*本文档属于 `12.interview` 系列，深度等级 ⭐⭐⭐⭐*
 
 ## 相关章节
 

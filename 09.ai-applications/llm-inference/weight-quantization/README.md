@@ -459,20 +459,20 @@ print(outputs[0].outputs[0].text)
 - [推测解码](../speculative-decoding/README.md) — 小 draft model 用 INT4 加速 accept rate
 
 ### 跨模块（其他主模块）
-- **NF4 与 QLoRA 训练**：→ [`note/09.ai-applications/fine-tuning/06-peft-lora.md`](../../fine-tuning/06-peft-lora.md) — NF4 设计初衷就是给 LoRA 训练省显存
-- **量化数学基础**：→ `note/08.ai-foundations/02-deep-learning/`（占位，⚠️ 待 Phase 1+ 补《训练 vs 推理量化》深度文）
-- **LLM 推理全景**：→ [`note/09.ai-applications/llm-inference/llm-inference-optimization/README.md`](../llm-inference-optimization/README.md) — 量化是 4 大优化之一（KV/Flash/Quant/Batch）
-- **H100 FP8 硬件支持**：→ `note/08.ai-foundations/02-deep-learning/deep-learning-frameworks.md`
+- **NF4 与 QLoRA 训练**：→ [`09.ai-applications/fine-tuning/06-peft-lora.md`](../../fine-tuning/06-peft-lora.md) — NF4 设计初衷就是给 LoRA 训练省显存
+- **量化数学基础**：→ `08.ai-foundations/02-deep-learning/`（占位，⚠️ 待 Phase 1+ 补《训练 vs 推理量化》深度文）
+- **LLM 推理全景**：→ [`09.ai-applications/llm-inference/llm-inference-optimization/README.md`](../llm-inference-optimization/README.md) — 量化是 4 大优化之一（KV/Flash/Quant/Batch）
+- **H100 FP8 硬件支持**：→ `08.ai-foundations/02-deep-learning/deep-learning-frameworks.md`
 
 ### 面试题（高频深挖）
-- → [`note/12.interview/11.ai/inference-engine-selection/`](../../../12.interview/11.ai/inference-engine-selection/) — 推理引擎选型（含量化决策）
-- → [`note/12.interview/11.ai/llm-inference/`](../../../12.interview/11.ai/llm-inference/) — LLM 推理面试题（量化、KV cache、batching）
-- → [`note/12.interview/11.ai/llm-benchmark/`](../../../12.interview/11.ai/llm-benchmark/) — 量化精度评估方法（PPL / MMLU / CEval）
-- → [`note/12.interview/11.ai/llm-cost-control/`](../../../12.interview/11.ai/llm-cost-control/) — 量化降本案例
-- → [`note/12.interview/11.ai/inference-engine-selection/`](../../../12.interview/11.ai/inference-engine-selection/)
+- → [`12.interview/11.ai/inference-engine-selection/`](../../../12.interview/11.ai/inference-engine-selection/) — 推理引擎选型（含量化决策）
+- → [`12.interview/11.ai/llm-inference/`](../../../12.interview/11.ai/llm-inference/) — LLM 推理面试题（量化、KV cache、batching）
+- → [`12.interview/11.ai/llm-benchmark/`](../../../12.interview/11.ai/llm-benchmark/) — 量化精度评估方法（PPL / MMLU / CEval）
+- → [`12.interview/11.ai/llm-cost-control/`](../../../12.interview/11.ai/llm-cost-control/) — 量化降本案例
+- → [`12.interview/11.ai/inference-engine-selection/`](../../../12.interview/11.ai/inference-engine-selection/)
 
 ### 阿明餐厅（叙事包装）
-- → [`note/13.story/46-llm-inference.md`](../../../13.story/46-llm-inference.md) — 「阿明用 INT4 给餐厅菜单瘦身」叙事版（同主题故事化讲解）
+- → [`13.story/46-llm-inference.md`](../../../13.story/46-llm-inference.md) — 「阿明用 INT4 给餐厅菜单瘦身」叙事版（同主题故事化讲解）
 
 ---
 
