@@ -149,7 +149,7 @@ Vercel AI SDK / Anthropic SDK / OpenAI SDK 把 LLM 调用抽象为 `streamText` 
 
 - 上游:[`02.cs-foundations/03-network`](../02.cs-foundations/03-network/README.md) — HTTP 协议族
 - 下游:[`04.spring-backend`](../04.spring-backend/README.md) / [`09.ai-applications`](../09.ai-applications/README.md) — 后端与 AI 知识体系
-- 横切:[`05.tools/05-monorepo`](../07.devops-and-tools/01-tools/05-monorepo/) — Monorepo 工具链与 `04-engineering` 互补
+- 横切:[`07.devops-and-tools/01-tools/05-monorepo`](../07.devops-and-tools/01-tools/05-monorepo/) — Monorepo 工具链与 `04-engineering` 互补
 - 关联:[`06.distributed-systems`](../06.distributed-systems/README.md) — 跨端与架构的系统设计参考
 - 主题阅读:[`13.story`](../13.story/README.md) — 阿明餐厅系列(前端篇 / 多端篇 / AI 学习悖论)
 - 咬文嚼字:[`12.interview/09.front-end`](../12.interview/09.front-end/) — 前端细节专题

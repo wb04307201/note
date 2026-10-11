@@ -39,7 +39,7 @@ module:
 ## 🔗 兄弟章节
 
 - **理论深度**：[`12.interview/04.system-design/02-distributed/distributed-transaction`](../../../../06.distributed-systems/02-distributed/distributed-transaction/README.md) — 共识算法 / CAP / BASE 理论
-- **工作流视角**：[`07.workflow`](../../../../07.devops-and-tools/02-workflow/README.md) — Saga/TCC 也是分布式协作模式
+- **工作流视角**：[`07.devops-and-tools/02-workflow`](../../../../07.devops-and-tools/02-workflow/README.md) — Saga/TCC 也是分布式协作模式
 - **咬文嚼字**：[`12.interview/03.database`](../../../../12.interview/03.database/README.md) — 数据库事务隔离级别
 - **面试深挖**：[`12.interview/06.spring`](../../../../12.interview/06.spring/README.md) — Spring 事务高频题
 

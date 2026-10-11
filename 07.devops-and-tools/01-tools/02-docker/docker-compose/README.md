@@ -231,7 +231,7 @@ docker compose up -d
 ## 六、相关章节
 
 - [Docker 命令速查](../command/README.md) · [镜像构建](../images/README.md) · [Podman](../podman/README.md)
-- 上游：[`05.tools`](../../README.md) — 工具链总览
+- 上游：[`07.devops-and-tools/01-tools`](../../README.md) — 工具链总览
 - 关联：[`06.spring`](../../../../04.spring-backend/README.md) — Spring Boot 应用容器化
 
 ← [返回: 工具链 · docker-compose](../README.md)

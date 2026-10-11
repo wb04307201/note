@@ -68,7 +68,7 @@ graph TD
 
 - 上游：[`03-database`](../../03.data-stack/01-database/README.md) — 数据库基础（MySQL/Redis 底层原理）
 - 平行：[`03-high-availability`](../03-high-availability/README.md) — 高可用（性能与可用性的权衡）
-- 工具：[`05.tools`](../../07.devops-and-tools/01-tools/README.md) — Nginx 负载均衡配置
+- 工具：[`07.devops-and-tools/01-tools`](../../07.devops-and-tools/01-tools/README.md) — Nginx 负载均衡配置
 - 面试：[`12.interview/04.system-design`](../../12.interview/04.system-design/README.md) — 系统设计面试题
 
 ## 综合入口

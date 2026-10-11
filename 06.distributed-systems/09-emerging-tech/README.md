@@ -61,7 +61,7 @@ graph TB
 
 - 平行：[`08-observability`](../08-observability/README.md) — eBPF 是可观测性的下一站
 - 平行：[`07-deployment`](../07-deployment/README.md) — 部署架构的新形态
-- 工具：[`05.tools`](../../07.devops-and-tools/01-tools/README.md) — K8s / Docker 是云原生的底座
+- 工具：[`07.devops-and-tools/01-tools`](../../07.devops-and-tools/01-tools/README.md) — K8s / Docker 是云原生的底座
 - 面试：[`12.interview/04.system-design`](../../12.interview/04.system-design/README.md) — 系统设计面试题
 
 ---

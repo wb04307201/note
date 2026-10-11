@@ -1,6 +1,6 @@
 <!--module:
   parent: tools
-  slug: 05.tools/kubernetes/07-helm
+  slug: tools/kubernetes/07-helm
   type: article
   category: 主模块子文章
   summary: Helm 速查手册：从 Chart 结构到 Helmfile 多环境管理实战
