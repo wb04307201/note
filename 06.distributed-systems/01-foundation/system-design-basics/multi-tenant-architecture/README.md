@@ -13,7 +13,7 @@ module:
 
 > 一句话定位：**多租户的难点不在"隔离"，在"隔离强度 × 规模 × 成本"的三角权衡**。面试速查版见 [13.split-hairs · multi-tenant-saas](../../../../12.interview/04.system-design/multi-tenant-saas/README.md)。
 
-> **关联章节**：架构演进终局（[12.story · 19-saas-multitenant](../../../../13.story/18-saas-multitenant.md) — 阿明从单店到加盟帝国）、单租户决策 ([14.project-management/self-vs-saas-vs-outsourcing](../../../../11.product-and-pm/self-vs-saas-vs-outsourcing/README.md))、架构演进整体路径 ([02-evolution](../../02-evolution/01-monolith-to-microservices/README.md))。
+> **关联章节**：架构演进终局（[12.story · 18-saas-multitenant](../../../../13.story/18-saas-multitenant.md) — 阿明从单店到加盟帝国）、单租户决策 ([14.project-management/self-vs-saas-vs-outsourcing](../../../../11.product-and-pm/self-vs-saas-vs-outsourcing/README.md))、架构演进整体路径 ([02-evolution](../../02-evolution/01-monolith-to-microservices/README.md))。
 
 ---
 

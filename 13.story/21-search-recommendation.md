@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 22 · 懂你的菜单
+# 21 · 懂你的菜单
 
 > 从阿明的"千人千面菜单"，看搜索与推荐系统的设计实战
 
@@ -641,7 +641,7 @@ graph TD
 - [12.story](README.md)
 ## 跨章节衔接
 
-- [20-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，搜索推荐的实时性依赖事件流：用户行为事件驱动索引更新
+- [19-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，搜索推荐的实时性依赖事件流：用户行为事件驱动索引更新
 - [12-data-kitchen.md](./12-data-kitchen.md) —— 正传 7，搜索推荐的数据架构：用户行为数据、内容数据、特征数据的存储与查询
 - [05-observability.md](./05-observability.md) —— 正传 2，推荐系统的可观测性：CTR、转化率、多样性等指标监控
 

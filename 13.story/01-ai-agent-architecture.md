@@ -333,10 +333,10 @@ graph TD
 - [12.story](README.md)
 ## 跨章节衔接
 
-- [32-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent 架构在工程化 Harness 中的落地：上下文管理、工具调用、循环控制
+- [30-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent 架构在工程化 Harness 中的落地：上下文管理、工具调用、循环控制
 - [10-api-design.md](./10-api-design.md) —— 正传 6，Agent 通过 API 与世界交互：API 是 Agent 工具调用的接口约定
-- [18-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，多 Agent 系统的分布式挑战：协调、共识、级联故障
-- [29-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，Agent 架构驱动组织自进化：Agent Loop 是组织级的 Agent
+- [17-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，多 Agent 系统的分布式挑战：协调、共识、级联故障
+- [27-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，Agent 架构驱动组织自进化：Agent Loop 是组织级的 Agent
 
 ---
 

@@ -1,16 +1,15 @@
 <!--
 story:
-  id: 47-skill-scheduling-restaurant
-  topic: 12.story
-  cluster: 番外 / AI 时代
-  narrative_type: 餐厅经营 → 工程实践
-  related:
-    - 11.ai/03-engineering/claude-code-practices/skill-hit-rate
-    - 12.interview/11.ai/skill-hit-rate
+  number: 45
+  type: 番外
+  position: 番外九
+  title: 扩招 50 个厨师：Skill 调度的餐厅隐喻
+  audience: Claude Code 深度用户 / AI 工程师
+  core_concepts: [Skill命中率, 规则路由, Skill检索, 上下文加载, 调度评估]
   depth: ⭐⭐⭐⭐
 -->
 
-# 扩招 50 个厨师：Skill 调度的餐厅隐喻
+# 45 · 扩招 50 个厨师：Skill 调度的餐厅隐喻
 
 > **系列定位**：本篇是「阿明餐厅」系列的**番外九**，用后厨调度讲透 Claude Code 在 50+ Skills 场景下的"命中率"工程。
 >
@@ -266,10 +265,10 @@ Skill frontmatter + 关键词规则路由 + 分层加载 + 离线评测集
 
 ---
 
-> 📅 2026-07-06 · 阿明餐厅 · 第 47 篇 · 番外
+> 📅 2026-07-06 · 阿明餐厅 · 第 45 篇 · 番外九
 
 ## 反向链
 
 - [46-llm-inference](46-llm-inference.md)
 
-← [返回: 阿明餐厅](README.md)
+← [返回系列导读](./index.md)

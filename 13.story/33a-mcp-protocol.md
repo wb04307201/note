@@ -8,11 +8,11 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 35a · 万能插口
+# 33a · 万能插口
 
 > 从阿明的 20 个 Agent 各自为政，到全栈打通 —— 看 AI 时代的"TCP/IP"：**MCP 协议**
 
-> **系列定位**：本篇是「阿明餐厅」系列的**续集十一（上）**。在[续集一 · 《当餐厅长出大脑》](./01-ai-agent-architecture.md)第五章，我们讲了多智能体协同（Orchestrator + 消息总线）。在[续集八 · 《Agent Harness》](./30-agent-harness.md)第三章，我们讲了 Tool 设计。但都还是"自己设计、自己实现"。2024-2026 年，业界出现了**两个重量级协议标准** —— **MCP（Model Context Protocol，Anthropic 主导）** 和 **A2A（Agent-to-Agent，Google 主导）** —— 它们正在成为 AI 时代的"TCP/IP"，让 Agent 与 Agent、Agent 与工具之间有了**统一的"语言"**。本篇（上）专门讲 **MCP —— Agent ↔ 工具的"USB-C"**；下篇[35b](./33b-a2a-protocol.md)专门讲 **A2A + 协议治理**。
+> **系列定位**：本篇是「阿明餐厅」系列的**续集十一（上）**。在[续集一 · 《当餐厅长出大脑》](./01-ai-agent-architecture.md)第五章，我们讲了多智能体协同（Orchestrator + 消息总线）。在[续集八 · 《Agent Harness》](./30-agent-harness.md)第三章，我们讲了 Tool 设计。但都还是"自己设计、自己实现"。2024-2026 年，业界出现了**两个重量级协议标准** —— **MCP（Model Context Protocol，Anthropic 主导）** 和 **A2A（Agent-to-Agent，Google 主导）** —— 它们正在成为 AI 时代的"TCP/IP"，让 Agent 与 Agent、Agent 与工具之间有了**统一的"语言"**。本篇（上）专门讲 **MCP —— Agent ↔ 工具的"USB-C"**；下篇[33b](./33b-a2a-protocol.md)专门讲 **A2A + 协议治理**。
 
 > **兄弟篇**：35b · A2A 协议 + 协议治理（[← 点击阅读](./33b-a2a-protocol.md)）
 
@@ -89,7 +89,7 @@ def order_agent_check_stock(item_id):
 
 2024 年底，**Anthropic 推出 MCP（Model Context Protocol）**；2025 年，**Google 联合 50+ 厂商推出 A2A（Agent-to-Agent）**。这两个协议在 2026 年正在成为事实标准。
 
-**本篇（上）** 聚焦 **MCP** —— Agent 调用工具的"USB-C"。**下篇[35b](./33b-a2a-protocol.md)** 聚焦 **A2A + 协议治理**（安全 / 可观测 / 趋势）。
+**本篇（上）** 聚焦 **MCP** —— Agent 调用工具的"USB-C"。**下篇[33b](./33b-a2a-protocol.md)** 聚焦 **A2A + 协议治理**（安全 / 可观测 / 趋势）。
 
 ---
 
@@ -284,7 +284,7 @@ MCP 不解决：Agent ↔ Agent
   Agent 间的状态同步、消息路由
 ```
 
-→ **A2A 协议** 解决这些问题（见[35b 第二章](./33b-a2a-protocol.md#第二章a2a-是什么--agent-协同的邮件协议)）
+→ **A2A 协议** 解决这些问题（见[33b 第二章](./33b-a2a-protocol.md#第二章a2a-是什么--agent-协同的邮件协议)）
 
 **局限 2：MCP Server 本身的安全责任**
 
@@ -295,7 +295,7 @@ MCP 协议不强制鉴权
 
 MCP Server 拿到的是 Agent 的"全部上下文"
   → 任何漏洞 = 全部泄露
-  → 这是 [33 致命三件套](./31-ai-fatal-trio.md) 中"数据外泄"的新攻击面
+  → 这是 [31 致命三件套](./31-ai-fatal-trio.md) 中"数据外泄"的新攻击面
 ```
 
 **局限 3：MCP 的"工具膨胀"问题**
@@ -503,7 +503,7 @@ server:
   auth: oauth
   scope: read-only  # 重要！只读权限
 
-# 防止 [33 致命三件套](./31-ai-fatal-trio.md) 的"过度授权"
+# 防止 [31 致命三件套](./31-ai-fatal-trio.md) 的"过度授权"
 ```
 
 ### 4.2 场景 2：MCP 接入内部业务系统
@@ -629,13 +629,13 @@ graph TB
 
 **MCP 是 Agent 时代的 USB-C —— 让 Agent ↔ 工具的接入从"N×M 复杂度"降到"N+M"。** 接入 MCP 的最大收益不是"省了开发"，是"加新工具 = 加积木"的可组合性。
 
-下一步阅读[35b · A2A 协议 + 协议治理](./33b-a2a-protocol.md)—— 工具层有 MCP，协同层用什么？安全 / 可观测 / 趋势怎么看？
+下一步阅读[33b · A2A 协议 + 协议治理](./33b-a2a-protocol.md)—— 工具层有 MCP，协同层用什么？安全 / 可观测 / 趋势怎么看？
 
 ---
 
 ## 延伸阅读
 
-- [35b · A2A 协议 + 协议治理（下篇）](./33b-a2a-protocol.md) —— A2A 协议 + 5 大安全陷阱 + 可观测性 + 5 大趋势
+- [33b · A2A 协议 + 协议治理（下篇）](./33b-a2a-protocol.md) —— A2A 协议 + 5 大安全陷阱 + 可观测性 + 5 大趋势
 - [当餐厅长出大脑](./01-ai-agent-architecture.md) —— 续集一，AI Agent 7 大模块，第五章多智能体协同是本篇前传
 - [Agent Harness](./30-agent-harness.md) —— 续集八，Harness 内的 Tool 设计直接对接 MCP 协议
 - [AI 致命三件套](./31-ai-fatal-trio.md) —— 续集九，协议层是三件套的"新攻击面"

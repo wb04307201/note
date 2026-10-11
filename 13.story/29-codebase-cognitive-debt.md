@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 31 · Codebase 认知债
+# 29 · Codebase 认知债
 
 > 从阿明的 500 道菜 50 万行代码，看 AI 时代最大的隐形负债 —— 认知债
 
@@ -650,7 +650,7 @@ graph TD
 
 - [03-refactoring-guide-for-pm.md](./03-refactoring-guide-for-pm.md) —— 番外一，认知债是技术债的一种：重构是偿还认知债的核心手段
 - [08-qa-testing-strategy.md](./08-qa-testing-strategy.md) —— 正传 4，测试是认知债的度量工具：测试覆盖率反映代码可理解性
-- [30-ai-hallucination-safety.md](./28-ai-hallucination-safety.md) —— 续集六，认知债严重的代码加剧 AI 幻觉：上下文噪音让 AI 输出更易出错
+- [28-ai-hallucination-safety.md](./28-ai-hallucination-safety.md) —— 续集六，认知债严重的代码加剧 AI 幻觉：上下文噪音让 AI 输出更易出错
 
 ---
 

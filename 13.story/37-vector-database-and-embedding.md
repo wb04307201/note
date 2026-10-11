@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 39 · 味道仓库
+# 37 · 味道仓库
 
 > 从阿明的"向量库慢 / 召回差 / 成本高"，看向量数据库与 Embedding —— **6 大主流向量库对比 + Embedding 模型选型 + 性能调优 + 成本控制**
 
@@ -419,7 +419,7 @@ async def get_embedding(text):
 
 ## 第五章：向量数据库的成本与监控 —— 每找一次食材花多少钱，仓库仪表盘怎么看
 
-### 5.1 成本结构（详见 [36a 第二章 2.3](./34a-ai-token-cost-structure.md#23-组件-3向量数据库成本占-5-10)）
+### 5.1 成本结构（详见 [34a 第二章 2.3](./34a-ai-token-cost-structure.md#23-组件-3向量数据库成本占-5-10)）
 
 ```text
 向量库成本 = 存储费 + 查询费 + 网络费
@@ -518,7 +518,7 @@ async def search_with_metrics(query):
 
 工具：Qdrant + Elasticsearch + Cohere Rerank
 
-详见 [38 第二章 2.1](./36-rag-retrieval-augmented-generation.md#21-模式-1hybrid-search混合检索)
+详见 [36 第二章 2.1](./36-rag-retrieval-augmented-generation.md#21-模式-1hybrid-search混合检索)
 ```
 
 ### 6.3 元数据过滤
@@ -583,7 +583,7 @@ PQ（Product Quantization）：
   - Arize Phoenix + Milvus
   - OpenLLMetry + 任何向量库
 
-详见 [37 · AI 可观测性](./35-ai-observability.md)
+详见 [35 · AI 可观测性](./35-ai-observability.md)
 ```
 
 ### 7.2 检索质量监控
@@ -775,9 +775,9 @@ async def monitor_retrieval_quality(query, results):
 ## 延伸阅读
 
 - [RAG 检索增强生成 38](./36-rag-retrieval-augmented-generation.md) —— 续集十四，向量检索是 RAG 的核心环节
-- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [36b 成本优化](./34b-ai-token-cost-optimization.md) —— 续集十二，向量库与 Embedding 成本详解
+- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [34b 成本优化](./34b-ai-token-cost-optimization.md) —— 续集十二，向量库与 Embedding 成本详解
 - [AI 可观测性 37](./35-ai-observability.md) —— 续集十三，向量检索的 trace 与监控
-- [AI 评测工程 34a/34b](./32a-ai-evaluation-fundamentals.md) / [34b](./32b-ai-evaluation-pipeline.md) —— 续集十，向量检索的 Recall / MRR 评测
+- [AI 评测工程 32a/32b](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) —— 续集十，向量检索的 Recall / MRR 评测
 
 ---
 

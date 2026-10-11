@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 41 · 自建中央厨房
+# 39 · 自建中央厨房
 
 > 从阿明的"OpenAI 又被封 + 数据不能出云"，看 AI 私有化部署 —— **5 大部署形态 + 4 大推理框架 + 量化 / 微调 / GPU 利用率 + 成本对比**
 
@@ -714,7 +714,7 @@ API 方案（GPT-4o）：
 
 ## 延伸阅读
 
-- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [36b 成本优化](./34b-ai-token-cost-optimization.md) —— 续集十二，私有化 vs API 成本对比
+- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [34b 成本优化](./34b-ai-token-cost-optimization.md) —— 续集十二，私有化 vs API 成本对比
 - [AI 合规与监管 40](./38-ai-compliance-and-regulation.md) —— 续集十六，数据出境的合规要求
 - [可观测性 37](./35-ai-observability.md) —— 续集十三，私有化部署的监控
 - [RAG 38](./36-rag-retrieval-augmented-generation.md) —— 续集十四，私有化 RAG 系统

@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 42 · 点菜单的艺术
+# 40 · 点菜单的艺术
 
 > 从阿明的"AI 答非所问 / 输出不稳定 / 成本失控"，看 Prompt 工程 —— **10 大经典模式 + 7 大高级技术 + 4 大优化策略 + 评测 + 模板库**
 
@@ -479,7 +479,7 @@ prompt = template.format(
 
 2. Embedding 缓存：
    - 缓存相似用户问题的检索结果
-   - 见 [39 第四章 4.4](./37-vector-database-and-embedding.md#44-调优-4缓存策略)
+   - 见 [37 第四章 4.4](./37-vector-database-and-embedding.md#44-调优-4缓存策略)
 
 3. 结果缓存：
    - 缓存常见问题的答案
@@ -528,7 +528,7 @@ prompt = template.format(
 
 方法 2：LLM-as-Judge
   - 用 GPT-4o 评估 GPT-3.5 的输出
-  - 详见 [34a 第四章 LLM-as-Judge](./32a-ai-evaluation-fundamentals.md#第四章llm-as-judge-实战)
+  - 详见 [32a 第四章 LLM-as-Judge](./32a-ai-evaluation-fundamentals.md#第四章llm-as-judge-实战)
 
 方法 3：自动评测
   - 规则匹配（关键词 / 格式）
@@ -807,10 +807,10 @@ prompt = template.format(
 ## 延伸阅读
 
 - LLM 提示词基础 06 —— 入门级 Prompt 技巧
-- [AI 评测工程 34a](./32a-ai-evaluation-fundamentals.md) / [34b](./32b-ai-evaluation-pipeline.md) —— Prompt 评测方法
+- [AI 评测工程 34a](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) —— Prompt 评测方法
 - [可观测性 37](./35-ai-observability.md) —— Prompt 监控与 A/B
 - [RAG 38](./36-rag-retrieval-augmented-generation.md) —— RAG 中的 Prompt 优化
-- [成本结构 36a](./34a-ai-token-cost-structure.md) / [36b 成本优化](./34b-ai-token-cost-optimization.md) —— Prompt 成本控制
+- [成本结构 36a](./34a-ai-token-cost-structure.md) / [34b 成本优化](./34b-ai-token-cost-optimization.md) —— Prompt 成本控制
 
 ---
 

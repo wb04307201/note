@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 43 · 五感餐厅
+# 41 · 五感餐厅
 
 > 从阿明的"AI 只会文字"，看多模态 AI —— **5 大模态 + 4 大融合架构 + 7 大应用场景 + 5 大技术挑战 + 评测**
 
@@ -356,7 +356,7 @@ response, history = model.chat(
   3. 跨模态检索
   4. 多模态生成
 
-详见 [38 · RAG 专题](./36-rag-retrieval-augmented-generation.md)
+详见 [36 · RAG 专题](./36-rag-retrieval-augmented-generation.md)
 ```
 
 ---
@@ -436,7 +436,7 @@ response, history = model.chat(
   2. 权限控制（按角色访问）
   3. 加密传输与存储
   4. AI 标识（生成内容必须标识）
-  5. 合规审计（详见 [40 · AI 合规](./38-ai-compliance-and-regulation.md)）
+  5. 合规审计（详见 [38 · AI 合规](./38-ai-compliance-and-regulation.md)）
 ```
 
 ### 5.5 挑战 5：模型选择
@@ -588,7 +588,7 @@ ROI：
 - [RAG 38](./36-rag-retrieval-augmented-generation.md) —— 多模态 RAG 专题
 - [可观测性 37](./35-ai-observability.md) —— 多模态系统的可观测性
 - [私有化部署 41](./39-ai-private-deployment.md) —— 多模态模型私有化
-- [成本结构 36a](./34a-ai-token-cost-structure.md) / [36b 成本优化](./34b-ai-token-cost-optimization.md) —— 多模态成本控制
+- [成本结构 36a](./34a-ai-token-cost-structure.md) / [34b 成本优化](./34b-ai-token-cost-optimization.md) —— 多模态成本控制
 - [AI 合规 40](./38-ai-compliance-and-regulation.md) —— 深度伪造 / 隐私合规
 
 ---

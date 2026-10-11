@@ -29,10 +29,10 @@ module:
 | 续集一 · AI Agent | 1 | [01](./01-ai-agent-architecture.md) | 当餐厅长出大脑 |
 | 正传 1-6 · 基础设施 | 6 | [04](./04-peak-traffic-defense.md) / [05](./05-observability.md) / [06](./06-security-architecture.md) / [08](./08-qa-testing-strategy.md) / [09](./09-cicd-devops.md) / [10](./10-api-design.md) | 流量 / 可观测 / 安全 / QA / CI-CD / API |
 | 正传 7-10 · 工程质量 | 4 | [12](./12-data-kitchen.md) / [13](./13-frontend-renovation.md) / [15](./15-incident-response.md) / [16](./16-performance-optimization.md) | 数据 / 前端 / 故障 / 性能 |
-| 正传 11-14 · 系统进阶 | 4 | [20](./19-realtime-eventdriven.md) / [18](./17-distributed-puzzles.md) / [21](./20-multiplatform-architecture.md) / [24](./22-database-migration.md) | 异步 / 分布式 / 多端 / 数据库迁移 |
+| 正传 11-14 · 系统进阶 | 4 | [19](./19-realtime-eventdriven.md) / [17](./17-distributed-puzzles.md) / [20](./20-multiplatform-architecture.md) / [22](./22-database-migration.md) | 异步 / 分布式 / 多端 / 数据库迁移 |
 | 终章 · 组织管理 | 1 | [07](./07-from-chef-to-ceo.md) | 从厨师到 CEO，500 人像 5 人协作 |
-| 番外 · 专题拓展 | 10 | [03](./03-refactoring-guide-for-pm.md) / [14](./14-cloud-finops.md) / [19](./18-saas-multitenant.md) / [22](./21-search-recommendation.md) / [25](./23-lowcode-platform.md) / [26](./24-globalization.md) / [42](./40-prompt-engineering.md) / [43](./41-multimodal-ai.md) / [番外九 Skill 调度](./45-skill-scheduling-restaurant.md) / [LLM 推理优化](./46-llm-inference.md) | 重构 / FinOps / SaaS / 搜索 / 低代码 / 国际化 / Prompt / 多模态 / Skill 调度 / LLM 推理 |
-| 续集 2-21 · AI 时代 | 23 | [11](./11-ai-learning-paradox.md) ~ [47](./47-boss-hallucination.md)（含 [34a](./32a-ai-evaluation-fundamentals.md) / [34b](./32b-ai-evaluation-pipeline.md) / [35a](./33a-mcp-protocol.md) / [35b](./33b-a2a-protocol.md) / [36a](./34a-ai-token-cost-structure.md) / [36b](./34b-ai-token-cost-optimization.md)） | AI 时代 23 大主题 |
+| 番外 · 专题拓展 | 10 | [03](./03-refactoring-guide-for-pm.md) / [14](./14-cloud-finops.md) / [18](./18-saas-multitenant.md) / [21](./21-search-recommendation.md) / [23](./23-lowcode-platform.md) / [24](./24-globalization.md) / [40](./40-prompt-engineering.md) / [41](./41-multimodal-ai.md) / [45 番外九 Skill 调度](./45-skill-scheduling-restaurant.md) / [46 LLM 推理优化](./46-llm-inference.md) | 重构 / FinOps / SaaS / 搜索 / 低代码 / 国际化 / Prompt / 多模态 / Skill 调度 / LLM 推理 |
+| 续集 2-21 · AI 时代 | 23 | [11](./11-ai-learning-paradox.md) ~ [47](./47-boss-hallucination.md)（含 [32a](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) / [33a](./33a-mcp-protocol.md) / [33b](./33b-a2a-protocol.md) / [34a](./34a-ai-token-cost-structure.md) / [34b](./34b-ai-token-cost-optimization.md)） | AI 时代 23 大主题 |
 | **合计** | **50** | — | 47 叙事段 + 3 个 a/b 拆分 |
 
 ### 1.2 辅助资料
@@ -51,7 +51,7 @@ module:
 - **架构师 / SRE**：前传 → 正传 1-14 → 终章 → 番外一-六
 - **CTO / 技术管理者**：终章 → 续集三 → 续集五 → 续集七 → 续集八 → 续集十二 → 续集十八 → 续集十九 → 续集二十 → 续集二十一
 - **创业者 / AI 产品经理**：续集四 → 续集五 → 续集六 → 续集十二 → 续集十九 → 续集二十 → 番外三
-- **2026 三大热点（3 小时）**：续集十九 [45 生产力悖论](./43-ai-productivity-paradox.md) → 续集十八 [44 谁负责](./42-ai-engineer-responsibility.md) → 续集二十 [46 技术债困局](./44-tech-debt-career-trap.md)
+- **2026 三大热点（3 小时）**：续集十九 [43 生产力悖论](./43-ai-productivity-paradox.md) → 续集十八 [42 谁负责](./42-ai-engineer-responsibility.md) → 续集二十 [44 技术债困局](./44-tech-debt-career-trap.md)
 
 ---
 
@@ -171,24 +171,24 @@ graph LR
 |------|------|------|----------|
 | 一 | AI Agent 架构 | [01](./01-ai-agent-architecture.md) | 当餐厅长出大脑 |
 | 二 | AI 学徒危机 | [11](./11-ai-learning-paradox.md) | 认知卸载与刻意练习 2.0 |
-| 三 | AI 组织转型 | [27](./25-ai-org-transformation.md) | 自动化的本质是换岗不是省人 |
-| 四 | AI 原生创业 | [28](./26-ai-native-startup.md) | 智能体工作流替代创始人注意力 |
-| 五 | 自我进化组织 | [29](./27-self-evolving-company.md) | 公司是 Agent Loop 不是金字塔 |
-| 六 | AI 幻觉护栏 | [30](./28-ai-hallucination-safety.md) | 三层护栏 + 信任校准 |
-| 七 | Codebase 认知债 | [31](./29-codebase-cognitive-debt.md) | AI 时代最大的隐形负债 |
-| 八 | Agent Harness | [32](./30-agent-harness.md) | Harness 是 Agent 时代操作系统 |
-| 九 | 致命三件套 | [33](./31-ai-fatal-trio.md) | 注入 / 越权 / 泄露协同致命 |
-| 十 | AI 评测 | [34a](./32a-ai-evaluation-fundamentals.md) / [34b](./32b-ai-evaluation-pipeline.md) | 6 大维度 + 5 层流水线 |
-| 十一 | MCP / A2A 协议 | [35a](./33a-mcp-protocol.md) / [35b](./33b-a2a-protocol.md) | AI 时代 TCP/IP |
-| 十二 | Token 经济学 | [36a](./34a-ai-token-cost-structure.md) / [36b](./34b-ai-token-cost-optimization.md) | 看不见的成本最可怕 |
-| 十三 | AI 可观测性 | [37](./35-ai-observability.md) | 3 传统支柱 + 4 AI 支柱 = 7 支柱 |
-| 十四 | RAG | [38](./36-rag-retrieval-augmented-generation.md) | 幻觉率 29% → 3% |
-| 十五 | 向量数据库 | [39](./37-vector-database-and-embedding.md) | 6 大向量库选型 |
-| 十六 | AI 合规 | [40](./38-ai-compliance-and-regulation.md) | EU AI Act / GDPR / PIPL |
-| 十七 | AI 私有化 | [41](./39-ai-private-deployment.md) | 3 年回本是黄金线 |
-| 十八 | AI 责任 | [44](./42-ai-engineer-responsibility.md) | 系统责任金字塔 + 4 大岗位重定义 |
-| 十九 | 生产力悖论 | [45](./43-ai-productivity-paradox.md) | DORA 放大器理论 |
-| 二十 | 技术债困局 | [46](./44-tech-debt-career-trap.md) | 救火 3 年不如建设 1 年 |
+| 三 | AI 组织转型 | [25](./25-ai-org-transformation.md) | 自动化的本质是换岗不是省人 |
+| 四 | AI 原生创业 | [26](./26-ai-native-startup.md) | 智能体工作流替代创始人注意力 |
+| 五 | 自我进化组织 | [27](./27-self-evolving-company.md) | 公司是 Agent Loop 不是金字塔 |
+| 六 | AI 幻觉护栏 | [28](./28-ai-hallucination-safety.md) | 三层护栏 + 信任校准 |
+| 七 | Codebase 认知债 | [29](./29-codebase-cognitive-debt.md) | AI 时代最大的隐形负债 |
+| 八 | Agent Harness | [30](./30-agent-harness.md) | Harness 是 Agent 时代操作系统 |
+| 九 | 致命三件套 | [31](./31-ai-fatal-trio.md) | 注入 / 越权 / 泄露协同致命 |
+| 十 | AI 评测 | [32a](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) | 6 大维度 + 5 层流水线 |
+| 十一 | MCP / A2A 协议 | [33a](./33a-mcp-protocol.md) / [33b](./33b-a2a-protocol.md) | AI 时代 TCP/IP |
+| 十二 | Token 经济学 | [34a](./34a-ai-token-cost-structure.md) / [34b](./34b-ai-token-cost-optimization.md) | 看不见的成本最可怕 |
+| 十三 | AI 可观测性 | [35](./35-ai-observability.md) | 3 传统支柱 + 4 AI 支柱 = 7 支柱 |
+| 十四 | RAG | [36](./36-rag-retrieval-augmented-generation.md) | 幻觉率 29% → 3% |
+| 十五 | 向量数据库 | [37](./37-vector-database-and-embedding.md) | 6 大向量库选型 |
+| 十六 | AI 合规 | [38](./38-ai-compliance-and-regulation.md) | EU AI Act / GDPR / PIPL |
+| 十七 | AI 私有化 | [39](./39-ai-private-deployment.md) | 3 年回本是黄金线 |
+| 十八 | AI 责任 | [42](./42-ai-engineer-responsibility.md) | 系统责任金字塔 + 4 大岗位重定义 |
+| 十九 | 生产力悖论 | [43](./43-ai-productivity-paradox.md) | DORA 放大器理论 |
+| 二十 | 技术债困局 | [44](./44-tech-debt-career-trap.md) | 救火 3 年不如建设 1 年 |
 | 二十一 | 老板幻觉 | [47](./47-boss-hallucination.md) | 老板盲信 AI 输出做战略决策 |
 
 ### 3.3 三大热点（2026 必读）
@@ -235,10 +235,10 @@ graph LR
 
 | 编号 | 主题 | 一句话 |
 |------|------|--------|
-| [20](./19-realtime-eventdriven.md) | 厨房实况直播 | MQ + EDA + 事件溯源 + CDC + WebSocket |
-| [18](./17-distributed-puzzles.md) | 十家店的烦恼 | CAP + 分布式锁 + 幂等性 + 脑裂 + 雪花算法 |
-| [21](./20-multiplatform-architecture.md) | 一个厨房四个门面 | BFF + 跨平台 + 离线优先 + 多端发布 |
-| [24](./22-database-migration.md) | 仓库搬家不停业 | 在线 DDL + 双写迁移 + 影子表 + 分库分表 |
+| [19](./19-realtime-eventdriven.md) | 厨房实况直播 | MQ + EDA + 事件溯源 + CDC + WebSocket |
+| [17](./17-distributed-puzzles.md) | 十家店的烦恼 | CAP + 分布式锁 + 幂等性 + 脑裂 + 雪花算法 |
+| [20](./20-multiplatform-architecture.md) | 一个厨房四个门面 | BFF + 跨平台 + 离线优先 + 多端发布 |
+| [22](./22-database-migration.md) | 仓库搬家不停业 | 在线 DDL + 双写迁移 + 影子表 + 分库分表 |
 
 ### 4.6 终章 · 组织管理（1 篇）
 
@@ -250,12 +250,12 @@ graph LR
 |------|------|--------|
 | [03](./03-refactoring-guide-for-pm.md) | 给 PM 的重构说明书 | 绞杀者模式 + 重构 ROI 量化 |
 | [14](./14-cloud-finops.md) | 阿明的省钱经 | 120 万云账单 → 68 万：FinOps + Right-Sizing |
-| [19](./18-saas-multitenant.md) | 阿明的加盟帝国 | 多租户 + 数据隔离 + 租户路由 + 计费模型 |
-| [22](./21-search-recommendation.md) | 懂你的菜单 | 倒排索引 + 协同过滤 + 向量检索 + AB 测试 |
-| [25](./23-lowcode-platform.md) | 预制菜还是现炒 | 低代码 + Escape Hatch + 隐性成本 + 平台锁定 |
-| [26](./24-globalization.md) | 阿明出海记 | i18n / l10n + 时区 + 多币种 + GDPR / PIPL / APPI |
-| [42](./40-prompt-engineering.md) | 点菜单的艺术 | 10 大 Prompt 模式 + 7 高级技术 + 4 优化 |
-| [43](./41-multimodal-ai.md) | 五感餐厅 | 5 大模态 + 3 融合架构 + 6 模型 + 5 场景 |
+| [18](./18-saas-multitenant.md) | 阿明的加盟帝国 | 多租户 + 数据隔离 + 租户路由 + 计费模型 |
+| [21](./21-search-recommendation.md) | 懂你的菜单 | 倒排索引 + 协同过滤 + 向量检索 + AB 测试 |
+| [23](./23-lowcode-platform.md) | 预制菜还是现炒 | 低代码 + Escape Hatch + 隐性成本 + 平台锁定 |
+| [24](./24-globalization.md) | 阿明出海记 | i18n / l10n + 时区 + 多币种 + GDPR / PIPL / APPI |
+| [40](./40-prompt-engineering.md) | 点菜单的艺术 | 10 大 Prompt 模式 + 7 高级技术 + 4 优化 |
+| [41](./41-multimodal-ai.md) | 五感餐厅 | 5 大模态 + 3 融合架构 + 6 模型 + 5 场景 |
 
 ### 4.8 续集 2-21 · AI 时代（23 篇）
 
@@ -270,10 +270,10 @@ graph LR
 | **新人入门** | 按"前传 → 续集一 → 正传 1-14 → 终章"顺序读，建立完整技术世界观 |
 | **AI 编码落地** | 先读 [续集 7 认知债](./29-codebase-cognitive-debt.md) → [续集 8 Harness](./30-agent-harness.md) → [续集 9 致命三件套](./31-ai-fatal-trio.md) 再上手 |
 | **架构评审** | 引用 [前传 第二章 IT 成熟度](./02-system-architecture-evolution.md) L1-L7 对标当前阶段 |
-| **AI 成本治理** | 读 [36b Token 优化](./34b-ai-token-cost-optimization.md) + [续集 5 自进化](./27-self-evolving-company.md) 监控 Agent Loop |
+| **AI 成本治理** | 读 [34b Token 优化](./34b-ai-token-cost-optimization.md) + [续集 5 自进化](./27-self-evolving-company.md) 监控 Agent Loop |
 | **故障复盘** | 用 [正传 9 差评危机](./15-incident-response.md) Blameless Postmortem 模板 + [05 可观测性](./05-observability.md) 三大支柱 |
 | **AI 选型决策** | 速查表 + [cheatsheet.md](./cheatsheet.md) 4 大决策表 |
-| **个人职业发展** | 读 [46 技术债困局](./44-tech-debt-career-trap.md) → [45 生产力悖论](./43-ai-productivity-paradox.md) → [44 谁负责](./42-ai-engineer-responsibility.md) |
+| **个人职业发展** | 读 [44 技术债困局](./44-tech-debt-career-trap.md) → [43 生产力悖论](./43-ai-productivity-paradox.md) → [42 谁负责](./42-ai-engineer-responsibility.md) |
 
 ---
 

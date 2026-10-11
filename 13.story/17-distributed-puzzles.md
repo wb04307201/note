@@ -734,9 +734,9 @@ graph TD
 - [12.story](README.md)
 ## 跨章节衔接
 
-- [20-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，分布式难题的异步解法：事件驱动是分布式一致性的实践路径之一
+- [19-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，分布式难题的异步解法：事件驱动是分布式一致性的实践路径之一
 - [12-data-kitchen.md](./12-data-kitchen.md) —— 正传 7，CAP 权衡在数据层的具体体现：分库分表后的分布式事务
-- [24-database-migration.md](./22-database-migration.md) —— 正传 14，分布式环境下的数据迁移挑战：流量切换、双写校验、回滚预案
+- [22-database-migration.md](./22-database-migration.md) —— 正传 14，分布式环境下的数据迁移挑战：流量切换、双写校验、回滚预案
 
 ---
 

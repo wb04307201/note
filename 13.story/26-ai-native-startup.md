@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 28 · 阿明的二次创业
+# 26 · 阿明的二次创业
 
 > 从阿明用 AI 开第二家店，看 AI 原生创业的四阶段方法论
 
@@ -346,7 +346,7 @@ graph TD
 
 - [01-ai-agent-architecture.md](./01-ai-agent-architecture.md) —— 续集一，AI 原生创业的 Agent 架构基线：多 Agent 协作的产品化
 - [07-from-chef-to-ceo.md](./07-from-chef-to-ceo.md) —— 终章，AI 原生创业对创始人的能力要求：技术-商业-管理的三角
-- [27-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，AI 原生创业的组织设计：从零开始设计 AI 时代的组织
+- [25-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，AI 原生创业的组织设计：从零开始设计 AI 时代的组织
 - [11-ai-learning-paradox.md](./11-ai-learning-paradox.md) —— 续集二，AI 原生创业中的学习悖论：创业团队不能全靠 AI
 
 ---

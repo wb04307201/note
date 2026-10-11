@@ -66,6 +66,8 @@ module:
 | 续集十七 | [AI 模型私有化部署](./39-ai-private-deployment.md) | 5 大形态 + 4 大推理框架 + AWQ/INT4 + LoRA + 5 年 TCO | 短期 API、中期混合、长期核心私有化 |
 | 番外七 | [Prompt 工程深度专题](./40-prompt-engineering.md) | 10 大模式 + 7 大技术 + 4 大优化 + 4 大模板库 + 5 大安全防御 | 每次调整 1 个变量，做 1000 次实验，看数据说话 |
 | 番外八 | [多模态 AI 应用工程](./41-multimodal-ai.md) | 5 大模态 + 3 大融合 + 6 大模型 + 5 大场景 + 5 大挑战 + 评测 | 单模态 LLM 将被淘汰，多模态是入场券 |
+| 番外九 | [扩招 50 个厨师：Skill 调度的餐厅隐喻](./45-skill-scheduling-restaurant.md) | 50+ Skills 命中率：四层模型（规则路由 / Skill 检索 / 上下文加载 / 调度评估）+ 五大反模式 + 30 条规则覆盖 80% | Skill 越多越要管，否则前厅一喊全员出动 |
+| 番外 · 推理篇 | [LLM 推理优化：上菜革命](./46-llm-inference.md) | 五招合一：KV Cache / PagedAttention / Continuous Batching / 投机解码 / 权重量化，同样厨房 30 客/天 → 2000 客/天 | 推理优化不是换更大的厨房，是改后厨的干活方式 |
 | 续集十八 | [AI 替你写代码，谁替系统负责](./42-ai-engineer-responsibility.md) | 系统责任金字塔 + 4 大岗位重定义 + 6 大新岗位 | AI 是最好的工具，但它不是工程师 |
 | 续集十九 | [AI 提速 3 倍，交付反而慢了](./43-ai-productivity-paradox.md) | 4 大研究数据 + DORA 放大器理论 + 资深 vs 初级鸿沟 | 不要被 AI 的数量迷惑，要看 AI 的价值 |
 | 续集二十 | [你接手的烂代码，正在决定你哪天被淘汰](./44-tech-debt-career-trap.md) | 技术债复利 + 4 判断标准 + 4 增值动作 + 该不该跑决策 | 救火 3 年不如建设 1 年 |

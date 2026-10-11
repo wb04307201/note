@@ -342,9 +342,9 @@ graph TD
 - [12.story](README.md)
 ## 跨章节衔接
 
-- [27-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，学徒困境在组织层面的映射：组织学习比个人学习更复杂
-- [28-ai-native-startup.md](./26-ai-native-startup.md) —— 续集四，AI 原生创业中的学习悖论：创业者不能全靠 AI
-- [29-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，自进化组织的学习闭环：组织是更大的"学徒"
+- [25-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，学徒困境在组织层面的映射：组织学习比个人学习更复杂
+- [26-ai-native-startup.md](./26-ai-native-startup.md) —— 续集四，AI 原生创业中的学习悖论：创业者不能全靠 AI
+- [27-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，自进化组织的学习闭环：组织是更大的"学徒"
 
 ---
 

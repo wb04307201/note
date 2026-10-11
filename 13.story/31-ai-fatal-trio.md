@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 33 · AI 致命三件套
+# 31 · AI 致命三件套
 
 > 从阿明的 3 起 AI 事故，看 AI 系统的 3 大致命漏洞 —— 注入、越权、泄露，三者组合一次攻击就能致命
 
@@ -836,9 +836,9 @@ graph TD
 ## 跨章节衔接
 
 - [06-security-architecture.md](./06-security-architecture.md) —— 正传 3，AI 时代的权限滥用是安全架构的新战场：传统安全模型在 AI 失效
-- [32-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent Harness 是三大致命漏洞的工程防线：上下文隔离、权限控制、输出过滤
+- [30-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent Harness 是三大致命漏洞的工程防线：上下文隔离、权限控制、输出过滤
 - [15-incident-response.md](./15-incident-response.md) —— 正传 9，AI 安全事件的应急响应：Prompt 注入、权限滥用都是新型故障
-- [30-ai-hallucination-safety.md](./28-ai-hallucination-safety.md) —— 续集六，幻觉护栏与三大致命漏洞的协同：幻觉本身就是一种输出失控
+- [28-ai-hallucination-safety.md](./28-ai-hallucination-safety.md) —— 续集六，幻觉护栏与三大致命漏洞的协同：幻觉本身就是一种输出失控
 
 ---
 

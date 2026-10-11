@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 37 · 厨房暗哨
+# 35 · 厨房暗哨
 
 > 从阿明的"AI 出问题不知道哪出问题"，看 AI 时代的可观测性 —— **AI Observability 4 大支柱 + 5 大工具栈 + 7 大实战模式**
 
@@ -479,9 +479,9 @@ graph TB
 - [厨房装监控](./05-observability.md) —— 正传 2，传统可观测性 3 大支柱（AI Observability 的基础）
 - [Agent Harness](./30-agent-harness.md) —— 续集八，Harness 内的 trace 由 AI Observability 提供基础设施
 - [AI 致命三件套](./31-ai-fatal-trio.md) —— 续集九，AI Observability 的 Quality 监控捕获安全异常
-- [AI 评测工程](./32a-ai-evaluation-fundamentals.md) / [34b 评测流水线](./32b-ai-evaluation-pipeline.md) —— 续集十，AI Observability 提供 trace 数据，34a/34b 做离线评测
-- [Agent 协议](./33a-mcp-protocol.md) / [35b A2A + 治理](./33b-a2a-protocol.md) —— 续集十一，AI Observability 追踪 MCP / A2A 协议调用
-- [AI 成本结构](./34a-ai-token-cost-structure.md) / [36b 成本优化](./34b-ai-token-cost-optimization.md) —— 续集十二，AI Observability 是 36a/36b 成本归因的数据源
+- [AI 评测工程](./32a-ai-evaluation-fundamentals.md) / [32b 评测流水线](./32b-ai-evaluation-pipeline.md) —— 续集十，AI Observability 提供 trace 数据，32a/32b 做离线评测
+- [Agent 协议](./33a-mcp-protocol.md) / [33b A2A + 治理](./33b-a2a-protocol.md) —— 续集十一，AI Observability 追踪 MCP / A2A 协议调用
+- [AI 成本结构](./34a-ai-token-cost-structure.md) / [34b 成本优化](./34b-ai-token-cost-optimization.md) —— 续集十二，AI Observability 是 34a/34b 成本归因的数据源
 - [差评危机](./15-incident-response.md) —— 正传 9，AI Observability 是事故复盘的关键工具
 - [会自我进化的厨房](./27-self-evolving-company.md) —— 续集五，AI Observability 让自进化组织的"自循环"成为可能
 

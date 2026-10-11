@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 32 · Agent Harness
+# 30 · Agent Harness
 
 > 从阿明的 1 个 Agent 到 20 个 Agent，看 AI 编码工程化的脚手架 —— Harness 是 Agent 时代的"操作平台"
 
@@ -728,7 +728,7 @@ graph TD
 
 - [01-ai-agent-architecture.md](./01-ai-agent-architecture.md) —— 续集一，Harness 是 Agent 架构的工程化封装：架构到 Harness 的工程实现
 - [04-peak-traffic-defense.md](./04-peak-traffic-defense.md) —— 正传 1，AI Agent 高并发调用的流量治理：Token 限流、并发控制
-- [30-ai-hallucination-safety.md](./28-ai-hallucination-safety.md) —— 续集六，Harness 的幻觉防护：上下文注入、输出校验、人类反馈
+- [28-ai-hallucination-safety.md](./28-ai-hallucination-safety.md) —— 续集六，Harness 的幻觉防护：上下文注入、输出校验、人类反馈
 - [15-incident-response.md](./15-incident-response.md) —— 正传 9，AI Agent 系统的故障模式：幻觉、超时、Token 溢出
 
 ---

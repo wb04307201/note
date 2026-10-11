@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 24 · 仓库搬家不停业
+# 22 · 仓库搬家不停业
 
 > 从阿明的"在线换仓库"，看数据库迁移与 Schema 演进的实战方法论
 
@@ -563,7 +563,7 @@ graph TD
 ## 跨章节衔接
 
 - [12-data-kitchen.md](./12-data-kitchen.md) —— 正传 7，数据迁移前的数据架构梳理：从单库到分库分表的设计选择
-- [18-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，分布式环境下的数据迁移：双写校验、灰度切流、回滚预案
+- [17-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，分布式环境下的数据迁移：双写校验、灰度切流、回滚预案
 - [09-cicd-devops.md](./09-cicd-devops.md) —— 正传 5，数据迁移的 CI/CD 集成：Schema 变更的版本化管理与自动化校验
 
 ---

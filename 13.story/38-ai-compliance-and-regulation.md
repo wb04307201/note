@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 40 · 米其林评审
+# 38 · 米其林评审
 
 > 从阿明的"AI 翻车事故"，看 AI 合规 —— **6 大监管框架 + 4 大合规体系 + 5 大风险防御 + 中国/欧盟/美国对比**
 
@@ -630,8 +630,8 @@ P3（低）：
 
 - [致命三件套 33](./31-ai-fatal-trio.md) —— 续集九，AI 安全的核心威胁
 - [可观测性 37](./35-ai-observability.md) —— 续集十三，合规审计日志
-- [评测工程 34a/34b](./32a-ai-evaluation-fundamentals.md) / [34b](./32b-ai-evaluation-pipeline.md) —— 续集十，偏差 / 公平性评测
-- [MCP / A2A 35a/35b](./33a-mcp-protocol.md) / [35b](./33b-a2a-protocol.md) —— 续集十一，跨系统合规审计
+- [评测工程 32a/32b](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) —— 续集十，偏差 / 公平性评测
+- [MCP / A2A 33a/33b](./33a-mcp-protocol.md) / [33b](./33b-a2a-protocol.md) —— 续集十一，跨系统合规审计
 
 ---
 

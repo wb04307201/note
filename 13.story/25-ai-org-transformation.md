@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 27 · 厨房大换岗
+# 25 · 厨房大换岗
 
 > 从阿明的"AI 炒菜机裁员风波"，看 AI 时代的组织转型与岗位重塑
 
@@ -507,7 +507,7 @@ graph TD
 
 - [01-ai-agent-architecture.md](./01-ai-agent-architecture.md) —— 续集一，组织转型中的 Agent 架构：技术架构变革是组织变革的载体
 - [07-from-chef-to-ceo.md](./07-from-chef-to-ceo.md) —— 终章，CEO 视角下的组织转型：自上而下 vs 自下而上的变革路径
-- [29-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，组织转型的终极形态：自进化组织
+- [27-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，组织转型的终极形态：自进化组织
 - [11-ai-learning-paradox.md](./11-ai-learning-paradox.md) —— 续集二，组织转型中的员工学习困境：换岗后再学习的挑战
 
 ---

@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 20 · 厨房实况直播
+# 19 · 厨房实况直播
 
 > 从阿明的"前后厨大混乱"和"外卖骑手追踪系统"，看异步消息与事件驱动架构的演进之路
 
@@ -730,8 +730,8 @@ graph TD
 - [12.story](README.md)
 ## 跨章节衔接
 
-- [18-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，事件驱动是分布式一致性的关键解法：最终一致性通过事件流转实现
-- [22-search-recommendation.md](./21-search-recommendation.md) —— 番外四，搜索推荐的实时性依赖事件驱动架构：用户行为事件触发索引更新
+- [17-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，事件驱动是分布式一致性的关键解法：最终一致性通过事件流转实现
+- [21-search-recommendation.md](./21-search-recommendation.md) —— 番外四，搜索推荐的实时性依赖事件驱动架构：用户行为事件触发索引更新
 - [04-peak-traffic-defense.md](./04-peak-traffic-defense.md) —— 正传 1，异步消息削峰是流量治理的重要手段：消息队列作为缓冲层
 
 ---

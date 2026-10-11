@@ -8,11 +8,11 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 38 · 开卷考试
+# 36 · 开卷考试
 
 > 从阿明的"AI 凭空捏造答案"，看 RAG 检索增强生成 —— **5 大核心环节 + 7 大高级模式 + 评测体系 + 生产化**
 
-> **系列定位**：本篇是「阿明餐厅」系列的**续集十四**。在[正传 4 · 《厨房质检员》](./08-qa-testing-strategy.md)第四章，我们提到了 RAG 的"忠实性"维度。在[续集六 · 《AI 的"黑暗料理"》](./28-ai-hallucination-safety.md)，我们提到过 RAG 是抑制幻觉的主要手段。在[34b · AI 评测流水线](./32b-ai-evaluation-pipeline.md)第六章，我们讲了 RAG 评测的 4 大指标。本篇是 **RAG 专题** —— 从架构到优化、从基础到高级模式、从离线评测到生产化，完整讲透 RAG。
+> **系列定位**：本篇是「阿明餐厅」系列的**续集十四**。在[正传 4 · 《厨房质检员》](./08-qa-testing-strategy.md)第四章，我们提到了 RAG 的"忠实性"维度。在[续集六 · 《AI 的"黑暗料理"》](./28-ai-hallucination-safety.md)，我们提到过 RAG 是抑制幻觉的主要手段。在[32b · AI 评测流水线](./32b-ai-evaluation-pipeline.md)第六章，我们讲了 RAG 评测的 4 大指标。本篇是 **RAG 专题** —— 从架构到优化、从基础到高级模式、从离线评测到生产化，完整讲透 RAG。
 
 ---
 
@@ -518,7 +518,7 @@ answer_prompt = """
 
 ## 第五章：RAG 评测体系 —— 四维度试吃打分，查得准不准做得像不像
 
-### 5.1 4 大核心指标（详见 [34b 第六章](./32b-ai-evaluation-pipeline.md#第六章rag-系统的专项评测)）
+### 5.1 4 大核心指标（详见 [32b 第六章](./32b-ai-evaluation-pipeline.md#第六章rag-系统的专项评测)）
 
 | 指标 | 含义 | 工具 |
 |------|------|------|
@@ -582,7 +582,7 @@ RAG 调用成本（单次）：
 
 每月 100 万次调用 ≈ $10,000 - $100,000
 
-详见 [36a 第二章 2.1 LLM 推理成本](./34a-ai-token-cost-structure.md#21-组件-1llm-推理成本占-60-80)
+详见 [34a 第二章 2.1 LLM 推理成本](./34a-ai-token-cost-structure.md#21-组件-1llm-推理成本占-60-80)
 ```
 
 ### 6.2 RAG 的性能优化
@@ -612,7 +612,7 @@ optimizations = {
 
 ### 6.3 RAG 的可观测性
 
-RAG 系统需要专门的 RAG Observability（详见 [37 · AI Observability](./35-ai-observability.md)）：
+RAG 系统需要专门的 RAG Observability（详见 [35 · AI Observability](./35-ai-observability.md)）：
 
 ```text
 观测指标：
@@ -711,9 +711,9 @@ GraphRAG：实体关系
 
 - [厨房质检员](./08-qa-testing-strategy.md) —— 正传 4，RAG 忠实性维度
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— 续集六，RAG 是抑制幻觉的主要手段
-- [AI 评测工程 34a/34b](./32a-ai-evaluation-fundamentals.md) / [34b](./32b-ai-evaluation-pipeline.md) —— 续集十，RAG 评测的 4 大指标详解
+- [AI 评测工程 32a/32b](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) —— 续集十，RAG 评测的 4 大指标详解
 - [AI 可观测性 37](./35-ai-observability.md) —— 续集十三，RAG 的可观测性
-- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [36b](./34b-ai-token-cost-optimization.md) —— 续集十二，RAG 的成本与优化
+- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [34b](./34b-ai-token-cost-optimization.md) —— 续集十二，RAG 的成本与优化
 - [向量数据库与 Embedding 39](./37-vector-database-and-embedding.md) —— 39 续集十五，RAG 的向量库与 Embedding 详解
 
 ---

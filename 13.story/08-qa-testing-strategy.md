@@ -431,7 +431,7 @@ def test_agent_handles_complex_flow():
 **第三层：异常与对抗测试**
 - Agent 拿到矛盾指令会怎样？（"别退款" + "立即退款"）
 - Agent 工具调用失败会重试吗？
-- Agent 遇到 Prompt 注入会怎么处理？（详见[33 第二章](./31-ai-fatal-trio.md)）
+- Agent 遇到 Prompt 注入会怎么处理？（详见[31 第二章](./31-ai-fatal-trio.md)）
 
 **Agent 测试的金标准是"决策链可回放"**：每个 Agent 的每次运行，都应该被记录成可审计的"决策链日志"，出问题可回放、可归因。
 
@@ -461,7 +461,7 @@ def test_agent_handles_complex_flow():
 
 阿明现在在 **L4 → L5** 之间：CI 集成评测已经稳定，红队流程运转良好，下一步是**让 AI 自己发现新攻击模式、自动补充到黄金集**。
 
-> **AI 时代测试的完整方法论、Eval 平台架构、回归测试、Prompt 工程深度内容，详见[续集十 · 34a/34b · 《AI 评测工程》](./32a-ai-evaluation-fundamentals.md)**。本篇只是提纲挈领，34a/34b 才是工程化实战。
+> **AI 时代测试的完整方法论、Eval 平台架构、回归测试、Prompt 工程深度内容，详见[续集十 · 32a/32b · 《AI 评测工程》](./32a-ai-evaluation-fundamentals.md)**。本篇只是提纲挈领，32a/32b 才是工程化实战。
 
 ---
 
@@ -540,7 +540,7 @@ graph TD
 - [09-cicd-devops.md](./09-cicd-devops.md) —— 正传 5，测试策略与 CI/CD 强耦合：自动化测试是流水线的质量门
 - [10-api-design.md](./10-api-design.md) —— 正传 6，API 契约测试是测试策略在接口层的具体落地
 - [15-incident-response.md](./15-incident-response.md) —— 正传 9，事故复盘是测试策略的逆向补充：从故障中提取新测试用例
-- [32-agent-harness.md](./30-agent-harness.md) —— 续集八，AI Agent 系统的测试挑战：非确定性输出的断言策略
+- [30-agent-harness.md](./30-agent-harness.md) —— 续集八，AI Agent 系统的测试挑战：非确定性输出的断言策略
 
 ---
 

@@ -8,11 +8,11 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 34b · 从试菜到品控线
+# 32b · 从试菜到品控线
 
 > 从阿明的"AI 上线 3 个月才被发现漏了 20% 的问题"，看 AI 时代的质量保障基础设施 —— Eval **流水线与生产化**
 
-> **系列定位**：本篇是「阿明餐厅」系列的**续集十（下）**。本篇接续[34a · AI 评测基础（上）](./32a-ai-evaluation-fundamentals.md)，**聚焦"评测流水线与生产化"**：5 层流水线架构、RAG 专项评测、红队测试、在线 A/B、平台工程化。本篇与上篇是一对孪生篇 —— 上篇讲"评什么、怎么评"，下篇讲"怎么跑、怎么用、怎么工程化"。
+> **系列定位**：本篇是「阿明餐厅」系列的**续集十（下）**。本篇接续[32a · AI 评测基础（上）](./32a-ai-evaluation-fundamentals.md)，**聚焦"评测流水线与生产化"**：5 层流水线架构、RAG 专项评测、红队测试、在线 A/B、平台工程化。本篇与上篇是一对孪生篇 —— 上篇讲"评什么、怎么评"，下篇讲"怎么跑、怎么用、怎么工程化"。
 
 > **兄弟篇**：34a · AI 评测基础（[← 点击阅读](./32a-ai-evaluation-fundamentals.md)）
 
@@ -22,7 +22,7 @@ story:
 
 > **阿明的厨房类比（开篇场景）**：上篇（34a）阿明学会了"试菜标准"—— 给 AI 厨师打分。但"试一次"不够 —— 上线后还要"持续试"。本章阿明把"试菜间"升级成"流水线质检" —— 每道新菜上线前自动试菜、每月试菜一次、每年试菜升级。
 
-[34a · 评测基础（上）](./32a-ai-evaluation-fundamentals.md)讲的是"评什么、怎么评" —— 4 大挑战、6 大维度、5 大黄金集心法、LLM-as-Judge。
+[32a · 评测基础（上）](./32a-ai-evaluation-fundamentals.md)讲的是"评什么、怎么评" —— 4 大挑战、6 大维度、5 大黄金集心法、LLM-as-Judge。
 
 **但"基础"只是开始。**
 
@@ -665,7 +665,7 @@ graph TB
 
 ## 延伸阅读
 
-- [34a · AI 评测基础（上篇）](./32a-ai-evaluation-fundamentals.md) —— 挑战 + 维度 + 黄金集 + LLM-as-Judge
+- [32a · AI 评测基础（上篇）](./32a-ai-evaluation-fundamentals.md) —— 挑战 + 维度 + 黄金集 + LLM-as-Judge
 - [厨房质检员](./08-qa-testing-strategy.md) —— 正传 4，传统测试金字塔 + AI 时代测试的 4 大维度
 - [当餐厅长出大脑](./01-ai-agent-architecture.md) —— 续集一，AI Agent 的 7 大模块
 - [厨房装监控](./05-observability.md) —— 正传 2，AI 评测的"实时监控"与传统可观测性同构
@@ -677,7 +677,7 @@ graph TB
 - [会自我进化的厨房](./27-self-evolving-company.md) —— 续集五，评测是自进化组织的"质量门"
 - [从厨师到 CEO](./07-from-chef-to-ceo.md) —— 终章，评测平台是 IDP（内部开发者平台）的核心组件
 - [差评危机](./15-incident-response.md) —— 正传 9，事故复盘 → 黄金集更新的工作流
-- [38 · RAG 检索增强生成专题](./36-rag-retrieval-augmented-generation.md) —— 38 续集十四，本篇 6 章的 RAG 化详解
+- [36 · RAG 检索增强生成专题](./36-rag-retrieval-augmented-generation.md) —— 38 续集十四，本篇 6 章的 RAG 化详解
 
 ---
 

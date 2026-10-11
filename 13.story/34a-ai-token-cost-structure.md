@@ -8,11 +8,11 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 36a · AI 账本
+# 34a · AI 账本
 
 > 从阿明的"AI 月账单从 5 万涨到 50 万"，看 AI 时代的 FinOps —— Token 经济学**上篇：成本结构与监控**
 
-> **系列定位**：本篇是「阿明餐厅」系列的**续集十二（上）**。在[番外二 · 《阿明的省钱经》](./14-cloud-finops.md)中，我们讲了云资源成本（CPU/内存/存储/带宽）的 FinOps。但 AI 时代出现了一种**全新的成本形态** —— **Token 成本**：按"字数"计费、按"调用次数"计费、按"上下文长度"计费。它的成本结构、增长曲线、优化策略**与传统云资源完全不同**。本篇不谈云资源（详见 14），专门谈**AI 时代的新成本经济学**。**上篇讲成本结构（"看见成本"）**，下篇[36b](./34b-ai-token-cost-optimization.md)讲优化与 ROI（"优化成本"）。
+> **系列定位**：本篇是「阿明餐厅」系列的**续集十二（上）**。在[番外二 · 《阿明的省钱经》](./14-cloud-finops.md)中，我们讲了云资源成本（CPU/内存/存储/带宽）的 FinOps。但 AI 时代出现了一种**全新的成本形态** —— **Token 成本**：按"字数"计费、按"调用次数"计费、按"上下文长度"计费。它的成本结构、增长曲线、优化策略**与传统云资源完全不同**。本篇不谈云资源（详见 14），专门谈**AI 时代的新成本经济学**。**上篇讲成本结构（"看见成本"）**，下篇[34b](./34b-ai-token-cost-optimization.md)讲优化与 ROI（"优化成本"）。
 
 > **兄弟篇**：36b · AI 成本优化（[← 点击阅读](./34b-ai-token-cost-optimization.md)）
 
@@ -79,7 +79,7 @@ AI 训练与微调
 这就是 **AI 成本经济学（AI Token Economics）** —— 它不是传统 FinOps 的"扩展版"，是**一个独立的成本管理体系**。
 
 **本篇（上）** 聚焦"看见成本"：AI 成本的独特性、6 大组件、4 大隐藏陷阱、实时监控。
-**下篇[36b](./34b-ai-token-cost-optimization.md)** 聚焦"优化成本"：路由、缓存、压缩、训练优化、ROI、FinOps 组织。
+**下篇[34b](./34b-ai-token-cost-optimization.md)** 聚焦"优化成本"：路由、缓存、压缩、训练优化、ROI、FinOps 组织。
 
 ---
 
@@ -119,7 +119,7 @@ AI 成本：
   - 模型升级一档，成本可能涨 10 倍，质量只涨 5%
 ```
 
-**应对**：**成本感知路由** —— 按场景选模型（详见[36b 第五章](./34b-ai-token-cost-optimization.md#第五章成本感知路由--按场景选模型)）。
+**应对**：**成本感知路由** —— 按场景选模型（详见[34b 第五章](./34b-ai-token-cost-optimization.md#第五章成本感知路由--按场景选模型)）。
 
 ### 1.3 独特性 3：成本结构"前重后轻"
 
@@ -137,7 +137,7 @@ AI 成本：
   → 但"训练"看似小，**单次烧钱多**
 ```
 
-**应对**：**推理和训练分开优化**（详见[36b 第七章](./34b-ai-token-cost-optimization.md#第七章训练与微调的成本控制)）。
+**应对**：**推理和训练分开优化**（详见[34b 第七章](./34b-ai-token-cost-optimization.md#第七章训练与微调的成本控制)）。
 
 ### 1.4 独特性 4：成本"用户不可见"
 
@@ -153,7 +153,7 @@ AI 成本：
   - 公司也不知道"哪些用户贵"
 ```
 
-**应对**：**用户级 / 场景级的成本归因**（详见[36b 第六章](./34b-ai-token-cost-optimization.md#第六章缓存与压缩--成本优化的零成本手段)）。
+**应对**：**用户级 / 场景级的成本归因**（详见[34b 第六章](./34b-ai-token-cost-optimization.md#第六章缓存与压缩--成本优化的零成本手段)）。
 
 ### 1.5 独特性 5：成本"被 AI 加速增长"
 
@@ -165,10 +165,10 @@ AI 成本增长：
   业务量 ↑ → AI 调用 ↑ → 上下文 ↑ → 工具调用 ↑ → 成本 ↑（指数）
 
   AI 越强，AI 越"敢"做事，做的事越多，成本越高
-  这就是 [32 Agent Harness](./30-agent-harness.md) 说的"Agent 失控"在成本上的体现
+  这就是 [30 Agent Harness](./30-agent-harness.md) 说的"Agent 失控"在成本上的体现
 ```
 
-**应对**：**Agent Loop 成本护栏**（详见[36b 第七章](./34b-ai-token-cost-optimization.md#第七章训练与微调的成本控制)）。
+**应对**：**Agent Loop 成本护栏**（详见[34b 第七章](./34b-ai-token-cost-optimization.md#第七章训练与微调的成本控制)）。
 
 | 维度 | 云资源成本 | AI 成本 |
 |------|-----------|---------|
@@ -268,7 +268,7 @@ vs API 调用：
 
 - **大模型自建不划算**（H100 8 卡 ¥15 万/月 vs GPT-4o API ¥30 万/月）
 - **小模型自建划算**（Llama-8B 用 A100 1 卡 ¥1 万/月）
-- **混合部署**最优（详见[36b 第五章](./34b-ai-token-cost-optimization.md#第五章成本感知路由--按场景选模型)）
+- **混合部署**最优（详见[34b 第五章](./34b-ai-token-cost-optimization.md#第五章成本感知路由--按场景选模型)）
 
 ### 2.5 组件 5：训练 / 微调成本（占 1-5%）
 
@@ -361,7 +361,7 @@ GPT-4o 定价（2026 年）：
   上下文翻倍 = 成本翻倍 × 单价翻倍 = 4 倍成本
 ```
 
-**应对**：**上下文压缩**（详见[36b 第八章 8.1](./34b-ai-token-cost-optimization.md#81-技巧-1精简-system-prompt)）。
+**应对**：**上下文压缩**（详见[34b 第八章 8.1](./34b-ai-token-cost-optimization.md#81-技巧-1精简-system-prompt)）。
 
 ### 3.2 陷阱 2：Cache Hit 看着便宜，但"读 Cache"也收费
 
@@ -374,7 +374,7 @@ Prompt Caching（Anthropic / OpenAI 都有）：
   看似省钱，**实际总成本不降反升**（如果用得不对）
 ```
 
-**应对**：**Cache 用在稳定的"系统 Prompt"，不要用在用户输入**（详见[36b 8.2](./34b-ai-token-cost-optimization.md#82-技巧-2避免-few-shot-过度使用)）。
+**应对**：**Cache 用在稳定的"系统 Prompt"，不要用在用户输入**（详见[34b 8.2](./34b-ai-token-cost-optimization.md#82-技巧-2避免-few-shot-过度使用)）。
 
 ### 3.3 陷阱 3：多模态按"图像 token"计费，1 张图 = 1000 字
 
@@ -411,7 +411,7 @@ GPT-4V 定价：
   → Agent 工具膨胀 = 成本爆炸
 ```
 
-**应对**：**Tool 精简 + 结果压缩**（详见[36b 8.3](./34b-ai-token-cost-optimization.md#83-技巧-3tool-定义精简)）。
+**应对**：**Tool 精简 + 结果压缩**（详见[34b 8.3](./34b-ai-token-cost-optimization.md#83-技巧-3tool-定义精简)）。
 
 ---
 
@@ -588,20 +588,20 @@ graph TB
 
 **AI 成本不是"看见就行"，是"看见 + 理解 + 监控"的认知闭环。** Token 不会撕账单，但月底会 —— 看不见的成本最可怕，看得见的结构才可控。
 
-下一步阅读[36b · AI 成本优化](./34b-ai-token-cost-optimization.md)—— 知道结构之后，怎么省、怎么赚。
+下一步阅读[34b · AI 成本优化](./34b-ai-token-cost-optimization.md)—— 知道结构之后，怎么省、怎么赚。
 
 ---
 
 ## 延伸阅读
 
-- [36b · AI 成本优化（下篇）](./34b-ai-token-cost-optimization.md) —— 路由 + 缓存 + 压缩 + 训练 + ROI + FinOps
+- [34b · AI 成本优化（下篇）](./34b-ai-token-cost-optimization.md) —— 路由 + 缓存 + 压缩 + 训练 + ROI + FinOps
 - [阿明的省钱经](./14-cloud-finops.md) —— 番外二，云资源 FinOps，本篇的"传统版本"
 - [Agent Harness](./30-agent-harness.md) —— 续集八，Agent Loop 的成本护栏
 - [AI 评测工程（基础篇）](./32a-ai-evaluation-fundamentals.md) / [（流水线篇）](./32b-ai-evaluation-pipeline.md) —— 续集十，评测本身有成本（与本篇成本优化的"分层评测"对应）
 - [AI 致命三件套](./31-ai-fatal-trio.md) —— 续集九，攻击者也会利用 Token 成本（拒绝服务 / 资源耗尽）
 - [MCP 协议](./33a-mcp-protocol.md) / [A2A 协议](./33b-a2a-protocol.md) —— 续集十一，协议层是成本监控的颗粒度
-- [37 · AI 可观测性](./35-ai-observability.md) —— AI 时代可观测性专题（与 4.2 工具栈配套）
-- [39 · 向量数据库与 Embedding 实战](./37-vector-database-and-embedding.md) —— 39 续集十五，2.2/2.3 组件详解
+- [35 · AI 可观测性](./35-ai-observability.md) —— AI 时代可观测性专题（与 4.2 工具栈配套）
+- [37 · 向量数据库与 Embedding 实战](./37-vector-database-and-embedding.md) —— 39 续集十五，2.2/2.3 组件详解
 
 ---
 

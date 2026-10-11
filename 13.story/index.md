@@ -77,10 +77,12 @@ module:
 | 主题 | 文章 |
 |------|------|
 | 终章 - 从厨师到 CEO | [07](./07-from-chef-to-ceo.md) |
-| 番外 1-6（传统） | [03 重构](./03-refactoring-guide-for-pm.md) / [14 云成本](./14-cloud-finops.md) / [19 SaaS](./18-saas-multitenant.md) / [22 搜索](./21-search-recommendation.md) / [25 低代码](./23-lowcode-platform.md) / [26 国际化](./24-globalization.md) |
-| 番外 7-8（AI） | [42 Prompt](./40-prompt-engineering.md) / [43 多模态](./41-multimodal-ai.md) |
+| 番外 1-6（传统） | [03 重构](./03-refactoring-guide-for-pm.md) / [14 云成本](./14-cloud-finops.md) / [18 SaaS](./18-saas-multitenant.md) / [21 搜索](./21-search-recommendation.md) / [23 低代码](./23-lowcode-platform.md) / [24 国际化](./24-globalization.md) |
+| 番外 7-8（AI） | [40 Prompt](./40-prompt-engineering.md) / [41 多模态](./41-multimodal-ai.md) |
+| 番外九（工程化） | [45 Skill 调度](./45-skill-scheduling-restaurant.md) |
+| 番外 · 推理篇 | [46 LLM 推理优化](./46-llm-inference.md) |
 | 续集 1-17（AI 时代） | [01-41 续集](./README.md#全部四十六篇文章) |
-| **续集 18-21**（AI 责任 / 数据真相 / 个人困局 / 老板幻觉） | **[44 谁负责](./42-ai-engineer-responsibility.md) / [45 生产力](./43-ai-productivity-paradox.md) / [46 困局](./44-tech-debt-career-trap.md) / [47 老板幻觉](./47-boss-hallucination.md)** |
+| **续集 18-21**（AI 责任 / 数据真相 / 个人困局 / 老板幻觉） | **[42 谁负责](./42-ai-engineer-responsibility.md) / [43 生产力](./43-ai-productivity-paradox.md) / [44 困局](./44-tech-debt-career-trap.md) / [47 老板幻觉](./47-boss-hallucination.md)** |
 
 ### 🟣 AI 时代 22 篇（续集一-二十一）
 
@@ -88,28 +90,30 @@ module:
 |------|------|------|
 | 一 | 当餐厅长出大脑 | [01 AI Agent 架构](./01-ai-agent-architecture.md) |
 | 二 | 学徒的困境 | [11 AI 学徒危机](./11-ai-learning-paradox.md) |
-| 三 | 自动化的本质是换岗 | [27 AI 组织转型](./25-ai-org-transformation.md) |
-| 四 | 智能体替代创始人 | [28 AI 原生创业](./26-ai-native-startup.md) |
-| 五 | 公司是 Agent Loop | [29 自进化组织](./27-self-evolving-company.md) |
-| 六 | 三层护栏 + 信任校准 | [30 AI 幻觉护栏](./28-ai-hallucination-safety.md) |
-| 七 | AI 时代隐形负债 | [31 Codebase 认知债](./29-codebase-cognitive-debt.md) |
-| 八 | Agent 时代操作系统 | [32 Agent Harness](./30-agent-harness.md) |
-| 九 | 注入/越权/泄露 | [33 致命三件套](./31-ai-fatal-trio.md) |
-| 十·a | 6 大评测维度 | [34a AI 评测基础](./32a-ai-evaluation-fundamentals.md) |
-| 十·b | 5 层评测流水线 | [34b AI 评测流水线](./32b-ai-evaluation-pipeline.md) |
-| 十一·a | AI 时代 TCP/IP | [35a MCP 协议](./33a-mcp-protocol.md) |
-| 十一·b | Agent 到 Agent | [35b A2A 协议](./33b-a2a-protocol.md) |
-| 十二·a | Token 经济学结构 | [36a Token 成本结构](./34a-ai-token-cost-structure.md) |
-| 十二·b | Token 成本优化 | [36b Token 成本优化](./34b-ai-token-cost-optimization.md) |
-| 十三 | 3+4=7 支柱 | [37 AI 可观测性](./35-ai-observability.md) |
-| 十四 | 幻觉率 29% → 3% | [38 RAG 检索增强生成](./36-rag-retrieval-augmented-generation.md) |
-| 十五 | 6 大向量库选型 | [39 向量数据库与 Embedding](./37-vector-database-and-embedding.md) |
-| 十六 | EU AI Act / GDPR / PIPL | [40 AI 合规与监管](./38-ai-compliance-and-regulation.md) |
-| 十七 | 3 年回本黄金线 | [41 AI 私有化部署](./39-ai-private-deployment.md) |
-| 十八 | AI 责任归属 | [44 谁替系统负责](./42-ai-engineer-responsibility.md) |
-| 十九 | 生产力悖论 | [45 生产力悖论](./43-ai-productivity-paradox.md) |
-| 二十 | 技术债困局 | [46 技术债困局](./44-tech-debt-career-trap.md) |
+| 三 | 自动化的本质是换岗 | [25 AI 组织转型](./25-ai-org-transformation.md) |
+| 四 | 智能体替代创始人 | [26 AI 原生创业](./26-ai-native-startup.md) |
+| 五 | 公司是 Agent Loop | [27 自进化组织](./27-self-evolving-company.md) |
+| 六 | 三层护栏 + 信任校准 | [28 AI 幻觉护栏](./28-ai-hallucination-safety.md) |
+| 七 | AI 时代隐形负债 | [29 Codebase 认知债](./29-codebase-cognitive-debt.md) |
+| 八 | Agent 时代操作系统 | [30 Agent Harness](./30-agent-harness.md) |
+| 九 | 注入/越权/泄露 | [31 致命三件套](./31-ai-fatal-trio.md) |
+| 十·a | 6 大评测维度 | [32a AI 评测基础](./32a-ai-evaluation-fundamentals.md) |
+| 十·b | 5 层评测流水线 | [32b AI 评测流水线](./32b-ai-evaluation-pipeline.md) |
+| 十一·a | AI 时代 TCP/IP | [33a MCP 协议](./33a-mcp-protocol.md) |
+| 十一·b | Agent 到 Agent | [33b A2A 协议](./33b-a2a-protocol.md) |
+| 十二·a | Token 经济学结构 | [34a Token 成本结构](./34a-ai-token-cost-structure.md) |
+| 十二·b | Token 成本优化 | [34b Token 成本优化](./34b-ai-token-cost-optimization.md) |
+| 十三 | 3+4=7 支柱 | [35 AI 可观测性](./35-ai-observability.md) |
+| 十四 | 幻觉率 29% → 3% | [36 RAG 检索增强生成](./36-rag-retrieval-augmented-generation.md) |
+| 十五 | 6 大向量库选型 | [37 向量数据库与 Embedding](./37-vector-database-and-embedding.md) |
+| 十六 | EU AI Act / GDPR / PIPL | [38 AI 合规与监管](./38-ai-compliance-and-regulation.md) |
+| 十七 | 3 年回本黄金线 | [39 AI 私有化部署](./39-ai-private-deployment.md) |
+| 十八 | AI 责任归属 | [42 谁替系统负责](./42-ai-engineer-responsibility.md) |
+| 十九 | 生产力悖论 | [43 生产力悖论](./43-ai-productivity-paradox.md) |
+| 二十 | 技术债困局 | [44 技术债困局](./44-tech-debt-career-trap.md) |
 | 二十一 | 老板幻觉 | [47 老板幻觉](./47-boss-hallucination.md) |
+| 番外九 | Skill 调度命中率 | [45 扩招 50 个厨师](./45-skill-scheduling-restaurant.md) |
+| 番外 · 推理篇 | LLM 推理优化 | [46 上菜革命](./46-llm-inference.md) |
 
 ---
 
@@ -117,9 +121,9 @@ module:
 
 | 主题 | 文章 | 核心问题 |
 |------|------|---------|
-| 🔥 **AI 责任** | [44 谁替系统负责](./42-ai-engineer-responsibility.md) | AI 写代码但代码出错谁负责？系统责任金字塔 + 4 大岗位重定义 |
-| 📊 **AI 数据真相** | [45 生产力悖论](./43-ai-productivity-paradox.md) | 4 大研究数据 + DORA 放大器理论 + 资深 vs 初级差异 |
-| 💼 **AI 与个人** | [46 技术债困局](./44-tech-debt-career-trap.md) | 救火 3 年不如建设 1 年——4 判断标准 + 4 增值动作 |
+| 🔥 **AI 责任** | [42 谁替系统负责](./42-ai-engineer-responsibility.md) | AI 写代码但代码出错谁负责？系统责任金字塔 + 4 大岗位重定义 |
+| 📊 **AI 数据真相** | [43 生产力悖论](./43-ai-productivity-paradox.md) | 4 大研究数据 + DORA 放大器理论 + 资深 vs 初级差异 |
+| 💼 **AI 与个人** | [44 技术债困局](./44-tech-debt-career-trap.md) | 救火 3 年不如建设 1 年——4 判断标准 + 4 增值动作 |
 
 ---
 

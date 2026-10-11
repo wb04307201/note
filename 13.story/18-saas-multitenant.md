@@ -529,7 +529,7 @@ graph TD
 
 - [14-cloud-finops.md](./14-cloud-finops.md) —— 番外二，多租户的成本分摊与 FinOps 协同：每租户的资源使用可视化
 - [06-security-architecture.md](./06-security-architecture.md) —— 正传 3，多租户隔离是安全架构的核心：数据隔离、权限边界
-- [21-multiplatform-architecture.md](./20-multiplatform-architecture.md) —— 正传 13，多端架构支持多租户：不同终端的租户体验一致
+- [20-multiplatform-architecture.md](./20-multiplatform-architecture.md) —— 正传 13，多端架构支持多租户：不同终端的租户体验一致
 
 ---
 

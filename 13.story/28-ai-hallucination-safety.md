@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 30 · AI 的"黑暗料理"
+# 28 · AI 的"黑暗料理"
 
 > 从阿明的 AI 推荐了"相克食材"，看 AI 幻觉、信任校准与安全护栏
 
@@ -212,7 +212,7 @@ def adjust_trust_bandwidth(ai_system, review_period="weekly"):
 
 阿明说："你知道食安事故为什么叫'万一'吗？因为一万道菜里只要有一道出问题，你的餐厅就完了。"
 
-> **与本篇的"三层护栏"互补的概念**：本篇的"三层护栏"（模型/系统/业务）解决的是**AI 内部出错**（幻觉、误判）的检测；而[续集九 · 33 · 《AI 致命三件套》](./31-ai-fatal-trio.md)的"4 层防护"（预防/检测/缓解/恢复）解决的是**AI 被外部攻击**（注入、越权、泄露）的防御。两者**互补不重叠**，完整的 AI 安全需要两者叠加。详见[33 第六章 6.0 节对比表](./31-ai-fatal-trio.md)。
+> **与本篇的"三层护栏"互补的概念**：本篇的"三层护栏"（模型/系统/业务）解决的是**AI 内部出错**（幻觉、误判）的检测；而[续集九 · 33 · 《AI 致命三件套》](./31-ai-fatal-trio.md)的"4 层防护"（预防/检测/缓解/恢复）解决的是**AI 被外部攻击**（注入、越权、泄露）的防御。两者**互补不重叠**，完整的 AI 安全需要两者叠加。详见[31 第六章 6.0 节对比表](./31-ai-fatal-trio.md)。
 
 ### 三层防御体系（Defense in Depth）
 
@@ -532,8 +532,8 @@ graph TD
 ## 跨章节衔接
 
 - [06-security-architecture.md](./06-security-architecture.md) —— 正传 3，AI 幻觉是新型安全威胁：幻觉护栏是安全架构在 AI 时代的延伸
-- [22-search-recommendation.md](./21-search-recommendation.md) —— 番外四，搜索推荐系统的"幻觉"：推荐不相关内容也是一种幻觉
-- [32-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent Harness 的幻觉防护：上下文注入、输出校验、人类反馈
+- [21-search-recommendation.md](./21-search-recommendation.md) —— 番外四，搜索推荐系统的"幻觉"：推荐不相关内容也是一种幻觉
+- [30-agent-harness.md](./30-agent-harness.md) —— 续集八，Agent Harness 的幻觉防护：上下文注入、输出校验、人类反馈
 
 ---
 

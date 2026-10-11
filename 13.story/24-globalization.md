@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 26 · 阿明出海记
+# 24 · 阿明出海记
 
 > 从阿明的"东京分店"，看国际化与多区域部署的工程实践
 
@@ -693,8 +693,8 @@ graph TD
 ## 跨章节衔接
 
 - [13-frontend-renovation.md](./13-frontend-renovation.md) —— 正传 8，国际化的前端工程化：i18n 框架、文案管理、本地化构建
-- [21-multiplatform-architecture.md](./20-multiplatform-architecture.md) —— 正传 13，国际化与多端架构的协同：不同地区的 UI 适配
-- [22-search-recommendation.md](./21-search-recommendation.md) —— 番外四，国际化搜索推荐：跨语言的查询理解与本地化推荐
+- [20-multiplatform-architecture.md](./20-multiplatform-architecture.md) —— 正传 13，国际化与多端架构的协同：不同地区的 UI 适配
+- [21-search-recommendation.md](./21-search-recommendation.md) —— 番外四，国际化搜索推荐：跨语言的查询理解与本地化推荐
 
 ---
 

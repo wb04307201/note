@@ -605,9 +605,9 @@ graph TD
 - [glossary](glossary.md)
 ## 跨章节衔接
 
-- [27-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，从厨师到 CEO 视角下的组织变革：技术决策者如何驱动组织转型
-- [28-ai-native-startup.md](./26-ai-native-startup.md) —— 续集四，CEO 视角下的 AI 原生创业：技术到商业的完整闭环
-- [29-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，CEO 视角下的自进化组织：组织级 Agent Loop 的治理
+- [25-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，从厨师到 CEO 视角下的组织变革：技术决策者如何驱动组织转型
+- [26-ai-native-startup.md](./26-ai-native-startup.md) —— 续集四，CEO 视角下的 AI 原生创业：技术到商业的完整闭环
+- [27-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，CEO 视角下的自进化组织：组织级 Agent Loop 的治理
 
 ---
 

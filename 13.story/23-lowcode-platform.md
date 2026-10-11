@@ -8,7 +8,7 @@ story:
   depth: ⭐⭐⭐⭐
 -->
 
-# 25 · 预制菜还是现炒
+# 23 · 预制菜还是现炒
 
 > 从阿明的"标准化与灵活性之争"，看低代码平台的技术选型与架构设计
 
@@ -621,8 +621,8 @@ graph TD
 ## 跨章节衔接
 
 - [10-api-design.md](./10-api-design.md) —— 正传 6，低代码平台通过 API 与外部系统集成：API 设计是低代码的扩展性
-- [19-saas-multitenant.md](./18-saas-multitenant.md) —— 番外三，低代码平台的多租户实现：租户级应用隔离
-- [32-agent-harness.md](./30-agent-harness.md) —— 续集八，AI Agent 与低代码平台融合：可视化工作流编排是低代码的天然场景
+- [18-saas-multitenant.md](./18-saas-multitenant.md) —— 番外三，低代码平台的多租户实现：租户级应用隔离
+- [30-agent-harness.md](./30-agent-harness.md) —— 续集八，AI Agent 与低代码平台融合：可视化工作流编排是低代码的天然场景
 
 ---
 
