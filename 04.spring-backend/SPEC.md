@@ -1,5 +1,5 @@
 
-# SPEC for note/04.spring-backend/
+# SPEC for 04.spring-backend/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

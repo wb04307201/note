@@ -1,5 +1,5 @@
 
-# SPEC for note/10.business-systems/
+# SPEC for 10.business-systems/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

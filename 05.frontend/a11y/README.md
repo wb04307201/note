@@ -9,7 +9,7 @@
 
 # 无障碍（a11y）
 
-> ⬅️ [返回 09.front-end](../README.md)
+> ⬅️ [返回 05.frontend](../README.md)
 
 > **一句话定位**：Web Accessibility（a11y）—— 让所有用户（含视障 / 听障 / 运动障碍 / 认知障碍）都能感知、操作、理解页面内容。是从"页面"到"应用"的必备能力。
 
@@ -408,4 +408,4 @@ async function auditAccessibility(url) {
 - [06 性能](../06-performance/README.md)
 - [03 框架](../03-frameworks/README.md)
 
-← [返回 09.front-end](../README.md)
+← [返回 05.frontend](../README.md)

@@ -1,5 +1,5 @@
 
-# SPEC for note/01.java-and-jvm/testing/
+# SPEC for 01.java-and-jvm/testing/
 
 > **Inherits from**: [../../SPEC.md](../../SPEC.md)
 > **Mode**: append + override

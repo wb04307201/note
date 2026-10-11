@@ -1,5 +1,5 @@
 
-# SPEC for note/06.distributed-systems/
+# SPEC for 06.distributed-systems/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

@@ -1,5 +1,5 @@
 
-# SPEC for note/12.interview/
+# SPEC for 12.interview/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

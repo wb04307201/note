@@ -1,5 +1,5 @@
 
-# SPEC for note/03.data-stack/
+# SPEC for 03.data-stack/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

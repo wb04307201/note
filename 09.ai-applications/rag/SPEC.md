@@ -1,5 +1,5 @@
 
-# SPEC for note/09.ai-applications/rag/
+# SPEC for 09.ai-applications/rag/
 
 > **Inherits from**: [../../SPEC.md](../../SPEC.md)
 > **Mode**: append + override

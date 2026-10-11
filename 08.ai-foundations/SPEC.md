@@ -1,5 +1,5 @@
 
-# SPEC for note/08.ai-foundations/
+# SPEC for 08.ai-foundations/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

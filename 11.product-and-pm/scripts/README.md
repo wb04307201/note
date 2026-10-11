@@ -622,10 +622,10 @@ KR3：____________________________  完成度：______ / 1.0
 
 ```bash
 # 在项目根目录
-python note/11.product-and-pm/scripts/insert-frontmatter.py
+python 11.product-and-pm/scripts/insert-frontmatter.py
 
 # Dry-run（只报告不修改）
-python note/11.product-and-pm/scripts/insert-frontmatter.py --dry-run
+python 11.product-and-pm/scripts/insert-frontmatter.py --dry-run
 ```
 
 **适用场景**：
@@ -646,7 +646,7 @@ python note/11.product-and-pm/scripts/insert-frontmatter.py --dry-run
 **调用方法**：
 
 ```bash
-python note/11.product-and-pm/scripts/validate.py
+python 11.product-and-pm/scripts/validate.py
 ```
 
 **退出码**：0 = 全部合规；1 = 存在不合规项。

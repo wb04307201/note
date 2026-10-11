@@ -1,5 +1,5 @@
 
-# SPEC for note/05.frontend/
+# SPEC for 05.frontend/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override

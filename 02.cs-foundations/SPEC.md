@@ -1,5 +1,5 @@
 
-# SPEC for note/02.cs-foundations/
+# SPEC for 02.cs-foundations/
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override
