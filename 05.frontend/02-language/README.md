@@ -1,7 +1,7 @@
 <!--
 module:
-  parent: note
-  slug: 09.front-end/language
+  parent: front-end
+  slug: front-end/language
   type: article
   category: 主模块子文章
   summary: 前端 02 语言

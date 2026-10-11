@@ -1,7 +1,7 @@
 <!--
 module:
   parent: tools
-  slug: note/tools/git/branch-naming
+  slug: tools/git/branch-naming
   type: article
   category: 主模块子文章
   summary: Git 分支命名规范：Conventional Branches + 3 大流派 + CI 联动

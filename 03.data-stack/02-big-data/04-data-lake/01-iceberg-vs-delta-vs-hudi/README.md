@@ -1,6 +1,6 @@
 <!--module:
   parent: big-data
-  slug: 10.big-data/04-data-lake/01-iceberg-vs-delta-vs-hudi
+  slug: big-data/data-lake/01-iceberg-vs-delta-vs-hudi
   type: article
   category: 主模块子文章
   summary: Iceberg vs Delta Lake vs Hudi——数据湖三剑客深度对比

@@ -1,6 +1,6 @@
 <!--module:
   parent: computer-basics
-  slug: 02.computer-basics/02-algorithms/clustering/k-means
+  slug: computer-basics/algorithms/clustering/k-means
   type: article
   category: 主模块子文章
   summary: K-means 聚类算法 + K-means++ 改进

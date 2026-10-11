@@ -1,6 +1,6 @@
 <!--module:
   parent: ai/04-architecture
-  slug: 11.ai/04-architecture/agent-execution-patterns
+  slug: agent/agent-execution-patterns
   type: deep-dive
   category: Agent 执行模式
   summary: AI Agent 4 大执行模式深度对比 —— ReAct / Plan-and-Execute / DAG / Multi-Agent 的 6 维对比 + 场景化选型 + Plan-and-Execute 重规划机制

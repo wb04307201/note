@@ -1,6 +1,6 @@
 <!--module:
   parent: front-end
-  slug: 09.front-end/a11y
+  slug: front-end/a11y
   type: article
   category: 主模块子文章
   summary: Web 无障碍（a11y）核心原则、ARIA 属性、键盘导航、测试工具与实战案例

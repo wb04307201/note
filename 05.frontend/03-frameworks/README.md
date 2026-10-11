@@ -1,7 +1,7 @@
 <!--
 module:
-  parent: note
-  slug: 09.front-end/frameworks
+  parent: front-end
+  slug: front-end/frameworks
   type: article
   category: 主模块子文章
   summary: 前端 03 框架

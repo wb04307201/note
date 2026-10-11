@@ -1,6 +1,6 @@
 <!--
 module:
-  parent: note
+  parent: front-end
   slug: 05.frontend/09-frontend-and-ai
   type: index
   category: 主模块子文章

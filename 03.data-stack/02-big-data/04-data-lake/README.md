@@ -1,6 +1,6 @@
 <!--module:
   parent: big-data
-  slug: 10.big-data/04-data-lake
+  slug: big-data/data-lake
   type: index
   category: 主模块子文章
   summary: Iceberg / Hudi / Delta Lake——存算分离的现代数据湖表格式

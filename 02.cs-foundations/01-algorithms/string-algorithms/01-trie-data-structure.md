@@ -1,6 +1,6 @@
 <!--module:
   parent: algorithms/string-algorithms
-  slug: 02.computer-basics/02-algorithms/string-algorithms/01-trie-data-structure
+  slug: computer-basics/algorithms/string-algorithms/01-trie-data-structure
   type: topic
   category: Trie 字典树
   summary: Trie 数据结构 —— Java 数组实现 + HashMap 实现 + 自动补全实战

@@ -1,7 +1,7 @@
 <!--
 module:
-  parent: note
-  slug: 09.front-end/foundation/css-layout
+  parent: front-end
+  slug: front-end/css-layout
   type: article
   category: 主模块子文章
   summary: CSS 布局模式与核心机制

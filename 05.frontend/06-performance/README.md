@@ -1,7 +1,7 @@
 <!--
 module:
-  parent: note
-  slug: 09.front-end/performance
+  parent: front-end
+  slug: front-end/performance
   type: article
   category: 主模块子文章
   summary: 前端 06 性能

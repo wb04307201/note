@@ -1,7 +1,7 @@
 <!--
 module:
   parent: tools
-  slug: note/tools/docker
+  slug: tools/docker
   type: article
   category: 主模块子文章
   summary: Docker — 容器化技术栈速查

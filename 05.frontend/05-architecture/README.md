@@ -1,7 +1,7 @@
 <!--
 module:
-  parent: note
-  slug: 09.front-end/architecture
+  parent: front-end
+  slug: front-end/architecture
   type: article
   category: 主模块子文章
   summary: 前端 05 架构
