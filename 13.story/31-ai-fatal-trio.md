@@ -816,8 +816,8 @@ graph TD
 
 ### 跨章节衔接
 
-- 11.ai/04-architecture/bpmn-ai-integration.md —— BPMN+AI 融合 —— AI 安全护栏在工作流引擎中的工程化实践
-- 11.ai/01-fundamentals/README.md —— LLM 基础 —— 理解 Prompt 注入与权限滥用的根因
+- 09.ai-applications/agent/architecture/bpmn-ai-integration.md —— BPMN+AI 融合 —— AI 安全护栏在工作流引擎中的工程化实践
+- 08.ai-foundations/04-llm/README.md —— LLM 基础 —— 理解 Prompt 注入与权限滥用的根因
 
 
 - [08-qa-testing-strategy](08-qa-testing-strategy.md)

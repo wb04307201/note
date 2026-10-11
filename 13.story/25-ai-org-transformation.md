@@ -497,8 +497,8 @@ graph TD
 
 ### 跨章节衔接
 
-- 11.ai/01-fundamentals/README.md —— LLM/AI Agent 能力边界 —— 理解 AI 能做什么、不能做什么，是"换岗不换人"的前提
-- 11.ai/04-architecture/README.md —— 智能系统分层架构 —— 组织转型的技术架构蓝本
+- 08.ai-foundations/04-llm/README.md —— LLM/AI Agent 能力边界 —— 理解 AI 能做什么、不能做什么，是"换岗不换人"的前提
+- 09.ai-applications/agent/architecture/README.md —— 智能系统分层架构 —— 组织转型的技术架构蓝本
 
 
 - [cheatsheet](cheatsheet.md)

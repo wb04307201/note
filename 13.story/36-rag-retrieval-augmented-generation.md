@@ -720,8 +720,8 @@ GraphRAG：实体关系
 
 ## 跨章节衔接
 
-- 11.ai/02-technology-stack/README.md —— AI 技术栈 —— RAG 在 AI 技术栈中的位置
-- 11.ai/03-engineering/ai-platforms/README.md —— AI 平台 —— Dify/Coze/LangGraph 的 RAG 实现
+- 09.ai-applications/README.md —— AI 技术栈 —— RAG 在 AI 技术栈中的位置
+- 09.ai-applications/agent/ai-platforms/README.md —— AI 平台 —— Dify/Coze/LangGraph 的 RAG 实现
 
 ---
 

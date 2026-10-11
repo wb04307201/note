@@ -688,8 +688,8 @@ graph TB
 - [glossary](glossary.md)
 ## 跨章节衔接
 
-- 11.ai/02-technology-stack/README.md —— AI 技术栈中的推理/Embedding/向量库 —— 6 大成本组件的技术解构
-- 11.ai/03-engineering/ai-platforms/README.md —— AI 平台 —— 平台层成本感知路由与缓存压缩的工程实现
+- 09.ai-applications/README.md —— AI 技术栈中的推理/Embedding/向量库 —— 6 大成本组件的技术解构
+- 09.ai-applications/agent/ai-platforms/README.md —— AI 平台 —— 平台层成本感知路由与缓存压缩的工程实现
 
 ---
 

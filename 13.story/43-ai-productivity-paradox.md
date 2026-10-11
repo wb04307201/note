@@ -238,7 +238,7 @@ Token 成本：          +1000%
 - 咬文嚼字：[`12.interview/11.ai/ai-coding-productivity-paradox`](../12.interview/11.ai/ai-coding-productivity-paradox/README.md) — 4 大研究 + DORA 框架
 - 咬文嚼字：[`12.interview/11.ai/ai-code-churn`](../12.interview/11.ai/ai-code-churn/README.md) — 代码流失率专题
 - 咬文嚼字：[`12.interview/11.ai/ai-coding-roi`](../12.interview/11.ai/ai-coding-roi/README.md) — ROI 度量框架
-- 主模块：`11.ai/05-applications` — AI 行业应用与效能度量
+- 主模块：`11.product-and-pm/ai-pm-dora-space/` — AI 行业应用与效能度量
 
 ---
 

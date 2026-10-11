@@ -729,9 +729,9 @@ API 方案（GPT-4o）：
 - [glossary](glossary.md)
 ## 跨章节衔接
 
-- 11.ai/02-technology-stack/README.md —— AI 技术栈 —— 推理框架选型
-- 11.ai/03-engineering/ai-platforms/README.md —— AI 平台 —— 私有化部署
-- 11.ai/04-operation/ai-ops/README.md —— AI 运维 —— 私有化 GPU 运维
+- 09.ai-applications/README.md —— AI 技术栈 —— 推理框架选型
+- 09.ai-applications/agent/ai-platforms/README.md —— AI 平台 —— 私有化部署
+- 06.distributed-systems/07-deployment/observability/README.md —— AI 运维 —— 私有化 GPU 运维
 
 ---
 

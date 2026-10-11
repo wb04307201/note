@@ -569,7 +569,7 @@ graph LR
 
 阿明总结："Prompt 是告诉 AI 做什么，Context 是替 AI 准备好它需要的一切。"
 
-→ 详见续集一 · `01-ai-agent-architecture.md` + `11.ai/02-technology-stack/context-engineering/`
+→ 详见续集一 · `01-ai-agent-architecture.md` + `09.ai-applications/agent/agent-context/context-engineering/`
 
 ### 7.3 阶段三（2025）Harness Engineering：装监控和标准手册
 
@@ -596,7 +596,7 @@ graph LR
 
 阿明感慨："**Harness 不是限制 AI，是让 AI 在对的轨道上跑得更快。**"
 
-→ 详见续集八 · `32-agent-harness.md`（餐厅装了监控和操作手册）+ `11.ai/03-engineering/harness-engineering/`
+→ 详见续集八 · `32-agent-harness.md`（餐厅装了监控和操作手册）+ `09.ai-applications/agent/agent-reliability/`
 
 ### 7.4 阶段四（2026）Loop Engineering：24 小时轮班营业
 
@@ -631,7 +631,7 @@ while not done:
 - 成本失控（跑了 1000 步还没停）
 - 越权（循环中绕过 Guardrails）
 
-→ 详见 `11.ai/03-engineering/loop-engineering/` + `36b-ai-token-cost-optimization`（成本护栏）
+→ 详见 `09.ai-applications/agent/loop-engineering/` + `36b-ai-token-cost-optimization`（成本护栏）
 
 ### 7.5 演进的内在逻辑：自始自终都是在"驾驭"
 
@@ -703,7 +703,7 @@ while not done:
 
 > **"架构演进没完——只是从'系统怎么扩展'换成了'怎么驾驭 AI'。但思维是一样的：识别边界、设计抽象、持续迭代。"**
 
-→ 跨章节视角：[架构视角 `11.ai/04-architecture/llm-control-evolution/`] | [餐厅视角（本第七章）] | [Harness 详解 `32-agent-harness.md`]
+→ 跨章节视角：[架构视角 `09.ai-applications/agent/agent-architecture/llm-control-evolution/`] | [餐厅视角（本第七章）] | [Harness 详解 `32-agent-harness.md`]
 
 ## 终章：智能餐饮，云原生 + AI 运营 —— 云端镜像一键开分店，弹性伸缩自运营
 

@@ -819,9 +819,9 @@ prompt = template.format(
 - [glossary](glossary.md)
 ## 跨章节衔接
 
-- 06.llm/06-prompt-engineering-basics/README.md —— Prompt 基础 —— 入门必读
-- 06.llm/07-llm-evaluation/README.md —— LLM 评测 —— Prompt 效果评测
-- 11.ai/02-technology-stack/README.md —— AI 技术栈 —— Prompt 在 LLM 系统中的位置
+- 09.ai-applications/prompts/prompt-engineering/README.md —— Prompt 基础 —— 入门必读
+- 09.ai-applications/agent/agent-evaluation/llm-evaluation/README.md —— LLM 评测 —— Prompt 效果评测
+- 09.ai-applications/README.md —— AI 技术栈 —— Prompt 在 LLM 系统中的位置
 
 ---
 

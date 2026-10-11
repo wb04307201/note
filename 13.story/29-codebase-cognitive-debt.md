@@ -634,8 +634,8 @@ graph TD
 
 ### 跨章节衔接
 
-- 11.ai/02-technology-stack/README.md —— AI 技术栈与 RAG 检索 —— 认知债如何影响 RAG 召回精度
-- 11.ai/03-engineering/ai-platforms/README.md —— AI 平台对代码库的"理解能力"边界 —— 认知债是 AI Coding 的隐形瓶颈
+- 09.ai-applications/README.md —— AI 技术栈与 RAG 检索 —— 认知债如何影响 RAG 召回精度
+- 09.ai-applications/agent/ai-platforms/README.md —— AI 平台对代码库的"理解能力"边界 —— 认知债是 AI Coding 的隐形瓶颈
 
 
 - [31-ai-fatal-trio](31-ai-fatal-trio.md)

@@ -708,8 +708,8 @@ graph TD
 
 ### 跨章节衔接
 
-- 11.ai/03-engineering/ai-platforms/README.md —— Dify/Coze/LangGraph 平台对比 —— Harness 设计可借鉴的工程化思路
-- 11.ai/04-architecture/bpmn-ai-integration.md —— BPMN+AI 融合 —— Agent Harness 在工作流引擎中的落地形态
+- 09.ai-applications/agent/ai-platforms/README.md —— Dify/Coze/LangGraph 平台对比 —— Harness 设计可借鉴的工程化思路
+- 09.ai-applications/agent/architecture/bpmn-ai-integration.md —— BPMN+AI 融合 —— Agent Harness 在工作流引擎中的落地形态
 
 
 - [23-lowcode-platform](23-lowcode-platform.md)

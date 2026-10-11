@@ -643,8 +643,8 @@ P3（低）：
 - [glossary](glossary.md)
 ## 跨章节衔接
 
-- 11.ai/02-technology-stack/README.md —— AI 技术栈 —— 合规技术栈
-- 11.ai/03-engineering/ai-platforms/README.md —— AI 平台 —— 合规平台
+- 09.ai-applications/README.md —— AI 技术栈 —— 合规技术栈
+- 09.ai-applications/agent/ai-platforms/README.md —— AI 平台 —— 合规平台
 - 13.front-end/09.security/README.md —— 前端安全 —— 用户隐私保护
 
 ---

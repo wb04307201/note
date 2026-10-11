@@ -598,9 +598,9 @@ ROI：
 - [glossary](glossary.md)
 ## 跨章节衔接
 
-- 11.ai/02-technology-stack/README.md —— AI 技术栈 —— 多模态 AI 位置
-- 11.ai/05-foundation-models/multimodal/README.md —— 多模态基础模型
-- 06.llm/08-multimodal/README.md —— 多模态 LLM 基础
+- 09.ai-applications/README.md —— AI 技术栈 —— 多模态 AI 位置
+- 08.ai-foundations/05-tokenization-embedding/README.md —— 多模态基础模型
+- 08.ai-foundations/README.md —— 多模态原生架构（趋势 1）—— 多模态 LLM 基础
 
 ---
 
