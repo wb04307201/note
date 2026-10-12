@@ -496,6 +496,43 @@ fi
 > - Lesson：结构重组 = 230 处断链 87% 来源，每次 commit 后必跑 check-broken-links.py
 > - 完整内容见 references/REFACTOR-SPEC.md
 
+### Phase 6.10: 沉淀后 §8 映射表维护协议（→ SPEC.md §8.4）
+
+> 🆕 **2026-10-12 通用化重构新增**（详见 commit `c5690f3` + `94078d2` + `fa927ef` + 本节）：本协议让 `note-precipitation-planning` Phase 6 完成新主题沉淀后，**自动把新主题词登记到 `$KB_DIR/SPEC.md §8` 词表**——实现「前向写 + 后向读」自动维护（`note-knowledge-qa` Phase 2 读取 / `note-health` Phase 1.15 稽核）。
+
+#### 触发条件
+
+- Phase 6 subagent 报告「已新增 `<module>/<topic>.md`（路径 `<path>`）」并 commit 落地
+- 主题词有**跨模块检索价值**（关键词不在 §8 现有词表中，且属于 §8.3 五大领域之一）
+
+#### 协议步骤（orchestrator 执行）
+
+1. **主对话校验** subagent 报告 —— 确认新文件路径 + frontmatter + commit hash（ORCHESTRATION.md §1）
+2. **关键词提取** —— 从新文件 H1 / 关键词 / frontmatter tags 提取 1-3 个核心词
+3. **路径定位** —— 复用 Phase 3 决策（主模块 + 12.interview 路径）
+4. **写 §8** —— 在 `$KB_DIR/SPEC.md §8.X.Y` 对应分区末尾加 1 行（5 字段：主题词 / 主模块路径 / 12.interview 路径 / 频次 `-`）
+5. **同 commit 内** —— 主题词词条 + Phase 6 commit 合并为同一 commit（避免拆出独立 commit）
+6. **跳过条件** —— subagent 报告主题不明确 / 工具配置类不入 12.interview / 主题已存在
+
+#### 不强制场景
+
+- 主题已被现有 §8 词覆盖（如新文件叫「RAG 工程化实施」，但 §8 已有「RAG Pipeline」）→ 跳过
+- 主题是工具链小调整（如 Maven 编译参数、IntelliJ 配置）→ 跳过（§8 不收录）
+- 主题是 troubleshooting 型（如 cpu-spike-troubleshooting）→ 跳过（§8 不收录）
+
+#### 反例（不要加 §8 · 2026-10-12 历史教训）
+
+| 反例 | 不加原因 |
+|------|---------|
+| 「Maven release/source/target 三参数」（2026-10-12） | 构建工具配置类（见 `12.interview/SPEC.md §准入判定` 反例清单），不入 §8 |
+| 「JVM 运行时参数调优」 | 已沉淀在 `01.java-and-jvm/02-jvm/parameters.md`，主模块已承载 |
+| 「Dockerfile / Docker Compose 写法」 | 工程模板，面试几乎不考（不入 §8 后 QA 也难命中）|
+
+#### 长期验收
+
+- `note-health` Phase 1.15 全库扫描会自动稽核 §8 词表所有路径（见 commit `94078d2`），死链则 P3 warning
+- `note-knowledge-qa` Phase 2 关键词提取是 §8 的「消费者」（见 commit `fa927ef`）—— QA 时若发现 §8 缺关键主题词，**回填**到本协议
+
 ### Phase 7: 验证 + 自检（必做）
 
 **自检清单**：
