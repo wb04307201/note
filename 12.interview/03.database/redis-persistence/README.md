@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-redis-persistence
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, Redis, redis]
+  status: active
 -->
 
 # Redis 持久化深度对比

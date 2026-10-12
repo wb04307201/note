@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-parent-child-thread
   topic: 01.java
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [01.java, parent, child]
+  status: active
 -->
 
 # Java 父子线程数据传递：3 种方案横跨 JDK + 阿里开源

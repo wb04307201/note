@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 25
   type: 续集
   position: 续集三
   title: 厨房大换岗
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 25 · 厨房大换岗

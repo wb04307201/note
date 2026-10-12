@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-quickly-add-index
   topic: 03.database
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, quickly, add]
+  status: active
 -->
 
 # 1亿条数据快速加索引的方法

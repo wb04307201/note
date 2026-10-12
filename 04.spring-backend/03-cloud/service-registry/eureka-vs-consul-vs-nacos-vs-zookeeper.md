@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend/03-cloud/service-registry/eureka-vs-consul-vs-nacos-vs-zookeeper
   type: article
   category: 主模块子文章
   summary: 服务注册与发现中心对比
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 服务注册与发现中心对比

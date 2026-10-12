@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: workflow
   slug: workflow/temporal
   type: article
   category: 主模块子文章
   summary: Temporal.io Durable Execution 引擎——Workflow / Activity / Saga 与生产部署实践
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Temporal.io

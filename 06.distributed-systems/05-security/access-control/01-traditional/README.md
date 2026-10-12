@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/01-traditional
   type: article
   category: 主模块子文章
   summary: 传统访问控制：身份即权限 的一句话定位：传统访问控制以"主体"本身作为决策依据，不引入中间抽象
   depth: ⭐
+  status: active
 -->
 
 # 传统访问控制：身份即权限

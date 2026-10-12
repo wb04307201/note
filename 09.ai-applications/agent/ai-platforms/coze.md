@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 09.ai-applications
   slug: 09.ai-applications\agent\ai-platforms\coze
   type: article
   category: 主模块子文章
   summary: Coze（扣子）
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Coze（扣子）

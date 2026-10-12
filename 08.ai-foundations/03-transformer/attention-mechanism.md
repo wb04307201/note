@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations/03-transformer
   slug: 08.ai-foundations/03-transformer/attention-mechanism
   type: article
@@ -7,6 +6,7 @@ module:
   summary: 注意力机制全家桶（Self/Cross/Multi-Head/Sparse/Linear/MQA/GQA）——数学推导 + 7 大变体 + 工业级 KV Cache 加速 + 6 家公司实战。
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 注意力机制（Attention Mechanism）

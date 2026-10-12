@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\07-observability\actuator
   type: article
   category: 主模块子文章
   summary: Spring Boot Actuator 监控
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Boot Actuator 监控

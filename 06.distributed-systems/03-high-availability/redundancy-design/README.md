@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/redundancy-design
   type: article
   category: 主模块子文章
   summary: 冗余设计 本应该很简单
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 冗余设计

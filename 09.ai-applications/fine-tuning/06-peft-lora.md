@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/peft-lora
   type: article
   category: 主模块子文章
   summary: PEFT / LoRA / QLoRA 参数高效微调 + DoRA / AdaLoRA 2024+ 新方法
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # PEFT / LoRA / QLoRA（参数高效微调）

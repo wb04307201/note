@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: workflow
   slug: workflow/define
   type: article
   category: 主模块子文章
   summary: 工作流定义
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 工作流定义

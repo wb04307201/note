@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics/06-operating-system
   slug: computer-basics/06-operating-system/scheduling
   type: article
   category: 主模块子文章
   summary: CPU 调度算法（FCFS/SJF/轮转/多级反馈队列）、Linux CFS 调度器、上下文切换成本与 CPU 亲和性。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # CPU 调度

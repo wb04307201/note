@@ -5,6 +5,7 @@
   category: Agent 子模块索引
   summary: 智能系统三层架构——规则 / 启发式 / LLM 三层职责划分与协作模式。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 智能系统分层（Intelligent System Layers）

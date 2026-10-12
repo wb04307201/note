@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: database/04-index
   slug: database/04-index/composite-index-filesort
   type: article
   category: 索引优化
   summary: 联合索引覆盖了 WHERE + ORDER BY 仍 filesort 的 5 大原因 + EXPLAIN 排查步骤 + 修复方案
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 联合索引 + Using filesort：5 大原因 + 排查指南

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/structural-patterns
   type: article
   category: 主模块子文章
   summary: 结构型模式
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 结构型模式

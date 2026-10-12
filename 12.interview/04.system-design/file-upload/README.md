@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-file-upload
   topic: 04.system-design
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 文件上传, 断点续传, 秒传, 分片, OSS]
+  status: active
 -->
 
 # 设计一个大文件上传系统 —— 分片 + 断点续传 + 秒传

@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 21
   type: 番外
   position: 番外四
   title: 懂你的菜单
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 21 · 懂你的菜单

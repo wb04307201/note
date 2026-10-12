@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-token-storage-security
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 安全陷阱
   tags: [09.front-end, token, jwt, security, xss, csrf]
+  status: active
 -->
 
 # 用户登录 Token 存储在哪里？localStorage 的安全漏洞

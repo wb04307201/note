@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/shopify-agent
   type: article
   category: 主模块子文章
   summary: Shopify AI 智能体学徒车间
   depth: ⭐⭐
+  status: active
 -->
 
 # Shopify AI 智能体学徒车间

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-llm-inference
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, KV Cache, PagedAttention, Continuous Batching, Speculative Decoding, 量化, 推理优化]
+  status: active
 -->
 
 # LLM 推理优化面试深挖（5 大核心）

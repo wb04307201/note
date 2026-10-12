@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 13
   type: 正传
   position: 正传 8
   title: 前厅翻修记
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 13 · 前厅翻修记

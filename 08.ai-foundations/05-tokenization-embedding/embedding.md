@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations/05-tokenization-embedding
   slug: 08.ai-foundations/05-tokenization-embedding/embedding
   type: article
   category: 主模块子文章
   summary: Embedding 从 Word2Vec/GloVe 到 BERT/LLM Embedding 的演进、数学内核、训练目标、向量数据库检索与 6 大公司实战。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 嵌入 vs 向量化

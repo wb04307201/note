@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/paged-attention
   type: article
   category: 主模块子文章
   summary: PagedAttention vLLM 核心：解决 KV Cache 碎片化
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # PagedAttention（vLLM 核心）

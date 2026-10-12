@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-sharding-pagination
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构设计
   tags: [03.database, sharding, pagination, distributed]
+  status: active
 -->
 
 # 分库分表后怎么做分页查询？

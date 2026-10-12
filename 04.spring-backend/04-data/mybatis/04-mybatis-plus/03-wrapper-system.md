@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\03-wrapper-system
   type: article
   category: MyBatis-Plus 实战
   summary: MyBatis-Plus Wrapper 体系——两大维度(用途 + 使用方式)全景 + 决策树。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 03 Wrapper 体系(两大维度)

@@ -5,6 +5,7 @@
   category: AI 应用子 MOC
   summary: LLM 微调专题（Fine-tuning 方法全景：SFT / RLHF / DPO / Constitutional AI / PEFT-LoRA）
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Fine-tuning（LLM 微调）· 6 大方法全景

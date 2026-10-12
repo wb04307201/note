@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-class-loading
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, class, loading]
+  status: active
 -->
 
 # 类加载机制与双亲委派模型：双亲委派 + 打破机制 + 源码剖析

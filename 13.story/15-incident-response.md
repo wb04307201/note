@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 15
   type: 正传
   position: 正传 9
   title: 差评危机
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 15 · 差评危机

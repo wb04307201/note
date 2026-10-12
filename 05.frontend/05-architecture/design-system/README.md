@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/design-system
   type: article
   category: 主模块子文章
   summary: 设计系统
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 设计系统

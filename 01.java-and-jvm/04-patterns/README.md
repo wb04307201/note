@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/design-patterns
   type: article
   category: 主模块子文章
   summary: GoF 23 种设计模式的 Java 实现与选型指南 —— 笔记已按 GoF 分类拆分为 3 个子文件。
   depth: ⭐⭐
+  status: active
 -->
 
 # 设计模式

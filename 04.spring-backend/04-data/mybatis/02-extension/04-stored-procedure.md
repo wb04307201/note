@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\mybatis\02-extension\04-stored-procedure
   type: article
   category: 主模块子文章
   summary: statementType=CALLABLE 让 MyBatis 透明调用数据库存储过程，支持 IN/OUT/INOUT 三种参数模式与游标映射
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 04 存储过程调用

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 03-network
   slug: 02.cs-foundations/03-network/tcp-handshake-teardown
   type: article
   category: 主模块子文章
   summary: TCP 三次握手 + 四次挥手 完整机制 —— 字段含义 + 状态机 + TIME_WAIT/2MSL + 反模式（SYN Flood / 半连接攻击）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # TCP 三次握手 + 四次挥手 · 完整机制

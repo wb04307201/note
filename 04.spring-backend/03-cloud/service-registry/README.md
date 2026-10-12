@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/service-registry
   type: article
   category: 主模块子文章
   summary: 服务注册与发现
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 服务注册与发现

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\05-lambda-sfunction-deep-dive
   type: article
   category: MyBatis-Plus 实战
   summary: LambdaQueryWrapper 中 SFunction 序列化原理——为什么 User::getName 能被框架解析成字段名。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 05 LambdaQueryWrapper 中的 SFunction 序列化原理

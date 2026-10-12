@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-composite-index-filesort
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 索引优化
   tags: [03.database, 联合索引, filesort, EXPLAIN, 索引优化, ORDER BY]
+  status: active
 -->
 
 # 联合索引明明覆盖了 WHERE 和 ORDER BY，为什么 explain 还会显示 Using filesort？

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-transactional-propagation
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, transactional, propagation]
+  status: active
 -->
 
 # @Transactional 传播行为 7 种详解

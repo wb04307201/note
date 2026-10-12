@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-seckill-without-redis
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 中高
   scenario_type: 工程权衡 / 刁难题
   tags: [04.system-design, 秒杀, 高并发, 单机方案, 乐观锁, 刁难面试]
+  status: active
 -->
 
 # 500 人抢 1 瓶茅台，2 台服务器，不用 Redis / MQ，秒杀怎么写？

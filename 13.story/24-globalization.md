@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 24
   type: 番外
   position: 番外六
   title: 阿明出海记
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 24 · 阿明出海记

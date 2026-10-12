@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-rag-permission-isolation
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产 Bug
   tags: [11.ai, RAG, permission, access-control, security, multi-tenant]
+  status: active
 -->
 
 # RAG 权限隔离设计：实习生搜到了 CEO 的薪资文档

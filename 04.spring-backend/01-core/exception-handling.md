@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\01-core\exception-handling
   type: article
   category: 主模块子文章
   summary: Spring 异常处理机制
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Spring 异常处理机制

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/embedding-models
   type: article
   category: 主模块子文章
   summary: Embedding 模型横评（BGE / M3E / Qwen / OpenAI）
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Embedding 模型横评

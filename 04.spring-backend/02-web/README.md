@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/web
   type: index
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: Spring Web = MVC（同步阻塞）+ WebFlux（响应式）（13 篇：DispatcherServlet/9 大组件/Filter/AOP 顺序/异常/视图/上传/CORS/i18n/异步/SSE/WebClient/R2DBC/Router Functions/测试）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 02 Web 层

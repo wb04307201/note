@@ -5,6 +5,7 @@
   category: AI 应用子 MOC
   summary: AI 平台选型对比——Coze / Dify / LangGraph / Spring AI 等平台定位与适用场景。
   depth: ⭐
+  status: active
 -->
 
 # AI 平台（AI Platforms）

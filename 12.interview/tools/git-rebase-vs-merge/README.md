@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: tools-git-rebase-vs-merge
   topic: tools
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [tools, Git, Rebase, Merge, 提交历史, 冲突解决]
+  status: active
 -->
 
 # Git Rebase vs Merge 怎么选？

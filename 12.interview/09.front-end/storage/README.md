@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-storage
   topic: 09.front-end
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [09.front-end, storage]
+  status: active
 -->
 
 # 前端存储方式

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-18
   type: article
   category: 主模块子文章
   summary: Java 18：9 个 JEP，含 UTF-8 默认编码、简单 Web 服务器、Code Snippets API 孵化
   depth: ⭐
+  status: active
 -->
 
 # Java 18

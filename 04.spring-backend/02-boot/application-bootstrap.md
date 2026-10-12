@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-boot\application-bootstrap
   type: article
   category: 主模块子文章
   summary: Spring Boot 启动后执行（钩子/回调/事件）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Boot 启动后执行（钩子/回调/事件）

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 12.interview/04.system-design/05-security/sso
   slug: system-design/05-security/sso/05-decision-tree
   type: topic
   category: 选型决策
   summary: SSO 6 大方案场景化选型 + checklist + 反模式速查
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # SSO 选型决策树 · 6 大方案场景化

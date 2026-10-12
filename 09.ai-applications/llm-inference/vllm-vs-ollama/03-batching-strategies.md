@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-platforms/vllm-vs-ollama
   slug: ai-platforms/vllm-vs-ollama/03-batching-strategies
   type: topic
   category: 推理调度
   summary: 静态批处理 vs 动态批处理 vs 连续批处理 —— vLLM 的连续批处理是工业部署最优解
   depth: ⭐⭐
+  status: active
 -->
 
 # 批处理策略 · 从静态到连续

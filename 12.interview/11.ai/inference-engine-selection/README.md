@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-inference-engine-selection
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [11.ai, vLLM, Ollama, PagedAttention, 推理引擎, 量化, 分布式]
+  status: active
 -->
 
 # 工业级大模型部署：为什么优先选 vLLM 而非 Ollama？

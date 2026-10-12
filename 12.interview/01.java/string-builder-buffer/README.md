@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-string-builder-buffer
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, string, builder]
+  status: active
 -->
 
 # String / StringBuilder / StringBuffer 深度对比

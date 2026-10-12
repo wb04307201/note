@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-redis-distributed-lock
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 面试追问陷阱
   tags: [03.database, redis, distributed-lock, redisson, watchdog]
+  status: active
 -->
 
 # Redis 分布式锁的 3 大坑 + Redisson 看门狗机制

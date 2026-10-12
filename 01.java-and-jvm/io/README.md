@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/io
   type: article
   category: 主模块子文章
   summary: 系统梳理 Java I/O 流分类、字节流 / 字符流 / 缓冲流 / 序列化、NIO 与零拷贝等核心知识。
   depth: ⭐⭐
+  status: active
 -->
 
 # I/O

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-not-use-@autowired
   topic: 06.spring
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, Spring, not]
+  status: active
 -->
 
 # Spring里为什么不推荐使用@ Autowired

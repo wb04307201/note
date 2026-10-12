@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-this-binding
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, this, binding]
+  status: active
 -->
 
 # this 绑定规则 5 种详解

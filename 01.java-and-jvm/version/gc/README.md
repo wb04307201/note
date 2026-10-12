@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/gc
   type: article
   category: 主模块子文章
   summary: Java GC 演进：Serial → Parallel → CMS → G1 → ZGC → Shenandoah。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 垃圾回收

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: algorithms/ensemble
   type: article
   category: 主模块子文章
   summary: 集成学习 Random Forest / XGBoost / LightGBM / CatBoost
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 集成学习（Random Forest / XGBoost / LightGBM）

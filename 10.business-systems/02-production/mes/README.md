@@ -5,6 +5,7 @@
   category: 主模块子文章
   summary: MES（Manufacturing Execution System 制造执行系统） 本应该很简单，一句话定位：把 ERP 的生产计划落地为车间工单并实时跟踪执...
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # MES（Manufacturing Execution System 制造执行系统）

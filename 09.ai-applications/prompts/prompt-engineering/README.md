@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/prompt-engineering
   type: article
   category: 主模块子文章
   summary: Prompt 工程
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Prompt 工程

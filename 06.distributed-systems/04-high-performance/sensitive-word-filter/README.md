@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: high-performance
   slug: system-design/04-high-performance/sensitive-word-filter
   type: deep-dive
@@ -7,6 +6,7 @@ module:
   summary: 高并发敏感词过滤系统设计 —— AC 自动机 + 本地缓存 + 分布式架构 + Java 实战 + 5 反模式
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 高并发敏感词过滤系统 · 完整落地方案

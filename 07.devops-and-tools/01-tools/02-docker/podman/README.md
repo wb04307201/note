@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/podman
   type: article
   category: 主模块子文章
   summary: Podman
   depth: ⭐
+  status: active
 -->
 
 # Podman

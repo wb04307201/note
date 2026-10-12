@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-planning-acting-monitoring
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: Agent 架构
   tags: [11.ai, Agent, Planning, Acting, Monitoring, 三阶段闭环]
+  status: active
 -->
 
 # Planning/Acting/Monitoring 三阶段闭环面试题

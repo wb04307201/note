@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 10.big-data-hive-partition-vs-bucket
   topic: 10.big-data
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Hive, 分区, 分桶, Partition, Bucket, Map-Join, Pruning]
+  status: active
 -->
 
 # Hive 分区 vs 分桶怎么选？

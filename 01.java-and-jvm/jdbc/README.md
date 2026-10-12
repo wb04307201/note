@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/jdbc
   type: article
   category: 主模块子文章
   summary: JDBC 架构、DriverManager / DataSource、PreparedStatement、事务、连接池与最佳实践。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # JDBC

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-react-vs-plan-execute
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: Agent 架构选型
   tags: [11.ai, ReAct, Plan-and-Execute, Agent, DAG, Multi-Agent]
+  status: active
 -->
 
 # ReAct vs Plan-and-Execute · 4 模式选型深挖

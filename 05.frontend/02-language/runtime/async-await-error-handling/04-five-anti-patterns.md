@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end/async-await-error-handling
   slug: front-end/async-await-error-handling/04-five-anti-patterns
   type: topic
   category: 反模式
   summary: 5 大反模式 —— 未捕获 / 静默吞错 / finally 抛错 / 异步未 await / 错误污染
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 5 大反模式 · async/await 错误处理实战避坑

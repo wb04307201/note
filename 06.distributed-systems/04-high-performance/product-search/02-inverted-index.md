@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/product-search
   slug: system-design/04-high-performance/product-search/02-inverted-index
   type: topic
   category: 索引与分词
   summary: 倒排索引原理 + IK 中文分词 + 同义词扩展 + 多维筛选（Faceted Search）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 倒排索引与分词 · 搜索的核心引擎

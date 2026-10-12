@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-completable-future
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, completable, future]
+  status: active
 -->
 
 # CompletableFuture 异步编排深度剖析

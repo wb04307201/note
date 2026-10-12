@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-time-types
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MySQL, time]
+  status: active
 -->
 
 # MySQL 时间类型选型指南

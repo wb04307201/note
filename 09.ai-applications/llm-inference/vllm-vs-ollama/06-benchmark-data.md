@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-platforms/vllm-vs-ollama
   slug: ai-platforms/vllm-vs-ollama/06-benchmark-data
   type: topic
   category: 性能基准
   summary: vLLM / Ollama / TGI / LMDeploy 在吞吐量 / 首 token 延迟 / 显存占用 3 个维度上的实测对比
   depth: ⭐⭐
+  status: active
 -->
 
 # Benchmark 数据 · 4 引擎实测对比

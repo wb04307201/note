@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/moe-inference
   type: article
@@ -8,6 +7,7 @@ module:
   depth: ⭐⭐⭐⭐⭐
   version: v2.0
   updated: 2026-09-01
+  status: active
 -->
 
 # MoE 推理优化

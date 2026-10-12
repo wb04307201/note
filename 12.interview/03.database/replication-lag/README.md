@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-replication-lag
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MySQL, replication]
+  status: active
 -->
 
 # MySQL 主从复制延迟原因与解决方案

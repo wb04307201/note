@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-skill-design
   topic: 11.ai
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 工程权衡
   tags: [11.ai, Claude Code, Skill, Agent, 设计方法论, YAML frontmatter]
+  status: active
 -->
 
 # Skill 从 0 到 1：怎么设计一个能用的 Skill？

@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 03
   slug: database
   topic: 数据库
@@ -7,6 +6,7 @@ module:
   category: 主模块
   summary: 数据库从关系型基础到 NoSQL、缓存、迁移与云原生,涵盖 SQL、事务、索引、MySQL 内部机制、Redis、NoSQL 与监控告警全链路核心知识。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 数据库

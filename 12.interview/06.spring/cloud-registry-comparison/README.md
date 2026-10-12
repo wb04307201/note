@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: cloud-registry-comparison
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 架构决策困境
   tags: [Spring Cloud, Nacos, Eureka, Consul, 服务注册发现]
+  status: active
 -->
 
 # Spring Cloud 注册中心选型：Nacos vs Eureka vs Consul vs Zookeeper

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-bplus-tree
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, bplus, tree]
+  status: active
 -->
 
 # B+ Tree 为什么成为数据库索引的标准

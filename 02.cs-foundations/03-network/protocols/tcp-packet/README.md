@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/tcp-packet
   type: article
   category: 主模块子文章
   summary: TCP 数据包（报文段） 本应该很简单，TCP（Transmission Control Protocol，传输控制协议）是面向连接的、可靠的、基于字节流的传输...
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # TCP 数据包（报文段）

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/cross-platform-framework-design
   type: article
   category: 主模块子文章
   summary: 跨端框架设计：编译时 AST 转换 + 运行时适配层 + 沙箱隔离 三层架构原理。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 跨端框架设计：从零设计跨端框架（小程序 + H5 + App WebView）

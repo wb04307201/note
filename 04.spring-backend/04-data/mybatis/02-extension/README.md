@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/mybatis-extension
   type: article
   category: 主模块子文章
   summary: MyBatis 扩展能力
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 02 MyBatis 扩展能力

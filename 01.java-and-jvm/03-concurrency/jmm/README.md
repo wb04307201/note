@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/jmm
   type: article
   category: 主模块子文章
   summary: JMM (Java Memory Model) 学习笔记
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # JMM (Java Memory Model) 学习笔记

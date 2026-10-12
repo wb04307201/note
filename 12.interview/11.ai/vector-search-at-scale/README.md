@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-vector-search-at-scale
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中高频
   scenario_type: 架构演进
   tags: [11.ai, Vector Search, 千亿级, 分布式, ScANN, DiskANN, GPU]
+  status: active
 -->
 
 # 10亿 vs 千亿级向量检索：架构演进 + 5 个关键转变

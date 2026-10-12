@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection/concurrent-hashmap
   type: article
   category: 主模块子文章
   summary: ConcurrentHashMap JDK7 分段锁 vs JDK8 CAS+synchronized 实现。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # ConcurrentHashMap 深入

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java/concurrency
   slug: java/concurrency/excel-export-oom
   type: article
   category: 主模块子文章
   summary: 大数据量 Excel 导出 OOM 的根因分析 + 4 大解决方案（流式写入 / 分批查询 / 多线程分片 / 内存优化）+ 完整代码示例 + 性能对比
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 大数据量 Excel 导出 OOM：根因分析 + 4 大解决方案

@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: application-systems
   slug: application-systems/05-operations/rpa
   type: article
@@ -7,6 +6,7 @@ module:
   summary: RPA（Robotic Process Automation 机器人流程自动化） 一句话定位：用"软件机器人"模拟人在电脑上的重复操作（点击/输入/复制/粘贴/跨系统搬运），把人从"鼠标搬运工"中解放出来，是企业自动化金字塔中"流程层自动化的最后一公里"。
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # RPA（Robotic Process Automation 机器人流程自动化）

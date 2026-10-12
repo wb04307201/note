@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/production-agent-system-design
   type: article
   category: 主模块子文章
   summary: 生产级 Agent 系统端到端搭建指南 —— 8 步流水线串联 8 大组件
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 生产级 Agent 系统端到端搭建指南

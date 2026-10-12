@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-script-async-defer
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, script, async]
+  status: active
 -->
 
 # script 标签的 async / defer：加载时机与 DOMContentLoaded

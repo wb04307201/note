@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: workflow
   slug: workflow/eventmesh-cloud-flow
   type: article
   category: 主模块子文章
   summary: EventMesh 云流程
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # EventMesh 云流程

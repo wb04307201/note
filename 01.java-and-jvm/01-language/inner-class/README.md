@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/inner-class
   type: article
   category: 主模块子文章
   summary: Java 内部类：成员内部类、静态嵌套类、局部内部类、匿名内部类 + Lambda 替代
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 内部类

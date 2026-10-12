@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-llm-timeout-circuit-breaker
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 超时, 熔断, Circuit Breaker, Fallback, Production]
+  status: active
 -->
 
 # 等不及模型思考 —— 双 Timeout + Circuit Breaker 熔断

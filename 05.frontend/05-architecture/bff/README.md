@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/bff
   type: article
   category: 主模块子文章
   summary: BFF (Backend For Frontend) 模式
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 架构演进：深入理解 BFF (Backend For Frontend) 模式

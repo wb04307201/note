@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations/04-llm/dropout-in-llm
   slug: 08.ai-foundations/04-llm/dropout-in-llm/single-epoch-and-config-evidence
   type: article
@@ -7,6 +6,7 @@ module:
   summary: 大模型"单 epoch 时代"的 5 个层面 + 10 个里程碑模型 config 考古实锤 + 替代正则化方案 + 6 家公司实战。
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 单 epoch 时代 + config 考古实锤：Dropout 为什么被弃用？

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-memory
   slug: ai/agent-memory/shared-memory
   type: deep-dive
   category: 主模块子文章
   summary: 多 Agent 共享记忆深度原理 —— 5 大内容维度 + 3 大实现层 + 6 大模式 + 一致性协议。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 多 Agent 共享记忆 · 深度专章

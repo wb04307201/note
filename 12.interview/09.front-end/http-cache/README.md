@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-http-cache
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [09.front-end, HTTP, http]
+  status: active
 -->
 
 # HTTP 缓存机制深度剖析

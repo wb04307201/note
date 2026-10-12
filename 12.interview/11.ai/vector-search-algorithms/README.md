@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-vector-search-algorithms
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [11.ai, Vector Search, HNSW, IVF, DiskANN, ANN, 10亿级]
+  status: active
 -->
 
 # 10亿级向量毫秒级检索：HNSW vs IVF vs DiskANN 选型逻辑

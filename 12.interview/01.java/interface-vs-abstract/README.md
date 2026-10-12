@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-interface-vs-abstract
   topic: 01.java
   difficulty: ⭐⭐
   frequency: 高频
   scenario_type: 概念辨析
   tags: [01.java, OOP, interface, abstract]
+  status: active
 -->
 
 # 接口 vs 抽象类：到底怎么选？

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/agent-evaluation
   slug: ai/08-llmops/agent-evaluation/02-five-methods
   type: topic
   category: 5 种评测方法
   summary: 5 种评测方法详解 —— 自动化指标 / 黄金集 / LLM-as-Judge / A/B Test / 用户模拟
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 5 种评测方法 · Agent 评测完整工具箱

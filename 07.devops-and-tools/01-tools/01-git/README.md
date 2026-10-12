@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/git
   type: index
   category: 主模块子文章
   summary: Git — 版本控制与自托管代码托管
   depth: ⭐⭐
+  status: active
 -->
 
 # Git

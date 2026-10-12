@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/production-stability
   slug: ai/llmops/production-stability/06-decision-tree
   type: topic
   category: 5 大问题决策树
   summary: 5 大问题场景化决策树 + 反模式 + checklist + 一句话总结
   depth: ⭐⭐
+  status: active
 -->
 
 # 决策树 · 5 大问题场景化选型

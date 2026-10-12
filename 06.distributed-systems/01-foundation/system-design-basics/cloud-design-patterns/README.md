@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/cloud-design-patterns
   type: article
   category: 主模块子文章
   summary: ⚠️ **说明**：本文档虽以 Azure 为示例进行说明，但所列云设计模式为通用模式，可应用于 AWS、GCP、阿里云等。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 云设计模式

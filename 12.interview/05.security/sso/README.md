@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-sso
   topic: 05.security
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, SSO, OAuth2, OIDC, JWT, Spring Security, 单点登录]
+  status: active
 -->
 
 # 单点登录（SSO）· 6 大方案选型深挖

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/togaf/business-capability
   type: article
   category: 主模块子文章
   summary: BCAT 四层架构 + 业务能力地图 + 价值流建模，业务能力→DDD 限界上下文→微服务的翻译层；附 TOGAF 9 vs 10 演进时间线、ArchiMate 建模示例、能力差距分析矩阵。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 第二章：BCAT + 业务能力 + 价值流

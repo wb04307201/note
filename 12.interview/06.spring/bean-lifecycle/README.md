@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-bean-lifecycle
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [06.spring, Bean, bean]
+  status: active
 -->
 
 # Bean 生命周期

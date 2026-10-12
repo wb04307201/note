@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/core-web-vitals
   type: article
   category: 主模块子文章
   summary: Core Web Vitals 优化
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Core Web Vitals 优化

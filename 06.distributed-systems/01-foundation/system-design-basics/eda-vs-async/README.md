@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/eda-vs-async
   type: article
   category: 主模块子文章
   summary: 事件驱动（EDA）侧重组件解耦与实时响应，异步处理侧重单任务非阻塞执行——两者互补，常结合使用构建高响应系统。
   depth: ⭐⭐
+  status: active
 -->
 
 # 事件驱动模式与异步处理模式

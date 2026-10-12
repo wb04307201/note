@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/01-chunking
   type: topic
   category: 文本切片
   summary: Chunking 4 大策略对比：fixed / recursive / semantic / agentic / late chunking + chunk size 选型
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Chunking · 文本切片 4 大策略

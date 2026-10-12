@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: split-hairs
   slug: split-hairs/tools
   type: index
   category: 高频面试题
   summary: 开发工具面试题 — Git / Docker / Nginx / Kubernetes
+  status: active
 -->
 
 # 开发工具面试题 —— Git / Docker / Nginx / Kubernetes

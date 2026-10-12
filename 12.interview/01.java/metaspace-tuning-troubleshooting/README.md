@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-metaspace-tuning-troubleshooting
   topic: 01.java
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中高频（JVM 调优是 Java 面试 Top 3）
   scenario_type: 生产 Bug
   tags: [01.java, JVM, metaspace, container, tuning, docker, gc]
+  status: active
 -->
 
 # JVM Metaspace 调优踩坑：只设 MaxMetaspaceSize 不设 MetaspaceSize

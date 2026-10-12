@@ -5,6 +5,7 @@
   category: 工具脚本
   summary: PM 实战脚本手册（5 大场景 SQL/邮件/评审模板）+ 项目维护 Python 工具
   depth: ⭐⭐
+  status: active
 -->
 
 # PM 实战脚本手册

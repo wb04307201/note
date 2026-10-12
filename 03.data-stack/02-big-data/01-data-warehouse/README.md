@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/data-warehouse
   type: index
   category: 主模块子文章
   summary: Lambda / Kappa / 湖仓一体——大数据架构选型的三种主流范式
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 01 数仓架构

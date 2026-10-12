@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-web\webflux\router-functions
   type: article
   category: 主模块子文章
   summary: Router Functions 函数式端点
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Router Functions 函数式端点

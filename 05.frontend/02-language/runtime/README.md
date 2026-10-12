@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/runtime
   type: article
   category: 主模块子文章
   summary: JS 运行时：Node.js / Deno / Bun
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # JS 运行时：Node.js / Deno / Bun

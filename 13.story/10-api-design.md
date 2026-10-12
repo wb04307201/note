@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 10
   type: 正传
   position: 正传 6
   title: 菜单设计学
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 10 · 菜单设计学

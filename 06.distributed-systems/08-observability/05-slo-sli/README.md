@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/08-observability/05-slo-sli
   type: article
   category: 主模块子文章
   summary: SLO/SLI 实战手册：从服务等级指标定义到错误预算策略，Google SRE 方法论的工程落地指南。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # SLO/SLI · 服务等级目标与指标实战

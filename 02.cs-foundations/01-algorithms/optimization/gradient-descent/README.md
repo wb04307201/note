@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: algorithms/optimization/gradient-descent
   type: article
   category: 主模块子文章
   summary: 梯度下降 4 大变体（BGD/SGD/Mini-batch/Adam）
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 梯度下降（Gradient Descent）

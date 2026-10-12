@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 43
   type: 续集
   position: 续集十九
   title: AI 提速 3 倍，交付反而慢了？
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 43 · AI 提速 3 倍，交付反而慢了？

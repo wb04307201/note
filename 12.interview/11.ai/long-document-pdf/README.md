@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-long-document-pdf
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: RAG 工程
   tags: [11.ai, Long Document, PDF, Contract, Chunking, Lost-in-Middle, YaRN, LongRoPE, Docling, LongLLMLingua]
+  status: active
 -->
 
 # 长文档与 PDF 面试深挖（4 大核心）

@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/data
   type: index
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: Spring 数据层 = 事务 + 缓存 + 数据访问（39 篇：声明式/编程式事务/传播隔离失效/多数据源/JTA/JPA/Cache 4 模式/多级缓存/序列化/MyBatis 全栈 4 主题 27 篇）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 03 数据层

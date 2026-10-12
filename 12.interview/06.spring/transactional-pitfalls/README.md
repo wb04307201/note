@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-transactional-pitfalls
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, transactional, pitfalls]
+  status: active
 -->
 
 # @Transactional 失效的 8 种场景

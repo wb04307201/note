@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-owasp-top10
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, OWASP, Top 10, 注入, 认证, 敏感数据, SSRF]
+  status: active
 -->
 
 # OWASP Top 10 面试怎么答？—— 10 大安全风险速记与防御策略

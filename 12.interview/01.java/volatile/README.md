@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-volatile
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, volatile]
+  status: active
 -->
 
 # volatile 内存语义深度剖析

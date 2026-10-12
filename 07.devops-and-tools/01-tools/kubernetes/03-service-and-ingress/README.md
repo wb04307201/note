@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/k8s-service-ingress
   type: article
   category: 主模块子文章
   summary: K8s Service 与 Ingress
   depth: ⭐⭐
+  status: active
 -->
 
 # K8s Service 与 Ingress：服务发现 + 7 层路由

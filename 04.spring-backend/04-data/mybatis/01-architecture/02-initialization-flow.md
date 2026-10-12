@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend/04-data/mybatis/01-architecture/02-initialization-flow
   type: topic
   category: MyBatis 内部原理
   summary: MyBatis 初始化 7 步流程——从 XML 解析到 SqlSession 创建的全链路剖析
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 02 初始化流程

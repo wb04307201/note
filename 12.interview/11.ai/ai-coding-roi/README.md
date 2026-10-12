@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-ai-coding-roi
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, coding, roi]
+  status: active
 -->
 
 # AI 编程 ROI 度量：DORA 4 指标 + SPACE 5 维度

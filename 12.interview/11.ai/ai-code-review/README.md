@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-ai-code-review
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [11.ai, code-review, backend, security]
+  status: active
 -->
 
 # 用 AI 生成后端接口代码，你怎么审核验收？

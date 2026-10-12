@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/creational-patterns/singleton
   type: article
   category: 主模块子文章
   summary: 单例模式 5 种实现对比 + 反射/序列化破坏 + 选型指南（split-hairs 迁出）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 单例模式（split-hairs 视角）

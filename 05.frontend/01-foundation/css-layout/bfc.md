@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/css-layout/bfc
   type: article
   category: 主模块子文章
   summary: BFC（块级格式化上下文）—— CSS 布局隔离的核心机制
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # BFC（块级格式化上下文）

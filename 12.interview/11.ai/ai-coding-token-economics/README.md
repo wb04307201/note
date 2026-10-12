@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-ai-coding-token-economics
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产 Bug
   tags: [11.ai, coding, token, economics, agent, cost]
+  status: active
 -->
 
 # AI 编程 Token 经济学：9.6 万 Token 改一行 CSS

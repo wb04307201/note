@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: database
   slug: database/cloud-database
   type: index
   category: 主模块子文章
   summary: 云数据库是云厂商提供的托管关系/NoSQL/NewSQL 服务,主流产品包括 AWS RDS/Aurora、阿里云 RDS/PolarDB、TiDB Cloud,核心价值是免运维与弹性扩缩容。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 云数据库

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-vector-search-trillion
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 低频
   scenario_type: 前沿架构
   tags: [11.ai, Vector Search, 万亿级, 联邦, TPU, 极限压缩, 跨数据中心]
+  status: active
 -->
 
 # 万亿级向量检索：多集群 + 联邦 + TPU + 极限压缩——架构思维而非落地指南

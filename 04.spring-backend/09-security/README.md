@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/security
   type: index
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: Spring Security = 认证（Authentication）+ 授权（Authorization）+ 防护（CORS/CSRF/Session/Header）（6 篇：FilterChain 架构/认证机制/授权机制/OAuth2 与 JWT/CORS 与 CSRF/安全防护）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 09 Spring Security

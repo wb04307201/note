@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations/03-transformer
   slug: 08.ai-foundations/03-transformer/transformer-architecture
   type: article
   category: 主模块子文章
   summary: Transformer 架构核心：Self-Attention + QKV + Multi-Head。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Transformer 架构核心

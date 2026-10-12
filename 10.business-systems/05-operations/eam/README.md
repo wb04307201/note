@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: application-systems
   slug: application-systems/05-operations/eam
   type: article
   category: 主模块子文章
   summary: 一份按业务场景梳理的 EAM 速查手册：从"管设备"到"管全资产"。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # EAM · 企业资产管理系统

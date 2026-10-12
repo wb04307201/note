@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-message
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, message]
+  status: active
 -->
 
 # 网页端接受推送消息的方式深度解析

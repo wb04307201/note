@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 41
   type: 番外
   position: 番外八
   title: 五感餐厅
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 41 · 五感餐厅

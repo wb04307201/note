@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/exception
   type: article
   category: 主模块子文章
   summary: 异常
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 异常

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-replace-synchronized-with-atomic
   topic: 01.java
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, replace, synchronized]
+  status: active
 -->
 
 # 并发编程优化：Atomic类替代synchronized深度解析

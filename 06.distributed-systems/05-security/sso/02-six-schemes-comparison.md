@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 12.interview/04.system-design/05-security/sso
   slug: system-design/05-security/sso/02-six-schemes-comparison
   type: topic
   category: 6 大方案详解
   summary: SSO 6 大实现方案详解 —— Cookie 共享 / CAS / OAuth2 / OIDC / SAML 2.0 / JWT 自建
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # SSO 6 大方案详解 · 主流协议对比

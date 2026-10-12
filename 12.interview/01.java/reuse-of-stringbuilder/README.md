@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-reuse-of-stringbuilder
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, reuse, stringbuilder]
+  status: active
 -->
 
 # 字符串拼接优化：StringBuilder 重用深度解析

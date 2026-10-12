@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/llm-inference-optimization
   type: index
   category: 主模块子文章
   summary: LLM 推理优化大专题索引（10 章）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # LLM 推理优化大专题（10 章）

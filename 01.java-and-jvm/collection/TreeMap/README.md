@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection/tree-map
   type: article
   category: 主模块子文章
   summary: TreeMap 红黑树实现：有序 Map 与 O(log n) 查询。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Java TreeMap 学习笔记

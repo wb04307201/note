@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection/hashmap-performance
   type: article
   category: 主模块子文章
   summary: HashMap 大数据量插入的性能陷阱 + 初始容量预设 + 并行方案（split-hairs 迁出）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # HashMap 大数据量插入（split-hairs 视角）

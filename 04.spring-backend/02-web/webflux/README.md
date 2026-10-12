@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/webflux
   type: article
   category: 主模块子文章
   summary: Spring WebFlux 概览
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring WebFlux 概览

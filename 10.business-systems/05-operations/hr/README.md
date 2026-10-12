@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: application-systems
   slug: application-systems/05-operations/hr
   type: article
   category: 主模块子文章
   summary: HR / HCM（Human Capital Management 人力资本管理） 一句话定位：以员工全生命周期为主线的人力资本管理平台，覆盖组织/招聘/考勤/薪酬/绩效/培训等模块，是企业把人当成"资本"经营的核心系统。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # HR / HCM（Human Capital Management 人力资本管理）

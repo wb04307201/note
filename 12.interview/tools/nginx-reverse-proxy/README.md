@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: tools-nginx-reverse-proxy
   topic: tools
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [tools, Nginx, 反向代理, 负载均衡, upstream, 健康检查]
+  status: active
 -->
 
 # Nginx 反向代理的负载均衡策略有哪些？

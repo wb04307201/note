@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 23
   type: 番外
   position: 番外五
   title: 预制菜还是现炒
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 23 · 预制菜还是现炒

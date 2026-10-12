@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\01-core\tools-reference
   type: article
   category: 主模块子文章
   summary: Spring 自带24个工具类
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring 自带24个工具类

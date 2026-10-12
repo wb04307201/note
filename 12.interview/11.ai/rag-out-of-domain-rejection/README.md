@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-rag-out-of-domain-rejection
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: RAG 落地追问
   tags: [11.ai, RAG, OOD, threshold, refusal, hallucination, 知识库边界, NLI]
+  status: active
 -->
 
 # RAG 如何检测超范围并拒答？—— 6 大检测机制 + 5 大拒答模式 + 4 步阈值调优

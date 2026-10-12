@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-platforms/vllm-vs-ollama
   slug: ai-platforms/vllm-vs-ollama/08-decision-tree
   type: topic
   category: 选型决策
   summary: 「我是 X 场景，应该选 Y 引擎」的场景化决策树 + 推荐配置 + checklist
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 场景化决策树 · 选型不迷路

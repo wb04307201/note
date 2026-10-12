@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 06.distributed-systems
   slug: 06.distributed-systems\05-security\access-control\01-traditional\dac
   type: article
   category: 主模块子文章
   summary: DAC（Discretionary Access Control，自主访问控制）
   depth: ⭐⭐
+  status: active
 -->
 
 # DAC（Discretionary Access Control，自主访问控制）

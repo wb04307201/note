@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-llm-alignment
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, RLHF, DPO, PPO, Constitutional AI, 对齐, SFT]
+  status: active
 -->
 
 # LLM 对齐面试深挖（5 大核心）

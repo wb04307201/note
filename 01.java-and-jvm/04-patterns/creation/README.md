@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/creational-patterns
   type: article
   category: 主模块子文章
   summary: 创建型模式
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 创建型模式

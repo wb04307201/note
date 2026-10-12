@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 22
   type: 正传
   position: 正传 14
   title: 仓库搬家不停业
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 22 · 仓库搬家不停业

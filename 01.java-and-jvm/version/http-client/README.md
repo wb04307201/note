@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/http-client
   type: article
   category: 主模块子文章
   summary: Java 11+ 内置 HTTP Client：HttpClient/HttpRequest/HttpResponse。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # HTTP Client

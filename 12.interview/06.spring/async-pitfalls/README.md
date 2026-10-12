@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-async-pitfalls
   topic: 06.spring
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, async, pitfalls]
+  status: active
 -->
 
 # @Async 失效的 4 种场景与解决方案

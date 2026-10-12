@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 35
   type: 续集
   position: 续集十三
   title: 厨房暗哨
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 35 · 厨房暗哨

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: project-management
   slug: project-management/risk-register
   type: article
   category: 主模块子文章
   summary: 项目风险登记册实战手册：从风险识别到应对策略，结合 MoSCoW 优先级与 RICE 评分的量化决策指南。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 项目风险登记册 · Risk Register 实战

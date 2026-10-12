@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-file-distribution-1toN
   topic: 04.system-design
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 大文件分发, CDN, P2P, 带宽成本, 高并发下载, 系统设计]
+  status: active
 -->
 
 # 设计 1 万人接收 200M 大文件 —— 1→N 大文件分发

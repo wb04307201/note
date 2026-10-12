@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/file-upload
   slug: system-design/04-high-performance/file-upload/02-chunked
   type: topic
   category: 分片与断点续传
   summary: 分片上传协议设计 + 断点续传实现 + 并发控制 + 前端进度条 + 后端合并
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 分片上传与断点续传 · 大文件上传的核心协议

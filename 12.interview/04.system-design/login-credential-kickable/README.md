@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-login-credential-kickable
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 登录凭证, Session, JWT, 踢下线, Token 失效, 系统设计]
+  status: active
 -->
 
 # 设计可踢下线的登录凭证 —— Session 主动失效 4 大方案

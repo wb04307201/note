@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/realtime-compute
   type: index
   category: 主模块子文章
   summary: Flink / Spark Streaming / Storm——毫秒-秒级延迟的流处理引擎
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 03 实时计算

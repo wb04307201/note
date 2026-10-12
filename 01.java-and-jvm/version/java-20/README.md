@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-20
   type: article
   category: 主模块子文章
   summary: Java 20：7 个 JEP，含作用域值孵化、记录模式预览、虚拟线程预览
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 20

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-jdk-proxy-vs-cglib
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, jdk, proxy]
+  status: active
 -->
 
 # JDK 动态代理 vs CGLIB 深度对比

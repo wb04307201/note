@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/vite
   type: article
   category: 主模块子文章
   summary: Vite 构建工具
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Vite 构建工具

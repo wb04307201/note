@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-agent-reliability
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 工程困境
   tags: [11.ai, Agent, 可靠性, 跑偏, 死循环]
+  status: active
 -->
 
 # Agent 跑偏/绕路/死循环 — 工程解法

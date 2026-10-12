@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-redis-expiry-deletion
   topic: 03.database
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [03.database, Redis, 过期删除, UNLINK, lazy-expiration]
+  status: active
 -->
 
 # Redis 过期 Key 实时释放内存吗？

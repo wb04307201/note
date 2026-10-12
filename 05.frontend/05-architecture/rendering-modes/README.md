@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/rendering-modes
   type: article
   category: 主模块子文章
   summary: 渲染模式全景
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 渲染模式全景

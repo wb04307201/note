@@ -5,6 +5,7 @@
   category: 主模块子文章
   summary: 分布式共识算法（Paxos / Raft / Gossip）的原理、实现、配置与故障场景分析
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 共识算法

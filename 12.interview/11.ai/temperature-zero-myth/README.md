@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-temperature-zero-myth
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: LLM 调参误区
   tags: [11.ai, temperature, sampling, determinism, inference, GPU-floating-point, seed]
+  status: active
 -->
 
 # Temperature=0 为什么输出还会不同 —— 5 大根因 + 3 大防御

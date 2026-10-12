@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end/02-language/runtime
   slug: front-end/async-await-error-handling
   type: deep-dive
   category: 异步错误处理
   summary: async/await 必须 try/catch 吗？—— 4 种错误处理方式对比 + 5 反模式 + React/Vue 生产实战
   depth: ⭐⭐
+  status: active
 -->
 
 # async/await 错误处理 · 4 种方式深度对比

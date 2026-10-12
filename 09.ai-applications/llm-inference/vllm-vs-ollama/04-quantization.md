@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-platforms/vllm-vs-ollama
   slug: ai-platforms/vllm-vs-ollama/04-quantization
   type: topic
   category: 模型量化
   summary: GPTQ / AWQ / FP8 / INT4 量化对比 + 吞吐影响 + 何时上 INT4、风险与反模式
   depth: ⭐⭐
+  status: active
 -->
 
 # 模型量化 · 显存与吞吐的杠杆

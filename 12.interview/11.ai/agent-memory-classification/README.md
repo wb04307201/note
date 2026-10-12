@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-agent-memory
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构辨析
   tags: [11.ai, Agent, Memory, 三维分类, episodic, semantic, procedural]
+  status: active
 -->
 
 # Agent 的 Memory 分哪几类？ — 时间×认知×工程三维分类法

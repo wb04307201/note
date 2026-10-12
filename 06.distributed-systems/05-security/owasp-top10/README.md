@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/owasp-top10
   type: article
   category: 主模块子文章
   summary: OWASP（Open Worldwide Application Security Project）Top 10 是业界公认最权威的 Web 应用安全风险清单，...
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # OWASP Top 10（2021）

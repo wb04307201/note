@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concepts/spi
   type: article
   category: 主模块子文章
   summary: Java SPI 机制：ServiceLoader 解耦接口与实现。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # SPI（Service Provider Interface）

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring-boot/embedded-server
   type: article
   category: 主模块子文章
   summary: Spring Boot 内嵌 Servlet 服务器原理、Tomcat/Jetty/Undertow 切换、HTTPS 与生产连接调优。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Boot 内嵌服务器切换（Tomcat / Jetty / Undertow）

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/monorepo-practice
   type: article
   category: 主模块子文章
   summary: Monorepo 工程实践
   depth: ⭐⭐
+  status: active
 -->
 
 # Monorepo 工程实践

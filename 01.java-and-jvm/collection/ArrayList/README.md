@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection/arraylist
   type: article
   category: 主模块子文章
   summary: ArrayList 动态数组实现：扩容机制(1.5 倍)、fail-fast、transient 序列化、与 LinkedList 选型对比、常见反模式（遍历删除/subList/asList）。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # ArrayList 源码剖析与最佳实践

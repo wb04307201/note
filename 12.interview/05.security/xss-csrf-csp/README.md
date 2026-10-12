@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-xss-csrf-csp
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产Bug
   tags: [05.security, XSS, CSRF, CSP, 安全头, SameSite, HttpOnly]
+  status: active
 -->
 
 # XSS、CSRF、CSP 三件套怎么防？—— Web 安全三道防线

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/rpc-and-rest
   type: article
   category: 主模块子文章
   summary: RPC和REST 本应该很简单，RPC（Remote Procedure Call，远程过程调用）和REST（Representational State Tr...
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # RPC和REST

@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 05
   type: 正传
   position: 正传 2
   title: 厨房装监控
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 05 · 厨房装监控

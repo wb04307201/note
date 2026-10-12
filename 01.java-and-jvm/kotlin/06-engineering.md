@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/kotlin/engineering
   type: article
   category: 主模块子文章
   summary: Kotlin 工程实践——Java 互操作、构建工具、迁移策略与 KMP 配置。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Kotlin 工程实践

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-virtual-dom-diff
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [09.front-end, virtual, dom]
+  status: active
 -->
 
 # Virtual DOM 与 Diff 算法

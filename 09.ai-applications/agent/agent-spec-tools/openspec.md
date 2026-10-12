@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/agent-spec-tools/openspec
   type: article
   category: 主模块子文章
   summary: OpenSpec：Fission AI 的轻量规范对齐框架，/opsx 命令 + AGENTS.md + 决策追溯。
   depth: ⭐⭐
+  status: active
 -->
 
 # OpenSpec — 轻量规范对齐协议

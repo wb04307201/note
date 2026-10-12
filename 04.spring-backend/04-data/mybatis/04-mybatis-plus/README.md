@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/mybatis-plus
   type: article
   category: 主模块子文章
   summary: MyBatis-Plus 全家桶
   depth: ⭐
+  status: active
 -->
 
 # 04 MyBatis-Plus 全家桶

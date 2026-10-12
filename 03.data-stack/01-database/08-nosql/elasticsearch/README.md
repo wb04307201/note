@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: database/nosql
   slug: database/nosql/elasticsearch
   type: article
   category: 主模块子文章
   summary: Elasticsearch 搜索引擎：倒排索引原理、BM25 评分、ELK 日志分析、向量检索
   depth: ⭐⭐
+  status: active
 -->
 
 # Elasticsearch 搜索引擎

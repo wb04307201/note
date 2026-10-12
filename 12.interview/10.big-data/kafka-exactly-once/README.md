@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 10.big-data-kafka-exactly-once
   topic: 10.big-data
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Kafka, Exactly-Once, 幂等, 事务, Producer ID, Consumer Offset]
+  status: active
 -->
 
 # Kafka 如何实现端到端 Exactly-Once？

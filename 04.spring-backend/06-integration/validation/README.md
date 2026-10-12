@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/validation
   type: article
   category: 主模块子文章
   summary: Spring Validation 校验框架
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Validation 校验框架

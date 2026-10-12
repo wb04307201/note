@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/transaction/propagation-and-isolation
   type: article
   category: 主模块子文章
   summary: Spring 事务的 7 种传播行为与 4 种隔离级别，含 TransactionSynchronization 与 @TransactionalEventListener。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 事务传播行为与隔离级别

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-coding-agent-mode-selection
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构决策困境
   tags: [11.ai, coding-agent, claude-code, codex, opencode, omp, plan-mode, goal-mode, handoff, mcp]
+  status: active
 -->
 
 # Coding Agent 选型与模式选择：4 大编程 Agent + 7 大模式决策框架

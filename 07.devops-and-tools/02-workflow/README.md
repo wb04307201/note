@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 07
   slug: workflow
   topic: 工作流
@@ -7,6 +6,7 @@ module:
   category: 主模块
   summary: 工作流 = BPMN 流程骨架 + 事件驱动协作神经，编排 vs 编舞
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 工作流

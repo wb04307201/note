@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/web-security
   type: article
   category: 主模块子文章
   summary: 一份按漏洞类型组织的 Web 攻防实战手册：SQLi / XSS / CSRF / SSRF / XXE / 文件上传 / 暴力破解 / HTTP 安全头，逐类给出攻击原理与代码级防御。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Web 安全：XSS / CSRF / SQLi 攻防实战

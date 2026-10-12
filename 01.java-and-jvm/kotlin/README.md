@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/kotlin
   type: article
   category: 主模块子文章
   summary: Kotlin 语法、与 Java 差异（空安全 / 数据类 / 协程 / 函数式）、互操作与 KMP 跨平台。
   depth: ⭐⭐
+  status: active
 -->
 
 # Kotlin

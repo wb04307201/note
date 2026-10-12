@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/02-algorithms
   type: article
   category: 主模块子文章
   summary: 算法是**解决问题的清晰指令序列**——一系列有限步骤的精确描述，将输入转换为输出。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 算法概述

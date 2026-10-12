@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-async-await-try-catch
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 异步错误处理
   tags: [09.front-end, async, await, try/catch, Promise, unhandledrejection, ErrorBoundary]
+  status: active
 -->
 
 # async/await 必须 try/catch 吗？4 种错误处理深挖

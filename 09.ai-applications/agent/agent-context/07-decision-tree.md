@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/07-decision-tree
   type: topic
   category: 选型决策
   summary: Agent 长上下文 6 策略场景化决策树 + 反模式 + checklist
   depth: ⭐⭐
+  status: active
 -->
 
 # 6 策略决策树 · Agent 长上下文选型不迷路

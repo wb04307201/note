@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/copy-on-write
   type: article
   category: 主模块子文章
   summary: 深入理解 CopyOnWriteArrayList 和 CopyOnWriteArraySet 的写时复制原理、源码分析、性能特征及适用场景。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 写时复制集合

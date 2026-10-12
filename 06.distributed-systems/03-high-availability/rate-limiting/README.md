@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/rate-limiting
   type: article
   category: 主模块子文章
   summary: 限流 本应该很简单
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 限流

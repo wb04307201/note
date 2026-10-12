@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 08
   type: 正传
   position: 正传 4
   title: 厨房质检员
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 08 · 厨房质检员

@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/observability
   type: index
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: Spring 可观测性 = Actuator + Micrometer + Prometheus/Grafana（5 篇：Actuator 端点/Micrometer 指标/Prometheus+Grafana/健康探针/日志聚合）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 07 可观测性

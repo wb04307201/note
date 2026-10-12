@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/06.spring
   type: index-only
   category: 面试题索引
   summary: Spring 高频面试题与细节深挖（IoC / AOP / 事务 / MVC / 事件）
+  status: active
 -->
 
 # Spring 咬文嚼字

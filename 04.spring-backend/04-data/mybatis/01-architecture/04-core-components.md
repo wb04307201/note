@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring/mybatis/01-architecture
   slug: spring/mybatis/01-architecture/04-core-components
   type: topic
   category: MyBatis 内部原理
   summary: 详解 SqlSessionFactory / MappedStatement / Executor 三大核心组件及三种执行器类型
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 04 核心组件

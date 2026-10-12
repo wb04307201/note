@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-equals-hashcode
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, equals, hashcode]
+  status: active
 -->
 
 # == / equals / hashCode 深度剖析

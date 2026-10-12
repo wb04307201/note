@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/minispring
   type: index
   category: 主模块子文章
   summary: 手写 Mini Spring
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 手写 Mini Spring

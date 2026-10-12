@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/generics
   type: article
   category: 主模块子文章
   summary: 泛型
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 泛型

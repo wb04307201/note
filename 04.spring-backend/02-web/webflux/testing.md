@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-web\webflux\testing
   type: article
   category: 主模块子文章
   summary: WebFlux 测试
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # WebFlux 测试

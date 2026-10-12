@@ -5,6 +5,7 @@
   category: 主模块子文章
   summary: 聚类算法——将数据自动分组的无监督学习方法，覆盖 K-Means / DBSCAN / 层次聚类 / GMM 的原理、实现与选型
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 聚类算法

@@ -306,14 +306,14 @@ CP（拒绝写入）还是 AP（两边都接受）？
 
 ## frontmatter（可选推荐）
 ```markdown
-<!--
-question:
+<!--question:
   id: hashmap-resizing
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [HashMap, 扩容, Java 8, 红黑树]
+  status: active
 -->
 ```
 

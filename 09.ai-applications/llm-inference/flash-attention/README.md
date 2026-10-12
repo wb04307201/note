@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/flash-attention
   type: article
   category: 主模块子文章
   summary: Flash Attention v1/v2/v3 + Flash Decoding：长上下文推理 IO 感知优化全景
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Flash Attention v1/v2/v3 + Flash Decoding

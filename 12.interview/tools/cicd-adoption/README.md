@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: tools-cicd-adoption
   topic: tools
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [tools, CI/CD, 组织决策, 团队规模, ROI, 成熟度]
+  status: active
 -->
 
 # 为什么大公司用 CI/CD，小公司却手动发版？

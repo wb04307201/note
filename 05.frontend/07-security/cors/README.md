@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/cors
   type: article
   category: 主模块子文章
   summary: CORS 跨域
   depth: ⭐⭐
+  status: active
 -->
 
 # CORS 跨域

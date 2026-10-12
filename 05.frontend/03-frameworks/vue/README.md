@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/vue
   type: article
   category: 主模块子文章
   summary: Vue 3.4+ 全景
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Vue 3.4+

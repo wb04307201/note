@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\03-cloud\gateway
   type: article
   category: 主模块子文章
   summary: Spring Cloud Gateway 网关
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Spring Cloud Gateway 网关

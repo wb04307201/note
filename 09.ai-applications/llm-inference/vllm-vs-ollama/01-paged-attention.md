@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-platforms/vllm-vs-ollama
   slug: ai-platforms/vllm-vs-ollama/01-paged-attention
   type: topic
   category: vLLM 核心创新
   summary: PagedAttention —— vLLM 借鉴 OS 虚拟内存分页机制解决 KV cache 显存碎片化，吞吐量提升 14-24 倍
   depth: ⭐⭐
+  status: active
 -->
 
 # PagedAttention · vLLM 核心创新原理

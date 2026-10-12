@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-final-finally-finalize
   topic: 01.java
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, final, finally]
+  status: active
 -->
 
 # final / finally / finalize 深度剖析

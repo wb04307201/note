@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-long-context-agent-strategy
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: Agent 架构选型
   tags: [11.ai, Agent, 长上下文, Context Engineering, RAG, Memory, Sub-Agents]
+  status: active
 -->
 
 # Agent 长上下文处理：6 大策略选型深挖

@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 30
   type: 续集
   position: 续集八
   title: Agent Harness
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 30 · Agent Harness

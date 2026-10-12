@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\07-observability\health-probes
   type: article
   category: 主模块子文章
   summary: 健康检查三探针（K8s Liveness / Readiness / Startup）
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 健康检查三探针（K8s Liveness / Readiness / Startup）

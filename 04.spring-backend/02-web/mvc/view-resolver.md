@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-web\mvc\view-resolver
   type: article
   category: 主模块子文章
   summary: ViewResolver 视图解析器
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # ViewResolver 视图解析器

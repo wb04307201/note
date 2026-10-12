@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/vue/large-list-perf
   type: article
   category: 主模块子文章
   summary: Vue 大列表性能排查与优化
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Vue 大列表性能排查与优化（深度实战）

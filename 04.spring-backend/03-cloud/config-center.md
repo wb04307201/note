@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\03-cloud\config-center
   type: article
   category: 主模块子文章
   summary: 配置中心（Config Center）
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 配置中心（Config Center）

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-error-vs-exception
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [01.java, Error, Exception, Throwable, 异常处理]
+  status: active
 -->
 
 # Error 和 Exception 的区别深度剖析

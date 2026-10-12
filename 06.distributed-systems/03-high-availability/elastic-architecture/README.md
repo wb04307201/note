@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/elastic-architecture
   type: article
   category: 主模块子文章
   summary: 弹性架构
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 弹性架构

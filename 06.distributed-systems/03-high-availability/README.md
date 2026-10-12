@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/03-high-availability
   type: article
   category: 主模块子文章
   summary: 一句话定位：**系统在面对故障时仍能持续提供服务——限流/熔断/重试/降级/冗余/混沌，层层防线保障系统不倒。**
   depth: ⭐⭐
+  status: active
 -->
 
 # 高可用篇

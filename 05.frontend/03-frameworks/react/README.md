@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/react
   type: article
   category: 主模块子文章
   summary: React 19
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # React 19

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-production-agent-system-design
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 + 端到端架构
   tags: [11.ai, Agent, 端到端, 系统设计, 架构选型, Harness, Loop, 可靠性]
+  status: active
 -->
 
 # 生产级 Agent 系统端到端搭建 —— 8 步流水线 + 8 大组件

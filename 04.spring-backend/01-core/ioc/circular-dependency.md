@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\01-core\ioc\circular-dependency
   type: article
   category: 主模块子文章
   summary: Spring 循环依赖与三级缓存
   depth: ⭐⭐
+  status: active
 -->
 
 # Spring 循环依赖与三级缓存

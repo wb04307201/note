@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: application-systems
   slug: application-systems/01-rd-innovation
   type: index
   category: 主模块子文章
   summary: 研发创新环节（PLM · PDM · CMS · KM）—— 从产品创意到上市阶段所需的能力与系统，管理产品主数据与组织知识资产。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 01 研发创新

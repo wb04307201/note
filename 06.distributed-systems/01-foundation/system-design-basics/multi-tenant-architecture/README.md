@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/multi-tenant-architecture
   type: article
@@ -7,6 +6,7 @@ module:
   summary: 多租户 SaaS 架构深度原理，6 大数据隔离模型 + 4 大应用层关注点 +
           5 大反模式 + PostgreSQL RLS + 飞书/钉钉/Salesforce/阿里云生产实践
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 多租户 SaaS 架构 —— 从"6 大隔离模型"到生产级实现

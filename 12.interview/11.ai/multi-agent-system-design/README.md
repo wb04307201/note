@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-multi-agent-system-design
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 + 架构选型
   tags: [11.ai, Multi-Agent, CrewAI, AutoGen, 死循环防护, max-turns, Orchestrator]
+  status: active
 -->
 
 # Multi-Agent 系统设计 + 死循环防护 —— 5 大组件 + 4 大兜底 + 6 大反模式

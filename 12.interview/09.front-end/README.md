@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/09.front-end
   type: index-only
   category: 面试题索引
   summary: 前端高频面试题与细节深挖（JS 核心 / HTTP / 浏览器机制 / 框架）
+  status: active
 -->
 
 # 前端咬文嚼字

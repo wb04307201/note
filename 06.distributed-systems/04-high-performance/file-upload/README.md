@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: high-performance
   slug: system-design/04-high-performance/file-upload
   type: deep-dive
   category: 大文件上传系统
   summary: 大文件上传系统设计 —— 分片上传 + 断点续传 + 秒传（MD5 去重）+ 对象存储 + CDN 分发，从单机到分布式完整演进
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 大文件上传系统设计 · 分片 + 断点续传 + 秒传

@@ -1,5 +1,4 @@
-<!--
-story:
+<!--story:
   number: 45
   type: 番外
   position: 番外九
@@ -7,6 +6,7 @@ story:
   audience: Claude Code 深度用户 / AI 工程师
   core_concepts: [Skill命中率, 规则路由, Skill检索, 上下文加载, 调度评估]
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 45 · 扩招 50 个厨师：Skill 调度的餐厅隐喻

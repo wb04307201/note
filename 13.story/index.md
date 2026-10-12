@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: story
   slug: story/index
   type: index
   category: 主模块子文章
   summary: 阿明餐厅 50 篇技术故事的目录导航——按主题、顺序、角色多维入口。
+  status: active
 -->
 
 # 故事集 · 目录导航

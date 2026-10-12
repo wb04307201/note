@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations/02-deep-learning
   slug: 08.ai-foundations/02-deep-learning/deep-learning-frameworks
   type: article
   category: 主模块子文章
   summary: 深度学习框架四大门派（PyTorch / TensorFlow / MindSpore / PaddlePaddle）的演进、数学内核、训练范式与选型决策树。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 深度学习框架

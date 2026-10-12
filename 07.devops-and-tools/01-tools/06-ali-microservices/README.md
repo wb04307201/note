@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/ali-microservices
   type: article
   category: 主模块子文章
   summary: 阿里微服务 — Nacos/Sentinel/Seata 等云原生生态
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 阿里微服务

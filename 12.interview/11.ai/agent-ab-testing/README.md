@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-agent-ab-testing
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: AI 生产工程
   tags: [11.ai, A.B.Testing, Experiment, Traffic, Statistics, Drift, Holdout, Sticky-Session]
+  status: active
 -->
 
 # Agent A/B Test 系统设计 —— 5 大组件 + 4 流量分配 + 显著性检验 + 5 反模式

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-gc-algorithms
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, algorithms]
+  status: active
 -->
 
 # GC 算法与垃圾收集器深度对比

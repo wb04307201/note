@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/query-rewrite
   type: article
   category: 主模块子文章
   summary: Query Rewrite 查询改写提升 RAG 召回
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Query Rewrite（查询改写）

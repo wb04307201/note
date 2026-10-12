@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-https-mitm-and-pinning
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 安全边界
   tags: [05.security, HTTPS, MITM, SSL Pinning, Charles, Fiddler, mTLS, ATS, Network Security Config]
+  status: active
 -->
 
 # HTTPS 能不能防抓包？—— 安全边界、Charles 抓包原理与 SSL Pinning 5 方案

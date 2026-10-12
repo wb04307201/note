@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: product-and-pm
   slug: pm/conways-law-team-topologies
   type: article
@@ -7,6 +6,7 @@ module:
   audience: 架构师 / CTO
   summary: 康威定律下的团队拓扑：组织结构如何映射系统架构
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 康威定律下的团队拓扑：组织结构 = 系统结构的镜面

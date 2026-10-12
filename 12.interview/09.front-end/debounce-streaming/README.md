@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-debounce-streaming
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: AI 场景陷阱
   tags: [09.front-end, debounce, streaming, SSE, AI]
+  status: active
 -->
 
 # 防抖函数在流式场景下为什么不合适？

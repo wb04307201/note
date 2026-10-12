@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/java-agent-api
   type: article
   category: 主模块子文章
   summary: 实战：统计 API 接口调用耗时
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 实战：统计 API 接口调用耗时

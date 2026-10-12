@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-19
   type: article
   category: 主模块子文章
   summary: Java 19：7 个 JEP，含 Record 模式预览、Foreign Function 预览、虚拟线程预览
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 19

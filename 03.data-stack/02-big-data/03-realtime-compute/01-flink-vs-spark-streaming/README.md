@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/flink-vs-spark-streaming
   type: article
   category: 主模块子文章
   summary: Flink vs Spark Streaming——实时计算引擎深度对比
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Flink vs Spark Streaming：实时计算引擎深度对比

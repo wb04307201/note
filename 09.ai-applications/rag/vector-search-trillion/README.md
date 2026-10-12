@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-applications
   slug: ai-applications/rag/vector-search-trillion
   type: article
   category: AI 应用子文章
   summary: 万亿级向量检索：多集群联邦 + 专用硬件 + 边缘计算 + 极限压缩
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 万亿级向量检索架构 —— 多集群联邦 + 专用硬件 + 边缘计算

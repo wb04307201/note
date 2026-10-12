@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/high-concurrency-and-high-availability-defenses
   type: article
   category: 主模块子文章
   summary: 高并发与高可用架构 5 大防线综述——缓存、限流、熔断、降级、负载均衡的协同配合，含三层防护模型、决策树、实战落地路线
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 高并发与高可用架构——5 大防线综述

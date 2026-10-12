@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/technical-debt
   type: article
   category: 主模块子文章
   summary: 技术债是指在软件开发过程中，团队为追求短期交付而选择简单（有限）的方案，导致未来需要返工的隐含成本。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 技术债

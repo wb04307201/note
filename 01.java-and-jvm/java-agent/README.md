@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/java-agent
   type: article
   category: 主模块子文章
   summary: JVM 字节码增强机制（premain / agentmain / Instrumentation API）与 APM、Profiler 等工具底层原理。
   depth: ⭐⭐
+  status: active
 -->
 
 # Java Agent

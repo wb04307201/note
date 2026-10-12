@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/product-search
   slug: system-design/04-high-performance/product-search/03-ranking
   type: topic
   category: 排序与相关性
   summary: BM25 公式详解 + 多阶段排序管道（召回→粗排→精排）+ 业务信号混合 + A/B 测试
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 排序与相关性 · 让用户看到最想要的商品

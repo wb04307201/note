@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/atomic
   type: article
   category: 主模块子文章
   summary: Java 并发包 `java.util.concurrent.atomic` 中的原子类，基于 CAS 实现无锁并发，是高性能并发编程的核心工具。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 原子类学习笔记

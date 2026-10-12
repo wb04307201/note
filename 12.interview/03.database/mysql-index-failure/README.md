@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-index-failure
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MySQL, index]
+  status: active
 -->
 
 # MySQL 索引失效的 10 种场景

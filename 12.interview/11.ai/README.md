@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/11.ai
   type: index-only
   category: 面试题索引
   summary: AI 高频面试题与新概念深挖（一题一文 + 主模块精炼版）
+  status: active
 -->
 
 # AI 咬文嚼字

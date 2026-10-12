@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/migration-and-organization
   type: article
   category: 主模块子文章
   summary: ⬅️ [返回微服务](../README.md) | ⬅️ [数据一致性](../data-consistency/README.md)
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 演进与组织

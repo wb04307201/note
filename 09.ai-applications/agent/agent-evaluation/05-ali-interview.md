@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/agent-evaluation
   slug: ai/08-llmops/agent-evaluation/05-ali-interview
   type: topic
   category: 阿里一面实战
   summary: 阿里一面原题深度回答 —— "设计 Agent Evaluation 评测系统" 4 层框架 + 评分话术
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 阿里一面原题深度回答 · Agent Evaluation 设计

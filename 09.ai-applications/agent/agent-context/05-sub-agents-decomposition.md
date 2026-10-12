@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/05-sub-agents-decomposition
   type: topic
   category: 子 Agent 拆分
   summary: Sub-Agents / Multi-Agent / Task Decomposition —— 用任务拆分降低单 Agent 上下文压力，AutoGen/LangGraph 实战
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Sub-Agents 任务拆分 · Multi-Agent 架构降低单 Agent 上下文

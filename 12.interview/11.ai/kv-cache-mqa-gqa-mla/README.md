@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-kv-cache-mqa-gqa-mla
   topic: 11.ai/kv-cache-mqa-gqa-mla
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [kv-cache, mqa, gqa, mla, inference, complexity]
+  status: active
 -->
 
 # KV Cache 为什么降低推理复杂度？MQA / GQA / MLA 分别解决什么问题？

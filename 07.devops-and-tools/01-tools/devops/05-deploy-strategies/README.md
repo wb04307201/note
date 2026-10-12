@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/deploy-strategies
   type: article
   category: 主模块子文章
   summary: 部署策略：蓝绿/金丝雀/灰度发布
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 部署策略：蓝绿 / 金丝雀 / 灰度发布实战

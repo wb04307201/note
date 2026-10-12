@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/validation/cross-field
   type: article
   category: 主模块子文章
   summary: Spring Validation 跨字段与类级别校验：@ScriptAssert / 类级 @Constraint / @Valid 容器元素 / @AssertTrue。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 跨字段校验（Cross-Field Validation）

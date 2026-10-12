@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: workflow
   slug: workflow/process-engine
   type: article
   category: 主模块子文章
   summary: 流程引擎
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 流程引擎

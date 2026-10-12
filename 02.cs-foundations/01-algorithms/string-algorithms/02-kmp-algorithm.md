@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: algorithms/string-algorithms
   slug: algorithms/string-algorithms/02-kmp
   type: topic
   category: KMP
   summary: KMP 算法 —— next 数组（部分匹配表）+ Java 实现 + strstr
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # KMP 算法 · 部分匹配表（LPS）

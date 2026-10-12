@@ -5,6 +5,7 @@
   category: AI 基础子模块
   summary: Tokenization 与 Embedding——文本切分算法、向量表示、流形假说与语义空间。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 

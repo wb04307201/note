@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 03
   slug: data-stack
   topic: 数据栈（数据库 + 缓存 + 消息队列 + 大数据生态）
@@ -7,6 +6,7 @@ module:
   category: 主模块
   summary: 数据栈模块覆盖数据库基础、SQL/事务/索引、MySQL/PostgreSQL/Redis/NoSQL、连接池/迁移/监控/云数据库，以及大数据数仓/实时计算/数据湖/OLAP/调度/治理/同步工具全链路。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 03. Data Stack（数据栈）

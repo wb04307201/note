@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/transaction
   type: article
   category: 主模块子文章
   summary: Spring 事务：传播行为、隔离级别、失效场景。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring 事务管理

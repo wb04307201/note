@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-jvm-memory-pitfall
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [01.java, JVM, jvm]
+  status: active
 -->
 
 # JVM 内存配置踩坑：-Xmx 超过系统可用内存

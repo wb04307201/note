@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics/06-operating-system
   slug: computer-basics/06-operating-system/processes
   type: article
   category: 主模块子文章
   summary: 进程、线程、协程的本质区别，进程状态机、进程间通信（IPC）与线程同步机制。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 进程与线程

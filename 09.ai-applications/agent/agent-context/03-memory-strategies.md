@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/03-memory-strategies
   type: topic
   category: 分层记忆
   summary: Agent 4 层记忆架构：working / episodic / semantic / procedural + 写入时机 + 检索策略 + 反模式
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Memory 分层记忆 · Agent 4 层记忆架构

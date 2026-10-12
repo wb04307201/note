@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 32a
   type: 续集
   position: 续集十（上）
   title: 学徒期末考
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 32a · 学徒期末考

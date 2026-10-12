@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/engineering
   type: article
   category: 主模块子文章
   summary: 前端 04 工程化
   depth: ⭐⭐
+  status: active
 -->
 
 # 04 工程化

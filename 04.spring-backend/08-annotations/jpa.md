@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\08-annotations\jpa
   type: article
   category: 主模块子文章
   summary: JPA 注解
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # JPA 注解

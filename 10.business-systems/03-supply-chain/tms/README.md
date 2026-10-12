@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: application-systems
   slug: application-systems/03-supply-chain/tms
   type: article
   category: 主模块子文章
   summary: 一份按业务场景梳理的 TMS 速查手册：从"派车靠电话"到"算法调度"的升级指南。
   depth: ⭐⭐
+  status: active
 -->
 
 # TMS · 运输管理系统

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-execution-patterns
   slug: ai/agent-architecture/agent-execution-patterns/02-plan-and-execute
   type: topic
   category: Plan-and-Execute 深度
   summary: Plan-and-Execute 深度剖析 —— 规划方法论 + RePlan / Adaptive / Plan-Repair 3 大重规划机制 + LangChain 实现 + 5 个反模式
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Plan-and-Execute 深度剖析 · 先规划再执行

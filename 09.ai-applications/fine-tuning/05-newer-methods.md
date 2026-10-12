@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/newer-alignment-methods
   type: article
   category: 主模块子文章
   summary: KTO/IPO/SimPO/ORPO/RFT 2024+ 新对齐算法
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 新对齐方法（KTO / IPO / SimPO / ORPO / RFT）

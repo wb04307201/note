@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-try-catch-performance
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中高频
   scenario_type: 反直觉性能
   tags: [01.java, try-catch, 异常性能, JVM, fillInStackTrace, OmitStackTraceInFastThrow]
+  status: active
 -->
 
 # try-catch 会影响性能吗？—— 正常路径零开销，异常抛出才贵

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-select-all-big-table
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [03.database, select, all]
+  status: active
 -->
 
 # SELECT * 查 2000 万行数据，会炸内存吗

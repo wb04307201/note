@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: message-read-status
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [IM, 消息已读未读, Redis, WebSocket, SSE, 位图, 推送]
+  status: active
 -->
 
 # 消息已读未读功能设计 —— 亿级 IM 系统的读状态追踪方案

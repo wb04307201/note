@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\08-annotations\configuration
   type: article
   category: 主模块子文章
   summary: 配置注解
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 配置注解

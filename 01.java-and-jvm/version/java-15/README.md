@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-15
   type: article
   category: 主模块子文章
   summary: Java 15：14 个 JEP，含密封类预览、EdDSA 签名、ZGC/Shenandoah 正式版、Text Blocks 正式版
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Java 15

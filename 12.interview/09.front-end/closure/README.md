@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-closure
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, closure]
+  status: active
 -->
 
 # 闭包（Closure）

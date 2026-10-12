@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 38
   type: 续集
   position: 续集十六
   title: 米其林评审
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 38 · 米其林评审

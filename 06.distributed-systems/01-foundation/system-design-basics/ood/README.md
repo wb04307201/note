@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/ood
   type: article
   category: 主模块子文章
   summary: 面向对象设计 本应该很简单，面向对象设计（Object-Oriented Design, OOD）是将业务世界建模为相互协作的对象的系统化方法，是软件工程中最基...
   depth: ⭐⭐
+  status: active
 -->
 
 # 面向对象设计

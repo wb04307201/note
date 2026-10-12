@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/browser-rendering
   type: article
   category: 主模块子文章
   summary: 浏览器渲染原理
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 浏览器渲染原理

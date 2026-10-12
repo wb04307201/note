@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/04-architecture/agent-execution-patterns
   slug: ai/agent-execution-patterns/planning-acting-monitoring
   type: article
   category: Agent 执行模式
   summary: Agent 三阶段闭环：Planning（规划）→ Acting（执行）→ Monitoring（监控）的 6 大反模式 + 实战案例 + 工具链选型
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Agent 三阶段闭环：Planning → Acting → Monitoring

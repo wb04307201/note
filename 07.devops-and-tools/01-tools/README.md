@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools
   type: index
   category: 主模块
   summary: 后端工程师高频工具链速查手册：Git / Docker / Java 工具库 / Nginx / Monorepo / 阿里微服务 / Kubernetes / DevOps
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 工具链

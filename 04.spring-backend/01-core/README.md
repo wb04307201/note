@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/core
   type: index
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: Spring 核心容器 = IoC 容器 + AOP 框架 + 工具集（13 篇：IoC/AOP/依赖注入/配置/事件/异常/工具类/手写 mini Spring）
   depth: ⭐
+  status: active
 -->
 
 # 01 核心容器

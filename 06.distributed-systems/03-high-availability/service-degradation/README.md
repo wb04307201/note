@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/service-degradation
   type: article
   category: 主模块子文章
   summary: 服务降级 本应该很简单
   depth: ⭐⭐
+  status: active
 -->
 
 # 服务降级

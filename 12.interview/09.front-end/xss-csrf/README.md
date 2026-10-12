@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-xss-csrf
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, XSS, xss]
+  status: active
 -->
 
 # XSS 与 CSRF 攻击防御深度剖析

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-polymorphism
   topic: 01.java
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 原理深挖
   tags: [01.java, polymorphism, override, vtable, default-method]
+  status: active
 -->
 
 # Java 多态面试深挖（4 大核心）

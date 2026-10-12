@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/jenkins
   type: article
   category: 主模块子文章
   summary: Jenkins 老牌 CI/CD 工具——Pipeline as Code / Master-Agent 分布式构建 / K8s 集成实战。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Jenkins · 老牌 CI/CD 工具实战

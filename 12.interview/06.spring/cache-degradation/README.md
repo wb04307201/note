@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-cache-degradation
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产应急 / 工程权衡
   tags: [06.spring, Cacheable, Redis降级, Resilience4j, CacheErrorHandler, 自动恢复]
+  status: active
 -->
 
 # @Cacheable + Redis 挂了怎么办？如何降级？如何恢复？

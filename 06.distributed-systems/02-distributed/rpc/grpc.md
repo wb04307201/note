@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: distributed-systems
   slug: distributed-systems/rpc/grpc
   type: article
   category: 主模块子文章
   summary: gRPC Google 开源 RPC 框架，基于 HTTP/2 + Protocol Buffers。5 大核心特性 + 4 种通信模式 + Spring Boot 集成示例 + 与 REST/Dubbo 选型对比。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # gRPC（Google RPC）

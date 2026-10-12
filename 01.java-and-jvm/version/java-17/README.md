@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-17
   type: article
   category: 主模块子文章
   summary: Java 17 (LTS)：14 个 JEP，含密封类、switch 模式匹配预览、强力封装内部元素、macOS/AArch64 原生支持
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 17

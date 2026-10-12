@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/01.java
   type: index-only
   category: 面试题索引
   summary: Java 高频面试题与细节深挖（集合 / 并发 / JVM / 类型 / 设计模式）
+  status: active
 -->
 
 # Java 咬文嚼字

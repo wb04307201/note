@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/08-llmops/agent-evaluation
   type: deep-dive
   category: Agent 评测
   summary: Agent Evaluation 评测系统设计 —— 6 大评测指标（任务完成率/步骤效率/工具使用/成本/满意度/稳定性）+ 5 种评测方法 + 阿里一面实战 + 7 反模式
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Agent Evaluation（评测系统）· 完整落地方案

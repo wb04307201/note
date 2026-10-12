@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-lazy-load-preload
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, lazy, load]
+  status: active
 -->
 
 # 懒加载 vs 预加载：4 大资源提示的正确姿势

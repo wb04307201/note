@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-multi-field-ranking
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 排名, 归一化, 加权, 系统设计]
+  status: active
 -->
 
 # 多字段动态排名该怎么设计？ —— 从归一化到动态权重的完整方案

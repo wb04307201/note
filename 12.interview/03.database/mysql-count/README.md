@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-count
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, MySQL, count]
+  status: active
 -->
 
 # MySQL COUNT(*) vs COUNT(1) vs COUNT(字段) 深度解析

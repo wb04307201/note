@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring/mybatis/01-architecture
   slug: spring/mybatis/01-architecture/07-cache-mechanism
   type: topic
   category: MyBatis 内部原理
   summary: 一级 SqlSession 缓存 / 二级 Mapper 缓存机制与缓存穿透解决方案
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 07 缓存机制

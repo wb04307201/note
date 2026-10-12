@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/clickhouse-vs-doris-vs-starrocks
   type: article
   category: 主模块子文章
   summary: ClickHouse vs Doris vs StarRocks——实时 OLAP 三剑客深度对比
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # ClickHouse vs Apache Doris vs StarRocks：实时 OLAP 三剑客深度对比

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-llm-cost-control
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 成本控制, 降级, 路由, Production]
+  status: active
 -->
 
 # 模型调用的成本上限是多少 —— 5 层路由 + 3 道 Quota

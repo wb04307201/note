@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-integer-cache
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, integer, cache]
+  status: active
 -->
 
 # Integer缓存

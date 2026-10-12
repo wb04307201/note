@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-threadlocal
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, ThreadLocal, threadlocal]
+  status: active
 -->
 
 # ThreadLocal 原理与内存泄漏

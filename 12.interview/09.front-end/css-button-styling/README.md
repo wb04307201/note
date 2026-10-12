@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-css-button-styling
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, css, button]
+  status: active
 -->
 
 # 一个按钮为什么写几十行 CSS：8 状态 + 5 大架构

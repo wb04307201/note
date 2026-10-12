@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: security-filter-chain
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [Spring Security, 过滤器链, Servlet Filter, 认证, 授权]
+  status: active
 -->
 
 # Spring Security 过滤器链 vs Servlet Filter：你的认证逻辑可能被绕过了

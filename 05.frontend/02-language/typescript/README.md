@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/typescript
   type: article
   category: 主模块子文章
   summary: TypeScript 工程实践
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # TypeScript 工程实践

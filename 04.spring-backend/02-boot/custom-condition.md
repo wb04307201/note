@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-boot\custom-condition
   type: article
   category: 主模块子文章
   summary: 自定义 Condition 类（高级）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 自定义 Condition 类（高级）

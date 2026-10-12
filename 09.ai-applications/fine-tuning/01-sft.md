@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/sft
   type: article
   category: 主模块子文章
   summary: SFT 监督微调：所有对齐方法的基础
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # SFT（Supervised Fine-Tuning）

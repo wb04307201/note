@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/service-contract
   type: article
   category: 主模块子文章
   summary: ⬅️ [返回微服务](../README.md) | ⬅️ [服务间通信](../service-communication/README.md) | ➡️ [...
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 服务契约

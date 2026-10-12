@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-llm-monitoring
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 监控, Trace, 漂移检测, 黄金集, Production]
+  status: active
 -->
 
 # 上线后怎么检测准确率与幻觉率 —— Trace + 4 维监控 + 漂移检测

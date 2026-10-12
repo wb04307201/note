@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-spi
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, spi]
+  status: active
 -->
 
 # Java SPI 机制深度剖析

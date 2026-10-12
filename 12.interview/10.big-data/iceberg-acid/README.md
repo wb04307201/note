@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 10.big-data-iceberg-acid
   topic: 10.big-data
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Iceberg, ACID, 数据湖, Snapshot, Manifest, MVCC]
+  status: active
 -->
 
 # Iceberg 如何实现数据湖的 ACID 事务？

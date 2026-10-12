@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/rest
   type: article
   category: 主模块子文章
   summary: REST（Representational State Transfer，表述性状态转移）是一种软件架构风格，广泛应用于 Web 服务（特别是 HTTP API...
   depth: ⭐
+  status: active
 -->
 
 # RESTful

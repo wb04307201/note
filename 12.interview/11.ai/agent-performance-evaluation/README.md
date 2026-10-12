@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-agent-performance-evaluation
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, Agent, 评测, Evaluation, LLM-as-Judge, A/B Test, 性能评估, 量化指标]
+  status: active
 -->
 
 # Agent Evaluation 评测系统设计 · 阿里一面题

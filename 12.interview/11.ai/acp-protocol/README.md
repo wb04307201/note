@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-acp-protocol
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频（2025 新兴，2026 起高频）
   scenario_type: 反直觉辨析
   tags: [11.ai, ACP, agent-client-protocol, zed, jetbrains, mcp, a2a, json-rpc]
+  status: active
 -->
 
 # ACP（Agent Client Protocol）面试题：4 大 Agent 通信协议辨析 + Zed 集成反直觉点

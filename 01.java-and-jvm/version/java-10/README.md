@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-10
   type: article
   category: 主模块子文章
   summary: Java 10：12 个 JEP，含 var 局部变量类型推断、AppCDS 类数据共享、GC 接口化
   depth: ⭐
+  status: active
 -->
 
 # Java 10

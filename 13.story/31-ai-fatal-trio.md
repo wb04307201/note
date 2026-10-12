@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 31
   type: 续集
   position: 续集九
   title: AI 致命三件套
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 31 · AI 致命三件套

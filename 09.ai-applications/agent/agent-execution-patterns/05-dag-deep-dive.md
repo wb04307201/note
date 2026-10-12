@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-execution-patterns
   slug: ai/agent-architecture/agent-execution-patterns/05-dag
   type: topic
   category: DAG 深度
   summary: DAG（有向无环图）深度剖析 —— 节点 + 边的确定性工作流 + 错误恢复 + Loop 节点 + LangGraph/Temporal 实现 + 5 个反模式
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # DAG 深度剖析 · 节点 + 边的确定性工作流

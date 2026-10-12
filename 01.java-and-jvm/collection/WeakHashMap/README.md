@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection/weak-hash-map
   type: article
   category: 主模块子文章
   summary: WeakHashMap 弱引用键的 Map 与缓存场景应用。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # WeakHashMap 学习笔记

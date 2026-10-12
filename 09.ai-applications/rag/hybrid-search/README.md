@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/hybrid-search
   type: article
   category: 主模块子文章
   summary: 向量 + BM25 混合检索
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Hybrid Search（混合检索）

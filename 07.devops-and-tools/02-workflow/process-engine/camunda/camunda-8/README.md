@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: workflow
   slug: workflow/camunda-8
   type: article
   category: 主模块子文章
   summary: Camunda 8
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Camunda 8

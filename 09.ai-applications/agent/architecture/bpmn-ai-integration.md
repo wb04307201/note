@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 09.ai-applications
   slug: 09.ai-applications\agent\architecture\bpmn-ai-integration
   type: article
   category: 主模块子文章
   summary: AI + BPMN 融合
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # AI + BPMN 融合

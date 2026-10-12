@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-25
   type: article
   category: 主模块子文章
   summary: Java 25 (LTS)：18 个 JEP，含 PEM 编码加密对象、原始方法句、值类预览
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 25

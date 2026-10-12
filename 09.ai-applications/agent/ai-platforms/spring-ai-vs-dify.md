@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 09.ai-applications
   slug: 09.ai-applications\agent\ai-platforms\spring-ai-vs-dify
   type: article
   category: 主模块子文章
   summary: Spring AI vs Dify：企业知识库系统的代码优先 vs 低代码架构决策
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring AI vs Dify：企业知识库系统的代码优先 vs 低代码架构决策

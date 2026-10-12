@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-aqs
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, aqs]
+  status: active
 -->
 
 # AQS 框架原理深度剖析

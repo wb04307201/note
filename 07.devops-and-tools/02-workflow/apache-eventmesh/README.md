@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: workflow
   slug: workflow/event-driven-serverless
   type: article
   category: 主模块子文章
   summary: 事件驱动与 Serverless Workflow
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 事件驱动与 Serverless Workflow

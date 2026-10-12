@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: database
   slug: database/monitoring
   type: index
@@ -8,6 +7,7 @@ module:
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 数据库监控告警

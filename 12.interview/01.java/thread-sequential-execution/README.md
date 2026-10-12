@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-thread-sequential-execution
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 工程实现
   tags: [01.java, Thread, join, CountDownLatch, CompletableFuture, 顺序执行]
+  status: active
 -->
 
 # 三个线程 T1、T2、T3 怎么确保它们按顺序执行？

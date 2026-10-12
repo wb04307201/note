@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 17
   type: 正传
   position: 正传 12
   title: 十家店的烦恼
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 17 · 十家店的烦恼

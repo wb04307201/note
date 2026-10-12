@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 01
   slug: java-and-jvm
   topic: Java + JVM + 并发 + 设计模式
@@ -7,6 +6,7 @@ module:
   category: 主模块
   summary: 从语言基础到 JVM 原理、并发编程、设计模式、版本演进（Java 8-26），系统性构建 Java 知识体系。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 01. Java + JVM

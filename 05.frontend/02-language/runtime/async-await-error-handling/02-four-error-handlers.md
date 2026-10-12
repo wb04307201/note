@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end/async-await-error-handling
   slug: front-end/async-await-error-handling/02-four-error-handlers
   type: topic
   category: 4 种错误处理
   summary: try/catch / .catch() / unhandledrejection / Result 4 种错误处理方式深度对比
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 4 种错误处理方式深度对比

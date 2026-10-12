@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: application-systems
   slug: application-systems/03-supply-chain
   type: index
   category: 主模块子文章
   summary: 供应链环节（SCM · SRM · WMS · TMS）—— 把产品送到客户手中的全链路，决定订单履约时效与成本。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 03 供应链

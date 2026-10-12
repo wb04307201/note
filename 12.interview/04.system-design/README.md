@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/04.system-design
   type: index-only
   category: 面试题索引
   summary: 系统设计高频面试题与难点深挖（MQ / 缓存 / 分布式 / 限流 / 幂等）
+  status: active
 -->
 
 # 系统设计咬文嚼字

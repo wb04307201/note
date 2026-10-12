@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-new-string
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, new, string]
+  status: active
 -->
 
 # `new String("123")` 创建几个对象？

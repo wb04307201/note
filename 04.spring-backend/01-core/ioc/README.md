@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/ioc
   type: article
   category: 主模块子文章
   summary: IoC（Inversion of Control）控制反转
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # IoC（Inversion of Control）控制反转

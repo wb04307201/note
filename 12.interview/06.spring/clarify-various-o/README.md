@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-clarify-various-o
   topic: 06.spring
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [06.spring, clarify, various]
+  status: active
 -->
 
 # POJO/VO/BO/DTO/DO 对象类型辨析

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-questions
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [01.java, questions]
+  status: active
 -->
 
 # Java高频面试题深度解析：从原理到回答技巧

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-pg-vacuum-troubleshooting
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 排查案例
   tags: [03.database, PostgreSQL, KingbaseES, autovacuum, troubleshooting]
+  status: active
 -->
 
 # PostgreSQL/KingbaseES VACUUM 排查：删完数据，查询反而变慢的真相

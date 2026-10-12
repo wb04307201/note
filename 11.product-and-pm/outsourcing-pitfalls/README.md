@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 11.product-and-pm
   slug: outsourcing-pitfalls
   type: article
   category: 决策实战
   summary: 外包项目的 5 大隐性成本 + 合同 8 条必看条款 + 验收量化模板
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 外包项目避坑：5 大隐性成本 + 合同 8 条必看

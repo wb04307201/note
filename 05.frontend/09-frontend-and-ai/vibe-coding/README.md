@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/vibe-coding
   type: article
   category: 主模块子文章
   summary: Vibe Coding
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Vibe Coding：AI 时代的编程范式

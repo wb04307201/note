@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/llmops
   slug: ai/llmops/rag-out-of-domain-rejection
   type: deep-dive
   category: RAG 质量治理
   summary: RAG 超范围检测与拒答策略深度 —— 6 大检测机制 + 5 大拒答模式 + 4 步阈值调优 + 监控体系 + OSS 实战。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # RAG 超范围检测与拒答策略 · 深度专章

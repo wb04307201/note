@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/file-upload
   slug: system-design/04-high-performance/file-upload/01-architecture
   type: topic
   category: 系统架构
   summary: 大文件上传 3 阶段架构演进（单机直传→分片+OSS→分布式+CDN）+ 5 大组件
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 大文件上传系统架构 · 3 阶段演进

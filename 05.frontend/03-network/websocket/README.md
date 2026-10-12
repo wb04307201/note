@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/network/websocket
   type: article
   category: 主模块子文章
   summary: WebSocket 浏览器-服务器双向通信协议，基于 HTTP Upgrade。5 大特性 + 4 种应用场景 + 4 大实现库（SockJS / ws / Socket.IO / Spring WebSocket）+ vs SSE 对比。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # WebSocket

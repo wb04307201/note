@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-websocket-loss-handling
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 通信可靠性
   tags: [09.front-end, WebSocket, realtime, heartbeat, reconnect]
+  status: active
 -->
 
 # WebSocket 丢包前端处理 —— 5 策略 + 7 反直觉点

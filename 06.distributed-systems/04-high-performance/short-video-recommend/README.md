@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/04-high-performance
   slug: system-design/04-high-performance/short-video-recommend
   type: article
   category: 主模块子文章
   summary: 短视频推荐系统架构总览
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 短视频推荐系统架构总览（从零到亿级）

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/04-sliding-window-attention
   type: topic
   category: 注意力滑动窗口
   summary: Sliding Window Attention + StreamingLLM + LongLoRA + Landmark Attention —— 注意力层面处理长上下文的 4 大技术
   depth: ⭐⭐
+  status: active
 -->
 
 # Sliding Window Attention · 注意力层面的长上下文

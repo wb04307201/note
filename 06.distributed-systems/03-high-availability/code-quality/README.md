@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/code-quality
   type: article
   category: 主模块子文章
   summary: Java 代码质量提升 本应该很简单
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 代码质量提升

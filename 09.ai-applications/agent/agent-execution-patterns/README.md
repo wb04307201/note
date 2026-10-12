@@ -5,6 +5,7 @@
   category: Agent 执行模式
   summary: AI Agent 4 大执行模式深度对比 —— ReAct / Plan-and-Execute / DAG / Multi-Agent 的 6 维对比 + 场景化选型 + Plan-and-Execute 重规划机制
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Agent 4 大执行模式深度专题

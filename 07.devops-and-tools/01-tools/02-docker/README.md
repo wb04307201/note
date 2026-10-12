@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/docker
   type: article
   category: 主模块子文章
   summary: Docker — 容器化技术栈速查
   depth: ⭐⭐
+  status: active
 -->
 
 # Docker

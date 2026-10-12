@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end/async-await-error-handling
   slug: front-end/async-await-error-handling/03-react-vue-production
   type: topic
   category: 框架实战
   summary: React/Vue 异步错误生产实战 —— ErrorBoundary / axios 拦截器 / Vue errorHandler / unhandledrejection 全链路兜底
   depth: ⭐⭐
+  status: active
 -->
 
 # React/Vue 异步错误生产实战

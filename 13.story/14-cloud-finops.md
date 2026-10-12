@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 14
   type: 番外
   position: 番外二
   title: 阿明的省钱经
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 14 · 阿明的省钱经

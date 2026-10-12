@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/02-rag-in-agent
   type: topic
   category: Agent 中的 RAG
   summary: Agent 视角下 RAG vs 长上下文的边界 —— RAG 何时有效、何时被错误替代、Agentic RAG 与传统 RAG 区别
   depth: ⭐⭐
+  status: active
 -->
 
 # RAG 在 Agent 中的角色 · 长上下文时代的边界

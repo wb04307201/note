@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-execution-patterns
   slug: ai/agent-architecture/agent-execution-patterns/06-multi-agent
   type: topic
   category: Multi-Agent 深度
   summary: Multi-Agent 深度剖析 —— 通信协议 + 协调者模式 + CrewAI/AutoGen 实现 + 循环调用防护 + 5 个反模式
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Multi-Agent 深度剖析 · 多智能体协作

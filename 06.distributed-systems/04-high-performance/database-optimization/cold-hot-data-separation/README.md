@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/cold-hot-data-separation
   type: article
   category: 主模块子文章
   summary: 按时间或访问频率将数据分为冷/热两部分，热数据存高性能介质、冷数据归档到低成本存储，以平衡查询性能与存储成本。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 数据冷热分离

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-search
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, Redis, search]
+  status: active
 -->
 
 # Redis搜索能力深度解析：从KEYS到RediSearch

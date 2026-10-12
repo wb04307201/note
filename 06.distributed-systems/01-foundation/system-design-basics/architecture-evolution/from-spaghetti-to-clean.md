@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/from-spaghetti-to-clean
   type: article
   category: 主模块子文章
   summary: 从面条代码到分层架构再到整洁架构的演进史，含 Uncle Bob 同心圆模型、六边形架构、洋葱架构的依赖规则与 Spring Boot 实战
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 从面条代码到整洁架构——架构演进史

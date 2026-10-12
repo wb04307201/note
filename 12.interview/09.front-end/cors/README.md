@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-cors
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, CORS, cors]
+  status: active
 -->
 
 # CORS 跨域请求深度剖析

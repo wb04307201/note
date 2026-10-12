@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-skill-hit-rate
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 工程权衡
   tags: [11.ai, Claude Code, Skill, Agent, Harness, Routing, 命中率]
+  status: active
 -->
 
 # Skill 数量一多，Agent 命中率怎么保证？

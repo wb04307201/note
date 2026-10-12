@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/logging
   type: article
   category: 主模块子文章
   summary: Java 日志体系：日志级别、JUL / Log4j 2 / Logback / SLF4J 框架对比与最佳实践。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Java 日志学习笔记

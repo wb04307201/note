@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-peft-lora
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, PEFT, LoRA, QLoRA, DoRA, NF4, 参数高效微调]
+  status: active
 -->
 
 # PEFT / LoRA / QLoRA 面试深挖（4 大核心）

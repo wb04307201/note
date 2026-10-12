@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/architecture
   type: article
   category: 主模块子文章
   summary: 前端 05 架构
   depth: ⭐⭐
+  status: active
 -->
 
 # 05 架构

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-large-transaction
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [03.database, large, transaction]
+  status: active
 -->
 
 # 大事务：长事务的危害 + 5 大优化策略

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/cdn
   type: article
   category: 主模块子文章
   summary: CDN 本应该很简单，通过将静态资源缓存到全球边缘节点，让用户就近获取，显著降低延迟与源站压力
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # CDN

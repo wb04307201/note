@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/uuid
   type: article
   category: 主模块子文章
   summary: UUID 本应该很简单
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # UUID

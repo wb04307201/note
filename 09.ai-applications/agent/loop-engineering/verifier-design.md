@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/loop-engineering
   slug: ai/loop-engineering/verifier-design
   type: topic
   category: 验证器设计
   summary: Verifier（验证器）5 大设计 —— 测试 / 类型检查 / lint / 编译 / 运行时 5 大客观反馈源 + 评分函数
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Verifier 设计 · 5 大客观验证源

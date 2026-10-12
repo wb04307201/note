@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/lambda
   type: article
   category: 主模块子文章
   summary: Java 8 Lambda 表达式：函数式接口、方法引用、流式编程基础。
   depth: ⭐⭐
+  status: active
 -->
 
 # Lambda

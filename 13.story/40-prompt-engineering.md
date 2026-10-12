@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 40
   type: 番外
   position: 番外七
   title: 点菜单的艺术
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 40 · 点菜单的艺术

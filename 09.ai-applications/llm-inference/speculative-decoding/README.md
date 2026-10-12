@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/speculative-decoding
   type: article
   category: 主模块子文章
   summary: Speculative Decoding 投机解码：小模型预测+大模型验证（数学证明 + 6 变体演进 + 4 真实案例 + 代码实现）
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Speculative Decoding（投机解码）

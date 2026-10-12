@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-multi-turn-tool-reasoning
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: Agent 推理追问
   tags: [11.ai, Agent, Function-Calling, multi-turn, reasoning, tool-loop, orchestration]
+  status: active
 -->
 
 # Multi-turn Tool Reasoning 多轮工具推理 —— 为什么 1 次 Tool Calling 已经不够？

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/vector-api
   type: article
   category: 主模块子文章
   summary: Java 16+ Vector API（孵化）：SIMD 加速数值计算。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Vector API

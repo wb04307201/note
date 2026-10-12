@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: story
   number: 13
   slug: story
@@ -7,6 +6,7 @@ module:
   audience: 工程师 / 架构师 / SRE / AI 工程师 / CTO / 创业者 / PM
   category: 主模块
   summary: 用开餐厅的故事讲明白 50 篇技术文章，覆盖传统工程与 AI 时代（续集一 + 续集二-二十一 + 番外七/八/九 + LLM 推理），篇篇独立又互相串联。
+  status: active
 -->
 
 # 「阿明餐厅」技术系列

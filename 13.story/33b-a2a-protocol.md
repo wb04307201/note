@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 33b
   type: 续集
   position: 续集十一（下）
   title: 厨师们开会
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 33b · 厨师们开会

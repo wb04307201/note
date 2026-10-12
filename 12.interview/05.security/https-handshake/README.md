@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-https-handshake
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [05.security, TLS, HTTPS, 握手, 0-RTT, Session Resumption, OCSP]
+  status: active
 -->
 
 # HTTPS 握手过程有哪些性能优化点？—— TLS 1.2 vs 1.3 与连接复用

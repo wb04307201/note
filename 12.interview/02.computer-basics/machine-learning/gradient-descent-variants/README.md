@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-gradient-descent-variants
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [ML, 梯度下降, SGD, Adam, AdamW, 学习率]
+  status: active
 -->
 
 # 梯度下降 SGD / BGD / Adam：4 种变体的数学差异

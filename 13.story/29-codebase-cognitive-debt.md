@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 29
   type: 续集
   position: 续集七
   title: Codebase 认知债
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 29 · Codebase 认知债

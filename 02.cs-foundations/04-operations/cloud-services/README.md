@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/cloud-services
   type: article
   category: 主模块子文章
   summary: IaaS / PaaS / SaaS / DaaS / FaaS 五大云服务模型——责任边界、计费粒度、锁定风险与选型决策。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 云服务模式

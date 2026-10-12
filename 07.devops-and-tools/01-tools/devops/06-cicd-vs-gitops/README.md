@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/cicd-vs-gitops
   type: article
   category: 主模块子文章
   summary: CI/CD vs GitOps
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # CI/CD vs GitOps：理念差异与协同模式

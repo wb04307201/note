@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/pub-sub-pattern
   type: article
   category: 主模块子文章
   summary: Pub-Sub（发布-订阅）用"事件中心"解耦发布者和订阅者，3 角色 Publisher / Event Channel / Subscriber；与 Observer 5 维对比 + 5 反直觉点 + 30 行手写 EventEmitter。
     depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 发布-订阅者模式（Pub-Sub Pattern）

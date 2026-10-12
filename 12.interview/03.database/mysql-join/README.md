@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-mysql-join
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, MySQL, mysql]
+  status: active
 -->
 
 # MySQL JOIN 算法深度剖析

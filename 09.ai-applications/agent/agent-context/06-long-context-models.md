@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-context
   slug: ai/agent-architecture/agent-context/06-long-context-models
   type: topic
   category: 长上下文模型
   summary: Gemini 1.5 / Claude 3.5 / Qwen 2.5 等 100k+ 上下文模型的实测、Lost in the Middle 现象、YaRN 扩展技术
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Long-Context Models · 直接吃长上下文的模型

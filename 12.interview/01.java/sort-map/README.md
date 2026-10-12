@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-sort-map
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [01.java, sort, map]
+  status: active
 -->
 
 # 快速给Map排序

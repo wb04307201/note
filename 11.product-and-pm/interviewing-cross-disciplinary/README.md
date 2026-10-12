@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: project-management
   slug: pm/interviewing-cross-disciplinary
   type: article
   category: 主模块子文章
   summary: 面试非科班应届生的问题库与评估指南：5 大场景 × 降维版+场景版双题库 + 底线加分评估模型 + 潜力 3 维度
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 面试跨专业应届生：问题库与评估指南

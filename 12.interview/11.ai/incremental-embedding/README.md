@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-incremental-embedding
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 / RAG 落地
   tags: [11.ai, Embedding, Vector-DB, 增量更新, 版本兼容, Kafka, HNSW, IVF_PQ]
+  status: active
 -->
 
 # Incremental Embedding 增量向量化 —— 如何避免全量重新编码？

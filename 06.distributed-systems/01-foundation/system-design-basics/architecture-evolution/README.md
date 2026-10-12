@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/architecture-evolution
   type: article
   category: 主模块子文章
   summary: 架构认知的演进
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 架构认知的演进

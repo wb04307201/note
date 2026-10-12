@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: database
   slug: database/transaction
   type: index
   category: 主模块子文章
   summary: 事务与并发控制解决多事务同时执行的数据一致性问题,核心机制是 ACID、锁机制、MVCC 与 Spring 事务传播。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 事务与并发控制

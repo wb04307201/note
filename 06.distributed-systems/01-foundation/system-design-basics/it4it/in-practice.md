@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 06.distributed-systems
   slug: 06.distributed-systems\01-foundation\system-design-basics\it4it\in-practice
   type: article
   category: 主模块子文章
   summary: 第三章：落地：IT4IT × ITIL × DevOps
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 第三章：落地：IT4IT × ITIL × DevOps

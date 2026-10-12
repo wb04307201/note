@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-https-handshake
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [09.front-end, HTTP, https]
+  status: active
 -->
 
 # HTTPS 握手过程深度剖析

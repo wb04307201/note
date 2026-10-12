@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version
   type: article
   category: 主模块子文章
   summary: 追踪 Java 语言与平台的演进脉络，从功能变更历史到各版本新特性，全面掌握 Java 的发展轨迹。
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 版本特性

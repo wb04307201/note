@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 42
   type: 续集
   position: 续集十八
   title: AI 替你写代码，谁替系统负责？
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 42 · AI 替你写代码，谁替系统负责？

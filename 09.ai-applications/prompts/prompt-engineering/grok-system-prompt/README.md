@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/grok-system-prompt
   type: article
   category: 主模块子文章
   summary: Grok 3 系统提示词 4 版本泄露全文（grok.com / X / DeepSearch / Explain）+ 设计模式拆解与可借鉴技巧。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Grok 系统提示词

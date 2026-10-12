@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-hashmap-thread-unsafe
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 并发陷阱
   tags: [01.java, HashMap, concurrent, thread-safety]
+  status: active
 -->
 
 # HashMap 为什么线程不安全？

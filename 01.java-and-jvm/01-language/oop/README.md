@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concepts/oop
   type: article
   category: 主模块子文章
   summary: Java 面向对象三大特性：封装、继承、多态 + 抽象类/接口。
   depth: ⭐⭐
+  status: active
 -->
 
 # 面向对象基础

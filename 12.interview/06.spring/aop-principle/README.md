@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-aop-principle
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, AOP, aop]
+  status: active
 -->
 
 # AOP 实现原理：JDK 动态代理 vs CGLIB

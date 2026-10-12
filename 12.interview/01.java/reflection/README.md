@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-reflection
   topic: 01.java
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, reflection]
+  status: active
 -->
 
 # Java 反射原理与性能深度剖析

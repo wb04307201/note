@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-multi-agent-shared-memory
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构设计追问
   tags: [11.ai, Multi-Agent, Shared-Memory, Blackboard, Coordinator, Vector-Store, Kafka]
+  status: active
 -->
 
 # 多 Agent 共享记忆 —— 5 大内容维度 + 3 大实现层 + 6 大模式 + 5 大反模式

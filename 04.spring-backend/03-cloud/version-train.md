@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\03-cloud\version-train
   type: article
   category: 主模块子文章
   summary: Spring Cloud 版本演进史
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Cloud 版本演进史

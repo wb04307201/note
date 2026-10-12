@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-port-reuse-so-reuseport
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 网络系统设计
   tags: [02.computer-basics, port, SO_REUSEPORT, SO_REUSEADDR, listen, multi-process, Nginx]
+  status: active
 -->
 
 # 两个程序能同时监听一个端口吗？—— SO_REUSEPORT 端口复用机制

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-event-loop
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, Loop, event]
+  status: active
 -->
 
 # 事件循环（Event Loop）

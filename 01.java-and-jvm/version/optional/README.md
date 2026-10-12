@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/optional
   type: article
   category: 主模块子文章
   summary: Java 8 Optional：优雅处理 null 与函数式链式调用。
   depth: ⭐⭐
+  status: active
 -->
 
 # Optional

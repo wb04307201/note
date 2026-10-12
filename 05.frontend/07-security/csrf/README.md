@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/csrf
   type: article
   category: 主模块子文章
   summary: CSRF 攻击与防御
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # CSRF（跨站请求伪造）

@@ -133,7 +133,7 @@ def main():
         return 1
 
     if not args.apply:
-        print('\n⚠ 当前为 dry-run，要实际写入请加 --apply')
+        print('\n[NOTE] 当前为 dry-run，要实际写入请加 --apply')
 
     return 0
 

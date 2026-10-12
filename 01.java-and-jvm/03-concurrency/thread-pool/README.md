@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/thread-pool
   type: article
   category: 主模块子文章
   summary: Java 线程池（ThreadPoolExecutor）学习笔记
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Java 线程池（ThreadPoolExecutor）学习笔记

@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 13.story
   slug: 13.story\cheatsheet
   type: article
   category: 主模块子文章
   summary: 一页纸速查
+  status: active
 -->
 
 # 一页纸速查

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: algorithms/search/branch-and-bound
   type: article
   category: 主模块子文章
   summary: 分支界限 Branch and Bound 算法
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 分支界限（Branch and Bound）

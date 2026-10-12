@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\01-core\module
   type: article
   category: 主模块子文章
   summary: Spring Framework 模块结构
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Framework 模块结构

@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 16
   type: 正传
   position: 正传 10
   title: 外卖大战
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 16 · 外卖大战

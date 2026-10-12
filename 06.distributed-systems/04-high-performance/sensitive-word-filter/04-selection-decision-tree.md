@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/sensitive-word-filter
   slug: system-design/04-high-performance/sensitive-word-filter/04-decision-tree
   type: topic
   category: 选型决策
   summary: 敏感词过滤选型决策树 + 5 维场景配置矩阵 + 实施 checklist
   depth: ⭐⭐
+  status: active
 -->
 
 # 敏感词过滤选型决策树 · 5 维场景配置矩阵

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 06.distributed-systems
   slug: 06.distributed-systems\01-foundation\system-design-basics\togaf\adm
   type: article
   category: 主模块子文章
   summary: 第一章：核心思想 + ADM 详解
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 第一章：核心思想 + ADM 详解

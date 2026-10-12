@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/continuous-batching
   type: article
   category: 主模块子文章
   summary: Continuous Batching 动态调度：吞吐量提升 23x
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Continuous Batching（连续批处理）

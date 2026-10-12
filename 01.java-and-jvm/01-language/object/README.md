@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concepts/object
   type: article
   category: 主模块子文章
   summary: Java Object 类：equals/hashCode/toString/wait/notify 等 11 个方法。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Object 类

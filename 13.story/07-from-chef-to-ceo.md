@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 07
   type: 终章
   position: 终章
   title: 从厨师到 CEO
   audience: CTO / 技术管理者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 07 · 从厨师到 CEO

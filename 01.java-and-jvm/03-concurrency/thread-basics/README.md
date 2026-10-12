@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/thread-basics
   type: article
   category: 主模块子文章
   summary: Java 线程基础
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 线程基础

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-web\mvc\file-upload
   type: article
   category: 主模块子文章
   summary: Spring MVC 文件上传
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring MVC 文件上传

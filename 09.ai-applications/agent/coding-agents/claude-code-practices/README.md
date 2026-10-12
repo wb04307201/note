@@ -5,6 +5,7 @@
   category: AI 应用子 MOC
   summary: Claude Code 工程实践——Skill 设计方法学 / Skill 命中率调优 2 大主题。
   depth: ⭐
+  status: active
 -->
 
 

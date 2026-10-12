@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/ulid
   type: article
   category: 主模块子文章
   summary: ULID 本应该很简单，1. **全局唯一性**
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # ULID

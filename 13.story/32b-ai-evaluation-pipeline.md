@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 32b
   type: 续集
   position: 续集十（下）
   title: 从试菜到品控线
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 32b · 从试菜到品控线

@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 00
   slug: note-root
   topic: note 总目录（L0 导航）
@@ -7,6 +6,7 @@ module:
   audience: 所有读者
   category: 主入口
   summary: 13 个主模块的知识库总目录（L0 导航），1115 个 .md 文档，frontmatter 覆盖 98.3%（含 module/question/story 三类），含全局 SPEC 规范与 13 模块导航。
+  status: active
 -->
 
 # note 总目录

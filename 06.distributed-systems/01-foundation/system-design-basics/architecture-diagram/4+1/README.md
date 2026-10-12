@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: 12.interview/04.system-design/01-foundation/system-design-basics/architecture-diagram/4+1
   type: article
   category: 主模块子文章
   summary: Kruchten 1995 提出的五维架构描述框架，用逻辑/开发/过程/物理四个视图加场景视图完整刻画软件系统。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 4+1 视图

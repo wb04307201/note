@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/kubernetes
   type: article
   category: 主模块子文章
   summary: Kubernetes
   depth: ⭐⭐
+  status: active
 -->
 
 # Kubernetes · 云原生编排平台

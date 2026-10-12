@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/multi-site-active-active
   type: article
   category: 主模块子文章
   summary: 异地多活 本应该很简单
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 异地多活

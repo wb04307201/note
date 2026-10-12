@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-media-upload
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 媒体上传, 图片转码, WebP, AVIF, HLS, CDN, 高可用, DRM]
+  status: active
 -->
 
 # 媒体上传面试深挖 —— 图片转码 / 视频 HLS / CDN 边缘 / 高可用容灾

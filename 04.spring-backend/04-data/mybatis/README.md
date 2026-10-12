@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/mybatis
   type: article
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: MyBatis 全栈 = 架构原理 + 扩展能力 + Spring 整合 + MyBatis-Plus（4 主题 · 27 篇）
   depth: ⭐⭐
+  status: active
 -->
 
 # MyBatis 全栈

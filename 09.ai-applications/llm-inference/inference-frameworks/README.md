@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/inference-frameworks
   type: article
   category: 主模块子文章
   summary: 推理框架对比 vLLM / TGI / SGLang / TensorRT-LLM / LMDeploy / llama.cpp
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 推理框架对比

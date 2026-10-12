@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/rate-limiting/seckill-without-redis
   type: article
   category: 主模块子文章
   summary: 不用 Redis/MQ 怎么写秒杀？5 大单机方案 + 库存=1 特殊处理 + 2 台服务器一致性 + 实战模板。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 不用 Redis / MQ，秒杀怎么写？（5 大单机方案对比）

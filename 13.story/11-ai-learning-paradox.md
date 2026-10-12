@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 11
   type: 续集
   position: 续集二
   title: 学徒的困境
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 11 · 学徒的困境

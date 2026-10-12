@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-tcp-handshake-teardown
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [02.computer-basics, TCP, 三次握手, 四次挥手, TIME_WAIT, CLOSE_WAIT]
+  status: active
 -->
 
 # TCP 三次握手与四次挥手深度剖析

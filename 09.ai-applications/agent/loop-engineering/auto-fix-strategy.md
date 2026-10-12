@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/loop-engineering
   slug: ai/loop-engineering/auto-fix-strategy
   type: topic
   category: 修复策略
   summary: Auto-Fix Loop 5 种修复策略 —— 按错误类型（语法/类型/lint/测试/运行时）选择修复路径 + 重试预算 + 终止条件
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Auto-Fix 修复策略 · 5 种按错误类型

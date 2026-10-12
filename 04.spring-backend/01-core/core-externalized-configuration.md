@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\01-core\core-externalized-configuration
   type: article
   category: 主模块子文章
   summary: 外部化配置：@Value / @ConfigurationProperties / Environment
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 外部化配置：@Value / @ConfigurationProperties / Environment

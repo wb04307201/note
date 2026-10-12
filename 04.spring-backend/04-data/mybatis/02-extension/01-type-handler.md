@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring/mybatis/02-extension
   slug: spring/mybatis/02-extension/01-type-handler
   type: article
   category: MyBatis 内部原理
   summary: TypeHandler 是 MyBatis 在 Java 类型与 JDBC 类型之间的双向转换桥
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 01 自定义类型处理器(TypeHandler)

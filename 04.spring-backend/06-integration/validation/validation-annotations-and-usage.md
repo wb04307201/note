@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\06-integration\validation\validation-annotations-and-usage
   type: article
   category: 主模块子文章
   summary: Spring Validation
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Validation

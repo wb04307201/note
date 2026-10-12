@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-llm-thinking-paradigm
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 思维范式, Prompt, if-else, Production]
+  status: active
 -->
 
 # Prompt 可能不如 if-else —— 大模型思维范式如何养成

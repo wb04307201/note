@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/agent-memory
   type: article
   category: 主模块子文章
   summary: Agent Memory 架构：时间 × 认知 × 工程三维分类 + 业界框架 + 选型决策
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Agent Memory 架构 —— 时间 × 认知 × 工程 三维分类体系

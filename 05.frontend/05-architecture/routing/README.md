@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/routing
   type: article
   category: 主模块子文章
   summary: 路由
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 路由

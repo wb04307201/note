@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 06
   type: 正传
   position: 正传 3
   title: 食安大检查
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 06 · 食安大检查

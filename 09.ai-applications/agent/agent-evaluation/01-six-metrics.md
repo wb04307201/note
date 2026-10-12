@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/agent-evaluation
   slug: ai/08-llmops/agent-evaluation/01-six-metrics
   type: topic
   category: 6 大评测维度
   summary: 6 大评测维度详解 —— 任务完成率 / 步骤效率 / 工具使用 / 成本 / 满意度 / 稳定性
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 6 大评测维度 · Agent 性能量化

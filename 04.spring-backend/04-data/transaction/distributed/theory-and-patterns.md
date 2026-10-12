@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend/04-data/transaction/distributed/theory-and-patterns
   type: article
   category: 主模块子文章
   summary: Spring分布式事务管理
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring分布式事务管理

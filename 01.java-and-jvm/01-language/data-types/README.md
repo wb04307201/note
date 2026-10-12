@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concepts/data-types
   type: article
   category: 主模块子文章
   summary: Java 基本数据类型：8 大类型、自动装箱、缓存池。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 基本数据类型

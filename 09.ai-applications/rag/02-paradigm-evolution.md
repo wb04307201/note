@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/rag-paradigm-evolution
   type: article
   category: 主模块子文章
   summary: RAG 范式演进四阶段（Naive → Advanced → Modular → Agentic）—— 每阶段核心能力 / 关键技术 / 局限 + 对比表 + 选型决策树 + 与 5 阶段 Pipeline 的正交关系澄清
   depth: ⭐⭐
+  status: active
 -->
 
 # RAG 范式演进四阶段（Naive → Advanced → Modular → Agentic）

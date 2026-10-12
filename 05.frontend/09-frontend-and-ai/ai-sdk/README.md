@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/ai-sdk
   type: article
   category: 主模块子文章
   summary: AI SDK 集成
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # AI SDK 集成

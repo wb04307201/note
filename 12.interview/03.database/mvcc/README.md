@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-mvcc
   topic: 03.database
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MVCC, mvcc]
+  status: active
 -->
 
 # MVCC 实现原理深度剖析

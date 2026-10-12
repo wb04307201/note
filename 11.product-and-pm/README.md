@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: null
   number: 11
   slug: product-and-pm
@@ -9,6 +8,7 @@ module:
   type: index
   summary: 从报价拆解到 AI 时代研发效能度量的项目决策实战手册
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 11. 产品 + PM（Product & PM）

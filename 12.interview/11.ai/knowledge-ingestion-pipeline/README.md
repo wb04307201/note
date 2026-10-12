@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-knowledge-ingestion-pipeline
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: RAG 工程
   tags: [11.ai, Knowledge Ingestion, Connectors, PDF, OCR, Deduplication, CDC, Vector Database]
+  status: active
 -->
 
 # 知识入库流水线面试深挖（4 大核心）

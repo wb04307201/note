@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-excel-export-oom
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 生产实战
   tags: [01.java, Excel, OOM, 多线程, 流式写入, 分批查询, 内存优化]
+  status: active
 -->
 
 # 把几十万数据导出到 Excel 直接 OOM 了，怎么利用多线程来导出百万数据到 Excel？为什么多线程可以改善内存占用？

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: cache-hot-key
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产Bug
   tags: [缓存, 热点Key, 本地缓存, 分布式锁]
+  status: active
 -->
 
 # 缓存热点 Key 问题深度剖析：单节点被打爆怎么办？

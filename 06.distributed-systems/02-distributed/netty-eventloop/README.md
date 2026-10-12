@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/netty-eventloop
   type: article
   category: 主模块子文章
   summary: Netty 的线程模型核心是 EventLoop（单线程串行执行 ChannelHandler），业务长任务需切换至 UnorderedThreadPoolExecutor
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Netty EventLoop 与线程模型

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.system-design
   slug: 12.interview/04.system-design/01-foundation/system-design-basics/archimate/viewpoints
   type: article
   category: 主模块子文章
   summary: ---
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 第二章：视点：给不同人看不同的图

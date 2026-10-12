@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\03-cloud\rpc-and-feign
   type: article
   category: 主模块子文章
   summary: RPC 与 OpenFeign
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # RPC 与 OpenFeign

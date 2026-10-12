@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: algorithms/dimensionality-reduction/pca
   type: article
   category: 主模块子文章
   summary: PCA 主成分分析 + 与 SVD 关系
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # PCA 主成分分析

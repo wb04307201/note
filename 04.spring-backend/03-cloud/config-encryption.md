@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\03-cloud\config-encryption
   type: article
   category: 主模块子文章
   summary: Config 加密（Nacos / Spring Cloud Config / Jasypt）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Config 加密（Nacos / Spring Cloud Config / Jasypt）

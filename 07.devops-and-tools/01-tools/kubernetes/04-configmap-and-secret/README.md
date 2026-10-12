@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/k8s-configmap-secret
   type: article
   category: 主模块子文章
   summary: K8s ConfigMap 与 Secret
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # K8s ConfigMap 与 Secret：配置管理最佳实践

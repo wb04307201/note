@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/dpo
   type: article
   category: 主模块子文章
   summary: DPO 直接偏好优化：跳过 Reward Model
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # DPO（Direct Preference Optimization）

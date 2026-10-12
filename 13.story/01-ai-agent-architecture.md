@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 01
   type: 续集
   position: 续集一
   title: 当餐厅长出大脑
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 01 · 当餐厅长出大脑

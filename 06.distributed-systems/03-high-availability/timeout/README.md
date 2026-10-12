@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/timeout
   type: article
   category: 主模块子文章
   summary: 超时 本应该很简单
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 超时

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations/01-ml
   slug: 08.ai-foundations/01-ml/ml-to-rl
   type: article
   category: 主模块子文章
   summary: 从监督学习到强化学习的范式跃迁——数学骨架、算法谱系、融合架构与具身智能演进。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 监督学习 → 强化学习

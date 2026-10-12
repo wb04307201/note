@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-prompt-engineering
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [11.ai, Prompt, prompt]
+  status: active
 -->
 
 # Prompt Engineering — 8 种核心技巧面试深挖

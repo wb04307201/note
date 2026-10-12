@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 27
   type: 续集
   position: 续集五
   title: 会自我进化的厨房
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 27 · 会自我进化的厨房

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/mini-program
   type: article
   category: 主模块子文章
   summary: 小程序开发
   depth: ⭐⭐
+  status: active
 -->
 
 # 小程序开发

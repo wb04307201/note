@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: live-barrage-100k
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 弹幕系统, WebSocket, IM, 高并发, 实时分发, 系统设计]
+  status: active
 -->
 
 # 设计 10 万人直播间的弹幕系统 —— 高并发实时消息分发

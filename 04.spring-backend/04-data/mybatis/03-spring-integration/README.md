@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/mybatis-integration
   type: article
   category: 主模块子文章
   summary: Spring 整合 MyBatis
   depth: ⭐⭐
+  status: active
 -->
 
 # Spring 整合 MyBatis

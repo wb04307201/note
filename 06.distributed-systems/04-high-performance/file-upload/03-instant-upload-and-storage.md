@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/file-upload
   slug: system-design/04-high-performance/file-upload/03-storage
   type: topic
   category: 秒传与存储
   summary: 秒传原理（MD5 去重 + 内容寻址）+ 对象存储选型（OSS/S3/MinIO）+ 引用计数 + GC
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 秒传与存储 · 内容寻址去重 + 对象存储

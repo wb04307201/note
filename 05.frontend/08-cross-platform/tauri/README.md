@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/tauri
   type: article
   category: 主模块子文章
   summary: Tauri 2.0
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Tauri 2.0

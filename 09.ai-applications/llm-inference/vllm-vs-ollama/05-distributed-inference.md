@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-platforms/vllm-vs-ollama
   slug: ai-platforms/vllm-vs-ollama/05-distributed-inference
   type: topic
   category: 分布式推理
   summary: 张量并行 (TP) / 流水线并行 (PP) / 序列并行 (SP) / 数据并行 (DP) —— 多卡 / 多机部署 LLM 的四种切分方式
   depth: ⭐⭐
+  status: active
 -->
 
 # 分布式推理 · 多卡多机部署 LLM

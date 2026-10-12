@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-cors-preflight
   topic: 05.security
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [05.security, CORS, Preflight, OPTIONS, Access-Control, 跨域]
+  status: active
 -->
 
 # CORS 预检请求的性能陷阱怎么解？—— Simple Request 与 Preflight 的 RTT 优化

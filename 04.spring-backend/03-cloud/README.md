@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/cloud
   type: index
@@ -8,6 +7,7 @@ module:
   audience: Java 后端工程师
   summary: Spring Cloud = 微服务治理工具集（12 篇：服务注册/配置中心/负载均衡/OpenFeign/熔断/网关/链路追踪/Stream/Bus/Seata 集成/版本对应/Config 加密）
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 05 Spring Cloud

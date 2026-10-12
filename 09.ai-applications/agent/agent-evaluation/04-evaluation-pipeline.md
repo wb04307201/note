@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/agent-evaluation
   slug: ai/08-llmops/agent-evaluation/04-pipeline
   type: topic
   category: 评测流程
   summary: Agent 评测完整 pipeline —— 黄金集 → 离线 CI → A/B Test → 用户模拟 + 漂移检测
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Agent 评测 Pipeline · 离线到在线完整流程

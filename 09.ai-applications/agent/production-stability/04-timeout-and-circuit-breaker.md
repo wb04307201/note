@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/production-stability
   slug: ai/llmops/production-stability/04-timeout-and-circuit-breaker
   type: topic
   category: 超时熔断
   summary: 双 timeout + Circuit Breaker + Fallback 模型 + Hystrix 模式应用到 LLM 场景
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 超时熔断 · 双 timeout + Circuit Breaker

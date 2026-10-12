@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\01-quickstart
   type: article
   category: MyBatis-Plus 实战
   summary: MyBatis-Plus 快速入门——10 分钟引入 MP,完成依赖、实体类、Mapper、第一个 CRUD。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 01 MyBatis-Plus 快速入门

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: sharding-strategy
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构决策困境
   tags: [分库分表, ShardingSphere, 数据迁移, 分布式ID]
+  status: active
 -->
 
 # 分库分表策略选型：什么时候分？怎么分？分完怎么查？

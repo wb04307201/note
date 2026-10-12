@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-promise-handwriting
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, promise, handwriting]
+  status: active
 -->
 
 # Promise 手写实现

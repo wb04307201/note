@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-circuit-breaker
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [04.system-design, circuit, breaker]
+  status: active
 -->
 
 # 熔断降级机制深度剖析

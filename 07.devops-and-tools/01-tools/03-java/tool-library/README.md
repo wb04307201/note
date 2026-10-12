@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/tool-library
   type: article
   category: 主模块子文章
   summary: Hutool、Apache Commons、Guava工具库
   depth: ⭐
+  status: active
 -->
 
 # Hutool、Apache Commons、Guava工具库

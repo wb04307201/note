@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-product-search
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 搜索, Elasticsearch, 倒排索引, BM25, 系统设计]
+  status: active
 -->
 
 # 设计一个商品搜索系统 —— 从 DB LIKE 到 Elasticsearch 完整方案

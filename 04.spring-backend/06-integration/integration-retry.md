@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\06-integration\integration-retry
   type: article
   category: 主模块子文章
   summary: Spring Retry 自动重试
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Spring Retry 自动重试

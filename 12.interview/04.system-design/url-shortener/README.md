@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-url-shortener
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 短链, URL-shortener, Base62, 分布式ID, 302重定向]
+  status: active
 -->
 
 # 设计一个短链系统 —— Base62 + 发号器 + 302 重定向 + 缓存

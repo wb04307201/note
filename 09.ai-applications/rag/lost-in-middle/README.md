@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/lost-in-middle
   type: article
@@ -7,6 +6,7 @@ module:
   summary: Lost In the Middle 现象 + 6 大缓解方案
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Lost In the Middle（中间遗忘现象）

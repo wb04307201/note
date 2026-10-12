@@ -335,8 +335,7 @@
 之前追加 HTML 注释 frontmatter：
 
 ```markdown
-<!--
-story:
+<!--story:
   number: 42
   title: AI 替你写代码，谁替系统负责？
   type: 续集
@@ -344,6 +343,7 @@ story:
   sibling: null
   audience: CTO / 技术管理者 / AI 工程师
   core_concepts: [系统责任金字塔, AI协作工程师, AI SRE, AI 安全审计师]
+  status: active
 -->
 ```
 

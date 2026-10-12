@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: project-management
   slug: project-management/agile-metrics
   type: article
   category: 主模块子文章
   summary: 敏捷度量实战手册：超越 DORA/SPACE 的团队效率可视化——Velocity、Burndown、Cycle Time、CFD 与度量反模式。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 敏捷度量 · Agile Metrics 实战

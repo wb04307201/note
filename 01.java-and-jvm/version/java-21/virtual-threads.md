@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-21/virtual-threads
   type: article
   category: 主模块子文章
   summary: Java 21 虚拟线程（Virtual Threads / Project Loom）— 替代传统 1:1 OS 线程映射，M:N 调度实现百万级并发。Spring Boot 3.2+ 默认启用。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Java 21 虚拟线程（Virtual Threads）

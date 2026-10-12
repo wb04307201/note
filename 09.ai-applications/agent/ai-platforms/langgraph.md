@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 09.ai-applications
   slug: 09.ai-applications\agent\ai-platforms\langgraph
   type: article
   category: 主模块子文章
   summary: LangGraph
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # LangGraph

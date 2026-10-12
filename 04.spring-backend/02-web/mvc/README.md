@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/mvc
   type: article
   category: 主模块子文章
   summary: Spring MVC 流程与 Filter/AOP 顺序。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Spring MVC

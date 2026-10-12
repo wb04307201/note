@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/01-foundation
   type: article
   category: 主模块子文章
   summary: 基础篇 本应该很简单，软件工程的核心理论基础与系统设计方法论，是理解后续分布式、高可用、高性能等高级主题的基石
   depth: ⭐⭐
+  status: active
 -->
 
 # 基础篇

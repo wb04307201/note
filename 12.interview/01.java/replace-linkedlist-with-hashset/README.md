@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-replace-linkedlist-with-hashset
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, replace, linkedlist]
+  status: active
 -->
 
 # 用 HashSet 替代 LinkedList 提升查找效率

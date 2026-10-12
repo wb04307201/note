@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-prompt-injection
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 安全攻防
   tags: [11.ai, Prompt Injection, OWASP LLM01, EchoLeak, Agent Security, Red Team]
+  status: active
 -->
 
 # Prompt Injection 面试深挖（4 大核心）

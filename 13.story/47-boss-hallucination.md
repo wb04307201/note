@@ -1,5 +1,4 @@
-<!--
-story:
+<!--story:
   number: 47
   title: AI 幻觉不可怕，最可怕的是老板出幻觉
   type: 续集
@@ -8,6 +7,7 @@ story:
   audience: CTO / 技术管理者 / AI 工程师
   core_concepts: [组织幻觉, 老板幻觉, AI治理, 决策传导, 可信度分级]
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 47 · AI 幻觉不可怕，最可怕的是老板出幻觉

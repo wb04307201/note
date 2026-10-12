@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 11.product-and-pm
   slug: app-quote-breakdown
   type: article
   category: 决策实战
   summary: 5 万 vs 50 万 App 报价背后的 12 大成本维度拆解与决策矩阵
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 5万 vs 50万 App 报价差在哪：12 大成本维度拆解

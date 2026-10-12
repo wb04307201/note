@@ -5,6 +5,7 @@
   category: AI 基础子模块
   summary: 大语言模型基础——语言模型演进、预训练、对齐与 Agent 能力的全景速查。
   depth: ⭐⭐
+  status: active
 -->
 
 # 04. 大语言模型

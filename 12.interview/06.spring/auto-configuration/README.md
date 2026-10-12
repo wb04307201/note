@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-auto-configuration
   topic: 06.spring
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, Spring, auto]
+  status: active
 -->
 
 # Spring Boot 自动配置原理深度剖析

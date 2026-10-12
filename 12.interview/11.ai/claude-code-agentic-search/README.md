@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-claude-code-agentic-search
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉辨析
   tags: [11.ai, Claude Code, Agentic Search, RAG, 检索, AI Coding]
+  status: active
 -->
 
 # 为什么 Claude Code 放弃了 RAG？ — Agentic Search 取代 RAG 的反直觉革命

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-encryption-at-rest-transit
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, TLS, AES, 传输加密, 存储加密, KMS, HSM]
+  status: active
 -->
 
 # 传输加密 vs 存储加密怎么选？—— 数据全生命周期加密策略

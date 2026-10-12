@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/hadoop-ecosystem
   type: index
   category: 主模块子文章
   summary: Hadoop 三件套 + 上层引擎（Hive / Presto）——离线数仓基石
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 02 Hadoop 生态

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 12.interview/04.system-design/05-security/sso
   slug: system-design/05-security/sso/04-jwt-implementation
   type: topic
   category: JWT 实战
   summary: JWT 自建 + Redis 黑名单 + Refresh Token + 5 大反模式
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # JWT 自建 SSO · Token + Redis 黑名单实战

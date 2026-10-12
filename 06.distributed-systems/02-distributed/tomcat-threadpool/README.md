@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/tomcat-threadpool
   type: article
   category: 主模块子文章
   summary: Tomcat 自定义 TaskQueue（继承 LinkedBlockingQueue）通过 force() 强制入队逻辑绕过 JDK 默认的「核心线程满 → 入队」行为
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Tomcat 线程池调优（TaskQueue）

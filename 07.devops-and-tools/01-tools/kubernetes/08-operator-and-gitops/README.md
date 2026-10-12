@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/k8s-operator-gitops
   type: article
   category: 主模块子文章
   summary: K8s Operator 与 GitOps
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # K8s Operator 与 GitOps：云原生的终极自动化

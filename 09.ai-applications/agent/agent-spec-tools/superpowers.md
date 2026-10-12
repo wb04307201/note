@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/agent-spec-tools/superpowers
   type: article
   category: 主模块子文章
   summary: Superpowers：Claude Code 最热门的 Skill 插件，强制 TDD + 7 阶段工作流 + 子 Agent 编排。
   depth: ⭐⭐
+  status: active
 -->
 
 # Superpowers — 强制 TDD 的工作流执行引擎

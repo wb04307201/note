@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concurrent-skip-list
   type: article
   category: 主模块子文章
   summary: 有序并发场景下替代 TreeMap + synchronized 的无锁数据结构，典型应用为排行榜 / 范围查询，基于 Pugh 1989 跳表论文。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 跳表集合

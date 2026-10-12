@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 05
   slug: front-end
   topic: 前端工程
@@ -7,6 +6,7 @@ module:
   category: 主模块
   summary: 现代前端工程的知识地图——从浏览器原理到 AI 协同开发
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 前端工程

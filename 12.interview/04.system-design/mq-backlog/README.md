@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-mq-backlog
   topic: 04.system-design
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [04.system-design, backlog]
+  status: active
 -->
 
 # MQ消息积压

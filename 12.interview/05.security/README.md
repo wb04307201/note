@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/05.security
   type: index-only
   category: 面试题索引
   summary: 安全设计高频面试题与难点深挖（认证 / 加密 / Web 安全 / 限流 / OWASP）
+  status: active
 -->
 
 # 安全咬文嚼字

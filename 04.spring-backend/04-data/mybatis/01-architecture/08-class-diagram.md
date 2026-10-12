@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring/mybatis/01-architecture
   slug: spring/mybatis/01-architecture/08-class-diagram
   type: topic
   category: MyBatis 内部原理
   summary: 从九大核心类、四大处理器到一次 SQL 执行全链路，建立 MyBatis 源码阅读地图
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # MyBatis 核心类图与职责链路

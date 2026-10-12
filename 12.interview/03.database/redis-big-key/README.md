@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-redis-big-key
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [03.database, Redis, redis]
+  status: active
 -->
 
 # Redis 大 Key 问题全攻略

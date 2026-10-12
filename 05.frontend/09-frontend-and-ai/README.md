@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: 05.frontend/09-frontend-and-ai
   type: index
   category: 主模块子文章
   summary: 前端 09 前端与 AI
   depth: ⭐⭐
+  status: active
 -->
 
 # 09 前端与 AI

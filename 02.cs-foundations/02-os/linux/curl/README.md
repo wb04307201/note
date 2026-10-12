@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/curl
   type: article
   category: 主模块子文章
   summary: `curl` 是通过 HTTP/HTTPS/FTP 等协议传输数据的命令行工具，常用于 API 测试、文件下载、请求调试。
   depth: ⭐
+  status: active
 -->
 
 # curl 命令

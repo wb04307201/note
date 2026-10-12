@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/k8s-architecture
   type: article
   category: 主模块子文章
   summary: K8s 架构
   depth: ⭐
+  status: active
 -->
 
 # K8s 架构：控制平面 + 工作节点深度解读

@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 19
   type: 正传
   position: 正传 11
   title: 厨房实况直播
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 19 · 厨房实况直播

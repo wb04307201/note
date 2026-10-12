@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-from-url-to-page
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, from, url]
+  status: active
 -->
 
 # 从输入 URL 到页面展示全过程

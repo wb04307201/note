@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/testing
   type: article
   category: 主模块子文章
   summary: Java 测试技术体系：JUnit 5、Mockito、JaCoCo 覆盖率与 FIRST 最佳实践。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Java 测试技术笔记

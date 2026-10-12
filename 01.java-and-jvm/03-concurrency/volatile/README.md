@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/volatile
   type: article
   category: 主模块子文章
   summary: volatile 关键字深度解析
   depth: ⭐⭐
+  status: active
 -->
 
 # volatile 关键字深度解析

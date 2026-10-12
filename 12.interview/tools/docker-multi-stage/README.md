@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: tools-docker-multi-stage
   topic: tools
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [tools, Docker, 多阶段构建, 镜像优化, Dockerfile, 层缓存]
+  status: active
 -->
 
 # Docker 多阶段构建为什么能大幅减小镜像体积？

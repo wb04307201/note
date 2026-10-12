@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-sse-vs-websocket
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [02.computer-basics, SSE, WebSocket, AI, streaming]
+  status: active
 -->
 
 # SSE vs WebSocket —— AI 对话为什么选 SSE？

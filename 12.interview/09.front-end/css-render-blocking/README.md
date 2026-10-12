@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-css-render-blocking
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [09.front-end, css, render]
+  status: active
 -->
 
 # CSS 渲染阻塞：把 CSS 放底部为什么白屏更长

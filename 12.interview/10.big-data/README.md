@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/10.big-data
   type: index-only
   category: 面试题索引
   summary: 大数据面试题 — Flink / Spark / Hive / Iceberg / Doris / Kafka
+  status: active
 -->
 
 # 大数据咬文嚼字

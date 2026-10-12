@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/record
   type: article
   category: 主模块子文章
   summary: Java 14+ Record：不可变数据载体类的语法糖。
   depth: ⭐
+  status: active
 -->
 
 # Record

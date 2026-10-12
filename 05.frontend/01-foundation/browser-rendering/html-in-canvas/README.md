@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/browser-rendering/html-in-canvas
   type: article
   category: 主模块子文章
   summary: HTML-in-Canvas WICG 提案
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # HTML-in-Canvas（WICG 提案）

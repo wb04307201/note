@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/docker-compose
   type: article
   category: 主模块子文章
   summary: Docker Compose 编排实战
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Docker Compose 编排实战

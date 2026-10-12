@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-decision-tree-variants
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 概念辨析
   tags: [ML, 决策树, ID3, C4.5, CART, 信息增益, Gini]
+  status: active
 -->
 
 # 决策树 ID3 / C4.5 / CART：三种划分准则的本质区别

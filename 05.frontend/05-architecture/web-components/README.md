@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/web-components
   type: article
   category: 主模块子文章
   summary: Web Components
   depth: ⭐⭐
+  status: active
 -->
 
 # Web Components

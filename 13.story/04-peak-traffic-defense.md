@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 04
   type: 正传
   position: 正传 1
   title: 高峰保卫战
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 04 · 高峰保卫战

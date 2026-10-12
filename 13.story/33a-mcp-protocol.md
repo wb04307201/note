@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 33a
   type: 续集
   position: 续集十一（上）
   title: 万能插口
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 33a · 万能插口

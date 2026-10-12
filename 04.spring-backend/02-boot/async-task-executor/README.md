@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend/02-boot/async-task-executor
   type: article
   category: 主模块子文章
   summary: Spring Boot @Async 异步任务底层即 ThreadPoolExecutor，本文梳理 AsyncConfigurer、TaskExecutorBuilder、ThreadPoolTaskExecutor 配置及与 JDK ThreadPoolExecutor 的关系
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Boot @Async 异步任务与 TaskExecutor

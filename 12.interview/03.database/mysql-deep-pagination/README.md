@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-deep-pagination
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, deep, pagination]
+  status: active
 -->
 
 # 深分页：LIMIT 10000000, 10 为什么慢

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\mybatis\03-spring-integration\02-mapper-and-boot
   type: article
   category: 主模块子文章
   summary: 02 Mapper 与 Boot
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 02 Mapper 与 Boot

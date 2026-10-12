@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-pub-sub-pattern
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构决策困境
   tags: [09.front-end, pub-sub, observer, eventemitter, mitt]
+  status: active
 -->
 
 # 发布-订阅者模式深度剖析：跨组件通知的 5 维对比 + 30 行手写 EventEmitter

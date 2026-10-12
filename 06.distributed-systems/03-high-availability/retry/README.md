@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/retry
   type: article
   category: 主模块子文章
   summary: 重试 本应该很简单
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 重试

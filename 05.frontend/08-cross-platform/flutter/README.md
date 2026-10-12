@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/flutter
   type: article
   category: 主模块子文章
   summary: Flutter 3.x
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # Flutter 3.x

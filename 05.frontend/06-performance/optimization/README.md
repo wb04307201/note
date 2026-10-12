@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/optimization
   type: article
   category: 主模块子文章
   summary: 性能优化手段
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 性能优化手段

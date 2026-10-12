@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-boot\boot-externalized-configuration
   type: article
   category: 主模块子文章
   summary: Spring Boot 外部化配置
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Spring Boot 外部化配置

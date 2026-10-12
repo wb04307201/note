@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai-applications
   slug: ai-applications/rag/vector-search-algorithms
   type: article
   category: AI 应用子文章
   summary: 向量检索算法选型：HNSW vs IVF vs DiskANN + 4 维权衡（内存/磁盘/QPS/Recall）
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 向量检索算法选型 —— HNSW vs IVF vs DiskANN 与 4 维权衡

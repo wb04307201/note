@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-boosting-comparison
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 选型对比
   tags: [ML, XGBoost, LightGBM, CatBoost, Boosting, GBDT]
+  status: active
 -->
 
 # XGBoost / LightGBM / CatBoost：三大 Boosting 库的工程取舍

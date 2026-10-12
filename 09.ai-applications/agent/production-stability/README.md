@@ -5,6 +5,7 @@
   category: Agent 子模块索引
   summary: LLM 生产稳定性——思维范式 / 成本控制 / 一致性 / 熔断 / 在线监控 / 选型决策树。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Agent 生产稳定性（Production Stability）

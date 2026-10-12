@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-redis-single-thread
   topic: 03.database
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉性能
   tags: [03.database, Redis, 单线程, epoll, Reactor, IO多路复用, 多线程]
+  status: active
 -->
 
 # Redis 单线程为什么速度碾压多线程数据库？

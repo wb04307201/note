@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/code-comment-styles
   type: article
   category: 主模块子文章
   summary: 创意代码注释风格
   depth: ⭐⭐
+  status: active
 -->
 
 # 创意代码注释风格

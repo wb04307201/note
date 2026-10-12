@@ -5,6 +5,7 @@
   category: AI 基础索引
   summary: 深度学习基础——主流框架对比（PyTorch / TensorFlow / MindSpore / PaddlePaddle）、训练范式与生产部署。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 02. 深度学习

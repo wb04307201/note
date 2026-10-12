@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection
   type: article
   category: 主模块子文章
   summary: Java 集合框架全貌与各集合类的底层原理、选型指南。
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 集合框架

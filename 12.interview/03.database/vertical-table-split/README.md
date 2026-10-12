@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-vertical-table-split
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [03.database, 垂直分表, 宽表, InnoDB, Buffer Pool, 大字段]
+  status: active
 -->
 
 # 30 个热点字段拆不拆：垂直分表判定规范全解

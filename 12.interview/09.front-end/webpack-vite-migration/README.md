@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-webpack-vite-migration
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 工程迁移
   tags: [09.front-end, webpack, vite, rspack, migration, ESM, CJS]
+  status: active
 -->
 
 # Webpack → Vite/Rspack 迁移的 5 大坑

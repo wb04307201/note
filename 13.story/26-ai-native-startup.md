@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 26
   type: 续集
   position: 续集四
   title: 阿明的二次创业
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 26 · 阿明的二次创业

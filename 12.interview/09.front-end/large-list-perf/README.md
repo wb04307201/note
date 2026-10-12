@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-large-list-perf
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能调优
   tags: [09.front-end, vue, performance, list]
+  status: active
 -->
 
 # Vue 大列表性能调优

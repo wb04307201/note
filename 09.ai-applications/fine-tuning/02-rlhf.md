@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/rlhf
   type: article
   category: 主模块子文章
   summary: RLHF 完整流水线：SFT → Reward Model → PPO
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # RLHF（Reinforcement Learning from Human Feedback）

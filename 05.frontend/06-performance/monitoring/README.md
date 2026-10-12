@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/perf-monitoring
   type: article
   category: 主模块子文章
   summary: 性能监控体系
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 性能监控体系

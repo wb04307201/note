@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 44
   type: 续集
   position: 续集二十
   title: 你接手的"老厨房"，正在决定你哪天被淘汰
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 44 · 你接手的"老厨房"，正在决定你哪天被淘汰

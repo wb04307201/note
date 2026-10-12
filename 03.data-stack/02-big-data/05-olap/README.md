@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/olap
   type: index
   category: 主模块子文章
   summary: Doris / ClickHouse / StarRocks / Trino——亚秒级实时查询的 OLAP 引擎
   depth: ⭐⭐
+  status: active
 -->
 
 # 05 OLAP

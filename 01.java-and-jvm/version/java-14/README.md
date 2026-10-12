@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-14
   type: article
   category: 主模块子文章
   summary: Java 14：16 个 JEP，含 Records 预览、instanceof 模式匹配预览、switch 表达式正式版、Helpful NPE
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Java 14

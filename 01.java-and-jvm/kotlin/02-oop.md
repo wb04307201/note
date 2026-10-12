@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 01.java-and-jvm
   slug: 01.java-and-jvm\kotlin\02-oop
   type: article
   category: 主模块子文章
   summary: Kotlin 面向对象
   depth: ⭐⭐
+  status: active
 -->
 
 # Kotlin 面向对象

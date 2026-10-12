@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/production-stability
   slug: ai/llmops/production-stability/05-online-monitoring
   type: topic
   category: 线上监控
   summary: Trace + 黄金集回归 + 漂移检测 —— 上线后准确率 / 幻觉率监控 + 5 分钟定位问题实战
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 线上监控与定位 · 准确率 / 幻觉率

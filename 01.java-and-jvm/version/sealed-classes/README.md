@@ -5,6 +5,7 @@
   category: 主模块子文章
   summary: Sealed Classes（Java 17）：密封类，限制哪些类可以继承。
   depth: ⭐⭐
+  status: active
 -->
 
 # Sealed Classes

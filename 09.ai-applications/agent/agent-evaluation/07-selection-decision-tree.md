@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/agent-evaluation
   slug: ai/08-llmops/agent-evaluation/07-decision-tree
   type: topic
   category: 选型决策
   summary: Agent 评测选型决策 —— 按阶段 / 团队 / 预算选评测方案 + checklist
   depth: ⭐⭐
+  status: active
 -->
 
 # Agent 评测选型决策 · 按阶段 / 团队 / 预算

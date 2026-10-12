@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 06.spring-event-mechanism
   topic: 06.spring
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [06.spring, Spring, event]
+  status: active
 -->
 
 # Spring 事件机制深度剖析

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-rate-limiting-algorithms
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, 限流, 令牌桶, 漏桶, 滑动窗口, 固定窗口]
+  status: active
 -->
 
 # 令牌桶 vs 漏桶 vs 滑动窗口怎么选？—— 4 大限流算法对比

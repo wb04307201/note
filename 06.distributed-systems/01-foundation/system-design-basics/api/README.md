@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/api
   type: article
   category: 主模块子文章
   summary: API 是系统对外交互的接口，良好的 API 设计直接影响系统的可用性、可维护性和开发者体验。
   depth: ⭐⭐
+  status: active
 -->
 
 # API 设计

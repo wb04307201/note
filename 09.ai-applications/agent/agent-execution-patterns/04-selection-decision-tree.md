@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/agent-architecture/agent-execution-patterns
   slug: ai/agent-architecture/agent-execution-patterns/04-decision-tree
   type: topic
   category: 选型决策
   summary: 4 模式场景化决策树 + 反模式 + checklist
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 选型决策树 · 4 模式场景化

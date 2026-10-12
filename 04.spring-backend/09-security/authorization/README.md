@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/09-security/authorization
   type: article
   category: 主模块子文章
   summary: 授权机制解决"你能干什么"的问题，通过 URL 级（requestMatchers）+ 方法级（@PreAuthorize）+ 数据级（ACL）三层防护模型从粗到细控制资源访问。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 授权机制

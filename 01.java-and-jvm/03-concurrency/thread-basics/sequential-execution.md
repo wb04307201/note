@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concurrency/thread-basics/sequential-execution
   type: article
   category: 主模块子文章
   summary: T1/T2/T3 按顺序执行的 3 种语义 + Top 3 推荐方案 + 8 方案优劣对比 + 实战模板。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 三个线程 T1、T2、T3 怎么确保按顺序执行？8 方案对比

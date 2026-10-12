@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-payment-message-lost
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产 Bug
   tags: [04.system-design, 消息丢失, 支付回调, 排查, MQ 可靠性]
+  status: active
 -->
 
 # 支付成功没收到消息：全链路排查框架

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 10.big-data-spark-shuffle-optimization
   topic: 10.big-data
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [10.big-data, Spark, Shuffle, 数据倾斜, AQE, Broadcast Join]
+  status: active
 -->
 
 # Spark Shuffle 优化：数据倾斜怎么解？

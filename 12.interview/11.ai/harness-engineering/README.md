@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-harness-engineering
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, Harness, harness]
+  status: active
 -->
 
 # Harness Engineering — 给 Agent 套上缰绳面试深挖

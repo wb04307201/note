@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-greedy-algorithms
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 算法设计 + 面试深挖
   tags: [02.computer-basics, 贪心算法, greedy, 算法设计, Dijkstra, Huffman, 动态规划对比]
+  status: active
 -->
 
 # 贪心算法深度剖析：什么时候局部最优等于全局最优？

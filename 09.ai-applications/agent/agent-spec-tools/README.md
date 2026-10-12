@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/agent-spec-tools
   type: index
   category: 主模块子文章
   summary: Agent Spec Tools：Superpowers / Spec-Kit / OpenSpec 三工具安装、配置、使用与选型对比。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Agent Spec Tools — 三工具对比与选型

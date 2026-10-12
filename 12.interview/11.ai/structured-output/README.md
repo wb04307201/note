@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-structured-output
   topic: 11.ai
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 工程实践
   tags: [11.ai, Structured Output, JSON Schema, Function Calling, Constrained Decoding]
+  status: active
 -->
 
 # Structured Output 面试题

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-reflow-repaint
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [09.front-end, reflow, repaint]
+  status: active
 -->
 
 # 回流与重绘：触发条件 + 性能优化

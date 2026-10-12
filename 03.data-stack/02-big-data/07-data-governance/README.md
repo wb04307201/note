@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/data-governance
   type: index
   category: 主模块子文章
   summary: Atlas / DataHub / 数据血缘——元数据、质量、安全三大支柱
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 07 数据治理

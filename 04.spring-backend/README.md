@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: null
   number: 04
   slug: spring-backend
@@ -9,6 +8,7 @@ module:
   type: index
   summary: Spring 生态完整知识体系：核心容器 / Boot / Cloud / 数据 / Web / 集成 / 可观测性 / Security / 注解速查
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 04. Spring Backend（Spring 生态 + 后端框架）

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/access-control
   type: article
   category: 主模块子文章
   summary: 访问控制是把「谁能对什么做什么」这一决策工程化的学科。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 访问控制：6 大权限模型与选型指南

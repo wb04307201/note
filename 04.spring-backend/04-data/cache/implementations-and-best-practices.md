@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\cache\implementations-and-best-practices
   type: article
   category: 主模块子文章
   summary: 缓存实现与最佳实践
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 缓存实现与最佳实践

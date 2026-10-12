@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: tools-k8s-pod-lifecycle
   topic: tools
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产Bug
   tags: [tools, Kubernetes, Pod, 生命周期, Probe, Init Container, PreStop]
+  status: active
 -->
 
 # K8s Pod 生命周期中有哪些容易忽略的状态？

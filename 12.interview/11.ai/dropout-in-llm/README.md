@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-dropout
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 原理辨析
   tags: [11.ai, Dropout, LLM, 正则化, 训练]
+  status: active
 -->
 
 # 大模型中为什么不用 Dropout？ — 训练范式与正则化策略深度剖析

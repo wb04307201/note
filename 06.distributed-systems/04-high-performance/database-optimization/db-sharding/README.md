@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/db-sharding
   type: article
   category: 主模块子文章
   summary: 数据库分库分表 本应该很简单，分库分表是应对单库单表数据量过大、并发压力过高的终极方案。本文系统讲解垂直/水平分库、垂直/水平分表,以及分片算法与最佳实践
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 数据库分库分表

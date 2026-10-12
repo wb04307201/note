@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-async-vs-multithread
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 概念辨析
   tags: [01.java, async, multithreading, concurrency]
+  status: active
 -->
 
 # 异步就是多线程吗？

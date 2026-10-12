@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/network/protocols/sse-vs-websocket
   type: article
   category: 主模块子文章
   summary: SSE vs WebSocket 协议深度对比——连接建立、数据帧、重连机制与 AI 时代的选型。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # SSE vs WebSocket —— 协议深度对比

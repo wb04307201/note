@@ -5,6 +5,7 @@
   category: AI 基础索引
   summary: Transformer 架构——注意力机制、位置编码、Self-Attention / Multi-Head / KV Cache / MQA-GQA-MLA / FlashAttention 核心组件解析。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 03. Transformer

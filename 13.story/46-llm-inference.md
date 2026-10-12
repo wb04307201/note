@@ -1,5 +1,4 @@
-<!--
-story:
+<!--story:
   number: 46
   type: 番外
   position: 番外 · LLM 推理优化篇
@@ -7,6 +6,7 @@ story:
   audience: AI 工程师 / 后端工程师
   core_concepts: [KV Cache, Continuous Batching, PagedAttention, 量化, 推测解码]
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 46 · LLM 推理优化——阿明餐厅的"上菜革命"

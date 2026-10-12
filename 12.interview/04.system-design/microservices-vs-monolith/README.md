@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-microservices-vs-monolith
   topic: 04.system-design
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [04.system-design, microservice, monolith, Spring Cloud, 分布式]
+  status: active
 -->
 
 # 微服务 vs 单体：核心优势深挖

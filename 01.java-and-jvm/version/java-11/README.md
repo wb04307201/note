@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-11
   type: article
   category: 主模块子文章
   summary: Java 11 (LTS)：17 个 JEP，含嵌套访问控制、HTTP 客户端正式版、ZGC 实验性、单文件源启动
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Java 11

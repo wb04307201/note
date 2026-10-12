@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-deep-copy
   topic: 09.front-end
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, deep, copy]
+  status: active
 -->
 
 # 深拷贝实现深度剖析

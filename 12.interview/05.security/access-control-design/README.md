@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-access-control-design
   topic: 05.security
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [05.security, RBAC, ABAC, 权限系统, 系统设计, Spring-Security, 多租户]
+  status: active
 -->
 
 # 设计一个统一权限控制系统 —— RBAC + ABAC + 缓存 + 审计

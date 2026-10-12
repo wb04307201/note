@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/weight-quantization
   type: article
   category: 主模块子文章
   summary: 权重量化 GPTQ/AWQ/GGUF/NF4：精度 vs 显存 vs 速度（含 10+ 演进史、5 真实案例、5 代码示例）
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 权重量化（Weight Quantization）

@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 37
   type: 续集
   position: 续集十五
   title: 味道仓库
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 37 · 味道仓库

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/rpc/dubbo-threadpool
   type: article
   category: 主模块子文章
   summary: Dubbo 通过 SPI 机制提供 4 种可插拔线程池（Fixed / Cached / Limited / Eager），Eager 模式兼顾突发流量与资源受控
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Dubbo 线程池模型

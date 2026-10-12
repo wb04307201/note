@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/collection/linked-hash-set
   type: article
   category: 主模块子文章
   summary: LinkedHashSet 底层基于 LinkedHashMap 的有序 Set 实现。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # LinkedHashSet 学习笔记

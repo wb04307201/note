@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: big-data
   slug: big-data/sync-tools
   type: index
   category: 主模块子文章
   summary: DataX / SeaTunnel / Sqoop / Flume——异构数据集成与同步
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 08 同步工具

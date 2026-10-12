@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: high-performance
   slug: system-design/media-upload-storage
   type: article
   category: 主模块子文章
   summary: 图片视频上传存储系统专题：WebP/AVIF 转码 + HLS/DASH 流媒体 + 冷热分层存储 + 高可用 4 层防线 + 防盗链 DRM
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 图片视频上传存储系统（媒体专题）

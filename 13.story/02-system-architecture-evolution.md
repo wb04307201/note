@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 02
   type: 前传
   position: 前传
   title: 架构是"长"出来的
   audience: 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 02 · 架构是"长"出来的

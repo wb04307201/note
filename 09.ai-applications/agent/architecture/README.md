@@ -5,6 +5,7 @@
   category: Agent 子模块索引
   summary: Agent 系统级架构模式——传统工作流引擎（BPMN）与 AI 智能体的融合实践。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Agent 架构（Architecture）

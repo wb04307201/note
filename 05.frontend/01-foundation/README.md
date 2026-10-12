@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/foundation
   type: article
   category: 主模块子文章
   summary: 前端 01 基础
   depth: ⭐⭐
+  status: active
 -->
 
 # 01 基础

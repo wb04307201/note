@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-26
   type: article
   category: 主模块子文章
   summary: Java 26：10 个 JEP，含结构化并发预览、紧凑头实验、流式 IO 孵化
   depth: ⭐
+  status: active
 -->
 
 # Java 26

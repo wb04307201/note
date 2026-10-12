@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 20
   type: 正传
   position: 正传 13
   title: 一个厨房，四个门面
   audience: 工程师 / SRE / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 20 · 一个厨房，四个门面

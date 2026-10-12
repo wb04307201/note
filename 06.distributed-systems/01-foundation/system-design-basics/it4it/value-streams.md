@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 06.distributed-systems
   slug: 06.distributed-systems\01-foundation\system-design-basics\it4it\value-streams
   type: article
   category: 主模块子文章
   summary: 第一章：价值流：从请求到服务的 4 条路
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 第一章：价值流：从请求到服务的 4 条路

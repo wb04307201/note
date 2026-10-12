@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-what-lock
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MySQL, what]
+  status: active
 -->
 
 # MySQL 什么情况下会锁表？

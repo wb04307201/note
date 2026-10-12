@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-thread-pool
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [01.java, thread, pool]
+  status: active
 -->
 
 # 线程池 7 大参数深度剖析

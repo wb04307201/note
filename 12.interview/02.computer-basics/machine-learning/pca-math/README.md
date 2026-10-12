@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-pca-math
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 数学推导
   tags: [ML, PCA, SVD, 特征值分解, 降维]
+  status: active
 -->
 
 # PCA 数学本质：为什么是协方差矩阵的特征向量？

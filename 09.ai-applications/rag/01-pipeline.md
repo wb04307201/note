@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/rag-pipeline
   type: article
   category: 主模块子文章
   summary: RAG 完整 Pipeline 综述
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # RAG Pipeline（完整流水线综述）

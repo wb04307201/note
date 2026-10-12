@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/pwa
   type: article
   category: 主模块子文章
   summary: PWA
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # PWA (Progressive Web App)

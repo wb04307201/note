@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/zero-copy
   type: article
   category: 主模块子文章
   summary: 零拷贝
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 零拷贝

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/04-high-performance
   slug: system-design/04-high-performance/multi-field-ranking
   type: article
   category: 主模块子文章
   summary: 多字段动态排名的通用设计模式 —— 归一化方法论 + 加权公式设计 + 动态权重策略 + 工程实现 + 6 大典型场景
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 多字段动态排名 · 通用设计模式

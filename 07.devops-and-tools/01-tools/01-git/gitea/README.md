@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/gitea
   type: article
   category: 主模块子文章
   summary: Gitea
   depth: ⭐
+  status: active
 -->
 
 # Gitea

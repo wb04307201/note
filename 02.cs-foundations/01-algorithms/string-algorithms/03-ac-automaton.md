@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: algorithms/string-algorithms
   slug: algorithms/string-algorithms/03-ac-automaton
   type: topic
   category: AC 自动机
   summary: AC 自动机（Aho-Corasick）—— Trie + fail 指针 + 多模式匹配 + Java 完整实现
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # AC 自动机（Aho-Corasick）· 多模式匹配

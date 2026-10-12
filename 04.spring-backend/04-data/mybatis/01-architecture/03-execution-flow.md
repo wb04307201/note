@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring/mybatis/01-architecture
   slug: spring/mybatis/01-architecture/03-execution-flow
   type: article
   category: MyBatis 内部原理
   summary: 以查询为例串起 MyBatis 从配置加载到结果映射的八步执行链路
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 03 执行流程

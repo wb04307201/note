@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: high-performance
   slug: system-design/04-high-performance/product-search
   type: deep-dive
   category: 商品搜索系统
   summary: 商品搜索系统设计 —— 倒排索引 + BM25 + 多阶段排序 + 多维筛选 + 高可用架构，从 DB LIKE 到 Elasticsearch 完整演进
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 商品搜索系统设计 · 从 DB 到 Elasticsearch 完整方案

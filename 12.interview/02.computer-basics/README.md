@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/02.computer-basics
   type: index-only
   category: 面试题索引
   summary: 计算机基础高频面试题（网络 / TCP / HTTP / 操作系统）
+  status: active
 -->
 
 # 计算机基础咬文嚼字

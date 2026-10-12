@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/stream-api
   type: article
   category: 主模块子文章
   summary: Java 8 Stream API：函数式集合操作、并行流与性能陷阱。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # Stream API

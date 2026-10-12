@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/k8s-network-mesh
   type: article
   category: 主模块子文章
   summary: K8s 网络与 Service Mesh
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # K8s 网络与 Service Mesh：CNI / Calico / Istio 实战

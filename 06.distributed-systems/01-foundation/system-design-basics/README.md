@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design-basics
   type: article
   category: 主模块子文章
   summary: 系统设计基础：架构图绘制、API 设计、架构演进、高可用防线、设计模式与微服务全景导览
   depth: ⭐
+  status: active
 -->
 
 <!-- index-only -- 此为分类/导览页，链接到下属子章节，非内容占位 -->

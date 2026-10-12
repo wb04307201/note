@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-context-engineering
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, Context, context]
+  status: active
 -->
 
 # Context Engineering — 4 大范式之二面试深挖

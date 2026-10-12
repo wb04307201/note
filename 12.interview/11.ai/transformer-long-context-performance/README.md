@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-transformer-long-context-performance
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构性能
   tags: [11.ai, Transformer, 长上下文, O(n²), KV Cache, Flash Attention, Sparse Attention, Linear Attention, MQA, GQA]
+  status: active
 -->
 
 # 为什么 Transformer 架构在处理超长上下文时会变慢？

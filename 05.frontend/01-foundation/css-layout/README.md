@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/css-layout
   type: article
   category: 主模块子文章
   summary: CSS 布局模式与核心机制
   depth: ⭐⭐
+  status: active
 -->
 
 # CSS 布局

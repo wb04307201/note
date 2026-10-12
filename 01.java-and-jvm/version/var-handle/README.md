@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/var-handle
   type: article
   category: 主模块子文章
   summary: Java 9 VarHandle：替代反射的轻量级字段/数组访问。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # VarHandle

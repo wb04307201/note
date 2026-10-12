@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 34b
   type: 续集
   position: 续集十二（下）
   title: 省钱大作战
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 34b · 省钱大作战

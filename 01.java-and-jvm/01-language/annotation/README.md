@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concepts/annotation
   type: article
   category: 主模块子文章
   summary: Java 注解（Annotation）：元注解、自定义注解、运行时解析。
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 注解（Annotation）

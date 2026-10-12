@@ -1,10 +1,10 @@
-<!--
-module:
+<!--module:
   parent: 12.interview
   slug: 12.interview/03.database
   type: index-only
   category: 面试题索引
   summary: 数据库高频面试题与细节深挖（MySQL / Redis / NoSQL）
+  status: active
 -->
 
 # 数据库咬文嚼字

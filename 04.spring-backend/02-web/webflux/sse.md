@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\02-web\webflux\sse
   type: article
   category: 主模块子文章
   summary: WebFlux 响应式 + SSE 实时推送
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # WebFlux 响应式 + SSE 实时推送

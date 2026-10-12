@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-concurrent-hashmap
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, HashMap, concurrent]
+  status: active
 -->
 
 # ConcurrentHashMap 原理（JDK 7 vs 8 深度对比）

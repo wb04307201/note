@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 18
   type: 番外
   position: 番外三
   title: 阿明的加盟帝国
   audience: PM / 创业者
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 18 · 阿明的加盟帝国

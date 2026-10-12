@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-23
   type: article
   category: 主模块子文章
   summary: Java 23：12 个 JEP，含基本类型模式匹配预览、Markdown 文档注释、可控流式 IO 孵化
   depth: ⭐
+  status: active
 -->
 
 # Java 23

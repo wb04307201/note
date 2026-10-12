@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/rag-vs-finetuning
   type: article
   category: 主模块子文章
   summary: RAG vs Fine-tuning vs Prompt
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # RAG vs Fine-tuning vs Prompt Engineering：LLM 定制三大策略深度对比

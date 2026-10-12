@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/06-operating-system
   type: index
   category: 主模块子文章
   summary: 操作系统核心原理：进程管理、内存管理、CPU 调度、文件系统与 I/O 模型。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 操作系统基础

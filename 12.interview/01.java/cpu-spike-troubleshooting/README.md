@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-cpu-spike-troubleshooting
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [01.java, cpu, spike]
+  status: active
 -->
 
 # 线上 CPU 飙升排查全链路

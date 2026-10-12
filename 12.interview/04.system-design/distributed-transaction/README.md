@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 04.system-design-distributed-transaction
   topic: 04.system-design
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [04.system-design, distributed, transaction]
+  status: active
 -->
 
 # 分布式事务

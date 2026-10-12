@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 36
   type: 续集
   position: 续集十四
   title: 开卷考试
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 36 · 开卷考试

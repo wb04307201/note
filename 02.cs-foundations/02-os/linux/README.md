@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: computer-basics
   slug: computer-basics/03-linux
   type: article
   category: 主模块子文章
   summary: Linux 服务器管理中**最常用且关键**的命令分类整理，附带核心用法和典型场景。
   depth: ⭐⭐
+  status: active
 -->
 
 # Linux 常用命令

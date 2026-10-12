@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-deadlock
   topic: 03.database
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 线上排查
   tags: [03.database, 死锁, deadlock, InnoDB, MySQL, 排查, 间隙锁]
+  status: active
 -->
 
 # 数据库死锁 —— 产生原理 + 线上排查 + 5 大预防策略

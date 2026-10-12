@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 03.database-sharding-distributed-tx
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [03.database, sharding, distributed-transaction]
+  status: active
 -->
 
 # 分库分表后分布式事务怎么搞？

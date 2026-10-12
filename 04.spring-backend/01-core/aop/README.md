@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: spring
   slug: spring/aop
   type: article
   category: 主模块子文章
   summary: Spring AOP 深度解析
   depth: ⭐⭐
+  status: active
 -->
 
 # Spring AOP 深度解析

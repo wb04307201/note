@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-loop-engineering
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [11.ai, Loop, loop]
+  status: active
 -->
 
 # Loop Engineering — 循环调用 Agent 面试深挖

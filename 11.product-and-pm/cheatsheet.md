@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 11.product-and-pm
   slug: 11.product-and-pm\cheatsheet
   type: article
   category: 主模块子文章
   summary: 项目管理与成本控制 —— 一页速查
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 项目管理与成本控制 —— 一页速查

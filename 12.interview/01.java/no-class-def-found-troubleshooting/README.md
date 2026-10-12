@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-no-class-def-found-troubleshooting
   topic: 01.java
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 中高频（生产 Top 5 启动故障）
   scenario_type: 生产 Bug
   tags: [01.java, NoClassDefFoundError, maven, 部署确定性, fat-jar, fastjson, transitive-dependency]
+  status: active
 -->
 
 # 生产 NoClassDefFoundError 排查全链路（Maven 传递依赖视角）

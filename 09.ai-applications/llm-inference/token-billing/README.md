@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/token-billing
   type: article
   category: 主模块子文章
   summary: Token 与计费：BPE/WordPiece 分词 + 上下文窗口 + 计费公式 + 多模型价格实测。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Token 与计费原理

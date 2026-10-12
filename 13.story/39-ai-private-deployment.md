@@ -1,11 +1,11 @@
-<!--
-story:
+<!--story:
   number: 39
   type: 续集
   position: 续集十七
   title: 自建中央厨房
   audience: AI 工程师 / 架构师
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 39 · 自建中央厨房

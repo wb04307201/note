@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-prototype-chain
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, prototype, chain]
+  status: active
 -->
 
 # 原型链与继承深度剖析

@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   number: 02
   slug: cs-foundations
   topic: 计算机科学基础
@@ -7,6 +6,7 @@ module:
   category: 主模块
   summary: 系统性整理计算机科学基础知识，涵盖算法、操作系统、网络、运维与知识产权等核心领域。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 # 02. CS Foundations（计算机科学基础）

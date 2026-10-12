@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 05.security-jwt-vs-session
   topic: 05.security
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, JWT, Session, Cookie, Token, 认证]
+  status: active
 -->
 
 # JWT vs Session 认证怎么选？—— Stateless 与 Stateful 的工程权衡

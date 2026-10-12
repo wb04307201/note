@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai
   slug: ai/agent-architecture
   type: article
   category: 主模块子文章
   summary: Agent 架构全景：DAG vs ReAct vs Plan-and-Execute + 多 Agent 6 大模式 + 4 类通信协议 + 6 大框架源码对比 + 演进史 + 反直觉点。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Agent 架构全景：从单 Agent 到 Agent Mesh

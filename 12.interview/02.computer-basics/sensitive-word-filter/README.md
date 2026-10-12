@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 02.computer-basics-sensitive-word-filter
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 + 算法
   tags: [02.computer-basics, AC 自动机, Trie, 字典树, KMP, 高并发, 敏感词]
+  status: active
 -->
 
 # 高并发敏感词过滤：字典树到多模式匹配深挖

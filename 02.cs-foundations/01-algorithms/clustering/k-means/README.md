@@ -5,6 +5,7 @@
   category: 主模块子文章
   summary: K-means 聚类算法 + K-means++ 改进
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # K-means 聚类算法

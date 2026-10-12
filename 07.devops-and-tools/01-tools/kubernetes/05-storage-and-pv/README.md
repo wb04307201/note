@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/k8s-storage
   type: article
   category: 主模块子文章
   summary: K8s 存储 PV/PVC/StorageClass
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # K8s 存储：PV / PVC / StorageClass 实战

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/concurrency
   type: article
   category: 主模块子文章
   summary: 从底层原语到现代并发模型，全面掌握 Java 并发编程体系。
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 并发编程专题导航

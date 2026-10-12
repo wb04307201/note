@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-virtual-threads
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 新技术原理
   tags: [01.java, virtual-threads, Java-21, JEP-444, 并发, Project-Loom]
+  status: active
 -->
 
 # 虚拟线程 —— Java 21 最大变革：同步写法 + 异步性能

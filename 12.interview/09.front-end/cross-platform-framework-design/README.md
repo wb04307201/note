@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 09.front-end-cross-platform-framework-design
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构决策困境
   tags: [09.front-end, cross-platform, ast, bridge, runtime]
+  status: active
 -->
 
 # 跨端框架设计深度剖析：从零设计跨端框架要回答的 7 个问题

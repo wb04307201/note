@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: tools
   slug: tools/git-command
   type: article
   category: 主模块子文章
   summary: Git 命令清单 + git switch/restore vs checkout/reset 对比表 + 实战工作流场景。
   depth: ⭐⭐
+  status: active
 -->
 
 # Git 命令清单

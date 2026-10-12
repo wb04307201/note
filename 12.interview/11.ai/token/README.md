@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-token
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [11.ai, LLM, token]
+  status: active
 -->
 
 # Token 与计费 — LLM 经济学面试深挖

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-concurrency-vs-parallelism
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 概念辨析
   tags: [01.java, concurrency, parallelism, Rob-Pike, async, multithreading]
+  status: active
 -->
 
 # 并发 vs 并行 —— Rob Pike 经典定义 + 6 大误区 + 90 秒话术

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: ai/08-llmops/agent-evaluation
   slug: ai/08-llmops/agent-evaluation/03-llm-as-judge
   type: topic
   category: LLM-as-Judge
   summary: LLM-as-Judge 详解 —— Judge 4 大维度 + 多模型投票 + 5 反模式
   depth: ⭐⭐
+  status: active
 -->
 
 # LLM-as-Judge · GPT-4 当 Agent 裁判

@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/css-engineering
   type: article
   category: 主模块子文章
   summary: CSS 工程化
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # CSS 工程化

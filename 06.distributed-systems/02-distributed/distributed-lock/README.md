@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design
   slug: system-design/distributed-lock
   type: article
   category: 主模块子文章
   summary: 分布式锁 4 种主流方案（Redis/ZK/Etcd/DB）的实现原理 + 生产实践 + 选型决策树，Redisson 是 Java 主流方案，附 5 个生产踩坑案例。
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 分布式锁

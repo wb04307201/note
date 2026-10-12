@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: front-end
   slug: front-end/performance
   type: article
   category: 主模块子文章
   summary: 前端 06 性能
   depth: ⭐⭐
+  status: active
 -->
 
 # 06 性能

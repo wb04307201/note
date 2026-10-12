@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 02.computer-basics
   slug: 12.interview/02.computer-basics/machine-learning
   type: index-only
   category: 面试题索引
   summary: 传统机器学习 6 大算法单点深挖索引 + 5 大面试速查矩阵 + LLM 时代 ML 选型决策树。深度文档见各子目录（146-293 行）。
   depth: ⭐⭐⭐⭐
+  status: active
 -->
 
 <!-- index-only -->

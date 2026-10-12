@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend/06-integration/statemachine
   type: article
   category: 主模块子文章
   summary: Spring Statemachine 状态机
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # Spring Statemachine 状态机

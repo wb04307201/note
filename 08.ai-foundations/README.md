@@ -1,5 +1,4 @@
-<!--
-module:
+<!--module:
   parent: 08.ai-foundations
   slug: ai-foundations
   type: module
@@ -7,6 +6,7 @@ module:
   topic: AI 基础理论（ML / DL / Transformer / LLM）
   summary: AI 基础理论全景：ML 传统算法 → 深度学习 → Transformer 架构 → LLM → Tokenization
   depth: ⭐⭐⭐⭐⭐
+  status: active
 -->
 
 # 08. AI Foundations

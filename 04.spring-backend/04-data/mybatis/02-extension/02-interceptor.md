@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: 04.spring-backend
   slug: 04.spring-backend\04-data\mybatis\02-extension\02-interceptor
   type: article
   category: 主模块子文章
   summary: 02 拦截器(Interceptor)
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 02 拦截器(Interceptor)

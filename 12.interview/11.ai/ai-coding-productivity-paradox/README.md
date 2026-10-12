@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 11.ai-ai-coding-productivity-paradox
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [11.ai, coding, productivity]
+  status: active
 -->
 
 # AI 编程生产力悖论：4 大研究 + DORA 框架

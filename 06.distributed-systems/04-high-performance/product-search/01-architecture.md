@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: system-design/product-search
   slug: system-design/04-high-performance/product-search/01-architecture
   type: topic
   category: 系统架构
   summary: 商品搜索 3 阶段架构演进（DB LIKE → 单节点 ES → ES 集群 + 缓存）+ 5 大组件
   depth: ⭐⭐⭐
+  status: active
 -->
 
 # 商品搜索系统架构 · 3 阶段演进

@@ -1,11 +1,11 @@
-<!--
-question:
+<!--question:
   id: 01.java-hashmap-resizing
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [01.java, HashMap, hashmap]
+  status: active
 -->
 
 # HashMap扩容机制深度解析：从原理到生产优化

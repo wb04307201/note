@@ -1,11 +1,11 @@
-<!--
-module:
+<!--module:
   parent: java
   slug: java/version/java-22
   type: article
   category: 主模块子文章
   summary: Java 22：12 个 JEP，含外部函数与内存 API 正式版、未命名变量预览、G1 区域固定、字符串模板预览
   depth: ⭐⭐
+  status: active
 -->
 
 # Java 22
