@@ -2,7 +2,7 @@
 question:
   id: 03.database-sharding-resize
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [03.database, 分库分表, 扩容, resharding, 数据迁移, ShardingSphere]

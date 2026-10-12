@@ -2,7 +2,7 @@
 question:
   id: 03.database-redis-single-thread
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉性能
   tags: [03.database, Redis, 单线程, epoll, Reactor, IO多路复用, 多线程]

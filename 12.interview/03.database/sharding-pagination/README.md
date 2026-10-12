@@ -2,7 +2,7 @@
 question:
   id: 03.database-sharding-pagination
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构设计
   tags: [03.database, sharding, pagination, distributed]

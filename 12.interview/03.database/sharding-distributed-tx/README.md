@@ -2,7 +2,7 @@
 question:
   id: 03.database-sharding-distributed-tx
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [03.database, sharding, distributed-transaction]
