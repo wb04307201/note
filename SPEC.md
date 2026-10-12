@@ -108,6 +108,15 @@ docs: 文档
 - **字段顺序**：`status:` 应在 `parent/slug/type` 后、`tags/category/summary` 前
 - **deprecated 跳转**：`status: deprecated` 必须配 `deprecated_note:` 字段（指向新位置）
 
+**`tags:` 字段（必填 + 双向 bridge · 2026-10-12 v3.x 新增 · 候选 3）**：
+
+- `tags:` 列表至少 1 个主题词（与 SPEC.md §8 词表双向同步）
+- **双向 bridge 协议**（write-time 同步）：
+  - `note-precipitation-planning` Phase 6 写新主题时**同时**写 `tags:` + §8 词条
+  - `note-knowledge-qa` Phase 2 读 `tags:` 做主题词快速定位（与 §8 并行）
+- **体检 Phase 1.17** `keyword_mapping_coverage` 扫 `tags:` vs §8 差异 → P3 报告（不主动改）
+- 字段格式：`tags: [主题词A, 主题词B, 主题词C]`（YAML 列表格式，中英文均可）
+
 **module: 默认示例**（其他类型必填字段见 L1）：
 
 ```text
@@ -116,6 +125,7 @@ docs: 文档
   slug: <article-slug>
   type: article | atomic | moc
   status: draft | active | deprecated | orphaned    ← 必填
+  tags: [主题词A, 主题词B]                          ← 必填(≥1个)
   category: ...
   summary: ...
   deprecated_note: -> [新位置](新路径)              ← 仅 status: deprecated 时必填
