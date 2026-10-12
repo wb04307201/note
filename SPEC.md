@@ -211,3 +211,50 @@ docs: 文档
 | **稽核** | `note-health` | Phase 1.15 全库扫描 | 扫 §8 所有路径是否真实存在；不存在的标 P3 misplaced-warning，**不动手修复**（按用户决策走 Phase 6 沉淀流程）|
 
 > ⚠ **本表是「前置索引」而非「权威路径」**——路径失效时 (`./xx/README.md` 不存在)，答案应转去正文 grep 而非报错。体检告警仅供维护者参考。
+
+---
+
+### 9. 3 skill 主体 → SPEC.md 引用契约（2026-10-12 通用化重构新增）
+
+> 通用化重构后，3 个 meta-skill 主体不再硬编码 KB 专属规则。**所有项目级规则都通过 pointer 引用本文件 / `<module>/SPEC.md` / `.claude/ORCHESTRATION.md`**。本节是「谁 → 用什么」的清晰责任矩阵——任何 skill 主体变动前，应先看本节确认改在哪里。
+
+#### 9.1 责任矩阵（skill × phase × 引用目标）
+
+| Skill | Phase / 章节 | 引用目标 | 备注 |
+|-------|-------------|---------|------|
+| `note-precipitation-planning` | **Phase 0** 主题识别 | `$KB_DIR/SPEC.md §8` | 关键词分析前置 |
+| `note-precipitation-planning` | **Phase 3** 位置决策 | `$KB_DIR/SPEC.md §1`（主模块列表） | 见 `<module>/README.md` 运行时读取 |
+| `note-precipitation-planning` | **Phase 4** 决策树 | `<module>/SPEC.md`（准入判定） | 仅 12.interview 注入 §准入判定 |
+| `note-precipitation-planning` | **Phase 5.5** 领域 query | `$KB_DIR/SPEC.md §8.3` | 5 大领域 + 词条组 |
+| `note-precipitation-planning` | **Phase 6** 实施 | `$KB_DIR/SPEC.md §2`（commit 格式） | 见 `.claude/ORCHESTRATION.md` |
+| `note-precipitation-planning` | **Phase 6.9** 沉淀后维护 | `$KB_DIR/SPEC.md §8` | （阶段 5 待实施） |
+| `note-precipitation-planning` | subagent silent failure | `.claude/ORCHESTRATION.md §1` | 4 项验证 + author |
+| `note-precipitation-planning` | 并行 subagent | `.claude/ORCHESTRATION.md §3-§4` | 共享文件 + 父 README |
+| `note-health` | **Phase 0** scope | `$KB_DIR/SPEC.md §1` / `§5` | L0 + L1 |
+| `note-health` | **Phase 1.x** 机械扫描 | `references/structural-checks.md` | skill 内 references |
+| `note-health` | **Phase 1.14** 准入判定 | `$KB_DIR/12.interview/SPEC.md §准入判定` | 已 commit 75c2f75 |
+| `note-health` | **Phase 1.15** §8 稽核 | `$KB_DIR/SPEC.md §8.4` | （subagent 阶段 3 在做） |
+| `note-health` | **Phase 5** 修复验证 | `.claude/ORCHESTRATION.md §1` | git log/status/wc-l |
+| `note-health` | **Phase 6-7** 评分 + 拆分 | `references/5-dim-rubric.md` / `references/split-detection.md` | 已抽离 |
+| `note-knowledge-qa` | **Phase 0** E/G 教育背景 | `$KB_DIR/SPEC.md §1` | E/G 类型 → 主模块定位 |
+| `note-knowledge-qa` | **Phase 2** 关键词提取 | `$KB_DIR/SPEC.md §8` | 核心能力 — 3 skill 联动核心 |
+| `note-knowledge-qa` | **Phase 3** 关联追踪 | `<module>/SPEC.md` 各 L1 | 模块专属 |
+| `note-knowledge-qa` | **Phase 4** 模板 A/B/C/D | （模板不绑 SPEC,generic templates） | 通用 4 模板 |
+
+#### 9.2 通用层 vs 项目专属层（5 层分解）
+
+| 层 | 位置 | 内容 | 例 |
+|----|------|------|-----|
+| **L_skill 通用** | `SKILL.md` 主体 | Phase 0-N 流程骨架 + 反模式 + Output Format | `note-precipitation-planning/SKILL.md` |
+| **L0 KB 通用规范** | `$KB_DIR/SPEC.md §1-§9` | 命名 / commit / 互链 / frontmatter / G1-G6 / 11 类扫描 / SPEC 分层 / §8 词表 / §9 契约 | `SPEC.md` |
+| **L1 KB 模块规范** | `$KB_DIR/<module>/SPEC.md` | 模块级评估维度 + 强骨架 + 准入判定 | `12.interview/SPEC.md` |
+| **L1.5 强骨架规范** | （v2.1 起并入 L1 §4） | 强制文章结构（30s/90s 话术等） | （不独立存在） |
+| **L_op 操作协议** | `.claude/ORCHESTRATION.md` | subagent / git / peer 协调 | `.claude/ORCHESTRATION.md` |
+| **L_impl skill 实现** | `<skill>/references/*.md` | 机械扫描 + 评分算法 + 历史归档 | `note-health/references/structural-checks.md` |
+
+#### 9.3 维护协议
+
+- **skill 主体改动时**：先看本节 9.1 责任矩阵，确认改 skill 主体 vs 改 SPEC.md / `<module>/SPEC.md` / ORCHESTRATION.md
+- **新增 pointer 引用但 SPEC.md 缺章节时**：主对话**先补 SPEC.md**（或新建 `<module>/SPEC.md` 子节）+ commit，再让 skill 改动引用（**避免 pointer 漂移**）
+- **pointer 漂移检测**：`git grep -n "\$KB_DIR/<未存在路径>"` + `check-broken-links.py` 自动核查
+- **架构演进**：每个 sprint 体检时 `note-health` Phase 1.15 应同时扫本节所有 pointer 是否仍解析，漂移则 P3 警告
