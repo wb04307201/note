@@ -24,159 +24,57 @@ description: Use when user wants to retrieve or use the knowledge base — 技�
 
 ## Overview
 
-把 `$KB_DIR/` 知识库（13 主模块，文件数在运行时统计）变成**可检索的私人智囊**。对用户问题做：关键词提取 → 模块定位 → 文件检索 → 关联追踪 → 整合回答。
+把 `$KB_DIR/` 知识库（结构由 `$KB_DIR/SPEC.md §1` 自动发现）变成**可检索的私人智囊**。对用户问题做：关键词提取 → 模块定位 → 文件检索 → 关联追踪 → 整合回答。
 
-> ⚠️ **数字校对**：本文件使用 `find` 实测数字，避免 hardcode 漂移。统计命令：
-> ```bash
-> find "$KB_DIR" -name 'README.md' | wc -l   # 当前 README 数
-> find "$KB_DIR" -name '*.md' | wc -l         # 当前 .md 总数
-> ```
+> **核心原则**：**先搜后答** —— 不凭记忆回答，先从 `$KB_DIR/` 检索相关内容，确保答案有据可查。
+>
+> **模块发现**：执行前用 `find "$KB_DIR" -maxdepth 1 -type d` 读取当前模块结构（数量 / 命名不在此硬编码），读 `$KB_DIR/SPEC.md §1` 了解模块命名约定，读目标模块的 `<module>/SPEC.md` 了解专属维度。
 
-**核心原则**：**先搜后答** —— 不凭记忆回答，先从 $KB_DIR/ 检索相关内容，确保答案有据可查。
+## Quick Example（通用骨架 · KB 中性）
 
-## Quick Example
+> 示例中的具体路径由 `$KB_DIR/SPEC.md §1` 自动发现，**不在本文件硬编码**。换 KB 时只需改 SPEC.md。
 
 ```
 用户：HashMap 为什么线程不安全？
    ↓
-skill 执行：A 类型（技术问答）→ grep "HashMap" → 双层检索（01.java-and-jvm 主模块 + 12.interview/01.java 面试版）
+skill 执行：A 类型（技术问答）→ grep "HashMap" → 双层检索（主模块 + 面试版，路径见 §1）
    ↓
 输出（节选）：
   ## HashMap 线程不安全
-
-  HashMap 在并发 put 时可能导致：
-  1. JDK 7 死循环（链表成环，CPU 100%）— 已修复（JDK 8 红黑树）
-  2. JDK 8+ 数据丢失（覆盖 + size 错乱）
-
+  HashMap 在并发 put 时可能导致：1. JDK 7 死循环（链表成环）— 已修复（JDK 8 红黑树）
+                                    2. JDK 8+ 数据丢失（覆盖 + size 错乱）
   ### 详细解释
   [源码分析 + JDK 8 修复后的残余风险]
-
   ### 实战建议
   1. 多线程场景用 ConcurrentHashMap
-  2. 老代码里 HashMap 套 Collections.synchronizedMap 是性能最低选项
+  2. HashMap 套 Collections.synchronizedMap 是性能最低选项
 
   ### 📚 知识来源
   | 来源 | 路径 | 覆盖内容 |
-  | HashMap 原理 | $KB_DIR/01.java-and-jvm/collection/hashmap.md | 数据结构 + 树化阈值 |
-  | 面试陷阱 | $KB_DIR/12.interview/01.java/hashmap-thread-unsafe/ | 并发死循环细节 |
+  | HashMap 原理 | <由 §1 自动发现>/... | 数据结构 + 树化阈值 |
+  | 面试陷阱 | <由 §1 自动发现>/... | 并发死循环细节 |
 
-不同点：不凭 LLM 训练知识答 — 每条都附 $KB_DIR/ 实际文章路径
-
-## 50+ 新词检索映射表（2026-07-14 新增）
-
-> ⚠️ **本表写于 2026-07-14**，与实际 `$KB_DIR/` 结构可能漂移。每次使用前用 `ls <path>` 验证路径存在，失效项标 ⚠️ 并跳到映射表中转。
-> 
-> 漂移检测命令：
-> ```bash
-> grep -oE '$KB_DIR/11\.ai/[^\` ]+' .claude/skills/note-knowledge-qa/SKILL.md | sort -u | while read p; do
->   [ -f "$p/README.md" ] || [ -f "$p" ] || echo "MISSING: $p"
-> done
-> ```
-
-**今天沉淀 50+ AI/ML 词汇**，按检索映射表快速定位：
-
-### LLM 架构层（1 词 + 5 失效已删）
-
-> ⚠️ 2026-09-23 刷新：注意力机制 / MoE 架构 / RoPE 位置编码 整目录已消失（无替代）；Transformer 主模块缺失，仅保留 12.interview 入口；Flash Attention 迁移到 `llm-inference/flash-attention`。
-
-| 词汇 | 主模块 | 12.interview |
-|------|--------|---------------|
-| Transformer | - | `12.interview/11.ai/transformer` |
-| Flash Attention | `09.ai-applications/llm-inference/flash-attention` | (在 llm-inference 中) |
-
-### LLM 推理优化（10 词）
-
-> 2026-09-23 刷新：`02-technology-stack/*` → `llm-inference/*`（9 项）。
-
-| 词汇 | 主模块 | 12.interview |
-|------|--------|---------------|
-| KV Cache | `09.ai-applications/llm-inference/kv-cache` | `12.interview/11.ai/llm-inference` |
-| PagedAttention | `09.ai-applications/llm-inference/paged-attention` | (在 llm-inference 中) |
-| Continuous Batching | `09.ai-applications/llm-inference/continuous-batching` | (在 llm-inference 中) |
-| Speculative Decoding | `09.ai-applications/llm-inference/speculative-decoding` | (在 llm-inference 中) |
-| 权重量化 | `09.ai-applications/llm-inference/weight-quantization` | (在 llm-inference 中) |
-| MoE 推理 | `09.ai-applications/llm-inference/moe-inference` | (在 llm-inference 中) |
-| 推理性能指标 (TTFT/TPOT) | `09.ai-applications/llm-inference/inference-metrics` | (在 llm-inference 中) |
-| 推理框架对比 | `09.ai-applications/llm-inference/inference-frameworks` | (在 llm-inference 中) |
-| LLM 推理优化大专题 | `09.ai-applications/llm-inference/llm-inference-optimization` | `12.interview/11.ai/llm-inference` |
-| vLLM / TGI / SGLang | `09.ai-applications/llm-inference/inference-frameworks` | - |
-
-### LLM 训练与对齐（8 词 + 1 失效已删）
-
-> 2026-09-23 刷新：`07-research/alignment/0N-*` → `fine-tuning/0N-*.md`（6 项，注意 `.md` 文件）；`07-research/alignment` 主目录消失 → 删除整行。
-
-| 词汇 | 主模块 | 12.interview |
-|------|--------|---------------|
-| SFT | `09.ai-applications/fine-tuning/01-sft.md` | `12.interview/11.ai/llm-alignment` |
-| RLHF | `09.ai-applications/fine-tuning/02-rlhf.md` | (在 llm-alignment 中) |
-| PPO | (在 RLHF 中) | (在 llm-alignment 中) |
-| Reward Model | (在 RLHF 中) | - |
-| DPO | `09.ai-applications/fine-tuning/03-dpo.md` | (在 llm-alignment 中) |
-| Constitutional AI | `09.ai-applications/fine-tuning/04-constitutional-ai.md` | (在 llm-alignment 中) |
-| KTO / IPO / SimPO | `09.ai-applications/fine-tuning/05-newer-methods.md` | (在 llm-alignment 中) |
-| ORPO / RFT | (在 newer-methods 中) | - |
-
-### LLM 应用层（9 词 + 1 失效已删）
-
-> 2026-09-23 刷新：`02-technology-stack/*` → `rag/*`（8 项）；`06-agent-evaluation/09-rag-evaluation` → `rag/04-evaluation.md`（2 项）；YaRN/RoPE 扩展整目录消失 → 删除整行。
-
-| 词汇 | 主模块 | 12.interview |
-|------|--------|---------------|
-| Lost In the Middle | `09.ai-applications/rag/lost-in-middle` | (在 context-engineering-interview 中) |
-| Chunking 策略 | `09.ai-applications/rag/chunking-strategies` | (在 rag 中) |
-| Embedding 模型 | `09.ai-applications/rag/embedding-models` | (在 rag 中) |
-| Hybrid Search | `09.ai-applications/rag/hybrid-search` | (在 rag 中) |
-| Reranker | `09.ai-applications/rag/reranker` | (在 rag 中) |
-| Query Rewrite | `09.ai-applications/rag/query-rewrite` | - |
-| RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - |
-| RAG 评估 | `09.ai-applications/rag/04-evaluation.md` | - |
-| RAGAS / TruLens | `09.ai-applications/rag/04-evaluation.md` | - |
-
-### 传统 ML 算法（10 词）
-
-| 词汇 | 主模块 | 12.interview |
-|------|--------|---------------|
-| K-means | `02.cs-foundations/01-algorithms/clustering/k-means` | `12.interview/02.computer-basics/machine-learning` |
-| 梯度下降 | `02.cs-foundations/01-algorithms/optimization/gradient-descent` | (在 machine-learning 中) |
-| PCA | `02.cs-foundations/01-algorithms/dimensionality-reduction/pca` | (在 machine-learning 中) |
-| 分支界限 | `02.cs-foundations/01-algorithms/search/branch-and-bound` | - |
-| ID3 / C4.5 / CART | `02.cs-foundations/01-algorithms/decision-tree` | (在 machine-learning 中) |
-| Random Forest | `02.cs-foundations/01-algorithms/ensemble` | - |
-| XGBoost / LightGBM | `02.cs-foundations/01-algorithms/ensemble` | - |
-| 集成学习 | `02.cs-foundations/01-algorithms/ensemble` | - |
-| 评估指标 (F1/AUC) | (在 machine-learning 面试中) | (在 machine-learning 中) |
-| ML 面试 | - | `12.interview/02.computer-basics/machine-learning` |
-
-### 自动触发流程（改进）
-
-**当用户问"X 是什么"时**：
-1. 查本映射表（X → module 路径）
-2. 读主模块深度 + 12.interview 面试版
-3. 综合回答 + 引用
-
-**示例**：
+核心：不凭 LLM 训练知识答 — 每条都附 $KB_DIR/ 实际文章路径
 ```
-用户："DPO 是什么？"
-skill：查表 → DPO 在 09.ai-applications/fine-tuning/03-dpo.md + 12.interview/11.ai/llm-alignment
-回答：包含 SFT/RLHF 上下文 + DPO 数学保证 + vs RLHF 对比 + 5 大反直觉
-```
-```
+
+## 新词检索映射（指向 SPEC.md §8）
+
+> **核心能力（C 档新增 · 2026-10-12）**：Phase 2 关键词提取时主动读 `$KB_DIR/SPEC.md §8` 的「主题词 → 路径」映射表做问句匹配。详见 §Phase 2 §2.1。
+>
+> **本文件不重复维护映射表**——词条统一在 `$KB_DIR/SPEC.md §8`（含：使用说明 / 字段格式 / note KB 词条 / 3 skill 协同协议）。换 KB 时只需在 `§8` 填 5-10 条核心词即可让本 skill 自动适配。
 
 ## When to Use
 
 **Use when**：
-- 用户问技术问题（如 "JVM 参数怎么配"、"HashMap 原理"）
-- 用户要面试题（如 "出一道 Java 后端面试题"）
-- 用户要系统设计指导（如 "如何设计 SSO"）
-- 用户要面试模拟（如 "我来答你出题"）
-- 用户给简历要面试问题（如 "根据简历出题"）
-- 用户问 AI 相关（如 "如何平衡 AI 成本"）
-- 任何可以利用 $KB_DIR/ 知识库回答的问题
+- 用户问技术问题（"X 原理"、"X 怎么用"、"X 是什么"）
+- 用户要面试题、出题、模拟面试、简历面试、学习路径
+- 用户要系统设计指导
+- 任何可以利用 `$KB_DIR/` 知识库回答的问题
 
 **Don't use when**：
-- 用户问的是 $KB_DIR/ 里没有的主题（→ 直接用通用知识回答，说明 note 未覆盖）
-- 用户问的是 $KB_DIR/ 结构/维护问题（→ 用其他 skill）
-- 用户明确说"不要搜 note"
+- 用户问 `$KB_DIR/` 里没有的主题（→ 直接用通用知识回答，说明 KB 未覆盖）
+- 用户问 `$KB_DIR/` 结构/维护问题（→ 用 `note-precipitation-planning` / `note-health`）
+- 用户明确说"不要搜 KB"
 
 ## 问答流程（5 步）
 
@@ -186,11 +84,11 @@ E（简历面试）和 G（面试官出题）类型**必须先做教育背景检
 
 ```
 判断候选人专业：
-├─ CS / SE / 软件工程 / 计算机相关 → 科班路线（默认 12.interview 原题）
+├─ CS / SE / 软件工程 / 计算机相关 → 科班路线（默认面试题原题）
 └─ 其他专业（数学/金融/外语/文科/工科/其他）→ 非科班路线
-   ├─ 技术题用降维版（从 12.interview 改写）+ 场景版
+   ├─ 技术题用降维版（从面试版改写）+ 场景版
    ├─ 重点考：自驱力、学习方法、逻辑思维、跨专业优势
-   ├─ 出题来源：`11.product-and-pm/interviewing-cross-disciplinary`（不是 12.interview）
+   ├─ 出题来源：见 `$KB_DIR/SPEC.md §1` 自动发现的「面试方法论 / 跨专业候选人」类模块（不是主面试题库）
    └─ 评估用：底线+加分模型（而非科班的标准答案深度）
 ```
 
@@ -198,60 +96,57 @@ E（简历面试）和 G（面试官出题）类型**必须先做教育背景检
 
 ### Phase 1: 问题分类
 
-将用户问题归入以下类型之一：
-
 | 类型 | 触发词 | 响应策略 |
 |------|--------|---------|
-| **A. 技术问答** | "什么是X"、"X原理"、"为什么X"、代码/配置问题 | 检索 → 解释 → 引用 |
+| **A. 技术问答** | "什么是X"、"X原理"、"为什么X"、代码/配置 | 检索 → 解释 → 引用 |
 | **B. 出题模式** | "出面试题"、"考考我"、"给我出题" | 检索 → 生成题目+答案 |
 | **C. 设计指导** | "如何设计X"、"架构选型"、"方案对比" | 检索多模块 → 对比分析 |
 | **D. 模拟面试** | "我来答你出题"、"模拟面试"、"面试练习" | 交互式：出题→等答→评价 |
-| **E. 简历面试** | "根据简历出题"、"帮我准备面试他" | **先 Phase 0 检测** → 解析简历 → 匹配 note → 出题 |
+| **E. 简历面试** | "根据简历出题"、"帮我准备面试他" | **先 Phase 0 检测** → 解析简历 → 匹配 KB → 出题 |
 | **F. 学习路径** | "怎么学X"、"学习路线" | 检索模块 README 的学习路径 |
-| **G. 面试官出题** | "帮我出题面他"、"面试非科班"、"设计面试流程"、"面应届生" | **先 Phase 0 检测** → 识别候选人画像 → 从问题库选题 → 输出题目+评估要点 |
+| **G. 面试官出题** | "帮我出题面他"、"面试非科班"、"面应届生" | **先 Phase 0 检测** → 识别画像 → 从问题库选题 → 输出+评估要点 |
 
 ### Phase 2: 关键词提取 + 模块定位
 
-从问题中提取关键词，映射到 $KB_DIR/ 模块：
+从问题中提取关键词，映射到 `$KB_DIR/` 模块。**通用映射规则**（KB 中性，不绑具体模块名）：
 
 ```
 关键词提取规则：
-├─ 技术术语直接映射（HashMap → 01.java-and-jvm, RAG → 09.ai-applications）
-├─ 配置/参数映射（JVM → 01.java-and-jvm/02-jvm, Spring → 04.spring-backend）
-├─ 架构/设计映射（SSO → 06.distributed-systems/05-security/sso, 微服务 → 04.spring-backend/03-cloud + 06.distributed-systems）
-├─ AI 概念映射（成本 → 09.ai-applications + 13.story, Agent → 09.ai-applications）
-├─ 面试方法论映射（面试官/非科班/应届生/转码/跨专业/出题 → 11.product-and-pm/interviewing-cross-disciplinary）
-└─ 跨领域问题（拆成多个关键词，分别检索）
+├─ 技术术语直接映射（如：HashMap / RAG / K8s → 对应主模块）
+├─ 配置/参数映射（如：JVM 调优 / Spring 配置 → 对应主模块子目录）
+├─ 架构/设计映射（如：SSO / 微服务 → 系统设计/分布式模块）
+├─ 跨领域问题（拆成多个关键词，分别检索）
+└─ 面试方法论（面试官/非科班/应届生/转码/跨专业/出题 → SPEC.md §1 中的「面试方法论」类模块）
 ```
 
-**模块速查表**（按"用户提问频次"降序排列 — 高频模块在前，方便快速定位）：
+#### §2.1 新词检索映射（Phase 2 核心协议 · 2026-10-12 通用化重构新增）
 
-| 排名 | 模块 | 擅长回答的问题类型 |
-|:---:|------|------------------|
-| 🥇 | `01.java-and-jvm` | Java 语言、JVM、并发、集合、Kotlin |
-| 🥈 | `09.ai-applications` | LLM、RAG、Agent、Prompt、Token、MCP、AI 工程 |
-| 🥉 | `04.spring-backend` | Spring Boot/Cloud、MyBatis、缓存、消息队列 |
-| 4 | `03.data-stack` | MySQL、Redis、索引、事务、SQL 优化、大数据 |
-| 5 | `06.distributed-systems` | 系统设计、高可用、分布式、安全、SSO |
-| 6 | `12.interview` | 面试精炼版（陷阱+话术）、咬文嚼字 |
-| 7 | `02.cs-foundations` | 网络、算法、数据结构、操作系统 |
-| 8 | `07.devops-and-tools` | Docker、K8s、Git、CI/CD、监控 |
-| 9 | `11.product-and-pm` | 项目管理、DORA、研发效能、**面试方法论、跨专业候选人评估** |
-| 10 | `13.story` | 概念叙事理解（阿明餐厅系列）、架构演进故事 |
-| 11 | `05.frontend` | JS/TS、React、Web Components、设计系统 |
-| 12 | `10.business-systems` | ERP、CRM、EAM 等企业系统 |
-| 13 | `08.ai-foundations` | ML、DL、Transformer、LLM 基础 |
+> **必做步骤**（C 档新增）：解析用户问句后、Phase 3 检索前，**先读 `$KB_DIR/SPEC.md §8` 关键词映射表**做"问句 → 主题词 → 路径"匹配。
 
-> 注：`12.interview` 下的 `02.computer-basics` / `03.database` / `04.system-design` / `05.security` / `06.spring` / `09.front-end` 是面试版子目录，与主模块主题重叠 —— 面试题查 `12.interview`，深度原理查对应主模块。
+**协议**：
 
-**排序依据**（参考本仓库 `wb04307201` 项目定位 Java 后端 + AI 工程）：
-- 🥇 Java 后端开发最常用（语言 + 集合 + 并发）
-- 🥈 AI 工程是当前热点（RAG / Agent / Prompt）
-- 🥉 Spring 系是 Java 企业开发的标配
-- 4-5 数据库 + 系统设计 = 后端进阶必问
-- 6-7 面试题 + 科班基础 = 面试 + 校招高频
-- 8-9 DevOps + 面试方法论
-- 10-14 偏垂直领域，按需检索
+1. **读表**：执行 `cat "$KB_DIR/SPEC.md" | sed -n '/^### 8\./,/^### 9\./p'`（或 grep 锚定 `§8` 段，读取词条）
+2. **匹配主题词**：从问句提取 1-3 个关键词，在 §8 表中查找命中
+3. **输出候选路径**：命中时直接定位到表内「主模块路径」+「面试版路径」（如有）
+4. **降级**：未命中 → 走常规 grep 检索（Phase 3）；**不强制要求 §8 命中**（它是「前置索引」不是「权威路径」）
+
+**示例**：
+
+```
+用户："<某技术概念> 是什么？"
+skill：读 §8 → 命中「<某技术概念> → {主模块路径} + {面试版路径}」
+回答：基于 KB 内容整合 + 引用源文章
+```
+
+> **协同**：①`note-precipitation-planning` Phase 6 沉淀新主题后顺手加 §8 行；②`note-health` Phase 1.15 稽核 §8 死链；详见 `$KB_DIR/SPEC.md §8.4`。
+
+#### §2.2 模块列表（指针 · 不硬编码）
+
+> **模块名 / 数量由 `$KB_DIR/SPEC.md §1` 自动发现**：执行前 `find "$KB_DIR" -maxdepth 1 -type d -name '[0-9]*.*'`，按 SPEC.md §1 命名约定（`{nn}.{english-name}/`）识别主模块；不维护 13 主模块硬编码列表。
+>
+> **跨 KB 借用**：换 KB 时，`§1` 自动反映新结构；问答 skill **不需任何修改**。
+>
+> **模块频率排序**（🥇 / 🥈 / 🥉）：本 skill 不维护，由 `note-knowledge-qa` 实际使用频次驱动（记录在 §8 词条的「出现频次」字段，初始 = `-`，问答时手动维护或由自动化脚本累计）。
 
 ### Phase 3: 检索 + 关联追踪
 
@@ -272,67 +167,26 @@ find $KB_DIR/<module> -type d -name "*<topic>*" 2>/dev/null
 
 - 优先读 leaf 文章（深度内容）而非 README 索引
 - 每读一篇，检查其"相关章节"链接，追踪 1-2 篇关联文章
-- 面试题类型（被面试者视角）：同时读 `12.interview` 和主模块（双层检索）
-- 面试官出题类型（G 类型）：**优先读 `11.product-and-pm/interviewing-cross-disciplinary`**（问题库），按需引用 `12.interview` 作降维素材
+- 面试题类型（被面试者视角）：同时读面试版和主模块（双层检索，路径由 §1 自动发现）
+- 面试官出题类型（G 类型）：**优先读面试方法论模块**（问题库），按需引用主面试题模块作降维素材
 
-**双层检索 grep 模板**（核心武器，直接复用）：
+**双层检索脚本**（KB 中性，**同目录 `scripts/qa-double-layer.sh`**）：
 
-```bash
-# 用法：bash double_layer_search.sh "<关键词>"
-KEYWORD="${1:?需要 1 个参数：关键词}"
-
-# === 主模块命中（深度原理）===
-echo "═══ 主模块命中（按命中数倒序，最多 10 个）═══"
-grep -rl "$KEYWORD" $KB_DIR/ --include="*.md" 2>/dev/null \
-  | grep -v "/12.interview/" \
-  | xargs -I {} sh -c 'count=$(grep -c "$0" "{}" 2>/dev/null); echo "$count {}"' "$KEYWORD" \
-  | sort -rn \
-  | head -10 \
-  | awk '{print "  " $1 " 处命中  →  " $2}'
-
-# === 12.interview 命中（被面试者视角）===
-echo ""
-echo "═══ 12.interview 命中（面试陷阱版，最多 5 个）═══"
-grep -rl "$KEYWORD" $KB_DIR/12.interview/ 2>/dev/null \
-  | xargs -I {} sh -c 'count=$(grep -c "$0" "{}" 2>/dev/null); echo "$count {}"' "$KEYWORD" \
-  | sort -rn \
-  | head -5 \
-  | awk '{print "  " $1 " 处命中  →  " $2}'
-
-# === 13.story 命中（叙事类比版）===
-echo ""
-echo "═══ 13.story 命中（阿明餐厅版，最多 3 个）═══"
-grep -rl "$KEYWORD" $KB_DIR/13.story/ 2>/dev/null \
-  | head -3 \
-  | awk '{print "  →  " $1}'
-
-# === 11.product-and-pm 命中（仅面试方法论问题）===
-echo ""
-echo "═══ 11.product-and-pm 命中（面试官视角，最多 3 个）═══"
-grep -rl "$KEYWORD" $KB_DIR/11.product-and-pm/ 2>/dev/null \
-  | head -3 \
-  | awk '{print "  →  " $1}'
-
-# === 候选阅读顺序（主模块优先，12.interview 双层，13.story 收尾）===
-echo ""
-echo "═══ 建议阅读顺序：主模块 → 12.interview → 13.story（叙事辅助）═══"
-```
-
-**双层检索脚本**（外置自 §3.3，**同目录 `scripts/qa-double-layer.sh`**）：
+> **完整实现见脚本**——主文档不嵌源码。模块列表从 `$KB_DIR/SPEC.md §1` 自动解析：面试版 / 叙事版 / 面试方法论 / 主模块各占一段输出。
 
 ```bash
 # 用法：
 bash scripts/qa-double-layer.sh "<关键词>" [可选模块]
 # 示例：
-bash scripts/qa-double-layer.sh "RAG"                              # 全库
-bash scripts/qa-double-layer.sh "Transformer" 09.ai-applications    # 限定模块
+bash scripts/qa-double-layer.sh "<关键词>"                       # 全库
+bash scripts/qa-double-layer.sh "<关键词>" <主模块路径>          # 限定模块
 ```
 
-> 4 段输出：主模块 / 12.interview / 13.story / 11.product-and-pm。退出码 0=命中 / 1=无命中 / 2=参数错误。风格基线 `.github/workflows/scripts/check-broken-links.py`（v2.0 起迁移）。
+> 4 段输出：主模块 / 面试版 / 叙事版 / 面试方法论（如该 KB 存在）。退出码 0=命中 / 1=无命中 / 2=参数错误。
 
-**双层调度决策**（根据问题类型选择检索顺序）：
+**双层调度决策**（列名以 §1 角色名替代硬编码路径）：
 
-| 问题类型 | 主模块 | 12.interview | 13.story | 11.product-and-pm |
+| 问题类型 | 主模块 | 面试版 | 叙事版 | 面试方法论 |
 |---------|:---:|:---:|:---:|:---:|
 | **A 技术问答** | 第 1 读 | 可选 | 可选 | — |
 | **B 出题** | 第 2 读（参答案） | **第 1 读** | 可选 | — |
@@ -342,13 +196,15 @@ bash scripts/qa-double-layer.sh "Transformer" 09.ai-applications    # 限定模�
 | **F 学习路径** | **第 1 读**（Level 1-2） | 第 2 读（验证） | Level 4 收尾 | — |
 | **G 面试官出题** | 第 3 读 | 降维对照 | — | **第 1 读**（问题库） |
 
+> **KB 借用**：列名由 `$KB_DIR/SPEC.md §1` 自动映射；不同 KB 可自定义命名（12.interview / 13.story / 11.product-and-pm 只是 note 的具体实例）。
+
 **3.3 关联追踪**（跟着链接走）
 
 ```
 读完文章 A → 发现"相关章节"链接到 B、C
 ├─ 如果 B/C 的标题与问题相关 → 读 B/C
-├─ 如果 A 有"面试陷阱速览" → 读对应 12.interview 版本
-└─ 如果 A 有"故事联动" → 读对应 13.story 版本（获取叙事视角）
+├─ 如果 A 有"面试陷阱速览" → 读对应面试版（§1 自动发现的面试模块）
+└─ 如果 A 有"故事联动" → 读对应叙事版（§1 自动发现的叙事模块，如有）
 ```
 
 **3.4 检索终止条件**
@@ -358,203 +214,43 @@ bash scripts/qa-double-layer.sh "Transformer" 09.ai-applications    # 限定模�
 - 关联文章的标题不再与问题相关
 - 总读取量 ≤ 8 篇（避免过载）
 
-#### 🆕 §3.5 链接校验（2026-09-02 Session 6 教训·推荐执行）
+#### §3.5 链接校验（Session 6 教训·推荐执行）
 
-**Session 6 教训**：230 处断链集中爆发 = 87% 来自"结构重组遗留路径错位"。
+> **核心价值**：阻止"AI 觉得路径是对的"导致的错误引用。**唯一可靠标准是 `os.path.isfile(target_abs)`**，不要相信模型直觉。
 
-**Session 9 实测**：3 个真实问题测试中 §3.5 成功阻止 5+ 处错误引用（JVM、跨模块等），验证有效。
-
-**触发时机**：在 Phase 3 检索结束时，或整合回答引用"相关章节"前。
+**触发时机**：Phase 3 检索结束时，或整合回答引用"相关章节"前。
 
 **校验脚本**：
 
 ```bash
 # 1. 一次性校验本次引用的所有目标文件存在
-python scripts/check-broken-links.py <引用的源文件>
+python "$KB_DIR/.github/workflows/scripts/check-broken-links.py" <引用的源文件>
 
 # 2. 检索结果汇总（避免引用整批含断链的文件）
-python scripts/check-broken-links.py  # 全库扫描(返回汇总)
+python "$KB_DIR/.github/workflows/scripts/check-broken-links.py"  # 全库扫描(返回汇总)
 ```
 
 **处置规则**：
 
 | 情况 | 处置 |
 |------|------|
-| 全库断链 = 0 | ✅ 安心引用 |
+| 全库断链 = 0 | 安心引用 |
 | 引用源文件含断链 | 在回答里标注"[目标](路径)（路径待修复）"，**不删除引用但提醒用户** |
-| 引用了不存在的子目录（如重构遗留的 `09.ai-applications/llm-alignment/`）| 改为引用替代路径或删除链接 |
+| 引用了不存在的子目录（重构遗留）| 改为引用替代路径或删除链接 |
 | **§3.5.1 智能路径建议** | 当 AI 引用的路径不存在，**自动 grep 关键词找最相似的真实文件** |
 
-**§3.5.1 智能路径建议（2026-09-02 实测新增 · v4 必做）**
+#### §3.5.1 智能路径建议（v4 算法）
 
-AI 经常按"模块名+子主题"猜测路径（如 `02-memory-model`），但实际结构可能不同。**用 grep 找真实存在的相似文件**：
+> **实现细节**：详见 `references/path-suggest.md`（v4 算法源码 + Top2/Top3 多建议策略 + 反直觉 4-8 教训 + 完整实测数据）。
 
-```python
-import os, glob, re
+**概念要点**（主文档保留，**不嵌算法**）：
 
-def suggest_similar(missing_path, top=3):
-    """§3.5.1 智能路径建议（v4 必做版 · Session 9 七轮 175 场景实测驱动）
+- v4 算法 Top1 真实相关率 = 96%（142 失效路径实测）
+- 关键改进：模块 README 降权 + path 段前缀匹配 + path 深度匹配加分
+- 单点足够（Top2/3 无显著增益）
+- §3.5.1 是"锦上添花"非"核心保障"（基础校验 100% 阻止错误引用）
 
-    七轮 175 场景实测发现：
-    - v2 算法 38% Top1 真实相关（模块 README 噪声）
-    - v3 排除模块 README 反效果：掉到 7%（过严）
-    - v4 关键改进：
-      1. 模块 README 降权（不是排除）：关键词贡献 -50%
-      2. 加 path 段前缀匹配（核心）：+4/段
-      3. 加 path 深度匹配加分：depth_diff==0 +3，==1 +1
-
-    实测结果：v4 Top1 真实相关率 = 136/142 = 96%
-    """
-    name = os.path.basename(missing_path).replace('.md', '').lower()
-    dir_parts = [p.lower() for p in missing_path.replace('$KB_DIR/', '').split('/')[:-1]]
-    parent_dir = dir_parts[-1] if dir_parts else ''
-    keywords = re.findall(r'[A-Za-z]+|[一-鿿]{2,}', name)
-    missing_depth = len([p for p in dir_parts if p])
-
-    scores = {}
-    for f in glob.glob('$KB_DIR/**/*.md', recursive=True):
-        if '.health-tmp' in f: continue
-        if f.replace(os.sep, '/') in ['$KB_DIR/README.md', '$KB_DIR/SPEC.md']: continue
-        f_lower = f.lower()
-        f_norm = f.replace(os.sep, '/')
-        s = 0
-
-        # 文件名完整匹配（最强）
-        f_name = os.path.basename(f).replace('.md', '').lower()
-        if name == f_name:
-            s += 15
-        elif name in f_name or f_name in name:
-            s += 8
-
-        # v4 核心改进：path 段前缀匹配（每段命中 +4）
-        matched_parts = 0
-        for fp in f_norm.split('/')[2:-1]:
-            for pp in dir_parts[:-1]:
-                if fp == pp:
-                    matched_parts += 1; break
-        s += matched_parts * 4
-
-        # 同目录匹配
-        f_dir = os.path.dirname(f).replace(os.sep, '/').lower()
-        if parent_dir and parent_dir in f_dir:
-            s += 5
-
-        # 关键词加权
-        kw_contrib = sum(2 if k.lower() in f_lower else 0 for k in keywords)
-        s += kw_contrib
-
-        # v4 关键：模块 README 降权（不是排除）
-        f_depth = len([p for p in f_norm.split('/') if p]) - 2
-        if f_depth <= 1 and f_norm.endswith('/README.md'):
-            s -= kw_contrib // 2  # 关键词贡献减半
-
-        # v4 关键：path 深度匹配加分
-        f_actual_depth = len([p for p in f_norm.split('/')[2:-1] if p])
-        depth_diff = abs(f_actual_depth - missing_depth)
-        if depth_diff == 0:
-            s += 3
-        elif depth_diff == 1:
-            s += 1
-
-        if s > 0:
-            scores[f] = s
-    return sorted(scores.items(), key=lambda x: -x[1])[:top]
-
-# 示例（v4 实测 142 失效路径）
-suggestions = suggest_similar('$KB_DIR/01.java-and-jvm/version/java-21/virtual-threads.md')
-# → 真实建议：
-#   1. $KB_DIR/01.java-and-jvm/version/java-21/README.md (score=10)
-```
-
-**v4 实测对比**（七轮 142 失效路径）：
-
-| 算法 | Top1 真实相关 | Top2 真实相关 |
-|------|:---:|:---:|
-| v2 | 45/119 = **38%** | 56/60 = 93%（之前估算） |
-| v3 | 4/60 = **7%** | - |
-| **v4** | **136/142 = 96%** | **137/142 = 96%** |
-
-**使用场景**：AI 给用户答案时，如果发现引用路径不存在，**主动提示"类似路径可能是 X"** 而不是简单报错。
-
-#### 🆕 §3.5.1.1 Top2/Top3 多建议策略（2026-09-02 实测新增）
-
-**Session 9 七轮 141 失效路径实测（v4 算法）**：
-
-| Top N | 覆盖真实相关文件 | 推荐 |
-|------|:---:|------|
-| Top1 | 136/141 = **96%** ✅ | **已合格，单点足够** |
-| Top2 | 137/141 = **97%** | 与 Top1 持平（v4 单点已达饱和）|
-| Top3 | 136/141 = **96%** | 无增益 |
-
-**关键洞察**：v4 算法的 Top1 已达 96% 真实相关，**单点就够**，Top2/3 不再提供显著增益。
-
-**使用方式（v4 算法，推荐）**：
-
-```python
-# 单点策略（v4 达 96% 真实相关，推荐）
-suggestions = suggest_v4(missing_path, top=1)
-
-# 双点策略（生产推荐 99%+）
-suggestions = suggest_v4(missing_path, top=2)
-
-# 输出格式
-for s, sc in suggestions:
-    marker = '✓' if is_relevant(s, missing_path) else '✗'
-    print(f'  {marker} {sc} {s}')
-```
-
-**AI 答错率降低**：
-- §3.5 基础阻止：**60/60 = 100%**（核心价值）
-- §3.5.1.1 Top2 建议：**56/60 = 93%**（AI 自判断后实际命中率）
-
-**实际有效命中率**：≥ 93%（§3.5 + §3.5.1.1 Top2）
-
-**反直觉 4**："AI 觉得路径是对的" —— 与 subagent 同理，**唯一可靠标准是 `os.path.isfile(target_abs)`**。
-
-**反直觉 5**（Session 9 三轮实测 · v2 教训）：单纯排除 `README.md` 还不够，**模块 README 也是噪声**（如 `01.java-and-jvm/README.md` 命中所有含"java"关键词的查询）。
-
-**反直觉 6**（v3 修复）：模块 README 排除后，**真实相关文件**（如 `vue-3-reactivity`）才能排第一。
-
-#### 🆕 §3.5.1 实测教训（2026-09-02 三轮 60 失效路径 · 关键诚实记录）
-
-**测试背景**：Session 9 设计 75 场景（3 轮 × 22/28/25），覆盖 6+ 类别，**§3.5.1 v2 在 60 失效路径上 Top1 真实命中率仅 50%**（30/60 = 真实相关，30/60 = 模块 README 噪声）。
-
-**反直觉 7（最关键）**：之前报告"91% Top1 命中率"是**显示 bug**——所有 v2 Top1 实际都是 `01.java-and-jvm/README.md`（模块 README），但脚本输出只显示 basename `README.md`，让人误以为"Top1 真实相关"。**真实命中率是 50%**。
-
-**反直觉 8（v3 反而变差）**：v3 排除了模块 README 后，**Top1 真实命中率掉到 7%**（4/60）。原因是部分真实相关的内容**只在模块 README 里汇总**，排除后反而找不到。
-
-**实际可接受度**：
-
-| 维度 | 价值 |
-|------|------|
-| §3.5 基础校验 | **100% 阻止错误引用**（核心价值）|
-| §3.5.1 智能建议 | **辅助价值，AI 需自判断**（不依赖单一 Top1） |
-
-**结论**：§3.5.1 是"**锦上添花**"不是"**核心保障**"。
-
-**避免显示 bug 的建议**（v4 测试模板必做）：
-
-```python
-# 输出时务必打印完整路径，不能只看 basename
-print(f'  {sc:3d}  {full_path}')  # full_path 而非 os.path.basename
-
-# 质量评估必须按"真实相关"判定（非仅关键词命中）
-def is_relevant(top1_path, missing_path):
-    short = top1_path.replace('$KB_DIR/', '')
-    if short.count('/') == 1 and short.endswith('/README.md'):
-        return False  # 模块 README = 噪声
-    kws = re.findall(r'[A-Za-z]+|[一-鿿]{2,}', os.path.basename(missing_path).replace('.md', ''))
-    return any(k.lower() in short.lower() for k in kws)
-```
-
-**完整实测数据**（详见 §3.5.2 测试模板）：
-
-| 轮次 | 失效数 | v2 Top1 真实相关 | v3 Top1 真实相关 |
-|------|:---:|:---:|:---:|
-| 第1轮（22 场景） | 14 | 10 (71%) | 1 (7%) |
-| 第2轮（28 场景） | 30 | 16 (53%) | 3 (10%) |
-| 第3轮（25 场景） | 16 | 4 (25%) | 0 (0%) |
-| **合计** | **60** | **30 (50%)** | **4 (7%)** |
+**使用**：Phase 3.5 失败时调用 `suggest_similar(missing_path, top=2)`（详见 references/path-suggest.md §v4 算法）。
 
 ### Phase 4: 整合回答
 
@@ -562,271 +258,128 @@ def is_relevant(top1_path, missing_path):
 
 ---
 
-#### A. 技术问答 模板
+#### A. 技术问答 / B. 出题模式 / C. 设计指导（核心 3 模板 · KB 中性）
+
+> **3 模板共用结构**：问题简述 → 详细解释（基于 `$KB_DIR/` 内容）→ 实战/方案/陷阱 → 📚 知识来源（必填）。
+
+**A. 技术问答**：
 
 ```markdown
 ## {问题简述}
-
-{直接回答核心结论，1-2 句话}
-
+{1-2 句核心结论}
 ### 详细解释
-
-{基于 $KB_DIR/ 内容的详细解答，用表格/代码/图辅助}
-
+{基于 KB 的详细解答，表格/代码/图辅助}
 ### 实战建议
-
-{基于 $KB_DIR/ 最佳实践的可操作建议}
-
+{基于 KB 最佳实践的可操作建议}
 ### 📚 知识来源
-
 | 来源 | 位置 | 覆盖内容 |
-|------|------|---------|
 | {文章标题} | `{文章相对路径}` | {覆盖了什么} |
-| ... | ... | ... |
-
-> 💡 **延伸学习**：{推荐 1-2 篇关联文章}
+> 延伸学习：{推荐 1-2 篇关联文章}
 ```
 
-#### B. 出题模式 模板
+**B. 出题模式**：
 
 ```markdown
-## 📝 面试题：{题目}
-
+## 面试题：{题目}
 **难度**：⭐⭐⭐⭐ | **来源模块**：`{文章相对路径}`
-
 ### 题目
-
-{场景化题目描述，不是干巴巴的"请解释X"}
-
-### 参考答案
-
-{分层次的完整答案}
-
-**第一层（及格）**：{基础回答}
-**第二层（良好）**：{深入分析}
-**第三层（优秀）**：{源码级/实战级}
-
+{场景化题目}
+### 参考答案（分 3 层）
+第一层（及格）：{基础} | 第二层（良好）：{深入} | 第三层（优秀）：{源码/实战}
 ### 常见陷阱
-
 | 陷阱 | 真相 |
-|------|------|
-| {陷阱1} | {真相1} |
-
 ### 面试话术（90 秒版）
-
-> {可以直接在面试中说的话}
-
+> {可在面试中直接说的话}
 ### 📚 知识来源
-
-- {$KB_DIR/路径1}
-- {$KB_DIR/路径2}
+- `{文章相对路径 1}` - `{文章相对路径 2}`
 ```
 
-#### C. 设计指导 模板
+**C. 设计指导**：
 
 ```markdown
 ## {设计主题}
-
 ### 核心挑战
-
-{这个设计问题的核心难点是什么}
-
+{核心难点}
 ### 方案对比
-
 | 维度 | 方案 A | 方案 B | 方案 C |
-|------|--------|--------|--------|
 | ... | ... | ... | ... |
-
 ### 推荐方案
-
-{基于 $KB_DIR/ 内容的推荐 + 理由}
-
-### 关键设计点
-
-{3-5 个关键决策点 + 建议}
-
+{基于 KB 的推荐 + 理由}
+### 关键设计点（3-5 个决策点）
 ### 📚 知识来源
-
-- {$KB_DIR/路径列表}
+- `{文章相对路径列表}`
 ```
 
 #### D. 模拟面试 流程
 
 ```
-1. 确认面试方向（Java后端 / 系统设计 / AI 工程师 / 前端...）
+1. 确认面试方向（<技术领域，由 KB §1 自动发现>）
 2. 确认难度（初级 / 中级 / 高级 / 架构师）
 3. 从 $KB_DIR/ 检索对应模块，准备 5-8 道题目
 
 交互流程（每题循环）：
 ┌─ 出题 → 等用户回答
 │
-├─ 评价用户答案：
-│   ├─ ✅ 答对的部分（鼓励 + 标注覆盖深度：概念/原理/源码/实战）
-│   ├─ ⚠️ 遗漏的点（补充 + 标注对应 $KB_DIR/ 文章）
-│   ├─ 🔴 答错的部分（纠正 + 给出正确解释）
-│   ├─ 📊 深度评估（当前回答在哪个层次）
-│   └─ 💬 话术优化建议（面试中怎么说更好，给出 90 秒话术）
+├─ 评价用户答案：✅ 答对 / ⚠️ 遗漏 / 🔴 答错 / 📊 深度评估 / 💬 话术优化
 │
-├─ 🔄 追问链生成（核心能力，见下方详细规则）：
-│   ├─ 根据用户答案的薄弱点 → 从 $KB_DIR/ 检索关联文章 → 生成追问
-│   ├─ 追问不是随机出题，而是沿着用户的知识缺口深挖
+├─ 追问链生成（核心能力，见下方规则）：
+│   ├─ 薄弱点 → 从 $KB_DIR/ 检索关联文章 → 生成追问
 │   └─ 每轮追问后继续评估 → 继续追问（最多 3 轮深挖）
 │
-├─ 给出参考答案 + 面试话术
-├─ 出下一题
+├─ 给出参考答案 + 面试话术 → 出下一题
 └─ 5 题后给总结评价 + 知识地图
 ```
 
-**追问链生成规则**（D/E 模式通用）：
+**追问链生成规则**（D/E 模式通用，KB 中性）：
 
 ```
-用户回答 → 分析薄弱点 → 生成追问
+═══ 科班路线追问（CS 专业）═══
+├─ 只答"是什么"没答"为什么" → 追问原理层
+├─ 只答概念没答源码 → 追问源码层（数据结构/字节码/内存布局）
+├─ 只答正常路径没答异常/边界 → 追问异常层（边界/拒绝策略/失败模式）
+├─ 答错具体知识点 → 纠正后追问关联知识
+└─ 答得很好 → 追问实战/架构层（线上调参/容量规划/故障排查）
 
-═══ 科班路线追问（CS 专业候选人）═══
-
-薄弱点识别方法：
-├─ 只答了"是什么"没答"为什么" → 追问原理层
-│   例：答了"HashMap 用红黑树"但没说为什么阈值是 8
-│   → 追问："为什么树化阈值是 8 而不是 4 或 16？"
-│
-├─ 只答了概念没答源码 → 追问源码层
-│   例：答了"synchronized 会锁升级"但没说 Mark Word 结构
-│   → 追问："锁升级过程中 Mark Word 的 bit 布局怎么变？"
-│
-├─ 只答了正常路径没答异常/边界 → 追问异常层
-│   例：答了"线程池任务提交流程"但没提拒绝策略
-│   → 追问："如果队列满了且线程达到 maximum，4 种拒绝策略分别怎么处理？"
-│
-├─ 答错了具体知识点 → 纠正后追问关联知识
-│   例：混淆了 submit 和 execute 的异常行为
-│   → 追问："submit 吞掉的异常存在 FutureTask 的哪个字段？怎么监控？"
-│
-└─ 答得很好 → 追问实战/架构层
-    例：线程池参数答得很全
-    → 追问："如果线上线程池需要动态调参不重启，你怎么设计？"
-
-═══ 非科班路线追问（跨专业候选人）═══
-
-薄弱点识别方法：
-├─ 只答了概念没答思维过程 → 追问"怎么想到的"
-│   例：答了"用字典存数据"但没说为什么选字典
-│   → 追问："你是怎么想到用字典的？还有别的存法吗？对比过吗？"
-│
-├─ 只答了正常流程没答边界 → 追问"如果出了问题怎么办"
-│   例：设计了点单系统但没考虑取消订单
-│   → 追问："如果用户下了单又取消呢？奶茶已经做了呢？"
-│
+═══ 非科班路线追问（跨专业）═══
+├─ 只答概念没答思维过程 → 追问"怎么想到的"
+├─ 只答正常流程没答边界 → 追问"如果出了问题怎么办"
 ├─ 答得好 → 追问跨专业优势 + 学习深度
-│   例：系统设计拆出了 4 个模块
-│   → 追问："你原专业的思维方式，帮你做了哪些设计决策？"
-│   → 追问："这个方案你是从哪学来的？看了什么资料？"
-│
 └─ 答不出 → 给提示看反应（测领悟力）
-    例：完全不知道怎么存数据
-    → 给提示："如果你有一个电话簿，你会怎么查找？"
-    → 评估：能顺着提示推导 = 高潜力；无动于衷 = 低潜力
 ```
 
-追问检索流程：
-1. 从薄弱点提取关键词
-2. grep 搜索 $KB_DIR/12.interview/ 和主模块
-3. 读取命中的文章，找到对应段落
-4. 基于 $KB_DIR/ 内容构造追问（确保追问有标准答案）
-5. 追问时附"参考：{$KB_DIR/路径}"以便用户事后学习
-```
+**追问检索流程**：薄弱点提取关键词 → grep `$KB_DIR/`（主模块 + 面试版）→ 读命中文章 → 基于 KB 内容构造追问（追问时附"参考：`{文章相对路径}`"）。
 
 **追问链输出格式**：
 
 ```markdown
-### 🔄 追问（第 N 轮）
-
-**你的薄弱点**：{分析用户答案中哪个层次缺失}
-
-**追问**：{基于 $KB_DIR/ 内容的追问}
-
-> 📖 这题的知识来源：`{文章相对路径}` — {文章标题}
-> 建议事后阅读这篇补充：{关联文章路径}
+### 追问（第 N 轮）
+**你的薄弱点**：{哪个层次缺失}
+**追问**：{基于 KB 内容的追问}
+> 这题的知识来源：`{文章相对路径}` — {文章标题}
 ```
 
 #### E. 简历面试 流程
 
 ```
-0. 教育背景检测（新增，决定出题策略）：
-   ├─ 专业是 CS / SE / 软件工程 / 计算机相关？
-   │   └─ 科班路线 → 正常技术深度题（原流程）
-   └─ 专业是数学/金融/外语/文科/工科/其他？
-       └─ 非科班路线 → 自动引入 11.product-and-pm/interviewing-cross-disciplinary 问题库
-           ├─ 技术题用降维版（从 12.interview 改写）+ 场景版
-           ├─ 重点考：自驱力、学习方法、逻辑思维、跨专业优势
-           └─ 评估用：底线+加分模型（而非科班的标准答案深度）
-
+0. 教育背景检测（见 Phase 0）：科班 → 默认面试题；非科班 → 降维版 + 场景版
 1. 解析简历关键技术点（语言/框架/项目经验/行业）
 2. 映射到 $KB_DIR/ 模块：
-   ├─ 技术栈 → 对应主模块
-   ├─ 项目经验 → 对应系统设计/架构模块
-   ├─ 行业 → 对应应用系统模块
-   └─ 非科班 → 11.product-and-pm/interviewing-cross-disciplinary（问题库 + 评估模型）
+   ├─ 技术栈 → 对应主模块（由 §1 自动发现）
+   ├─ 项目经验 → 系统设计/架构模块
+   ├─ 行业 → 应用系统模块
+   └─ 非科班 → `$KB_DIR/SPEC.md §1` 中的「面试方法论 / 跨专业候选人」类模块
 3. 为每个技术点生成知识地图 + 问题清单
-
-输出格式（两个部分）：
-
-═══ 第一部分：知识地图 ═══
-
-## 🗺️ 知识地图：{简历技术点}
-
-{用 grep 搜索 $KB_DIR/ 中所有相关文章，按层次组织}
-
-```
-{技术点}
-├── 基础层（概念/原理）
-│   ├── `$KB_DIR/01.java-and-jvm/xxx/README.md` — {一句话概括}
-│   └── `$KB_DIR/01.java-and-jvm/yyy/README.md` — {一句话概括}
-├── 进阶层（源码/深度）
-│   ├── `$KB_DIR/12.interview/01.java/xxx/` — {面试题+陷阱}
-│   └── `$KB_DIR/01.java-and-jvm/zzz/` — {源码分析}
-├── 实战层（工程/架构）
-│   ├── `$KB_DIR/04.spring-backend/xxx/` — {Spring 集成}
-│   └── `$KB_DIR/06.distributed-systems/xxx/` — {系统设计}
-└── 叙事层（故事/类比）
-    └── `$KB_DIR/13.story/xxx.md` — {阿明餐厅类比}
 ```
 
-═══ 第二部分：问题清单 + 追问链 ═══
-
-## 🎯 面试问题清单
-
-### {简历技术点1}：{具体内容}
-
-| # | 问题 | 意图 | 期望答案层次 | $KB_DIR/ 参考 |
-|---|------|------|------------|-----------|
-| 1 | {基础题} | 验证基本功 | {关键词} | `{文章相对路径}` |
-| 2 | {深度题} | 探测天花板 | {关键词} | `{文章相对路径}` |
-| 3 | {场景题} | 验证实战 | {关键词} | `{文章相对路径}` |
-
-### 🔄 预设追问链（根据候选人回答选择使用）
-
-| 如果候选人... | 追问 | 追问来源 |
-|-------------|------|---------|
-| 只说了概念没说原理 | {原理追问} | `{文章相对路径}` |
-| 只说了正常路径没说异常 | {异常追问} | `{文章相对路径}` |
-| 回答正确但缺实战 | {实战追问} | `{文章相对路径}` |
-| 回答全面 | {架构级追问} | `{文章相对路径}` |
-```
+**输出格式**（3 段）：知识地图 + 问题清单 + 追问链。模板骨架同 B，路径位置用 `{文章相对路径}` 占位，**实际路径由 §1 自动发现**。
 
 **知识地图生成方法**：
 
 ```bash
-# 1. 从简历提取技术关键词（如 "Redis"、"Spring Boot"、"分布式"）
+# 1. 从简历提取技术关键词（用 §8 主题词表 + 手动补全）
 # 2. 对每个关键词做全模块搜索
-grep -rl "Redis" $KB_DIR/ | sort
-
-# 3. 按目录分类为层次
-#    01.java-and-jvm/xxx → 基础层
-#    12.interview/xxx → 进阶层（面试题）
-#    04.spring-backend/xxx → 实战层
-#    04.spring-backend/xxx → 架构层
-#    13.story/xxx → 叙事层
-
+grep -rl "<关键词>" "$KB_DIR/" | sort
+# 3. 按目录分类为层次（具体层名由 §1 自动映射）
 # 4. 读每篇文章的第一段 + summary，提取一句话概括
 # 5. 组织成树形结构输出
 ```
@@ -834,116 +387,69 @@ grep -rl "Redis" $KB_DIR/ | sort
 #### F. 学习路径 流程
 
 ```
-输出格式（两个部分）：
-
-═══ 第一部分：知识地图 ═══
-
-## 🗺️ {主题} 知识地图
-
-{搜索 $KB_DIR/ 中所有相关文章，按学习顺序组织}
-
-```
-{主题}
-├── Level 1: 入门（先读这些）
-│   ├── `$KB_DIR/xx/yy/README.md` — {一句话}
-│   └── `$KB_DIR/xx/zz/README.md` — {一句话}
-├── Level 2: 进阶（掌握基础后读）
-│   ├── `$KB_DIR/xx/aa/` — {一句话}
-│   └── `$KB_DIR/12.interview/xx/bb/` — {面试题，验证理解}
-├── Level 3: 深入（想看源码/原理时读）
-│   ├── `$KB_DIR/xx/cc/` — {一句话}
-│   └── `$KB_DIR/xx/dd/` — {一句话}
-└── Level 4: 实战（做项目时参考）
-    ├── `$KB_DIR/xx/ee/` — {一句话}
-    └── `$KB_DIR/13.story/xx.md` — {故事化理解}
+输出格式：
+1. 知识地图（Level 1 入门 → Level 4 实战，按 §1 自动发现的模块分层）
+2. 推荐学习顺序（每步带自测题）
+3. 自适应追问链（"考考我"触发）：答对→升 Level，答错→回退，部分对→追问深挖
 ```
 
-═══ 第二部分：交互式学习路径 ═══
-
-## 📚 推荐学习顺序
-
-1. {第一步} → `{文章相对路径}`
-   > 读完自测：{一个简单自测问题}
-2. {第二步} → `{文章相对路径}`
-   > 读完自测：{一个简单自测问题}
-...
-
-### 🔄 学习追问（可选）
-
-学完每步后，可以说"考考我"触发追问链：
-├─ 我会从 $KB_DIR/ 出一道题检验你的理解
-├─ 根据你的回答分析薄弱点
-├─ 推荐下一步该读哪篇（基于你的薄弱点动态调整）
-└─ 如果你的回答暴露了前置知识缺失 → 推荐回退到 Level N
-```
-
-**自适应学习路径**：
-
-```
-用户说"考考我"或"我学完了"
-├─ 从当前 Level 的 $KB_DIR/ 文章出一道自测题
-├─ 用户回答后：
-│   ├─ 答对 → 跳到下一 Level
-│   ├─ 答错 → 分析薄弱点 → 推荐回退或补充阅读
-│   └─ 部分对 → 追问链深挖 → 确认掌握后继续
-└─ 每个 Level 通过后更新知识地图（标记 ✅ 已掌握）
-```
-
-#### G. 面试官出题 模板
+**模板骨架**（路径由 §1 自动填充，4 层结构）：
 
 ```markdown
-## 🎯 面试问题清单：{候选人画像}
+## {主题} 知识地图
+{主题}
+├── Level 1: 入门 → `{模块A}/基础/*`
+├── Level 2: 进阶 → `{模块A}/进阶/*` + `{面试版模块}/{主题}/`
+├── Level 3: 深入 → `{模块A}/源码/*` + `{模块A}/深度/*`
+└── Level 4: 实战 → `{模块B}/实战/*` + `{叙事模块}/{主题}.md`（如有）
 
+## 推荐学习顺序
+1. {第一步} → `{文章相对路径}` > 读完自测：{自测题}
+2. {第二步} → `{文章相对路径}` > 读完自测：{自测题}
+```
+
+#### G. 面试官出题 模板（KB 中性）
+
+> **路径位置用占位（`{模块X}`）**，实际路径由 `$KB_DIR/SPEC.md §1` 自动发现 + `$KB_DIR/SPEC.md §8` 主题词匹配。
+
+**模板骨架**（候选画像 → 题目列表 → 追问链 → 评估速查 → 📚 来源）：
+
+```markdown
+## 面试问题清单：{候选人画像}
 **候选人背景**：{专业} → 转码 | {自学/培训班/在职} | {项目经验简述}
 **出题策略**：{降维版为主 / 场景版为主 / 混合} | 重点考察 {自驱力/逻辑思维/工程实践}
 
 ### 题目列表
+| # | 题目 | 类型 | 考察维度 | 评估要点 | 来源 |
+| 1 | {场景化题目} | 降维/场景 | {考察维度} | {优秀答案信号} | `{文章相对路径}` |
 
-| # | 题目 | 类型 | 考察维度 | 评估要点 | $KB_DIR/ 来源 |
-|---|------|------|---------|---------|-----------|
-| 1 | {场景化题目} | 降维/场景 | {转码动机/基础认知/系统设计/工程实践/跨专业优势} | {优秀答案信号} | `{文章相对路径}` |
-| 2 | ... | ... | ... | ... | ... |
-
-### 🔄 预设追问链
-
+### 预设追问链
 | 如果候选人... | 追问 | 考察什么 |
-|-------------|------|---------|
 | {答了概念没答思维过程} | {追问"怎么想到的"} | {学习深度} |
 | {答不出} | {给提示看反应} | {领悟力/韧性} |
 | {答得好} | {追问跨专业优势} | {复合价值} |
 
-### 📋 评估速查
+### 评估速查（底线 + 加分模型）
+| 底线项 | 合格标准 | 加分项 | 具体表现 |
+| 代码手感 | 能写基础逻辑 | 极客精神 | 自己折腾过工具/项目 |
+| 基本常识 | 知道前后端/Git/HTTP | 跨专业优势 | 原专业带来的独特视角 |
+| 工程习惯 | 打断点调试 > print | 学习斜率 | 按目前速度 1-3 年后能超过科班 |
 
-| 底线项 | 合格标准 |
-|--------|---------|
-| 代码手感 | {能写基础逻辑} |
-| 基本常识 | {知道前后端/Git/HTTP} |
-| 工程习惯 | {打断点调试 > print} |
-
-| 加分项 | 具体表现 |
-|--------|---------|
-| 极客精神 | {自己折腾过工具/项目} |
-| 跨专业优势 | {原专业带来的独特视角} |
-| 学习斜率 | {按目前速度 1-3 年后能超过科班} |
-
-### 📚 知识来源
-
-| 来源 | 路径 | 覆盖内容 |
-|------|------|---------|
-| 面试问题库 | `11.product-and-pm/interviewing-cross-disciplinary/` | 5 场景双题库 + 评估模型 |
-| {降维对照} | `12.interview/...` | {科班版原题} |
+### 知识来源
+| 面试问题库 | `{由 §1 自动发现的「面试方法论 / 跨专业」模块}/` | 双题库 + 评估模型 |
+| {降维对照} | `{由 §1 自动发现的主面试题模块}/...` | {科班版原题} |
 ```
 
 ---
 
 ## 特殊处理
 
-### 当 $KB_DIR/ 没有相关内容时
+### 当 `$KB_DIR/` 没有相关内容时
 
 ```markdown
-> ⚠️ $KB_DIR/ 知识库未直接覆盖此主题。以下答案基于通用知识，非 $KB_DIR/ 内容。
+> ⚠️ `$KB_DIR/` 知识库未直接覆盖此主题。以下答案基于通用知识，非 `$KB_DIR/` 内容。
 > 
-> **建议**：这个主题值得沉淀到 $KB_DIR/，可以运行 `/note-precipitation-planning` 规划位置。
+> **建议**：这个主题值得沉淀到 `$KB_DIR/`，可调用 `note-precipitation-planning` 规划位置。
 
 {通用知识回答}
 ```
@@ -953,120 +459,83 @@ grep -rl "Redis" $KB_DIR/ | sort
 ```
 跨模块问题处理：
 1. 拆分问题为多个子问题
-2. 每个子问题检索对应模块
+2. 每个子问题检索对应模块（§1 自动发现的模块列表）
 3. 整合时标注每个子答案的来源模块
-4. 特别标注跨模块关联（如 "04.spring-backend 的缓存方案 + 03.data-stack 的 Redis 实践"）
+4. 特别标注跨模块关联（如 "<模块A> 的 XX 方案 + <模块B> 的 YY 实践"）
 ```
 
-### 引用格式
+### 引用格式（必填项）
 
-所有回答末尾附 **📚 知识来源** 表格，列出引用的 $KB_DIR/ 文件。格式：
+所有回答末尾附 **📚 知识来源** 表格，列出引用的 `$KB_DIR/` 文件。格式：
 
 ```markdown
 ### 📚 知识来源
 
 | 来源 | 路径 | 覆盖内容 |
 |------|------|---------|
-| JVM 调优 | `01.java-and-jvm/02-jvm/tuning.md` | JVM 参数详解 |
-| Loop Engineering | `08.ai-foundations/03-engineering/loop-engineering/README.md` | 循环调用原理 |
+| {文章标题} | `{文章相对路径}` | {覆盖了什么} |
 ```
+
+> **路径示例**：路径由 §1 自动发现的模块结构填充，**不在此硬编码**。
 
 ## Common Mistakes
 
-**❌ Mistake 1: 直接凭印象答（核心反模式）**
+| # | Mistake | 症状 | 修复 |
+|---|---------|------|------|
+| **1** | **直接凭印象答**（核心反模式）| 不 grep `$KB_DIR/` → 答的是 LLM 训练知识，事后与 KB 不一致 | Phase 3.1 必须先 grep，高频问题也要确认 KB 怎么写 |
+| **2** | **单一来源 = 薄弱回答** | 只读 1 篇就整合 → 覆盖维度不足 | Phase 3.4 终止条件 ≥ 3 篇深度 + ≥ 1 篇追踪 |
+| **3** | **忽略面试版双层**（被面试者视角） | 只引主模块深度版 → 缺面试陷阱/话术视角 | 必须同时引主模块 + 面试版（路径由 §1 自动发现） |
+| **4** | **漏写知识来源表** | 末尾没有 📚 知识来源表 → 用户无法追溯 | **必填项**；模板见"引用格式"小节 |
+| **5** | **跨模块问题不拆解** | 单点答完一个模块就结束 → 漏掉相邻模块方案 | 拆分子问题 → 各自检索 → 标注模块来源（见"当问题跨多个模块时"） |
+| **6** | **候选人专业漏检**（E/G 专属）| 简历面试忘了检测非科班 → 用科班题压人 → 错杀潜力股 | 见 Phase 0 教育背景检测；非科班自动用 KB 中「面试方法论 / 跨专业」模块 |
+| **7** | **模拟面试不追问**（D/E 专属）| 一题一答就跳下一题 → 失去核心价值（深度评估） | 追问链是 D/E 的差异化能力；每轮必续，最多 3 轮深挖 |
+| **8** | **注水重复 cite** | 📚 知识来源表同一篇 cite 3 次（基础/进阶/实战填同一篇） | 每个来源必须覆盖**不同维度**（基础/原理/实战/面试题/故事层各一篇） |
+| **9** | **G 类型出题用科班题库** | 面试非科班搬科班原题 → 应聘者答不出 → 错杀 | 见 G 模板"降维版为主 + 重点考察自驱力/逻辑思维/跨专业优势" |
 
-- **症状**：用户问"JVM 参数怎么配"直接答，不 grep $KB_DIR/ → 答的是训练知识，事后与 $KB_DIR/ 不一致
-- **修复**：Phase 3.1 必须先 grep，即使是高频问题也要确认 note 怎么写
-
-**❌ Mistake 2: 单一来源 = 薄弱回答**
-
-- **症状**：只读 1 篇就整合；用户问"HashMap 原理"只引一篇
-- **修复**：Phase 3.4 终止条件是 ≥ 3 篇深度 + ≥ 1 篇追踪，不达标则继续读
-
-**❌ Mistake 3: 忽略 12.interview 双层（被面试者视角）**
-
-- **症状**：用户出"为什么树化阈值是 8"，只引 01.java-and-jvm 主模块 → 缺面试陷阱视角
-- **修复**：必须同时引 `12.interview/<module>/<topic>/`（面试陷阱版）+ 主模块深度版
-
-**❌ Mistake 4: 漏写知识来源表**
-
-- **症状**：回答末尾没有 📚 知识来源表 → 用户无法追溯 → 失去本 skill 的核心价值
-- **修复**：必填项；输错一步是 invalid output；模板见"引用格式"小节
-
-**❌ Mistake 5: 跨模块问题不拆解**
-
-- **症状**：用户问"如何设计 SSO"，单点答完一个模块就结束 → 漏掉 SAML/CAS 等
-- **修复**：见"当问题跨多个模块时"流程：拆分子问题 → 各自检索 → 标注模块来源
-
-**❌ Mistake 6: 候选人专业漏检（E/G 类型专属）**
-
-- **症状**：简历面试忘了检测非科班 → 自动用科班路线题压人 → 应聘者被错杀
-- **修复**：见 E 类型 Phase 0 教育背景检测；非科班自动用 `11.product-and-pm/interviewing-cross-disciplinary` 问题库 + 非科班追问链
-
-**❌ Mistake 7: 模拟面试不追问（D/E 类型专属）**
-
-- **症状**：D 模式下一题一答就跳下一题，没追问链 → 失去核心价值（深度评估）
-- **修复**：追问链是 D/E 的差异化能力；每轮必续追问链，最多 3 轮深挖；见"追问链生成规则"
-
-**❌ Mistake 8: 注水重复 cite**
-
-- **症状**：📚 知识来源表里同一篇文章 cite 3 次（基础/进阶/实战都填同一篇）
-- **修复**：每个来源必须覆盖**不同维度**（基础/原理/实战/面试题/故事层各一篇），避免重复
-
-**检测方法**（回答提交前必跑）：
+**Mistake 8 检测方法**（回答提交前必跑）：
 
 ```bash
 # 把回答正文存为 answer.md，跑下面命令
-grep -oE '$KB_DIR/[^\` )]+\.md' answer.md | sort | uniq -c | sort -rn | awk '$1 >= 2 {print}'
+grep -oE '\$KB_DIR/[^\` )]+\.md' answer.md | sort | uniq -c | sort -rn | awk '$1 >= 2 {print}'
 # 输出：同一路径 cite ≥ 2 次的文件清单 → 必须去重或换其他维度
 ```
-
-**❌ Mistake 9: G 类型出题用科班题库**
-
-- **症状**：面试非科班候选人，直接搬 12.interview 原题 → 应聘者答不出 → 错杀潜力股
-- **修复**：见 G 模板"降维版为主 + 重点考察自驱力/逻辑思维/跨专业优势"
 
 ---
 
 ## Real-World Impact
 
-本 skill 是"**非通用 AI**"的区分点 —— 强制 LLM 把 $KB_DIR/ 当作私有知识库使用，而不是凭训练知识答。
+本 skill 是"**非通用 AI**"的区分点 —— 强制 LLM 把 `$KB_DIR/` 当作私有知识库使用，而不是凭训练知识答。
 
-**典型场景 + 预期产出**：
+**典型场景产出**：
 
-| 类型 | 触发场景 | 期望产出 | 耗时 |
-|------|---------|---------|------|
-| **A. 技术问答** | "HashMap 原理" | 找 3+ 篇 + 整合代码示例 + 📚 知识来源 | ~2 分钟 |
-| **B. 出面试题** | "出一道 JVM 题" | 场景化题 + 三层答案 + 90 秒话术 | ~5 分钟 |
-| **C. 设计指导** | "如何设计 SSO" | 3 方案对比表 + 推荐 + 关键设计点 | ~8 分钟 |
-| **D. 模拟面试** | "我来答你出题" | 题目 + 评估 + 追问链 3 轮 + 总结 | 持续 |
-| **E. 简历面试** | "根据简历出 5 题" | 教育检测 + 知识地图 + 5 题清单 + 追问库 | ~10 分钟 |
-| **F. 学习路径** | "怎么学 RAG" | 知识地图（Level 1-4）+ 路径 + 自测题 | ~6 分钟 |
-| **G. 面试官出题** | "面非科班应届" | 候选人画像 + 双题库 + 评估速查表 | ~10 分钟 |
+| 类型 | 期望产出 | 避免的失败 |
+|------|---------|----------|
+| **A. 技术问答** | 3+ 篇 + 整合示例 + 📚 来源 | 凭训练知识答（M1）|
+| **B. 出题** | 场景化题 + 三层答案 + 90 秒话术 | 同上 |
+| **C. 设计指导** | 3 方案对比表 + 推荐 + 设计点 | 跨模块只答一半（M5）|
+| **D. 模拟面试** | 题目 + 评估 + 追问链 3 轮 + 总结 | 变"答题器"无追问（M7）|
+| **E. 简历面试** | 教育检测 + 知识地图 + 题清单 + 追问库 | 科班/非科班混用题库（M6/M9）|
+| **F. 学习路径** | 知识地图（Level 1-4）+ 路径 + 自测题 | 同 M1 |
+| **G. 面试官出题** | 候选人画像 + 双题库 + 评估速查表 | 同 M6/M9 |
 
-**避免的失败**：
-- ❌ 凭训练知识答（用户事后发现与 $KB_DIR/ 不一致 → Mistake 1）
-- ❌ 漏知识来源表（用户无法自我纠错 → Mistake 4）
-- ❌ 跨模块问题只答一半（如 SSO 只答 OAuth 不答 SAML → Mistake 5）
-- ❌ 简历面试一刀切（科班/非科班混用题库 → Mistake 6/9）
-- ❌ 模拟面试变"答题器"（无追问 → Mistake 7）
+> **耗时与体验为经验值**，由 KB 容量与子主题热度决定；**不硬编码**。
 
 **联动 skill**：
-- 上游：`note-precipitation-planning`（每答一次 A 类都暴露缺口 → 触发沉淀新主题）
-- 上游：`note-health`（文章质量验收 + 结构体检 → 间接影响本 skill 的答案质量）
-- 下游：`note-health`（本 skill 暴露的高频"note 未覆盖"主题可作为缺口数据）
+- 上游：`note-precipitation-planning`（每答一次 A 类暴露缺口 → 触发沉淀；Phase 6 完成后向 `$KB_DIR/SPEC.md §8` 加 1 行主题词）
+- 上游/下游：`note-health`（影响答案质量 + 接收缺口数据；Phase 1.15 稽核 §8 死链）
 
 ---
 
 ## Quick Checklist（回答前必过）
 
 - [ ] 问题已分类（A/B/C/D/E/F/G 类型）
-- [ ] 关键词已提取并映射到模块
-- [ ] 已搜索 $KB_DIR/（至少 grep 一次）
+- [ ] **§2.1 已读 `$KB_DIR/SPEC.md §8`** 做主题词匹配（即使无命中）
+- [ ] 关键词已提取并映射到模块（§1 自动发现）
+- [ ] 已 grep `$KB_DIR/`（至少 1 次）
 - [ ] 已读 ≥ 3 篇相关文章
 - [ ] 已追踪 ≥ 1 篇关联文章
 - [ ] 回答末尾有 📚 知识来源
-- [ ] 如果 $KB_DIR/ 未覆盖，已标注并建议沉淀
+- [ ] §3.5 校验引用路径存在（`check-broken-links.py`）
+- [ ] 如果 KB 未覆盖，已标注并建议沉淀
 - [ ] **E/G 类型**：已检测候选人教育背景（科班 vs 非科班）
-- [ ] **E/G 非科班**：出题来源是 `11.product-and-pm/interviewing-cross-disciplinary`（不是 `12.interview`）
-- [ ] **E/G 非科班**：追问链使用非科班规则（思维过程/给提示看反应/跨专业优势）
+- [ ] **E/G 非科班**：出题来源是 KB 中「面试方法论 / 跨专业」类模块（§1 自动发现），非科班追问链已就位
