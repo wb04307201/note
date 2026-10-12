@@ -10,7 +10,7 @@ module:
 
 # Spring WebFlux 概览
 
-> **定位**：Spring WebFlux 概览 的核心原理、实现与最佳实践。
+> **定位**：Spring WebFlux 响应式编程概览 + Reactor 模型 + 背压机制 + Spring MVC 对比。
 
 > ⬅️ [返回 02 Web 层](../README.md)
 
