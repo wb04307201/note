@@ -520,13 +520,15 @@ fi
 - 主题是工具链小调整（如 Maven 编译参数、IntelliJ 配置）→ 跳过（§8 不收录）
 - 主题是 troubleshooting 型（如 cpu-spike-troubleshooting）→ 跳过（§8 不收录）
 
-#### 反例（不要加 §8 · 2026-10-12 历史教训）
+#### 反例（不要加 §8 · 2026-10-12 v3.x 通用化）
 
-| 反例 | 不加原因 |
-|------|---------|
-| 「Maven release/source/target 三参数」（2026-10-12） | 构建工具配置类（见 `12.interview/SPEC.md §准入判定` 反例清单），不入 §8 |
-| 「JVM 运行时参数调优」 | 已沉淀在 `01.java-and-jvm/02-jvm/parameters.md`，主模块已承载 |
-| 「Dockerfile / Docker Compose 写法」 | 工程模板，面试几乎不考（不入 §8 后 QA 也难命中）|
+> 反例已占位符化（v3.x）—— 任何 KB 都可借鉴：
+
+| 反例类型（note KB 实例） | 不加原因（通用模式） |
+|------------------------|---------------------|
+| **构建工具配置类**（note 实例：Maven release/source/target 三参数，2026-10-12） | 任何 KB 的 `<type=interview 模块>/SPEC.md §准入判定` 反例清单都已包含；构建工具配置类不入 §8 |
+| **非高频运行时参数**（note 实例：JVM 启动参数 `-Xmx` / `-XX:+UseG1GC`） | 已沉淀在 `<depth 模块>/<parameters 目录>/` 主模块，§8 不重复 |
+| **工程模板类**（note 实例：Dockerfile / Docker Compose 写法） | 面试几乎不考（不入 §8 后 QA 也难命中）|
 
 #### 长期验收
 
