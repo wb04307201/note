@@ -19,7 +19,7 @@ if [ -n "$STAGED_NOTE" ]; then
     FILE_COUNT=$(echo "$STAGED_NOTE" | wc -l)
     echo "[pre-commit] 知识库有 $FILE_COUNT 个 .md 变更，跑链接完整性检查..."
     CHECK_OK=0
-    python "$CHECK_SCRIPT" --quiet $STAGED_NOTE || CHECK_OK=1
+    echo "$STAGED_NOTE" | tr ' ' '\n' | grep -v '^$' | xargs python "$CHECK_SCRIPT" --quiet || CHECK_OK=1
     if [ "$CHECK_OK" -ne 0 ]; then
       echo ""
       echo "❌ 链接完整性检查未通过，请修复断链后再 commit"
