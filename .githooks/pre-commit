@@ -33,4 +33,29 @@ if [ -n "$STAGED_NOTE" ]; then
       exit 1
     fi
   fi
+
+  # Frontmatter status: 字段检查（2026-10-12 候选 5）
+  # 当前 WARN 模式（不阻断），待全库 batch 加 status:active 后升级为 ABORT
+  MISSING_STATUS_COUNT=0
+  MISSING_STATUS_LIST=""
+  for f in $STAGED_NOTE; do
+    # 跳过 README.md / SPEC.md / index.md（豁免，按 SPEC §3 / §4 约定）
+    base=$(basename "$f")
+    if [ "$base" = "README.md" ] || [ "$base" = "SPEC.md" ] || [ "$base" = "index.md" ]; then
+      continue
+    fi
+    # 检查是否有 frontmatter（含 module:/question:/story: 之一）+ status: 字段
+    if grep -qE '<!--(module|question|story):' "$f" 2>/dev/null; then
+      if ! grep -qE '<!--(module|question|story):[^-]*status:[ ]*\(draft|active|deprecated|orphaned\)' "$f" 2>/dev/null; then
+        MISSING_STATUS_COUNT=$((MISSING_STATUS_COUNT + 1))
+        MISSING_STATUS_LIST="$MISSING_STATUS_LIST\n    $f"
+      fi
+    fi
+  done
+  if [ "$MISSING_STATUS_COUNT" -gt 0 ]; then
+    echo "[pre-commit-status] ⚠ WARN: $MISSING_STATUS_COUNT 个 .md 缺失 status: 字段（候选 5 强制策略 · WARN 阶段）:"
+    echo -e "$MISSING_STATUS_LIST"
+    echo "[pre-commit-status] ⚠ 待全库 batch 加 status:active 后升级为 ABORT（参考 SPEC.md §4）"
+    # 注意: 当前为 WARN 模式，commit 仍可继续
+  fi
 fi
