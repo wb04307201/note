@@ -10,7 +10,7 @@ module:
 
 # 枚举（Enum）
 
-> **定位**：Java 枚举（Enum）：单例模式、策略模式、EnumSet/EnumMap。 的核心原理、实现与最佳实践。
+> **定位**：Java 枚举（Enum）：单例模式最佳实践 + 策略模式 + EnumSet/EnumMap 高性能位向量。
 
 ---
 

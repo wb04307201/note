@@ -9,7 +9,7 @@
 
 # CompletableFuture 完整笔记
 
-> **定位**：CompletableFuture 完整笔记 的核心原理、实现与最佳实践。
+> **定位**：CompletableFuture 异步编排工具，解决 Future 无法组合 / 无法传播异常 / 无法回调的核心痛点。
 
 ## 一、Future 的局限性
 

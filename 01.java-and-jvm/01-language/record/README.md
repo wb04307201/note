@@ -10,7 +10,7 @@ module:
 
 # 记录类（Record）
 
-> **定位**：Java Record（Java 14+）：不可变数据类的简洁写法。 的核心原理、实现与最佳实践。
+> **定位**：Java Record（Java 14+ 预览 / 16 正式）：不可变数据类的简洁写法，结合 Sealed 实现 ADT 模式。
 
 ---
 

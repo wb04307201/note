@@ -10,7 +10,7 @@ module:
 
 # Java 线程池（ThreadPoolExecutor）学习笔记
 
-> **定位**：Java 线程池（ThreadPoolExecutor）学习笔记 的核心原理、实现与最佳实践。
+> **定位**：Java 线程池（ThreadPoolExecutor）七参数模型 + 4 种拒绝策略 + 工作队列选型 + 监控告警。
 
 ---
 ## 引言：变更说明
