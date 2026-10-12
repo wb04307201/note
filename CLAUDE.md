@@ -147,12 +147,13 @@ git config core.hooksPath .githooks   # 启用 pre-commit 链接完整性检查(
 
 ## CI Workflows
 
-`.github/workflows/`(**2 个 workflow + scripts/,每月 1 日阶梯式触发 + push/PR 即时反馈**):
+`.github/workflows/`(**3 个 workflow + scripts/,每月 1 日 + 季度 1 日阶梯式触发 + push/PR 即时反馈**):
 
 | Workflow | 触发时机 | 职责 |
 |----------|---------|------|
 | **`difficulty-calibration.yml`** | 每月 1 日 03:00 + PR(修改知识库 + skill 时)| 5 维 depth 字段格式验证 + 月度 `.claude/skills/note-health/scripts/auto-calibrate.py` 自动校准 |
 | **`structural-link-check.yml`** | 每月 1 日 06:00 + push/PR | 自研 `.github/workflows/scripts/check-broken-links.py` 校验内部相对路径(双口径:.md + 目录链接)|
+| **`regression-test.yml`** ⭐候选 4 | 季度 1 日 03:00 (1/4/7/10 月) + `workflow_dispatch` 手动 | `scripts/regression-test.sh` 跑最近 N 个 feat/fix commit 主题 · 文件路径 + broken links 自检 |
 
 > `grs.yml`(GitHub README 卡片)留在主页仓库 `wb04307201`,不属于本仓库。
 > 远端:origin = Gitee(`https://gitee.com/wb04307201/note`),GitHub 镜像(`https://github.com/wb04307201/note`)。CI workflows 只在 GitHub 侧运行。
