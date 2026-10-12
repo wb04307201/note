@@ -18,7 +18,22 @@ description: Use when user wants to audit or evaluate the knowledge base — 结
 >
 > 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
 
-> **规则来源**：执行前必读 `$KB_DIR/SPEC.md` §5（G1-G6 通用评分维度）+ §6（11 类基础扫描规则）+ §7（SPEC 分层元规范）+ `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md` 的 A 类维度）；若目标模块有强骨架规范（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md`）也一并读取（13.story 已合并入 `<module>/SPEC.md` §4，详见 `references/leaf-quality.md` 等处引用其硬性要求）。模块结构通过 `find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，不硬编码。
+> **规则来源**：执行前必读 [`$KB_DIR/SPEC.md`](../../../SPEC.md) §5（G1-G6 通用评分维度）+ §6（11 类基础扫描规则）+ §7（SPEC 分层元规范）+ §8（新词检索映射表，Phase 1.15 稽核对象），并按需读各模块的 `<module>/SPEC.md`（如 `$KB_DIR/01.java-and-jvm/SPEC.md` 的 A 类维度、`$KB_DIR/12.interview/SPEC.md` §准入判定等强骨架规范）。模块结构通过 `find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，不硬编码。
+>
+> **本 skill 自身重内容**（实现细节 / 阈值 / 误判识别）已下沉至本目录 `references/`，主文档只承载流程骨架 + 指针：
+>
+> | 重内容 | 落点 |
+> |--------|------|
+> | 11 类扫描执行步骤 + 自动化脚本 | `references/structural-checks.md` |
+> | Leaf G1-G6 + A~G 维度打分 | `references/leaf-quality.md` |
+> | 新文件 7 必选 + 3 可选结构基线 | `references/new-file-baseline.md` |
+> | Phase 6 5 维评分（D1-D5） | `references/5-dim-rubric.md` |
+> | Phase 7 拆分检测 | `references/split-detection.md` |
+> | 主模块深度合理性扫描 | `references/main-module-depth.md` |
+> | 主模块 ↔ 面试题映射 | `references/interview-main-mapping.md` |
+> | Difficulty 自动校准 | `references/difficulty-calibration.md` |
+>
+> 操作层协议（subagent / git / peer session）见 [`$KB_DIR/.claude/ORCHESTRATION.md`](../../ORCHESTRATION.md)。
 
 # note-health：note 知识库健康检查
 
@@ -43,17 +58,17 @@ description: Use when user wants to audit or evaluate the knowledge base — 结
 
 | scope | 触发例 | 行为 |
 |---|---|---|
-| **空 / 不存在**（🆕 2026-09-03 测试新增） | `$KB_DIR/` 不存在 / `find` 返回 0 | **直接返回**："KB_DIR 为空或不存在，无可体检内容"。不进入 Phase 1；不报错；不启动 workflow。 |
+| **空 / 不存在**（2026-09-03 测试新增） | `$KB_DIR/` 不存在 / `find` 返回 0 | **直接返回**："KB_DIR 为空或不存在，无可体检内容"。不进入 Phase 1；不报错；不启动 workflow。 |
 | 单篇 / 单目录 | "评价某模块下某篇" / "这篇质量怎么样" / "这篇新写的质量如何" | **只跑 Phase 2**：直接 Read + 按 `references/leaf-quality.md` 打分。**不启动 workflow**。**新文件**先读 `references/new-file-baseline.md` 拿到 7 必选 + 3 可选结构基线。 |
 | 单模块 | "审一下某模块"（运行时读取 `find "$KB_DIR" -maxdepth 1 -type d`） | Phase 1 扫该模块 + Phase 2 小规模 fan-out（视 leaf 数手工切批，≤ 6 篇/批）。 |
 | 全库（leaf ≤ 1000） | "note 哪里要优化" / "扫一遍 note" / "体检" | 完整 4 相；Phase 2 直接走「分层采样 + 优先级列表」策略（关键问题全评 + 各模块代表采样）。 |
 | 全库（leaf > 1000） | 同上，但实时 `find "$KB_DIR" -name "*.md" \| wc -l` > 1000 | **触发 Phase 0.1 策略询问**：用 `AskUserQuestion` 让用户在「采样」/「穷举」/「混合」三选一，默认采样，**不再静默切换**。 |
 
-**🆕 空 KB_DIR 检测（2026-09-03 测试新增）**：
+**空 KB_DIR 检测**（2026-09-03 测试新增）：
 
 ```bash
 # Phase 0 启动前必跑（< 1 秒）
-KB_DIR="${NOTE_DIR:-.}"  # 默认仓库根（内容平铺），支持 NOTE_DIR 环境变量覆盖
+KB_DIR="${NOTE_DIR:-$(git rev-parse --show-toplevel)}"
 if [ ! -d "$KB_DIR" ] || [ -z "$(find "$KB_DIR" -maxdepth 5 -name "*.md" -print -quit 2>/dev/null)" ]; then
   echo "⚠️  KB_DIR ($KB_DIR) 为空或不存在，无可体检内容"
   echo "    提示：检查 NOTE_DIR 环境变量 / .claude/knowledge-base.config.json 配置"
@@ -64,6 +79,7 @@ fi
 **原则**：单篇请求绝不启动重型机器；leaf 数 < 10 直接手工打分，不开 workflow。
 
 > **全库策略**（leaf > 50）：
+>
 > - **优先级批**：浅 README（< 50 行）+ 无回链 + 无 frontmatter + 全部 broken link 来源（必评）
 > - **采样批**：每主模块随机 3-5 篇代表 leaf
 > - **leaf ≤ 1000** → 直接走采样（无需询问）
@@ -72,7 +88,7 @@ fi
 
 ### Phase 0.1：全库规模触发的策略询问（leaf > 1000）
 
-> 🆕 **2026-08-23 新增**：当 Phase 0 判 scope = 全库且实时 `find "$KB_DIR" -name "*.md" | wc -l` > 1000 时，**必须**用 `AskUserQuestion` 让用户在 3 种策略中显式选择，**不再静默切换**为采样。
+> 2026-08-23 新增：当 Phase 0 判 scope = 全库且实时 `find "$KB_DIR" -name "*.md" | wc -l` > 1000 时，**必须**用 `AskUserQuestion` 让用户在 3 种策略中显式选择，**不再静默切换**为采样。
 
 **触发前先算 leaf 数**：
 
@@ -108,59 +124,78 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 - **询问本身不消耗扫描成本**——`AskUserQuestion` 是对话层动作，不进入 `.health-tmp`
 - **询问结果写到 report 头部**——Phase 4 输出必须含「策略选择：<选项>」一行，让用户事后能验证实际跑了哪个策略
 
-> ⚠️ **边缘 case：兄弟相对路径（如 polymorphism）**：当新增子目录（如 `polymorphism/README.md`），兄弟章节用 `polymorphism/README.md`（相对路径）形式链接近似安全 —— 但 markdown 严格按相对路径解析，**从 `inner-class/README.md` 应解析到 `inner-class/polymorphism/README.md`**（不存在）。**Phase 1 §6 broken-links 扫描命中后需人工二次确认**「同目录」vs「跨目录」归属，特别是 polymorphism / distillation 这类子目录的兄弟链。**Obsidian / GitHub 可能因 auto-resolve 显示为 OK，但严格 markdown 规范下是 broken**。Phase 4 综合报告必须标 `[同目录-边缘]` 而非纯 `[真错]`。
+> ⚠️ **边缘 case：兄弟相对路径**（如新增 `polymorphism/README.md`）：兄弟章节用 `polymorphism/README.md`（相对路径）形式链接近似安全，但 markdown 严格按相对路径解析，**从 `inner-class/README.md` 应解析到 `inner-class/polymorphism/README.md`**（不存在）。Phase 1 §6 broken-links 扫描命中后需人工二次确认「同目录」vs「跨目录」归属，Phase 4 综合报告必须标 `[同目录-边缘]` 而非纯 `[真错]`。
 
 **新文件专属入口**：当用户问的是"评价一个新沉淀的文件 / 这篇新写的质量如何"，Phase 2 在打分前必须先读 `references/new-file-baseline.md` 拿到 7 必选 + 3 可选结构模板 + 快改/深耕写作模式，作为结构基线；再用 `references/leaf-quality.md` 打分。两者结合判断"是否符合新文件基线 + 是否达到 leaf 质量门槛"。
 
-> 判定为"新文件"的启发：用户提到"刚写的 / 新沉淀的 / 这次新加的 / 初稿"，或 git 近期新增（git log --since 近几天 --diff-filter=A）。
+> 判定为"新文件"的启发：用户提到"刚写的 / 新沉淀的 / 这次新加的 / 初稿"，或 git 近期新增（`git log --since 近几天 --diff-filter=A`）。
+>
+> 完整新文件基线与 leaf 评分维度均为 references 层内容，**详见 `references/new-file-baseline.md` + `references/leaf-quality.md`**。
 
 ## 执行引擎：自底向上 8 相
 
+> **底层规则与实现细节已外置**（11 类扫描执行步骤、5 维评分、拆分判定、leaf 打分等均落到 `references/` 子文件）。本节只承载**流程骨架 + 关键 Phase 的特殊处理约束**。
+
 ### Phase 1 — 结构扫描（主循环内，便贵）
 
-> 执行前先建临时目录：`mkdir -p .health-tmp`
-
-读 `references/structural-checks.md`，跑机械扫描：**frontmatter 覆盖、orphan 目录、孤链（.md + 目录双口径）、README 总目录章节锚点、模块均分 + 单向链接扫描 + 系列完整性审计 + 数字一致性 + 归属合理性 + 合并检测**等。
-**所有大输出重定向到文件**（`> .health-tmp/scan-<phase>-<date>.txt`），不堆进对话。Phase 1 不调 workflow。
-
-> **2026-07-25 起**：单向链接扫描（`Phase 4.5`）+ 系列完整性审计（`Phase 9` + `9.1`）从深度模式提升为默认 Phase 1.8 / 1.9 / 1.10 —— Mistake 9（parent 不回链 = 隐性孤岛）是历史教训，全库 800+ README 的体检默认应该跑，下次不会再忘。
-
-> **🆕 2026-07-26 起**：归属合理性审计（`Phase 10`）+ 合并检测（`Phase 11`）从深度模式提升为默认 Phase 1.11 / 1.12 —— 主题放错位置（如训练方法论放工程层）和多主题错误合并（如 5 个灵魂拷问合成一个文件）是结构性问题，体检默认应该跑。
-
-> **🆕 2026-08-20 起**：关联强度扫描（`Phase 12`）从可选提升为默认 Phase 1.13 —— 检测"同栏目 / 同目录"兄弟互链中目标文件 0 真实引用的弱关联（见 `note-precipitation-planning` Mistake 20）。弱关联比 broken link 更隐蔽——链接存在且路径正确，但语义上是噪声，应作为 P2 问题输出。
-
-> **🆕 2026-08-25 起**：① 断链扫描升级为**双口径**（`.md` 文件链接 + `](dir/)` 目录链接）——目录链接曾是盲区，累积 156 处未检出（见 `structural-checks.md` #6）；② Phase 1.13 弱关联扫描改用**正文内链算法**（v2），排除页脚导航表/表格/代码块，消除 1005 处误报类噪声。
-
-> **🆕 2026-09-02 起**：Phase 1 开头必跑 `check-broken-links.py`（双口径 + 全库 + 单文件）—— Session 6 教训：230 处断链批量修复后，必须作为体检的**第一闸**而非"发现时才跑"。统一入口避免 subagent 漏跑。
-
-> **🆕 2026-10-12 起**：准入判定扫描（Phase 1.14）新增 —— 对 `12.interview/**/README.md` 跑 [`12.interview/SPEC.md §准入判定`](../../../12.interview/SPEC.md) 的 9 类判定（5 类适合 / 4 类不适合）。命中「构建工具配置 / 工具链命令 / 边角技巧 / 非高频运行时参数」任一类的样本标记为 `P3 misplaced-warning`，并产出一份「移除候选清单」附带在体检报告后。
+> 执行前先建临时目录：`mkdir -p "$KB_DIR/.health-tmp"`
 >
-> **强约束**（与 `12.interview/SPEC.md` §准入判定 对齐）：
+> 完整 11 类扫描的执行步骤、阈值、误判识别、自动化脚本均见 [`references/structural-checks.md`](references/structural-checks.md)。
+
+**默认应跑的子阶段**（按时间线排）：
+
+| 子阶段 | 来源 | 落地 |
+|--------|------|------|
+| 1.1 frontmatter 覆盖 | SPEC §6.1 | structural-checks.md |
+| 1.2 orphan 目录 | SPEC §6.4 | structural-checks.md |
+| 1.3 孤链（双口径：.md + 目录） | SPEC §6.3 | structural-checks.md |
+| 1.4 README 总目录章节锚点 | SPEC §3 互链 | structural-checks.md |
+| 1.5 数字一致性 | SPEC §6.1 | structural-checks.md |
+| 1.6 单向链接扫描 | G4 互链 | structural-checks.md |
+| 1.7 系列完整性 | SPEC §6.9 | structural-checks.md |
+| 1.8 归属合理性 | SPEC §6.10 | structural-checks.md |
+| 1.9 合并检测 | SPEC §6.11 | structural-checks.md |
+| 1.10 PNG / 脚本残留 | SPEC §6.8 | structural-checks.md |
+| 1.11 H1/H2 标题规范 | SPEC §6.2 | structural-checks.md |
+| 1.12 命名一致性 | SPEC §6.7 | structural-checks.md |
+| **1.13 弱关联扫描（v2 正文内链）** | Mistake 20 | `scripts/weak-link-scan.py` |
+| **1.14 准入判定扫描** | `12.interview/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
+| **1.15 关键词映射表稽核** | `SPEC.md §8` | 本节下方 |
+
+**所有大输出重定向到文件**（`> "$KB_DIR/.health-tmp/scan-<phase>-<date>.txt"`），不堆进对话。Phase 1 不调 workflow。
+
+> 详细 11 类扫描规则的执行步骤、误判识别、自动化脚本、输出落盘格式，均见 [`references/structural-checks.md`](references/structural-checks.md)。
+
+> **🆕 2026-10-12 起**：准入判定扫描（Phase 1.14）新增 —— 对 12.interview 跑判定词库（**详见 [`$KB_DIR/12.interview/SPEC.md` §准入判定](../../../12.interview/SPEC.md)**），命中 4 类不适合样本的标记为 `P3 misplaced-warning`。
+>
+> **强约束**：
 >
 > - 本扫描**只标记，不动手**——移除执行必须由用户决策
 > - 实际移除走 `note-precipitation-planning` Phase 6（迁移到正确主模块 + 加反向链 + 12.interview 旧文件保留 `→ [已迁移到:]` 跳转说明）
-> - 实现复用 [`references/structural-checks.md`](references/structural-checks.md) §9 类关键词库（避免在 note-health 内另起一份重复规则）
+> - 9 类关键词库在 `references/structural-checks.md` §9（避免在 note-health 内另起一份重复规则）
 >
-> **来源**（2026-10-12）：沉淀 Maven release/source/target 时，`note-precipitation-planning` 把「高频踩坑」误判为「高频面试」，差点放进 12.interview。教训：准入判定必须有显式规则（沉淀 skill 之前散落的 Phase 2/3 信号不够精准），并由健康体检 skill 自动扫描兜底。
+> **来源**（2026-10-12）：沉淀 Maven release/source/target 时，`note-precipitation-planning` 把「高频踩坑」误判为「高频面试」。教训：准入判定必须有显式规则（沉淀 skill 之前散落的 Phase 2/3 信号不够精准），并由健康体检 skill 自动扫描兜底。
 
-**关联强度扫描脚本**（Phase 1.13 · v2 2026-08-25 正文内链版，实测校准：1005 → 382，**外置同目录 `scripts/weak-link-scan.py`**）：
+> **🆕 2026-10-12 起**：Phase 1.15 `keywords_mapping_validation` —— 扫 [`$KB_DIR/SPEC.md` §8](../../../SPEC.md) 所有「主题词 → 路径」映射：
+>
+> 1. 解析 §8 表格中**主模块路径**与 **12.interview 路径**两列（`-` / `(聚合)` 跳过）
+> 2. 对每个路径 `os.path.exists(target_abs)` 校验
+> 3. 死链标 P3 `misplaced-warning`（与 Phase 1.14 同级），附在体检报告后
+> 4. **不动手修复**（按用户决策走 `note-precipitation-planning` Phase 6 沉淀流程，避免体检越界改 §8）
+>
+> **为何需要**：§8 表由「问答 skill 命中 + 沉淀 skill 补全」共建，可能因主模块结构重构产生死链；体检稽核是闭环兜底。完整词表与字段语义见 [`$KB_DIR/SPEC.md` §8](../../../SPEC.md)。
 
-> v1（全文件关键词匹配）误报率极高：G4 要求的页脚"相关章节"兄弟互链天然不在正文重复关键词，2026-08-25 体检命中 1005 处绝大多数是合规导航。v2 四步降噪：**① 切掉代码块 ② 排除表格行（导航表）③ 页脚截断**（`← 返回` / `相关章节/交叉引用/系列导航/反向链` 标题之后）④ **排除祖先回链**（`../README.md` 式返回父级）；关键词检查在**含链接文本的正文**里做（链接文本提到主题 = 强关联）。实测从 1005 噪声降到 382 条基本可执行的跨模块引用候选。
+**关联强度扫描脚本**（Phase 1.13 v2 正文内链版，外置同目录 `scripts/weak-link-scan.py`）：
 
-```bash
-# 用法（外置脚本，2026-09-23 落盘）：
-python scripts/weak-link-scan.py --dir "$KB_DIR" --output .health-tmp/weak-link-<date>.txt
-# 可选：限定模块 / 排除目录 / 输出报告
-python scripts/weak-link-scan.py --dir 09.ai-applications --exclude-dir .health-tmp .git scripts
-```
-
-> 四步降噪 + H1 关键词检查详见脚本 docstring。风格基线 `scripts/check-broken-links.py`。
-
-**关联强度输出**：
-- 弱关联列表 → 报告 P2 项 + 推荐"删除或补语义描述"（正文补一句目标主题与本文的关系）
-- 不输出"强关联"（避免噪音）
-- **页脚/表格内的导航互链永不判弱关联**——它们是 G4 互链要求的合规载体，语义关联由正文承载
-- 历史案例：2026-08-20 file-upload 双层 → product-search（弱关联 0 命中），已修复
+> 完整四步降噪（切代码块 / 排除表格 / 页脚截断 / 排除祖先回链）+ H1 关键词检查详见 [`scripts/weak-link-scan.py`](scripts/weak-link-scan.py) docstring。风格基线 `scripts/check-broken-links.py`。
+>
+> 用法：
+>
+> ```bash
+> python scripts/weak-link-scan.py --dir "$KB_DIR" --output "$KB_DIR/.health-tmp/weak-link-<date>.txt"
+> ```
+>
+> 输出：弱关联列表 → 报告 P2 项 + 推荐「删除或补语义描述」；不输出"强关联"（避免噪音）；**页脚/表格内的导航互链永不判弱关联**——它们是 G4 互链要求的合规载体，语义关联由正文承载。
 
 ### Phase 2 — Leaf 质量 fan-out
 
@@ -199,76 +234,37 @@ find "$KB_DIR" -name "*.md" | python -c "import sys,os; [print(l.strip()) for l 
 
 把结构 findings（Phase 1）+ 质量 findings（Phase 2/3）合并成统一报告，写到 `.health-tmp/report-<date>.md`。详见下文「Output Format」。
 
-### Phase 5 — 修复后验证（2026-07-27 新增）
+### Phase 5 — 修复后验证
 
-> 执行 Batch 1+ 修复后必跑，确保修复实际落地而非"报告完成但 git 没 commit"。
-
-**标准化验证流程**：
-
-1. **commit 落地确认**：
-   ```bash
-   git log --oneline -N   # N = 本轮 commit 数，确认每条 commit 都有真实 hash
-   ```
-
-2. **工作树干净**：
-   ```bash
-   git status --short     # 应输出空（无 unstaged/untracked）
-   ```
-
-3. **内容质量达标**：
-   ```bash
-   wc -l FILE             # 扩充后文件行数 ≥ 目标值（如 ≥ 300 行）
-   ```
-
-4. **无新断链**：
-   ```bash
-   # 对本轮修改的每个文件跑 broken links 扫描
-   python << 'PYEOF'
-   import sys, os, re, glob
-   if sys.platform == 'win32':
-       try: sys.stdout.reconfigure(encoding='utf-8')
-       except: pass
-   LINK_RE = re.compile(r'(?<![|\[])\[([^\]]*)\]\((?!https?://)(?!mailto:)(?!#)([^)#\s]+?\.md)(?:#[^)]*)?\)')
-   for f in <本轮修改的文件列表>:
-       c = open(f, encoding='utf-8', errors='ignore').read()
-       for m in LINK_RE.finditer(c):
-           target_abs = os.path.normpath(os.path.join(os.path.dirname(f), m.group(2).replace('/', os.sep)))
-           if not os.path.isfile(target_abs):
-               print(f'  ⚠ {f} -> {m.group(2)}')
-   PYEOF
-   ```
-
-### Phase 6 — 5 维评分（→ references/5-dim-rubric.md）
-
-> 🆕 **v2.0 重构（2026-09-26）**：Phase 6 详细 5 维度定义 / 阈值 / 实战教训
-> 已抽到 `references/5-dim-rubric.md`。
+> 完整验证协议（commit 落地 / 工作树干净 / 内容质量 / 无新断链 + author 一致性 + subagent 收尾 commit）见 [`$KB_DIR/.claude/ORCHESTRATION.md` §1-§2](../../ORCHESTRATION.md)。本节只列简版步骤与失败处置。
 >
-> **何时读**：用户问"X 题是否过于简单" / "split-hairs 哪些该迁出"时必读。
+> **简版步骤**（执行 Batch 1+ 修复后必跑，确保修复实际落地而非"报告完成但 git 没 commit"）：
 >
-> **简版入口**：
-> - 5 维度：D1 深度 / D2 广度 / D3 频次 / D4 追问空间 / D5 反直觉
-> - 阈值：≥ 7 保留 / 4-6 灰色 / ≤ 3 迁出
-> - 与 difficulty 校准衔接：5 维总分 → 星级建议
-> - 4 个实战教训：标题预筛 false positive 70% / difficulty 偏乐观 / 分批 dispatch / 灰色地带处置
-> - 完整内容见 references/5-dim-rubric.md
-
-### Phase 7 — 拆分检测（→ references/split-detection.md）
-
-> 🆕 **v2.0 重构（2026-09-26）**：Phase 7 判定标准 / 拆分后规则 / 验证标准
-> 已抽到 `references/split-detection.md`。
+> 1. **commit 落地确认**：`git log --oneline -N` 确认本轮每条修复 commit 都有真实 hash
+> 2. **工作树干净**：`git status --short` 应输出空
+> 3. **内容质量达标**：`wc -l FILE` 扩充后文件行数 ≥ 目标值
+> 4. **无新断链**：对修改文件跑 `python .github/workflows/scripts/check-broken-links.py <file>` 校验
+> 5. **author 验证**：`git log -1 --format="%an <%ae>" -- FILE` 输出必含主账号（`吴博 <wubo_aaa@163.com>`）
 >
-> **何时读**：体检发现文件覆盖 ≥ 3 个互不相关子主题 / 标题宽泛 / 违反单点定位时必读。
+> **失败处置**：
 >
-> **简版入口**：
-> - 判定信号：覆盖 ≥ 3 互不相关子主题 / 标题宽泛 / 子主题各自合格但合并违反
-> - 拆分后：每个子主题 → 独立 README.md + frontmatter
-> - 验证：commit hash / git status / 行数 / broken links
-> - 完整内容见 references/split-detection.md
+> - commit hash 缺失 → 立即补 commit
+> - 工作树有未提交修改 → 决定 commit 或 discard
+> - author 错误 → 用 ORCHESTRATION §1 给出的 rebase 修正
+> - broken links → 立即修复，不要累积
+> - subagent 报告完成但 `git log` 无新 commit → 立即 abort + 收尾 commit（**不信任 subagent 自我报告**）
 
-**验证失败处理**：
-- commit hash 缺失 → 立即补 commit
-- 工作树有未提交修改 → 决定是否 commit 或 discard
-- broken links → 立即修复，不要累积
+### Phase 6 — 5 维评分
+
+> 5 维度（D1 深度 / D2 广度 / D3 频次 / D4 追问空间 / D5 反直觉）定义、阈值（≥ 7 保留 / 4-6 灰色 / ≤ 3 迁出）、与 difficulty 校准衔接、4 个实战教训（标题预筛 false positive 70% / difficulty 偏乐观 / 分批 dispatch / 灰色地带处置），**详见 [`references/5-dim-rubric.md`](references/5-dim-rubric.md)**。
+>
+> 何时读：用户问"X 题是否过于简单" / "split-hairs 哪些该迁出"时必读。
+
+### Phase 7 — 拆分检测
+
+> 判定信号（覆盖 ≥ 3 互不相关子主题 / 标题宽泛 / 子主题各自合格但合并违反）、拆分后规则（每个子主题 → 独立 README.md + frontmatter）、验证标准（commit hash / git status / 行数 / broken links），**详见 [`references/split-detection.md`](references/split-detection.md)**。
+>
+> 何时读：体检发现文件覆盖 ≥ 3 个互不相关子主题 / 标题宽泛 / 违反单点定位时必读。
 
 ## Output Format（统一报告骨架）
 
@@ -284,7 +280,7 @@ find "$KB_DIR" -name "*.md" | python -c "import sys,os; [print(l.strip()) for l 
 | P1 | 判断 | 应修，需重写 | 系列不完整、断章 |
 | P2 | 机械 | 可修 | dead image 引用、过期链接 |
 | P2 | 判断 | 可修 | 内容深度不够、可读性差 |
-| P3 | 任意 | 锦上添花 | 亮点保留 / 未来沉淀方向 |
+| P3 | 任意 | 锦上添花 | 亮点保留 / 未来沉淀方向 / 准入判定误归类 / §8 词表死链 |
 
 **分批执行计划表**（按 commit 批次组织）：
 
@@ -305,20 +301,20 @@ Batch 5 (P3 / 亮点): 不动或单列
 
 列出不该改的优秀片段，作为后续沉淀的范例。
 
-## Phase 8 — 链接完整性强制校验（2026-09-02 新增）
+## Phase 8 — 链接完整性强制校验
 
 > **触发条件**：任何"全库"或"单模块"scope 的体检，**Phase 1 启动前必跑**。
-
-**目的**：Session 6 教训：230 处断链批量修复后，体检必须**第一闸**就是链接完整性，避免"subagent 自己写扫描脚本"导致扫描口径漂移。
+>
+> **目的**：避免"subagent 自己写扫描脚本"导致扫描口径漂移——**统一入口是 [`check-broken-links.py`](../../../workflows/scripts/check-broken-links.py)**，subagent 不应自创扫描脚本。
 
 **执行命令**：
 
 ```bash
 # 全库扫描
-python scripts/check-broken-links.py
+python "$KB_DIR/.github/workflows/scripts/check-broken-links.py"
 
 # 或单模块
-python scripts/check-broken-links.py --module 09.ai-applications
+python "$KB_DIR/.github/workflows/scripts/check-broken-links.py" --module 09.ai-applications
 ```
 
 **接受标准**：
@@ -337,25 +333,22 @@ python scripts/check-broken-links.py --module 09.ai-applications
 | 单模块扫描 | 把断链列入 Phase 4 P0 必修项，与 Phase 2 评分同步修复 |
 | 边界 case（如 README 同目录）| 标 `[同目录-边缘]`，人工二次确认 |
 
-**与 §3.5 note-knowledge-qa 的区别**：
-
-| 维度 | note-health §3.5 | note-knowledge-qa §3.5 |
-|------|:---:|:---:|
-| 时机 | 体检时（结构维度）| 检索时（QA 维度）|
-| 范围 | 全库扫描 | 单次检索的目标文件 |
-| 失败处置 | Phase 1 拒绝启动 | 在回答里标注"路径待修复" |
-| 触发者 | orchestrator 跑体检 | 用户提问时检索 |
-
-**反直觉 5**："subagent 自己写的扫描脚本更灵活" —— 灵活 ≠ 一致。Session 6 教训：subagent 自己写了 `scan-broken-links.py`，但口径与 Phase 1.6 略有差异，导致需要二次校验。**统一入口是 check-broken-links.py**，subagent 不应自创扫描脚本。
+> **与 note-knowledge-qa §3.5 的区别**：体检时（结构维度，全库扫描，失败时 Phase 1 拒绝启动） vs 检索时（QA 维度，单次检索的目标文件，失败时在回答里标注"路径待修复"）。
+>
+> **反直觉 5**："subagent 自己写的扫描脚本更灵活" —— 灵活 ≠ 一致。Session 6 教训：subagent 自己写了 `scan-broken-links.py`，但口径与 Phase 1.6 略有差异，导致需要二次校验。
 
 ## Common Mistakes
 
 **不重复正文，写指针**：
-- **结构类**问题（frontmatter、orphan、孤链、目录结构）：见 `references/structural-checks.md`。
-- **内容类**问题（深度、可读性、系列完整性）：见 `references/leaf-quality.md`。
-- **新文件结构基线**（10 段模板 + 快改/深耕模式）：见 `references/new-file-baseline.md`。
 
-执行本 skill 时遇到常见错误模式先查 references，再决定是否纳入 P0/P1。
+- **结构类**问题（frontmatter、orphan、孤链、目录结构）：见 [`references/structural-checks.md`](references/structural-checks.md)。
+- **内容类**问题（深度、可读性、系列完整性）：见 [`references/leaf-quality.md`](references/leaf-quality.md)。
+- **新文件结构基线**（10 段模板 + 快改/深耕模式）：见 [`references/new-file-baseline.md`](references/new-file-baseline.md)。
+- **5 维评分 / 拆分检测 / 弱关联算法 / 主模块深度 / difficulty 校准**：见 [`references/5-dim-rubric.md`](references/5-dim-rubric.md) / [`split-detection.md`](references/split-detection.md) / [`scripts/weak-link-scan.py`](scripts/weak-link-scan.py) / [`main-module-depth.md`](references/main-module-depth.md) / [`difficulty-calibration.md`](references/difficulty-calibration.md)。
+- **操作层协议**（subagent / git / peer session）：见 [`$KB_DIR/.claude/ORCHESTRATION.md`](../../ORCHESTRATION.md)。
+- **模块专属规则**（如 12.interview 准入判定）：见对应 `<module>/SPEC.md`。
+
+执行本 skill 时遇到常见错误模式先查 references / `<module>/SPEC.md` / ORCHESTRATION，再决定是否纳入 P0/P1。
 
 ## Real-World Impact
 
@@ -367,12 +360,12 @@ python scripts/check-broken-links.py --module 09.ai-applications
 | 全库（leaf > 1000） | 触发 Phase 0.1 策略询问，默认 A 采样 | ~300k tokens，1-2 小时 |
 | 全库穷举（B 选项） | Phase 1-7 全跑 + Workflow fan-out | ~3M tokens，4-6 小时（release 前审计） |
 
-**典型用户场景 + 预期产出**：
+**典型用户场景 + 预期产出**（不绑具体模块路径；模块名由 KB 运行时 `find` 决定）：
 
-- "扫一遍 note" → 全库体检 → P0-P3 分批报告 + 逐篇评分表
-- "评价 11.ai/RAG/README.md" → 单篇质量验收 → 评分 + findings
+- "扫一遍 KB 看看哪里要优化" → 全库体检 → P0-P3 分批报告 + 逐篇评分表
+- "评价某模块/某篇/README.md 这篇质量怎么样" → 单篇质量验收 → 评分 + findings
 - "这篇新写的 README 看看" → 新文件基线 → 7 必选 + 3 可选结构检查
-- "note 哪里要优化" → 体检 → 同上
+- "KB 哪里要优化" → 体检 → 同上
 
 **避免的失败**：
 
@@ -386,7 +379,7 @@ python scripts/check-broken-links.py --module 09.ai-applications
 - [ ] 确认 scope（单篇 / 单模块 / 全库），全库 > 1000 leaf 时走 Phase 0.1 策略询问
 - [ ] 单篇质量评分先读 `references/new-file-baseline.md` 拿结构基线
 - [ ] Phase 1 结构扫描结果落 `$KB_DIR/.health-tmp/scan-1-<date>.txt`（保留可复查证据）
-- [ ] Phase 8 链接校验单独跑：`python .github/workflows/scripts/check-broken-links.py`
+- [ ] Phase 8 链接校验单独跑：`python $KB_DIR/.github/workflows/scripts/check-broken-links.py`
 - [ ] 输出报告含「策略选择：<选项>」一行（事后可验证）
 
 **执行后验证**：
@@ -400,21 +393,22 @@ python scripts/check-broken-links.py --module 09.ai-applications
 
 ```
 # 全库体检（leaf ≤ 1000）
-"扫一遍 note 看看哪里要优化"
+"扫一遍 KB 看看哪里要优化"
 → Phase 0: 全库（leaf ≤ 1000），直接走采样
 → Phase 1: 跑 structural-checks.md 扫描，结果落 $KB_DIR/.health-tmp/scan-1-<date>.txt
+→ Phase 1.14 + 1.15: 准入判定扫描 + §8 词表稽核（只标记 P3，不动手）
 → Phase 2: find + python 枚举 leaf，调 health-workflow.js（args.files=...，batchSize=6）
 → Phase 3: 上卷
 → Phase 4: 写 $KB_DIR/.health-tmp/report-<date>.md，header 含「策略选择：A 采样」
 
 # 全库体检（leaf > 1000）
-"扫一遍 note 看看哪里要优化"
+"扫一遍 KB 看看哪里要优化"
 → Phase 0: 全库（leaf > 1000），触发 Phase 0.1 策略询问
 → AskUserQuestion: 用户选 A/B/C（默认 A）
 → Phase 1-4 同上，header 含「策略选择：<选项>」
 
 # 单篇质量验收
-"评价 11.ai/RAG/README.md 这篇质量怎么样"
+"评价某模块/某篇/README.md 这篇质量怎么样"
 → Phase 0: 单篇
 → Phase 2: 直接 Read + leaf-quality.md 打分，不开 workflow
 → 直接在对话里给评分表 + findings
