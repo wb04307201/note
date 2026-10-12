@@ -2,7 +2,7 @@
 question:
   id: 03.database-time-types
   topic: 03.database
-  difficulty: ⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MySQL, time]

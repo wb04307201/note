@@ -2,7 +2,7 @@
 question:
   id: 03.database-deadlock
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 线上排查
   tags: [03.database, 死锁, deadlock, InnoDB, MySQL, 排查, 间隙锁]

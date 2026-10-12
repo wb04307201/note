@@ -2,7 +2,7 @@
 question:
   id: 03.database-redis-distributed-lock
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 面试追问陷阱
   tags: [03.database, redis, distributed-lock, redisson, watchdog]

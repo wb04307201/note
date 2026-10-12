@@ -2,7 +2,7 @@
 question:
   id: 03.database-redis-cluster
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [03.database, Redis, redis]

@@ -2,7 +2,7 @@
 question:
   id: 03.database-composite-index-filesort
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 索引优化
   tags: [03.database, 联合索引, filesort, EXPLAIN, 索引优化, ORDER BY]
