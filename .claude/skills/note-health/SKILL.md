@@ -162,6 +162,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 | **1.14 准入判定扫描** | [`SPEC.md §1.5`](../../../SPEC.md)（`type=interview`）+ 该模块 `<module>/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
 | **1.15 关键词映射表稽核** | `SPEC.md §8` | 本节下方 |
 | **1.16 status_inventory（v3.x 新增）** | `SPEC.md §4` | 本节下方 + references/structural-checks.md §10 |
+| **1.17 keyword_mapping_coverage（v3.x 候选 3）** | `SPEC.md §4 tags:` + `§8`（双向 bridge） | 本节下方 + references/keyword-mapping-audit.md |
 
 **所有大输出重定向到文件**（`> "$KB_DIR/.health-tmp/scan-<phase>-<date>.txt"`），不堆进对话。Phase 1 不调 workflow。
 
@@ -202,6 +203,21 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 > - 借 KB 路径（不熟手 `git config core.hooksPath`）直接 review 时发现 status:missing
 > - 跨设备 / CI 环境统一检查（pre-commit hook 不一定每台机器都装）
 > 详见 [`SPEC.md §4`](../../../SPEC.md) schema 定义 + `references/structural-checks.md` §10（待补）
+
+> **🆕 2026-10-12 v3.x 候选 3**：Phase 1.17 `keyword_mapping_coverage` —— 双向 bridge 体检：
+>
+> 1. **扫 KB 所有 frontmatter `tags:`**（YAML 列表形式，正则提取）
+> 2. **扫 `$KB_DIR/SPEC.md §8` 词表**（行表 + 子表 §8.3.1-5）
+> 3. **差异报告**：
+>    - `tags` 中有但 §8 没有 → **新词未登记**（P3，提醒 Phase 6.10 触发）
+>    - `§8` 中有但 `tags` 没有 → **词条未回流**（P2，建议 README 全文补 tags）
+>    - 完全一致 → PASS
+> 4. **同步范围**：仅 tag 主题词字符串，不验证路径（路径审计是 Phase 1.15）
+>
+> 实施细节：扫描走 [`scripts/keyword-mapping-audit.py`](../../../scripts/keyword-mapping-audit.md)（新增）；不主动改文件，只报告。
+>
+> **为何需要**：write-time 同步（Phase 6.10）兜底 + 长期漂移检测（tags 与 §8 双向健康度）。
+> 详见 [`SPEC.md §4 tags 双向 bridge`](../../../SPEC.md) + `references/structural-checks.md` §11（待补）
 
 **关联强度扫描脚本**（Phase 1.13 v2 正文内链版，外置同目录 `scripts/weak-link-scan.py`）：
 
