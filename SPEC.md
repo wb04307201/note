@@ -109,3 +109,105 @@ docs: 文档
 仅含评估维度的模块（如 01–11 大多数）**不需要** L1.5。
 
 **当前存在的 L1.5**：**无**（v2.1 起，12.interview 原 `QUESTION-FORMAT-SPEC.md` 与 13.story 原 `STORY-FORMAT-SPEC.md` 均合并入各自主 L1 的 §4 / §5 — L1.5 是否独立存在应按模块规模与读者重合度判定）。
+
+---
+
+### 8. 新词检索映射表（Keywords Mapping · 2026-10-12 通用化重构新增）
+
+> **本表是 KB 内的「主题词 → 路径」快速定位索引**——由 `note-knowledge-qa` skill 在 Phase 2 关键词提取时主读，`note-precipitation-planning` Phase 6 在沉淀新主题后顺手加 1 行，`note-health` Phase 1.15 自动稽核死链并报警。
+
+#### 8.1 使用说明
+
+- 任何 KB 借用 3 个 meta-skill 时，**应填充本表**（至少 5-10 条核心词）。
+- 3 skill 通过 `$KB_DIR/SPEC.md §8` 自动读取，**不修改 skill 主体即可生效**。
+- 主题词-路径映射是新词检索的**前置索引**，**不能取代** Phase 2 的正文 grep + 关联追踪——只做「快速定位」。
+
+#### 8.2 词条格式
+
+```text
+| 主题词 | 主模块路径 | 12.interview 路径 | 出现频次 |
+|--------|-----------|-------------------|---------|
+| <词>   | <module>/... 或 `-` | <interview>/... 或 `-` | <N> |
+```
+
+字段语义：
+
+- **主题词**：用户问句中**最可能命中**的关键词（首选中文 + 英文并列）
+- **主模块路径**：深度原理 KB 路径（`-` 表示该主题暂无主模块，但有面试版）
+- **12.interview 路径**：面试题 KB 路径（`-` 表示无面试版；`(聚合)` 表示聚合在父条目的面试版）
+- **出现频次**：手动维护（问答时命中次数，用于 Phase 2 主题词排序），初始 = `-`
+
+#### 8.3 note KB 词条（2026-10-12 重构抽取 · 原 50+ 新词映射表精简）
+
+> 原 50+ 词表写于 2026-07-14，经历多次目录重构（`02-technology-stack/*` → `llm-inference/*`，`07-research/alignment` → `fine-tuning/0N-*.md`）。本节为 2026-10-12 重构时**精简版**（移除已失效词 + 聚合条目；保留 active 词 ~35 条）。
+
+##### 8.3.1 LLM 架构层（1 词）
+
+| 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
+|--------|-----------|-------------------|------|
+| Transformer | - | `12.interview/11.ai/transformer` | - |
+| Flash Attention | `09.ai-applications/llm-inference/flash-attention` | 聚合 | - |
+
+##### 8.3.2 LLM 推理优化（10 词）
+
+| 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
+|--------|-----------|-------------------|------|
+| KV Cache | `09.ai-applications/llm-inference/kv-cache` | `12.interview/11.ai/llm-inference` | - |
+| PagedAttention | `09.ai-applications/llm-inference/paged-attention` | 聚合 | - |
+| Continuous Batching | `09.ai-applications/llm-inference/continuous-batching` | 聚合 | - |
+| Speculative Decoding | `09.ai-applications/llm-inference/speculative-decoding` | 聚合 | - |
+| 权重量化 | `09.ai-applications/llm-inference/weight-quantization` | 聚合 | - |
+| MoE 推理 | `09.ai-applications/llm-inference/moe-inference` | 聚合 | - |
+| 推理性能指标 (TTFT/TPOT) | `09.ai-applications/llm-inference/inference-metrics` | 聚合 | - |
+| 推理框架对比 | `09.ai-applications/llm-inference/inference-frameworks` | 聚合 | - |
+| LLM 推理优化大专题 | `09.ai-applications/llm-inference/llm-inference-optimization` | `12.interview/11.ai/llm-inference` | - |
+| vLLM / TGI / SGLang | `09.ai-applications/llm-inference/inference-frameworks` | - | - |
+
+##### 8.3.3 LLM 训练与对齐（5 主词 · 聚合 8 词）
+
+> 原表 8 词 → 精简为 5 主词（RLHF/PPO/Reward Model 聚合；newer-methods 聚合 ORPO/RFT）
+
+| 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
+|--------|-----------|-------------------|------|
+| SFT | `09.ai-applications/fine-tuning/01-sft.md` | `12.interview/11.ai/llm-alignment` | - |
+| RLHF（含 PPO/Reward Model） | `09.ai-applications/fine-tuning/02-rlhf.md` | 聚合 | - |
+| DPO | `09.ai-applications/fine-tuning/03-dpo.md` | 聚合 | - |
+| Constitutional AI | `09.ai-applications/fine-tuning/04-constitutional-ai.md` | 聚合 | - |
+| KTO / IPO / SimPO（含 ORPO/RFT） | `09.ai-applications/fine-tuning/05-newer-methods.md` | 聚合 | - |
+
+##### 8.3.4 LLM 应用层（9 主词）
+
+| 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
+|--------|-----------|-------------------|------|
+| Lost In the Middle | `09.ai-applications/rag/lost-in-middle` | 聚合 | - |
+| Chunking 策略 | `09.ai-applications/rag/chunking-strategies` | 聚合 | - |
+| Embedding 模型 | `09.ai-applications/rag/embedding-models` | 聚合 | - |
+| Hybrid Search | `09.ai-applications/rag/hybrid-search` | 聚合 | - |
+| Reranker | `09.ai-applications/rag/reranker` | 聚合 | - |
+| Query Rewrite | `09.ai-applications/rag/query-rewrite` | - | - |
+| RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - | - |
+| RAG 评估（含 RAGAS/TruLens） | `09.ai-applications/rag/04-evaluation.md` | - | - |
+
+##### 8.3.5 传统 ML 算法（8 主词 · 含 1 纯面试版）
+
+| 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
+|--------|-----------|-------------------|------|
+| K-means | `02.cs-foundations/01-algorithms/clustering/k-means` | `12.interview/02.computer-basics/machine-learning` | - |
+| 梯度下降 | `02.cs-foundations/01-algorithms/optimization/gradient-descent` | 聚合 | - |
+| PCA | `02.cs-foundations/01-algorithms/dimensionality-reduction/pca` | 聚合 | - |
+| 分支界限 | `02.cs-foundations/01-algorithms/search/branch-and-bound` | - | - |
+| ID3 / C4.5 / CART | `02.cs-foundations/01-algorithms/decision-tree` | 聚合 | - |
+| Random Forest | `02.cs-foundations/01-algorithms/ensemble` | - | - |
+| XGBoost / LightGBM | `02.cs-foundations/01-algorithms/ensemble` | - | - |
+| 集成学习 | `02.cs-foundations/01-algorithms/ensemble` | - | - |
+| ML 面试（含评估指标 F1/AUC） | - | `12.interview/02.computer-basics/machine-learning` | - |
+
+#### 8.4 自动维护协议（3 skill 协同）
+
+| 角色 | Skill | 时机 | 动作 |
+|------|-------|------|------|
+| **读取** | `note-knowledge-qa` | Phase 2 关键词提取 | 读 §8 做问句 → 主题词匹配；命中表内主题词 → 直接定位到主模块/12.interview 路径 |
+| **写入** | `note-precipitation-planning` | Phase 6 沉淀新主题后 | 在 §8 末尾加 1 行（频次 = `-`）；**不强制**，由 subagent 报告「主题词有意义」时触发 |
+| **稽核** | `note-health` | Phase 1.15 全库扫描 | 扫 §8 所有路径是否真实存在；不存在的标 P3 misplaced-warning，**不动手修复**（按用户决策走 Phase 6 沉淀流程）|
+
+> ⚠ **本表是「前置索引」而非「权威路径」**——路径失效时 (`./xx/README.md` 不存在)，答案应转去正文 grep 而非报错。体检告警仅供维护者参考。
