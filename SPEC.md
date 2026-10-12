@@ -91,9 +91,22 @@ docs: 文档
 
 | 类型 | 用途 | 字段示例 | L1 详细定义 |
 |---|---|---|---|
-| `module:` | 通用知识文章（810+ 篇） | parent, slug, type, category, summary | 默认 |
-| `question:` | 12.interview 各题（≈230 题） | id, topic, difficulty, frequency, scenario_type, tags | `12.interview/SPEC.md §4` |
-| `story:` | 13.story 阿明餐厅系列（≈50 篇） | number, type, position, title, audience, depth | `13.story/SPEC.md §4` |
+| `module:` | 通用知识文章（810+ 篇） | parent, slug, type, **status**, category, summary | 默认 |
+| `question:` | 12.interview 各题（≈230 题） | id, topic, **status**, difficulty, frequency, scenario_type, tags | `12.interview/SPEC.md §4` |
+| `story:` | 13.story 阿明餐厅系列（≈50 篇） | number, type, position, title, **status**, audience, depth | `13.story/SPEC.md §4` |
+
+**`status:` 字段（必填 · 2026-10-12 v3.x 新增 · 候选 5）**：
+
+| 值 | 语义 | 体检行为 | 父 README 题数 |
+|----|------|---------|---------:|
+| `draft` | 未完稿，未发布 | 不计入题数 | × |
+| `active` | 默认已发布 | 计入题数 | ✓ |
+| `deprecated` | 已迁移，旧文件保留 + 跳转说明（`deprecated_note:` 字段） | 不计入题数；保留文件 | × |
+| `orphaned` | 主模块已删除但反向链还指向 | 报警 + 列出 | × |
+
+- **强制显式**：缺失 `status:` 字段 → pre-commit hook 报警 + `note-health` Phase 1.16 体检 P3
+- **字段顺序**：`status:` 应在 `parent/slug/type` 后、`tags/category/summary` 前
+- **deprecated 跳转**：`status: deprecated` 必须配 `deprecated_note:` 字段（指向新位置）
 
 **module: 默认示例**（其他类型必填字段见 L1）：
 
@@ -102,8 +115,10 @@ docs: 文档
   parent: <module-slug>
   slug: <article-slug>
   type: article | atomic | moc
+  status: draft | active | deprecated | orphaned    ← 必填
   category: ...
   summary: ...
+  deprecated_note: -> [新位置](新路径)              ← 仅 status: deprecated 时必填
 -->
 ```
 
