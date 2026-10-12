@@ -509,7 +509,7 @@ fi
 
 1. **主对话校验** subagent 报告 —— 确认新文件路径 + frontmatter + commit hash（ORCHESTRATION.md §1）
 2. **关键词提取** —— 从新文件 H1 / 关键词 / frontmatter tags 提取 1-3 个核心词
-3. **路径定位** —— 复用 Phase 3 决策（主模块 + 12.interview 路径）
+3. **路径定位** —— 复用 Phase 3 决策（主模块 + `<type=interview 模块>/` 路径，由 `SPEC.md §1.5` 自动发现）
 4. **写 §8** —— 在 `$KB_DIR/SPEC.md §8.X.Y` 对应分区末尾加 1 行（5 字段：主题词 / 主模块路径 / 12.interview 路径 / 频次 `-`）
 5. **同 commit 内** —— 主题词词条 + Phase 6 commit 合并为同一 commit（避免拆出独立 commit）
 6. **跳过条件** —— subagent 报告主题不明确 / 工具配置类不入 12.interview / 主题已存在
