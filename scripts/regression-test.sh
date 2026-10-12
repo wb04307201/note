@@ -16,8 +16,22 @@
 set -e
 
 N=${1:-5}
-KB_DIR="${KB_DIR:-$(git rev-parse --show-toplevel)}"
+# 优先用 $KB_DIR, 否则 git top-level, 否则 CWD
+if [ -n "$KB_DIR" ]; then
+  : # use as-is
+elif KB_DIR_GIT=$(git rev-parse --show-toplevel 2>/dev/null); then
+  KB_DIR="$KB_DIR_GIT"
+else
+  KB_DIR="$(pwd)"
+fi
 cd "$KB_DIR"
+
+# 非 git 仓库友好跳过
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "[regression-test] KB_DIR ($KB_DIR) 不是 git 仓库, 跳过 (该测试需 git log)"
+  echo "  提示: regression-test.sh 仅对 git 仓库有效; 借 KB(非 git)请用 keyword-mapping-audit.py + frontmatter-batch-status.py"
+  exit 0
+fi
 
 CHECK_SCRIPT=".github/workflows/scripts/check-broken-links.py"
 
