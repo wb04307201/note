@@ -38,51 +38,22 @@ description: Use when user wants to modify or extend the knowledge base — 新�
 3. **父 README / 总目录 → 新文件**：父目录 README / 总目录表 必须添加新文件链接（避免"父不知道有新成员")
 4. **系列内兄弟互链**：当向已有系列添加新文章时，新文件**必须链向系列内所有已有兄弟**，且**所有已有兄弟必须回链新文件**（避免"同系列但互不知道"）
 
-> **反直觉 1**：很多人以为"我加了反向链接就完事" —— 但**总目录扫描**经常漏掉。新文件链接了 09.ai-applications/README.md，但 09.ai-applications/README.md 没在目录表里加新文件 → **总目录是孤岛**。
+> **反直觉 1**：很多人以为"我加了反向链接就完事" —— 但**总目录扫描**经常漏掉。新文件链接了主模块 README，但主模块 README 没在目录表里加新文件 → **总目录是孤岛**。
 >
-> **反直觉 2**：Mistake 9 覆盖了 parent ↔ child 的反向链，但**同系列兄弟**之间是另一个维度。例如 agent-execution-patterns 有 01-react / 02-plan-execute，但 01 和 02 的文件末尾**没有链向** 03 和 04 —— 它们只链回 README。正确做法：每篇文件末尾加"系列导航表"，链向系列内所有其他文件。
+> **反直觉 2**：Mistake 9 覆盖了 parent ↔ child 的反向链，但**同系列兄弟**之间是另一个维度。例如某系列有 01 / 02 文件，但 01 和 02 的文件末尾**没有链向** 03 和 04 —— 它们只链回 README。正确做法：每篇文件末尾加"系列导航表"，链向系列内所有其他文件。
 
 ## Overview
 
-当用户问"这个主题应该新增/更新到 note 的什么位置"时，遵循 8 步流程输出沉淀方案。本知识库（仓库根）是 13 主模块的体系化技术知识库，含 11 个技术主模块（`01.java-and-jvm` ~ `11.product-and-pm`）+ `12.interview` 面试题主模块 + `13.story` 阿明餐厅叙事主模块，每个主模块有 README + 子目录 + 已建立的双层/三层沉淀模式（12.interview 面试题 + 08.ai-foundations/09.ai-applications 深度原理 + 13.story 餐厅叙事）。
+当用户问"这个主题应该新增/更新到 KB 的什么位置"时，遵循 8 步流程输出沉淀方案（Phase 0-7）。
 
-> 🆕 **Phase 0 新增（2026-07-26 教训）**：用户输入可能是**多个主题**（如"大模型思维工程 5 个灵魂拷问"实际包含 5 个独立子主题）。Phase 0 在盘点前先识别并拆分多主题，避免把 N 个独立主题错误合并成一个文件。历史案例：`production-thinking-5q` 把思维范式/成本控制/一致性/超时熔断/监控 5 个独立主题合成一个 419 行文件，后续不得不全部拆散。
+> **模块结构与主题词映射**：13 主模块列表、12 强骨架栏目、子目录命名、常见主题词 → 路径的快速定位索引见 `$KB_DIR/SPEC.md §1`（L0 主模块规范）与 `$KB_DIR/SPEC.md §8`（关键词检索映射表）。本 skill 运行时通过 `find "$KB_DIR" -maxdepth 1 -type d` + `cat $KB_DIR/<module>/README.md` 读取模块列表，不硬编码路径。
 
-> 🆕 **Phase 0 强化（2026-08-10 教训）**：**多主题拆分**判定信号——当用户输入主题**包含 ≥3 个互不相关子题**且每个子题都合格，**单文件综述违反 split-hairs 单点深挖定位**。判定 checklist：
+> 🆕 **Phase 0 强化**：用户输入可能是**多个主题**（如"X 5 个灵魂拷问"实际包含 5 个独立子主题）。Phase 0 在盘点前先识别并拆分多主题，避免把 N 个独立主题错误合并成一个文件。
+>
+> **多主题拆分判定信号**（任一为 Yes → 拆分为多个 single-topic 文件）：
 > - [ ] 文件覆盖 ≥3 个互不相关子主题？（"X 是什么"、"X 6 大"、"X 综述" 类标题）
 > - [ ] 每个子主题都有自己的 30s/90s 话术？（合并文件通常每节都有完整话术模板）
 > - [ ] 任一项 Yes → 拆分为多个 single-topic 文件，每个子题独立 frontmatter
->
-> 历史案例：`12.interview/02.computer-basics/machine-learning/README.md` 把 K-means / 决策树 / 梯度下降 / PCA / Boosting / 评估指标 6 大算法合成一个 126 行综述，每个算法都有完整 30s/90s 话术。已拆分为 6 个 single-topic deep-dive（每篇 146-293 行）。
-
-## Quick Example
-
-```
-用户：我想加 "Claude Code Skills" 章节，怎么沉淀？
-   ↓
-skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置决策 → Phase 4 方式 → Phase 5 选项
-   ↓
-输出（节选）：
-  ## 📋 现状盘点
-  - $KB_DIR/07.devops-and-tools/claude-code.md：已有但只覆盖 CLI 命令
-  - $KB_DIR/08.ai-foundations/03-engineering/agent-frameworks/：相邻分类
-  - 已有 3 篇 SPL（single page lesson）：SPL-2024-089/-091/-101
-
-  ## 🎯 深度评估（3 信号）
-  - 高频：✅ 多家公司在用（Anthropic 官方推）
-  - 内容深：✅ ≥4 层面（架构/SKILL.md 协议/工具生态/实战）
-  - 缺口真实：✅ note 当前只覆盖用法，未覆盖 SKILL.md 协议本身
-
-  ## 💡 位置 + 方式
-  - 推荐：双层 + 09.ai-applications 联动（推荐项 A）
-
-  ## ❓ 选项
-  A. 双层沉淀 + Claude Code 协议层深度（推荐）→ 3 commit
-  B. 只动 Skills 协议专题（最小改动）→ 1 commit
-  C. 暂不沉淀
-
-不同点：不直接动手 — 先盘点 + 给 2-4 选项让用户决策
-```
 
 ## When to Use
 
@@ -99,29 +70,25 @@ skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置�
 
 ## Project Context（必读）
 
-**知识库位置**：仓库根目录（内容平铺，CWD = 项目根）
-
-**13 主模块**（`find "$KB_DIR" -maxdepth 1 -type d` 运行时读取，列表为 2026-09-03 实测）：
-- `01.java-and-jvm` / `02.cs-foundations` / `03.data-stack` / `04.spring-backend`
-- `05.frontend` / `06.distributed-systems` / `07.devops-and-tools` / `08.ai-foundations`
-- `09.ai-applications` / `10.business-systems` / `11.product-and-pm` / `12.interview`
-- `13.story`
+> **主模块结构**：KB 主模块列表、子目录约定 → 见 `$KB_DIR/SPEC.md §1`（L0 主模块规范）。运行时通过 `find "$KB_DIR" -maxdepth 1 -type d` 读取，**不硬编码模块名**。
 
 **3 大沉淀模式**（每次都问用哪个）：
 
 | 模式 | 适用 | 落地位置 |
 |------|------|---------|
-| **单文件** | 内容 < 150 行 或 极专一 | 主模块子 README / `12.interview/<module>/XX/` |
-| **双层沉淀**（最常用）| 面试高频 + 需深度原理 | `12.interview/<module>/<topic>/` + 主模块（`08.ai-foundations` / `09.ai-applications` / `06.distributed-systems` 等） + 互链 |
-| **三层 + 13.story 联动** | 重要主题 + 有餐厅叙事价值 | 双层 + `13.story/<topic>.md` 加章节反向链 |
+| **单文件** | 内容 < 150 行 或 极专一 | 主模块子 README / 强骨架栏目（如 `<强骨架模块>/<topic>/`） |
+| **双层沉淀**（最常用）| 面试高频 + 需深度原理 | 强骨架栏目（面试版） + 主模块（深度原理版） + 互链 |
+| **三层 + 叙事联动** | 重要主题 + 有叙事价值 | 双层 + 叙事专栏加章节反向链 |
+
+> **具体路径**：落点由 `$KB_DIR/SPEC.md §1`（主模块）与 `<module>/SPEC.md`（各 L1/L1.5）共同决定。运行 `exec_cmd {"cmd": "ls $KB_DIR/"}` 查看当前 KB 实际主模块名。
 
 ## 8 步核心流程
 
 ### Phase 0: 主题识别与拆分（必做，第一步）
 
-**目的**：避免多主题错误合并成一个文件（2026-07-26 历史教训：`production-thinking-5q` 把 5 个独立主题合成 419 行文件）
+**目的**：避免多主题错误合并成一个文件
 
-#### Phase 0.1 修复/更新 vs 新增 沉淀 检测（2026-09-03 测试新增 · H1 修复 FAIL 后必做）
+#### Phase 0.1 修复/更新 vs 新增 沉淀 检测
 
 **触发**：用户输入**第一句**含以下关键词时，先判定是"修复现有内容"还是"新增沉淀"：
 
@@ -132,24 +99,19 @@ skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置�
 | "如何在 note 里 X" / "note 里 X 不对" / "note 中 X 错误" | 现有内容定位后修正 | 同上 |
 | "新增" / "沉淀" / "添加" / "放 note" / "归档" | 全新内容 | **走** Phase 1-7 沉淀规划 |
 
-**反例（FAIL 案例 2026-09-03）**：
-- 用户："如何在 note 里修复 Redis 缓存穿透" → skill 错误地走沉淀规划
-- 应识别"修复"关键词 → 定位 `03.data-stack/02.cache/01.redis-penetration.md`（已存在）→ 直接 Edit 修复
-
-**正例**：
-- 用户："沉淀 CAP 理论" → "新增"类，走 Phase 1-7
-- 用户："沉淀 Claude Code Skills" → "新增"类（即使 Quick Example 中已提及，但用户意图是新增章节）
-- 用户："修复 Redis 缓存穿透" → "修复"类，不要规划沉淀，直接修复
+**判定示例**：
+- 用户："如何在 note 里修复 X"（X 已在 KB 中存在） → 走"修复" → 直接 Edit 修复
+- 用户："沉淀 X" → 走"新增" → Phase 1-7
 
 **Phase 0.1 输出格式**（命中修复类时）：
 
 ```markdown
 ## 🔧 Phase 0.1: 检测到「修复/更新」意图
 
-**用户输入关键词**："修复 Redis 缓存穿透"
+**用户输入关键词**："<关键词>"
 **判定**：修复现有内容（不是新增沉淀）
 
-**目标文件**：`03.data-stack/02.cache/01.redis-penetration.md`（按 Phase 1 现状盘点定位）
+**目标文件**：`<目标文件>.md`（按 Phase 1 现状盘点定位）
 
 **建议**：
 - 选项 A：直接 Edit 修复该文件（推荐）
@@ -169,57 +131,35 @@ skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置�
 ├─ 有并列（"A + B + C"、"A / B / C"、"A、B、C"） → 多主题
 ├─ 有"和"、"与"、"以及"连接不同领域主题 → 可能多主题
 ├─ 用户提到"N 个"、"几种"、"系列" → 多主题
-└─ 单一概念（"RAG"、"分布式锁"、"HashMap"） → 单主题
+└─ 单一概念 → 单主题
 ```
 
 **多主题时的进一步判断**：
 
 ```text
 多主题识别后，判断关联强度：
-├─ 强关联（同一框架的不同维度，如"LLM 生产稳定性 5 问"）
+├─ 强关联（同一框架的不同维度，如"X 系统稳定性 5 问"）
 │   → 创建系列目录，每个子主题独立成文
-│   → 例：llm-production-thinking/ 目录下 01-06 独立子文件
-│   → 面试题也要各自独立（不要合成一个"5q"文件）
 │
-├─ 弱关联（只是同时提到，如"RAG + Redis 缓存 + 限流"）
+├─ 弱关联（只是同时提到，如"A + B + C"）
 │   → 各自独立沉淀，互不依赖
-│   → 每个主题走独立的 Phase 1-7 流程
 │
 └─ 部分关联（核心主题 + 边缘子话题）
     → 核心主题沉淀为主文件，边缘子话题作为章节或链接
-```
-
-**输出格式**（多主题时）：
-
-```markdown
-## 🔍 Phase 0: 主题识别
-
-识别到 **N 个独立子主题**：
-
-| # | 子主题 | 关联强度 | 建议沉淀方式 |
-|---|--------|---------|-------------|
-| 1 | 思维范式（Prompt vs if-else） | 强关联（系列成员） | 独立面试题 + 系列子文件 |
-| 2 | 成本控制（5 层路由） | 强关联（系列成员） | 独立面试题 + 系列子文件 |
-| ... | ... | ... | ... |
-
-**关联判断**：强关联 → 建议创建系列目录，各子主题独立成文
-**面试题处理**：每个子主题各自独立一篇面试题（不要合并）
 ```
 
 **单主题时**：直接进入 Phase 1。
 
 ### Phase 0.5: 上下文预算评估（多主题时必做）
 
-> 🆕 **2026-07-26 教训**：一次沉淀 3 个主题（Structured Output + Planning/Acting/Monitoring + Skill 命中率）后，上下文被占满 → compact → 后续工作需手动恢复。多主题沉淀必须评估上下文消耗。
-
-**触发条件**：Phase 0 识别到 **≥ 2 个独立子主题**时，必做 Phase 0.5。
+> **触发**：Phase 0 识别到 **≥ 2 个独立子主题**时必做。多主题沉淀可能占满上下文 → compact → 后续工作需手动恢复。
 
 **复杂度评估**（每个子主题）：
 
 | 因素 | 权重 | 说明 |
 |------|------|------|
 | 沉淀模式 | 单文件=1 / 双层=2 / 三层=3 | 双层涉及 2 个文件 + 2-3 个 commit |
-| 父 README 更新数 | 每更新 1 个 +0.5 | 如 12.interview/11.ai/README.md + 主模块 README |
+| 父 README 更新数 | 每更新 1 个 +0.5 | 如 <强骨架栏目>/<module>/README.md + 主模块 README |
 | 反向链复杂度 | 简单=0 / 中等=0.5 / 复杂=1 | 跨模块链接需路径验证 |
 | 系列导航表 | 需要=1 / 不需要=0 | 向已有系列新增时需更新所有兄弟 |
 
@@ -232,24 +172,10 @@ skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置�
 
 | 场景 | 建议上限 | 理由 |
 |------|---------|------|
-| 全简单主题 | ≤ 3 个 | 每个 ~500 行上下文，总计 ~1500 行 |
+| 全简单主题 | ≤ 3 个 | 每个 ~500 行上下文 |
 | 混合（简单+中等） | ≤ 2 个 | 避免超过 2000 行上下文 |
-| 全中等主题 | ≤ 2 个 | 每个 ~800 行上下文，总计 ~1600 行 |
+| 全中等主题 | ≤ 2 个 | 每个 ~800 行上下文 |
 | 含复杂主题 | **分批**（每次 1 个） | 复杂主题可能 > 1000 行上下文 |
-
-**输出格式**（多主题时）：
-
-```markdown
-## 🔍 Phase 0.5: 上下文预算评估
-
-| # | 子主题 | 复杂度 | 预估上下文消耗 | 建议批次 |
-|---|--------|--------|--------------|---------|
-| 1 | Structured Output | 中等（2.5） | ~800 行 | Batch 1 |
-| 2 | Planning/Acting/Monitoring | 中等（3） | ~900 行 | Batch 1 |
-| 3 | Skill 命中率 | 简单（1.5） | ~500 行 | Batch 2（如需要） |
-
-**建议**：先沉淀 Batch 1（2 个中等主题），compact 后再处理 Batch 2。
-```
 
 **分批执行协议**：
 1. **Batch 1**：沉淀前 1-2 个主题 → commit → 验证 → 输出总结
@@ -260,84 +186,47 @@ skill 执行：Phase 1 现状盘点 → Phase 2 深度评估 → Phase 3 位置�
 
 **目的**：避免重复沉淀、找到补充位置、识别已有结构
 
-**操作**：
+**操作**（`<强骨架栏目>` / `<叙事专栏>` / `<module>` 取自 $KB_DIR/SPEC.md §1 运行时读取）：
 ```bash
 # 1.1 关键词搜索
-cd "$(git rev-parse --show-toplevel)"
+export KB_DIR="${NOTE_DIR:-$(git rev-parse --show-toplevel)}"
 grep -rl "<关键词>" $KB_DIR/ | head -10
 
-# 1.2 主题目录扫描（如 RAG / Transformer / Memory）
+# 1.2 主题目录扫描
 find $KB_DIR/<module> -type d -name "*<topic>*" 2>/dev/null
 ls $KB_DIR/<module>/
 
-# 1.3 12.interview 同栏目兄弟
-ls $KB_DIR/12.interview/<module>/ | grep -v README
+# 1.3 强骨架栏目同栏目兄弟
+ls $KB_DIR/<强骨架栏目>/<module>/ | grep -v README
 
-# 1.4 13.story 相关章节
-grep -l "<关键词>" $KB_DIR/13.story/*.md 2>/dev/null
+# 1.4 叙事专栏相关章节
+grep -l "<关键词>" $KB_DIR/<叙事专栏>/*.md 2>/dev/null
 
-# 1.5 系列结构检查（目标目录下是否已有编号系列）
-# 如果目标目录下有 01-xxx.md / 02-xxx.md 等编号文件，
-# 说明是"系列"，新增文章时必须补全系列内互链
+# 1.5 系列结构检查（已有 01-N 编号文件 → 需补全系列内互链）
 ls $KB_DIR/<target-dir>/[0-9]*.md 2>/dev/null
-# 如果找到编号文件 → 新文章需要：
-#   a. 末尾加"系列导航表"（链向所有兄弟）
-#   b. 所有已有兄弟末尾加/更新"系列导航表"（链向新文件）
 
-# 1.6 总目录入口验证（防"总目录孤岛"，对应反直觉 1）
-# 原理：新文件链到主模块 README，但主模块 README 没在目录表里反向列新文件 →
-#       用户从父 README 读，根本不知道有这个子章节
-# 输出：每个新文件必须在目标模块 README + $KB_DIR/README.md 总目录都登记
-TARGET_README="$KB_DIR/<target-module>/README.md"
+# 1.6 总目录入口验证（防"总目录孤岛"）
 NEW_FILE="$KB_DIR/<target-module>/<topic>.md"
 NEW_BASE=$(basename "$NEW_FILE" .md)
-echo "=== 总目录入口验证 ==="
+TARGET_README="$KB_DIR/<target-module>/README.md"
 if [ -f "$TARGET_README" ] && ! grep -q "\[$NEW_BASE\]" "$TARGET_README" 2>/dev/null; then
-  echo "  ⚠  $NEW_FILE 未在 $TARGET_README 目录表中登记（总目录孤岛）"
-  echo "      修复：在 $TARGET_README 加一行 [标题](相对路径)"
-fi
-if [ -f "$KB_DIR/README.md" ] && ! grep -q "<target-module>" "$KB_DIR/README.md" 2>/dev/null; then
-  echo "  ⚠  目标模块 <target-module> 未在 $KB_DIR/README.md 总目录出现"
+  echo "⚠ $NEW_FILE 未在 $TARGET_README 目录表中登记（总目录孤岛）"
 fi
 
-# 1.7 计划阶段预检（commit 前的 sanity check，避免进入 Phase 6 后才发现）
-# 输出：PASS / FAIL + 修复清单
-echo "=== Phase 1 预检清单 ==="
-echo "  □ 关键词已 grep（1.1）"
-echo "  □ 主题目录已扫（1.2）"
-echo "  □ 12.interview 兄弟已列（1.3）"
-echo "  □ 13.story 联动已查（1.4）"
-echo "  □ 系列结构 / 总目录入口已查（1.5 + 1.6）"
-echo "  □ 同模式范例已对照（1.8 🆕）"
-echo "  □ Bonus 修复同源错误已 grep（1.9 🆕）"
-```
-
-# 1.8 同模式范例对照（先例优先 — 🆕 2026-08-28 沉淀实战新增）
-# 目的：避免"双层推荐"被用户挑战 —— 当已有同模式面试题 3+ 篇时，**默认单面试题版**比双层更聚焦
-# 操作：
-ls $KB_DIR/12.interview/<module>/ | grep -E "troubleshooting|incident|故障|排查" | head -10
-# 统计先例行数（单面试题 troubleshooting 类通常是 200-450 行）
-for f in $KB_DIR/12.interview/<module>/*/README.md; do
+# 1.8 同模式范例对照（先例优先 — troubleshooting 类先例 ≥ 3 篇 → 默认单面试题版）
+ls $KB_DIR/<强骨架栏目>/<module>/ | grep -E "troubleshooting|incident|故障|排查" | head -10
+for f in $KB_DIR/<强骨架栏目>/<module>/*/README.md; do
   if grep -q "troubleshooting\|排查\|故障" "$f"; then
     echo "$(wc -l < "$f") $f"
   fi
 done | sort -n
 
-# 判定：
-#   - troubleshooting 类先例 ≥ 3 篇且单篇 200-450 行 → 默认单面试题版（不双层）
-#   - 没有先例或先例很少 → 走原 Phase 4 决策树
-
-# 1.9 Bonus 修复同源错误 grep（沉淀前主动检查 — 🆕 2026-08-28 新增）
-# 目的：沉淀新案例时，主动 grep 现有文件是否有同源反直觉错误（同一错误示范）
-#       如 2026-08-28 metaspace-tuning 沉淀时，发现 jvm-memory-pitfall:370 样例代码也缺 MetaspaceSize
-# 操作：
+# 1.9 Bonus 修复同源错误 grep（沉淀前主动检查）
 #   grep -rn "<本案例核心反直觉点关键词>" $KB_DIR/
-#   例：grep -rn "MaxMetaspaceSize" $KB_DIR/ | grep -v "MetaspaceSize"  # 找只设上限不设初始值的同源错误
-# 判定：
-#   - 找到 1 处同源错误 → 顺手修复为单独 fix(note) commit（追加到本次沉淀的 commit 计划）
-#   - 找到 2+ 处 → 评估是否批量修复（可能升级为单独任务）
+#   找到 1 处 → 顺手 fix commit；2+ 处 → 评估批量修复
+```
 
-**输出**：5-10 个相关文件 + 每个文件的"覆盖深度"评估（"已有详细"/"一笔带过"/"完全缺失"）+ **总目录验证结果**+ **同模式先例行数对照表** + **Bonus 修复候选清单（如有）**
+**输出**：5-10 个相关文件 + 每个文件的"覆盖深度"评估（"已有详细"/"一笔带过"/"完全缺失"）+ **总目录验证结果** + **同模式先例行数对照表** + **Bonus 修复候选清单（如有）**
 
 ### Phase 2: 深度评估（值得沉淀吗？）
 
@@ -355,17 +244,20 @@ done | sort -n
 
 ```
 用户场景是什么？
-├─ 面试题 → 12.interview/<module>/<topic>.md
-├─ 深度原理 → 08.ai-foundations/<module>/<topic>.md 或 09.ai-applications/<module>/<topic>.md（或其他主模块）
-├─ 餐厅叙事 → 13.story/<topic>.md（前传/续集/番外）
-└─ 实战框架 → 09.ai-applications/03-engineering/ai-platforms/<framework>.md
+├─ 面试题 → <强骨架栏目>/<module>/<topic>.md（栏目名取自 $KB_DIR/SPEC.md §1）
+├─ 深度原理 → 主模块（取自 $KB_DIR/SPEC.md §1）/<topic>/<topic>.md
+├─ 叙事 → <叙事专栏>/<topic>.md（前传/续集/番外）
+└─ 实战框架 → 主模块的工程子目录（如 <engineering>/<framework>.md）
 ```
 
-**特殊位置判断**：
-- 架构/模式 → 主模块的 `04-architecture/` 或 `02-technology-stack/` 子目录
-- 框架对比 → 主模块的 `03-engineering/ai-platforms/`
+> **强骨架栏目 + 主模块名 + 叙事专栏名** → 运行时读 `$KB_DIR/SPEC.md §1`。常见组合示例：
+> - 13 主模块笔记库：12 个强骨架栏目 + 13.story 叙事专栏 + 11 个技术主模块
+> - 简化笔记库：仅 N 个主模块，无强骨架栏目 + 叙事专栏 → 跳过双层 / 三层选项
+
+**特殊位置判断**（按内容类型优先于用户场景）：
+- 架构/模式 → 主模块的 `04-architecture/` 或 `02-technology-stack/` 子目录（命名约定见 `$KB_DIR/SPEC.md §1`）
 - 算法原理 → 主模块的 `01-fundamentals/` 或 `02-technology-stack/`
-- 面试 Q&A → `12.interview/<module>/<topic>.md`
+- 面试 Q&A → `<强骨架栏目>/<module>/<topic>.md`
 
 ### Phase 3.5: 新增主模块 SOP（→ references/MODULE-CREATION-SPEC.md）
 
@@ -385,49 +277,44 @@ done | sort -n
 主题深度？
 ├─ < 100 行内容 → 单文件（1 commit）
 ├─ 100-300 行 + 面试价值 → 双层沉淀（2 commit）
-└─ 300+ 行 + 已有餐厅叙事相关章节 → 三层 + 13.story 联动（3+ commit）
+└─ 300+ 行 + 已有叙事专栏相关章节 → 三层 + 叙事专栏联动（3+ commit）
 
-目标模块有无强骨架规范（L1.5）？
-├─ 12.interview → 必读 `QUESTION-FORMAT-SPEC.md`（30s/90s 话术 + 追问模板），新文章必含 ## 引子/## 追问
-│                  **必先过** [`12.interview/SPEC.md §准入判定`](../../../12.interview/SPEC.md)：9 类判定（5 适合 / 4 不适合）+ 反例清单，不符合准入不准进（与 `note-health` Phase 1.14 `misplaced_classification` 协同兜底）
-├─ 13.story → 必读 `13.story/SPEC.md` §4 强骨架格式规范（编号 + 章节骨架 + 系列定位块 + 文末回链）
-└─ 其他模块 → 当前无独立 `*-FORMAT-SPEC.md`；如本主题需强制骨架，**并入** `<module>/SPEC.md` 对应章节
-              （遵循 13.story v2.0 的"并入主 SPEC"模式，不再另开 `*-FORMAT-SPEC.md`）
+目标模块有无强骨架规范（L1 / L1.5）？
+├─ 强骨架栏目（如面试版 / QA 库）→ 必读 `<强骨架栏目>/SPEC.md` §4 强骨架格式（如 30s/90s 话术 + 追问模板 + ## 引子/## 追问骨架）
+│                  **必先过准入判定**：`<强骨架栏目>/SPEC.md §准入判定`（适合/不适合判定 + 反例清单）→ 不符合准入不准进
+│                  （与 `note-health` Phase 1.14 `misplaced_classification` 协同兜底）
+├─ 叙事专栏 → 必读 `<叙事专栏>/SPEC.md` §4 强骨架格式规范（如编号 + 章节骨架 + 系列定位块 + 文末回链）
+└─ 其他主模块 → 当前无独立 `*-FORMAT-SPEC.md`；如本主题需强制骨架，**并入** `<module>/SPEC.md` 对应章节
+              （遵循"并入主 SPEC"模式：v2.0 起全部 L1.5 已合并入 L1，不再另开 `*-FORMAT-SPEC.md`）
 
 🆕 2026-08-28 经验补充：先例对照覆盖决策（基于 §1.8 同模式先例盘点）
 ├─ 同栏目 troubleshooting 类先例 ≥ 3 篇 + 用户输入是生产 Bug 案例 → **默认单面试题版**（不双层）
-│   例：cpu-spike-troubleshooting / metaspace-tuning-troubleshooting / no-class-def-found-troubleshooting
-│       都是 189-430 行单面试题，已足够承载排查方法论 + 反直觉点 + 90 秒话术
+│   例：<现象>-troubleshooting（按 cpu-spike-troubleshooting 排比） — 都是 189-430 行单面试题
 │   反模式：硬塞双层（主模块深读 800+ 行 + 面试题 200 行）→ 主模块过载 + 面试题泛化
 ├─ 同栏目无先例 + 内容跨多领域（如 Maven + JVM + 容器） → 拆分为多个单面试题
 │   各自独立成文 + 互链（同 Mistake 16 多主题拆分）
 └─ 内容是理论/原理（非生产 Bug 案例） → 走原 Phase 3 决策树（主模块深读 / 双层）
 ```
 
-**双层沉淀模板**（遵循 `CONTRIBUTING.md` §3 commit 规范：`<type>(note): <scope-detail> - <描述>`）：
+**双层沉淀模板**（commit 格式严格遵循 `$KB_DIR/SPEC.md §2`，`<type>(<scope>): <描述>`）：
 ```
-Commit 1: feat(note): 12.interview/<module> - 新增'<topic>'面试题 + 陷阱表
-Commit 2: feat(note): <module> - 新增'<topic>'深度原理（含源码分析）
+Commit 1: feat(<强骨架栏目>): <强骨架栏目>/<module> - 新增'<topic>'面试题 + 陷阱表
+Commit 2: feat(<主模块>): <主模块> - 新增'<topic>'深度原理（含源码分析）
 ```
 
 **三层沉淀模板**：
 ```
-Commit 1: feat(note): 12.interview/<module> - 新增'<topic>'面试题
-Commit 2: feat(note): <module> - 新增'<topic>'深度原理
-Commit 3: refactor(note): <related-chapter> - 加反向链（指向新文件）
+Commit 1: feat(<强骨架栏目>): <强骨架栏目>/<module> - 新增'<topic>'面试题
+Commit 2: feat(<主模块>): <主模块> - 新增'<topic>'深度原理
+Commit 3: refactor(<强骨架栏目>): <叙事专栏相关> - 加反向链（指向新文件）
 ```
 
-**commit 类型说明**（与 CONTRIBUTING §3 一致）：
-| 类型 | 用途 | 例子 |
-|------|------|------|
-| `feat(note)` | 新增章节/文章 | `feat(note): 09.ai-applications - 新增 Claude Code Skills 章节` |
-| `fix(note)` | 修复/数字校对/断链 | `fix(note): 13.story - 数字统一 46→47` |
-| `refactor(note)` | 结构/反向链/结构调整 | `refactor(note): 06.distributed-systems - PNG→Mermaid 迁移` |
-| `style(note)` | 润色/模板清理 | `style(note): 12.interview - 引子格式统一` |
-| `docs(note)` | 文档/CONTRIBUTING 同步 | `docs(note): 同步 CONTRIBUTING §3 commit 规范` |
-| `chore(note)` | 回链/琐事 | `chore(note): 13 主模块补文末回链` |
-
-> **统一性检查**：所有 commit 必须用 `feat/fix/refactor/.../chore(note)` 形式（仓库统一 scope = `note`），不要用 `feat(09.ai-applications)` 这种过细的 scope。
+> **commit 格式 + 类型清单 + scope 命名约束** → 详见 `$KB_DIR/SPEC.md §2`（L0 commit 规范）。
+>
+> **典型 scope**（按仓库统一规范，不嵌模块名进 scope）：
+> - 强骨架栏目沉淀：`feat(<强骨架栏目>)` / `fix(<强骨架栏目>)`
+> - 主模块沉淀：`feat(<主模块>)` / `refactor(<主模块>)`
+> - 全局 metadata：`docs(note)` / `style(note)` / `chore(note)`
 
 ### Phase 5: 选项呈现（用 AskUserQuestion，orchestrator 执行）
 
@@ -458,20 +345,20 @@ D. 暂不沉淀
 
 **触发条件**（满足任一 → 执行 WebSearch）：
 
-| 信号 | 说明 | 示例 |
-|------|------|------|
-| **快速演进领域** | AI / 云原生 / 框架版本等半年内可能变化的主题 | "大模型 JSON 输出"、"分层路由" |
-| **深度缺口** | Phase 1 扫描发现现有内容 < 20 行（几乎空白） | "统一权限系统设计"（note 中完全缺失） |
-| **用户明确要求** | 用户说"搜索网络知识"或"给我最新方案" | "要是你的知识支持…你可以搜索网络" |
-| **模型不确定** | 对主题的具体实现细节、最新 API、框架版本不确定 |  unsure about latest Spring Boot version |
+| 信号 | 示例 |
+|------|------|
+| **快速演进领域**（AI / 云原生 / 框架版本等半年内可能变化） | "大模型 JSON 输出"、"分层路由" |
+| **深度缺口**（Phase 1 扫描发现现有内容 < 20 行） | "统一权限系统设计" |
+| **用户明确要求** | "搜索网络知识" / "给我最新方案" |
+| **模型不确定**（具体 API / 框架版本 / 实现细节） | unsure about latest Spring Boot version |
 
 **不触发条件**（直接用模型知识写）：
 
-| 信号 | 说明 | 示例 |
-|------|------|------|
-| **经典 CS 知识** | 数据结构 / 算法 / 语言特性 / OS 原理 | StringBuilder、try-catch、虚拟线程 |
-| **增量补充** | 现有内容 > 100 行，只需追加 | 约定优于配置（已有 12 模式速查表） |
-| **面试八股文** | 答案稳定、不随时间变化 | 死锁排查、Redis 单线程 |
+| 信号 | 示例 |
+|------|------|
+| **经典 CS 知识**（数据结构 / 算法 / 语言特性 / OS 原理） | StringBuilder、try-catch、虚拟线程 |
+| **增量补充**（现有内容 > 100 行，只需追加） | 约定优于配置 |
+| **面试八股文**（答案稳定、不随时间变化） | 死锁排查、Redis 单线程 |
 
 **执行流程**（当触发时）：
 
@@ -482,21 +369,22 @@ D. 暂不沉淀
 4. 与模型知识合并 → 写文章时标注"参考来源"章节
 ```
 
-> **抓取受阻 fallback**（企业网络/沙箱常见）：`WebFetch` 可能因企业策略拦截官方文档域名（如实测 `github.github.com` 被 WebFetch 拒但可访问）。此时按序降级：
-> 1. `chrome-devtools` MCP `navigate_page` **重试**（首次超时常可二次成功）+ `evaluate_script` 取 `document.body.innerText`
-> 2. `bing-search` MCP 搜索 → `crawl_webpage` 抓取高质量二手深度文（如掘金/InfoQ 深度对比）交叉核实
+> **抓取受阻 fallback**（企业网络/沙箱常见）：`WebFetch` 可能因企业策略拦截官方文档域名。此时按序降级：
+> 1. `chrome-devtools` MCP `navigate_page` **重试** + `evaluate_script` 取 `document.body.innerText`
+> 2. `bing-search` MCP 搜索 → `crawl_webpage` 抓取高质量二手深度文交叉核实
 > 3. 用户已在 prompt 中提供的权威命令/参数列表 = 一手依据
-> **务必**：二手来源核实的关键语义（如某命令的迭代循环行为）要在文末「参考来源」标注来源级别，并提示用户对照官方复核存疑点。
+> **务必**：二手来源核实的关键语义要在文末「参考来源」标注来源级别，并提示用户对照官方复核存疑点。
 
-**5 个领域 query 模板**（按主题套用）：
+**领域 query 模板**（按主题领域套用）：
 
-| 领域 | Query 模板 | 示例 |
-|------|----------|------|
-| **AI / LLM** | `<topic> <year> benchmark / comparison` | `DPO vs RLHF 2026 best practice` |
-| **Spring / Java 框架** | `<topic> <version> release notes / migration` | `Spring Boot 3.5 new features` |
-| **云原生 / DevOps** | `<topic> <year> production deployment` | `Kubernetes Gateway API 2026 production` |
-| **数据库 / 缓存** | `<topic> vs <alternative> benchmark` | `Redis vs DragonflyDB 2026 benchmark` |
-| **架构 / 设计** | `<topic> <year> architecture pattern` | `RAG vs Long Context 2026 architecture` |
+> **具体领域列表 + 当前 KB 主题词速查** → 详见 `$KB_DIR/SPEC.md §8`（L0 关键词检索映射表）。KB 借用本 skill 时，应在 §8 自维护关键词映射表，**不必**绑这 5 类——可按 KB 实际内容领域扩展。
+>
+> **通用模式**（按内容领域归类）：
+> - **AI / LLM**：`<topic> <year> benchmark / comparison`
+> - **Spring / Java 框架**：`<topic> <version> release notes / migration`
+> - **云原生 / DevOps**：`<topic> <year> production deployment`
+> - **数据库 / 缓存**：`<topic> vs <alternative> benchmark`
+> - **架构 / 设计**：`<topic> <year> architecture pattern`
 
 **筛选优先级**：官方博客（*.<vendor>.com） > arXiv 论文 > InfoQ/DZone/Medium 技术博客 > 个人博客
 
@@ -506,29 +394,14 @@ D. 暂不沉淀
 
 ### Phase 6: 实施（dispatch subagent）
 
-#### ⚠️ Phase 6.0 关键决策：内容驱动 vs lesson 映射（2026-08-14 教训）
+#### ⚠️ Phase 6.0 关键决策：内容驱动 vs 外部源映射（2026-08-14 教训）
 
-**核心原则**：**按内容主题分类，不要按 lesson 编号机械复制**。
-
-```
-用户输入是 → 实施策略选择：
-├─ 已有结构化目录（lesson1/, lesson2/, ...）
-│   ├─ 内容主题统一（整个 lesson 是同一主题）
-│   │   → 按 lesson 复制即可（如 lesson11 整体是"AI 代码安全"）
-│   └─ 内容主题分散（一个 lesson 跨多个主题，如 lesson7 含 Claude/Codex/OpenCode/MCP）
-│       → 必须**按文件内容**分发到不同子目录
-│       → 同一 lesson 的不同 .md 可能去不同位置
-│
-└─ 无结构化目录（散落的 .md 文件）
-    → 必须**先做内容分析**，按主题分类
-    → 不要按文件名/日期随便映射
-```
+**核心原则**：**按内容主题分类，不要按外部源编号机械复制**。外部源（课程 lesson / 培训材料 / 第三方仓库）是**编排**，不是**内容分类**——同一外部源不同文件可去不同 KB 目标。
 
 **判断方法**：
 1. 读每个文件的 `# 标题` + 第一段
-2. 提取主题关键词（如 "MCP"、"Spring 安全"、"jailbreak"）
+2. 提取主题关键词
 3. 按关键词决定目标子目录
-4. 同一 lesson 不同文件可去不同目标（lesson 是**课程编排**，不是**内容分类**）
 
 #### ⚠️ Phase 6.1 深度重组（2026-08-14 教训·必做·不询问用户）
 
@@ -536,7 +409,7 @@ D. 暂不沉淀
 
 ```
 1. 合并（merge）
-   ├─ 场景：同主题有 ≥2 篇文件（如 Tony Kipkemboi 推文 + Harness 2026 文章都讲"概念"）
+   ├─ 场景：同主题有 ≥2 篇文件
    ├─ 操作：选最长/最权威的为基准，其余合并入主文
    ├─ 必须保留所有原始引用 + 来源标注
    └─ 禁止：留 2 篇同主题文件让用户自己选
@@ -548,7 +421,6 @@ D. 暂不沉淀
 
 3. 错位修正（relocate）
    ├─ 场景：文件内容主题与所在目录的父 README 定位不符
-   │   例：harness-cybernetics/ 下的"OpenAI Codex 零人工编码"应在 coding-agents/codex/
    ├─ 操作：移动文件到正确目录 + 加反向链
    └─ 判定：标题含与目录定位不同的关键词
 ```
@@ -557,57 +429,34 @@ D. 暂不沉淀
 ```python
 for file in target_dir:
     title = read_h1(file)
-    parent_dir_purpose = read_h1(f"{target_dir}/README.md")  # 父目录的定位
+    parent_dir_purpose = read_h1(f"{target_dir}/README.md")
     if topic_match(title, parent_dir_purpose):
-        # 同主题 → 合并到同主题文件
         merge_or_keep(file, parent_dir)
     else:
-        # 错位 → 移到正确目录
         relocate(file, correct_topic_dir)
 ```
 
 **反模式**（必须避免）：
-- ❌ 留 2 篇同主题文件让用户决定（用户没义务做 skill 的工作）
-- ❌ 错位文件放错目录加 TODO（必须修正）
-- ❌ cp -r 后用 README 反向链接掩盖错位（README 应准确反映内容）
+- ❌ 留 2 篇同主题文件让用户决定 / 按文件名猜分类 / 机械复制 `cp -r <外部源>/...`
+- ❌ 错位文件放错目录加 TODO / cp -r 后用 README 反向链接掩盖错位
 
-**报告**（实施完成后）：
-- 合并了多少组（保留 N 篇 → 1 篇）
-- 移动了多少错位文件
-- 拆分了多少多主题大文件
-
-**案例**（lesson11 内容驱动）：
-| 文件 | 标题主题 | 旧位置（lesson 映射） | 正确位置（内容驱动） |
-|------|---------|---------------------|---------------------|
-| `sh-01-mcp.md` | MCP 推荐 | `02-tools/lesson7/` | `02-tools/mcp/` |
-| `bio-inspired-...-jailbreak.md` | 越狱研究 | `04-quality/lesson11/` | `04-quality/agent-reliability/jailbreak-papers/` |
-| `dark-code-ai-security.md` | Dark Code | `04-quality/lesson11/` | `04-quality/agent-reliability/` |
-
-**反模式**（必须避免）：
-- ❌ `cp -r training/lessonX/. training-temp/某阶段/lessonX/`（机械复制）
-- ❌ 按文件名（如 `claude-code.md`）猜分类（不读内容）
-- ❌ 整 lesson 复制后用"反例"覆盖（如 lesson7 内容跨 4 主题，硬塞 02-tools/lesson7/）
+**报告**（实施完成后）：合并了多少组 / 移动了多少错位文件 / 拆分了多少多主题大文件
 
 **实施规范**：
-- 严格遵循 plan 中定义的 commit 格式（`refactor(<slug>)` / `feat(<module>)` / `fix(<module>)`）
+- commit 格式遵循 `$KB_DIR/SPEC.md §2`
 - 互链必须在 commit 中明示（"新增章节 + 加反向链"）
 - 数字声明必须在 commit 前重新数（避免虚报）
-- 路径深度必须从目标文件向上数（`../` 数量 = 层级差）
-- **目标路径必须实际验证**（2026-07-25 ACP 教训）：写链接前用 `find "$KB_DIR" -name "<target>" -type f` 或 `ls -la <path>` 确认目标存在，不凭脑补
-- **每文件 commit 后立即跑 broken links 扫描**（2026-07-25 ACP 教训）：commit 完不要等最后才检查，发现新引入立刻修，避免累计 3+ 处后才补
+- **目标路径必须实际验证**：写链接前用 `find "$KB_DIR" -name "<target>" -type f` 确认目标存在
+- **每文件 commit 后立即跑 broken links 扫描**：发现新引入立刻修，不要累积
 - 若 Phase 5.5 触发了网络搜索，文章末尾必须有 `## 📚 参考来源` 章节
 
-**每 commit 后 broken links 扫描脚本**（Mistake 14 + 8 联合防御）：
-
+**每 commit 后 broken links 扫描脚本**：
 ```bash
-# 每文件 commit 后立即跑（应在 Phase 6 每次 git commit 后调用）
-# 统一调 check-broken-links.py,避免 inline regex 漂移
 CHANGED=$(git diff --name-only --since="<本次沉淀开始时间>" | grep "\.md$" || true)
 if [ -n "$CHANGED" ]; then
   python .github/workflows/scripts/check-broken-links.py $CHANGED
 fi
 ```
-
 如果 `real_broken > 0`，**立即修复下一个 commit**，不要等到沉淀结束。
 
 **subagent "silent failure" 防御（强约束）**：
@@ -621,7 +470,7 @@ fi
   1. `ls -la FILE` 确认文件**真实存在**且**非空**（用 `wc -c` 验证文件大小 > 100 字节）
   2. `git status --short` 确认 staged/unstaged 状态**符合预期**
   3. `git log --oneline -3` 确认 commit 实际**落地**（前 3 commit 含本次 commit hash）
-- **commit hash 必传**：subagent final report 必含**真实 commit hash**（不是"已 commit" 而是 `7e2cab99 refactor(note): ...`）。缺失则视为 commit 失败
+- **commit hash 必传**：subagent final report 必含**真实 commit hash**（不是"已 commit" 而是 `<hash> refactor(<slug>): ...`）。缺失则视为 commit 失败
 ### Phase 6.5-6.8: 操作层规范（已抽到 ORCHESTRATION.md）
 
 > 🆕 **v2.0 重构（2026-09-26）**：subagent silent failure / git author / 并发协调 / 父 README 更新职责 4 类操作层规范已抽到项目级 `.claude/ORCHESTRATION.md`。
@@ -658,7 +507,7 @@ fi
 - [ ] 互链成网：新内容与至少 2 个旧章节互链（避免孤儿）
 - [ ] **互链双向性扫描**：每个反向链接的 parent / 同级兄弟**必须回链**到新文件（避免"单向链接"）
 - [ ] **每个 PASS 都有证据**：附 commit hash + `wc -l` 输出 + 行号引用，不接受泛泛"全部 PASS"
-- [ ] **严格对照用户原规格**：用户原文提到的具体链接（如 `capacity-planning` / `widevine` / `keyinfo`）必须 grep 验证
+- [ ] **严格对照用户原规格**：用户原文提到的具体链接必须 grep 验证
 - [ ] **代码示例若规格要求**：bash / ffmpeg / openssl 等必须**实际代码块**而非文字描述
 - [ ] **数字实时核对**：subagent 报告行数必须 orchestrator 独立 `wc -l` 校验，不接受 subagent 自我声明
 
@@ -666,28 +515,16 @@ fi
 
 **Session 6 教训**：230 处断链 = 87% 来自"结构重组遗留路径错位"。新增内容时若引用其他模块路径，**必须执行实际路径校验**，仅看 README 文字描述不够。
 
-**校验步骤**（在 commit 前必跑）：
-
+**校验步骤**（commit 前必跑，统一调 `check-broken-links.py`）：
 ```bash
-# 对每个新加的跨模块链接验证目标存在
-python -c "
-import subprocess, sys
-# 调 check-broken-links.py 单文件模式（统一入口,避免 inline regex 漂移）
-result = subprocess.run(
-    ['python', '.github/workflows/scripts/check-broken-links.py'] + <新增文件列表>,
-    capture_output=True, text=True
-)
-print(result.stdout)
-sys.exit(result.returncode)
-"
+python .github/workflows/scripts/check-broken-links.py <新增文件列表>
 ```
+**接受标准**：断链数 = 0。如有 1+ 断链，**修复后才 commit**（不允许"已知 broken"）。
 
-**接受标准**：断链数 = 0。如有 1+ 断链，**修复后才 commit**（不允许"已知 broken"）.
-
-**历史教训**：
-- `09.ai-applications/llm-alignment/` 引用了不存在的目录
-- `08.ai-foundations/transformer/` 旧名未及时跟进结构重组 → `08.ai-foundations/03-transformer/`
-- `13.story/20-board-revolution.md` 文件名已重命名为 `20-multiplatform-architecture.md`
+**历史教训**（结构重组后未跟进 README 反链的典型案例）：
+- `<module>/<topic>/` 引用了不存在的目录（迁移后未删除 README 残留链接）
+- `<module>/<旧名>/` 旧名未及时跟进结构重组 → 新目录路径不一致
+- `<叙事专栏>/<NN>-<topic>.md` 文件名已重命名，旧版反链失效
 
 **反直觉 3**："我看了 README 觉得路径是对的" —— README 文字描述 ≠ 实际文件位置。**唯一可靠标准是 `os.path.isfile(target_abs)`**。
 
@@ -695,34 +532,23 @@ sys.exit(result.returncode)
 
 **触发时机**：Phase 6 subagent 报告 "完成" 后，orchestrator commit 前 **必做**。
 
-**目的**：避免 subagent 自报 "全部 commit 完毕" 但实际引入新断链。**subagent 自我声明不算数**（参考 note-precipitation-planning Mistake 20 · 弱关联类教训）。
+**目的**：避免 subagent 自报 "全部 commit 完毕" 但实际引入新断链。**subagent 自我声明不算数**。
 
 **执行命令**：
-
 ```bash
-# 列出 subagent 修改/新增的所有 .md 文件
 CHANGED_FILES=$(git diff --name-only HEAD | grep "^$KB_DIR/.*\.md$" || true)
-
-# 对每个文件跑 check-broken-links.py
 if [ -n "$CHANGED_FILES" ]; then
-  python scripts/check-broken-links.py $CHANGED_FILES
-  # 期望：❌ 0 处
+  python scripts/check-broken-links.py $CHANGED_FILES  # 期望：❌ 0 处
 fi
 ```
 
-**接受标准**：
-
-| 检查项 | 通过条件 |
-|--------|---------|
-| 断链数 | **= 0** |
-| broken link 来源 | 仅 subagent 修改的 file scope 内 |
-| 父 README / 总目录回链 | 已确认（§7 自检清单）|
+**接受标准**：断链数 = 0；父 README / 总目录回链已确认（§7 自检清单）
 
 **失败处理**：
 - 断链数 > 0 → **立即修复**（最常见是路径纠正，参考 §7.1）
 - 修复不成功 → **不允许 commit**，返回 Phase 6 重做
 
-**反直觉 4**："subagent 说做完了" ≠ "实际做完了"。Session 6 中 19 篇 v17 校准 subagent 自报 100%，但 orchestrator 独立校验才确保全部落地（v18 验证 80/80 = 100%）。
+**反直觉 4**："subagent 说做完了" ≠ "实际做完了"。**subagent 自我声明不算数**——必 orchestrator 独立校验。
 
 **与 pre-commit hook 的关系**：
 - pre-commit hook（`.githooks/pre-commit`）=**被动防护**（commit 时跑）
@@ -733,32 +559,30 @@ fi
 
 | 场景 | 推荐模式 | 落地位置 | Commit 数 |
 |------|---------|---------|----------|
-| 面试题（高频）| 双层 | 12.interview/ + 主模块 | 2 |
-| 深度原理 | 双层 | 主模块 + 12.interview/ | 2 |
-| 规模阶梯（10B→100B→1T）| 三层 + 13.story | 主模块 + 13.story 联动 | 3+ |
-| 餐厅叙事价值高 | 三层 + 13.story | 13.story + 主模块 + 12.interview/ | 3+ |
+| 面试题（高频）| 双层 | <强骨架栏目> + 主模块 | 2 |
+| 深度原理 | 双层 | 主模块 + <强骨架栏目> | 2 |
+| 规模阶梯（10B→100B→1T）| 三层 + <叙事专栏> | 主模块 + <叙事专栏> 联动 | 3+ |
+| 叙事价值高 | 三层 + <叙事专栏> | <叙事专栏> + 主模块 + <强骨架栏目> | 3+ |
 | 单一补充（如 "X 的新特性"）| 单文件 | 主模块子 README | 1 |
-| **🆕 生产 Bug 案例（同栏目 troubleshooting 先例 ≥ 3）**| 单面试题 | `12.interview/<module>/<现象>-troubleshooting/` | 2-3 |
+| **🆕 生产 Bug 案例（同栏目 troubleshooting 先例 ≥ 3）**| 单面试题 | `<强骨架栏目>/<module>/<现象>-troubleshooting/` | 2-3 |
 
-### §X: 生产 Bug 类面试题特化（→ 12.interview/QUESTION-FORMAT-SPEC.md §5）
+> **强骨架栏目 / 主模块 / 叙事专栏的实际名称** → 见 `$KB_DIR/SPEC.md §1`（运行时读取，不硬编码）。
 
-> 🆕 **v2.0 重构（2026-09-26）**：§X 详细模板（命名 / 7 节骨架 / Bonus 修复协议 / 用户挑战应对）已抽到
-> `12.interview/QUESTION-FORMAT-SPEC.md` §5。
+### §X: 生产 Bug 类面试题特化（→ <强骨架栏目>/SPEC.md §5）
+
+> **何时读**：用户提供生产事故案例 + 同栏目 troubleshooting 先例 ≥ 3 时，沉淀前必读 `<强骨架栏目>/SPEC.md` §5 决定命名 + 骨架 + 修复协议。
 >
-> **何时读**：用户提供生产事故案例 + 同栏目 troubleshooting 先例 ≥ 3 时，沉淀前必读 §5 决定命名 + 骨架 + 修复协议。
->
-> **简版入口**（本 skill 触发判定）：
+> **简版触发判定**（本 skill 入口）：
 > - 触发条件：用户提供"线上 X 报警" / "X 100% 失败" / "X 反复触发"且故事完整
 > - 命名规则：`<现象>-troubleshooting`（按 cpu-spike-troubleshooting 排比）
 > - 7 节骨架：引子 → 核心原理 → 排查方法论 → 根因深挖 → 解决 → 验证 → 面试话术 → 相关章节
-> - 完整内容见 QUESTION-FORMAT-SPEC.md §5.1-§5.4
+> - 完整内容见 `<强骨架栏目>/SPEC.md §5`（运行时读取栏目名）
 
 ## Common Mistakes
 
-> 🆕 **2026-09-23 P2-1 拆分**: 20 个 Mistake 全部下放到 [`references/mistakes.md`](references/mistakes.md)(470 行)。
-> 主文档 1431 → ~996 行。SKILL.md 只保留索引 + 入口引用。
+> 20 个 Mistake 全部下放到 [`references/mistakes.md`](references/mistakes.md) (~470 行)。SKILL.md 只保留索引。
 
-**索引**(20 项 + 主题速查,完整内容见 references):
+**索引**（20 项 + 主题速查）：
 
 | # | Mistake | 主题 |
 |---|---------|------|
@@ -769,21 +593,21 @@ fi
 | 5 | subagent 调 AskUserQuestion 失败 | subagent |
 | 6 | 缺 commit 策略 | commit |
 | 7 | 数字虚报 | commit |
-| 8 | 路径深度错误(2026-07-25 强化) | 路径 |
-| 9 | 单向链接(child 链 parent,parent 不回链) | 互链 |
+| 8 | 路径深度错误 | 路径 |
+| 9 | 单向链接（child 链 parent，parent 不回链） | 互链 |
 | 10 | 系列内兄弟不互链 | 互链 |
-| 11 | subagent silent failure(自报 PASS 但文件不存在) | subagent |
+| 11 | subagent silent failure | subagent |
 | 12 | git reset --soft + git commit --amend 错位 | commit |
-| 13 | 过度宣称 PASS("所有项 PASS" 但用户规格未对齐) | subagent |
-| 14 | 新内容引入新 broken links(2026-07-25 教训) | 断链 |
-| 15 | 同 README 内重复维护多个等价表格(2026-07-25 教训) | 文档 |
-| 16 | 多主题错误合并成一个文件(2026-07-26 教训) | 拆分 |
-| 17 | 多主题沉淀导致上下文溢出(2026-07-26 教训) | 上下文 |
-| 18 | 并行 subagent 共享父 README 导致题数漂移(2026-07-30 教训) | 并发 |
-| 19 | 父 README 历史遗留问题(2026-07-30 新增) | 并发 |
-| 20 | 双层沉淀的"弱关联"互链(2026-08-20 新增) | 互链 |
+| 13 | 过度宣称 PASS | subagent |
+| 14 | 新内容引入新 broken links | 断链 |
+| 15 | 同 README 内重复维护多个等价表格 | 文档 |
+| 16 | 多主题错误合并成一个文件 | 拆分 |
+| 17 | 多主题沉淀导致上下文溢出 | 上下文 |
+| 18 | 并行 subagent 共享父 README 导致题数漂移 | 并发 |
+| 19 | 父 README 历史遗留问题 | 并发 |
+| 20 | 双层沉淀的"弱关联"互链 | 互链 |
 
-📖 **完整内容**: [`references/mistakes.md`](references/mistakes.md) — 每个 Mistake 含「症状 / 修复 / 反直觉点」三段,带历史案例与检测脚本。
+📖 **完整内容**: [`references/mistakes.md`](references/mistakes.md) — 每个 Mistake 含「症状 / 修复 / 反直觉点」三段，带历史案例与检测脚本。
 
 ---
 
@@ -837,25 +661,19 @@ fi
 - 优点：避免冗余
 - 缺点：现有缺口保留
 
-### 5. 风险评估（如有）
-（如：可能影响 X 章节的锚点 / 可能与 Y 章节重复）
-
-### 6. 验证清单
-（实施后需检查的 5 项）
+### 5. 风险评估（如有） / 6. 验证清单（实施后需检查的 5 项）
 
 [不要用 AskUserQuestion — orchestrator 转交]
 ```
 
 ## Cross-References（与其他 skill 的联动）
 
-本 skill 不是孤岛——所有沉淀动作都在与上下游 skill 协作：
-
 ### 上游触发器（什么场景会触发本 skill）
 
 | 触发来源 | 触发场景 | 跳转 Phase |
 |---------|---------|-----------|
 | `note-knowledge-qa` 未覆盖主题 | 用户问"X 是什么"但 KB 未沉淀 | Phase 0 → 现状盘点 → Phase 3 |
-| `note-health` P0/P1 修复项 | 体检报告说"该模块 X 缺失"或"该内容主题整合" | Phase 3 → Phase 6 |
+| `note-health` P0/P1 修复项 | 体检报告说"该模块 X 缺失" | Phase 3 → Phase 6 |
 
 ### 下游去向（沉淀完之后做什么）
 
@@ -867,29 +685,22 @@ fi
 
 ### 关键 cross-ref 边界
 
-- **本 skill 不处理**：全库互链矩阵设计 / 全局反向链审计（属于 `note-knowledge-qa` 的检索行为或未来的全局互链 skill）
-- **本 skill 不处理**：纯内容问询（"RAG 原理"、"HashMap 怎么用"）→ 走 `note-knowledge-qa`
+- **本 skill 不处理**：纯内容问询（"X 原理" / "X 怎么用"）→ 走 `note-knowledge-qa`
 - **本 skill 不处理**：质量评分（"这篇文章质量怎么样"）→ 走 `note-health` 单篇评分
+- **本 skill 不处理**：全库互链矩阵设计 / 全局反向链审计（属于 QA 的检索行为或未来的全局互链 skill）
 
 ## Real-World Impact
 
-5+ 主题已按此流程沉淀，commit 数 0 → 60+：
+> **沉淀结果统计**：KB 已沉淀 N 个主题 / commit 数 M → 详见 `$KB_DIR/CLAUDE.md`（仓库根仓库统计）+ `$KB_DIR/README.md`（各模块 leaf 数）。
 
-| 主题 | 沉淀模式 | 验证命令（按主题名 grep） |
-|------|---------|--------------------------|
-| dropout-in-llm | 双层 | `git log --grep='dropout-in-llm' --oneline` |
-| claude-code-agentic-search | 双层 + RAG 反向链 | `git log --grep='skill' --oneline \| head -5` |
-| agent-memory-classification | 双层 + 04-architecture 补全 | `git log --grep='agent-memory' --oneline` |
-| vector-search-algorithms | 三层 + 13.story 联动 | `git log --grep='vector-search' --oneline` |
-| vector-search-at-scale / trillion | 三层 + 10B/100B/1T 阶梯 | `git log --grep='at-scale' --oneline` |
+<!-- v2.0 重构后此处不再硬编码主题列表，避免主题变化后 SKILL.md 失效。
+     借用本 skill 的 KB 沉淀新主题后，按需在 $KB_DIR/CLAUDE.md 维护总览表。 -->
 
-> **可核实性**：每个主题的实际 commit hash 以 `git log --grep="<topic>"` 实时查询为准。上表不再硬编码 commit hash（避免 hash 被回滚后误导用户）。用户复制验证命令到本地 `..` 仓库即可查到该系列首条 feat commit。
-
-避免的失败：
-- ❌ 没重复沉淀（如 RAG / Dropout 已有 → 不重复）
-- ❌ 没位置错位（如 dropout 放 02 而非 01-fundamentals）
-- ❌ 没孤岛文件（每个新 README 至少 2 个反向链）
-- ❌ 没空 commit（4 commits/module 严格执行）
+**沉淀流程价值**（避免的失败）：
+- ❌ 重复沉淀（已有 X → 不重复）
+- ❌ 位置错位（X 应在主模块 Y 而非 Z）
+- ❌ 孤岛文件（每个新 README 至少 2 个反向链）
+- ❌ 空 commit（commit 计划严格执行）
 
 ## Quick Checklist（执行前必过）
 
@@ -911,9 +722,8 @@ fi
 - [ ] **总目录数字（题目数 / leaf 数）已同步更新**（避免数字不一致）
 - [ ] **系列内所有文件都有"系列导航表"**（当目标目录已有编号系列时，见 Mistake 10）
 - [ ] **互链关联强度判定**（见 Mistake 20）：每个被链接的兄弟文件，grep "目标主题关键词"≥ 1 处才算强关联；弱关联（0 命中）即使"同栏目"也应删除
-- [ ] **新 README 文末必须含 `← [返回:` footer 回链**（避免格式约定违反，2026-07-25 教训：本会话新文件 coding-agent-mode-selection 漏 footer 回链）
+- [ ] **新 README 文末必须含 `← [返回:` footer 回链**（避免格式约定违反）
   - 自检命令：`grep -L "← \[返回:" $(find "$KB_DIR" -name "README.md" -newer <commit-base>)`
   - **新 README 必须有**，根目录 README（`README.md`）除外
 - [ ] **新 README 内每张表格只承载一个职责**（避免同 README 内重复维护多张等价表，见 Mistake 15）
   - 自检：grep 新 README 的 `\|---` 表格分隔行数 ≥ 2 → 人工检查表格列字段是否重叠 ≥ 50%
-  - 历史教训：13.story/README.md 历史上同时维护 8 集群目录表 + 49 篇明细表，100% 等价
