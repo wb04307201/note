@@ -108,7 +108,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 - **询问本身不消耗扫描成本**——`AskUserQuestion` 是对话层动作，不进入 `.health-tmp`
 - **询问结果写到 report 头部**——Phase 4 输出必须含「策略选择：<选项>」一行，让用户事后能验证实际跑了哪个策略
 
-> ⚠️ **边缘 case：兄弟相对路径（如 polymorphism）**：当新增子目录（如 `polymorphism/README.md`），兄弟章节用 `[polymorphism](polymorphism/README.md)` 形式链接近似安全 —— 但 markdown 严格按相对路径解析，**从 `inner-class/README.md` 应解析到 `inner-class/polymorphism/README.md`**（不存在）。**Phase 1 §6 broken-links 扫描命中后需人工二次确认**「同目录」vs「跨目录」归属，特别是 polymorphism / distillation 这类子目录的兄弟链。**Obsidian / GitHub 可能因 auto-resolve 显示为 OK，但严格 markdown 规范下是 broken**。Phase 4 综合报告必须标 `[同目录-边缘]` 而非纯 `[真错]`。
+> ⚠️ **边缘 case：兄弟相对路径（如 polymorphism）**：当新增子目录（如 `polymorphism/README.md`），兄弟章节用 `polymorphism/README.md`（相对路径）形式链接近似安全 —— 但 markdown 严格按相对路径解析，**从 `inner-class/README.md` 应解析到 `inner-class/polymorphism/README.md`**（不存在）。**Phase 1 §6 broken-links 扫描命中后需人工二次确认**「同目录」vs「跨目录」归属，特别是 polymorphism / distillation 这类子目录的兄弟链。**Obsidian / GitHub 可能因 auto-resolve 显示为 OK，但严格 markdown 规范下是 broken**。Phase 4 综合报告必须标 `[同目录-边缘]` 而非纯 `[真错]`。
 
 **新文件专属入口**：当用户问的是"评价一个新沉淀的文件 / 这篇新写的质量如何"，Phase 2 在打分前必须先读 `references/new-file-baseline.md` 拿到 7 必选 + 3 可选结构模板 + 快改/深耕写作模式，作为结构基线；再用 `references/leaf-quality.md` 打分。两者结合判断"是否符合新文件基线 + 是否达到 leaf 质量门槛"。
 
@@ -132,6 +132,16 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 > **🆕 2026-08-25 起**：① 断链扫描升级为**双口径**（`.md` 文件链接 + `](dir/)` 目录链接）——目录链接曾是盲区，累积 156 处未检出（见 `structural-checks.md` #6）；② Phase 1.13 弱关联扫描改用**正文内链算法**（v2），排除页脚导航表/表格/代码块，消除 1005 处误报类噪声。
 
 > **🆕 2026-09-02 起**：Phase 1 开头必跑 `check-broken-links.py`（双口径 + 全库 + 单文件）—— Session 6 教训：230 处断链批量修复后，必须作为体检的**第一闸**而非"发现时才跑"。统一入口避免 subagent 漏跑。
+
+> **🆕 2026-10-12 起**：准入判定扫描（Phase 1.14）新增 —— 对 `12.interview/**/README.md` 跑 [`12.interview/SPEC.md §准入判定`](../../../12.interview/SPEC.md) 的 9 类判定（5 类适合 / 4 类不适合）。命中「构建工具配置 / 工具链命令 / 边角技巧 / 非高频运行时参数」任一类的样本标记为 `P3 misplaced-warning`，并产出一份「移除候选清单」附带在体检报告后。
+>
+> **强约束**（与 `12.interview/SPEC.md` §准入判定 对齐）：
+>
+> - 本扫描**只标记，不动手**——移除执行必须由用户决策
+> - 实际移除走 `note-precipitation-planning` Phase 6（迁移到正确主模块 + 加反向链 + 12.interview 旧文件保留 `→ [已迁移到:]` 跳转说明）
+> - 实现复用 [`references/structural-checks.md`](references/structural-checks.md) §9 类关键词库（避免在 note-health 内另起一份重复规则）
+>
+> **来源**（2026-10-12）：沉淀 Maven release/source/target 时，`note-precipitation-planning` 把「高频踩坑」误判为「高频面试」，差点放进 12.interview。教训：准入判定必须有显式规则（沉淀 skill 之前散落的 Phase 2/3 信号不够精准），并由健康体检 skill 自动扫描兜底。
 
 **关联强度扫描脚本**（Phase 1.13 · v2 2026-08-25 正文内链版，实测校准：1005 → 382，**外置同目录 `scripts/weak-link-scan.py`**）：
 
