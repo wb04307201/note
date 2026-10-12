@@ -161,6 +161,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 | **1.13 弱关联扫描（v2 正文内链）** | Mistake 20 | `scripts/weak-link-scan.py` |
 | **1.14 准入判定扫描** | [`SPEC.md §1.5`](../../../SPEC.md)（`type=interview`）+ 该模块 `<module>/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
 | **1.15 关键词映射表稽核** | `SPEC.md §8` | 本节下方 |
+| **1.16 status_inventory（v3.x 新增）** | `SPEC.md §4` | 本节下方 + references/structural-checks.md §10 |
 
 **所有大输出重定向到文件**（`> "$KB_DIR/.health-tmp/scan-<phase>-<date>.txt"`），不堆进对话。Phase 1 不调 workflow。
 
@@ -187,6 +188,20 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 > 4. **不动手修复**（按用户决策走 `note-precipitation-planning` Phase 6 沉淀流程，避免体检越界改 §8）
 >
 > **为何需要**：§8 表由「问答 skill 命中 + 沉淀 skill 补全」共建，可能因主模块结构重构产生死链；体检稽核是闭环兜底。完整词表与字段语义见 [`$KB_DIR/SPEC.md` §8](../../../SPEC.md)。
+
+> **🆕 2026-10-12 v3.x 候选 5**：Phase 1.16 `status_inventory` —— 扫 KB 内所有含 frontmatter（`module:` / `question:` / `story:`）的 .md：
+>
+> 1. **缺失 status**: 报告 P3（兼容 pre-commit WARN 阶段，新提交必带 status:，老文件全库 batch 后已全部带 status:active）
+> 2. **非合法状态值**: 仅 `draft / active / deprecated / orphaned` 4 选 1 → P3
+> 3. **`deprecated` 无 `deprecated_note`**: P3（强制要求跳转说明）
+> 4. **`orphaned` 无主模块**: P3（该模块被删除但反向链还指进来，按 §4 schema 自动识别）
+>
+> 实施细节：扫描脚本走 [`scripts/frontmatter-batch-status.py`](../../../scripts/frontmatter-batch-status.py) 同款正则（HTML-comment frontmatter）；状态分布汇总入体检报告。
+>
+> **为何需要**：从 pre-commit single-file 检查升级为全库体检，兜底：
+> - 借 KB 路径（不熟手 `git config core.hooksPath`）直接 review 时发现 status:missing
+> - 跨设备 / CI 环境统一检查（pre-commit hook 不一定每台机器都装）
+> 详见 [`SPEC.md §4`](../../../SPEC.md) schema 定义 + `references/structural-checks.md` §10（待补）
 
 **关联强度扫描脚本**（Phase 1.13 v2 正文内链版，外置同目录 `scripts/weak-link-scan.py`）：
 
