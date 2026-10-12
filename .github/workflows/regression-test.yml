@@ -1,0 +1,57 @@
+name: Regression Test (候选 4 · 季度 cron)
+
+# 候选 4 回归测试
+# 每季度 + 手动触发跑最近 N 个 feat/fix commit 的主题验证
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: '最近 N 个 commit'
+        required: false
+        default: '5'
+  schedule:
+    # 每季度 1 日 03:00 (1 月 / 4 月 / 7 月 / 10 月)
+    - cron: "0 3 1 1,4,7,10 *"
+
+jobs:
+  regression-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20  # 拉最近 20 commits 足够
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set KB_DIR
+        run: echo "KB_DIR=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
+      - name: Run regression test
+        run: |
+          if [ -n "${{ inputs.n }}" ]; then
+            bash scripts/regression-test.sh "${{ inputs.n }}"
+          else
+            bash scripts/regression-test.sh 5
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Regression Test" >> $GITHUB_STEP_SUMMARY
+          echo "**Schedule**: 每季度 1 日 03:00 (cron: \`0 3 1 1,4,7,10 *\`)" >> $GITHUB_STEP_SUMMARY
+          echo "**Manual**: workflow_dispatch 可调 N 参数" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "候选 4 实施脚本: \`scripts/regression-test.sh\`" >> $GITHUB_STEP_SUMMARY
+          echo "验证项: 文件路径 + broken links 自检" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ 全部通过" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ 有失效 — 见日志" >> $GITHUB_STEP_SUMMARY
+          fi
