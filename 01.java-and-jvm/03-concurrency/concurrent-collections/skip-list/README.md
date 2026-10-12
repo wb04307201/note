@@ -4,17 +4,16 @@ module:
   slug: java/concurrent-skip-list
   type: article
   category: 主模块子文章
-  summary: 跳表集合
-  depth: ⭐⭐
+  summary: 有序并发场景下替代 TreeMap + synchronized 的无锁数据结构，典型应用为排行榜 / 范围查询，基于 Pugh 1989 跳表论文。
+  depth: ⭐⭐⭐
 -->
 
 # 跳表集合
 
-> **定位**：跳表集合 的核心原理、实现与最佳实践。
+> **定位**：跳表集合 在有序并发场景下替代 TreeMap + synchronized 的无锁数据结构，典型应用为排行榜 / 范围查询。
 
 > 目标：理解 ConcurrentSkipListMap 和 ConcurrentSkipListSet 的跳表数据结构、无锁操作实现及有序并发场景应用。
 
----
 ---
 
 ## 一、跳表（Skip List）原理
