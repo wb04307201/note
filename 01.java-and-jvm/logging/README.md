@@ -10,7 +10,7 @@ module:
 
 # Java 日志学习笔记
 
-> **定位**：Java 日志体系：日志级别、JUL / Log4j 2 / Logback / SLF4J 框架对比与最佳实践。 的核心原理、实现与最佳实践。
+> **定位**：Java 日志体系：日志级别、JUL / Log4j 2 / Logback / SLF4J 框架对比与最佳实践。
 
 ---
 

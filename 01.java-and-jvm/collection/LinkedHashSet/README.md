@@ -12,7 +12,7 @@ module:
 
 > 底层基于 LinkedHashMap 的有序 Set 实现，保证插入顺序的同时提供 O(1) 查找性能。
 
-> **定位**：LinkedHashSet 底层基于 LinkedHashMap 的有序 Set 实现。 的核心原理、实现与最佳实践。
+> **定位**：LinkedHashSet 底层基于 LinkedHashMap 的有序 Set 实现，插入序遍历 + 性能权衡。
 
 ## 一、底层 LinkedHashMap 实现
 

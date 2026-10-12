@@ -10,7 +10,7 @@ module:
 
 # List 去重（split-hairs 视角）
 
-> **定位**：List 去重方案对比：HashSet / 排序遍历 / 外部排序 / 并行流 的核心原理、实现与最佳实践。
+> **定位**：List 去重方案对比：HashSet / 排序遍历 / 外部排序 / 并行流。
 >
 > 本节由 `12.interview/01.java/arrayList-distinct/` 迁出，按数据规模递进：**内存充足 → 内存紧张 → 海量数据**。ArrayList 基础原理见 [ArrayList/README.md](./ArrayList/README.md)。
 

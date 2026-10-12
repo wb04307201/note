@@ -10,7 +10,7 @@ module:
 
 # Text Blocks
 
-> **定位**：Java 13/15 Text Blocks：多行字符串字面量。 的核心原理、实现与最佳实践。
+> **定位**：Java 13/15 Text Blocks：多行字符串字面量（13 预览 / 15 正式）与 escape 控制。
 
 ## 引言：变更说明
 

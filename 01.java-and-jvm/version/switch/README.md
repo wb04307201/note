@@ -9,7 +9,7 @@
 
 # Switch
 
-> **定位**：Switch 的核心原理、实现与最佳实践。
+> **定位**：Java 14+ Switch 表达式 + Java 21 Pattern Matching for switch 的演进与最佳实践。
 
 ## 引言：变更说明
 

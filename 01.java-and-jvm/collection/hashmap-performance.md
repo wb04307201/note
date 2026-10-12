@@ -10,7 +10,7 @@ module:
 
 # HashMap 大数据量插入（split-hairs 视角）
 
-> **定位**：HashMap 大数据量插入的性能陷阱 + 初始容量预设 + 并行方案 的核心原理、实现与最佳实践。
+> **定位**：HashMap 大数据量插入的性能陷阱 + 初始容量预设 + 并行方案。
 >
 > 本节由 `12.interview/01.java/large-data-into-hashmap/` 迁出，专注**性能陷阱与并发方案**。HashMap 基础原理见 [hashmap.md](./hashmap.md)。
 

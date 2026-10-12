@@ -10,7 +10,7 @@ module:
 
 # 创建型模式
 
-> **定位**：创建型模式 的核心原理、实现与最佳实践。
+> **定位**：创建型模式（Factory / Builder / Prototype / Singleton / Abstract Factory 5 种）的 Java 实现与选型。
 
 > 关注对象的创建过程，将实例化与使用分离，使系统更灵活、更易扩展。
 

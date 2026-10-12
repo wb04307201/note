@@ -9,7 +9,7 @@
 
 # Sealed Classes
 
-> **定位**：Sealed Classes 的核心原理、实现与最佳实践。
+> **定位**：Sealed Classes（Java 15 预览 / 17 正式）：受限继承层级 + Pattern Matching 组合实现 ADT。
 
 ## 引言：变更说明
 

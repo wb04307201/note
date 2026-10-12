@@ -10,7 +10,7 @@ module:
 
 # 行为型模式
 
-> **定位**：行为型模式 的核心原理、实现与最佳实践。
+> **定位**：行为型模式（Strategy / Observer / Template / Iterator / Chain of Responsibility 等 11 种）的 Java 实现与选型。
 
 > 关注对象之间的职责分配与通信方式，让对象间的交互更加灵活和可维护。
 

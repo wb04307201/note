@@ -10,7 +10,7 @@ module:
 
 # Vector API
 
-> **定位**：Java 16+ Vector API（孵化）：SIMD 加速数值计算。 的核心原理、实现与最佳实践。
+> **定位**：Java 16+ Vector API（孵化）：SIMD 加速数值计算的性能提升场景与限制。
 
 ## 引言：变更说明
 
