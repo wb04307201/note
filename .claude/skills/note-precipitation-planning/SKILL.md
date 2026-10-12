@@ -389,6 +389,7 @@ done | sort -n
 
 目标模块有无强骨架规范（L1.5）？
 ├─ 12.interview → 必读 `QUESTION-FORMAT-SPEC.md`（30s/90s 话术 + 追问模板），新文章必含 ## 引子/## 追问
+│                  **必先过** [`12.interview/SPEC.md §准入判定`](../../../12.interview/SPEC.md)：9 类判定（5 适合 / 4 不适合）+ 反例清单，不符合准入不准进（与 `note-health` Phase 1.14 `misplaced_classification` 协同兜底）
 ├─ 13.story → 必读 `13.story/SPEC.md` §4 强骨架格式规范（编号 + 章节骨架 + 系列定位块 + 文末回链）
 └─ 其他模块 → 当前无独立 `*-FORMAT-SPEC.md`；如本主题需强制骨架，**并入** `<module>/SPEC.md` 对应章节
               （遵循 13.story v2.0 的"并入主 SPEC"模式，不再另开 `*-FORMAT-SPEC.md`）
