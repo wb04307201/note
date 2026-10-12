@@ -127,14 +127,13 @@ mvn package -DskipTests      # 打包但跳过测试
 ```xml
 <build>
     <plugins>
-        <!-- 编译插件 -->
+        <!-- 编译插件（推荐用 release 同时控制语法 + 字节码 + API，详见 §2.6） -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.11.0</version>
             <configuration>
-                <source>17</source>
-                <target>17</target>
+                <release>17</release>
             </configuration>
         </plugin>
 
@@ -161,6 +160,46 @@ mvn package -DskipTests      # 打包但跳过测试
     </plugins>
 </build>
 ```
+
+---
+
+### 2.6 编译参数三件套（release vs source vs target）
+
+maven-compiler-plugin **3.6+** 推荐**只用 `<release>` 一个参数**（同时控制语法 + 字节码 + API），而**不是**分别写 `<source>` + `<target>`。
+
+| 参数 | 控制对象 | 限制范围 |
+|------|---------|---------|
+| `<source>` | 源代码语法版本（record、switch、var 等） | **不限制 API** |
+| `<target>` | 生成字节码的目标 JVM 版本 | **不限制 API** |
+| `<release>` *(Java 9+)* | 语法 + 字节码 + **JDK API 引用** | 用 `ct.sym` 切断 API 错配 |
+
+**反直觉陷阱**：`<source>` 和 `<target>` **只控制语法和字节码，不限制 API**。如果只写 `<source>17</source>` + `<target>17</target>` 但代码里调了 Java 21 才有的方法 ——
+
+- 编译器检查的是「你自己机器的 JDK 21 API」→ 编译通过
+- 字节码是 Java 17 格式 → 部署到 Java 17 JVM → `NoSuchMethodError`
+
+`<release>` 通过 `$JAVA_HOME/lib/ct.sym` 文件把 API 引用锁在指定版本，根本杜绝这种**错配**。
+
+**正确写法**：
+
+```xml
+<properties>
+    <maven.compiler.release>17</maven.compiler.release>
+</properties>
+```
+
+> **优先级**：当 `<release>` 设置时，`<source>` 和 `<target>` 会被它**覆盖**（maven-compiler-plugin 行为）—— 同时写三个等于只写 release。
+
+**多 JDK 兼容性矩阵**（本地编译 JDK vs `<release>` 取值）：
+
+| 本地 JDK | `<release>` 允许值（向下兼容） | 生产推荐 |
+|---------|---------------------------------|----------|
+| JDK 8 | 仅 8（8 不支持 release 参数） | 用 source + target |
+| JDK 17 | 7 / 8 / 9 / ... / 17 | 17 |
+| JDK 21 | 7 / 8 / 9 / ... / 21 | 17 或 21 |
+| JDK 25 *(2025-09 发布)* | 7 / 8 / 9 / ... / 25 | 17 / 21 / 25 |
+
+> ⚠ **JDK 8 上不能用 `<release>`**（参数本身 Java 9+ 才支持），必须用 `<source>` + `<target>`。
 
 ---
 
