@@ -2,7 +2,7 @@
 question:
   id: 04.system-design-multi-tenant-saas
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 / SaaS 架构
   tags: [04.system-design, 多租户, SaaS, 数据隔离, 租户路由, PostgreSQL RLS, noisy-neighbor]

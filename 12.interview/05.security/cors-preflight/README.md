@@ -2,7 +2,7 @@
 question:
   id: 05.security-cors-preflight
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [05.security, CORS, Preflight, OPTIONS, Access-Control, 跨域]

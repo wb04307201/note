@@ -2,7 +2,7 @@
 question:
   id: 05.security-https-handshake
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [05.security, TLS, HTTPS, 握手, 0-RTT, Session Resumption, OCSP]

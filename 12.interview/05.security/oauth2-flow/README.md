@@ -2,7 +2,7 @@
 question:
   id: 05.security-oauth2-flow
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, OAuth2, Authorization Code, Implicit, Client Credentials, PKCE]

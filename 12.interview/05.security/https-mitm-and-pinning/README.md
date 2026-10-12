@@ -2,7 +2,7 @@
 question:
   id: 05.security-https-mitm-and-pinning
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 安全边界
   tags: [05.security, HTTPS, MITM, SSL Pinning, Charles, Fiddler, mTLS, ATS, Network Security Config]

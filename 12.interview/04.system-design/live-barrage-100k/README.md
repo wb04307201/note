@@ -2,7 +2,7 @@
 question:
   id: live-barrage-100k
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 弹幕系统, WebSocket, IM, 高并发, 实时分发, 系统设计]

@@ -2,7 +2,7 @@
 question:
   id: 04.system-design-still-need-rocketmq
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [04.system-design, still, need]

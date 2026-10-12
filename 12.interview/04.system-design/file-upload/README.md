@@ -2,7 +2,7 @@
 question:
   id: 04.system-design-file-upload
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 文件上传, 断点续传, 秒传, 分片, OSS]

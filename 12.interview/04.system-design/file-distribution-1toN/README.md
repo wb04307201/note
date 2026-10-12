@@ -2,7 +2,7 @@
 question:
   id: 04.system-design-file-distribution-1toN
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 大文件分发, CDN, P2P, 带宽成本, 高并发下载, 系统设计]

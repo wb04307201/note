@@ -2,7 +2,7 @@
 question:
   id: 04.system-design-media-upload
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 媒体上传, 图片转码, WebP, AVIF, HLS, CDN, 高可用, DRM]

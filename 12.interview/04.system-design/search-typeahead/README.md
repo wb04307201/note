@@ -2,7 +2,7 @@
 question:
   id: 04.system-design-search-typeahead
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, typeahead, autocomplete, 搜索建议, Trie, Redis ZSet, 系统设计]
