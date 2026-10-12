@@ -10,7 +10,7 @@ module:
 
 # 单点登录（SSO）· 6 大实现方案深度对比
 
-> **定位**：单点登录（SSO）深度专题 —— 6 大实现方案对比（CAS/OAuth2/OIDC/SAML/Cookie/JWT）+ Spring Security 实战 + 选型决策 的核心原理、实现与最佳实践。
+> **定位**：单点登录（SSO）深度专题 —— 6 大实现方案对比（CAS/OAuth2/OIDC/SAML/Cookie/JWT）+ Spring Security 实战 + 选型决策。
 
 > **一句话答案**：SSO = 用户**一次登录，多系统访问**——本质是"信任传递"，6 大方案（CAS / Cookie 共享 / OAuth2 + OIDC / SAML / JWT 自建 / 代理模式）的核心都是"如何把首次登录态安全传递给其他子系统"。
 

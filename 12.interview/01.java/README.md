@@ -9,7 +9,7 @@ module:
 
 # Java 咬文嚼字
 
-> **定位**：Java 高频面试题与细节深挖（集合 / 并发 / JVM / 类型 / 设计模式） 的核心原理、实现与最佳实践。
+> **定位**：Java 高频面试题与细节深挖（集合 / 并发 / JVM / 类型 / 设计模式）。
 
 > Java 高频面试题与细节深挖，对齐主模块 [`01.java`](../../01.java-and-jvm/README.md)。41 篇分集合 / 并发 / JVM / 语言基础 / 对象类型 / 设计模式 / 综合 7 组（find 校对 2026-08-28；2026-08-10 迁出 6 篇灰色地带面试题到主模块 [01.java](../../01.java-and-jvm/README.md)：`object` → `concepts/data-types`，`create-object` → `concepts/object`，`singleton-pattern` → `design-patterns/creation/singleton.md`，`large-data-into-hashmap` → `collection/hashmap-performance.md`，`record-t` → `concepts/record`，`arrayList-distinct` → `collection/arraylist-distinct.md`），覆盖 90% 后端面试 Java 高频题。
 
