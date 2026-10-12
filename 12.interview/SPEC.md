@@ -43,6 +43,41 @@
 
 **引子缺失 = 自动 P0**：如果文章缺少 `## 引子：` 或 `## 引子` 章节，**无论其他维度得分多高，总分降一个等级**。这是 `QUESTION-FORMAT-SPEC.md` 的硬性要求（见 §"完整骨架"）。
 
+### 准入判定（Classification Criteria · 2026-10-12 新增）
+
+> 本节定义「什么样的内容应该进 12.interview」。与 `note-precipitation-planning/SKILL.md` Phase 4 位置决策联动使用——**先判定准入，再决定放哪**。由 `note-health` Phase 1.14 `misplaced_classification` 自动扫描「准入不符」样本，输出 P3 警告（**不主动改文件**）。
+
+#### 判定维度表（9 类）
+
+| # | 内容类型 | 是否进 12.interview | 若不进，推荐位置 |
+|---|---------|:-------------------:|----------------|
+| 1 | **Java 核心语言特性**（`volatile` / `synchronized` / `final` / `==` vs `equals` 等关键字与语义对比） | ✅ | — |
+| 2 | **JVM 内部机制**（类加载 / GC 算法 / 字节码 / JMM / 内存模型） | ✅ | — |
+| 3 | **JDK 源码深度**（HashMap 扩容 / ConcurrentHashMap / AQS / ThreadPool 调源码可展开 30-60 分钟） | ✅ | — |
+| 4 | **生产事故 troubleshooting**（cpu-spike / OOM / Metaspace / no-class-def-found 完整 7 节骨架） | ✅ | — |
+| 5 | **高频 API 对比与陷阱**（Integer 缓存 / 包装类 `==` / 异常继承 / 泛型擦除） | ✅ | — |
+| 6 | **构建工具 / IDE 配置**（Maven pom / Gradle build / IntelliJ 设置） | ❌ | 对应主模块（如 `01.java-and-jvm/build-tools/`） |
+| 7 | **工具链命令速查**（jmap / jstack / arthas / JVM 调试） | ❌ | 对应主模块（如 `01.java-and-jvm/02-jvm/parameters.md`） |
+| 8 | **边角工程小技巧**（日志格式 / 配置文件语法 / 一次性踩坑） | ❌ | 主模块 wiki 即可，**不必独立成文** |
+| 9 | **非高频运行时参数**（JVM 启动参数调优） | ❌ | **不要重复沉淀**，引用主模块即可 |
+
+#### 反例清单（历史误判案例 · 2026-10 起追认）
+
+| 反例样本 | 误判原因 | 正确做法 |
+|---------|---------|---------|
+| **Maven `release` / `source` / `target` 三参数区别** | 「高频踩坑」≠「高频面试」；构建工具配置类是主模块主题 | 在 `01.java-and-jvm/build-tools/` §2.6 就地升级；**不入** 12.interview |
+| **JVM 运行时参数调优**（`-Xmx` / `-XX:+UseG1GC`） | 与编译期 javac 参数命名混淆；面试问「为什么这样配」会流于背诵 | 已在 `01.java-and-jvm/02-jvm/parameters.md`；**不要重复进** 12.interview |
+| **Spring Boot application.yml 配置详解** | 工具配置类；面试问的是「Spring 启动流程」而不是 YAML 写法 | 在 `04.spring-backend/02-boot/` 就近沉淀 |
+| **Redis 配置文件 / 哨兵搭建步骤** | 部署运维指南；面试问的是「哨兵怎么选主」原理 | 在 `03.data-stack/02-cache/` |
+| **Dockerfile / Docker Compose 写法** | 工程模板；面试几乎不考「Compose 语法」 | 在 `07.devops-and-tools/` |
+
+#### 强约束（与 `note-health` 扫描接口）
+
+- **准入不符样本**：`note-health` Phase 1.14 自动标记为 `P3 misplaced-warning`，**不动手修改**。
+- **移除执行**：必须走 `note-precipitation-planning` Phase 6（用户决策 + 实际迁移到正确主模块 + 加反向链）。
+- **强制询问**：`note-health` 体检报告**只标记疑问**，绝不擅自移除——移除前必须由用户决策。
+- **双向指针**：迁移时 12.interview 旧文件保留 `→ [已迁移到: <新位置>](<新路径>)` 跳转说明（与原回链规范 `← [返回:]` 并行）。
+
 ### 子目录约定
 
 - `01.java/`：Java、JVM、并发、集合与 Spring/Java 工程基础。
