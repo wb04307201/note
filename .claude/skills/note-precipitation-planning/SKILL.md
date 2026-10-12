@@ -505,13 +505,15 @@ fi
 - Phase 6 subagent 报告「已新增 `<module>/<topic>.md`（路径 `<path>`）」并 commit 落地
 - 主题词有**跨模块检索价值**（关键词不在 §8 现有词表中，且属于 §8.3 五大领域之一）
 
-#### 协议步骤（orchestrator 执行）
+#### 协议步骤（orchestrator 执行 · v3.x tags §8 write-time 同步）
 
-1. **主对话校验** subagent 报告 —— 确认新文件路径 + frontmatter + commit hash（ORCHESTRATION.md §1）
-2. **关键词提取** —— 从新文件 H1 / 关键词 / frontmatter tags 提取 1-3 个核心词
+1. **主对话校验** subagent 报告 —— 确认新文件路径 + frontmatter（含 `status:` / `tags:`） + commit hash（ORCHESTRATION.md §1）
+2. **关键词提取** —— 从新文件 H1 / 关键词 / frontmatter `tags:` 提取 1-3 个核心词（优先读 `tags:` 列表，比 H1 关键词更结构化）
 3. **路径定位** —— 复用 Phase 3 决策（主模块 + `<type=interview 模块>/` 路径，由 `SPEC.md §1.5` 自动发现）
-4. **写 §8** —— 在 `$KB_DIR/SPEC.md §8.X.Y` 对应分区末尾加 1 行（5 字段：主题词 / 主模块路径 / 12.interview 路径 / 频次 `-`）
-5. **同 commit 内** —— 主题词词条 + Phase 6 commit 合并为同一 commit（避免拆出独立 commit）
+4. **write-time 同步（v3.x 双 bridge 核心）**：
+   - **写 §8** —— 在 `$KB_DIR/SPEC.md §8.X.Y` 对应分区末尾加 1 行（5 字段：主题词 / 主模块路径 / 12.interview 路径 / 频次 `-`）
+   - **写 tags** —— 确保新文件 frontmatter 含 `tags: [<同 §8 主题词>]`（如果 subagent 漏填，orchestrator 在同步 §8 时一并补 tags）
+5. **同 commit 内** —— 主题词词条 + tags 字段更新 + Phase 6 commit 合并为同一 commit（避免拆出独立 commit）
 6. **跳过条件** —— subagent 报告主题不明确 / 工具配置类不入 12.interview / 主题已存在
 
 #### 不强制场景
