@@ -27,13 +27,25 @@ docs: 文档
 
 ### 3. 互链规则
 
-- 每个文件必须有 `← [返回 ...]` 回链到父 README
+- 每个**有父 README 的非 leaf 文件**必须有 `← [返回 ...]` 回链到父 README
+- **豁免规则**：
+  - ① **leaf 文件**（无 children 的最终文档）由父 README 反向链回即可，不必每篇都加 `← [返回 ...]`
+  - ② **12.interview question 文件**（约 230 题）由 frontmatter `topic` 字段隐式关联到父 README，无需每题加回链字符
+  - ③ **13.story 单篇**（约 50 篇）由 `13.story/README.md` 顶部"系列定位"段总目录统一显式链回
 - 至少 2 个跨模块或同模块的互链
-- 系列文章末尾必须有"系列导航表"
+- 系列文章末尾必须有"系列导航表"（13.story 由 README.md 系列定位块承担）
 
-### 4. frontmatter 规范（可选）
+### 4. frontmatter 规范
 
-仅"知识文章"（非 SPEC.md / README.md / index.md）使用：
+所有"知识文章"（非 SPEC.md / README.md / index.md）必须用 HTML-comment frontmatter。**三类 schema**（按文件类型选其一，字段定义见对应 `<module>/SPEC.md`）：
+
+| 类型 | 用途 | 字段示例 | L1 详细定义 |
+|---|---|---|---|
+| `module:` | 通用知识文章（810+ 篇） | parent, slug, type, category, summary | 默认 |
+| `question:` | 12.interview 各题（≈230 题） | id, topic, difficulty, frequency, scenario_type, tags | `12.interview/SPEC.md §4` |
+| `story:` | 13.story 阿明餐厅系列（≈50 篇） | number, type, position, title, audience, depth | `13.story/SPEC.md §4` |
+
+**module: 默认示例**（其他类型必填字段见 L1）：
 
 ```text
 <!--module:
@@ -44,6 +56,8 @@ docs: 文档
   summary: ...
 -->
 ```
+
+> 为什么 3 类：12.interview/13.story 因强骨架格式需要不同字段（id 锚点 / number 编号），硬塞进 module 会破坏 cheatsheet 自动生成与 cross-ref 网络。SPEC §7 模式 `append + override` 允许 L1 模块细化。
 
 ### 5. G1-G6 通用评分维度
 
@@ -94,5 +108,4 @@ docs: 文档
 —— 例如 12 的"30s/90s 话术 + 追问模板"、13 的"编号 + 章节 + 系列定位"。
 仅含评估维度的模块（如 01–11 大多数）**不需要** L1.5。
 
-**当前存在的 L1.5**：`12.interview/QUESTION-FORMAT-SPEC.md`。
-13.story 原 `STORY-FORMAT-SPEC.md` 于 v2.0（2026-09-26）合并入主 `<module>/SPEC.md` §4 — 证明"L1.5 是否并入 L1"应按模块规模与读者重合度判定，而非绝对规则。
+**当前存在的 L1.5**：**无**（v2.1 起，12.interview 原 `QUESTION-FORMAT-SPEC.md` 与 13.story 原 `STORY-FORMAT-SPEC.md` 均合并入各自主 L1 的 §4 / §5 — L1.5 是否独立存在应按模块规模与读者重合度判定）。
