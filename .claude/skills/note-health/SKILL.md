@@ -159,26 +159,29 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 | 1.11 H1/H2 标题规范 | SPEC §6.2 | structural-checks.md |
 | 1.12 命名一致性 | SPEC §6.7 | structural-checks.md |
 | **1.13 弱关联扫描（v2 正文内链）** | Mistake 20 | `scripts/weak-link-scan.py` |
-| **1.14 准入判定扫描** | `12.interview/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
+| **1.14 准入判定扫描** | [`SPEC.md §1.5`](../../../SPEC.md)（`type=interview`）+ 该模块 `<module>/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
 | **1.15 关键词映射表稽核** | `SPEC.md §8` | 本节下方 |
 
 **所有大输出重定向到文件**（`> "$KB_DIR/.health-tmp/scan-<phase>-<date>.txt"`），不堆进对话。Phase 1 不调 workflow。
 
 > 详细 11 类扫描规则的执行步骤、误判识别、自动化脚本、输出落盘格式，均见 [`references/structural-checks.md`](references/structural-checks.md)。
 
-> **🆕 2026-10-12 起**：准入判定扫描（Phase 1.14）新增 —— 对 12.interview 跑判定词库（**详见 [`$KB_DIR/12.interview/SPEC.md` §准入判定](../../../12.interview/SPEC.md)**），命中 4 类不适合样本的标记为 `P3 misplaced-warning`。
+> **🆕 2026-10-12 v3.x 通用化**：准入判定扫描（Phase 1.14）通用化 —— **通过读 [`SPEC.md §1.5`](../../../SPEC.md) 找 `type=interview` 的模块目录**（不再硬绑定 `12.interview/`）；对该模块跑判定词库（**详见 `<该模块>/SPEC.md §准入判定`**），命中 4 类不适合样本的标记为 `P3 misplaced-warning`。
+>
+> **KB 未配置 §1.5 时**：Phase 1.14 静默失效 + 报告 P3「missing §1.5，参见 [`STARTUP-NEW-KB.md`](../../STARTUP-NEW-KB.md) §1.5.3」。
 >
 > **强约束**：
 >
 > - 本扫描**只标记，不动手**——移除执行必须由用户决策
-> - 实际移除走 `note-precipitation-planning` Phase 6（迁移到正确主模块 + 加反向链 + 12.interview 旧文件保留 `→ [已迁移到:]` 跳转说明）
+> - 实际移除走 `note-precipitation-planning` Phase 6（迁移到正确主模块 + 加反向链 + `<type=interview 模块>/` 旧文件保留 `→ [已迁移到:]` 跳转说明）
 > - 9 类关键词库在 `references/structural-checks.md` §9（避免在 note-health 内另起一份重复规则）
 >
-> **来源**（2026-10-12）：沉淀 Maven release/source/target 时，`note-precipitation-planning` 把「高频踩坑」误判为「高频面试」。教训：准入判定必须有显式规则（沉淀 skill 之前散落的 Phase 2/3 信号不够精准），并由健康体检 skill 自动扫描兜底。
+> **来源**（2026-10-12）：沉淀 Maven release/source/target 时，`note-precipitation-planning` 把「高频踩坑」误判为「高频面试」。
+> **v3.x 演进**：从硬绑定 `12.interview/` 改为读 `SPEC.md §1.5`，让借 KB 时任意 `type=interview` 模块名都能工作。
 
 > **🆕 2026-10-12 起**：Phase 1.15 `keywords_mapping_validation` —— 扫 [`$KB_DIR/SPEC.md` §8](../../../SPEC.md) 所有「主题词 → 路径」映射：
 >
-> 1. 解析 §8 表格中**主模块路径**与 **12.interview 路径**两列（`-` / `(聚合)` 跳过）
+> 1. 解析 §8 表格中**主模块路径**与 **12.interview / 03.interview 类型路径**两列（`-` / `(聚合)` 跳过）
 > 2. 对每个路径 `os.path.exists(target_abs)` 校验
 > 3. 死链标 P3 `misplaced-warning`（与 Phase 1.14 同级），附在体检报告后
 > 4. **不动手修复**（按用户决策走 `note-precipitation-planning` Phase 6 沉淀流程，避免体检越界改 §8）
