@@ -22,24 +22,65 @@ import sys
 import re
 import glob
 import argparse
-import yaml
 
 KB_DIR = os.environ.get('KB_DIR', '.')
 
 # HTML-comment frontmatter
 FRONTMATTER_RE = re.compile(r'<!--\s*(module|question|story)\s*:\s*(.*?)\s*-->', re.DOTALL)
-# tags: 列表形式
-TAGS_RE = re.compile(r'^\s*tags\s*:\s*(.+?)\s*$', re.MULTILINE)
+# tags: 多种格式:
+# 1. `tags: [A, B, C]`
+# 2. `tags: A, B, C`
+# 3. `tags:\n  - A\n  - B`
+TAGS_INLINE_RE = re.compile(r'^\s*tags\s*:\s*\[([^\]]+)\]\s*$', re.MULTILINE)
+TAGS_PLAIN_RE = re.compile(r'^\s*tags\s*:\s*([^[\n]+?)\s*$', re.MULTILINE)
+TAGS_LIST_RE = re.compile(r'^\s*-\s*(\S+)\s*$', re.MULTILINE)
 
 EXCLUDE_DIRS = ['.claude', '.health-tmp', '.git', 'scripts']
 
 
-def parse_frontmatter_yaml(block: str) -> dict:
-    """Parse YAML inside HTML-comment block (tolerates indentation quirks)"""
-    try:
-        return yaml.safe_load(block) or {}
-    except yaml.YAMLError:
-        return {}
+def parse_tags(block: str) -> list:
+    """从 frontmatter 块解析 tags 列表(支持 3 种格式)"""
+    # 格式 1: inline list `[A, B, C]`
+    m = TAGS_INLINE_RE.search(block)
+    if m:
+        return [t.strip().strip('"\'') for t in m.group(1).split(',') if t.strip()]
+
+    # 格式 3: YAML list 写法
+    if '\n' in block:
+        # 找 tags: 行后的 - 项
+        lines = block.split('\n')
+        in_tags_list = False
+        result = []
+        for line in lines:
+            stripped = line.strip()
+            if TAGS_INLINE_RE.match(line) or TAGS_PLAIN_RE.match(line):
+                in_tags_list = True
+                # 处理 inline format
+                m_inline = TAGS_INLINE_RE.search(line)
+                if m_inline:
+                    return [t.strip().strip('"\'') for t in m_inline.group(1).split(',') if t.strip()]
+                m_plain = TAGS_PLAIN_RE.search(line)
+                if m_plain:
+                    text = m_plain.group(1).strip()
+                    # 检查是否紧跟 - list
+                    return [t.strip() for t in text.split(',') if t.strip()]
+                continue
+            if in_tags_list:
+                m_item = TAGS_LIST_RE.match(line)
+                if m_item:
+                    result.append(m_item.group(1).strip().strip('"\''))
+                elif stripped and not stripped.startswith('-') and ':' in stripped:
+                    # 进入下一个字段
+                    in_tags_list = False
+        if result:
+            return result
+
+    # 格式 2: plain `tags: A, B, C`
+    m = TAGS_PLAIN_RE.search(block)
+    if m:
+        return [t.strip().strip('"\'') for t in m.group(1).split(',') if t.strip()]
+
+    return []
 
 
 def find_md_files(root: str):
@@ -65,8 +106,8 @@ def collect_tags(root: str) -> dict:
         m = FRONTMATTER_RE.search(content)
         if not m:
             continue
-        data = parse_frontmatter_yaml(m.group(2))
-        tags = data.get('tags', [])
+        data_block = m.group(2)
+        tags = parse_tags(data_block)
         if isinstance(tags, str):
             tags = [t.strip() for t in re.split(r'[,;|]', tags) if t.strip()]
         elif not isinstance(tags, list):

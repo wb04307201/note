@@ -162,7 +162,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 | **1.14 准入判定扫描** | [`SPEC.md §1.5`](../../../SPEC.md)（`type=interview`）+ 该模块 `<module>/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
 | **1.15 关键词映射表稽核** | `SPEC.md §8` | 本节下方 |
 | **1.16 status_inventory（v3.x 新增）** | `SPEC.md §4` | 本节下方 + references/structural-checks.md §10 |
-| **1.17 keyword_mapping_coverage（v3.x 候选 3）** | `SPEC.md §4 tags:` + `§8`（双向 bridge） | 本节下方 + references/keyword-mapping-audit.md |
+| **1.17 keyword_mapping_coverage（v3.x 候选 3）** | `SPEC.md §4 tags:` + `§8`（双向 bridge） | 本节下方 + `scripts/keyword-mapping-audit.py` |
 
 **所有大输出重定向到文件**（`> "$KB_DIR/.health-tmp/scan-<phase>-<date>.txt"`），不堆进对话。Phase 1 不调 workflow。
 
@@ -214,7 +214,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 >    - 完全一致 → PASS
 > 4. **同步范围**：仅 tag 主题词字符串，不验证路径（路径审计是 Phase 1.15）
 >
-> 实施细节：扫描走 [`scripts/keyword-mapping-audit.py`](../../../scripts/keyword-mapping-audit.md)（新增）；不主动改文件，只报告。
+> 实施细节：扫描走 [`scripts/keyword-mapping-audit.py`](../../../scripts/keyword-mapping-audit.py)（新增）；不主动改文件，只报告。
 >
 > **为何需要**：write-time 同步（Phase 6.10）兜底 + 长期漂移检测（tags 与 §8 双向健康度）。
 > 详见 [`SPEC.md §4 tags 双向 bridge`](../../../SPEC.md) + `references/structural-checks.md` §11（待补）
