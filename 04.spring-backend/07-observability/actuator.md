@@ -50,23 +50,20 @@
 management:
   endpoints:
     web:
+      base-path: /actuator                        # 自定义访问路径(也可改为 /manage)
       exposure:
-        include: health,info,metrics,prometheus  # 生产环境最小暴露面
-        # include: *                              # 开发环境暴露全部
-        base-path: /actuator                       # 自定义访问路径
-        base-path: /manage                         # 也可改路径
+        include: health,info,metrics,prometheus   # 生产环境最小暴露面
+        # include: "*"                            # 开发环境暴露全部
+    enabled-by-default: false                     # 默认关闭所有端点,按需开启
   endpoint:
     health:
+      enabled: true
       show-details: always                        # always | when_authorized | never
       probes:
-        enabled: true                             # 启用 K8s 探针（liveness/readiness）
+        enabled: true                             # 启用 K8s 探针(liveness/readiness)
       group:
-        custom:                                    # 自定义健康分组
+        custom:                                   # 自定义健康分组
           include: db,redis,kafka
-  endpoints:
-    enabled-by-default: false                     # 默认关闭所有端点，按需开启
-    health:
-      enabled: true
     prometheus:
       enabled: true
 ```

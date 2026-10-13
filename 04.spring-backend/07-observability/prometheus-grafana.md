@@ -559,11 +559,20 @@ order_create_duration_seconds  # 业务 Timer 以 _seconds 结尾
 
 ### 4. 数据保留期
 
+> 保留期不是 `prometheus.yml` 的配置项，而是 Prometheus 的**启动参数**（`--storage.tsdb.retention.*`）。在前文 docker-compose 场景中，通过 `command` 覆盖镜像默认启动命令：
+
 ```yaml
-# prometheus.yml
-global:
-  retention: 15d      # 保留 15 天
-  retention_size: 50GB  # 最大 50GB
+# docker-compose.yml（prometheus 服务追加）
+services:
+  prometheus:
+    image: prom/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=15d    # 保留 15 天
+      - --storage.tsdb.retention.size=50GB   # 最大 50GB，超出后删除最旧数据块
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
 ```
 
 ---
