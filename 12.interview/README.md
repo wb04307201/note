@@ -3,7 +3,7 @@
   slug: interview
   type: index
   category: 主模块
-  topic: 高频面试题（10 主题 229 篇 + 反直觉陷阱 + 30s/90s 话术）
+  topic: 高频面试题（9 主题 228 篇 + tools 5 篇 = 233 纯题 + 反直觉陷阱 + 30s/90s 话术）
   summary: 主模块的刺刀版 —— 专治面试高频 / 高难度问题
   status: active
 -->
@@ -28,19 +28,19 @@
 
 | 编号 | 对齐主模块 | 主题方向 | 篇数 | 子入口 |
 |------|-----------|---------|------|-------|
-| 01 | [`01.java-and-jvm`](../01.java-and-jvm/) | Java 基础陷阱 | 41 | [01.java/](01.java/) |
-| 02 | [`02.cs-foundations`](../02.cs-foundations/) | 计算机基础（网络 / 算法设计 / 操作系统） | 13 | [02.computer-basics/](02.computer-basics/) |
-| 03 | [`03.data-stack`](../03.data-stack/) | 数据库细节 | 33 | [03.database/](03.database/) |
-| 04 | [`06.distributed-systems`](../06.distributed-systems/) | 系统设计难点 | 27 | [12.interview/04.system-design/](04.system-design/) |
+| 01 | [`01.java-and-jvm`](../01.java-and-jvm/) | Java 基础陷阱 | 40 | [01.java/](01.java/) |
+| 02 | [`02.cs-foundations`](../02.cs-foundations/) | 计算机基础（网络 / 算法设计 / 操作系统） | 11 | [02.computer-basics/](02.computer-basics/) |
+| 03 | [`03.data-stack`](../03.data-stack/) | 数据库细节 | 32 | [03.database/](03.database/) |
+| 04 | [`06.distributed-systems`](../06.distributed-systems/) | 系统设计难点 | 26 | [12.interview/04.system-design/](04.system-design/) |
 | 05 | [`05.security`](05.security) | 安全（认证 / Web 安全 / 限流 / OWASP） | 11 | [05.security/](05.security/) |
-| 06 | [`04.spring-backend`](../04.spring-backend/) | Spring 面试高频 | 16 | [06.spring/](06.spring/) |
-| 09 | [`05.frontend`](../05.frontend/) | 前端细节 | 29 | [09.front-end/](09.front-end/) |
-| 10 | — | 大数据（Flink / Spark / Hive / Iceberg / Doris / Kafka） | 7 | [10.big-data/](10.big-data/) |
+| 06 | [`04.spring-backend`](../04.spring-backend/) | Spring 面试高频 | 15 | [06.spring/](06.spring/) |
+| 09 | [`05.frontend`](../05.frontend/) | 前端细节 | 31 | [09.front-end/](09.front-end/) |
+| 10 | — | 大数据（Flink / Spark / Hive / Iceberg / Doris / Kafka） | 6 | [10.big-data/](10.big-data/) |
 | 11 | [`08.ai-foundations`](../08.ai-foundations/) + [`09.ai-applications`](../09.ai-applications/) | AI 面试深挖 | 56 | [11.ai/](11.ai/) |
-| ✦ | tools | 开发工具（Git / Docker / Nginx / K8s） | 6 | [tools/](tools/) |
+| ✦ | tools | 开发工具（Git / Docker / Nginx / K8s） | 5 | [tools/](tools/) |
 | ✦ | [`11.product-and-pm`](../11.product-and-pm/) | **外链**（决策实战，已迁出） | — | [11.product-and-pm/](../11.product-and-pm/) |
 
-**总计：240 篇面试题**（仅"一题一文"题；2026-09-15 find 校对，per-category sums 41+13+33+27+11+16+29+7+56+6=240；其中 `<!--question:-->` 类型 229 篇，剩余 11 个为 topic-level index-only 索引页）
+**总计：233 篇面试题**（纯题口径：9 主题 228 + tools 5；find 校对 2026-10-13，`<!--question:-->` frontmatter 实数 233 + SPEC 示例 1。口径定义见根 SPEC §7「数字口径统一」）
 
 > 各分类的具体子主题（如 Java 集合 / 并发 / JVM；数据库 SQL 优化 / Redis / MVCC；系统设计 MQ / 缓存 / 分布式等）见子目录 README。
 
@@ -62,12 +62,12 @@
 
 | 目标 | 推荐路径 |
 |------|---------|
-| **Java 后端** | [01.java](01.java/) 39 篇 → [06.spring](06.spring/) 15 篇 → [03.database](03.database/) 31 篇 |
-| **系统设计 / 后端架构** | [04.system-design](04.system-design/) 26 篇 → [03.database](03.database/) 31 篇 |
-| **前端** | [09.front-end](09.front-end/) 28 篇（含网络 / CSS / 框架 / 安全 / 工程化） |
+| **Java 后端** | [01.java](01.java/) 40 篇 → [06.spring](06.spring/) 15 篇 → [03.database](03.database/) 32 篇 |
+| **系统设计 / 后端架构** | [04.system-design](04.system-design/) 26 篇 → [03.database](03.database/) 32 篇 |
+| **前端** | [09.front-end](09.front-end/) 31 篇（含网络 / CSS / 框架 / 安全 / 工程化） |
 | **AI 方向** | [11.ai](11.ai/) 56 篇（含主模块精炼版 + 新增专题：dropout / harness / 上下文工程 / RAG / 向量搜索 / Prompt 工程等） |
-| **安全工程师** | [05.security](05.security/) 10 篇（认证 / Web 安全 / 限流 / OWASP） → [04.system-design](04.system-design/) 26 篇 |
-| **大数据 / 数据平台** | [10.big-data](10.big-data/) 6 篇（Flink / Spark / Hive / Iceberg / Doris / Kafka） → [03.database](03.database/) 31 篇 |
+| **安全工程师** | [05.security](05.security/) 11 篇（认证 / Web 安全 / 限流 / OWASP） → [04.system-design](04.system-design/) 26 篇 |
+| **大数据 / 数据平台** | [10.big-data](10.big-data/) 6 篇（Flink / Spark / Hive / Iceberg / Doris / Kafka） → [03.database](03.database/) 32 篇 |
 | **DevOps / SRE** | [tools/](tools/) 5 篇（Git / Docker / Nginx / K8s） → [04.system-design](04.system-design/) 26 篇 |
 
 ### 3.2 按难度刷（按面试倒计时）

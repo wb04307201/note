@@ -29,10 +29,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ├── 09.ai-applications/            # RAG + Agent + Prompt + LLM 推理
 ├── 10.business-systems/           # 电商 + 社交 + 金融
 ├── 11.product-and-pm/             # 产品 + PM + 流程(含原 11.product-and-pm 内容)
-├── 12.interview/                  # 高频面试题(229 题,9 个主题子目录 + tools)
+├── 12.interview/                  # 高频面试题(233 题,9 个主题子目录 + tools)
 │   ├── 01.java/ 02.computer-basics/ 03.database/ 04.system-design/
 │   ├── 05.security/ 06.spring/ 09.front-end/ 10.big-data/ 11.ai/ tools/
-│   └── QUESTION-FORMAT-SPEC.md     # 面试题格式 + 反直觉 / 陷阱 / 30 秒话术
+│   └── SPEC.md                      # 模块规范(§4 强骨架 + 准入判定 + 反直觉 / 陷阱 / 30 秒话术)
 ├── 13.story/                      # 「阿明餐厅」技术系列(50 篇,平铺顶层)
 │   └── SPEC.md                     # 模块完整规范(v2.0 起吸收原 STORY-FORMAT-SPEC.md §4)
 ├── .claude/skills/                # 3 个 meta-skill 单一来源(git tracked)
@@ -60,7 +60,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **知识文章 frontmatter 类型**(按 `slug` 字段分 3 类,HTML 注释格式 `<!--type: ... -->` 起首 + 多行字段 + `-->` 收尾;详见 `SPEC.md` §4):
 - `module:`(主模块 README + 子文章,跨所有 13 模块,现状 814 篇)
-- `question:`(`12.interview` 高频面试题,现状 **229 篇**)
+- `question:`(`12.interview` 高频面试题,现状 **233 篇**,纯题口径 9 主题 228 + tools 5)
 - `story:`(`13.story` 阿明餐厅,现状 **50 章** + 强骨架格式见 `13.story/SPEC.md` §4)
 
 > `SPEC.md` / `index.md` 等索引页豁免 frontmatter(约 20 个)。
@@ -228,7 +228,7 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 ### 知识库(2026-09-12 实测,排除 .claude/skills / .github/workflows/scripts / .health-tmp / .obsidian / .git)
 
 - **13 主模块** / **787 README** / **1111 .md**
-- frontmatter 覆盖 **98.3%**(1092 / 1111:module 814 + question 229 + story 51,去重后 1092;剩余约 19 为 SPEC.md / index.md 等索引页,按规范可豁免)
+- frontmatter 覆盖 **98.3%**(1096 / 1115:module 814 + question 233 + story 51,去重后 1096;剩余约 19 为 SPEC.md / index.md 等索引页,按规范可豁免)
 - 总 leaves:**约 930 篇**
 
 ### 健康度(原仓库 Session 6-9 闭环)
