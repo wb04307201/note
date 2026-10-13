@@ -139,7 +139,7 @@ console.log(result.text)
 ```tsx
 // 思维链展示
 function Message({ content }: { content: string }) {
-  const match = content.match(/<think>>([\s\S]*?)<\/think>/)
+  const match = content.match(/<think>([\s\S]*?)<\/think>/)
   
   return (
     <div>
@@ -149,7 +149,7 @@ function Message({ content }: { content: string }) {
           <p>{match[1]}</p>
         </details>
       )}
-      <p>{content.replace(/<think>>[\s\S]*?<\/think>/, '')}</p>
+      <p>{content.replace(/<think>[\s\S]*?<\/think>/, '')}</p>
     </div>
   )
 }
