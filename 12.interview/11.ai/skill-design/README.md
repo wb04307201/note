@@ -246,9 +246,9 @@ metrics:
 ## 相关章节
 
 **主模块**：
-- Skill 设计方法论深度章节 — 决策树 + 4 阶段 + 5 反模式 + YAML 模板
-- Claude Code 大型代码库实践 — Skill 渐进式披露基础
-- Skill 命中率深度章节 — "写"的姐妹篇："调"
+- [Skill 设计方法论深度章节](../../../09.ai-applications/agent/coding-agents/claude-code-practices/skill-design.md) — 决策树 + 4 阶段 + 5 反模式 + YAML 模板
+- [Claude Code 大型代码库实践](../../../09.ai-applications/agent/coding-agents/claude-code-practices/README.md) — Skill 渐进式披露基础
+- [Skill 命中率深度章节](../../../09.ai-applications/agent/coding-agents/claude-code-practices/skill-hit-rate.md) — "写"的姐妹篇："调"
 
 **同栏目（11.ai 高频面试题）**：
 - [Skill 数量一多，Agent 命中率怎么保证？](../skill-hit-rate/README.md) — "调"的面试题
