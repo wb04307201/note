@@ -28,7 +28,8 @@ public class LinkedHashSet<E>
         super(initialCapacity, loadFactor, true); // true 表示使用 LinkedHashMap
     }
 }
-```java
+```
+
 **初始容量公式**：`initialCapacity = (期望元素数 / loadFactor) + 1`（loadFactor 默认 0.75，期望 1000 元素时建议设 1334）
 
 `HashSet` 内部有一个 `HashMap` 类型的成员 `map`，所有元素都作为 `map` 的 key 存储，value 统一为一个静态常量 `PRESENT`：
@@ -47,7 +48,8 @@ public class HashSet<E> extends AbstractSet<E>
         map = new LinkedHashMap<>(initialCapacity, loadFactor);
     }
 }
-```text
+```
+
 这种设计模式称为 **适配器模式** —— `HashSet` 本身不存储数据，而是将数据存储操作委托给内部的 `HashMap`。
 
 ```java
@@ -65,7 +67,8 @@ public boolean contains(Object o) {
 public boolean remove(Object o) {
     return map.remove(o) == PRESENT;
 }
-```text
+```
+
 **核心结论：** `LinkedHashSet` 本质上是一个 `LinkedHashMap` 的 "key 视图"，value 全部为无意义的 `PRESENT` 占位符。
 
 ---
@@ -84,13 +87,15 @@ static class Entry<K,V> extends HashMap.Node<K,V> {
         super(hash, key, value, next);
     }
 }
-```text
+```
+
 ### 链表结构示意图
 
 ```text
 head → [Entry1] ↔ [Entry2] ↔ [Entry3] ↔ [Entry4] → tail
         (先插入)                            (后插入)
-```text
+```
+
 - `head` 指向最早插入的节点
 - `tail` 指向最新插入的节点
 - 遍历 `LinkedHashSet` 时，沿着双向链表从头到尾遍历，因此遍历顺序 == 插入顺序
@@ -109,7 +114,8 @@ void linkNodeLast(LinkedHashMap.Entry<K,V> p) {
         last.after = p;   // 前 tail 的 after 指向新节点
     }
 }
-```text
+```
+
 ### 访问顺序模式（可选）
 
 `LinkedHashMap` 还支持 **访问顺序**（accessOrder），构造函数中可设置：
@@ -117,7 +123,8 @@ void linkNodeLast(LinkedHashMap.Entry<K,V> p) {
 ```java
 // accessOrder = true：按访问顺序排列（最近访问的在尾部）
 LinkedHashMap<String, Integer> map = new LinkedHashMap<>(16, 0.75f, true);
-```text
+```
+
 当 `accessOrder = true` 时，每次 `get()` 操作都会将对应节点移到链表尾部。这是实现 **LRU Cache** 的基础：
 
 ```java
@@ -134,7 +141,8 @@ class LRUCache<K, V> extends LinkedHashMap<K, V> {
         return size() > capacity; // 超出容量则淘汰最老的
     }
 }
-```text
+```
+
 > 注意：`LinkedHashSet` 的构造函数没有暴露 `accessOrder` 参数，因此 `LinkedHashSet` **只能** 保持插入顺序，不支持访问顺序。
 
 ---
@@ -168,7 +176,8 @@ linkedHashSet.add("A");
 linkedHashSet.add("B");
 System.out.println(linkedHashSet);
 // 输出：[C, A, B]（严格按插入顺序）
-```text
+```
+
 ### 性能细节
 
 在 **小容量** 场景下，`LinkedHashSet` 的遍历性能优于 `HashSet`，因为：
@@ -212,7 +221,8 @@ System.out.println(treeSet);
 // TreeSet 支持范围查询
 System.out.println(treeSet.subSet("Apple", "Cherry"));
 // 输出：[Apple, Banana]
-```text
+```
+
 ---
 
 ## 五、适用场景
@@ -225,7 +235,8 @@ List<String> input = Arrays.asList("A", "B", "A", "C", "B", "D");
 List<String> deduplicated = new ArrayList<>(new LinkedHashSet<>(input));
 System.out.println(deduplicated);
 // 输出：[A, B, C, D]
-```text
+```
+
 ### 2. 实现按插入顺序遍历的 Set
 
 ```java
@@ -235,7 +246,8 @@ recentKeys.add("user:1");
 recentKeys.add("user:2");
 recentKeys.add("user:3");
 // 遍历时总是按 user:1 → user:2 → user:3 的顺序
-```json
+```
+
 ### 3. SQL 查询结果去重
 
 ```java
@@ -244,7 +256,8 @@ Set<Record> uniqueRecords = new LinkedHashSet<>();
 for (Record r : resultSet) {
     uniqueRecords.add(r);
 }
-```json
+```
+
 ### 4. 需要确定性顺序的单元测试
 
 ```java
@@ -261,7 +274,8 @@ void testSetOrder() {
     assertEquals("second", it.next());
     assertEquals("third", it.next());
 }
-```text
+```
+
 ### 5. 配置解析时保留用户定义的顺序
 
 ```java
@@ -271,7 +285,8 @@ pluginOrder.add("logging");
 pluginOrder.add("auth");
 pluginOrder.add("cors");
 // 按此顺序初始化插件链
-```text
+```
+
 ---
 
 ## 六、面试高频问题
@@ -311,7 +326,8 @@ pluginOrder.add("cors");
 ```java
 // 预计存储 1000 个元素
 Set<String> set = new LinkedHashSet<>((int) (1000 / 0.75f) + 1);
-```text
+```
+
 ---
 
 ← [返回 Java 集合框架](../README.md)

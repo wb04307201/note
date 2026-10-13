@@ -10,7 +10,7 @@
 
 # 方法
 
-> **定位**：Java 方法：重载/重写、可变参数、值/引用传递、Lambda 简写与字节码级 invoke 指令。
+> **定位**：Java 方法：重载/重写、可变参数、值/引用传递、Lambda 简写，以及静态/动态绑定对应的字节码 invoke 指令。
 
 ---
 
@@ -84,6 +84,24 @@ public class Example {
     }
 }
 ```
+
+## 方法绑定与 invoke 指令
+
+上表提到的"静态绑定 / 动态绑定"，落到字节码层面就是不同的 invoke 指令。JVM 共有 4 条常用的方法调用指令：
+
+| 指令 | 用途 | 绑定时机 |
+|------|------|---------|
+| `invokestatic` | 调用静态方法 | 编译期静态绑定，直接解析到目标方法 |
+| `invokespecial` | 调用构造方法（`<init>`）、`private` 方法、`super` 调用的父类方法 | 编译期静态绑定 |
+| `invokevirtual` | 调用普通实例方法（虚方法） | 运行期动态绑定，基于对象实际类型查虚方法表（vtable）分派 |
+| `invokeinterface` | 调用接口方法 | 运行期动态绑定，实现类不唯一，需搜索 itable 确定目标 |
+
+要点：
+
+- **静态绑定 → `invokestatic` / `invokespecial`**：目标方法在编译期即可确定，无需运行时查找，这也是重载在编译期就按声明类型选定版本的原因。
+- **动态绑定 → `invokevirtual`**：重写方法的运行时多态由它承载——`javac` 编译 `dog.sound()` 生成的仍是 `invokevirtual Animal.sound`，JVM 执行时根据 `dog` 的实际类型 `Dog` 在虚方法表中找到重写版本。
+- **接口调用 → `invokeinterface`**：接口没有固定的 vtable 槽位，无法用 `invokevirtual` 分派，必须单独一条指令。接口 `default` 方法被实现类继承后调用同样走 `invokeinterface`（或按接收者类型走 `invokevirtual`）。
+- **`invokedynamic` 与 lambda**：JDK 7 为动态语言引入的第 5 条 invoke 指令，把分派逻辑交给用户代码（引导方法 BootstrapMethod）。JDK 8 起 lambda 表达式不再编译为匿名内部类，而是编译为 `invokedynamic` 指令 + `LambdaMetafactory` 引导方法，运行时动态生成实现类——这是 lambda 比匿名内部类更轻量的根本原因（详见 [语法糖](../syntactic-sugar/README.md)）。
 
 ## 重载（Overload）和重写（Override）
 

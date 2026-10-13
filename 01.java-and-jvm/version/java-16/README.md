@@ -347,17 +347,13 @@ Stream.of("a", "b").mapMulti((str, consumer) -> {
 
 #### Vector API 改进
 
-向量 API 的第四次孵化版本，改进了 API 设计和性能。
+JDK 16 是 Vector API 的**第一次孵化**（JEP 338，详见上文专节）。第二次孵化为 JDK 17（JEP 414），"第四次孵化"是 JDK 19（JEP 426），不要混淆版本。
 
 #### 外部内存访问 API 改进
 
-外部内存访问 API 的第三次孵化版本，进一步完善了功能和性能。
+外部内存访问 API 的第三次孵化版本（JEP 393），进一步完善了功能和性能。
 
 ### 安全
-
-#### 默认禁用弱命名曲线
-
-47 条弱命名曲线默认禁用。可通过 `jdk.disabled.namedCurves` 安全属性配置。
 
 #### 新增根证书
 
@@ -369,22 +365,6 @@ SunEC 提供者改进了对现代曲线公式的实现。
 
 ### HotSpot / JVM
 
-#### 默认启用有帮助的 NullPointerException
-
-JEP 358 的有帮助的 `NullPointerException` 消息现在默认启用，显示 NPE 发生位置的代码片段。
-
-```bash
-# 默认启用，无需额外标志
-java MyApp
-
-# 禁用（不推荐）
-java -XX:-ShowCodeDetailsInExceptionMessages MyApp
-```
-
-#### ZGC 并发类卸载
-
-ZGC 现在支持并发类卸载，释放未使用类的数据结构。
-
 #### ZGC 字符串去重
 
 ZGC 现在支持字符串去重（JEP 192）。
@@ -394,23 +374,11 @@ ZGC 现在支持字符串去重（JEP 192）。
 - G1 堆区域大小人体工程学改进
 - G1 现在可以在标记周期中将未使用的堆内存取消提交回操作系统
 
-#### 偏向锁弃用
-
-偏向锁默认禁用并弃用。`UseBiasedLocking` 及相关标志弃用。
-
 ### 工具
 
 #### jpackage 改进
 
 `jpackage` 工具改进了应用打包功能，支持更多平台和配置。
-
-#### jcmd GC.heap_dump 压缩
-
-`jcmd` 的 `GC.heap_dump` 命令新增 `gz` 选项启用 gzip 压缩。
-
-```bash
-jcmd <pid> GC.heap_dump filename=/tmp/heap.hprof gz=1
-```
 
 #### javac 改进
 

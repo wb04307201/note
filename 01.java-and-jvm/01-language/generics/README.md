@@ -257,7 +257,7 @@ if (fieldType instanceof ParameterizedType) {
 
 ## 泛型与可变参数
 
-泛型与可变参数（varargs）结合使用时会产生**堆污染**（Heap Pollution）问题：
+泛型与可变参数（varargs）结合使用时会产生**堆污染**（Heap Pollution）问题。其根源是：varargs 调用会创建一个数组来承载可变参数，而 Java 禁止创建泛型数组（如 `new List<String>[]`），编译器只能用擦除后的类型（`List[]`）创建数组——泛型的编译期保证在这一步被打破：
 
 ```java
 // 编译器会产生 unchecked warning：Possible heap pollution from parameterized vararg type
@@ -267,11 +267,15 @@ public static <T> void addAll(List<T> list, List<T>... lists) {
     }
 }
 
-// JDK 8+ 推断 T=Object，编译通过；运行时 list.addAll(l) 仅复制 Object 引用，不会直接出错
-// 但 varargs 数组的类型安全已被破坏，若数组引用泄漏则可能导致 ClassCastException
+// 注意：泛型是不变的（invariant），下面这个调用【无法通过编译】——
+// 不存在一个 T 能同时满足 List<String> 和 List<Integer>，类型推断失败：
+// addAll(strList, intList);  // 编译错误：T 无法推断为 String 或 Integer 的公共类型
 List<String> strList = new ArrayList<>();
 List<Integer> intList = new ArrayList<>();
-addAll(strList, intList);  // 编译通过（JDK 8+），运行时不会直接抛出异常
+
+// 真正的风险出现在类型一致的调用中：编译器为 varargs 创建的是擦除后的 List[] 数组，
+// 只要这个数组引用不泄漏，方法内部是安全的；一旦泄漏，就可以向其中写入错误类型的元素
+addAll(strList, List.of("a"), List.of("b"));  // 正常用法，编译产生 unchecked 警告
 
 // 堆污染真正导致 ClassCastException 的场景：varargs 数组引用泄漏
 static void heapPollution(List<String>... stringLists) {
@@ -282,7 +286,7 @@ static void heapPollution(List<String>... stringLists) {
 }
 ```
 
-Java 7 引入了 `@SafeVarargs` 注解，用于标注那些虽然使用了泛型可变参数但能保证类型安全的方法（通常是 `static`、`final` 或 `private` 方法）：
+Java 7 引入了 `@SafeVarargs` 注解，用于标注那些虽然使用了泛型可变参数但能保证类型安全的方法（通常是 `static`、`final` 或 `private` 方法）。它的语义是**开发者向编译器和调用方作出的承诺**——"本方法不会泄漏 varargs 数组引用、不会向数组写入错误类型"——编译器并不做任何实际验证，只是据此抑制调用处与声明处的 unchecked 警告：
 
 ```java
 @SafeVarargs
