@@ -2,7 +2,7 @@
   id: 11.ai-rag
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 反直觉代码
   tags: [11.ai, RAG, rag]
   status: active
@@ -76,6 +76,26 @@ RAG 不是"让 LLM 变聪明"，而是"**给 LLM 装一个能查事实的工具*
 | **Embedding** | 中文用 BGE-M3、英文用 OpenAI text-embedding-3 |
 | **检索** | 混合检索（向量 + BM25）+ Reranker |
 | **生成** | 引用源标注、置信度过滤、"不知道就说不知道" Prompt |
+
+**❌/✅ 检索层代码对比**：
+
+```python
+# ❌ 反例：纯向量检索
+# 问题：专有名词/型号精确匹配差（"BGE-M3" 可能被召回成 "BERT"），无重排序，Top-K 质量不稳
+def retrieve(query: str, k: int = 5):
+    q_vec = embed(query)
+    return vector_db.search(q_vec, top_k=k)      # 单路召回，直接返回
+
+
+# ✅ 正例：混合检索 + Rerank（Advanced RAG 标配）
+def retrieve(query: str, k: int = 5):
+    q_vec = embed(query)
+    dense_hits = vector_db.search(q_vec, top_k=20)          # 语义召回
+    sparse_hits = bm25_index.search(query, top_k=20)        # 关键词召回（精确匹配兜底）
+    candidates = rrf_merge(dense_hits, sparse_hits, top_n=30)  # RRF 融合去重
+    reranked = cross_encoder.rerank(query, candidates)      # Reranker 精排
+    return reranked[:k]                                     # Top-K 质量显著提升
+```
 
 ---
 

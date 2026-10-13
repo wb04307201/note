@@ -66,6 +66,28 @@ RAG 回答：
   → 无权文档根本不进入 Top-K
 ```
 
+**❌/✅ 代码对比**：
+
+```python
+# ❌ 反例：应用层遍历过滤（Post-filtering 的粗糙实现）
+# 问题：无权文档已经进入检索结果，泄露风险 + Top-K 数量不稳定
+results = index.query(vector=q_vec, top_k=20)          # 全量检索，无 filter
+allowed = [r for r in results if user.can_access(r.metadata["doc_id"])]
+context = allowed[:5]                                   # 过滤后可能只剩 1-2 条
+
+# ✅ 正例：向量库 metadata filter（Pre-filtering）
+# 无权文档在检索阶段就不参与相似度计算
+results = index.query(
+    vector=q_vec,
+    top_k=5,
+    filter={                                            # Pinecone/Milvus/Weaviate 均支持
+        "department": {"$in": user.allowed_departments},
+        "access_level": {"$lte": user.access_level},
+    },
+)
+context = results                                       # 每条都有权，数量稳定
+```
+
 **优点**：
 - ✅ 安全性最高 — 无权文档永远不会出现在检索结果中
 - ✅ 不浪费 LLM Token — 不会把无权内容塞进 Prompt
@@ -205,32 +227,27 @@ SaaS RAG 平台（如 Notion AI / Confluence AI）：
 
 ---
 
-## 四、5 个反模式
+## 四、常见陷阱（5 个反模式）
 
-### 反模式 1：权限只在应用层做
+### 陷阱 1：权限只在应用层做
 
-- 错：向量库不做 filter，全靠应用代码判断"这条文档用户能不能看"
-- 对：权限必须在向量库层面强制（metadata filter），应用层只是兜底
+- **真相**：应用层过滤只是兜底，不是防线。向量库不做 filter，无权文档就已经进入检索结果——一条日志、一次异常堆栈、一个前端渲染 bug 都可能把它泄露出去。权限必须在向量库层面强制（metadata filter），应用层校验只做二次兜底。
 
-### 反模式 2：权限信息不随文档更新
+### 陷阱 2：权限信息不随文档更新
 
-- 错：文档权限改了但向量库 metadata 没同步 → 旧权限生效
-- 对：ACL 同步必须自动化（Webhook / 定时拉取），不能依赖手动更新
+- **真相**：文档权限改了但向量库 metadata 没同步 → 旧权限持续生效，形成"权限幽灵"。ACL 同步必须自动化（Webhook 实时推送 / 定时增量拉取），不能依赖人工想起来去更新。
 
-### 反模式 3：Post-filtering 当唯一方案
+### 陷阱 3：Post-filtering 当唯一方案
 
-- 错：先检索再过滤 → 无权文档的标题/摘要可能已经泄露
-- 对：至少用 Pre-filtering 做底线，Post-filtering 做精校验
+- **真相**：先检索再过滤意味着无权文档的标题/摘要已经离开向量库、进入应用内存，甚至可能进入 Prompt——泄露发生在过滤之前。至少用 Pre-filtering 守住底线，Post-filtering 只做细粒度精校验。
 
-### 反模式 4：忽略 LLM 的"记忆泄露"
+### 陷阱 4：忽略 LLM 的"记忆泄露"
 
-- 错：即使 Post-filtering 剔除了无权文档，LLM 可能从其他文档"推断"出无权信息
-- 对：Answer-level gate — 生成后再次校验答案是否包含无权信息
+- **真相**：即使 Post-filtering 剔除了无权文档，LLM 仍可能从有权文档中的只言片语"推断"出无权信息（如从组织架构图推断薪资带）。需要 Answer-level gate——生成后再次校验答案是否包含无权信息。
 
-### 反模式 5：测试不覆盖权限场景
+### 陷阱 5：测试不覆盖权限场景
 
-- 错：只测"搜得准不准"，不测"不该搜到的是否搜到了"
-- 对：必须有权限测试集 — N 个用户 × M 个文档，验证每个用户只能看到有权文档
+- **真相**：只测"搜得准不准"，不测"不该搜到的是否搜到了"——权限回归缺陷会静默上线。必须有权限测试集（N 个用户 × M 个文档的可见性矩阵），每次 CI 验证每个用户只能看到有权文档。
 
 ---
 
@@ -272,7 +289,7 @@ SaaS RAG 平台（如 Notion AI / Confluence AI）：
 >
 > **多租户**：SaaS 场景用共享库 + tenant_id metadata filter（逻辑隔离），强合规场景用独立向量库实例（物理隔离）。filter 必须是向量库层面强制的，不能依赖应用层。
 >
-> **5 个反模式**：权限只在应用层做、权限不随文档更新、Post-filtering 当唯一方案、忽略 LLM 推断泄露、测试不覆盖权限场景。必须有权限测试集，每次 CI 跑。"
+> **5 个常见陷阱**：权限只在应用层做、权限不随文档更新、Post-filtering 当唯一方案、忽略 LLM 推断泄露、测试不覆盖权限场景。必须有权限测试集，每次 CI 跑。"
 
 ---
 

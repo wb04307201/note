@@ -120,11 +120,54 @@ seq_len = 1M:
 
 ---
 
+## ⚠️ 常见陷阱
+
+### 陷阱 1：Flash Attention 把复杂度降下来了
+
+- **真相**：Flash Attention 的**时间复杂度仍是 O(n²)**——它优化的是 **IO 与显存**（分块计算 + online softmax，不把 n×n 矩阵写回 HBM，显存从 O(n²) 降到 O(n)），FLOPs 一点没少。所以上下文继续翻倍，计算量照样翻 4 倍，只是不再 OOM、常数小了 2-20 倍。真正降时间复杂度的是 Sparse（O(n√n)）/ Linear Attention（O(n)），代价是质量损失。
+
+### 陷阱 2：KV Cache 也是 O(n²) 的
+
+- **真相**：KV Cache 显存随上下文**线性**增长（O(n)），不是平方——每个 token 只缓存自己的一行 K/V（2 × layers × kv_heads × d_k × seq_len × bytes）。平方的是 **Attention 矩阵**（n × n 中间结果）。面试混淆这两个概念会直接暴露基础不牢：128K 时 Attention 矩阵 2,748 GB（平方项，Flash Attention 消灭的就是它）vs KV Cache ~86 GB（线性项，MQA/GQA 压缩的是它）。
+
+### 陷阱 3：不用 KV Cache 只是"多算一点"
+
+- **真相**：无 KV Cache 时每生成 1 个 token 都要重算前缀全部 K/V，生成整段是 **O(n²) 次前向计算**（每步 O(n)×n 步）；有 KV Cache 每步只算新 token 的 K/V，总量降到 O(n)。差的不是一点，是序列长度倍的计算量——这也是为什么 KV Cache 是推理引擎的标配而不是可选项。
+
+---
+
 ## ✅ 6 大优化方案
 
 ### 方案 1：Flash Attention（推荐）
 
 **核心思想**：分块计算 + 不写回 HBM，只在 SRAM 中计算。
+
+```python
+# ❌ 标准 Attention：显式构造 n×n 矩阵（n=128K 时 2,748 GB → OOM）
+def standard_attention(Q, K, V):                  # Q/K/V: [n, d]
+    S = Q @ K.transpose(-2, -1) / math.sqrt(d)    # [n, n] 完整相似度矩阵 → 写入 HBM
+    P = torch.softmax(S, dim=-1)                  # [n, n] 再读再写一次 HBM
+    return P @ V                                  # [n, n] × [n, d] → [n, d]
+# 问题：S/P 两个 n² 中间矩阵必须整块落显存；HBM 读写 3 趟，IO 是真正瓶颈
+
+
+# ✅ Flash Attention：分块 + online softmax，n² 矩阵永远不物化（伪代码）
+def flash_attention(Q, K, V, Br=64, Bc=64):
+    O = torch.zeros_like(Q)                                    # 输出累积器 [n, d]
+    m = torch.full((Q.shape[0], 1), float("-inf"))             # 每行的 running max
+    l = torch.zeros(Q.shape[0], 1)                             # 每行的 running softmax 分母
+    for Kj, Vj in blocks(K, V, size=Bc):                       # 外层：K/V 分块载入 SRAM
+        for i, Qi in enumerate(blocks(Q, size=Br)):            # 内层：Q 分块计算
+            Sij = Qi @ Kj.T / math.sqrt(d)                     # [Br, Bc] 块级矩阵，不落 HBM
+            m_new = torch.maximum(m[i], Sij.max(-1, keepdim=True).values)
+            Pij = torch.exp(Sij - m_new)                       # 数值稳定的局部 softmax
+            alpha = torch.exp(m[i] - m_new)                    # 旧累积量的重标定系数
+            l[i] = alpha * l[i] + Pij.sum(-1, keepdim=True)    # 分母在线累加
+            O[i] = alpha * O[i] + Pij @ Vj                     # 输出在线累加
+            m[i] = m_new
+    return O / l                                               # 最终归一化，只写回一次 O
+# 效果：显存 O(n²) → O(n)，HBM 读写 3 趟 → 1 趟，2-20x 加速；FLOPs 不变（时间仍 O(n²)）
+```
 
 ```text
 标准 Attention：3 次 HBM 读写，O(n²) 显存

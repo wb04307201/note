@@ -2,7 +2,7 @@
   id: 11.ai-transformer
   topic: 11.ai
   difficulty: ⭐⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 性能对比
   tags: [11.ai, Transformer, transformer]
   status: active
@@ -94,15 +94,28 @@ KV Cache 显存 = 2 × n_layers × n_kv_heads × head_dim × seq_len × bytes_pe
 - ✅ 省 O(n²) 算力（每步只算 1 个 token 的 Q，不再重算历史）
 - ❌ 长上下文显存爆炸 —— 100k+ 上下文成 OOM，必须配合下面的 GQA / PagedAttention
 
-**PyTorch 伪代码**（15 行）：
+**PyTorch 伪代码**（❌ 无缓存 vs ✅ past_kv 复用对比）：
 
 ```python
-# 推理循环：每次只算当前 token 的 Q，复用历史 K/V
+# ❌ 反例：无 KV Cache —— 每生成 1 个 token 都重算全部历史 K/V
+seq = prompt_tokens
+for _ in range(max_new_tokens):
+    q = seq @ W_q                       # [t, d] 全部 t 个 token 的 Q
+    k = seq @ W_k                       # [t, d] 全部 t 个 token 的 K —— 每步重算！
+    v = seq @ W_v                       # [t, d] 全部 t 个 token 的 V —— 每步重算！
+    attn = softmax(q @ k.T / sqrt(d_k)) @ v
+    next_token = sample(attn[-1] @ W_o) # 其实只有最后一行有用，前 t-1 行全白算
+    seq = torch.cat([seq, next_token], dim=seq_dim)
+# 代价：生成 n 个 token 的总计算量 O(n²)（每步 O(t) × n 步），100k 上下文根本跑不动
+
+
+# ✅ 正例：past_kv 复用 —— 每次只算当前新 token 的 K/V，历史缓存直接拼接
 past_kv = None
+current_token = prompt_tokens           # 首步处理 prompt（prefill），之后每步只有 1 个新 token
 for token in new_tokens:
-    q = current_token @ W_q           # 只算当前 token 的 Query
-    k_new = current_token @ W_k       # 当前 token 的新 K
-    v_new = current_token @ W_v       # 当前 token 的新 V
+    q = current_token @ W_q             # 只算当前 token 的 Query
+    k_new = current_token @ W_k         # 当前 token 的新 K
+    v_new = current_token @ W_v         # 当前 token 的新 V
     if past_kv is None:
         past_kv = (k_new, v_new)
     else:
@@ -110,6 +123,8 @@ for token in new_tokens:
                    torch.cat([past_kv[1], v_new], dim=seq_dim))
     attn = softmax(q @ past_kv[0].T / sqrt(d_k)) @ past_kv[1]
     output = attn @ W_o
+# 收益：每步只算 1 个 token 的 K/V（O(1) 新增计算），历史零重算；
+# 代价：past_kv 占 O(n) 显存并随上下文线性增长 —— 所以要配 GQA/PagedAttention（见 §2/§3）
 ```
 
 面试话术：*"KV Cache 用 O(n) 显存换 O(1) 的每步算力 —— 是 LLM 推理从'跑不动'到'跑起来'的第一个工程突破。"*

@@ -2,7 +2,7 @@
   id: 11.ai-skill-design
   topic: 11.ai
   difficulty: ⭐⭐⭐
-  frequency: 高频
+  frequency: AI 工程岗（Agent 方向）高频
   scenario_type: 工程权衡
   tags: [11.ai, Claude Code, Skill, Agent, 设计方法论, YAML frontmatter]
   status: active
@@ -224,6 +224,32 @@ metrics:
 | "执行数据库 migration" | **MCP + Hook** | MCP 提供工具 + Hook 保证人工确认 |
 
 **反直觉点**：**Subagent 不是 Skill 的替代**。Subagent 是"雇一个临时工"，Skill 是"给现有员工一份 SOP"。前者隔离上下文但开销大，后者轻量但共享上下文。
+
+---
+
+## 常见陷阱（汇总）
+
+> Q1-Q5 中的反例/反模式散在各问，这里按标准陷阱节汇总，面试前 30 秒扫一遍。
+
+### 陷阱 1：什么都写成 Skill
+
+- **真相**：写 Skill 之前先过决策树——"每次会话都用"放 CLAUDE.md，"行为约束"加 Hook，"结构化查询/带权限的外部访问"走 MCP，"多步独立任务"用 Subagent，剩下的**专业知识 + 可渐进披露**才是 Skill。不写 Skill 也是一种能力，盲目堆 Skill 会让 Agent 注意力分散、Token 爆炸。
+
+### 陷阱 2：God Skill（大而全）
+
+- **真相**：200 字 description + 10 条 when_to_use 的"全能 code-review Skill"，Agent 选不对、加载慢。正确姿势是**小而精 + 组合**：一个 Skill 覆盖一个明确场景（security / performance / style 分开），经验法则单个 Skill ≤ 200 行。
+
+### 陷阱 3：漏写 `when_not_to_use`
+
+- **真相**：6 个 frontmatter 字段里最常被遗漏的就是它。没有拒识路径，Agent 在"半相关"边界场景会强行调用，命中率雪崩——`when_not_to_use` 要显式写出"该场景请用哪个替代 Skill"。
+
+### 陷阱 4：只写不测
+
+- **真相**：Skill 上线后没人知道效果，Agent 默默选错，积累几个月才发现命中率只有 50%。必须**离线评测集（≥ 30 条 query，命中率 ≥ 90% 才上线）+ 在线埋点（hit_rate 30 天均值 ≥ 85%，跌破阈值回滚）**双轨制。
+
+### 陷阱 5：用 Subagent 替代 Skill
+
+- **真相**：Subagent 是"雇一个临时工"（独立上下文、开销大、适合多步隔离任务），Skill 是"给现有员工一份 SOP"（轻量、共享上下文、按需加载）。两者是互补关系，不是替代关系。
 
 ---
 

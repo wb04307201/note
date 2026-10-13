@@ -60,6 +60,8 @@
 
 完整对比见 [03-six-dimensions-comparison](../../../09.ai-applications/agent/agent-execution-patterns/03-six-dimensions-comparison.md)。
 
+> 📌 打分口径说明：表中 9/6/4 等数字为**经验打分**（1-10 分制，分越高越好），来源为主模块 [03-six-dimensions-comparison](../../../09.ai-applications/agent/agent-execution-patterns/03-six-dimensions-comparison.md) 的定性对比结论量化，非公开 benchmark 实测数据——面试引用时说明"这是我们内部选型的经验打分"即可。
+
 ### 1.3 ReAct 本质（Thought + Action + Observation）
 
 ```text
@@ -313,6 +315,24 @@ Stage 2 Executor：逐步执行
 - **真相**：必须上限（10-30 次）
 - **代价**：Token 爆炸 + 响应延迟
 
+```python
+# ❌ 反例：不设上限，迷路循环烧穿预算
+agent = create_react_agent(llm, tools)          # max_iterations 缺省 = 不限制
+agent.invoke({"input": query})                  # 异常任务可循环数百轮
+
+# ✅ 正例：显式上限 + 阶段性摘要 + 超限兜底
+agent = create_react_agent(
+    llm,
+    tools,
+    max_iterations=15,                          # 硬上限：10-30 经验区间
+    max_tokens_per_step=2000,
+)
+try:
+    result = agent.invoke({"input": query})
+except AgentIterationLimit:
+    result = summarize_and_fallback(query)      # 超限 → 切 Plan-and-Execute / 人工
+```
+
 ### 陷阱 4：盲目相信 Multi-Agent
 
 - **错误**："Agent 越多越强"
@@ -324,6 +344,15 @@ Stage 2 Executor：逐步执行
 - **错误**：所有 Agent 默认 temperature=0.7
 - **真相**：执行型 0 / 探索型 0.7
 - **代价**：执行型路径不可复现
+
+```python
+# ❌ 反例：执行型 Agent 沿用对话默认温度 → 同一输入两次跑出不同路径，无法审计
+llm = ChatOpenAI(model="gpt-4o", temperature=0.7)
+
+# ✅ 正例：按 Agent 类型区分温度
+executor_llm = ChatOpenAI(model="gpt-4o", temperature=0)     # 执行/规划/工具调用：确定性
+explorer_llm = ChatOpenAI(model="gpt-4o", temperature=0.7)   # 头脑风暴/创意发散：保留多样性
+```
 
 ### 陷阱 6：Plan Repair 不分析错误根因
 

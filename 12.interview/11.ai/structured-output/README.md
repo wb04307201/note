@@ -47,43 +47,35 @@ Q：为什么 JSON Mode 已经被淘汰了？
 
 ---
 
-## ⚠️ 陷阱 1：JSON Mode 已经过时
+## 常见陷阱
 
-**错误**：还在用 `response_format={"type": "json_object"}`（JSON Mode）
+### 陷阱 1：JSON Mode 已经过时
 
-**真相**：
-- JSON Mode（2023-11 推出）：只保证输出合法 JSON，**不保证符合 Schema**
-- Structured Outputs（2024-08 推出）：100% 符合 JSON Schema，**字段/类型/必填项全部保证**
+- **错误**：还在用 `response_format={"type": "json_object"}`（JSON Mode）
+- **真相**：
+  - JSON Mode（2023-11 推出）：只保证输出合法 JSON，**不保证符合 Schema**
+  - Structured Outputs（2024-08 推出）：100% 符合 JSON Schema，**字段/类型/必填项全部保证**
+- **代价**：用 JSON Mode 仍需解析重试 + Schema 校验，Structured Outputs 直接省掉这些工程成本。
 
-**代价**：用 JSON Mode 仍需解析重试 + Schema 校验，Structured Outputs 直接省掉这些工程成本。
+### 陷阱 2：只靠 prompt 约束
 
----
+- **错误**：在 prompt 里写"请严格按 JSON 格式输出"就完事
+- **真相**：成功率 ~90%，生产环境不够。常见问题：
+  - 漏了闭合括号
+  - 字段缺失（模型"觉得"不重要就省略）
+  - 类型错误（期望数字却输出字符串）
+  - 额外文本（JSON 外面包了 ```json``` 或"这是结果："）
+- **代价**：解析失败直接报错，用户体验崩塌。
 
-## ⚠️ 陷阱 2：只靠 prompt 约束
+### 陷阱 3：不做解析重试
 
-**错误**：在 prompt 里写"请严格按 JSON 格式输出"就完事
-
-**真相**：成功率 ~90%，生产环境不够。常见问题：
-- 漏了闭合括号
-- 字段缺失（模型"觉得"不重要就省略）
-- 类型错误（期望数字却输出字符串）
-- 额外文本（JSON 外面包了 ```json``` 或"这是结果："）
-
-**代价**：解析失败直接报错，用户体验崩塌。
-
----
-
-## ⚠️ 陷阱 3：不做解析重试
-
-**错误**：JSON 解析失败直接抛异常
-
-**真相**：必须有兜底机制：
-1. 尝试直接解析
-2. 提取 ```json``` 代码块
-3. 提取第一个 `{` 到最后一个 `}`
-4. 让 LLM 修复格式（最多 3 次）
-
-**代价**：一次格式错误就中断任务，Token 浪费。
+- **错误**：JSON 解析失败直接抛异常
+- **真相**：必须有兜底机制：
+  1. 尝试直接解析
+  2. 提取 ```json``` 代码块
+  3. 提取第一个 `{` 到最后一个 `}`
+  4. 让 LLM 修复格式（最多 3 次）
+- **代价**：一次格式错误就中断任务，Token 浪费——重试的 Token 成本账怎么算见 [Token 与计费](../token/README.md)。
 
 ---
 
@@ -157,6 +149,12 @@ response = client.chat.completions.create(
 | 适用场景 | 快速集成商业 API | 自建推理服务（vLLM + Outlines） |
 | 性能开销 | 低（API 调用） | 中（CFG 约束增加解码时间 ~20%） |
 | 学习曲线 | 低（3 行代码接入） | 中（需理解 CFG + 模型部署） |
+
+**跨模块联动**：
+
+- [Token 与计费](../token/README.md) — 解析重试的隐性成本账：10% 解析失败 × 最多 3 次重试 ≈ 每条请求多烧 10-30% Token；Structured Outputs / constrained decoding 从源头消灭重试，省下的就是纯利润。
+- [推理框架对比（主模块）](../../../09.ai-applications/llm-inference/inference-frameworks/README.md) — vLLM 等自建推理服务在 serving 层提供 guided decoding（`guided_json` 参数，底层即 Outlines/xgrammar 的 constrained decoding），是"第五层策略"的生产落地入口。
+- [Function Calling](../function-calling/README.md) — 第二层策略（Schema 伪装成工具调用）的完整机制。
 
 ---
 

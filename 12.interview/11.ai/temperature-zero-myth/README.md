@@ -98,9 +98,29 @@ Backend: 实例 A → 输出 1   |   实例 B → 输出 2   ← 负载均衡
 
 ---
 
-## 二、3 大实战防御
+## 二、常见陷阱
 
-### 2.1 防御 A：业务容错（最常用）
+### 陷阱 1：设了 temperature=0 就是 greedy 确定输出
+
+- **真相**：greedy 只保证"给定同一组 logits 选 argmax"，但 logits 本身在 GPU 上就不稳定——浮点加法非结合（`(a+b)+c ≠ a+(b+c)`），不同 batch size / 不同实例的 reduction 顺序不同 → 1e-7 量级差异，当 top-2 token 概率接近时 argmax 翻转。**确定性 = 算法确定 + 数值确定，temperature=0 只解决前者。**
+
+### 陷阱 2：不设 temperature 就是"默认确定"
+
+- **真相**：商业 API 默认几乎都是 1.0（OpenAI / Anthropic / Gemini），不显式设 0 的"默认调用"实质是高随机性采样。要确定性必须**显式**传 `temperature=0`，并锁定模型快照版本（如 `gpt-4-0613` 而非 `gpt-4`）。
+
+### 陷阱 3：以为 seed 字段能保证跨调用可复现
+
+- **真相**：OpenAI 的 seed 只保证 `best_of` 内一致，跨调用、跨进程重启都可能失效；且 Provider 只承诺 "best effort"。真正可复现要靠自托管（vLLM + 固定 batch=1 + enforce_eager + seed），即便如此跨 GPU 型号仍有微小差异。
+
+### 陷阱 4：所有 LLM 调用都设 0 追求一致
+
+- **真相**：完全确定性不总是想要的——创意生成需要 temperature > 0 的多样性，Self-Consistency 投票依赖小幅波动采样多个答案。实战原则：**QA / 摘要 / 抽取类设 0 + 容错，创意 / 探索类保持 0.7-1.0**。
+
+---
+
+## 三、3 大实战防御
+
+### 3.1 防御 A：业务容错（最常用）
 
 适用：90% 业务场景（聊天 / 总结 / 生成）
 
@@ -123,7 +143,7 @@ def safe_invoke(query, n_samples=3):
 
 详细方案见 [主模块 · 03-consistency-and-failure-handling](../../../09.ai-applications/agent/production-stability/03-consistency-and-failure-handling.md)。
 
-### 2.2 防御 B：自托管确定性推理（关键场景）
+### 3.2 防御 B：自托管确定性推理（关键场景）
 
 适用：金融 / 法律 / 审计 / 可重现实验
 
@@ -155,7 +175,7 @@ output = llm.generate(["..."], sampling_params=vllm.SamplingParams(
 - ⚠️ 不同 vLLM 版本间行为可能漂移
 - ⚠️ batch_size > 1 时浮点非结合问题重现
 
-### 2.3 防御 C：漂移监控（生产必备）
+### 3.3 防御 C：漂移监控（生产必备）
 
 ```python
 # 每日采样 + cosine embedding 监控
@@ -187,7 +207,7 @@ def drift_monitor(prompt, n_samples=10):
 
 ---
 
-## 三、面试话术
+## 四、面试话术
 
 ### 题目：Temperature=0 输出 100% 一样吗？
 
@@ -234,7 +254,7 @@ def drift_monitor(prompt, n_samples=10):
 
 ---
 
-## 四、面试反问（让候选人反客为主）
+## 五、面试反问（让候选人反客为主）
 
 ```text
 Q1：贵司目前用哪个 Provider？默认 temperature 是多少？

@@ -2,7 +2,7 @@
   id: 11.ai-token
   topic: 11.ai
   difficulty: ⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 反直觉代码
   tags: [11.ai, LLM, token]
   status: active
@@ -40,6 +40,27 @@ PM："……"
 ```text
 "Hello, world!" → ["Hello", ",", " world", "!"] → 4 token
 "我爱中国"      → ["我", "爱", "中国"]          → 3 token
+```
+
+**✅ tiktoken 实测**（把"中文效率低于英文"从断言变实证）：
+
+```python
+import tiktoken
+
+zh = "人工智能正在改变软件开发的方式"
+en = "Artificial intelligence is changing the way software is developed"
+
+for name in ["cl100k_base", "o200k_base"]:        # GPT-3.5/4 vs GPT-4o 两代词表
+    enc = tiktoken.get_encoding(name)
+    zh_tokens, en_tokens = enc.encode(zh), enc.encode(en)
+    print(f"[{name}] 中文 {len(zh)} 字 → {len(zh_tokens)} token"
+          f"（≈{len(zh_tokens)/len(zh):.1f} token/字）")
+    print(f"[{name}] 英文 {len(en.split())} 词 → {len(en_tokens)} token"
+          f"（≈{len(en_tokens)/len(en.split()):.1f} token/词）")
+    print(f"[{name}] 同语义句中文/英文 token 比 ≈ {len(zh_tokens)/len(en_tokens):.1f}x")
+# 典型输出：cl100k_base 下 1 中文字 ≈ 1-2 token，同语义句中文 token 数明显多于英文；
+# o200k_base（GPT-4o）对中文词表做了扩充，比值收窄——结论随词表变化，务必用目标模型的
+# encoding 实测，而不是背一个固定比例。
 ```
 
 **关键比例**：
@@ -80,9 +101,14 @@ PM："……"
 
 ## 四、Token 优化 3 大手段
 
+> 以下量化实例均为**示例口径**（假设单价 + 构造场景），用于说明数量级，落地时以自家账单实测为准。
+
 1. **输入端**：RAG 只检索相关片段、压缩对话历史、删减无关内容
+   - 量化实例（示例口径）：客服 bot 每轮把全部 20 轮历史塞 Prompt ≈ 12k input token；改成"最近 3 轮原文 + 更早历史摘要" ≈ 3.5k token——按 $0.03/1k 计，单次输入费 $0.36 → $0.105，**降 ~70%**，且长对话不再触发窗口截断。
 2. **输出端**：明确长度要求（"用一句话"比"用 300 字"省 token）
+   - 量化实例（示例口径）：分类任务不加约束时模型爱输出解释，平均 120 output token；Prompt 加"只输出标签，不要解释"+ Structured Output 后平均 3 token——输出费（$0.06/1k）单次 $0.0072 → $0.00018，**降 97%**，日 10 万次调用一年省 ~$25 万。
 3. **缓存**：Prompt Cache（Anthropic / OpenAI）+ KV Cache（模型内部）
+   - 量化实例（示例口径）：批量文档处理，system prompt + few-shot 前缀 20k token 固定，每天 1 万次调用。无缓存输入费 20k × $0.03/1k × 10000 = $6000/天；Anthropic Prompt Cache 命中部分按 10% 计价，命中后 ≈ $600/天 + 少量写入费（1.25×），**降 ~80-90%**——这就是"前缀不动的批量场景优先上缓存"的原因。
 
 ---
 
