@@ -17,7 +17,7 @@
 
 | # | 子主题 | 路径 | 摘要 |
 |---|--------|------|------|
-| 1 | Agent 架构 | [agent-architecture/](agent-architecture/README.md) | DAG vs ReAct vs Plan-and-Execute 三大范式对比 + 选型决策树 |
+| 1 | Agent 架构 | [agent-architecture/](agent-architecture/README.md) | DAG vs ReAct vs Plan-and-Execute 三大范式对比 + 选型决策树 + 手搓 vs 框架（抽象税与决策权） |
 | 2 | Agent 长上下文 | [agent-context/](agent-context/README.md) | 6 大策略（Chunking/RAG/Memory/Sliding Window/Sub-Agents/Long-Context） |
 | 3 | Agent 评测 | [agent-evaluation/](agent-evaluation/README.md) | 6 大评测维度 + 5 种方法 + 阿里一面实战 + 7 反模式 |
 | 4 | Agent 4 大执行模式 | [agent-execution-patterns/](agent-execution-patterns/README.md) | ReAct / Plan-and-Execute / DAG / Multi-Agent 6 维对比 + Planning-Acting-Monitoring |
