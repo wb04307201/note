@@ -3,9 +3,10 @@
   slug: spring/mybatis-architecture
   type: index
   category: 主模块子文章
-  summary: MyBatis 架构与原理
+  summary: MyBatis 架构与原理 8 章导航——框架本质、初始化/执行流程、核心组件、动态 SQL、关联映射、缓存机制与核心类图，是阅读扩展与 Spring 整合主题的预备知识
   depth: ⭐⭐
   status: active
+  tags: [MyBatis, 架构, 执行流程, 缓存]
 -->
 
 # 01 MyBatis 架构与原理

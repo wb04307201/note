@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\03-spring-integration\01-assembly-and-startup
+  slug: 04.spring-backend/04-data/mybatis/03-spring-integration/01-assembly-and-startup
   type: article
   category: 主模块子文章
-  summary: 01 装配与启动
+  summary: Spring 整合 MyBatis 的经典三大件——SqlSessionFactoryBean 建工厂、MapperScannerConfigurer 注册 Mapper、DataSourceTransactionManager 管事务，XML 与 Java Config 两种写法及原理剖析
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, Spring 整合, SqlSessionFactoryBean, MapperScannerConfigurer]
 -->
 
 # 01 装配与启动
@@ -337,11 +338,29 @@ try {
 
 ### 1. 配置优先级
 
+❌ **错误：`configLocation` 与 `configuration` 同时设置**——两者是**互斥**的，`SqlSessionFactoryBean.buildSqlSessionFactory()` 检测到二者并存时直接抛 `IllegalStateException`（"Property 'configuration' and 'configLocation' can not specified with together"），应用启动失败：
+
+```java
+@Bean
+public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
+    SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+    factory.setDataSource(dataSource);
+    factory.setConfigLocation(new ClassPathResource("mybatis-config.xml")); // 入口 A
+    org.apache.ibatis.session.Configuration config =
+        new org.apache.ibatis.session.Configuration();
+    config.setMapUnderscoreToCamelCase(true);
+    factory.setConfiguration(config); // ❌ 入口 B 与入口 A 冲突，启动即抛异常
+    return factory;
+}
+```
+
+✅ **正确：二选一**。全局配置要么整体放在 `mybatis-config.xml`（用 `setConfigLocation` 引入），要么整体用编程式 `Configuration` 对象（用 `setConfiguration`）：
+
 ```java
 // 推荐：Java Config + @MapperScan
 // 1. 不再需要 mybatis-config.xml（除非有特殊配置）
 // 2. typeAliasesPackage / mapperLocations 通过 SqlSessionFactoryBean 设置
-// 3. 复杂场景可保留 mybatis-config.xml 用 setConfigLocation 引入
+// 3. 复杂场景可保留 mybatis-config.xml 用 setConfigLocation 引入（此时不能再 setConfiguration）
 
 @Configuration
 @MapperScan("com.example.mapper")

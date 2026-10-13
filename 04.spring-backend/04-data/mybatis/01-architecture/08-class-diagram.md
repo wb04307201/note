@@ -6,6 +6,7 @@
   summary: 从九大核心类、四大处理器到一次 SQL 执行全链路，建立 MyBatis 源码阅读地图
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, 类图, Executor, TypeHandler]
 -->
 
 # MyBatis 核心类图与职责链路
@@ -158,7 +159,7 @@ flowchart LR
 
 ## 🔧 9 大核心类职责详解
 
-### 6.1 Configuration（配置中心）
+### 1.1 Configuration（配置中心）
 
 **定位**：MyBatis 运行时的总注册表与对象工厂，不只是 XML 配置的 DTO。
 
@@ -204,7 +205,7 @@ public Executor newExecutor(Transaction tx, ExecutorType type) {
 }
 ```
 
-### 6.2 SqlSessionFactoryBuilder（构建器）
+### 1.2 SqlSessionFactoryBuilder（构建器）
 
 **定位**：把配置输入转换成 `SqlSessionFactory` 的一次性建造者。
 
@@ -234,7 +235,7 @@ public Executor newExecutor(Transaction tx, ExecutorType type) {
 - Spring 中相应角色由 `SqlSessionFactoryBean` 扩展。
 - 设计原因：构建和运行分离，使重型解析只发生一次。
 
-### 6.3 SqlSessionFactory（工厂）
+### 1.3 SqlSessionFactory（工厂）
 
 **定位**：线程安全的会话工厂，根据环境、事务和执行器类型创建 `SqlSession`。
 
@@ -264,7 +265,7 @@ public Executor newExecutor(Transaction tx, ExecutorType type) {
 - 排障时应核对工厂关联的数据源和 environment。
 - 设计原因：统一封装会话创建策略，隔离调用者与执行器构造细节。
 
-### 6.4 SqlSession（门面 / 会话）
+### 1.4 SqlSession（门面 / 会话）
 
 **定位**：面向应用的数据库会话门面，把 statement id 和参数委派给 Executor。
 
@@ -303,7 +304,7 @@ try (SqlSession session = factory.openSession(false)) {
 // ❌ 把 openSession() 的结果保存为单例，会并发共享 Connection 与一级缓存。
 ```
 
-### 6.5 Executor（执行器）
+### 1.5 Executor（执行器）
 
 **定位**：SQL 执行调度核心，负责一级缓存、事务协作和 StatementHandler 调用。
 
@@ -340,7 +341,7 @@ try (SqlSession session = factory.openSession(false)) {
 | BatchExecutor | 成批 addBatch/executeBatch | 批量写入 | 必须 flush，错误下标难定位 |
 | CachingExecutor | 装饰其他 Executor | 二级缓存 | 跨事务陈旧数据与失效策略 |
 
-### 6.6 StatementHandler（语句处理器）
+### 1.6 StatementHandler（语句处理器）
 
 **定位**：把 MappedStatement 与 BoundSql 落地为 JDBC Statement，并协调参数与结果处理。
 
@@ -370,7 +371,7 @@ try (SqlSession session = factory.openSession(false)) {
 - 分页插件常拦截 `prepare` 修改 BoundSql。
 - 设计原因：隔离 JDBC Statement 三种模型，避免 Executor 出现类型分支爆炸。
 
-### 6.7 ParameterHandler（参数处理器）
+### 1.7 ParameterHandler（参数处理器）
 
 **定位**：根据 ParameterMapping 与 TypeHandler，把 Java 入参安全写入 PreparedStatement。
 
@@ -410,7 +411,7 @@ User findById(long id);
 List<User> unsafeOrder(String orderBy);
 ```
 
-### 6.8 ResultSetHandler（结果集处理器）
+### 1.8 ResultSetHandler（结果集处理器）
 
 **定位**：把 JDBC ResultSet 按 ResultMap、构造器和 TypeHandler 组装成 Java 对象图。
 
@@ -441,7 +442,7 @@ List<User> unsafeOrder(String orderBy);
 - TypeHandler 决定“该列如何转换为 Java 值”。
 - 设计原因：把对象图组装从 JDBC 执行中剥离，支持复杂映射策略。
 
-### 6.9 MappedStatement（映射语句）
+### 1.9 MappedStatement（映射语句）
 
 **定位**：一条 Mapper 语句的不可变运行时元数据，连接配置解析与 SQL 执行。
 

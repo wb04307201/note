@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\02-extension\04-stored-procedure
+  slug: 04.spring-backend/04-data/mybatis/02-extension/04-stored-procedure
   type: article
   category: 主模块子文章
   summary: statementType=CALLABLE 让 MyBatis 透明调用数据库存储过程，支持 IN/OUT/INOUT 三种参数模式与游标映射
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, 存储过程, CALLABLE, OUT 参数]
 -->
 
 # 04 存储过程调用
@@ -144,7 +145,7 @@ public class CallableStatementHandler extends BaseStatementHandler {
 }
 ```
 
-**关键链路**（对应 [08 核心类图](../01-architecture/08-class-diagram.md) §6.5 的 `localOutputParameterCache` 与 §6.6 StatementHandler）：
+**关键链路**（对应 [08 核心类图](../01-architecture/08-class-diagram.md) §1.5 的 `localOutputParameterCache` 与 §1.6 StatementHandler）：
 
 1. **IN 参数照常设置，OUT 参数在设参阶段被跳过**：`DefaultParameterHandler.setParameters()` 遍历 `ParameterMapping` 时，`mode=OUT` 的映射不执行 `typeHandler.setParameter()`——OUT 槽位只 `registerOutParameter`，没有值可设。
 2. **执行后写回**：`DefaultResultSetHandler.handleOutputParameters()` 对每个 OUT 映射调 `typeHandler.getResult(cs, i)`，再通过 `MetaObject` 写回参数对象——参数是 `Map` 时写入对应 key（这就是 Java 示例里 `params.get("result")` 能取到值的原因），是 POJO 时写入对应属性。
@@ -173,8 +174,14 @@ try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
 try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
     Map<String, Object> params = new HashMap<>();
     params.put("result", null); // 初始化OUT参数
+    // 注意：selectOne 的返回值对应存储过程自身的 result set（本例
+    // get_user_count() 只有 OUT 参数、无结果集，返回值通常为 null）；
+    // OUT 参数的值不走返回值，而是执行后由
+    // ResultSetHandler.handleOutputParameters() 经 MetaObject 回写到入参 Map
+    // （原理见上文 CallableStatementHandler 三阶段）——所以要从 params 取：
     sqlSession.selectOne("com.example.UserMapper.callFunction", params);
-    Integer count = (Integer) params.get("result");
+    Integer count = (Integer) params.get("result"); // OUT 值回写后才有
+    System.out.println("用户总数: " + count);
 }
 ```
 ---

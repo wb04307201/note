@@ -6,6 +6,7 @@
   summary: TypeHandler 是 MyBatis 在 Java 类型与 JDBC 类型之间的双向转换桥——注册查找顺序、枚举处理选型、JSON 字段实战
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, TypeHandler, 类型转换, 枚举]
 -->
 
 # 01 自定义类型处理器(TypeHandler)
@@ -234,7 +235,7 @@ public class JacksonTypeHandler<T> extends BaseTypeHandler<T> {
 
 ## 系列导航
 
-- 深入阅读：[`08 核心类图与职责链路`](../01-architecture/08-class-diagram.md) — §6.7 ParameterHandler 与「实战源码片段 4：参数与结果 TypeHandler 的对称扩展」展示入参/出参两条路径如何汇合到本类
+- 深入阅读：[`08 核心类图与职责链路`](../01-architecture/08-class-diagram.md) — §1.7 ParameterHandler 与「实战源码片段 4：参数与结果 TypeHandler 的对称扩展」展示入参/出参两条路径如何汇合到本类
 - 下一篇：[`02 拦截器`](02-interceptor.md) — 插件机制与四大拦截点
 
 ← [返回: 02-extension](README.md)

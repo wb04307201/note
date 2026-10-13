@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\02-extension\03-database-vendor
+  slug: 04.spring-backend/04-data/mybatis/02-extension/03-database-vendor
   type: article
   category: 主模块子文章
-  summary: 03 数据库厂商扩展(DatabaseIdProvider)
+  summary: DatabaseIdProvider 让同一 Mapper 按数据库厂商切换 SQL——DB_VENDOR 的 contains 匹配机制、databaseId 加载优先级与覆盖陷阱
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, DatabaseIdProvider, 多数据库, SQL 方言]
 -->
 
 # 03 数据库厂商扩展(DatabaseIdProvider)
@@ -137,6 +138,10 @@ public class VendorDatabaseIdProvider implements DatabaseIdProvider {
 | 1（最高） | `databaseId` 匹配当前数据库 | 专用 SQL |
 | 2 | 无 `databaseId` 属性 | 通用 SQL 兜底 |
 | 3（不会加载） | `databaseId` 不匹配 | 被忽略 |
+
+> ❌ **反例：以为"带 databaseId 的版本只是补充，无 databaseId 的版本还在兜底"**——同 id 语句两种版本并存时，只要带 `databaseId` 的版本匹配成功，**无 `databaseId` 的版本就会被丢弃**（`XMLStatementBuilder` 加载阶段决定，不是运行期选择）。真实案例：团队为 MySQL 写了分页专用版 `selectTopUsers`（带 `databaseId="mysql"`），保留了原来的通用版（无 `databaseId`）当"默认实现"；后来迁移到 PostgreSQL，以为会自动落回通用版，结果启动直接报 `Invalid bound statement (not found)`——因为通用版在 MySQL 环境加载时就已被专用版覆盖丢弃，Configuration 里根本不存在无 databaseId 的版本。
+>
+> ✅ 正确心智模型：同 id 语句是"**加载期二选一**"——当前 databaseId 有匹配则**只保留**匹配版本，无 databaseId 版本被静默丢弃；仅当没有任何匹配版本时，无 databaseId 版本才会被加载。所以通用兜底版只在"目标厂商没有专用版"时才存在，别指望它在有专用版的数据库上还能兜底。
 
 ## 适用场景与注意事项
 | 场景 | 建议 |

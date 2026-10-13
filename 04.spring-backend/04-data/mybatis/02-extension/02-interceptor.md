@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\02-extension\02-interceptor
+  slug: 04.spring-backend/04-data/mybatis/02-extension/02-interceptor
   type: article
   category: 主模块子文章
-  summary: 02 拦截器(Interceptor)
+  summary: 拦截器基于 JDK 动态代理在 Executor/StatementHandler/ParameterHandler/ResultSetHandler 四大对象创建时织入——@Intercepts 签名、执行顺序、脱敏/审计/分页实战
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, 拦截器, 动态代理, 插件]
 -->
 
 # 02 拦截器(Interceptor)
@@ -45,6 +46,8 @@ public class SqlCostInterceptor implements Interceptor {
 ## §2 拦截器核心机制
 
 > 来源:原 08.mybatis/interceptor/README.md § 一
+>
+> 🔗 **与 [08 核心类图 §实战源码片段 3「Plugin 拦截器链」](../01-architecture/08-class-diagram.md) 的分工**：本篇聚焦拦截器的**应用层**——四大拦截目标、配置方式与脱敏/审计等实战场景；`Plugin.wrap()` / `InterceptorChain.pluginAll()` 的**动态代理织入源码细节**（代理如何生成、Signature 如何匹配方法）见 08 篇对应源码片段。
 
 MyBatis拦截器通过JDK动态代理实现，基于`org.apache.ibatis.plugin.Interceptor`接口构建，采用责任链模式组织多个拦截器。其核心组件包括：
 

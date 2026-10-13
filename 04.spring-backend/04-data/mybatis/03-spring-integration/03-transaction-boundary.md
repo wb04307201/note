@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\03-spring-integration\03-transaction-boundary
+  slug: 04.spring-backend/04-data/mybatis/03-spring-integration/03-transaction-boundary
   type: article
   category: 主模块子文章
-  summary: 03 事务边界
+  summary: SqlSessionTemplate 经 SpringManagedTransaction 把 SqlSession 绑定到 TransactionSynchronizationManager——Spring 接管 MyBatis 事务的链路拆解与 8 类高频失效场景
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, Spring 事务, SqlSessionTemplate, 事务失效]
 -->
 
 # 03 事务边界
@@ -18,7 +19,7 @@
 
 ## 🎯 一句话定位
 
-**Spring 事务管理 MyBatis 的核心 = `SqlSessionTemplate` 通过 `SpringManagedTransaction` 把 SqlSession 绑定到 `TransactionSynchronizationManager` 的资源池**——一旦绕开这个绑定（如手动 openSession / 多线程 / 异步），事务就会失效。
+**Spring 事务管住 MyBatis 的关键：SqlSessionTemplate 把 SqlSession 绑定到事务线程**——绕开绑定（手动 openSession / 多线程）即失效。
 
 ---
 
@@ -66,6 +67,8 @@ sequenceDiagram
 ---
 
 ## 二、SqlSessionTemplate 是怎么工作的？
+
+> ⚠️ **版本与摘录声明**（对照 [08 核心类图「实战源码片段」](../01-architecture/08-class-diagram.md) 的做法）：本节两段源码基于 **mybatis-spring 2.x / 3.x**（两版本此段逻辑一致，差异见下文「版本演进」节）做**等价摘录**——保留控制流，省略重载与异常分支，**不是可直接编译的真实源码**。尤其 `selectOne()` 一段：真实实现里 `SqlSessionTemplate` 构造时创建 JDK 动态代理 `sqlSessionProxy`，所有公开方法都是**转发到代理**、由内部类 `SqlSessionInterceptor`（`InvocationHandler`）统一走 `SqlSessionUtils.getSqlSession()` → 反射调用 → 提交/回滚/关闭；下面为了可读性把"方法 → 拦截器"的转发写成了直接调用的形式（示意的 `SqlSessionMethodInvocation` 匿名类在真实源码中并不存在）。
 
 ### 1. 类结构
 

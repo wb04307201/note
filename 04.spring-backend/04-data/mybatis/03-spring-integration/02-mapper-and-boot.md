@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\03-spring-integration\02-mapper-and-boot
+  slug: 04.spring-backend/04-data/mybatis/03-spring-integration/02-mapper-and-boot
   type: article
   category: 主模块子文章
-  summary: 02 Mapper 与 Boot
+  summary: @MapperScan 经 MapperScannerRegistrar 批量注册 MapperFactoryBean，mybatis-spring-boot-starter 经 MybatisAutoConfiguration 自动装配 SqlSessionFactory——两层拆解 Boot 时代整合原理
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, MapperScan, Spring Boot, 自动装配]
 -->
 
 # 02 Mapper 与 Boot
@@ -18,7 +19,7 @@
 
 ## 🎯 一句话定位
 
-**`@MapperScan` = `@Import(MapperScannerRegistrar.class)` 触发批量 Mapper 扫描；`mybatis-spring-boot-starter` = `spring.factories` + `@AutoConfiguration` 自动装配 SqlSessionFactory + SqlSessionTemplate**——理解这两层就理解了 Spring Boot 时代的 MyBatis 整合。
+**@MapperScan 批量注册 MapperFactoryBean，starter 自动装配 SqlSessionFactory——两层看懂 Boot 整合。**
 
 ---
 

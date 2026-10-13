@@ -1,11 +1,12 @@
 <!--module:
   parent: spring
   slug: spring/mybatis-extension
-  type: article
+  type: index
   category: 主模块子文章
-  summary: MyBatis 扩展能力
+  summary: MyBatis 扩展能力 4 章导航——TypeHandler 类型转换、Interceptor 拦截器、DatabaseIdProvider 多数据库适配、存储过程 CALLABLE 调用
   depth: ⭐⭐⭐
   status: active
+  tags: [MyBatis, TypeHandler, 拦截器, 扩展点]
 -->
 
 # 02 MyBatis 扩展能力
@@ -97,7 +98,7 @@ mindmap
 
 ## ⚠️ 踩坑与调试
 
-### 参数绑定失败(§六.6.1)
+### 参数绑定失败
 
 **错误现象**:`There is no getter for property named 'xxx' in 'class java.lang.String'`
 
