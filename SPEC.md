@@ -262,6 +262,7 @@ docs: 文档
 | Query Rewrite | `09.ai-applications/rag/query-rewrite` | - | - |
 | RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - | - |
 | RAG 评估（含 RAGAS/TruLens） | `09.ai-applications/rag/04-evaluation.md` | - | - |
+| 手搓 Agent vs 框架（抽象税） | `09.ai-applications/agent/agent-architecture/README.md#二十三手搓-vs-框架抽象税与决策权-2026-10` | `12.interview/11.ai/handcraft-vs-framework` | - |
 
 ##### 8.3.5 传统 ML 算法（8 主词 · 含 1 纯面试版）
 
