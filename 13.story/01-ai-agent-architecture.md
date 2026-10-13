@@ -338,6 +338,10 @@ graph TD
 - [17-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，多 Agent 系统的分布式挑战：协调、共识、级联故障
 - [27-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，Agent 架构驱动组织自进化：Agent Loop 是组织级的 Agent
 
+## 咬文嚼字
+
+- 咬文嚼字：[`12.interview/11.ai/handcraft-vs-framework`](../12.interview/11.ai/handcraft-vs-framework/README.md) —— 手搓 Agent vs 框架（「框架太重」是现象不是理由：抽象税 4 层 + 7 信号决策树）
+
 ---
 
 ## 结语
