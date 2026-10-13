@@ -168,17 +168,18 @@ graph TB
 ```
 
 ```python
-from langgraph.prebuilt import create_supervisor
+from langgraph_supervisor import create_supervisor
 
-members = ["researcher", "coder", "reviewer"]
+agents = [researcher, coder, reviewer]  # 3 个专家 Agent
 system_prompt = (
-    "你是监督者，管理以下专家：{members}。"
+    "你是监督者，管理 research / code / review 三个专家。"
     "根据用户需求分配任务给合适的专家。"
 )
 supervisor = create_supervisor(
-    agents,  # 3 个专家 Agent
+    agents=agents,
     model=llm,
-    prompt=system_prompt
+    prompt=system_prompt,
+    supervisor_name="supervisor"
 )
 app = supervisor.compile()
 ```
@@ -188,7 +189,7 @@ app = supervisor.compile()
 无中心监督者，Agent 通过**共享消息队列**自主决定下一步：
 
 ```python
-from langgraph.swarm import create_swarm
+from langgraph_swarm import create_swarm
 
 agents = [agent_a, agent_b, agent_c]
 swarm = create_swarm(agents, default_active_agent="agent_a")
