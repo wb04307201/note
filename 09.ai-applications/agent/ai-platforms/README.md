@@ -63,10 +63,10 @@ graph TD
 
 | 平台/框架 | 类型 | 可视化编排 | 知识库/RAG | 多 Agent | 企业集成 | 学习曲线 | 典型场景 |
 |----------|------|-----------|-----------|---------|---------|---------|---------|
-| **Coze** | 低代码平台 | 强(可视化拖拽) | 内置 | 支持 | 中(主要面向 C 端/中小企业) | 低 | Bot 产品、客服、内部工具 |
-| **Dify** | 低代码+BaaS | 强 | 内置 RAG 引擎 | 支持 | 中-高(可自部署) | 低-中 | 企业知识库、智能客服、自部署场景 |
-| **LangGraph** | 代码框架(Python) | 弱(图代码) | 需自接 | 强(图原生) | 中 | 中-高 | 复杂 Agent 编排、研究型项目、生产级定制 |
-| **Spring AI** | 代码框架(Java) | 弱 | 需自接 | 中 | 强(Spring 生态) | 中(需熟悉 Spring) | Java 栈企业接入、与现有微服务集成 |
+| **[Coze](https://www.coze.cn/)** | 低代码平台 | 强(可视化拖拽) | 内置 | 支持 | 中(主要面向 C 端/中小企业) | 低 | Bot 产品、客服、内部工具 |
+| **[Dify](https://dify.ai/)** | 低代码+BaaS | 强 | 内置 RAG 引擎 | 支持 | 中-高(可自部署) | 低-中 | 企业知识库、智能客服、自部署场景 |
+| **[LangGraph](https://github.com/langchain-ai/langgraph)** | 代码框架(Python) | 弱(图代码) | 需自接 | 强(图原生) | 中 | 中-高 | 复杂 Agent 编排、研究型项目、生产级定制 |
+| **[Spring AI](https://spring.io/projects/spring-ai)** | 代码框架(Java) | 弱 | 需自接 | 中 | 强(Spring 生态) | 中(需熟悉 Spring) | Java 栈企业接入、与现有微服务集成 |
 | **裸调 API** | 自研 | 无 | 自建 | 自建 | 自建 | 高 | 特殊定制、性能极致优化、深度业务耦合 |
 
 > 详细对比见 [coze.md](./coze.md) / [dify.md](./dify.md) / [langgraph.md](./langgraph.md) / [spring-ai-vs-dify.md](./spring-ai-vs-dify.md) / [spring-ai-vs-platforms.md](./spring-ai-vs-platforms.md)。

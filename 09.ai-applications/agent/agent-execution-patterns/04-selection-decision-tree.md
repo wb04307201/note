@@ -73,8 +73,8 @@ Q6：是否需要灵活性 > 稳定性？
 - [ ] **判断模式**：根据决策树选 1-2 个主模式
 - [ ] **Plan 大小**：≤ 20 步（> 20 需分层）
 - [ ] **失败策略**：Plan Repair / Adaptive / RePlan 三选一
-- [ ] **Token 上限**：单次任务 ≤ 5 层路由（见 llmops/production-stability）
-- [ ] **可观测性**：每步 Trace（关联 11.ai/08-llmops/production-stability）
+- [ ] **Token 上限**：单次任务 ≤ 5 层路由（见 [production-stability](../production-stability/README.md)）
+- [ ] **可观测性**：每步 Trace（关联 [production-stability 系列](../production-stability/README.md)）
 
 ### 3.2 工程阶段
 

@@ -166,6 +166,7 @@ class SOTARAG:
 - **待迁移子环节**：Query Rewrite / Hybrid Search / Reranker / Chunking / Embedding（⚠️ 待 Phase 1+ 迁入；占位 `../query-rewrite/` `../hybrid-search/` `../reranker/` `../chunking-strategies/` `../embedding-models/`）
 - **L1**：Lost in middle（⚠️ 待 Phase 1+ 迁入；占位 `../lost-in-middle/`）
 - **咬文嚼字**：RAG 面试（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/rag/`）
+- **咬文嚼字 · 权限隔离**：[RAG 权限隔离设计](../../12.interview/11.ai/rag-permission-isolation/README.md) — Stage 2 Hybrid Search 在生产多租户场景必须叠加 Pre/Post-filtering 权限过滤（4 方案选型 + ACL 同步 + 5 反模式）
 - **应用场景**：long-document-processing（⚠️ 待 Phase 1+ 迁入；占位 `../long-document-processing/`） — RAG Pipeline 在长 PDF/合同场景的 5 阶段实战（含 Docling 解析）
 - **入库侧**：knowledge-ingestion-pipeline（⚠️ 待 Phase 1+ 迁入；占位 `../knowledge-ingestion-pipeline/`） — 企业入库 8 阶段（连接 → 解析 → 清洗 → 去重 → Embedding → 入库 → CDC 增量）
 

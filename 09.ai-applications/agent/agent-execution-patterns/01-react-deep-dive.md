@@ -43,7 +43,10 @@
 ## LangChain ReAct 实现
 ### 2.1 基础代码
 
+> ⚠️ **API 已废弃**：`initialize_agent` / `AgentType.REACT_DOCSTORE` 是 LangChain 旧版 Agent API（已 deprecated），新项目应改用 **LangGraph** 的 `create_react_agent`。以下旧代码仅作原理示意保留。
+
 ```python
+# 旧版（deprecated）—— 仅作原理示意
 from langchain.agents import initialize_agent, Tool, AgentType
 from langchain.tools import tool
 
@@ -63,6 +66,30 @@ agent = initialize_agent(
 )
 
 agent.run("帮用户查询订单 20260628 并判断是否已支付")
+```
+
+**新 API 等价示例（LangGraph，推荐）**：
+
+```python
+from langgraph.prebuilt import create_react_agent
+from langchain.tools import tool
+
+@tool
+def get_order(order_id: str) -> str:
+    """查询订单状态"""
+    return f"订单 {order_id} 已支付"
+
+@tool
+def request_refund(order_id: str) -> str:
+    """申请退款"""
+    return f"退款 {order_id} 已处理"
+
+# create_react_agent 内置 Thought/Action/Observation 循环
+agent = create_react_agent(llm, tools=[get_order, request_refund])
+
+result = agent.invoke(
+    {"messages": [("user", "帮用户查询订单 20260628 并判断是否已支付")]}
+)
 ```
 
 ### 2.2 ReAct Prompt 模板（LangChain 内置）
@@ -181,6 +208,18 @@ ReAct 路径："随便走"
 DAG 路径："固定节点 + 边，可完整审计"
 ```
 
+### 4.6 小结：ReAct vs DAG 多维对比
+
+| 维度 | ReAct | DAG | 结论 |
+|------|-------|-----|------|
+| **Token 消耗**（同等 10 步任务） | 3200-16000 tokens（含 Thought/Observation 循环历史） | ≈ 2000 tokens（每节点 200 × 10） | 成本敏感选 DAG |
+| **路径可复现性** | 低（概率决策，两次路径可不同） | 高（固定节点 + 边） | 回归测试选 DAG |
+| **灵活性** | 高（应对未知场景 / 动态决策） | 低（预定义路径，新分支需改图） | 探索类任务选 ReAct |
+| **可审计性** | 弱（reasoning 链长且发散） | 强（节点级日志 + 图可视化） | 高合规选 DAG |
+| **实现成本** | 低（框架开箱即用） | 中高（需预先建模流程图） | 快速验证选 ReAct |
+
+> 完整 4 模式 6 维打分（含 Plan-and-Execute / Multi-Agent）见 [03-six-dimensions-comparison](03-six-dimensions-comparison.md)；DAG 侧实现细节见 [05-dag-deep-dive](05-dag-deep-dive.md)。
+
 ---
 
 ## ReAct 适用场景 vs 不适用场景
@@ -208,6 +247,8 @@ DAG 路径："固定节点 + 边，可完整审计"
 
 ## ReAct 优化方向（5 个实战技巧）
 ### 6.1 设置 max_iterations
+
+> ⚠️ 下例仍为旧版 `initialize_agent` API（已 deprecated）；LangGraph 中等价做法是 `create_react_agent(...)` 后在 `invoke` 时传 `config={"recursion_limit": 25}` 限制循环上限。
 
 ```python
 agent = initialize_agent(

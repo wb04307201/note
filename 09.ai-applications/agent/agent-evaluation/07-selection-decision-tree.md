@@ -52,6 +52,8 @@ Q5：是否上线生产？
 | **增长** | 200 条 | ✅ | ✅ 多模型 | ✅ 5% | ⚠️ 轻量 | ✅ 告警 |
 | **成熟** | 500+ 条 | ✅ | ✅ 多模型投票 | ✅ 多梯度 | ✅ 1000+ | ✅ 自动回滚 |
 
+> 黄金集构建详见 [02-five-methods](02-five-methods.md)；各阶段指标取舍依据见 [01-six-metrics](01-six-metrics.md)。
+
 ---
 
 ## 任务类型选型
@@ -62,6 +64,8 @@ Q5：是否上线生产？
 | **代码助手** | 自动化（编译/测试） | LLM-judge | ≥ 0.80 |
 | **研究 Agent** | LLM-judge + 专家评审 | 用户模拟 | ≥ 0.75 |
 | **多步工具** | 工具准确率 + 步骤效率 | trajectory 分析 | ≥ 0.80 |
+
+> LLM-judge / 黄金集的落地实现见 [02-five-methods](02-five-methods.md)；工具准确率、步骤效率、trajectory 相关维度定义见 [01-six-metrics](01-six-metrics.md)；judge 提示词与偏差控制见 [03-llm-as-judge](03-llm-as-judge.md)。
 
 ---
 

@@ -875,58 +875,11 @@ class Supervisor:
 - **生产级** → [`../production-agent-system-design/`](../production-agent-system-design/) — 高可用 + 容量评估 + 容灾
 - **真实案例** → [`../case-studies/`](../case-studies/) — Salesforce Agentforce / Shopify AI Agent
 - **推理底座** → [`../../llm-inference/`](../../llm-inference/README.md) — LLM 推理层（KV Cache / Flash Attention）
-- **分布式类比** → [`06.distributed-systems/microservices/service-mesh/README.md`](../../../06.distributed-systems/02-distributed/rpc/README.md) — sidecar 通信模式类比 A2A 协议
-- **设计模式类比** → [`04.spring-backend/design-patterns/observer-pattern/README.md`](../../../04.spring-backend/01-core/README.md) — pub-sub 模式与 Blackboard 通信
+- **分布式类比** → [`06.distributed-systems/02-distributed/rpc/README.md`](../../../06.distributed-systems/02-distributed/rpc/README.md) — sidecar 通信模式类比 A2A 协议
+- **设计模式类比** → [`04.spring-backend/01-core/README.md`](../../../04.spring-backend/01-core/README.md) — pub-sub 模式与 Blackboard 通信
 - **面试题** → [`12.interview/11.ai/`](../../../12.interview/11.ai/) — AI 面试高频题
-- **状态机** → [`01.java-and-jvm/state-machines/`](../../../01.java-and-jvm/README.md) — LangGraph 的 state 设计借鉴 FSM
-- **消息中间件** → [`03.data-stack/messaging/`](../../../03.data-stack/README.md) — Kafka / Redis Streams 与 Blackboard 模式
-
----
-
-## 📊 本节深化统计
-
-| 维度 | L3 起点 | L5 终点 | 提升幅度 |
-|------|--------|---------|---------|
-| 总行数 | 68 | 350+ | +280+ 行 |
-| 章节数 | 6 | 13+ | +7 章节 |
-| 代码示例 | 0 | 3+ | +3 代码块 |
-| 反直觉误区 | 0 | 6 | +6 误区 |
-| 决策矩阵 | 1（局部对比）| 1（4 架构全对比） | 全面 |
-| 时间线 | 0 | 9 个里程碑 | +9 |
-| 跨链 | 5 | 10+ | +5 |
-
----
-
-## 🎯 5 维估算评分（D1-D5）
-
-| 维度 | 分数 | 说明 |
-|------|------|------|
-| **D1 内容覆盖**（深度 / 广度）| **9/10** | 覆盖 4 架构 + 4 框架 + 4 通信协议 + 3 案例；A2A 协议部分较新可能需要后续校对 |
-| **D2 实战可操作性**（代码 / 步骤）| **9/10** | 3+ 可运行代码示例（LangGraph / CrewAI / Swarm）；可直接 Copy-paste 跑通 |
-| **D3 横向连接**（互链密度）| **9/10** | 10+ 跨模块反向链（执行模式 / 规范工具 / 分布式 / 设计模式 / 面试题） |
-| **D4 演进视野**（时间线 / 版本差异）| **9/10** | 9 节点时间线（2023.3-2025.6）+ AutoGen 0.2 vs 0.4 差异 |
-| **D5 反直觉洞察**（误区 / 决策矩阵）| **10/10** | 6 个反直觉误区 + 4 架构决策矩阵 + 选型指南 |
-
-**综合**：D1+D2+D3+D4+D5 = **46/50** → **L5 实战架构师** 水平。
-
----
-
-## ✅ 「必须包含」逐项核对
-
-| 必含项 | 状态 |
-|--------|------|
-| A. 4 大多 Agent 架构（Supervisor/Swarm/Graph/Pipeline）| ✅ |
-| B. 通信协议（Blackboard / Pub-Sub / A2A / MCP）| ✅ |
-| D. 演进史时间线（2023.3 → 2025.6）| ✅ |
-| E. 4 大框架对比（CrewAI / AutoGen / Anthropic / LangGraph）| ✅ |
-| F. 决策矩阵（Markdown 表格 4 架构 × 6 列）| ✅ |
-| G. 3+ 真实案例（Anthropic / CrewAI / Magentic-One）| ✅ |
-| H. 5+ 反直觉误区（6 个）| ✅ |
-| I. 3+ 代码示例（Supervisor / CrewAI / LangGraph）| ✅ |
-| J. 5+ 跨模块反向链（10 个）| ✅ |
-| K. Footer ⭐⭐⭐⭐⭐ | ✅ |
-| **深度等级** | **⭐⭐⭐⭐⭐（L5）** |
-| **总行数目标** | **350+** |
+- **状态机** → [`01.java-and-jvm/README.md`](../../../01.java-and-jvm/README.md) — LangGraph 的 state 设计借鉴 FSM
+- **消息中间件** → [`03.data-stack/README.md`](../../../03.data-stack/README.md) — Kafka / Redis Streams 与 Blackboard 模式
 
 ---
 

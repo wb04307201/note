@@ -1,6 +1,6 @@
 <!--module:
   parent: 09.ai-applications
-  slug: 09.ai-applications\agent\architecture\bpmn-ai-integration
+  slug: 09.ai-applications/agent/architecture/bpmn-ai-integration
   type: article
   category: 主模块子文章
   summary: AI + BPMN 融合
@@ -220,9 +220,22 @@ Q4: 是否需要人工审核？
 └── 全自动 + 监控 → 模式 A / B + 告警
 ```
 
+**4 模式横向对比表**：
+
+| 维度 | 模式 A：LLM as Service Task | 模式 B：自研 Zeebe AI Worker | 模式 C：Workflow Engine as Tool | 模式 D：HITL 人在回路 |
+|------|---------------------------|---------------------------|-------------------------------|---------------------|
+| **推理复杂度** | 单步分类 / 提取 | 多步推理 / 工具调用 | Agent 自主多步 | 任意（叠加在其他模式上）|
+| **Camunda 版本要求** | 8.8+（AI Agent connector）| 7 / 8 均可 | 8（Zeebe API）| 7 / 8 均可（User Task）|
+| **主动方** | BPMN 流程 | BPMN 流程 | AI Agent | BPMN 流程 |
+| **人审需求** | 可无 | 可无 | 可无 | **必经人工** |
+| **典型场景** | 投诉分类、字段提取 | 复杂 Agent 推理、私有 LLM | AI 客服触发审批流 | 贷款 / 医疗 / 投资高风险决策 |
+| **主要风险** | 版本门槛、生态尚新 | Worker 运维成本 | Agent"忘记"调流程（幻觉）| 审核延迟、人工瓶颈 |
+
 ---
 
 ## 四、真实案例
+
+> ⚠️ **数据口径声明**：以下三个案例均为**匿名化示例数据（非实测）**——业务模式与融合模式选型来自行业常见实践，但具体效果数字（-40% / -50% / 65% 等）为示意性估算，不可作为选型 ROI 依据。引用时请以可公开溯源的厂商案例为准。
 
 ### 4.1 欧洲某保险公司：理赔自动化
 
@@ -340,13 +353,12 @@ Q4: 是否需要人工审核？
 
 - ⬅️ [返回 AI 平台](../ai-platforms/README.md) — 6 大平台对比与决策树
 - [11 AI 知识体系](../README.md) — 章节根目录
-- 07 工作流 — 章节根目录
+- [07 工作流](../../../07.devops-and-tools/02-workflow/README.md) — 工作流章节根目录
 - [Dify](../ai-platforms/dify.md) — 模式 A/B 中 LLM 推理的常见载体
 - [LangGraph](../ai-platforms/langgraph.md) — 模式 B/C 中 Agent 框架的工业界主流
-- Camunda 8 — 模式 A 8.8+ AI Agent connector / Sub-process 详解
-- Zeebe — 模式 B Zeebe AI Worker 实现
-- 微服务编排 — 流程引擎在微服务场景的演化
-- 05.frontend / 05 架构 / BFF — BFF 模式详解：与 AI 融合中的"端侧适配层"实践
-
-- [spring-ai-vs-platforms](../ai-platforms/spring-ai-vs-platforms.md)
-- spring-ai-vs-dify
+- [Camunda 8](../../../07.devops-and-tools/02-workflow/process-engine/camunda/camunda-8/README.md) — 模式 A 8.8+ AI Agent connector / Sub-process 详解
+- [Zeebe](../../../07.devops-and-tools/02-workflow/process-engine/camunda/camunda-8/zeebe/README.md) — 模式 B Zeebe AI Worker 实现
+- [微服务编排](../../../07.devops-and-tools/02-workflow/workflow-and-microservice-orchestration/README.md) — 流程引擎在微服务场景的演化
+- [BFF](../../../05.frontend/05-architecture/bff/README.md) — BFF 模式详解：与 AI 融合中的"端侧适配层"实践
+- [spring-ai-vs-platforms](../ai-platforms/spring-ai-vs-platforms.md) — 代码优先与低代码平台的边界
+- [spring-ai-vs-dify](../ai-platforms/spring-ai-vs-dify.md) — Spring AI vs Dify 深度对比长文

@@ -1,9 +1,9 @@
 <!--module:
   parent: 09.ai-applications
-  slug: 09.ai-applications\agent\ai-platforms\langgraph
+  slug: 09.ai-applications/agent/ai-platforms/langgraph
   type: article
   category: 主模块子文章
-  summary: LangGraph
+  summary: LangGraph 框架全景——LangChain 团队代码优先 Agent 框架：StateGraph 状态机 / Checkpoint 持久化 / Time Travel 状态回放 / interrupt() HITL + Supervisor/Swarm 多 Agent 编排模式 + vs CrewAI/AutoGen/Dify 对比。
   depth: ⭐⭐⭐
   status: active
 -->
@@ -274,9 +274,8 @@ app = swarm.compile()
 ## 相关章节
 
 - ⬅️ [返回 AI 平台](README.md) — 6 大平台对比与决策树
-- [11 AI 知识体系](../README.md) — 章节根目录
+- [Agent 目录](../README.md) — 本模块根目录
 - [Dify](dify.md) — 低代码 DSL 优先
 - [Coze](coze.md) — 字节系 Agent 平台
-- BPMN+AI 融合 — LangGraph + Camunda 8 混合架构（生产级落地）
-
-- [spring-ai-vs-platforms](spring-ai-vs-platforms.md)
+- [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — LangGraph + Camunda 8 混合架构（生产级落地）
+- [spring-ai-vs-platforms](spring-ai-vs-platforms.md) — 代码优先与低代码平台的边界（短卡）

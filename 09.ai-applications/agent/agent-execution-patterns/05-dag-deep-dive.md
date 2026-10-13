@@ -125,6 +125,7 @@ Loop 节点 = 子 DAG + 循环条件
 ### LangGraph 示例
 
 ```python
+from typing import TypedDict
 from langgraph.graph import StateGraph, END
 
 # 定义状态
@@ -134,18 +135,19 @@ class OrderState(TypedDict):
     payment_ok: bool
 
 # 定义节点
-def check_stock(state: OrderState) -> OrderState:
-    # 检查库存
-    state["stock_ok"] = inventory.check(state["order_id"])
-    return state
+# ⚠️ LangGraph 语义：节点不要直接 mutate 传入的 state，
+# 而是 return 一个"增量 dict"，由 LangGraph 负责合并进全局状态
+def check_stock(state: OrderState) -> dict:
+    # 检查库存，只返回本节点更新的字段
+    return {"stock_ok": inventory.check(state["order_id"])}
 
-def deduct_stock(state: OrderState) -> OrderState:
+def deduct_stock(state: OrderState) -> dict:
     inventory.deduct(state["order_id"])
-    return state
+    return {}  # 无状态更新也要返回 dict
 
-def notify_out_of_stock(state: OrderState) -> OrderState:
+def notify_out_of_stock(state: OrderState) -> dict:
     notification.send("商品缺货")
-    return state
+    return {}
 
 # 定义路由
 def route_by_stock(state: OrderState) -> str:
@@ -176,9 +178,12 @@ app = graph.compile()
 | **灵活性** | ⭐⭐（最低） | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
 | **可预测性** | ⭐⭐⭐⭐⭐（最高） | ⭐⭐ | ⭐⭐⭐⭐ |
 | **Token 成本** | ⭐（最低，无循环） | ⭐⭐⭐⭐⭐（最高） | ⭐⭐⭐ |
+| **Token 量级**（5 步任务，典型参考） | ≈ 2,800 | ≈ 8,500 | ≈ 4,500 |
 | **错误恢复** | 重试/降级/补偿 | 靠 LLM 自行修复 | Plan Repair |
 | **可视化** | ✅ 天然可视化 | ❌ 黑盒 | ⚠️ 部分可视 |
 | **适合谁** | DBA / 运维 / PM 都能看懂 | 只有开发者能调试 | 开发者 + PM |
+
+> Token 量级为典型参考值（相对关系稳定，绝对值随模型/任务变化），完整 4 模式量化表与口径说明见 [03-six-dimensions-comparison · 量化数据参考](03-six-dimensions-comparison.md#量化数据参考典型量级参考)。
 
 ---
 

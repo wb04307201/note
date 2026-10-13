@@ -12,7 +12,7 @@
 
 > **一句话答案**：Agent Evaluation = **6 大评测维度（任务完成率 / 步骤效率 / 工具使用 / 成本 / 满意度 / 稳定性）+ 5 种评测方法（自动化指标 / 黄金集 / LLM-as-Judge / A/B Test / 用户模拟）+ 持续集成 + 7 反模式**。
 
-← [返回 Agent MOC](../README.md) · 兄弟：[LLM 评估](../../eval/README.md) · 面试题：[12.interview Agent 性能评估](../../../12.interview/11.ai/agent-performance-evaluation/README.md)（⚠️ 待 Phase 1+ 迁入）
+← [返回 Agent MOC](../README.md) · 兄弟：[LLM 评估](../../eval/README.md) · 面试题：[12.interview Agent 性能评估](../../../12.interview/11.ai/agent-performance-evaluation/README.md)
 
 ---
 
@@ -26,7 +26,7 @@
 
 **适用场景**：新 Planner / Prompt / Model 版本上线 A/B 对照。
 
-**面试速查版**：12.interview · agent-ab-testing（⚠️ 待 Phase 1+ 迁入）
+**面试速查版**：[12.interview · agent-ab-testing](../../../12.interview/11.ai/agent-ab-testing/README.md)
 
 ---
 
@@ -43,7 +43,7 @@
 3. **持续流程**：黄金集 + CI 集成 + 漂移检测 + 灰度发布
 4. **反模式**：单一指标 / 离线一次性 / 忽略用户
 
-完整 5-7 道精选面试题见 [12.interview/11.ai/agent-performance-evaluation](../../../12.interview/11.ai/agent-performance-evaluation/README.md)（⚠️ 待 Phase 1+ 迁入）。
+完整 5-7 道精选面试题见 [12.interview/11.ai/agent-performance-evaluation](../../../12.interview/11.ai/agent-performance-evaluation/README.md)。
 
 ---
 
@@ -184,7 +184,7 @@ Agent Evaluation 公式：
 ## 速查 · 关联资源
 - **LLM 评估**：[LLM 单次调用评估](../../eval/README.md) —— 331 行深度
 - **RAG 评估**：../../rag/04-evaluation.md —— RAGAS / TruLens / DeepEval 3 大工具横评
-- **面试题**：[12.interview/11.ai/agent-performance-evaluation](../../../12.interview/11.ai/agent-performance-evaluation/README.md) —— 7 道精选 Q&A（⚠️ 待 Phase 1+ 迁入）
+- **面试题**：[12.interview/11.ai/agent-performance-evaluation](../../../12.interview/11.ai/agent-performance-evaluation/README.md) —— 7 道精选 Q&A
 - **真实案例**：[Salesforce Agentforce 评测实践](../case-studies/salesforce-agentforce/README.md)
 - **生产级 Agent**：[Shopify Sidekick 评测流程](../production-agent/README.md)
 

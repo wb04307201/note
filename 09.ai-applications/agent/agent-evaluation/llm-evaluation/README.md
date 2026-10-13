@@ -366,11 +366,11 @@ LLM-as-Judge（GPT-4 评分）：
 
 ## 十二、相关章节
 
-- 下游：Agent 性能评估 — 从 LLM 单次调用评估 → Agent 多步任务评估（6 维度 + 5 方法）
-- 关联：生产级 Agent 系统 — Shopify Sidekick 的评估实践（LLM-as-Judge + 用户模拟）
-- 关联：Harness Engineering — 评估体系的工程化框架
-- 同模块：LLM 安全 — 评估的另一个维度：安全性
-- 面试：如何量化 Agent 性能 — 面试题版本
+- 下游：[Agent 性能评估](../README.md) — 从 LLM 单次调用评估 → Agent 多步任务评估（6 维度 + 5 方法）
+- 关联：[生产级 Agent 系统](../../production-agent/README.md) — Shopify Sidekick 的评估实践（LLM-as-Judge + 用户模拟）
+- 关联：[Harness Engineering](../../agent-architecture/llm-control-evolution/README.md) — 评估体系的工程化框架
+- 同模块：[LLM 安全](../../agent-reliability/llm-security/README.md) — 评估的另一个维度：安全性
+- 面试：[如何量化 Agent 性能](../../../../12.interview/11.ai/agent-performance-evaluation/README.md) — 面试题版本
 
 ---
 
@@ -389,4 +389,4 @@ LLM-as-Judge（GPT-4 评分）：
 | 3 | [LLM 安全](../../agent-reliability/llm-security/README.md) | OWASP LLM Top 10 + 6 层防御 + Guardrails 实战 |
 | 4 | [RAG 超范围拒答](../../../rag/05-out-of-domain-rejection.md) | 6 大检测机制 + 5 大拒答模式 + 4 步调优 |
 
-← [返回: L8 LLMOps](../README.md) · 📅 2026-06-28
+← [返回: Agent Evaluation 总目录](../README.md) · 📅 2026-06-28

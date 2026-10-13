@@ -229,7 +229,26 @@ workflow.add_node("planner", plan_step)
 workflow.add_node("executor", execute_step)
 workflow.add_edge(START, "planner")
 workflow.add_edge("planner", "executor")
-workflow.add_conditional_edges("executor", should_replan)
+# 条件边必须给出路由映射：should_replan 返回值 → 目标节点
+workflow.add_conditional_edges(
+    "executor",
+    should_replan,
+    {
+        "executor": "executor",  # 还有剩余 step，继续执行
+        "planner": "planner",    # 触发重规划
+        END: END,                # 已产出 response 或达迭代上限，结束
+    },
+)
+
+# 必须 compile() 后才能运行
+app = workflow.compile()
+
+result = app.invoke({
+    "input": "帮用户退款订单 20260628",
+    "plan": [],
+    "past_steps": [],
+    "response": "",
+})
 ```
 
 ---

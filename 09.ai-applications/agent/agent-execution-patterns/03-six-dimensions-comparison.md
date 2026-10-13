@@ -82,7 +82,10 @@
 
 ---
 
-## 量化数据参考（实测基准）
+## 量化数据参考（典型量级参考）
+
+> ⚠️ **口径说明**：下表为社区实践与公开分享中反复出现的**典型量级参考**（非严格受控实测）。绝对数值随模型版本（GPT-3.5/4 级 vs 开源 7B-70B）、任务集、prompt 设计、工具返回体积差异很大——**请勿直接引用绝对数字**，应关注三列之间的**相对量级关系**（DAG < Plan-and-Execute < ReAct < Multi-Agent）。可复现的对比维度定义见 [01-react-deep-dive](01-react-deep-dive.md)（§4.6 ReAct vs DAG 多维对比）与本篇 6 维打分表。
+
 ### 4.1 测试用例：电商订单处理（5 步任务）
 
 | 模式 | 平均 token | 平均延迟 | 完成率 |
@@ -111,10 +114,10 @@
 ## 4 模式典型代表项目
 | 模式 | 项目 | 特点 |
 |------|------|------|
-| **ReAct** | BabyAGI, AutoGPT, ReAct Paper | 探索性任务 |
-| **Plan-and-Execute** | LangChain Plan-and-Execute, Devin | 复杂任务 |
-| **DAG** | LangGraph, Temporal, Cursor Composer | 确定性流程 |
-| **Multi-Agent** | CrewAI, AutoGen, MetaGPT, ChatDev | 复杂协作 |
+| **ReAct** | [BabyAGI](https://github.com/yoheinakajima/babyagi), [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT), ReAct Paper | 探索性任务 |
+| **Plan-and-Execute** | [LangChain Plan-and-Execute](https://blog.langchain.dev/planning-agents/), [Devin](https://devin.ai/) | 复杂任务 |
+| **DAG** | [LangGraph](https://github.com/langchain-ai/langgraph), [Temporal](https://github.com/temporalio/temporal), Cursor Composer | 确定性流程 |
+| **Multi-Agent** | [CrewAI](https://github.com/crewAIInc/crewAI), [AutoGen](https://github.com/microsoft/autogen), [MetaGPT](https://github.com/FoundationAgents/MetaGPT), [ChatDev](https://github.com/OpenBMB/ChatDev) | 复杂协作 |
 
 ---
 
@@ -187,3 +190,15 @@
 ---
 
 ← [返回: Agent 4 大模式](../README.md) · 上一章：[02-plan-and-execute](02-plan-and-execute-deep-dive.md) · 下一章：[04-selection-decision-tree](04-selection-decision-tree.md)
+
+---
+
+## 📚 参考来源
+
+1. **ReAct 原论文**（ReAct 模式核心）：Yao et al. *ReAct: Synergizing Reasoning and Acting in Language Models*. ICLR 2023. https://arxiv.org/abs/2210.03629
+2. **Plan-and-Solve 原论文**（Plan-and-Execute 模式核心）：Wang et al. *Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models*. ACL 2023. https://arxiv.org/abs/2305.04091
+3. **ChatDev 论文**（Multi-Agent 模式代表）：Qian et al. *Communicative Agents for Software Development*. 2023. https://arxiv.org/abs/2307.07924
+4. **LATS 论文**（树搜索/类 DAG 的统一推理范式）：Zhou et al. *Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Tree-of-Thoughts*. 2024. https://arxiv.org/abs/2310.04406
+5. **代表性项目 GitHub**：BabyAGI https://github.com/yoheinakajima/babyagi · AutoGPT https://github.com/Significant-Gravitas/AutoGPT · CrewAI https://github.com/crewAIInc/crewAI · AutoGen https://github.com/microsoft/autogen · MetaGPT https://github.com/FoundationAgents/MetaGPT · ChatDev https://github.com/OpenBMB/ChatDev · LangGraph https://github.com/langchain-ai/langgraph
+
+---

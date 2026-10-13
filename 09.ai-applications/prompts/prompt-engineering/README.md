@@ -146,6 +146,8 @@ def add(a, b):
 - 给出**明确的 schema**
 - 要求**只输出 JSON**（不要解释）
 
+> 🔗 面试深挖：[Structured Output 结构化输出](../../../12.interview/11.ai/structured-output/README.md) — JSON Mode vs Function Calling vs Constrained Decoding（Outlines）三代方案对比 + 解析失败防御 + Instructor 框架实战
+
 ---
 
 ### 6. 角色设定

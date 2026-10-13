@@ -1,6 +1,6 @@
 <!--module:
   parent: 09.ai-applications
-  slug: 09.ai-applications\agent\ai-platforms\spring-ai-vs-dify
+  slug: 09.ai-applications/agent/ai-platforms/spring-ai-vs-dify
   type: article
   category: 主模块子文章
   summary: Spring AI vs Dify：企业知识库系统的代码优先 vs 低代码架构决策
@@ -10,7 +10,7 @@
 
 # Spring AI vs Dify：企业知识库系统的代码优先 vs 低代码架构决策
 
-> ⬅️ [返回 L4 架构设计](README.md) | [代码优先 vs 平台（短卡）](../ai-platforms/spring-ai-vs-platforms.md) | [Dify](../ai-platforms/dify.md) | Spring AI 工程 | BPMN+AI 融合 | [11 AI 知识体系](../README.md)
+> ⬅️ [返回 AI 平台](README.md) | [代码优先 vs 平台（短卡）](../ai-platforms/spring-ai-vs-platforms.md) | [Dify](../ai-platforms/dify.md) | [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) | [Agent 目录](../README.md)
 
 ## 🎯 一句话定位
 
@@ -135,7 +135,7 @@ public class ContractDocumentReader implements DocumentReader {
 | 批量调用 | 平台优化（并发/重试） | ⚠️ 需自己实现并发批处理 |
 | 缓存 | 平台内置（避免重复 Embedding） | ⚠️ 需自己实现（Caffeine + Redis） |
 
-**生产踩坑**：Dify 的 Embedding 缓存命中率通常 60-80%，显著降低 Token 成本；自研 Spring AI 必须自己实现。
+**生产踩坑**：Dify 内置 Embedding 缓存（避免重复向量化），命中率视语料重复度而定（经验值约 60-80%，无官方口径），可显著降低 Token 成本；自研 Spring AI 必须自己实现。
 
 ### 2.4 检索（Retrieval）
 
@@ -414,7 +414,7 @@ public class DifyIntegrationService {
 
 ### 4.3 模式 C：MCP 互通（2026 推荐）
 
-Dify v1.9.2+ 原生支持 MCP Server/Client，Spring AI 通过 MCP 客户端对接：
+Dify v1.6.0+ 原生支持 MCP Server/Client，Spring AI 通过 MCP 客户端对接：
 
 ```java
 // Spring AI 作为 MCP 客户端
@@ -503,12 +503,11 @@ public String knowledgeBaseQuery(@ToolParam String question) {
 
 ## 相关章节
 
-- ⬅️ [返回 L4 架构设计](README.md)
+- ⬅️ [返回 AI 平台](README.md)
 - ➡️ [代码优先 vs 平台（短卡）](../ai-platforms/spring-ai-vs-platforms.md)
 - [Dify](../ai-platforms/dify.md)
-- Spring AI 工程
-- BPMN+AI 融合 — 另一种跨界决策范式
-- 大模型应用框架 — Spring AI / LangChain4j / LangChain / LlamaIndex 框架对比
-- 12.interview/11.ai — 面试深挖（建议补充本主题的 3 个高频问题）
+- [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — 另一种跨界决策范式
+- [12.interview/11.ai](../../../12.interview/11.ai/README.md) — AI 面试高频题（建议补充本主题的 3 个高频问题）
+- [Spring AI 官方文档](https://docs.spring.io/spring-ai/reference/) — 外部：Spring AI 工程实践一手资料
 
 ← [返回笔记目录](../../README.md)

@@ -1,6 +1,6 @@
 <!--module:
   parent: 09.ai-applications
-  slug: 09.ai-applications\agent\ai-platforms\spring-ai-vs-platforms
+  slug: 09.ai-applications/agent/ai-platforms/spring-ai-vs-platforms
   type: article
   category: 主模块子文章
   summary: Spring AI vs 编排平台：代码优先与低代码的边界
@@ -15,6 +15,22 @@
 ## 🎯 一句话定位
 
 **Spring AI 不是 Dify 的竞品，而是不同的抽象层级**——Dify 是"低代码 AI 应用平台"，Spring AI 是"Java 团队的 AI 框架"。本文讲清**何时用平台、何时自己写代码、何时混合**，深度版见 [04-architecture/spring-ai-vs-dify.md](../ai-platforms/spring-ai-vs-dify.md)。
+
+```mermaid
+graph TB
+    L5["L5 应用层<br/>Dify 平台 / Coze 平台<br/>用户：产品/运营"]
+    L4["L4 编排层<br/>Spring AI / LangGraph / LangChain4j<br/>用户：AI 应用工程师"]
+    L3["L3 模型层<br/>ChatModel / EmbeddingModel / Tool"]
+    L2["L2 协议层<br/>MCP / Function Calling / A2A"]
+    L1["L1 基础设施<br/>LLM API / 向量库 / 文档存储"]
+
+    L5 --> L4 --> L3 --> L2 --> L1
+
+    style L5 fill:#fff3e0,stroke:#f57c00
+    style L4 fill:#e8f5e9,stroke:#388e3c
+```
+
+> Dify / Coze 在 L5（用户面对 UI + DSL），Spring AI / LangGraph 在 L4（用户写代码调标准抽象）——**不是替代关系，是层级关系**，二者可通过外部 API / MCP 互通。
 
 ---
 
@@ -57,7 +73,7 @@
 
 - **Dify 做前端 + Spring AI 做执行引擎**：Dify 工作流节点调 Spring AI HTTP API（外部 API 模式）
 - **Spring AI 主流程 + Dify 知识库子流**：Spring AI 用 Dify Workflow API 调标准化知识库
-- **MCP 互通**：Dify v1.9.2+ 原生 MCP Server/Client，Spring AI MCP 客户端对接
+- **MCP 互通**：Dify v1.6.0+ 原生 MCP Server/Client，Spring AI MCP 客户端对接
 
 ---
 
@@ -65,12 +81,12 @@
 
 | 平台 | 形态 | 业务代码量 | 何时选 |
 |------|------|----------|--------|
-| Dify | 低代码 DSL | 0 | 标准化 + 私有化 + 快速上线 |
-| Coze | 表单 + 工作流 | 0 | 字节生态 + C 端分发 |
-| LangGraph | Python 框架 | 300-800 行 Python | 复杂 Agent + 状态可回放 |
-| n8n | 工作流自动化 | 0 | 系统集成 / 跨 SaaS |
-| FastGPT | 知识库 + Flow | 少量配置 | 知识库问答为主 |
-| RAGFlow | RAG 引擎 | 少量配置 | 深度文档理解 |
+| [Dify](./dify.md) | 低代码 DSL | 0 | 标准化 + 私有化 + 快速上线 |
+| [Coze](./coze.md) | 表单 + 工作流 | 0 | 字节生态 + C 端分发 |
+| [LangGraph](./langgraph.md) | Python 框架 | 300-800 行 Python | 复杂 Agent + 状态可回放 |
+| [n8n](https://n8n.io/) | 工作流自动化 | 0 | 系统集成 / 跨 SaaS（本目录未收录专文，见官方文档）|
+| [FastGPT](https://fastgpt.io/) | 知识库 + Flow | 少量配置 | 知识库问答为主（本目录未收录专文，见官方文档）|
+| [RAGFlow](https://ragflow.io/) | RAG 引擎 | 少量配置 | 深度文档理解（本目录未收录专文，见官方文档）|
 | **Spring AI** | **Java 框架** | **200-500 行 Java** | **Java 微服务 + 强业务集成** |
 
 > Spring AI 与 LangGraph 是同一抽象层级（代码优先）的**Java vs Python** 双胞胎，选型看团队语言栈。
@@ -101,14 +117,14 @@
 - [Dify](dify.md) — 低代码 DSL 优先 + 私有化首选
 - [Coze](coze.md) — 字节系国内最强生态
 - [LangGraph](langgraph.md) — Python 代码优先复杂 Agent 框架
-- BPMN+AI 融合 — AI + BPMN 跨界决策范式
-- 大模型应用框架 — Spring AI / LangChain4j / LangChain / LlamaIndex 框架对比
+- [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — AI + BPMN 跨界决策范式
+- [Spring AI 官方文档](https://docs.spring.io/spring-ai/reference/) — 外部：Spring AI / 大模型应用框架一手资料
 
 ---
 
 ## 📚 参考来源
 
-1. **LangChain**: Harrison Chase. *LangChain 论文（GitHub + 技术报告）：代码优先 LLM 应用编排框架奠基者，2022*. https://arxiv.org/abs/2310.02821
+1. **LangChain**（官方 GitHub 仓库）：LangChain 团队. *代码优先 LLM 应用编排框架奠基者（LangChain / LangGraph），2022-*. https://github.com/langchain-ai/langchain （注：LangChain 无正式 arxiv 论文，以官方仓库与文档为准）
 2. **AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation**：Qingyun Wu et al. *多 Agent 协作 + 代码框架模式参考，Microsoft 2023*. https://arxiv.org/abs/2308.08155
-3. **Retrieval-Augmented Generation for Large Language Models: A Survey**：Yunfan Gao et al. *RAG 综述：Spring AI 组件化 RAG 管道（DocumentReader/Embedding/VectorStore/Retriever）的理论基础，2024*. https://arxiv.org/abs/2312.10997
-4. **HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face**：Shen Yongliang et al. *模型即工具 + 编排 Agent 范式参考，Microsoft 2023*. https://arxiv.org/abs/2303.17580
+3. **Retrieval-Augmented Generation for Large Language Models: A Survey**：Yunfan Gao et al. *RAG 综述：Spring AI 组件化 RAG 管道（DocumentReader/Embedding/VectorStore/Retriever）的理论基础，2023-2024*. https://arxiv.org/abs/2312.10997
+4. **HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face**：Yongliang Shen et al. *模型即工具 + 编排 Agent 范式参考，2023*. https://arxiv.org/abs/2303.17580

@@ -1,9 +1,9 @@
 <!--module:
   parent: 09.ai-applications
-  slug: 09.ai-applications\agent\ai-platforms\dify
+  slug: 09.ai-applications/agent/ai-platforms/dify
   type: article
   category: 主模块子文章
-  summary: Dify
+  summary: Dify 平台全景——LLMOps 低代码平台：Chatflow/Workflow/Agent 三模式 + DSL YAML 入 Git + 13+ 节点 + RAG 四阶段管道 + MCP 双向集成 + vs BPMN/LangGraph 对比与部署选项。
   depth: ⭐⭐⭐
   status: active
 -->
@@ -27,7 +27,7 @@
 | **多步推理难调试** | 13+ 节点 + DSL 导出 + 单步运行追踪 |
 | **LLM 切换成本高** | 统一 OpenAI 兼容 API（GPT / Claude / Gemini / Qwen / DeepSeek / GLM）|
 | **业务系统集成难** | 内置 HTTP / 飞书 / 钉钉 / 企微 / 数据库 工具节点 |
-| **2025+ LLM 工具调用协议分裂** | v1.9.2+ 原生 MCP Server + MCP Client 双向 |
+| **2025+ LLM 工具调用协议分裂** | v1.6.0+ 原生 MCP Server + MCP Client 双向 |
 
 ---
 
@@ -116,9 +116,13 @@ workflow:
         model: gpt-4o
         prompt: "基于检索内容回答用户问题"
   edges:
-    - source: start → target: classify
-    - source: classify → target: rag (condition: 业务)
-    - source: rag → target: answer
+    - source: start
+      target: classify
+    - source: classify
+      target: rag
+      condition: "分类结果 == 业务"
+    - source: rag
+      target: answer
 ```
 
 **核心优势**：
@@ -145,8 +149,8 @@ workflow:
 | | 代码执行 | Python/JS 沙箱 |
 | | 工具调用 | 飞书 / 钉钉 / 企微 / Slack / Discord / 数据库 |
 | **高级** | 子流程 | DSL 嵌套 |
-| | MCP Server | v1.9.2+ 把当前 App 暴露为 MCP 服务 |
-| | MCP Client | v1.9.2+ 消费外部 MCP 服务 |
+| | MCP Server | v1.6.0+ 把当前 App 暴露为 MCP 服务 |
+| | MCP Client | v1.6.0+ 消费外部 MCP 服务 |
 
 ---
 
@@ -171,7 +175,7 @@ graph LR
 
 ---
 
-## 六、MCP 双向集成（v1.9.2+）
+## 六、MCP 双向集成（v1.6.0+）
 
 **Model Context Protocol**（MCP，Anthropic 2024 开源）成为 LLM 工具调用的事实标准。
 
@@ -267,13 +271,16 @@ nodes:
 
 ## 十一、2025-2026 重要更新
 
+> 📌 以下时间线已对照 [官方 Releases](https://github.com/langgenius/dify/releases) 校对（截至 2026-10）：
+
 | 版本 | 特性 | 影响 |
 |------|------|------|
-| **v1.0.0 (2024-12)** | 商业版 + Enterprise 矩阵 | 国产化大客户入场 |
-| **v1.5.0 (2025-04)** | Agent 节点 + 工作流编排 | 复杂推理进入主线 |
-| **v1.7.0 (2025-08)** | 工作流可观测性三件套（Trace + Token + 成本）| 企业生产可用 |
-| **v1.9.2 (2025-12)** | **MCP 双向集成**（Server + Client）| LLM 工具调用协议标准化 |
-| **v1.10.0 (2026-Q1)** | 银行业合规认证包 + 国产 LLM 深度适配 | 金融/政务落地加速 |
+| **v1.0.0 (2025-02)** | 插件系统（.difypkg）+ Workflow Agent 节点 | 工具/模型可插拔，Agent 能力进入主线 |
+| **v1.5.0 (2025-06)** | 工作流调试增强（持久化调试变量）+ 拖拽 DSL 导入 | 开发调试体验大幅提升 |
+| **v1.6.0 (2025-07)** | **MCP 双向集成**（Server + Client）| LLM 工具调用协议标准化 |
+| **v1.7.0 (2025-07)** | 工具插件 OAuth 2.0 + 插件自动升级 + Agent 节点引用标注 | 企业级集成与可信输出 |
+| **v1.9.0 (2025-09)** | Knowledge Pipeline + 队列式图引擎 | RAG 摄取模块化、工作流执行更稳 |
+| **v1.10.0 (2025-11)** | Trigger 触发器（定时 / Webhook / SaaS 事件）| 事件驱动自动化，无需人工/API 触发 |
 
 ---
 

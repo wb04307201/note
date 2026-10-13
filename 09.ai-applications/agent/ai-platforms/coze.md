@@ -1,9 +1,9 @@
 <!--module:
   parent: 09.ai-applications
-  slug: 09.ai-applications\agent\ai-platforms\coze
+  slug: 09.ai-applications/agent/ai-platforms/coze
   type: article
   category: 主模块子文章
-  summary: Coze（扣子）
+  summary: Coze（扣子）平台全景——字节系低代码 AI Agent 编排平台：Agent 联邦 / 工作流 / 插件市场 / 知识库四大组件 + 飞书/抖音/豆包生态深绑定 + vs Dify 六维对比与定价。
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -165,11 +165,13 @@ graph LR
 
 ## 七、定价与商业化
 
-| 方案 | 价格 | 适用 |
+> 📌 以下为社区整理的参考价（截至 2026-10，需以[扣子官网](https://www.coze.cn/)内实时定价页报价为准，价格随时可能调整）：
+
+| 方案 | 价格（约） | 适用 |
 |------|------|------|
 | **个人版** | 免费（有限 Token）| 个人 / 学习 |
-| **专业版** | 99 元/月 | 独立开发者 |
-| **团队版** | 699 元/月（10 人）| 中小团队 |
+| **专业版** | 约百元/月量级 | 独立开发者 |
+| **团队版** | 约数百元/月（10 人）| 中小团队 |
 | **企业版** | 询价 | 大型企业 / 私有化 |
 
 **字节云抵扣**：发布到商店的 Bot 被调用时，按 Token 消耗抵扣费用（C 端分发能力变现）。
@@ -191,6 +193,5 @@ graph LR
 - [11 AI 知识体系](../README.md) — 章节根目录
 - [Dify](dify.md) — DSL 入 Git + 私有化首选
 - [LangGraph](langgraph.md) — 代码优先复杂 Agent 框架
-- BPMN+AI 融合 — Coze + Camunda 8 混合架构（适合国内企业落地）
-
-- [spring-ai-vs-platforms](spring-ai-vs-platforms.md)
+- [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — Coze + Camunda 8 混合架构（适合国内企业落地）
+- [spring-ai-vs-platforms](spring-ai-vs-platforms.md) — 代码优先与低代码平台的边界（短卡）

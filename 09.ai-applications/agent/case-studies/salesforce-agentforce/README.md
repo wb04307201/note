@@ -26,6 +26,15 @@
 
 Copilot 是"坐在 CRM 旁边的助手"：用户问，它答，再帮忙点开某个按钮。剧本由人写，它负责执行。Agentforce 把这个关系翻了过来：剧本由 Agent 自己写，把"理解→决策→行动"完整闭环在自己手里。Benioff 把这种状态称作 **"hard swap"**——把过去由人工坐席、销售代表、客服工程师承担的重复性工作，完整移交给 Agent。
 
+三代范式的核心差异在**决策权归属**：
+
+| 维度 | RPA（机器人流程自动化） | Copilot（副驾驶） | Agentforce（Agent） |
+|------|------------------------|------------------|---------------------|
+| **决策权** | 无——严格按剧本执行 | 建议权在人——AI 出主意，人点按钮 | **决策权移交 Agent**——自己判断下一步 |
+| **剧本来源** | 人工预录制（如果 A 则 B） | 人写 Prompt / 人触发 | Agent 基于上下文图谱动态生成 |
+| **异常处理** | 报错停下或强行推进留烂尾 | 交还给人处理 | 自主判断 + 可审计的兜底策略 |
+| **人的角色** | 流程设计者 + 监工 | 每步操作者 | 目标设定者 + 审核者（HITL 抽查） |
+
 ---
 
 ## 二、销售 Agent 的五段式自主工作流
@@ -48,7 +57,17 @@ Agentforce 能在销售场景里跑得起来，并不是只靠一个大模型在
 
 **预构建加自定义 Agent 双轨。** Salesforce 提供销售、服务、营销、商业四个预构建 Agent；同时允许企业基于自身流程构建自定义 Agent。
 
-四个机制叠在一起，构成的是一个可被部署、可被治理、可被审计的 Agent 运行时。
+四个机制叠在一起，构成的是一个可被部署、可被治理、可被审计的 Agent 运行时：
+
+```mermaid
+graph TB
+    Builder[无代码 Agent Builder<br/>自然语言 → Agent 配置] --> Atlas[Atlas 推理引擎<br/>上下文图谱:客户位置/承诺/合规红线]
+    Atlas -->|查询| DC[(Data Cloud<br/>企业数据不外发)]
+    DC --> Perm[权限继承<br/>Agent 只能看到所属代表的客户/商机]
+    Perm --> Tool[工具执行<br/>日历/邮件/CRM 更新/MuleSoft 派单]
+    Tool --> Audit[审计日志<br/>决策可追溯 · 内置能力]
+    Audit -.->|反馈迭代| Builder
+```
 
 ---
 
@@ -75,3 +94,9 @@ Agentforce 这个案例最大的启发，是它让我们看清了一件事：**R
 ---
 
 ← [返回 Agent 案例](../README.md) · [返回 Agent MOC](../../README.md)
+
+**横向延伸**：
+
+- [Agent 评测体系](../../agent-evaluation/README.md) — 83% 独立解决率背后的评估方法论（离线回归 + 在线 A/B + LLM-as-judge）
+- [BPMN+AI 融合](../../architecture/bpmn-ai-integration.md) — "决策可被审计"如何落到流程骨架：Agentforce 内置审计 vs BPMN 流程实例留痕的对照
+- [Shopify AI Agent（姊妹案例）](../shopify-ai-agent/README.md) — 同为"大厂自家吃狗粮"，对比轻量级嵌入式 Agent 的不同设计取舍
