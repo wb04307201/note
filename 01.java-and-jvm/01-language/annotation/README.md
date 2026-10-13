@@ -239,6 +239,21 @@ Java 提供了 `javax.annotation.processing` 包下的注解处理器 API，允�
 - **Dagger / Hilt**：编译期生成依赖注入代码
 - **AutoValue（Google）**：编译期生成不可变值类的实现代码
 
+#### 注解特性版本演进时间线
+
+上文 `@Target` 表中散落的版本标注，按时间线收拢如下：
+
+| 版本 | 关键特性 | 说明 |
+|------|---------|------|
+| **Java 5**（JSR 175） | 注解机制 + 元注解 | 引入 `@Override` / `@Deprecated` / `@SuppressWarnings` 与 `@Retention` / `@Target` / `@Documented` / `@Inherited` 四大元注解 |
+| **Java 6**（JSR 269） | 编译期注解处理器 API | `javax.annotation.processing.Processor` + `javac -processor`，Lombok/MapStruct/Dagger 的技术地基 |
+| **Java 7** | `@SafeVarargs` | 抑制堆污染（heap pollution）警告，配合泛型可变参数 |
+| **Java 8**（JSR 308） | `@Repeatable` + `TYPE_PARAMETER` / `TYPE_USE` | 可重复注解；注解可贴到类型参数与任意类型使用处（如 `List<@NonNull String>`），支撑 Checker Framework 等类型检查工具 |
+| **Java 9**（JPMS） | `ElementType.MODULE` | 注解可贴到 `module-info.java` 的模块声明上 |
+| **Java 14/16** | `ElementType.RECORD_COMPONENT` | Record 组件级注解（Java 14 预览、Java 16 正式发布），见 [record 专题](../record/README.md) |
+
+> 记忆锚点：**5 生（注解诞生）→ 6 处理（编译期处理器）→ 8 重复 + 类型使用 → 9 模块 → 16 Record 组件**。
+
 ### 运行期通过反射处理
 
 通过反射 API 在运行时读取和处理注解（以下示例省略了 import 语句，实际使用时需要引入 `java.lang.annotation.Annotation`、`java.lang.reflect.Method` 等类）：

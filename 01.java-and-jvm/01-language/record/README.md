@@ -10,7 +10,7 @@
 
 # 记录类（Record）
 
-> **定位**：Java Record（Java 14+ 预览 / 16 正式）：不可变数据类的简洁写法，结合 Sealed 实现 ADT 模式。
+> **一句话定位**：Java Record（Java 14+ 预览 / 16 正式）：不可变数据类的简洁写法，结合 Sealed 实现 ADT 模式。
 
 ---
 
@@ -81,6 +81,36 @@ public Map<String, Double> averageScoreByClass() {
 | `equals()` | 基于所有组件值比较 |
 | `hashCode()` | 基于所有组件值计算 |
 | `toString()` | 格式：`RecordName[field1=value1, field2=value2]` |
+
+**用 `javap -p` 验证编译器实际生成了什么**：
+
+```java
+// 源码只有一行
+public record Point(int x, int y) { }
+```
+
+```bash
+javac Point.java && javap -p Point.class
+```
+
+```text
+public final class Point extends java.lang.Record {
+  private final int x;          // 组件 → private final 字段
+  private final int y;
+  public Point(int x, int y);   // 规范构造器（canonical constructor）
+  public final int hashCode();
+  public final int x();         // accessor：组件同名，无 get 前缀
+  public final int y();
+  public final java.lang.String toString();
+  public final boolean equals(java.lang.Object);
+}
+```
+
+三个值得注意的字节码级事实：
+
+1. **隐式继承 `java.lang.Record`** 且类为 `final`——Record 不能继承普通类，也不能被继承
+2. 生成的 `hashCode()`/`equals()`/`toString()` 内部实际委托给 JVM intrinsic 的 `ObjectMethods.bootstrap`（invokedynamic），并非逐字段展开的普通字节码
+3. 加 `-v` 还能看到类属性 `Record`（记录组件元数据），反射 `Class.isRecord()` / `getRecordComponents()` 读取的就是它
 
 ## 重写访问方法（Accessor Override）
 

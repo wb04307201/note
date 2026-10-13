@@ -22,47 +22,47 @@
 
 ### 语言基础
 
-| 主题 | 说明 |
-|------|------|
-| [基本语法](syntax/) | 注释、关键字、运算符、流程控制 |
-| [基本数据类型](data-types/) | 8种基本类型、包装类、自动装箱拆箱、精度问题 |
-| [变量](variable/) | 成员变量、局部变量、静态变量、final关键字 |
-| [方法](method/) | 方法类型、重载与重写、静态方法、可变参数、参数传递 |
+| 主题 | 说明 | 难度 | 建议学习顺序 |
+|------|------|:---:|:---:|
+| [基本语法](syntax/) | 注释、关键字、运算符、流程控制 | ⭐ | 1 |
+| [基本数据类型](data-types/) | 8种基本类型、包装类、自动装箱拆箱、精度问题 | ⭐ | 2 |
+| [变量](variable/) | 成员变量、局部变量、静态变量、final关键字 | ⭐ | 3 |
+| [方法](method/) | 方法类型、重载与重写、静态方法、可变参数、参数传递 | ⭐⭐ | 4 |
 
 ### 面向对象
 
-| 主题 | 说明 |
-|------|------|
-| [面向对象基础](oop/) | 三大特征（封装/继承/多态）、深浅拷贝、接口与抽象类、hashCode |
-| [Object 类](object/) | 所有类的根类、equals/hashCode/toString、Objects工具类 |
-| [内部类](inner-class/) | 成员内部类、静态内部类、局部内部类、匿名内部类 |
-| [多态](polymorphism/) | 重载 vs 重写 + 编译时 vs 运行时分派 + vtable + 默认方法 + 协变返回（深度专题） |
+| 主题 | 说明 | 难度 | 建议学习顺序 |
+|------|------|:---:|:---:|
+| [面向对象基础](oop/) | 三大特征（封装/继承/多态）、深浅拷贝、接口与抽象类、hashCode | ⭐⭐ | 5 |
+| [Object 类](object/) | 所有类的根类、equals/hashCode/toString、Objects工具类 | ⭐⭐⭐ | 6 |
+| [内部类](inner-class/) | 成员内部类、静态内部类、局部内部类、匿名内部类 | ⭐⭐⭐ | 7 |
+| [多态](polymorphism/) | 重载 vs 重写 + 编译时 vs 运行时分派 + vtable + 默认方法 + 协变返回（深度专题） | ⭐⭐⭐⭐ | 8 |
 
 ### 类型系统
 
-| 主题 | 说明 |
-|------|------|
-| [枚举](enum/) | 枚举常量、带属性/方法的枚举、EnumSet/EnumMap、枚举单例 |
-| [泛型](generics/) | 类型擦除、通配符、PECS原则、多重边界 |
-| [注解](annotation/) | 元注解、自定义注解、运行时注解处理 |
-| [记录类 Record](record/) | 不可变数据载体、Compact Constructor、与Lombok对比 |
+| 主题 | 说明 | 难度 | 建议学习顺序 |
+|------|------|:---:|:---:|
+| [枚举](enum/) | 枚举常量、带属性/方法的枚举、EnumSet/EnumMap、枚举单例 | ⭐⭐ | 9 |
+| [泛型](generics/) | 类型擦除、通配符、PECS原则、多重边界 | ⭐⭐⭐⭐ | 10 |
+| [注解](annotation/) | 元注解、自定义注解、运行时注解处理 | ⭐⭐⭐ | 11 |
+| [记录类 Record](record/) | 不可变数据载体、Compact Constructor、与Lombok对比 | ⭐⭐⭐ | 12 |
 
 ### 核心机制
 
-| 主题 | 说明 |
-|------|------|
-| [String](string/) | 不可变性、String/StringBuffer/StringBuilder、字符串常量池 |
-| [异常](exception/) | 异常层次、Checked/Unchecked、try-with-resources、最佳实践 |
-| [反射](reflection/) | Class对象、动态操作类、字段和方法访问、应用场景 |
-| [序列化和反序列化](serialization-and-deserialization/) | Serializable、序列化框架对比（Jackson/Protobuf/Kryo等） |
-| [SPI](spi/) | Service Provider Interface、ServiceLoader、插件化扩展 |
-| [语法糖](syntactic-sugar/) | Lambda、Stream、Switch表达式、文本块、Pattern Matching |
+| 主题 | 说明 | 难度 | 建议学习顺序 |
+|------|------|:---:|:---:|
+| [String](string/) | 不可变性、String/StringBuffer/StringBuilder、字符串常量池 | ⭐⭐⭐ | 13 |
+| [异常](exception/) | 异常层次、Checked/Unchecked、try-with-resources、最佳实践 | ⭐⭐⭐ | 14 |
+| [反射](reflection/) | Class对象、动态操作类、字段和方法访问、应用场景 | ⭐⭐⭐ | 15 |
+| [序列化和反序列化](serialization-and-deserialization/) | Serializable、序列化框架对比（Jackson/Protobuf/Kryo等） | ⭐⭐⭐ | 16 |
+| [SPI](spi/) | Service Provider Interface、ServiceLoader、插件化扩展 | ⭐⭐⭐ | 17 |
+| [语法糖](syntactic-sugar/) | Lambda、Stream、Switch表达式、文本块、Pattern Matching | ⭐⭐⭐⭐ | 18 |
 
 ## 日期时间
 
-| 专题 | 一句话定位 |
-|------|-----------|
-| [date-time](date-time/README.md) | JDK 8+ `java.time` API（LocalDateTime / Instant / Duration）、Date/Calendar 历史问题、时区与格式化 |
+| 专题 | 一句话定位 | 难度 | 建议学习顺序 |
+|------|-----------|:---:|:---:|
+| [date-time](date-time/README.md) | JDK 8+ `java.time` API（LocalDateTime / Instant / Duration）、Date/Calendar 历史问题、时区与格式化 | ⭐⭐⭐ | 19 |
 
 ## 核心概念速查：接口 vs 抽象类选型
 

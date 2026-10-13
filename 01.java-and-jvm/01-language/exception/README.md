@@ -85,6 +85,26 @@ RuntimeException（不受检查异常，上方 mermaid 图中 Unchecked 分支�
 | **典型处理策略** | try-catch 处理 / 向上抛出 / 转换为业务异常 | 排查根因 + JVM 调优（`-Xmx`/`-Xss`），不是 catch 能解决的 |
 | **生产影响** | 通常影响单次请求，可降级或重试 | 通常导致线程终止或 JVM 崩溃，需运维介入 |
 
+**典型 OOM 处置参数组合**（表中"JVM 调优"一栏的落地示例）：
+
+```bash
+# 生产标配：限制堆上限 + OOM 时自动留案发现场
+java -Xms4g -Xmx4g \
+     -XX:+HeapDumpOnOutOfMemoryError \
+     -XX:HeapDumpPath=/var/log/app/heapdump.hprof \
+     -Xss512k \
+     -jar app.jar
+```
+
+| 参数 | 作用 | 调优建议 |
+|------|------|---------|
+| `-Xms4g -Xmx4g` | 初始堆 = 最大堆 | 两者设成相等，避免运行期扩缩容抖动；具体值按压测的老年代峰值 × 1.5~2 估算 |
+| `-XX:+HeapDumpOnOutOfMemoryError` | OOM 瞬间自动 dump 堆快照 | **必开**——OOM 现场转瞬即逝，没有 dump 就只能靠猜；用 MAT / JProfiler 分析支配树找泄漏根 |
+| `-XX:HeapDumpPath` | dump 文件落盘路径 | 指向有足够磁盘空间的目录（dump 大小 ≈ 堆大小，4g 堆就是约 4GB 文件） |
+| `-Xss512k` | 每线程栈大小 | 应对 `StackOverflowError`（深递归）：优先改代码（递归→迭代），加大 `-Xss` 是止血不是治病；线程数极多时反而应调小以省内存 |
+
+> 补充：`-XX:OnOutOfMemoryError="kill -9 %p"` 或容器环境配合健康检查自动重启，避免 JVM 在半死状态继续接流量。参数细节与 GC 调参见 [02-jvm 内存区域](../../02-jvm/README.md)。
+
 ### 常见反模式
 
 ```java

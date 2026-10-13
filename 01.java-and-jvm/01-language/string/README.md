@@ -99,6 +99,34 @@ System.out.println(s1 == s4);  // true
 1. 如果字符串常量池中**不存在**"abc"：创建 2 个对象（一个放入常量池，一个由`new`在堆中创建）
 2. 如果字符串常量池中**已存在**"abc"：只创建 1 个新对象（`new`出来的，常量池中已有）
 
+### intern() 的 JDK 6 vs JDK 7+ 行为差异（经典对比）
+
+**分界事实**：JDK 6 及之前，字符串常量池位于**永久代（PermGen）**；**JDK 7 起常量池被挪到堆中**（永久代空间狭小且易 `OutOfMemoryError: PermGen space`，这是主要动因之一；JDK 8 永久代整体被元空间取代，但常量池仍留在堆）。位置变化直接改变了 `intern()` 的语义：
+
+| JDK 版本 | 常量池位置 | `intern()` 对池外字符串的行为 |
+|---------|-----------|------------------------------|
+| JDK 6 | 永久代 | **拷贝**一份新字符串对象放入永久代常量池，返回拷贝的引用 |
+| JDK 7+ | 堆 | **不拷贝**，直接把堆中该对象的引用登记进常量池，返回的就是原对象引用 |
+
+```java
+// 经典面试题：JDK 6 与 JDK 7+ 输出不同
+String s = new StringBuilder("计算").append("机").toString();  // 堆中新对象，池中无 "计算机"
+System.out.println(s.intern() == s);
+// JDK 6  ：false —— intern() 在永久代拷贝了一份，与堆中 s 不是同一对象
+// JDK 7+ ：true  —— 池中登记的就是 s 本身的引用
+
+// 对照陷阱用例："java" 在 JVM 启动早期（sun.misc.Version 等系统类初始化）就已入池
+String s2 = new StringBuilder("ja").append("va").toString();
+System.out.println(s2.intern() == s2);
+// JDK 6 和 JDK 7+ 都是 false —— 池里早已存在 "java"，intern() 返回的是那个更早的引用
+```
+
+**实践含义**：
+
+- JDK 6 大量 `intern()` 动态字符串 → 永久代膨胀 → `OutOfMemoryError: PermGen space`（需调 `-XX:MaxPermSize`，JDK 8+ 该参数已移除）
+- JDK 7+ `intern()` 不再产生拷贝，只是"登记引用"，成本低得多；但登记的对象会因此常驻（被常量池强引用，不随普通对象回收），滥用仍会导致堆泄漏
+- 池大小可用 `-XX:StringTableSize=<buckets>` 调整（默认 65536 桶），海量 `intern()` 场景桶冲突会拖慢查找
+
 ## 字符串比较
 
 ### `equals()` vs `==`

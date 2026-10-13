@@ -3,7 +3,7 @@
   slug: java/date-time
   type: article
   category: 主模块子文章
-  summary: Java Date-Time API 学习笔记
+  summary: java.time API：LocalDateTime/Instant/Duration + 旧 Date/Calendar 陷阱与迁移互操作
   depth: ⭐⭐⭐
   status: active
 -->
@@ -326,6 +326,25 @@ Set<String> allZones = ZoneId.getAvailableZoneIds();
 ZoneOffset offset = ZoneOffset.of("+08:00");
 ZoneOffset offset2 = ZoneOffset.ofHours(8);
 ```
+
+**`-Duser.timezone` 对系统默认时区的影响**：
+
+`ZoneId.systemDefault()` 并不直接读操作系统时区，而是取决于 JVM 系统属性 `user.timezone`：
+
+- 若启动时指定了 `-Duser.timezone=Asia/Shanghai`，则 `ZoneId.systemDefault()`、`TimeZone.getDefault()`、`LocalDate.now()`、`LocalDateTime.now()`（无参版本）全部按该时区计算
+- 若未指定，JVM 启动时根据操作系统区域设置推断，并**回写**到 `user.timezone` 属性
+- 运行时调用 `TimeZone.setDefault(...)` 也能改变后续 `ZoneId.systemDefault()` 的结果（影响整个 JVM，不推荐）
+
+```bash
+# 生产环境显式固定时区，避免容器/云主机默认 UTC 导致跨天日期错乱
+java -Duser.timezone=Asia/Shanghai -jar app.jar
+```
+
+> **生产配置建议**：
+> 1. **显式设置 `-Duser.timezone`**（或环境变量 `TZ`）——Docker 镜像默认多为 UTC，与业务预期时区不一致时 `LocalDate.now()` 会差出 8 小时（东八区），凌晨前后甚至差一天
+> 2. **存储与传输统一 UTC**：数据库存 UTC 时间戳或 `Instant`，只在展示层按用户时区转换
+> 3. **业务关键代码不依赖默认时区**：`LocalDate.now(ZoneId.of("Asia/Shanghai"))` 显式传参，比 `LocalDate.now()` 隐式依赖 JVM 默认值更可测、可移植
+> 4. 对账/报表类"按天切分"逻辑尤其要小心：默认时区错配会让日切边界整体漂移
 
 **ZonedDateTime**：带时区的完整日期时间。
 

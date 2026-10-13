@@ -298,7 +298,7 @@ privateMethod.invoke(hero);  // 输出: 我是私有方法
               .findVarHandle(Hero.class, "realName", String.class);
       vh.set(hero, "新名字");
       ```
-    - **性能对比**（粗略量级）：直接调用 ≈ MethodHandle > 缓存 Method 的 invoke() >> 未缓存的反射调用。在性能敏感场景（如高频交易、序列化框架）中优先考虑 MethodHandle/VarHandle。
+    - **性能对比**（量级上的粗略排序，非精确倍数）：直接调用 ≈ MethodHandle > 缓存 Method 的 invoke() >> 未缓存的反射调用。具体倍数与 JDK 版本、调用点热度强相关（JIT 对反射有专门的 inflation/`MethodHandle` intrinsic 优化），如需精确数字请用 JMH 自测（参考 [OpenJDK JMH 样例](https://github.com/openjdk/jmh) 的 `JMHSample_26_Batching` 思路编写反射基准）。在性能敏感场景（如高频交易、序列化框架）中优先考虑 MethodHandle/VarHandle。
 - **设计替代**：优先考虑接口、抽象类、工厂模式等设计模式；在性能敏感场景（如高频交易）避免反射。
 - **兼容性**：Java 9+引入模块系统（JPMS），反射访问需在`module-info.java`中声明`opens`权限。
 - **工具支持**：使用Lombok、MapStruct等工具减少样板代码，减少手动反射需求。

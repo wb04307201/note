@@ -22,148 +22,26 @@
 
 ## Java语言关键字
 
-<table>
-  <thead>
-    <tr>
-      <th>分类</th>
-      <th colspan="7">关键字</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>访问控制</td>
-      <td>private</td>
-      <td>protected</td>
-      <td>public</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>类，方法和变量修饰符</td>
-      <td>abstract</td>
-      <td>class</td>
-      <td>extends</td>
-      <td>final</td>
-      <td>implements</td>
-      <td>interface</td>
-      <td>native</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>new</td>
-      <td>static</td>
-      <td>strictfp</td>
-      <td>synchronized</td>
-      <td>transient</td>
-      <td>volatile</td>
-      <td>enum</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>void</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>程序控制</td>
-      <td>break</td>
-      <td>continue</td>
-      <td>return</td>
-      <td>do</td>
-      <td>while</td>
-      <td>if</td>
-      <td>else</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>for</td>
-      <td>instanceof</td>
-      <td>switch</td>
-      <td>case</td>
-      <td>default</td>
-      <td>assert</td>
-      <td>yield</td>
-    </tr>
-    <tr>
-      <td>错误处理</td>
-      <td>try</td>
-      <td>catch</td>
-      <td>throw</td>
-      <td>throws</td>
-      <td>finally</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>包相关</td>
-      <td>import</td>
-      <td>package</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>基本类型</td>
-      <td>boolean</td>
-      <td>byte</td>
-      <td>char</td>
-      <td>double</td>
-      <td>float</td>
-      <td>int</td>
-      <td>long</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>short</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>变量引用</td>
-      <td>super</td>
-      <td>this</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>保留字</td>
-      <td>goto</td>
-      <td>const</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>受限关键字 (Restricted Keywords)</td>
-      <td>record <sup>Java 16</sup></td>
-      <td>sealed <sup>Java 17</sup></td>
-      <td>permits <sup>Java 17</sup></td>
-      <td>non-sealed <sup>Java 17</sup></td>
-      <td>yield <sup>Java 14</sup></td>
-      <td>var <sup>Java 10</sup></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+| 分类 | 关键字 |
+|------|--------|
+| 访问控制 | `private`、`protected`、`public` |
+| 类、方法和变量修饰符 | `abstract`、`class`、`extends`、`final`、`implements`、`interface`、`native`、`new`、`static`、`strictfp`、`synchronized`、`transient`、`volatile`、`enum`、`void` |
+| 程序控制 | `break`、`continue`、`return`、`do`、`while`、`if`、`else`、`for`、`instanceof`、`switch`、`case`、`default`、`assert` |
+| 错误处理 | `try`、`catch`、`throw`、`throws`、`finally` |
+| 包相关 | `import`、`package` |
+| 基本类型 | `boolean`、`byte`、`char`、`double`、`float`、`int`、`long`、`short` |
+| 变量引用 | `super`、`this` |
+| 保留字 | `goto`、`const` |
 
-> **受限关键字**：仅在特定上下文中具有特殊含义，在其他位置可作为普通标识符使用（但强烈建议避免）。
+**受限关键字（Restricted Keywords）**单列一表——仅在特定上下文中具有特殊含义，其他位置仍可作普通标识符：
+
+| 受限关键字 | 引入版本 | 生效上下文 |
+|-----------|---------|-----------|
+| `record` | Java 16 | 类型声明 |
+| `sealed` / `permits` / `non-sealed` | Java 17 | 类/接口声明的密封修饰 |
+| `yield` | Java 14 | switch 表达式 |
+| `var` | Java 10 | 局部变量类型推断（严格说是受限标识符，见下文辨析） |
+
 > 例如 `record` 仅在类型声明中是关键字，`yield` 仅在 switch 表达式中是关键字。
 
 ## 标识符和关键字的区别
@@ -172,16 +50,9 @@
 
 ## `var` 局部变量类型推断（Java 10+）
 
-`var` 是 Java 10 引入的**受限标识符（restricted identifier）**，用于局部变量类型推断，编译器会根据右侧初始值自动推断变量类型。
-
-```java
-var list = new ArrayList<String>();     // 推断为 ArrayList<String>
-var map = new HashMap<String, Integer>(); // 推断为 HashMap<String, Integer>
-```
-
-> **注意**：上表将 `var` 归入"受限关键字"是宽松分类。严格来说，按 JLS（Java 语言规范），`var` 不是关键字，而是**受限标识符（restricted identifier）**——它在局部变量声明上下文中具有特殊含义，但在其他位置仍可作为普通标识符使用。
+> **受限标识符 vs 受限关键字**一句辨析：按 JLS，`var` 不是关键字，而是**受限标识符（restricted identifier）**——仅在局部变量声明上下文中具有类型推断语义，其他位置（如 `int var = 1;`）仍可编译通过；`record`/`sealed`/`yield` 同理。
 >
-> 完整说明（适用场景、使用限制、与 `final` 结合等）参见 [variable/README.md](../variable/README.md#var-局部变量类型推断java-10)。
+> `var` 的完整说明（类型推断规则、适用场景、使用限制、与 `final` 结合）以 [variable/README.md 的 var 专题](../variable/README.md#var-局部变量类型推断java-10) 为准，本文不再重复。
 
 ## `continue`、`break`和`return`的区别
 
@@ -218,10 +89,11 @@ for (int i = 0; i < 10; i++) {
 | 12 | `\|\|` | 逻辑或（短路） |
 | 13 | `?:` | 三元运算符 |
 | 14 | `=` `+=` `-=` `*=` `/=` 等 | 赋值 |
-| 15 | `->` `::` | Lambda 箭头（Java 8+）、方法引用（Java 8+），优先级最低 |
 
+> **`->` 与 `::` 不参与优先级排序**：上表第 15 行原有 "`->` `::` 优先级最低" 的说法并不严谨——按 JLS，Lambda 箭头 `->` 和方法引用 `::` **不是表达式运算符**，不出现在 JLS §15.19（Operator Precedence）的优先级表里。它们出现在语法产生式（production）中：Lambda 表达式整体作为一个 `Primary` 级操作数参与运算，`->` 左侧是形参列表、右侧是 Lambda 体；`::` 是 `ReferenceType :: Identifier` 形式的独立产生式。所以 "优先级最低" 应理解为**语法结合层面**：Lambda 体尽量向右吞噬表达式（`x -> a + b` 中 `a + b` 整体是 Lambda 体），而不是像 `+`/`*` 那样存在两两可比的优先级数值。
+>
 > **示例**：`list.forEach(e -> System.out.println(e));` 等价于 `list.forEach(System.out::println);`
-> 其中 `->` 和 `::` 的优先级低于赋值运算符，因此 `Runnable r = () -> doSomething();` 会先计算赋值，再构造 Lambda。
+> `Runnable r = () -> doSomething();` 中赋值右侧整体是一个 Lambda 表达式——这是语法分析的结果，而非 "先赋值再构造 Lambda"。
 
 ### `&&` 与 `&`、`||` 与 `|` 的区别
 

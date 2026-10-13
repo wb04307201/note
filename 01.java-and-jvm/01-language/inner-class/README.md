@@ -250,4 +250,9 @@ Comparator<String> methodRef = Comparator.comparingInt(String::length);
 
 ---
 
+## 相关章节
+
+- [语法糖（Lambda / 函数式接口）](../syntactic-sugar/README.md) — 匿名内部类的 Java 8 替代方案：`invokedynamic` 实现原理、`this` 语义差异、捕获变量规则的完整版
+- [02-jvm 垃圾回收（GC）](../../02-jvm/README.md) — 上文内存泄漏反例的底层机制：强/软/弱/虚四级引用、可达性分析，`WeakReference` 为何能救场
+
 ← [返回 Java 核心概念](../README.md)

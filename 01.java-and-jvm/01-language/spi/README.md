@@ -148,6 +148,44 @@ PaymentProvider alipay = loader.stream()
 alipay.pay(new Order(100.0));
 ```
 
+### 常见错误反例：配置写错 → ServiceConfigurationError
+
+```text
+❌ 反例 1：配置文件名写错（用了简单类名或写错包名）
+META-INF/services/PaymentProvider            ← 必须是接口【全限定名】
+META-INF/services/com.example.PaymentProvide ← 少一个字母 r
+
+❌ 反例 2：文件没打进 jar —— 放在 src/ 根目录或 resources 上层
+src/META-INF/services/...                    ← Maven 下必须是 src/main/resources/META-INF/services/
+（编译产物 target/classes/META-INF/services/ 里没有 → jar 里自然也没有）
+
+❌ 反例 3：文件内容写了接口名而非实现类名，或实现类没有公共无参构造器
+com.example.PaymentProvider                  ← 应为 impl.AlipayProvider / impl.WechatProvider
+```
+
+后果分两种时机暴露：
+
+```java
+ServiceLoader<PaymentProvider> loader = ServiceLoader.load(PaymentProvider.class);
+// 此时不报错——load() 只是构造 ServiceLoader，尚未读配置文件
+
+for (PaymentProvider p : loader) { ... }
+// ❌ 迭代时才炸：
+// 文件名/路径错 → 静默无输出（找不到配置 = 0 个实现，不抛异常，最难排查！）
+// 文件内容错（类不存在/不可实例化）→
+// java.util.ServiceConfigurationError: com.example.PaymentProvider:
+//     Provider com.example.impl.AlipayProvide not found
+//     （或 ... could not be instantiated / IllegalAccessError 等）
+```
+
+> 排查口诀：**"没报错但一个都没加载" 查文件名与打包路径；"ServiceConfigurationError" 查文件内容与实现类构造器**。
+
+```java
+// ✅ 正例：用 AutoService 从根上规避（编译期生成 + 编译期校验，详见下文「最佳实践」）
+@AutoService(PaymentProvider.class)   // 文件名、路径、全限定名全部自动生成，杜绝手写错
+public class AlipayProvider implements PaymentProvider { ... }
+```
+
 ## SPI 优缺点
 
 ### 优点
@@ -163,7 +201,7 @@ alipay.pay(new Order(100.0));
 | **配置繁琐** | 需要手动维护 `META-INF/services/` 下的配置文件 |
 | **无法动态更新** | 应用启动后实现类的变更不会自动生效，需调用 reload() 方法手动刷新缓存 |
 | **无法解决冲突** | 存在多个实现类时，加载顺序不确定，缺乏优先级选择机制 |
-| **全量扫描** | `ServiceLoader` 启动时会扫描所有配置文件（eagerly），虽然类的实例化是延迟的（lazily），但仍需遍历所有 Provider 才能定位目标实现 |
+| **全量扫描** | 迭代时 `ServiceLoader` 会解析配置文件中**全部** Provider 条目（实例化本身是 lazy 的，但定位目标实现仍需逐个遍历），无法按名称直达（内部机制见下文「内部实现要点（源码级）」） |
 | **获取方式不灵活** | 只能通过迭代器遍历，无法按名称直接获取 |
 | **线程不安全** | `ServiceLoader` 实例在多线程环境下不安全 |
 
@@ -329,6 +367,36 @@ com.example.impl.AlipayProvider
 **线程安全**：`ServiceLoader` 实例**不是线程安全**的；多线程下每个线程应使用独立实例，或使用 `ServiceLoader.loadStatic()`（Java 9+ 试验性）。
 
 **内部实现要点**：`ServiceLoader` 并非"通过 Map 接口工作"——其内部由 `LazyIterator`（延迟迭代器，逐个解析 `META-INF/services` 配置并实例化）+ `providers` 缓存（`LinkedHashMap<String, S>`，按发现顺序缓存已实例化的 provider）构成；`reload()` 清空的正是这个缓存。
+
+**内部实现要点（源码级，OpenJDK `java.util.ServiceLoader`）**：
+
+```java
+// 1. hasNextService()/hasNext()：解析配置文件是「按条目 lazy」的
+//    LazyClassPathLookupIterator 用 ClassLoader.getResources("META-INF/services/" + 接口全限定名)
+//    拿到所有 jar 中同名配置的 URL 枚举，configs 是惰性 Enumerations；
+//    parseLine() 逐行读取并校验（非法行 → fail(service, "Illegal configuration-file syntax")）
+public boolean hasNextService() {
+    while (nextName == null && configs.hasMoreElements()) {
+        // 关键：只把「下一行类名」解析到 nextName 为止，不做 Class.forName —— 真正的类加载被推迟
+    }
+    return nextName != null;
+}
+
+// 2. nextService()/next()：此刻才 Class.forName + 实例化
+private S nextService() {
+    Class<?> clazz = Class.forName(nextName, false, loader);  // initialize=false，不触发静态块
+    // 校验 clazz 确实实现了 service 接口，否则 ServiceConfigurationError
+    S provider = service.cast(clazz.getConstructor().newInstance());  // 要求公共无参构造器
+    providers.put(nextName, provider);   // 写入 LinkedHashMap 缓存，第二次迭代直接命中
+    return provider;
+}
+```
+
+三个源码级结论（对应上文缺点表的定性描述）：
+
+1. **"全量扫描"的准确含义**：`getResources()` 会枚举 classpath 上**所有 jar** 中该接口的配置文件（jar 越多，IO 越重）；`hasNextService()` 逐行解析全部条目，但 `Class.forName`/实例化推迟到 `nextService()` —— 即"**解析 eager、实例化 lazy**"
+2. **无按名索引**：缓存 key 虽是类名字符串，但没有公开的 `get(name)` 入口，只能迭代或 Java 9+ `stream().filter(...)` 线性查找
+3. **`initialize=false` 的细节**：Provider 类被加载但不初始化，静态块直到首次真正使用才执行——排查"SPI 实现类静态块没跑"时先想到这一点
 
 ---
 

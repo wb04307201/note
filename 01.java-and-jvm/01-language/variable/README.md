@@ -1,9 +1,9 @@
 <!--module:
   parent: java
-  slug: java/variable
+  slug: java/concepts/variable
   type: article
   category: 主模块子文章
-  summary: 变量
+  summary: 成员/局部变量区别 + static/final/effectively final/var 语义
   depth: ⭐⭐
   status: active
 -->

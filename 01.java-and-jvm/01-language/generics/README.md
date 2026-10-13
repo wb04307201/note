@@ -126,6 +126,50 @@ Object obj = new Box<>();
 if (obj instanceof Box)               // 只能检查原生类型（Raw Type）
 ```
 
+### 用 -Xlint 暴露擦除后的隐患：unchecked / rawtypes
+
+类型擦除让部分不安全操作**能编译通过**（只在堆里埋雷），编译器默认仅给出笼统提示。打开细粒度告警可以强制暴露：
+
+```bash
+# 编译参数
+javac -Xlint:unchecked -Xlint:rawtypes *.java
+
+# 或在 Maven 中全局开启
+# <compilerArgs><arg>-Xlint:unchecked</arg><arg>-Xlint:rawtypes</arg></compilerArgs>
+```
+
+| 告警 | 触发场景 | 典型信号 |
+|------|---------|---------|
+| `unchecked` | 未经检查的类型转换——擦除后无法在运行时验证 | `uses unchecked or unsafe operations`；如 `(List<String>) rawObj`、`List list = new ArrayList(); list.add("x"); List<Integer> li = list;` |
+| `rawtypes` | 使用了原生类型（丢掉全部泛型信息，退化为 Java 5 之前的语义） | `Box box = new Box();`（应为 `Box<String>`）；原生类型会**关闭**整个成员方法的泛型检查 |
+
+> 实践口径：新代码把两者当 error 处理（`-Werror` 可选）；确实无法消除的桥接点（如与老 API 交互）用 `@SuppressWarnings("unchecked")` **收窄到最小作用域**（局部变量级），禁止类级/方法级大范围压制。
+
+### 桥接方法（Bridge Method）：擦除的编译器补丁
+
+重写泛型父类/实现泛型接口时，擦除后子类方法签名与父类不再一致，编译器会**自动生成一个合成（synthetic）桥接方法**来维持多态——否则虚方法分派会失效（协变返回类型的重写同理）：
+
+```java
+public class Node<T> {
+    public void setData(T data) { ... }
+}
+
+public class StringNode extends Node<String> {
+    @Override
+    public void setData(String data) { ... }   // 你写的
+}
+
+// 擦除后父类签名是 setData(Object)，与 setData(String) 不构成重写！
+// 编译器自动生成桥接方法（javap -c 可见，带 synthetic + bridge 标记）：
+// public synthetic bridge void setData(Object data) {
+//     setData((String) data);   // 强转后转调真实方法
+// }
+```
+
+- 桥接方法特征：`ACC_SYNTHETIC` + `ACC_BRIDGE` 标志位，反射 `getMethods()` 能看到，`isSynthetic()/isBridge()` 可判别
+- **陷阱**：反射遍历方法时对同一逻辑方法会拿到两份（真实的 + 桥接的），做注解扫描/框架字节码增强时需 `if (m.isBridge()) continue;` 过滤
+- 验证命令：`javap -c -p StringNode.class` 观察两个 `setData`
+
 ## 类型通配符
 
 ### 无界通配符 `<?>`
@@ -410,6 +454,7 @@ if (obj instanceof List<?> list) {      // JDK 16+ 模式匹配
 ## 相关章节
 
 - [集合框架](../../collection/README.md) — 泛型最大的应用现场（`List<E>` / `Map<K,V>` 的类型参数设计）
+- [语法糖](../syntactic-sugar/README.md) — 泛型擦除的脱糖视角（`javap -c` 字节码实证：`add` 描述符退化为 `(Ljava/lang/Object;)`）
 - [Record + 泛型：split-hairs 视角](../record/README.md#record-泛型split-hairs-视角) — 泛型 Record 的写法与 5 大陷阱
 - [面试题：Java 泛型擦除深度剖析](../../../12.interview/01.java/generics-erasure/README.md) — 类型擦除的高频面试版（桥方法/不能 `new T()`/PECS 考点）
 

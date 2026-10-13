@@ -119,6 +119,35 @@ public class SerializationDemo {
 }
 ```
 
+### 流协议头与默认实现要点（源码级）
+
+**1. 流协议头（Stream Header）**：`ObjectOutputStream` 构造时立即向流写入 4 字节魔数——这是"打开流就写头，而不是第一次 writeObject 才写"的细节：
+
+```text
+AC ED 00 05
+│   │  └──── streamVersion = 5（STREAM_VERSION，协议版本号）
+│   └─────── magic 低字节
+└─────────── magic 高字节（STREAM_MAGIC = 0xACED）
+```
+
+对应 `ObjectOutputStream` 源码（`writeStreamHeader()`，`protected` 可被子类覆盖）：
+
+```java
+protected void writeStreamHeader() throws IOException {
+    bout.writeShort(STREAM_MAGIC);     // 0xACED
+    bout.writeShort(STREAM_VERSION);   // 5
+}
+```
+
+`ObjectInputStream` 构造时对称地 `readStreamHeader()` 校验：魔数不符抛 `StreamCorruptedException`，版本号不符抛 `InvalidClassException("local class incompatible: stream version, ...")`。因此用十六进制查看器打开 `user.ser`，**前 4 个字节必然是 `AC ED 00 05`**——这也是识别 Java 原生序列化流量（安全审计/gadget 攻击排查）的第一指纹。
+
+**2. `writeObject`/`readObject` 的默认行为**：
+
+- `Serializable` 未提供 `writeObject` 时走 `defaultWriteObject()` 路径：按 `ObjectStreamClass` 中登记的**非 static、非 transient 字段**逐个写入（字段元数据先于字段值写进流，含类名 + `serialVersionUID` + 字段描述）
+- 类可以声明 `private void writeObject(ObjectOutputStream out)` / `readObject(ObjectInputStream in)` 接管——`ObjectStreamClass` 通过**反射查找该精确签名**（名字 + 修饰符 + 参数类型全部匹配，否则静默忽略，这是常见踩坑点）
+- 惯例是先调 `out.defaultWriteObject()` / `in.defaultReadObject()` 处理常规字段，再手工写附加数据（如集合防御性拷贝）
+- 反序列化**不调用任何构造方法**（除 `Externalizable` 要求公共无参构造器外）：对象内存直接分配，字段由流数据填充；`readResolve()` 在字段填充完成后执行，可整体替换返回对象
+
 ## 应用场景
 
 - **对象持久化**：文件存储、Redis 缓存、数据库存储
@@ -146,6 +175,43 @@ public class SerializationDemo {
 ## 注意事项
 
 1. **版本兼容性**：类结构变更后，旧的序列化数据可能无法正确反序列化。务必维护好`serialVersionUID`
+
+   **❌/✅ 演进示例——缺失 `serialVersionUID` 导致 `InvalidClassException`**：
+
+   ```java
+   // ❌ 反例：未显式声明 serialVersionUID（v1 版本，已上线并写入缓存/文件）
+   public class Order implements Serializable {
+       private long orderId;
+       private String status;
+   }
+   // JVM 按类名+接口+字段+方法签名自动计算 UID，假设为 8821104821955035702L
+
+   // ❌ v2 仅新增一个无关字段——自动 UID 随之改变
+   public class Order implements Serializable {
+       private long orderId;
+       private String status;
+       private String remark;   // 新增字段
+   }
+   // 自动计算 UID 变成 -3460125747287946791L
+
+   // 用 v2 类反序列化 v1 数据 → 直接炸：
+   // java.io.InvalidClassException: Order;
+   //   local class incompatible: stream classdesc serialVersionUID = 8821104821955035702,
+   //   local class serialVersionUID = -3460125747287946791
+   ```
+
+   ```java
+   // ✅ 正例：显式固定 serialVersionUID
+   public class Order implements Serializable {
+       private static final long serialVersionUID = 1L;  // 永不随手改
+       private long orderId;
+       private String status;
+       private String remark;   // v2 新增字段：反序列化旧数据时取类型默认值（null/0），兼容
+   }
+   ```
+
+   兼容性规则（UID 一致前提下）：**新增字段** ✅ 兼容（旧数据读出为默认值）；**删除字段** ✅ 兼容（多余数据被忽略）；**修改字段类型**（`int`→`String`）❌ 不兼容（`ClassCastException`/`InvalidClassException`）；**`serialVersionUID` 本身变更** ❌ 必炸。语义上不兼容的大改（字段含义变化）应主动升级 UID 拒绝旧数据。IDEA 开启 `Settings → Inspections → Serializable class without 'serialVersionUID'` 可自动提醒；用 `serialver com.example.Order` 命令可查自动计算值。
+
 2. **性能影响**：序列化和反序列化可能消耗大量资源，大数据场景需谨慎
 3. **安全风险**：反序列化可能执行恶意代码，需验证数据来源和完整性。Java 9 引入了 **ObjectInputFilter**（JEP 290）作为防御反序列化攻击的核心机制，可设置白名单/黑名单限制可反序列化的类：
    ```java

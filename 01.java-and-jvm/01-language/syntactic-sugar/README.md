@@ -354,9 +354,49 @@ public non-sealed class Triangle extends Shape { } // non-sealed - 开放继承
 | `Runnable r = () -> ...;` | `invokedynamic` + `LambdaMetafactory` | Lambda 非匿名类脱糖，运行时动态生成 |
 | `try (var r = ...) { ... }` | `try { ... } finally { r.close(); }` | 编译为嵌套 try-finally |
 
+**`javap -c` 字节码佐证**（对上表第 1、4 行的实证）：
+
+泛型擦除——源码 `List<String> list = new ArrayList<>(); list.add("x");`：
+
+```bash
+javap -c Main.class
+```
+
+```text
+// 字节码中没有任何 String 类型参数的痕迹，只有原生 List/ArrayList
+0: new           #7   // class java/util/ArrayList
+3: dup
+4: invokespecial #8   // Method java/util/ArrayList."<init>":()V
+7: astore_1
+8: aload_1
+9: ldc           #9   // String x
+11: invokeinterface #10, 2  // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+// ↑ 关键证据：add 的描述符是 (Ljava/lang/Object;)Z 而非 (Ljava/lang/String;)Z
+//   泛型信息只保留在 Signature 属性中（反射 Type 可读），指令层面已擦除
+```
+
+Lambda——源码 `Runnable r = () -> System.out.println("hi");`：
+
+```text
+0: invokedynamic #7, 0
+   // InvokeDynamic #0:run:()Ljava/lang/Runnable;
+   // bootstrap = LambdaMetafactory.metafactory(...)，参数指向合成方法 lambda$main$0
+4: astore_1
+
+// 类底部另有编译器合成的私有方法（Lambda 体被搬到这里）：
+// private static void lambda$main$0();
+//   0: getstatic System.out → ldc "hi" → invokevirtual println
+// ↑ 关键证据：没有生成 Main$1.class 匿名类文件；运行时由 LambdaMetafactory
+//   动态生成实现类，调用点只有一条 invokedynamic
+```
+
+对照实验：匿名内部类写法会产出 `Main$1.class`（`ls *.class` 可见），Lambda 写法不会——这是两者最直观的字节码级区别。完整机制见 [record 专题的脱糖视角](../record/README.md)（Record 也是"一行源码 → 一组编译器生成物"的同类案例）与 [泛型专题](../generics/README.md)（擦除的限制与桥接方法）。
+
 ## 相关章节
 
 - [反射机制](../reflection/README.md) — 运行时获取类型信息，与泛型擦除互补
 - [JVM 类加载机制](../../02-jvm/README.md) — 类加载流程，理解注解 / Lambda 的运行时行为基础
+- [记录类 Record](../record/README.md) — Java 14/16 语法糖的完整专题：一行声明脱糖为构造器/访问器/equals/hashCode/toString
+- [泛型](../generics/README.md) — 本表"泛型擦除"一行的深度原理：擦除限制、通配符、PECS、桥接方法
 
 ← [返回 Java 核心概念](../README.md)

@@ -4,7 +4,7 @@
   type: article
   category: 主模块子文章
   summary: Java 枚举（Enum）：单例模式、策略模式、EnumSet/EnumMap。
-  depth: ⭐
+  depth: ⭐⭐⭐
   status: active
 -->
 
@@ -167,6 +167,38 @@ EnumSet<Day> range = EnumSet.range(Day.MONDAY, Day.FRIDAY);
 // 创建补集
 EnumSet<Day> weekend = EnumSet.complementOf(workDays);
 ```
+
+#### RegularEnumSet vs JumboEnumSet：64 常量分界
+
+`EnumSet` 是抽象类，工厂方法根据枚举常量个数返回两种实现之一：
+
+| 实现 | 触发条件 | 内部结构 | 核心操作成本 |
+|------|---------|---------|-------------|
+| `RegularEnumSet` | 常量数 **≤ 64** | **单个 `long`** 位向量，每个常量占 1 bit（按 `ordinal()` 定位） | `add/contains/remove` = 位运算，O(1) 且无内存分配 |
+| `JumboEnumSet` | 常量数 **> 64** | `long[]` 数组位向量（每 64 个常量一个 `long`） | 同为位运算，多一次数组寻址，仍是 O(1) |
+
+```java
+// JDK 源码节选（java.util.EnumSet#noneOf）——分界逻辑一目了然
+public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) {
+    Enum<?>[] universe = getUniverse(elementType);
+    if (universe.length <= 64)
+        return new RegularEnumSet<>(elementType, universe);  // 单个 long
+    else
+        return new JumboEnumSet<>(elementType, universe);    // long[] 数组
+}
+```
+
+**vs HashSet 性能对比**（同为 `Set` 接口，量级差异）：
+
+| 维度 | `EnumSet` | `HashSet<枚举>` |
+|------|----------|----------------|
+| 存储 | 1 个 `long`（≤64 常量时仅 8 字节有效数据） | 每个元素一个 `HashMap.Node`（对象头 + hash + 指针，约 32-48 字节/元素） |
+| `contains` | 位测试 `(elements & (1L << ordinal)) != 0` | `hashCode()` → 桶定位 → `equals` 比较 |
+| `addAll/retainAll` | 位或 / 位与，一条 CPU 指令处理 64 个常量 | 逐元素循环 |
+| 迭代 | 按 `ordinal()` 天然有序 | 无序（桶顺序） |
+| GC 压力 | 零装箱、零节点对象 | 大量小对象 |
+
+> **选型建议**：键为枚举的集合**一律用 `EnumSet`/`EnumMap`**，没有理由用 `HashSet`/`HashMap`——即使常量数超 64（`JumboEnumSet`）依然全面占优。唯一注意点：`EnumSet` **非线程安全**且不允许 `null` 元素，并发场景需外部同步或改用不可变快照。
 
 ### EnumMap
 

@@ -215,6 +215,28 @@ animal.makeSound();
 
 常量池索引**不是 vtable 槽位号**。HotSpot 还会使用解析缓存、内联缓存和去虚化减少重复查找；当 JIT 能证明接收者只有一种类型时，甚至可以直接内联目标方法，并在假设失效时反优化。
 
+**内联缓存 / 去虚化的可观测手段**（JIT 层面把虚调用"抹平"的证据）：
+
+```bash
+# 观察哪些方法被内联、哪些因过大/过深被拒绝（JDK 9+ 推荐统一日志）
+java -Xlog:jit+compilation=debug -XX:+PrintInlining -jar app.jar
+# JDK 8 及更早：-XX:+UnlockDiagnosticVMOptions -XX:+PrintInlining
+
+# 内联深度上限（默认 15/9 视版本而定），调用链过深会阻断内联
+-XX:MaxInlineLevel=15
+# 单个方法可被内联的最大字节码大小（默认 35），热点方法超限则放弃内联
+-XX:MaxInlineSize=35
+# 频繁调用的方法放宽到 325 字节仍可内联（热点小方法合并的关键）
+-XX:FreqInlineSize=325
+```
+
+判读要点：
+
+1. **单态调用点**（运行时只见过一个接收者类型）→ JIT 直接去虚化为静态调用并内联，虚分派成本趋近于零；`PrintInlining` 输出中显示为 `(inlined)`
+2. **双态/多态调用点** → 退化为 inline cache 查表或完整 vtable 分派，输出中可见 `virtual call` / `not inlined` 标记
+3. **假设失效**（后来加载了新子类）→ 触发去优化（deoptimization），回退解释执行后重新收集画像
+4. **调优口径**：`MaxInlineLevel`/`MaxInlineSize` 属于微调参数，先保证热点方法本身足够小（拆小方法比调大阈值更有效）；确认内联失败再看阈值。megamorphic（≥3 类型）调用点是性能杀手，接口设计上应收敛实现分支。
+
 ---
 
 ## 五、super 调用 + 协变返回
@@ -369,6 +391,7 @@ value.makeSound();             // 重写再看对象的实际类型
 3. [JLS §15.12 Method Invocation Expressions](https://docs.oracle.com/javase/specs/jls/se25/html/jls-15.html#jls-15.12) — 编译期方法选择与运行期调用规则。
 4. [JVMS §6.5 `invoke*` 指令](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-6.html) — `invokevirtual`、`invokeinterface`、`invokespecial`、`invokestatic` 的规范语义。
 5. [OpenJDK Wiki: Virtual Calls](https://wiki.openjdk.org/display/HotSpot/VirtualCalls) — HotSpot vtable / itable 的二手实现说明；具体版本以 OpenJDK 源码为准。
+
 ## 🔗 相关章节
 
 - **兄弟概念**（同 4 章）：

@@ -422,8 +422,10 @@ public int hashCode() {
 
 ## 相关章节
 
-- [Java 日志学习笔记](../../logging/README.md)
-- [Vector API](../../version/vector-api/README.md)
-- [Java 线程基础](../../03-concurrency/thread-basics/README.md)
+- [Object 类](../object/README.md) — 封装的根契约：`equals`/`hashCode`/`toString` 默认行为与重写规则（本篇 hashCode 章节的展开版）
+- [方法](../method/README.md) — 重载 vs 重写的完整对比、静态方法、可变参数、参数传递（值传递语义）
+- [内部类](../inner-class/README.md) — 封装边界的延伸：成员/静态/局部/匿名四种嵌套形态与内存泄漏陷阱
+- [多态](../polymorphism/README.md) — 本篇"三大特征"之多态的深度专题：vtable、分派时机、默认方法
+- [Java 线程基础](../../03-concurrency/thread-basics/README.md) — 面向对象设计在并发场景的落地（不可变对象、线程安全封装）
 
 ← [返回 Java 核心概念](../README.md)
