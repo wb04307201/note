@@ -666,7 +666,7 @@ class WriteCode:
 
 ### Agent 内部链
 
-- → [Agent 架构综述](../architecture/README.md) — 4 模式综述 + DAG 决策树
+- → [Agent 架构综述](../agent-architecture/README.md) — 4 模式综述 + DAG 决策树（多 Agent 深化见 [multi-agent-patterns](../agent-architecture/multi-agent-patterns.md)）
 - → [Agent 工具与规范](../agent-spec-tools/README.md) — Function calling + Tool schema 规范
 - → [Agent 上下文工程](../agent-context/README.md) — Context window + token 管理
 - → [Agent 记忆机制](../agent-memory/README.md) — 短期 + 长期记忆实现

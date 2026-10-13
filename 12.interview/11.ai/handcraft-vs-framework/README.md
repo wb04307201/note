@@ -4,13 +4,13 @@
   difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
-  tags: [11.ai, handcraft-agent, langchain, agent-framework]
+  tags: [11.ai, handcraft-agent, langchain, agent-framework, 手搓 Agent vs 框架（抽象税）]
   status: active
 -->
 
 # 手搓 Agent vs 框架 —— 「框架太重」是现象不是理由
 
-> 一句话定位：「框架太重」是现象不是理由——手搓 vs 框架不是站队，而是把**重在哪、代价是什么、你怎么权衡**拆成可量化决策。深度原理见 [主模块 Agent 架构 §手搓 vs 框架决策](../../../09.ai-applications/agent/agent-architecture/README.md)。
+> 一句话定位：「框架太重」是现象不是理由——手搓 vs 框架不是站队，而是把**重在哪、代价是什么、你怎么权衡**拆成可量化决策。深度原理见 [主模块 框架源码对比与手搓 vs 框架决策](../../../09.ai-applications/agent/agent-architecture/framework-source-comparison.md)。
 
 > **系列定位**：经典 AI Agent 架构选型面试题（2026 高频，Agent 团队几乎必问）。考察的不是"背结论说手搓好还是框架好"，而是 **抽象税的量化拆解** + **代价的分层归因** + **场景化权衡决策**。
 
@@ -194,7 +194,7 @@ Q7: 业务形态是"Agent + Workflow 混合"而非纯 Agent？
 
 ## 八、深度阅读
 
-- 主模块：[Agent 架构全景（§手搓 vs 框架决策）](../../../09.ai-applications/agent/agent-architecture/README.md)
+- 主模块：[框架源码对比与手搓 vs 框架决策](../../../09.ai-applications/agent/agent-architecture/framework-source-comparison.md)
 - 同栏目：[Agent DAG vs ReAct](../agent-dag-vs-react/README.md) — 同为架构选型题：确定性流程 vs 探索循环
 - 同栏目：[Harness Engineering](../harness-engineering/README.md) — 手搓之后约束靠什么兜底
 - 同栏目：[Loop Engineering](../loop-engineering/README.md) — 手搓的核心就是自己控制 Agent Loop

@@ -6,6 +6,7 @@
   summary: 推理框架对比 vLLM / TGI / SGLang / TensorRT-LLM / LMDeploy / llama.cpp
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [推理框架对比, vLLM / TGI / SGLang]
 -->
 
 # 推理框架对比
@@ -327,8 +328,8 @@ results = multi_turn_qa.run_batch([
   - [Speculative Decoding](../speculative-decoding/README.md) — 小模型 draft + 大模型 verify 提速 2-3×
   - [MoE 推理](../moe-inference/README.md) — Mixtral 等 MoE 架构的推理特殊性
   - [权重量化](../weight-quantization/README.md) — INT4/INT8/FP8 量化的工程权衡
-- **L1**：MoE 架构（⚠️ 待 Phase 1+ 迁入；占位 `../../../../08.ai-foundations/02-deep-learning/moe-architecture/`） / [Flash Attention](../flash-attention/README.md)
-- **LLMOps**：推理监控（⚠️ 待 Phase 1+ 迁入；占位 `../llmops/`） — Prometheus + Grafana
+- **L1**：MoE 架构 — 见上方本专题 [MoE 推理](../moe-inference/README.md)（Mixtral 等 MoE 架构的推理特殊性） / [Flash Attention](../flash-attention/README.md)
+- **LLMOps**：[LLM 推理监控（12.interview）](../../../12.interview/11.ai/llm-monitoring/README.md) — Trace + 4 维监控 + 漂移检测
 - **面试题版**：[LLM 推理框架面试题](../../../12.interview/11.ai/llm-benchmark/README.md)
 - **故事版**：[阿明餐厅之 LLM 推理](../../../13.story/46-llm-inference.md)（46-llm-inference）
 - **部署工具链**：07.devops-and-tools — Kubernetes Operator、Helm Chart、Docker 镜像、GPU device plugin

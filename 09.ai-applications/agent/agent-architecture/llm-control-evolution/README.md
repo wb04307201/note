@@ -186,6 +186,7 @@ Loop Engineering 反其道而行之：**小步快跑 + Harness 兜底 + 自动�
 - 同分类：Agent Memory 架构 — Memory 演进（Prompt 期无 → Context 期短期 → Harness 期长期 → Loop 期自动分层）
 - 同分类：智能系统分层 — Harness / Loop 在系统中的位置
 - 兄弟子：Harness Engineering · Loop Engineering
+- 面试深挖：[12.interview/11.ai/harness-engineering](../../../../12.interview/11.ai/harness-engineering/README.md) — Harness 阶段的高频面试题版本（Hook 配置实例 + Eval Loop + Guardrails 边界 + 追问链）
 - 上下文子：Prompt Engineering · Context Engineering
 - 实战叙事：13.story #42 Prompt 工程 · 38 RAG
 

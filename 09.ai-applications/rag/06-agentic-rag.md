@@ -230,7 +230,7 @@ Anthropic 官方原话："**围绕模型构建的生态系统（Harness）对 Cl
 
 ## 六、与"驾驭演进"主线的关联
 
-Agentic Search 是 AI Coding 检索范式的演进，**与 驾驭演进主线（Prompt → Context → Harness → Loop）（⚠️ 待 Phase 1+ 迁入；占位 `../../../09.ai-applications/agent/architecture/llm-control-evolution/`） 同源**：
+Agentic Search 是 AI Coding 检索范式的演进，**与 [驾驭演进主线（Prompt → Context → Harness → Loop）](../agent/agent-architecture/llm-control-evolution/README.md) 同源**：
 
 | 阶段 | 类比 |
 |------|------|
@@ -251,7 +251,7 @@ Agentic Search 是 AI Coding 检索范式的演进，**与 驾驭演进主线（
 - [RAG vs Finetuning](./03-rag-vs-finetuning.md)
 
 **架构视角**：
-- 11.ai 驾驭演进主线（⚠️ 待 Phase 1+ 迁入；占位 `../../../09.ai-applications/agent/architecture/llm-control-evolution/`）
+- [11.ai 驾驭演进主线](../agent/agent-architecture/llm-control-evolution/README.md) — Prompt → Context → Harness → Loop
 - [RAG 范式演进四阶段](./02-paradigm-evolution.md) — Agentic Search 是 Agentic RAG 阶段在 AI Coding 场景的极端形态
 - [RAG Pipeline 5 阶段](./01-pipeline.md) — 被 Agentic Search 取代的那条索引链路
 
