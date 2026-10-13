@@ -472,7 +472,7 @@ try (Stream<Path> paths = Files.walk(Path.of("src"))) {
 
 ## 八、NIO（New I/O）
 
-Java 7 引入的 NIO（New I/O，也称 Non-blocking I/O）是对传统 I/O 的重大升级，核心变化是**面向块**和**非阻塞**。
+NIO（New I/O，也称 Non-blocking I/O）自 JDK 1.4 引入，是对传统 I/O 的重大升级，核心变化是**面向块**和**非阻塞**；Java 7 的 NIO.2 在其基础上扩展了 `Files` / `Path` 文件 API 与 AIO 异步模型。
 
 ### 1. NIO 与 BIO 对比
 

@@ -105,6 +105,44 @@ public class BankAccount {
 
 > **最佳实践**：遵循**最小权限原则** — 尽可能使用最严格的访问级别。字段通常声明为 `private`，通过 `public` 的 getter/setter 访问；仅用于子类扩展的成员使用 `protected`。
 
+**❌/✅ 反例对比：public 字段直暴 vs getter/setter 校验**
+
+```java
+// ❌ 反例：public 字段直接暴露，外部可任意篡改，不变式（invariant）无法保证
+public class Account {
+    public double balance;   // 任何代码都能写：acc.balance = -99999;
+}
+
+Account acc = new Account();
+acc.balance = -99999;        // 静默通过，账户余额为负 —— 业务不变式被破坏
+                             // 事后想加校验，只能全局搜调用点逐一修改（破坏封装 = 破坏可维护性）
+
+// ✅ 正例：private 字段 + setter 集中校验，不变式在唯一入口守住
+public class SafeAccount {
+    private double balance;
+
+    public double getBalance() { return balance; }
+
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("取款金额必须为正数: " + amount);
+        }
+        if (amount > balance) {
+            throw new IllegalStateException("余额不足: balance=" + balance);
+        }
+        balance -= amount;   // 所有修改都经过校验，balance 永远 >= 0
+    }
+}
+```
+
+对比要点：
+
+| 维度 | ❌ public 字段 | ✅ private + getter/setter |
+|------|--------------|---------------------------|
+| 不变式 | 无法保证，任何调用点都能写入非法值 | 校验集中在 setter/业务方法唯一入口 |
+| 演进成本 | 加校验需修改全部调用点（二进制不兼容） | 内部自由演进，API 不变 |
+| 线程安全 | 无拦截点，难以加锁 | 可在访问器内统一同步 |
+
 ### 继承
 
 继承允许一个类（子类）获取另一个类（父类）的属性和方法，实现代码复用。
@@ -172,7 +210,7 @@ animal.eat();               // 运行时调用 Dog 的 eat()
 
 `record`是不可变数据载体类型，编译器会自动生成全参构造方法、访问方法（无`get`前缀）、`equals()`、`hashCode()`和`toString()`。所有字段隐式`private final`，天然支持不可变性和线程安全，适合用作 DTO、值对象、配置项等纯数据场景。
 
-> 详细内容（紧凑构造方法、Record 约束、与 Lombok 对比、模式匹配等）参见 Record 类型专题文档。
+> 详细内容（紧凑构造方法、Record 约束、与 Lombok 对比、模式匹配等）参见 [Record 类型专题文档](../record/README.md)。
 
 ## 深拷贝、浅拷贝、引用拷贝
 

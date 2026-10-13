@@ -165,6 +165,52 @@ class App {
 }
 ```
 
+### 编译期内联的证据：javap 的 ConstantValue 属性
+
+`javap -v Constants.class` 可以看到编译期常量携带 `ConstantValue` 属性：
+
+```text
+public static final int MAX_SIZE;
+  descriptor: I
+  flags: ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+  ConstantValue: 100          ← 编译期常量标记
+```
+
+而引用处（如 `App.class`）的字节码中**根本不存在对 `Constants.MAX_SIZE` 的 `getstatic` 访问**——值 `100` 在编译 `App` 时就被直接内联进了调用方字节码：
+
+```text
+// App.main 的字节码：常量已内联，无 getstatic 指令
+ 3: sipush  100               ← 直接是字面量 100，而非 getstatic Constants.MAX_SIZE
+```
+
+### ❌/✅ 经典生产陷阱：改了常量，依赖方读到 stale 值
+
+**事故现场**：公共模块 `common-api.jar` 中定义 `public static final int TIMEOUT = 3000;`。运维要求把超时改为 5000，开发只修改并重新编译了 `common-api`，业务模块未重新编译——上线后业务模块仍按 3000 超时，与配置"明明改了"的现象矛盾，排查半天。
+
+```java
+// common-api.jar（已重编译，源码改为 5000）
+public class Constants {
+    public static final int TIMEOUT = 5000;
+}
+
+// biz-service.jar（未重编译，class 里仍内联着旧值）
+System.out.println(Constants.TIMEOUT);   // ❌ 输出 3000！
+// 字节码是 sipush 3000 —— 编译期内联的 stale 值，与新 jar 中的 5000 无关
+
+// ✅ 正确做法：修改编译期常量后，所有依赖方必须重新编译
+// mvn clean install   （全量重编译，而非只替换 common-api.jar）
+```
+
+**规避手段**：对可能变更的配置值，不要用编译期常量，改用**运行期初始化**（去掉 `final` 的编译期常量资格，或从配置文件读取）：
+
+```java
+// ✅ 运行期求值 —— 引用处生成 getstatic 指令，改值后无需重编译依赖方
+public static final int TIMEOUT = Integer.parseInt(System.getProperty("timeout", "3000"));
+// 说明：初值非编译期常量表达式，不携带 ConstantValue，不会被内联
+```
+
+> 同源陷阱：本文相关面试题 [12.interview no-class-def-found-troubleshooting](../../../12.interview/01.java/no-class-def-found-troubleshooting/README.md) 中的 jar 版本错位也属"部分模块未同步重编译/替换"家族。
+
 ## `var` 局部变量类型推断（Java 10+）
 
 Java 10 引入了 `var` 受限标识符（restricted identifier），允许编译器根据初始化表达式自动推断局部变量的类型，减少冗余的类型声明：
@@ -212,5 +258,12 @@ var reader = new BufferedReader(new FileReader("data.txt"));
 - **不能用于数组字面量**：`var arr = {1, 2, 3};` 是非法的，需改为 `var arr = new int[]{1, 2, 3};`
 
 ---
+
+## 相关章节
+
+- [syntax](../syntax/README.md#var-局部变量类型推断java-10) — 基本语法篇对 `var` 的概述（受限标识符 vs 受限关键字的辨析），与本文完整版互相引用
+- [string](../string/README.md#字符串常量池) — 字符串常量的深度展开：本文"字符型常量和字符串常量的区别"中字符串常量池指向的 String 专题
+- [oop](../oop/README.md#继承) — 面向对象基础：静态成员与继承的交互（子类继承静态成员的规则）、封装与访问修饰符
+- [data-types](../data-types/README.md) — 基本数据类型：本文表格中默认值（如 `int` 为 0）的类型系统基础
 
 ← [返回 Java 核心概念](../README.md)

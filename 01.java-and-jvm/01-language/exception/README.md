@@ -3,7 +3,7 @@
   slug: java/exception
   type: article
   category: 主模块子文章
-  summary: 异常
+  summary: 异常层次/Checked-Unchecked/TWR/版本演进(Java 7-21)/Spring 全局异常处理约定
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -55,29 +55,14 @@ graph TD
 ```
 
 ```text
-Throwable
-├── Error（程序无法处理的严重错误）
-│   ├── VirtualMachineError
-│   │   ├── OutOfMemoryError
-│   │   └── StackOverflowError
-│   ├── NoClassDefFoundError
-│   └── LinkageError
-│
-└── Exception（程序可以处理的异常）
-    ├── IOException（受检查异常）
-    │   ├── FileNotFoundException
-    │   └── EOFException
-    ├── ClassNotFoundException（受检查异常）
-    ├── SQLException（受检查异常）
-    │
-    └── RuntimeException（不受检查异常）
-        ├── NullPointerException
-        ├── ArrayIndexOutOfBoundsException
-        ├── ClassCastException
-        ├── ArithmeticException
-        ├── IllegalArgumentException
-        │   └── NumberFormatException
-        └── IllegalStateException
+RuntimeException（不受检查异常，上方 mermaid 图中 Unchecked 分支的细分补充）
+├── NullPointerException
+├── ArrayIndexOutOfBoundsException
+├── ClassCastException
+├── ArithmeticException
+├── IllegalArgumentException
+│   └── NumberFormatException
+└── IllegalStateException
 ```
 
 ## `Exception`和`Error`的区别

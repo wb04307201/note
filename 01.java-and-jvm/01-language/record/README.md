@@ -382,4 +382,10 @@ public class UserController {
 
 ---
 
+## 相关章节
+
+- [语法糖](../syntactic-sugar/README.md#13-recordjava-14-预览java-16-正式发布) — Record 作为 Java 14+ 语法糖的脱糖视角（编译器自动生成规范构造器 / 访问器 / equals / hashCode / toString）
+- [序列化和反序列化](../serialization-and-deserialization/README.md) — Record 序列化差异：由 JVM 运行时基于组件与规范构造方法处理，`writeObject`/`readObject` 会被忽略
+- [面向对象基础](../oop/README.md#record-类型java-14-预览java-16-正式发布) — Record 在 OOP 类型体系中的定位（不可变数据载体）
+
 ← [返回 Java 核心概念](../README.md)

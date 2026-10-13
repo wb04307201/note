@@ -158,6 +158,67 @@ public void createUser() { }
 public void getUsers() { }
 ```
 
+### 常见反例：注解"贴了但读不到"
+
+**反例 1：漏加 `@Retention(RUNTIME)`，运行时反射读不到注解**
+
+```java
+// ❌ 反例：未显式声明 @Retention —— 默认是 RetentionPolicy.CLASS
+// 注解只保留到字节码，运行时 JVM 直接丢弃，反射永远拿不到
+public @interface Audit {
+    String value();
+}
+
+public class OrderService {
+    @Audit("createOrder")
+    public void createOrder() { }
+
+    public static void main(String[] args) throws Exception {
+        Method m = OrderService.class.getMethod("createOrder");
+        // ❌ 恒为 false！CLASS 保留策略下运行时不可见，切面/框架静默失效
+        System.out.println(m.isAnnotationPresent(Audit.class));
+    }
+}
+
+// ✅ 正例：需要反射读取的注解必须显式声明 RUNTIME
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Audit {
+    String value();
+}
+```
+
+> 排查口诀：`isAnnotationPresent()` 恒返回 `false` 时，先看注解定义的 `@Retention` 是不是漏写（默认 `CLASS`），而不是怀疑反射代码。
+
+**反例 2：误以为 `@Inherited` 对接口生效**
+
+```java
+// ❌ 反例：@Inherited 只作用于「类继承类」，对「类实现接口」无效
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Tenant {
+    String value();
+}
+
+@Tenant("acme")
+public interface TenantAware { }          // 注解贴在接口上
+
+public class OrderRepo implements TenantAware { }
+
+// ❌ null！实现类不会继承接口上的注解，多租户框架按类扫描时直接漏配
+System.out.println(OrderRepo.class.getAnnotation(Tenant.class));
+
+// ✅ 正例 1：注解贴在父类上，子类才能继承
+@Tenant("acme")
+public abstract class BaseRepo { }
+public class OrderRepo extends BaseRepo { }   // ✅ 能读到 @Tenant("acme")
+
+// ✅ 正例 2：确实需要读接口注解时，用 AnnotatedElementUtils（Spring）递归查找
+// AnnotatedElementUtils.findMergedAnnotation(OrderRepo.class, Tenant.class)
+```
+
+> 记忆点：`@Inherited` 的语义是"子类继承**父类声明**上的注解"，JDK 原生反射从不沿 `implements` 链路查找——框架（如 Spring 的 `AnnotatedElementUtils`）是自己实现了接口遍历。
+
 ## 注解的解析方法
 
 ### 编译期直接扫描
@@ -272,8 +333,9 @@ void testAdd() {
 
 ## 相关章节
 
-- [三个线程 T1、T2、T3 怎么确保按顺序执行？8 方案对比](../../03-concurrency/thread-basics/sequential-execution.md)
-- [实战：统计 API 接口调用耗时](../../java-agent/api/README.md)
-- [Java 锁机制详解](../../03-concurrency/java-locks/README.md)
+- [反射（Reflection）](../reflection/README.md) — 运行时注解解析的底层机制（`getAnnotation` / `isAnnotationPresent` 均由反射 API 提供）
+- [SPI 服务发现机制](../spi/README.md) — 与注解处理器同为"扩展点"思想：注解处理器注册在 `META-INF/services/javax.annotation.processing.Processor`
+- [Spring AOP 注解](../../../04.spring-backend/08-annotations/aop.md) — 注解 + 切面在框架层的最大应用场景（`@Aspect` / `@Around`）
+- [面试题：反射深度剖析](../../../12.interview/01.java/reflection/README.md) — 注解与反射联动的高频考点
 
 ← [返回 Java 核心概念](../README.md)

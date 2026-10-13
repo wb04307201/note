@@ -253,6 +253,55 @@ for (Color color : Color.values()) {
 | **序列化** | 天然支持序列化 |
 | **抽象方法** | 枚举可以声明抽象方法，每个枚举常量必须提供各自的实现 |
 
+## 编译器合成机制：枚举背后你看不到的代码
+
+枚举的"魔法"全部由编译器合成，理解这三个合成物能解释多数反直觉行为：
+
+**1. `values()` 每次返回 `$VALUES` 数组的 clone**
+
+```java
+// 编译器在枚举类中合成：
+private static final Day[] $VALUES;                    // 静态初始化时创建
+public static Day[] values() { return $VALUES.clone(); } // 每次调用都 clone
+
+// 因此修改 values() 返回值不会影响枚举本身——防篡改：
+Day[] days = Day.values();
+days[0] = null;              // ✅ 安全，只改了自己的副本
+System.out.println(Day.values()[0]); // 仍是 MONDAY
+// 代价：高频调用 values() 每次都有数组拷贝开销，热路径应缓存到静态字段
+```
+
+**2. `valueOf(String)` 由编译器生成**
+
+```java
+// 编译器合成：内部委托 Enum.valueOf(Class, String)
+public static Day valueOf(String name) {
+    return (Day) Enum.valueOf(Day.class, name);
+}
+// 名称不匹配抛 IllegalArgumentException，null 抛 NullPointerException
+```
+
+**3. 枚举 switch 的 `$SwitchMap` 合成类**
+
+`switch` 枚举并非直接按 `ordinal()` 跳转。编译器为**每个包含枚举 switch 的外围类**合成一个 `Outer$1` 类，内含 `$SwitchMap$Day` int 数组，把 `ordinal()` 映射为 case 分支编号：
+
+```java
+// 你写的 switch：
+switch (day) { case MONDAY: ...; case SUNDAY: ...; }
+
+// 编译器合成的等价物（外围类中的 Outer$1）：
+class Outer$1 {
+    static final int[] $SwitchMap$Day = new int[Day.values().length];
+    static {
+        try { $SwitchMap$Day[Day.MONDAY.ordinal()] = 1; } catch (NoSuchFieldError ignored) {}
+        try { $SwitchMap$Day[Day.SUNDAY.ordinal()] = 2; } catch (NoSuchFieldError ignored) {}
+    }
+}
+// 实际跳转：switch ($SwitchMap$Day[day.ordinal()])
+```
+
+> 这解释了为什么枚举 switch **不受 ordinal 重排影响**（映射表在运行期按名称重新建立），也是「[switch 前加 if 优化](../../../12.interview/01.java/if-before-switch/README.md)」讨论的查表开销来源——每次 switch 多一层数组间接寻址。
+
 ## 枚举 vs 常量类
 
 ```java
@@ -271,5 +320,11 @@ public enum Day {
 ```
 
 ---
+
+## 相关章节
+
+- [创建型模式：枚举单例](../../04-patterns/creation/singleton.md) — 《Effective Java》推荐写法的完整对比（反射/序列化破坏 8 种攻击为何对枚举免疫）
+- [内部类](../inner-class/README.md) — 枚举常量带类体（`ADD("+") { ... }`）时编译器为每个常量生成匿名子类，机制与匿名内部类相通
+- [面试题：switch 前使用 if 优化高频热点](../../../12.interview/01.java/if-before-switch/README.md) — 含枚举 `ordinal()` 跳转表/`$SwitchMap` 的性能讨论
 
 ← [返回 Java 核心概念](../README.md)

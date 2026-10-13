@@ -304,17 +304,13 @@ com.example.impl.AlipayProvider
 
 这是目前 Java 生态中使用 SPI 的推荐实践，被 Google、Netflix 等公司广泛采用。
 
----
-
-← [返回 Java 核心概念](../README.md)
-
 ## 向上兄弟互链
 
-本篇是 SPI 基础篇，相关 Java 集合类（ServiceLoader 通过 Map 接口工作）和 Spring 框架（深度使用 SPI）都是值得互链的：
+本篇是 SPI 基础篇。SPI 的底层支撑是**类加载机制**——`ServiceLoader` 默认通过**线程上下文类加载器**（TCCL）加载实现类，这正是"打破双亲委派"的经典场景（接口在 `java.base` 中由启动类加载器加载，实现类却要靠 TCCL 从应用 classpath 加载）：
 
-- ServiceLoader 详解（Java 集合）：暂无独立文件，可参考 [LinkedHashSet 双向链表原理](../../collection/LinkedHashSet/README.md) 理解 ServiceLoader 底层
-- [Spring SPI 对比（06.spring 专题）](../../../04.spring-backend/02-boot/spring-factories-migration.md) — Spring Framework 的 SpringFactoriesLoader 与 JDK ServiceLoader 异同
-- [Collection 总览](../../collection/README.md) — ServiceLoader 通过 Map 索引实现
+- [JVM — 类加载](../../02-jvm/README.md#五类加载) — 双亲委派模型与线程上下文类加载器，SPI / JDBC 驱动加载的底层机制
+- [Spring SPI 对比（02-boot 专题）](../../../04.spring-backend/02-boot/spring-factories-migration.md) — Spring Framework 的 SpringFactoriesLoader 与 JDK ServiceLoader 异同
+- [12.interview SPI 面试题](../../../12.interview/01.java/spi/README.md) — SPI 高频面试版（与本文互补）
 
 ## ServiceLoader 关键方法参数表
 
@@ -331,3 +327,9 @@ com.example.impl.AlipayProvider
 | `S provider()` | 获取当前元素实现（Java 9+） | Stream.forEach 中使用 |
 
 **线程安全**：`ServiceLoader` 实例**不是线程安全**的；多线程下每个线程应使用独立实例，或使用 `ServiceLoader.loadStatic()`（Java 9+ 试验性）。
+
+**内部实现要点**：`ServiceLoader` 并非"通过 Map 接口工作"——其内部由 `LazyIterator`（延迟迭代器，逐个解析 `META-INF/services` 配置并实例化）+ `providers` 缓存（`LinkedHashMap<String, S>`，按发现顺序缓存已实例化的 provider）构成；`reload()` 清空的正是这个缓存。
+
+---
+
+← [返回 Java 核心概念](../README.md)

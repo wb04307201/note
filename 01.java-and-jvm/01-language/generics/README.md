@@ -3,7 +3,7 @@
   slug: java/generics
   type: article
   category: 主模块子文章
-  summary: 泛型
+  summary: 类型擦除/通配符/PECS/堆污染与 JDK 5→17+ 版本演进
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -406,5 +406,11 @@ if (obj instanceof List<?> list) {      // JDK 16+ 模式匹配
 ```
 
 ---
+
+## 相关章节
+
+- [集合框架](../../collection/README.md) — 泛型最大的应用现场（`List<E>` / `Map<K,V>` 的类型参数设计）
+- [Record + 泛型：split-hairs 视角](../record/README.md#record-泛型split-hairs-视角) — 泛型 Record 的写法与 5 大陷阱
+- [面试题：Java 泛型擦除深度剖析](../../../12.interview/01.java/generics-erasure/README.md) — 类型擦除的高频面试版（桥方法/不能 `new T()`/PECS 考点）
 
 ← [返回 Java 核心概念](../README.md)

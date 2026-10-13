@@ -176,7 +176,7 @@ public class SerializationDemo {
 
 ### 现代 Java 与序列化
 
-Java 16 正式引入的 **Record 类型**（Java 14/15 为预览特性，JEP 359/384/395）天然支持序列化，但其行为与普通类有所不同：
+Java 16 正式引入的 **Record 类型**（Java 14/15 为预览特性，JEP 359/384/395）天然支持序列化，但其行为与普通类有所不同（Record 本身的语法与约束见 [record/README.md](../record/README.md)）：
 
 - Record 和普通类一样**必须实现 `Serializable` 接口**才能被序列化。实现 `Serializable` 后，所有组件（components）会被自动序列化，无需手动编写序列化逻辑
 - Record 的序列化/反序列化由 **JVM 运行时**自动处理。如果在 Record 中定义 `writeObject`/`readObject` 等方法会被**忽略**，序列化行为仅基于组件和规范构造方法（canonical constructor）
@@ -362,21 +362,25 @@ try {
 
 ## 性能对比
 
-```text
-平均响应时间（ms，越低越好）        平均 TPS（越高越好）
-┌──────────────────────────┐       ┌──────────────────────────┐
-│ Dubbo: FastJson    ██    │       │ Dubbo: FastJson   ███████ │
-│ Dubbo: Hessian2   ██     │       │ Dubbo: Hessian2   ███████ │
-│ Dubbo: DubboSer   ██     │       │ Dubbo: DubboSer   ███████ │
-│ Dubbo: Kryo      █       │       │ Dubbo: Kryo       ████████│
-│ Dubbo: FST       █       │       │ Dubbo: FST        ████████│
-│ REST: Netty+JSON ███     │       │ REST: Netty+JSON  ████    │
-│ REST: Tomcat+J   ███     │       │ REST: Tomcat+J    █████   │
-│ REST: Jetty+J    ████████│       │ REST: Jetty+J     █       │
-└────0────2────4────6─8─10 ┘       └──0───2k───4k───6k──8k──9k ┘
-```
+> **说明**：以下只给**定性排序**（相对快慢档位）。具体数值与柱状 benchmark 高度依赖对象大小、字段类型、JVM 版本与硬件环境，脱离出处的绝对数字没有意义；需要精确选型时用 JMH 针对真实业务对象自测。
+
+| 档位 | 序列化方案 | 相对速度 | 数据大小 | 备注 |
+|------|-----------|---------|---------|------|
+| 第一档（最快） | Kryo、FST | ★★★★★ | 小 | 纯 Java 二进制，需注册类获得最佳性能 |
+| 第一档（最快） | Protobuf、Thrift | ★★★★★ | 极小 | 需要 Schema，跨语言，gRPC 底层 |
+| 第二档 | Hessian2、Avro | ★★★★ | 小 | Hessian 是 Dubbo 2.x 默认协议 |
+| 第三档 | Fastjson2 / Jackson（JSON） | ★★★ | 大 | 文本格式可读性好，Web API 首选 |
+| 第四档（最慢） | Java 原生序列化 | ★ | 大 | 流格式冗长 + 反射开销，仅限简单内部场景 |
 
 **一般规律**：二进制格式 > JSON 格式 > XML 格式（在序列化速度和数据大小方面）
+
+---
+
+## 相关章节
+
+- [record/README.md](../record/README.md) — Record 类型的完整语法与约束（上文"现代 Java 与序列化"的 Record 序列化行为在其类型体系中的定位）
+- [I/O](../../io/README.md) — 序列化的字节流最终经由 I/O 通道落盘/传输，`ObjectOutputStream` 等流 API 的基础
+- [反射](../reflection/README.md) — Java 原生序列化底层依赖反射遍历字段与调用构造方法
 
 ---
 

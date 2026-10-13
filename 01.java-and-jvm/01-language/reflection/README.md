@@ -197,6 +197,35 @@ System.out.println(staticField.get(null));
 如果字段是 final 的，可以通过反射修改它，但需注意版本差异：
 
 > **注意**：Java 12（JDK-8210522）起，通过修改 `Field.modifiers` 来绕过 final 限制的经典技巧已失效。Java 9+ 的模块系统（JPMS）限制了跨模块的深度反射访问，可通过 `--add-opens` 配置解除。对于应用类的 final 字段，直接使用 `setAccessible(true)` + `set()` 在当前版本中仍然可行，但应视为不推荐的做法。
+
+**❌/✅ 版本差异对比**：
+
+```java
+// ❌ Java 12+ 已失效：经典的 "改 modifiers 位" 技巧
+Field field = heroClass.getDeclaredField("sex");
+Field modifiers = Field.class.getDeclaredField("modifiers"); // Java 12+ 抛 NoSuchFieldException
+modifiers.setAccessible(true);
+modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+// NoSuchFieldException: modifiers
+// —— JDK 12 起 reflection 内部对 Field.class 的 getDeclaredField("modifiers") 做了过滤（JDK-8210522）
+
+// ✅ Java 12+：应用类 final 字段直接 setAccessible(true) + set()
+// 若目标类位于 JDK 模块内（如 java.base），需启动参数 --add-opens java.base/java.lang=ALL-UNNAMED
+Field field = heroClass.getDeclaredField("sex");
+field.setAccessible(true);
+field.set(hero, "女");
+```
+
+**JPMS 场景 ❌ 反例**：跨模块访问未 `opens` 的包时，`setAccessible(true)` 会抛 `InaccessibleObjectException`：
+
+```text
+java.lang.reflect.InaccessibleObjectException: Unable to make field private final
+java.lang.String java.lang.Module.name accessible: module java.base does not
+"opens java.lang" to unnamed module @1b6d3586
+```
+
+✅ 解法：启动参数 `--add-opens java.base/java.lang=ALL-UNNAMED`，或让目标模块在 `module-info.java` 中声明 `opens java.lang;`。
+
 ```java
 Field field = heroClass.getDeclaredField("sex");
 field.setAccessible(true);
@@ -235,11 +264,12 @@ privateMethod.invoke(hero);  // 输出: 我是私有方法
 > `invoke()`的第一个参数是目标对象实例，如果方法是静态的则传`null`；后续参数是方法所需的实参。
 
 ## 关键应用场景
-- **框架与库**：Spring的依赖注入（通过反射解析Bean）、Hibernate的ORM映射、JUnit的动态测试方法加载。
-- **动态代理**：JDK动态代理通过`InvocationHandler`和`Proxy`类实现，底层依赖反射调用方法。
-- **注解处理**：运行时通过反射解析自定义注解（如`@Autowired`），实现配置化逻辑。
-- **调试与工具**：IDE的智能提示、调试器查看对象状态、Java自带的`jstack`/`jmap`工具分析JVM状态。
-- **跨语言通信**：RPC框架（如Dubbo）通过反射序列化/反序列化对象。
+- **框架与库**：Spring 的依赖注入（通过反射解析 Bean，见 [依赖注入](../../../04.spring-backend/01-core/ioc/dependency-injection.md)）、Hibernate 的 ORM 映射、JUnit 的动态测试方法加载。
+- **动态代理**：JDK 动态代理通过 `InvocationHandler` 和 `Proxy` 类实现，底层依赖反射调用方法（Spring AOP 的实现选型与 JDK/CGLIB 代理细节见 [Spring AOP 深度解析](../../../04.spring-backend/01-core/aop/README.md)）。
+- **注解处理**：运行时通过反射解析自定义注解（如 `@Autowired`），实现配置化逻辑（结合 [注解](../annotation/README.md) 章节）。
+- **调试与工具**：IDE 的智能提示、调试器查看对象状态、Java 自带的 `jstack`/`jmap` 工具分析 JVM 状态。
+- **跨语言通信**：RPC 框架（如 Dubbo）通过反射序列化/反序列化对象。
+- **面试深挖**：反射性能开销与高频考题见 [12.interview 反射题](../../../12.interview/01.java/reflection/README.md)。
 
 ## 优点与局限性
 - **优点**：

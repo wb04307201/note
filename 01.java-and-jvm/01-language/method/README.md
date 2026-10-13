@@ -315,7 +315,42 @@ public interface Logger {
 | 接口静态方法 | 接口 | 是 | 通过接口名调用 | Java 8 |
 | 接口 private 方法 | 接口 | 是 | 仅接口内部调用 | Java 9 |
 
-- **多态关联**：[polymorphism](../polymorphism/README.md) — 多态专题中"重载 vs 重写"对照表与本章节方法签名规则互补
+## 实战案例：重载 + 自动装箱如何静默选错方法
+
+**事故现场**：某工具类原本只有 `process(long id)` 一个版本。新版本为支持 null 语义追加了 `process(Integer id)` 重载，上线后发现部分调用方仍走旧的 `long` 版本，新增的判空逻辑完全没有生效——且不报任何错误。
+
+根因在重载决议的**三阶段查找**：编译器先在"不装箱、不变长参数"的阶段匹配，而**拓宽转换（widening）优先于自动装箱（boxing）**：
+
+```java
+public class OverloadTrap {
+    static void process(long id)    { System.out.println("long 版本"); }
+    static void process(Integer id) { System.out.println("Integer 版本"); }
+
+    public static void main(String[] args) {
+        process(1);              // 输出 "long 版本"！阶段 1 中 int→long 拓宽先命中，装箱根本不参与
+        Integer boxed = 1;
+        process(boxed);          // 输出 "Integer 版本"（声明类型是 Integer，精确匹配）
+    }
+}
+```
+
+两层坑叠加：
+
+- **拓宽 > 装箱**：字面量 `1` 是 `int`，`int→long` 属于阶段 1 的拓宽转换，直接命中 `process(long)`；`int→Integer` 需要装箱，排在阶段 2，永远轮不到。
+- **编译期静态绑定**：重载在编译期按实参**声明类型**选定版本。旧 jar 编译的调用方早已把 `process(1)` 绑定到 `process(long)` 的符号引用；新增 `Integer` 重载后，调用方**不重新编译**就不会改派到新版本——与 `static final` 常量内联的 stale 值问题（见 [variable](../variable/README.md)）同源。
+
+**✅ 正确做法**：
+
+- 新增重载前评估装箱/拓宽优先级对现有调用点的影响，逐一确认调用方实参的声明类型
+- 对需要 null 语义的参数直接改签名并**让所有依赖方重新编译**，而不是靠新增重载"兼容"
+- varargs 有同款陷阱：反射调用可变参数方法时数组会被 `invoke(Object... args)` 展开，需强转阻止——`method.invoke(obj, (Object) new String[]{"a"})`，否则抛 `IllegalArgumentException: wrong number of arguments`
+
+## 相关章节
+
+- [polymorphism](../polymorphism/README.md) — 多态专题中"重载 vs 重写"对照表与本文方法签名规则互补
+- [面向对象基础](../oop/README.md) — 重写的基本约束（访问修饰符不能更严格、协变返回类型、受检异常收窄）
+- [12.interview 多态面试深挖](../../../12.interview/01.java/polymorphism/README.md) — 编译时 vs 运行时、重载 vs 重写等 4 大核心题的高频面试版
+- [12.interview Integer 缓存](../../../12.interview/01.java/integer-cache/README.md) — 本文装箱案例的延伸：`Integer ==` 与 -128~127 缓存陷阱
 
 ---
 

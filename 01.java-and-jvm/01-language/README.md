@@ -64,70 +64,22 @@
 |------|-----------|
 | [date-time](date-time/README.md) | JDK 8+ `java.time` API（LocalDateTime / Instant / Duration）、Date/Calendar 历史问题、时区与格式化 |
 
-## 核心概念速查
+## 核心概念速查：接口 vs 抽象类选型
 
-### 类 (Class)
+> 本页是导览页，定义级代码示例见各子 README。此处只保留最高频的选型决策——接口还是抽象类。
 
-类是 Java 的基本构建块，是创建对象的蓝图。
+| 选型信号 | ❌ 常见误用 | ✅ 推荐做法 | 详见 |
+|---------|-----------|-----------|------|
+| 只定义"能做什么"（行为契约） | 用抽象类承载纯契约，强迫调用方继承 | 用 `interface`，多实现 + 组合灵活 | [oop/](oop/README.md#接口和抽象类的异同) |
+| 需要共享状态/构造器/受保护模板方法 | 用接口 + default 方法模拟状态（接口字段只能是 `public static final`） | 用 `abstract class` 承载公共字段与骨架实现 | [oop/](oop/README.md#接口和抽象类的异同) |
+| Java 8+ 想给接口加通用逻辑 | 每个实现类重复写相同代码 | `default` / `static` 方法收敛公共逻辑 | [polymorphism/](polymorphism/README.md) |
+| 类型安全的多分派扩展点 | 抽象类单继承限制扩展 | 接口多实现（如 `Comparable` + `Serializable` 同时满足） | [generics/](generics/README.md) |
 
-```java
-public class Person {
-    private String name;
-    private int age;
+**30 秒口诀**：*契约用接口，骨架用抽象类；组合优于继承，default 方法补行为。*
 
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
+> 面试题深挖版（含反例代码与话术）：[12.interview/01.java/interface-vs-abstract](../../12.interview/01.java/interface-vs-abstract/README.md)
 
-    public void introduce() {
-        System.out.println("我叫" + name + "，今年" + age + "岁。");
-    }
-}
-```
-
-### 抽象类 (Abstract Class)
-
-不能被实例化的类，用于定义公共行为和抽象行为。
-
-```java
-public abstract class Animal {
-    public abstract void makeSound();  // 抽象方法
-    public void eat() { System.out.println("eating..."); }  // 具体方法
-}
-```
-
-### 接口 (Interface)
-
-定义方法签名的契约，Java 8+ 支持默认方法和静态方法。
-
-```java
-public interface Vehicle {
-    void start();
-    void stop();
-    default void honk() { System.out.println("Beep!"); }
-}
-```
-
-### 异常 (Exception)
-
-Java 使用异常处理错误和异常情况。try-with-resources 需要 Java 7+，`var` 需要 Java 10+。
-
-```java
-// MyResource 必须实现 AutoCloseable 接口才能在 try-with-resources 中使用
-class MyResource implements AutoCloseable {
-    @Override
-    public void close() throws Exception {
-        System.out.println("资源已关闭");
-    }
-}
-
-try (MyResource resource = new MyResource()) {
-    // 使用资源
-} catch (Exception e) {
-    // 处理异常
-}
-```
+其他核心概念入口：类与对象基础见 [oop/](oop/README.md)，异常体系与 try-with-resources 见 [exception/](exception/README.md)，反射见 [reflection/](reflection/README.md)。
 
 ## 概念关系总览
 
@@ -164,7 +116,7 @@ Java 核心概念
 
 | 统计维度 | 数值 | 口径 |
 |----------|------|------|
-| 分类主题数 | 4 组 | 语言基础 / 面向对象 / 类型系统 / 核心机制 |
+| 分类主题数 | 5 组 | 语言基础 / 面向对象 / 类型系统 / 核心机制 / 日期时间 |
 | 子 README 数 | 19 | [`date-time`](date-time/README.md) 等 `concepts/` 下 leaf README 数 |
 | 含 frontmatter 的 README | 20 / 20 | 100% 覆盖（2026-07-22） |
 

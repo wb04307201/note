@@ -228,7 +228,6 @@ Objects.nonNull(obj);    // 等价于 obj != null
 - **线程安全**：`wait()/notify()` 需谨慎使用，优先选择 `java.util.concurrent` 中的高级同步工具（如 `CountDownLatch`、`Semaphore`、`BlockingQueue`）。
 - **空值处理**：优先使用 `Objects` 工具类进行空安全操作，而不是手动判空。
 - **Java 8+ 替代方案**：考虑使用 `Optional` 来显式表达可能为空的值，避免 `null` 的隐式传递。
-- **多态核心**：[polymorphism](../polymorphism/README.md) — 多态深度专题：方法签名决定多态分派（Object 类 11 个方法是多态基础案例）
 
 ---
 
@@ -310,5 +309,13 @@ Person p = (Person) unsafe.allocateInstance(Person.class);
 | 网络/磁盘传输 | 反序列化 | 通用持久化 |
 | 复杂对象构造 | 工厂 / 建造者 | 可读性 + 可测试性 |
 | Spring 项目 | DI | 解耦 + 容器管理生命周期 |
+
+---
+
+## 相关章节
+
+- [polymorphism](../polymorphism/README.md) — 多态深度专题：方法签名决定多态分派（Object 类 11 个方法是多态基础案例）
+- [创建型模式](../../04-patterns/creation/README.md) — 上文"创建对象的 7 种方式"中工厂 / 建造者 / 单例的模式层展开
+- [12.interview equals/hashCode 深度剖析](../../../12.interview/01.java/equals-hashcode/README.md) — `==` vs `equals` vs `hashCode` 高频面试题版（本文 equals/hashCode 契约的面试深挖）
 
 ← [返回 Java 核心概念](../README.md)

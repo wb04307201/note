@@ -213,9 +213,27 @@ System.out.println(result);
 
 ## 相关章节
 
-- [Java 并发工具类 (java.util.concurrent)](../../03-concurrency/utilities/README.md)
-- [ThreadLocal 原理与最佳实践](../../03-concurrency/threadlocal/README.md)
-- [LinkedList 源码剖析与最佳实践](../../collection/LinkedList/README.md)
+- [hashCode() 与哈希表](../oop/README.md#hashcode-与哈希表) — 包装类作为 HashMap key 时 `hashCode`/`equals` 契约为何必须成对重写
+- [面试题：Integer 缓存深度剖析](../../../12.interview/01.java/integer-cache/README.md) — `Integer a=127,b=127; a==b` 为 true 而 128 为 false 的底层机制
+- [面试题：equals-hashcode 契约](../../../12.interview/01.java/equals-hashcode/README.md) — 基本类型/包装类相等性比较的高频考点
+
+## 版本演进：数据类型相关的 JDK 变化
+
+| 版本 | 变化 | 影响 |
+|------|------|------|
+| JDK 5 | 引入自动装箱/拆箱（JSR 201）+ 包装类缓存机制 | `Integer.valueOf()` 缓存 [-128, 127]，`==` 比较出现"范围内 true、范围外 false"的反直觉现象 |
+| JDK 8 | 引入 `Integer.divideUnsigned` / `remainderUnsigned`、`Long.divideUnsigned` 等无符号运算 | Java 的 `int`/`long` 始终是有符号的，此前无符号除法只能借助 `BigInteger`；JDK 8 起可直接做无符号算术与比较（`Integer.compareUnsigned`） |
+| JDK 9 | 紧凑字符串（Compact Strings，JEP 254）：`String` 内部 `char[]` 改为 `byte[]` + coder 标志 | Latin-1 可表示的字符串内存减半；但 `char` 类型本身仍是 16 位 UTF-16 编码单元，不受影响 |
+
+```java
+// JDK 8+ 无符号运算示例
+int unsigned = 0xFFFFFFFF;              // 有符号视角是 -1
+System.out.println(unsigned / 2);                        // ❌ 0（有符号除法：-1/2 = 0）
+System.out.println(Integer.divideUnsigned(unsigned, 2)); // ✅ 2147483647（无符号视角 4294967295/2）
+System.out.println(Integer.compareUnsigned(unsigned, 1));// ✅ >0（无符号视角 -1 其实是最大值）
+```
+
+> 包装类缓存自 JDK 5 起从未变过默认范围（[-128, 127]），`-XX:AutoBoxCacheMax` 只对 `Integer` 生效——这是十年不变的高频面试陷阱。
 
 ## 速记卡：split-hairs 视角 — 为什么需要包装类？
 

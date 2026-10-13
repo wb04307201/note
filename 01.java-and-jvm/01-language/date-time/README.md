@@ -675,5 +675,11 @@ java.time
 
 ---
 
+## 相关章节
+
+- [ThreadLocal 原理与最佳实践](../../03-concurrency/threadlocal/README.md) — `SimpleDateFormat` 线程不安全时代的经典解法就是 ThreadLocal 包装（本文第二节的旧方案在其原理篇有深入展开）
+- [面试题：ThreadLocal 原理与内存泄漏](../../../12.interview/01.java/threadlocal/README.md) — 含「SimpleDateFormat 定义为 static 必须加锁或用 ThreadLocal」的强制规约与日期格式化线程安全考点
+- [String](../string/README.md) — `DateTimeFormatter` 格式化输出与字符串不可变性同源
+
 ← [返回 Java 核心概念](../README.md)
 

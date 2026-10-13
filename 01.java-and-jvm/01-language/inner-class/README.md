@@ -204,8 +204,41 @@ Comparator<String> methodRef = Comparator.comparingInt(String::length);
 
 1. **序列化问题**：内部类（尤其是非静态内部类）不建议实现`Serializable`，因为编译器生成的合成字段在不同编译器实现中可能不同
 2. **内存泄漏**：非静态内部类持有外部类的引用，如果内部类生命周期比外部类长，可能导致外部类无法被回收
+
+   ```java
+   // ❌ 反例：非静态内部类隐式持有外部类引用，长生命周期对象拽住整个 Activity/外部实例
+   public class MainActivity extends Activity {
+       // 非静态 Handler：编译后合成 MainActivity$MyHandler.this$0 指向外部实例
+       private class MyHandler extends Handler {
+           @Override
+           public void handleMessage(Message msg) { /* ... */ }
+       }
+       private final MyHandler handler = new MyHandler();
+
+       @Override
+       protected void onDestroy() {
+           super.onDestroy();
+           // 消息队列里仍有延迟消息 → handler → this$0 → MainActivity 泄漏
+       }
+   }
+
+   // ✅ 正例：static 嵌套类 + WeakReference，不阻断外部实例回收
+   public class MainActivity extends Activity {
+       private static class MyHandler extends Handler {
+           private final WeakReference<MainActivity> ref;
+           MyHandler(MainActivity activity) { this.ref = new WeakReference<>(activity); }
+           @Override
+           public void handleMessage(Message msg) {
+               MainActivity a = ref.get();
+               if (a != null && !a.isFinishing()) { /* 安全使用 */ }
+           }
+       }
+       private final MyHandler handler = new MyHandler(this);
+   }
+   ```
+
 3. **优先使用静态内部类**：如果内部类不需要访问外部类的实例成员，应声明为`static`，避免不必要的引用持有
-- **多态应用**：[polymorphism](../polymorphism/README.md) — 匿名内部类即一种多态形态（创建匿名子类实现多态分派）
+4. **多态应用**：[polymorphism](../polymorphism/README.md) — 匿名内部类即一种多态形态（创建匿名子类实现多态分派）
 
 ## JDK 版本演进
 

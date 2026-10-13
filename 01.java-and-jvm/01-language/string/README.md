@@ -182,7 +182,9 @@ String joined = String.join("-", list);
 
 ## 字符串拼接的底层实现
 
-Java 编译器会将`+`号拼接优化为`StringBuilder`：
+字符串拼接的实现方式以 **Java 9（JEP 280）为分界**：Java 8 及之前由 `javac` 直接脱糖为 `StringBuilder`；Java 9+ 改为编译成 `invokedynamic` 指令，由 `StringConcatFactory` 在运行时选择拼接策略。
+
+### Java 8 及之前：StringBuilder 脱糖
 
 ```java
 // 编译器优化后等价于
@@ -195,13 +197,39 @@ String c = a + b;
 // 编译为：new StringBuilder().append(a).append(b).toString()
 ```
 
-> **注意**：在循环中使用`+`拼接字符串仍然会每次创建新的`StringBuilder`，应在循环外创建一个`StringBuilder`并在循环内使用`append()`。
+### Java 9+：invokedynamic + StringConcatFactory
+
+`javac` 不再直接生成 `StringBuilder` 调用，而是生成一条 `invokedynamic` 指令，引导方法为 `java.lang.invoke.StringConcatFactory#makeConcatWithConstants`：
 
 ```java
-// 反例：循环中使用 + 拼接（每次循环创建新的 StringBuilder）
+String a = "a";
+String b = "b";
+String c = a + b;
+```
+
+```text
+// javap -c 字节码（Java 11 编译）
+invokedynamic #7,  0   // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+// 引导方法 StringConcatFactory 在运行时生成拼接逻辑，
+// 配方字符串 \u0001\u0001 中的 \u0001 为参数占位符，常量直接嵌入配方
+```
+
+版本差异与设计动机：
+
+| 维度 | Java 8（StringBuilder 脱糖） | Java 9+（invokedynamic + StringConcatFactory） |
+|------|---------------------------|----------------------------------------------|
+| 字节码 | `new StringBuilder` + 多次 `append` + `toString` | 单条 `invokedynamic`，常量嵌入配方字符串 |
+| 中间对象 | 每次拼接都创建 StringBuilder（含内部 char[]） | 默认策略可一次精确计算长度直接生成结果 String，省中间对象 |
+| 内存 | `char[]`，无编码优化 | 配合 Compact Strings（`byte[]`），Latin-1 内容减半 |
+| 演进空间 | 策略固化在字节码里，改实现需重编译 | 策略在运行时由 JVM 决定，升级 JDK 即免费获得优化 |
+
+> **注意**：无论哪个版本，在循环中使用 `+` 拼接仍然会每次创建新的拼接载体（Java 8 是 StringBuilder，Java 9+ 是 StringConcatFactory 生成的逻辑），应在循环外创建一个 `StringBuilder` 并在循环内使用 `append()`。
+
+```java
+// 反例：循环中使用 + 拼接（每次循环创建新的 StringBuilder / 拼接调用）
 String s = "";
 for (int i = 0; i < 10000; i++) {
-    s += i;  // 等价于 s = new StringBuilder().append(s).append(i).toString()
+    s += i;  // Java 8 等价于 s = new StringBuilder().append(s).append(i).toString()
 }
 
 // 正例：循环外创建 StringBuilder，循环内 append
@@ -244,5 +272,13 @@ String json = """
 - 可以使用`String`的所有方法（如`stripIndent()`、`formatted()`等）
 
 ---
+
+## 相关章节
+
+- [JVM — 方法区 / 元空间](../../02-jvm/README.md#35-方法区--元空间metaspace) — 运行时常量池的存放位置：字符串常量与编译期常量所在内存区域
+- [JVM 参数速查](../../02-jvm/parameters.md) — G1 字符串去重（`-XX:+UseStringDeduplication`，JDK 21 起默认开启）：GC 时对内容相同的 String 内部 `byte[]` 做去重，降低堆占用
+- [语法糖](../syntactic-sugar/README.md#14-文本块-text-blocksjava-15) — 文本块（`"""` 三引号）作为语法糖的脱糖对照（本文"文本块"章节的语言特性视角）
+- [variable](../variable/README.md#字符型常量和字符串常量的区别) — 字符常量与字符串常量的区别（`char` vs 常量池中的 String 引用）
+- [syntax](../syntax/README.md#运算符) — `+` 运算符优先级与字符串拼接的语法层视角
 
 ← [返回 Java 核心概念](../README.md)
