@@ -9,7 +9,7 @@
 
 # AI 咬文嚼字
 
-> AI 高频面试题与新概念深挖：55 题（find 校对 2026-08-25），每篇陷阱 + 反直觉 + 30 秒话术，完整概念见主模块 [`09.ai-applications`](../../09.ai-applications/README.md)。
+> AI 高频面试题与新概念深挖：56 题（find 校对 2026-10-13），每篇陷阱 + 反直觉 + 30 秒话术，完整概念见主模块 [`09.ai-applications`](../../09.ai-applications/README.md)。
 
 > ⚠️ **定位说明**：本目录所有文章都是**面试深挖版**。完整概念文档见主模块对应位置（README 末尾"深度阅读"区有链接）。
 
@@ -17,7 +17,7 @@
 
 ## 🎯 读者角色速查（按身份挑题）
 
-> **55 题**按难度与场景覆盖 6 类读者角色（find 校对 2026-08-25），按身份挑题效率最高。
+> **56 题**按难度与场景覆盖 6 类读者角色（find 校对 2026-10-13），按身份挑题效率最高。
 
 | 读者角色 | 推荐题号 | 推荐阅读顺序 | 关键场景 |
 |---------|---------|------------|---------|
@@ -30,7 +30,7 @@
 
 ---
 
-## 文章清单（共 **55 题**，find 校对 2026-08-25）
+## 文章清单（共 **56 题**，find 校对 2026-10-13）
 
 ### 🎯 真正的面试题（一题一文）
 
@@ -76,6 +76,7 @@
 | **🆕 [Agent 跑偏/死循环](agent-reliability/)** | ⭐⭐⭐⭐ | 5 大陷阱 + 4 层防护（Prompt 约束 / Verifier 检测 / 状态回滚 / 成本熔断） | [03-engineering/agent-reliability](../../09.ai-applications/agent/agent-reliability/README.md) |
 | **🆕 [KV Cache + MQA/GQA/MLA](kv-cache-mqa-gqa-mla/)** | ⭐⭐⭐⭐ | O(n³)→O(n²) 复杂度 + 3 种 KV 共享方案对比（显存/精度/训练 trade-off） | [02-technology-stack/kv-cache](../../09.ai-applications/llm-inference/kv-cache/README.md) |
 | [Agent DAG vs ReAct](agent-dag-vs-react/) | ⭐⭐⭐⭐⭐ | 复杂 Agent 为什么采用 DAG Workflow | [04-architecture/agent-architecture](../../09.ai-applications/agent/agent-architecture/README.md) |
+| **🆕 [手搓 Agent vs 框架](handcraft-vs-framework/)** | ⭐⭐⭐⭐ | 三问检验（重在哪/代价/权衡） + 抽象税 4 层拆解 + 决策树（何时手搓何时框架） + 5 大开源项目 | [04-architecture/agent-architecture §手搓 vs 框架](../../09.ai-applications/agent/agent-architecture/README.md) |
 | **🆕 [ReAct vs Plan-and-Execute](react-vs-plan-execute/)** | ⭐⭐⭐⭐⭐ | 4 模式 6 维打分 + RePlan 3 机制 + 80% 是混合架构 + 7 道 Q&A | [04-architecture/agent-execution-patterns](../../09.ai-applications/agent/agent-execution-patterns/README.md) |
 | [10亿级向量检索](vector-search-algorithms/) | ⭐⭐⭐⭐⭐ | HNSW vs IVF vs DiskANN 4 维选型 + 内存/磁盘/QPS/Recall 权衡 | 02-technology-stack/vector-search-algorithms |
 | [千亿级向量检索](vector-search-at-scale/) | ⭐⭐⭐⭐⭐ | 5 关键架构转变 + 业界真实案例 + 5 阶段时延/召回/成本三元权衡 | 02-technology-stack/vector-search-at-scale |
