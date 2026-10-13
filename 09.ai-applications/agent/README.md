@@ -32,6 +32,7 @@
 | 13 | 生产稳定性 | [production-stability/](production-stability/README.md) | 思维范式 / 成本控制 / 熔断 / 监控 / 选型决策树 |
 | 14 | 生产级 Agent 系统设计 | [production-agent-system-design/](production-agent-system-design/README.md) | 高可用 Agent 架构 + 容量评估 + 容灾 |
 | 15 | AI 平台 | [ai-platforms/](ai-platforms/README.md) | Coze / Dify / LangGraph / Spring AI 平台选型对比 |
+| 16 | 智能系统分层 | [intelligent-system-layers/](intelligent-system-layers/README.md) | 规则 / 启发式 / LLM 三层架构——职责划分与协作模式 |
 
 ## 阅读路径
 
@@ -67,7 +68,7 @@
 - ⚠️ Function Calling 工具调用 — `./agent-spec-tools/function-calling/`
 - ⚠️ Context Engineering — `../prompts/context-engineering/`
 - ⚠️ 入口路由架构 — `./architecture/routing-architecture/`
-- ⚠️ 智能系统分层 — `./architecture/intelligent-system-layers/`
+- ✅ 智能系统分层 — 已迁入 [intelligent-system-layers/](intelligent-system-layers/README.md)（见主题清单 #16）
 
 ---
 
