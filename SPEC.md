@@ -162,6 +162,8 @@ docs: 文档
 | 10 | 归属合理性 | 子目录与父定位不符 |
 | 11 | 合并检测 | 单文件 >500 行 + ≥8 H2 + ≥8 反模式 |
 
+> **规则 2 豁免（2026-10-13 体检 Batch6 决策）**：13 个模块根 README 及其编号子模块根 README（如 `08.ai-foundations/01-ml/README.md`）的 H1 允许带模块序号前缀（`# 01. xxx`），属全库一致的导航编号惯例，不计入违规。白名单以「文件路径 = 模块根或编号子目录根 README」为准（`grep -rln '^# [0-9][0-9]\.' --include='README.md'` 当前命中 15 个文件）。普通知识文章的 H1/H2 仍不得带数字编号；文章内因目录锚点 / 知识地图节点语义所需的编号标题（如 `concept-map.md` 的 `## 7. xxx` 与文内 TOC 锚点联动）不属违规。
+
 ---
 
 ### 7. SPEC 分层（仅元规范）
@@ -278,7 +280,7 @@ docs: 文档
 | Query Rewrite | `09.ai-applications/rag/query-rewrite` | - | - |
 | RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - | - |
 | RAG 评估（含 RAGAS/TruLens） | `09.ai-applications/rag/04-evaluation.md` | - | - |
-| 手搓 Agent vs 框架（抽象税） | `09.ai-applications/agent/agent-architecture/README.md#二十三手搓-vs-框架抽象税与决策权-2026-10` | `12.interview/11.ai/handcraft-vs-framework` | - |
+| 手搓 Agent vs 框架（抽象税） | `09.ai-applications/agent/agent-architecture/framework-source-comparison.md#三手搓-vs-框架抽象税与决策权-2026-10` | `12.interview/11.ai/handcraft-vs-framework` | - |
 
 ##### 8.3.5 传统 ML 算法（8 主词 · 含 1 纯面试版）
 

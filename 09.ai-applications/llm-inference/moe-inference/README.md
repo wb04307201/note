@@ -8,6 +8,7 @@
   version: v2.0
   updated: 2026-09-01
   status: active
+  tags: [MoE 推理]
 -->
 
 # MoE 推理优化

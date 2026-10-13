@@ -7,6 +7,7 @@
   depth: ⭐⭐⭐⭐⭐
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Lost In the Middle]
 -->
 
 # Lost In the Middle（中间遗忘现象）

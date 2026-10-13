@@ -6,6 +6,7 @@
   summary: 决策树 3 大经典模型（ID3 / C4.5 / CART）
   depth: ⭐⭐⭐⭐
   status: active
+  tags: [ID3 / C4.5 / CART]
 -->
 
 # 决策树 3 大经典模型（ID3 / C4.5 / CART）

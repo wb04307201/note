@@ -6,6 +6,7 @@
   summary: 向量 + BM25 混合检索
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Hybrid Search]
 -->
 
 # Hybrid Search（混合检索）

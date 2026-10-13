@@ -6,6 +6,7 @@
   summary: RLHF 完整流水线：SFT → Reward Model → PPO
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [RLHF（含 PPO/Reward Model）]
 -->
 
 # RLHF（Reinforcement Learning from Human Feedback）

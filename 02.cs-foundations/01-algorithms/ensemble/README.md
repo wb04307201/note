@@ -6,6 +6,7 @@
   summary: 集成学习 Random Forest / XGBoost / LightGBM / CatBoost
   depth: ⭐⭐⭐
   status: active
+  tags: [Random Forest, XGBoost / LightGBM, 集成学习]
 -->
 
 # 集成学习（Random Forest / XGBoost / LightGBM）

@@ -6,6 +6,7 @@
   summary: Embedding 模型横评（BGE / M3E / Qwen / OpenAI）
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Embedding 模型]
 -->
 
 # Embedding 模型横评

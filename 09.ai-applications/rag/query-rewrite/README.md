@@ -6,6 +6,7 @@
   summary: Query Rewrite 查询改写提升 RAG 召回
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Query Rewrite]
 -->
 
 # Query Rewrite（查询改写）

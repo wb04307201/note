@@ -6,6 +6,7 @@
   summary: 分支界限 Branch and Bound 算法
   depth: ⭐⭐⭐
   status: active
+  tags: [分支界限]
 -->
 
 # 分支界限（Branch and Bound）

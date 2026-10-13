@@ -6,6 +6,7 @@
   summary: KTO/IPO/SimPO/ORPO/RFT 2024+ 新对齐算法
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [KTO / IPO / SimPO（含 ORPO/RFT）]
 -->
 
 # 新对齐方法（KTO / IPO / SimPO / ORPO / RFT）

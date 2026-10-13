@@ -6,6 +6,7 @@
   summary: LLM 推理优化大专题索引（10 章）
   depth: ⭐⭐⭐
   status: active
+  tags: [LLM 推理优化大专题]
 -->
 
 # LLM 推理优化大专题（10 章）

@@ -6,6 +6,7 @@
   summary: Cross-Encoder Reranker 重排序
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Reranker]
 -->
 
 # Reranker（重排序模型）

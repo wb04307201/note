@@ -6,6 +6,7 @@
   summary: RAG 完整 Pipeline 综述
   depth: ⭐⭐⭐
   status: active
+  tags: [RAG Pipeline]
 -->
 
 # RAG Pipeline（完整流水线综述）

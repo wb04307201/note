@@ -6,6 +6,7 @@
   summary: LLM 推理性能指标全谱：TTFT / TPOT / ITL / Throughput / Goodput，含数学推导、5 版本演进、真实厂商基准、可观测性工程
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [推理性能指标 (TTFT/TPOT)]
 -->
 
 # LLM 推理性能指标

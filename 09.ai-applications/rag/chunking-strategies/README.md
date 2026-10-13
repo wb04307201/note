@@ -6,6 +6,7 @@
   summary: 5 大 Chunking 策略对比 + 数学原理 + 工业案例
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Chunking 策略]
 -->
 
 # Chunking 策略（文档分块）
