@@ -139,6 +139,10 @@ def collect_spec_keywords(spec_path: str) -> set:
             continue
         if col1.startswith('`') or col1.startswith('<'):
             continue
+        # 跳过粗体单元格（如 §8.4 自动维护协议表的动作列 '**读取**'）与
+        # 该表的表头首格 '角色'——它们不是主题词（2026-10-13 体检 Batch6 误报根治）
+        if col1.startswith('**') or col1 == '角色':
+            continue
         keywords.add(col1)
     return keywords
 
