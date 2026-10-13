@@ -167,7 +167,7 @@ flowchart LR
 | Doris | 2.1.x / 3.0-rc | 2025-Q4 |
 | StarRocks | 3.4.x | 2025-12 |
 | ClickHouse | 24.x | 2025-Q4 |
-| Trino | 0.13.x | 2025-Q4 |
+| Trino | 4xx（最新 483，2026-10-13 核实） | 2026-07 |
 | SeaTunnel | 2.3.x | 2025-11 |
 
 ### 4.9 大数据 vs 传统数据库
