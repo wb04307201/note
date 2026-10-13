@@ -224,6 +224,10 @@ Ring Attention（8 卡）：每卡 86 GB（可行）
 
 ## 💡 30 秒面试话术
 
+> "Transformer 长上下文变慢有 2 大根因：**Self-Attention O(n²) 复杂度**（上下文翻倍计算量翻 4 倍）+ **KV Cache 线性膨胀**（128K 仅 KV Cache 就 ~86 GB）。首选 **Flash Attention**（IO 感知分块计算，2-20x 加速）+ **GQA**（分组共享 KV Cache，LLaMA-2/3 标配）组合；128K 以上再上 Ring Attention 多卡分布式。"
+
+## 💡 90 秒面试话术（完整版）
+
 > "Transformer 处理超长上下文变慢有 2 大根因：
 >
 > **第一**：Self-Attention 的 O(n²) 复杂度。每个 token 需要与所有其他 token 计算相关性，上下文翻倍，计算量翻 4 倍。128K 上下文的 Attention 矩阵需要 2.7 TB 显存，单卡不可能。

@@ -186,7 +186,23 @@ graph LR
 
 ---
 
-## 四、面试话术（60 秒版）
+## 四、常见陷阱
+
+### 陷阱 1：以为 DOMContentLoaded 要等图片和样式表全部加载完
+- **真相**：`DOMContentLoaded` 只等 **HTML 解析完成 + 所有同步/defer 脚本执行完**，不等图片、字体等异步资源；等"全部资源加载完"的是 `load` 事件。但注意：CSS 会**间接阻塞** DOMContentLoaded —— 因为同步脚本执行前必须等 CSSOM 就绪，所以页面里有大量 CSS 时 DOMContentLoaded 也会被推迟。
+
+### 陷阱 2：以为 DOM 树构建完就会渲染（Render Tree 只依赖 DOM）
+- **真相**：Render Tree = DOM + **CSSOM** 的合成结果。CSSOM 未构建完成前浏览器不会进行首次渲染（这就是 CSS 阻塞渲染的原因）。另外 `display: none` 的节点不进 Render Tree，但 `visibility: hidden` 会进 —— 两者对渲染流程的影响完全不同。
+
+### 陷阱 3：分不清 defer 与 async 的执行时机
+- **真相**：两者都是"下载不阻塞 HTML 解析"，但执行时机不同 —— `async` 下载完**立即执行**（执行时仍会阻塞解析，顺序不确定）；`defer` 要等 **HTML 解析完成后、DOMContentLoaded 之前**按文档顺序执行。多个 `defer` 脚本保序，多个 `async` 脚本不保序。
+
+### 陷阱 4：以为 `<script>` 只阻塞 DOM 构建，不影响样式
+- **真相**：`<script>` 阻塞解析的同时，还会**等待前面所有 CSS 的 CSSOM 构建完成**才执行（因为 JS 可能读取样式，如 `getComputedStyle`）。所以"CSS 后面紧跟同步 JS"的组合会双重阻塞：CSS 慢 → JS 执行慢 → HTML 解析慢 → DOMContentLoaded 慢。这是把 JS 放 body 底部、CSS 放 head 的底层原因之一。
+
+---
+
+## 五、面试话术（60 秒版）
 
 > "整个过程可以分 4 大块：
 > 
@@ -216,7 +232,7 @@ graph LR
 
 ---
 
-## 五、交叉引用
+## 六、交叉引用
 
 - 主模块：[`05.frontend`](../../../05.frontend/README.md) — 前端知识体系
 - [浏览器渲染](../../../05.frontend/01-foundation/browser-rendering/README.md) — 浏览器渲染原理详解

@@ -115,6 +115,28 @@ Skill 数  命中率  退化原因
 | **LLM 选择漂移** | 同一 query 不同上下文选不同 | 强制规则写进 description 第一句 |
 | **Skill 数量爆炸** | 50+ Skill 谁也用不清 | 合并 + 分层 + 退役机制 |
 
+**关键词冲突的 ❌ vs ✅ 对比**（最高频反模式，YAML frontmatter 示例）：
+
+```yaml
+# ❌ 反例：两个 Skill 的 description 都含"API 查询"——LLM 无法区分，命中率对半掉
+# skills/api-doc-writer/SKILL.md
+description: 帮助用户进行 API 查询文档的编写与整理
+
+# skills/api-debugger/SKILL.md
+description: 帮助用户排查 API 查询失败、返回异常的问题
+```
+
+```yaml
+# ✅ 正例：差异化动词 + 对象，description 第一句就写清"独占触发词"
+# skills/api-doc-writer/SKILL.md
+description: 编写（撰写/生成）API 接口文档、请求示例与字段说明——触发词：写文档、接口说明
+
+# skills/api-debugger/SKILL.md
+description: 诊断（排查/修复）API 调用报错、超时与非预期响应——触发词：报错、调不通、500
+```
+
+**判别口诀**：动词不同（编写 vs 诊断）+ 对象不同（文档 vs 报错）+ 触发词互斥 → LLM 一眼分清。
+
 **最严重的反模式是数量爆炸**——3 个月没人用的 Skill 一定要归档，否则 Prompt 会越来越胖。
 
 ---

@@ -145,7 +145,7 @@ response = client.chat.completions.create(
 
 ## 📚 深度阅读
 
-- 主模块参考：[Prompt 工程总览](../../../09.ai-applications/prompts/prompt-engineering/README.md) — 结构化输出是 Prompt 工程的核心技巧之一（主模块深度文章待沉淀）
+- 主模块参考：[Prompt 工程总览](../../../09.ai-applications/prompts/prompt-engineering/README.md) — 结构化输出是 Prompt 工程的核心技巧之一（主模块 §2.5 已反链本文，双向；主模块深度文章待沉淀）
 
 ## 🛠️ 框架对比：Instructor vs Outlines
 

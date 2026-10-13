@@ -137,6 +137,7 @@ COPY --from=builder /app/server /server
 
 ## 六、交叉引用
 
+- 主模块：[Docker 主模块](../../../07.devops-and-tools/01-tools/02-docker/README.md) — 容器化技术栈速查（命令 / Compose / 镜像构建 / Podman）
 - 同栏目：[Git Rebase vs Merge](../git-rebase-vs-merge/README.md) — 版本管理工具链
 - 同栏目：[Nginx 反向代理](../nginx-reverse-proxy/README.md) — 容器化后的流量入口
 - 同栏目：[K8s Pod 生命周期](../k8s-pod-lifecycle/README.md) — 容器编排与调度

@@ -112,8 +112,10 @@ def safe_invoke(query, n_samples=3):
                for _ in range(n_samples)]
 
     # 对开放式输出用 Judge
-    judge_prompt = f"选出以下 {n_samples} 个回答中最准确的：\n"
-                   + "\n".join(f"[{i+1}] {s}" for i, s in enumerate(samples))
+    judge_prompt = (
+        f"选出以下 {n_samples} 个回答中最准确的：\n"
+        + "\n".join(f"[{i+1}] {s}" for i, s in enumerate(samples))
+    )
     best_idx = judge_llm.invoke(judge_prompt, temperature=0)
 
     return samples[int(best_idx) - 1]
@@ -185,9 +187,13 @@ def drift_monitor(prompt, n_samples=10):
 
 ---
 
-## 三、面试话术（90 秒版本）
+## 三、面试话术
 
 ### 题目：Temperature=0 输出 100% 一样吗？
+
+**30 秒简版**：
+
+> "**Temperature=0 ≠ 完全确定**。5 大根因一句话：GPU 浮点非结合、商业 API 默认值/内部替换、Seed 字段跨调用失效、模型版本漂移、多实例 Router 负载均衡。3 大防御一句话：**业务容错**（多采样投票 + Judge，覆盖 90% 场景）、**自托管确定性推理**（vLLM + 固定 batch=1 + seed）、**漂移监控**（每日 cosine embedding 相似度 < 0.95 告警）。商业 API 永远假设'小幅波动'，关键场景才上自托管。"
 
 **高分答案（4 层递进，60-90 秒）**：
 

@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-transformer
   topic: 11.ai
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, Transformer, transformer]
@@ -183,7 +183,9 @@ GQA（省 KV 头数）× Flash Attention（省 attention 显存）× PagedAttent
 
 ---
 
-## 六、30 秒面试话术
+## 六、面试话术
+
+**30 秒简版**：
 
 > Transformer 是 2017 年 Google 提出的，核心创新是 Self-Attention 机制。
 >
@@ -196,6 +198,16 @@ GQA（省 KV 头数）× Flash Attention（省 attention 显存）× PagedAttent
 > 三种变体：仅 Encoder = BERT（理解任务）；仅 Decoder = GPT / LLaMA / Claude（生成任务，2026 主流）；Encoder + Decoder = T5（翻译、摘要）。
 >
 > Transformer 让 LLM 成为可能，是当前所有大模型的基石。
+
+**90 秒完整版**（叠加第四节 2024 推理工程演进）：
+
+> "前半段同上（架构 + 公式 + 变体）。差异化加分项是 **2024 推理工程演进三件套**：
+>
+> **KV Cache**：自回归生成每步只算新 token 的 Q，历史 K/V 缓存复用——显存公式 `2 × n_layers × n_kv_heads × head_dim × seq_len × bytes_per_elem`。7B 模型推理 100k 上下文 KV Cache ≈ 30 GB，**显存瓶颈在 KV Cache 不在权重**。
+>
+> **GQA vs MQA vs MLA**：都是共享 K/V 砍显存。MQA 只留 1 个 KV 头（省 n_heads 倍但质量略降）；**GQA 分组共享**（常用 group_size=8，LLaMA-2 70B / Mistral / Qwen 主流，几乎无质量损失）；**MLA 低秩联合压缩**（DeepSeek-V2/V3，比 GQA 再省 5-10x 且质量反超 MHA）。看 HuggingFace config：`num_key_value_heads` = `num_attention_heads` 是 MHA，= 1 是 MQA，中间值是 GQA。
+>
+> **Flash Attention + PagedAttention 组合拳**：Flash Attention 用分块 + 重计算把 attention 显存从 O(n²) 降到 O(n)（IO-aware，算量不变但 HBM 访问降一个数量级）；PagedAttention（vLLM）借鉴 OS 虚拟内存分页，把 KV Cache 切 16-token block 消除碎片，吞吐提升 14-24x。**GQA × Flash × Paged 三者叠加，100k 上下文才能在单卡 A100 上跑起来**——这就是'为什么 LLaMA-2 推理 100k 不 OOM'的完整答案。"
 
 ---
 

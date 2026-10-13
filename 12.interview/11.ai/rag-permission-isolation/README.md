@@ -256,7 +256,13 @@ SaaS RAG 平台（如 Notion AI / Confluence AI）：
 
 ---
 
-## 六、面试话术（90 秒版本）
+## 六、面试话术
+
+**30 秒简版**：
+
+> "RAG 权限隔离有 4 种方案：**Pre-filtering**（检索前 metadata filter，安全性最高）、**Post-filtering**（检索后剔除，简单但可能泄露）、**Separate Index**（物理隔离，成本高）、**Hybrid**（双重保障）。企业级首选 **Pre-filtering + Post-filtering 组合**——检索前过滤挡住绝大部分，检索后校验兜底防泄露，权限变更分钟级同步到向量库 metadata。"
+
+**90 秒完整版**：
 
 > "RAG 权限隔离，我从 4 个层面回答：
 >
@@ -273,6 +279,7 @@ SaaS RAG 平台（如 Notion AI / Confluence AI）：
 ## 七、相关章节
 
 - RAG 架构：[`RAG 架构设计`](../rag/README.md) — 完整 RAG 流程（Chunking/Embedding/检索/生成）
+- 主模块深度：[`RAG 5 阶段 Pipeline`](../../../09.ai-applications/rag/01-pipeline.md) — 检索阶段叠加权限过滤的工程位置（已反链本文，双向）
 - 企业案例：`Glean 企业搜索` — 权限模型三层实践（源系统镜像/实时重算/答案门控）
 - LLM 安全：[`LLM 安全`](../../../09.ai-applications/agent/agent-reliability/llm-security/README.md) — Agent 最小权限原则
 - Agentic Search：[`Agentic Search vs RAG`](../../../09.ai-applications/rag/06-agentic-rag.md) — 权限过滤在不同搜索模式中的差异

@@ -135,10 +135,11 @@ git merge --squash feature/login  # 或直接 merge（已经 rebase 过了）
 
 ## 六、交叉引用
 
+- 主模块：[Git 主模块](../../../07.devops-and-tools/01-tools/01-git/README.md) — 版本控制与自托管代码托管（命令清单 / Gitea / 分支命名规范）
 - 同栏目：[Docker 多阶段构建](../docker-multi-stage/README.md) — 容器化工具链面试题
 - 同栏目：[Nginx 反向代理](../nginx-reverse-proxy/README.md) — 部署与负载均衡
 - 同栏目：[K8s Pod 生命周期](../k8s-pod-lifecycle/README.md) — 编排与调度
-- 系统设计：分布式锁 — 系统设计高频题
+- 系统设计：[分布式锁](../../04.system-design/distributed-lock/README.md) — 系统设计高频题
 
 ---
 

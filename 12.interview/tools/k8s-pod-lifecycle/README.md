@@ -138,10 +138,11 @@ lifecycle:
 
 ## 六、交叉引用
 
+- 主模块：[Kubernetes 主模块](../../../07.devops-and-tools/01-tools/kubernetes/README.md) — K8s 架构 / 工作负载 / 网络与部署实践
 - 同栏目：[Docker 多阶段构建](../docker-multi-stage/README.md) — 容器化基础
 - 同栏目：[Nginx 反向代理](../nginx-reverse-proxy/README.md) — 流量入口（与 K8s Ingress 互补）
-- 系统设计：熔断降级 — 后端保护（Probe 失败时的降级策略）
-- 系统设计：限流算法 — K8s HPA 扩缩容配合
+- 系统设计：[熔断降级](../../04.system-design/circuit-breaker/README.md) — 后端保护（Probe 失败时的降级策略）
+- 系统设计：[限流算法](../../04.system-design/rate-limiting/README.md) — K8s HPA 扩缩容配合
 
 ---
 

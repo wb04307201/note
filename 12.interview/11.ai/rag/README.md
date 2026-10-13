@@ -99,9 +99,15 @@ RAG 不是"让 LLM 变聪明"，而是"**给 LLM 装一个能查事实的工具*
 
 ---
 
-## 六、30 秒面试话术
+## 六、面试话术
 
-> RAG 是检索增强生成，让 LLM 基于私有数据回答。
+**30 秒简版**：
+
+> "RAG 是检索增强生成——给 LLM 装一个查事实的工具：离线把文档分块 Embedding 入向量库，在线检索 Top-K 拼进 Prompt 让模型基于真实文档回答。生产标配是**混合检索（向量 + BM25）+ Reranker**，中文 Embedding 首选 BGE-M3。它解决私有数据、知识过期和幻觉三大问题，2026 共识是 **RAG 优先、Fine-tuning 补风格**。"
+
+**90 秒完整版**：
+
+> "RAG 是检索增强生成，让 LLM 基于私有数据回答。
 >
 > 流程：离线索引（文档分块 → Embedding → 存入向量数据库）+ 在线查询（问题向量化 → 检索相关片段 → 拼接 Prompt → LLM 生成）。
 >
@@ -109,9 +115,11 @@ RAG 不是"让 LLM 变聪明"，而是"**给 LLM 装一个能查事实的工具*
 >
 > 优化：检索（混合检索向量+BM25 + Reranker 重排序）+ 生成（引用源标注、置信度过滤、Prompt 工程）。
 >
-> RAG vs Fine-tuning：RAG 随时更新、低成本、适合事实查询；Fine-tuning 内化知识、高成本、适合风格调整。
+> 演进四阶段：**Naive"能跑通"→ Advanced"更精准"→ Modular"更灵活"→ Agentic"会思考"**，四者是继承而非替代，落地通常用 Advanced+Modular 做基线，复杂多跳场景再引入 Agentic。
 >
-> 2026 共识：**RAG 优先**，Fine-tuning 补充。
+> 企业落地还要过权限关：检索前 **Pre-filtering**（metadata filter）做底线 + 检索后 **Post-filtering** 精校验 + ACL 分钟级同步，防止"让不该看到的人看到"。
+>
+> RAG vs Fine-tuning：RAG 随时更新、低成本、适合事实查询；Fine-tuning 内化知识、高成本、适合风格调整。2026 共识：**RAG 优先**，Fine-tuning 补充。"
 
 ---
 
