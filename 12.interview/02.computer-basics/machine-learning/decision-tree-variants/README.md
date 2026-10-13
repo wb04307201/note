@@ -110,8 +110,8 @@ print("Entropy: ", cross_val_score(clf_ent, X, y, cv=5).mean())
 ```python
 # sklearn 调参黄金起点
 clf = DecisionTreeClassifier(
-    max_depth=5-10,           # 5-10 是经验值，超过 15 几乎必过拟合
-    min_samples_leaf=10-50,   # 避免单样本叶子（噪声）
+    max_depth=5,              # 经验区间 5-10，超过 15 几乎必过拟合
+    min_samples_leaf=10,      # 经验区间 10-50，避免单样本叶子（噪声）
     min_samples_split=20,     # 节点分裂最小样本数
     class_weight='balanced',  # 不均衡数据集必加
     random_state=42

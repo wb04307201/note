@@ -136,13 +136,12 @@
     - 定义消息类型积压阈值与处理策略（如支付订单 > 1000条自动扩容 + 短信告警）。
 3. **灰度与回滚**：
     - 消费逻辑变更时，新版本消费者订阅新Topic，逐步切流（如10% → 50% → 100%）。
-    - 异常时秒级切回旧版本，避免影响生产环境。## 相关章节
-
-- 深度阅读：[`12.interview/04.system-design/04-high-performance/mq`](../../../06.distributed-systems/04-high-performance/mq/README.md) — 消息队列架构全景
-- 相关：[`12.interview/still-need-rocketmq`](../still-need-rocketmq/README.md) — Kafka vs RocketMQ 选型
+    - 异常时秒级切回旧版本，避免影响生产环境。
 
 ## 相关章节
 
+- 深度阅读：[`12.interview/04.system-design/04-high-performance/mq`](../../../06.distributed-systems/04-high-performance/mq/README.md) — 消息队列架构全景
+- 相关：[`12.interview/still-need-rocketmq`](../still-need-rocketmq/README.md) — Kafka vs RocketMQ 选型
 - 排查实战：[`支付消息丢失排查`](../payment-message-lost/README.md) — 消息丢失的全链路排查框架
 
 > 📅 2026-09-01 · 咬文嚼字 · MQ积压 · ⭐⭐⭐⭐（中频面试 + 实战必会）

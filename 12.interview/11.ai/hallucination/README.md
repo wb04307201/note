@@ -283,7 +283,7 @@ Query → Generator LLM → Draft Answer
 
 ## 八、交叉引用
 
-- 主模块：[`11.ai`](../../../) — AI 知识体系
+- 主模块：[`08.ai-foundations`](../../../08.ai-foundations/README.md) — AI 知识体系
 - [RAG](../rag/README.md) — 检索增强生成
 - [Prompt Engineering](../../../09.ai-applications/prompts/prompt-engineering/README.md) — 提示工程技巧
 
