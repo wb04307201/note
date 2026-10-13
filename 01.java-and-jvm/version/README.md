@@ -50,6 +50,7 @@
 | 序号 | 主题 | 说明 |
 |------|------|------|
 | 9 | [并发](../03-concurrency/README.md) | 锁机制、线程池、虚拟线程等并发特性演进（Java 5+） |
+|  | &emsp;└ [并发特性演进（版本视角）](concurrency/) | synchronized → Lock → CompletableFuture → Virtual Threads 纵览 |
 |  | &emsp;└ [CHMRLock](https://gitee.com/wb04307201/CHMRLock) | 基于 ConcurrentHashMap + ReentrantLock 的锁实现（开源项目） |
 
 #### JVM & 内存
