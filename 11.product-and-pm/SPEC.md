@@ -3,7 +3,7 @@
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override
-> **Updated**: 2026-08-13
+> **Updated**: 2026-10-13
 
 ---
 
@@ -37,11 +37,20 @@
 - 协同过程要覆盖产品、设计、研发、测试、运营和法务的输入、输出与决策责任。
 - 案例同时呈现成功假设、失败信号和复盘结论，避免只写“方法论”而无可执行检查表。
 
-### 子目录约定
+### 子目录约定（2026-10-13 全量对齐，10 个，find 校对）
 
-- 根目录专题：需求分析、用户研究、产品策略、路线图、PRD 与数据驱动决策。
-- `agile-metrics/`、`ai-pm-dora-space/`：敏捷指标、AI 产品、DORA 与研发效能。
-- `app-quote-breakdown/`：应用报价、预算、成本与商业化拆解。
-- `cheatsheet.md`：PM 方法、模板和速查表。
-- `cheatsheet.md` 旁的专题文档：跨学科招聘、Conway 定律、团队拓扑、风险登记、外包与自研/SaaS 决策。
-- `risk-register/`、`scripts/`：风险登记和可复用的分析工具。
+| 目录 | 定位 |
+|------|------|
+| `agile-metrics/` | 敏捷指标与研发效能度量 |
+| `ai-pm-dora-space/` | AI 产品、DORA 与研发效能交叉域 |
+| `app-quote-breakdown/` | 应用报价、预算、成本与商业化拆解 |
+| `conways-law-team-topologies/` | Conway 定律与团队拓扑 |
+| `interviewing-cross-disciplinary/` | 跨学科招聘面试 |
+| `outsourcing-pitfalls/` | 外包陷阱与避坑 |
+| `risk-register/` | 风险登记 |
+| `scripts/` | 可复用的分析工具 |
+| `self-vs-saas-vs-outsourcing/` | 自研 / SaaS / 外包决策 |
+| `team-sizing-3x-buffer/` | 团队规模测算与 3x buffer |
+
+- 根目录散文件：需求分析、用户研究、产品策略、路线图、PRD 与数据驱动决策专题 + `cheatsheet.md`（PM 方法、模板和速查表）。
+- ⚠️ 原「cheatsheet.md 旁的专题文档」模糊声明已删除——5 个专题目录全部显式声明（消「不可检索」问题）。
