@@ -331,21 +331,72 @@ public class CustomCacheErrorHandler implements CacheErrorHandler {
     }
 }
 
-// 2. CacheManager 配置
+// 2. 熔断装饰器：只包 Redis 访问层（org.springframework.cache.Cache 接口）
+public class CircuitBreakerCacheDecorator implements Cache {
+
+    private final Cache delegate;              // 被装饰的 RedisCache
+    private final CircuitBreaker circuitBreaker;
+
+    public CircuitBreakerCacheDecorator(Cache delegate, CircuitBreaker circuitBreaker) {
+        this.delegate = delegate;
+        this.circuitBreaker = circuitBreaker;
+    }
+
+    @Override
+    public String getName() { return delegate.getName(); }
+
+    @Override
+    public Object getNativeCache() { return delegate.getNativeCache(); }
+
+    @Override
+    public ValueWrapper get(Object key) {
+        // 熔断 OPEN 时抛 CallNotPermittedException → 由 CacheErrorHandler 兜底（视为 miss）
+        return circuitBreaker.executeSupplier(() -> delegate.get(key));
+    }
+
+    @Override
+    public <T> T get(Object key, Class<T> type) {
+        return circuitBreaker.executeSupplier(() -> delegate.get(key, type));
+    }
+
+    @Override
+    public void put(Object key, Object value) {
+        circuitBreaker.executeRunnable(() -> delegate.put(key, value));
+    }
+
+    @Override
+    public void evict(Object key) {
+        circuitBreaker.executeRunnable(() -> delegate.evict(key));
+    }
+
+    @Override
+    public void clear() {
+        circuitBreaker.executeRunnable(() -> delegate.clear());
+    }
+}
+
+// 3. CacheManager 配置：为每个 RedisCache 套熔断装饰器 + 异常兜底
 @Configuration
 public class CacheConfig {
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory,
-                                      CustomCacheErrorHandler errorHandler) {
-        RedisCacheManager manager = RedisCacheManager.builder(connectionFactory)
-            .cacheDefaults(defaultConfig())
-            .build();
-        manager.setCacheErrorHandler(errorHandler);
+                                      CustomCacheErrorHandler errorHandler,
+                                      CircuitBreaker redisCircuitBreaker) {
+        RedisCacheManager manager = new RedisCacheManager(
+                RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory),
+                RedisCacheConfiguration.defaultCacheConfig()) {
+            @Override
+            protected Cache createRedisCache(String name, RedisCacheConfiguration cacheConfig) {
+                return new CircuitBreakerCacheDecorator(
+                        super.createRedisCache(name, cacheConfig), redisCircuitBreaker);
+            }
+        };
+        manager.setCacheErrorHandler(errorHandler);   // 第二道防线：吞掉 Redis 异常 → 按 miss 走 DB
         return manager;
     }
 }
 
-// 3. Resilience4j 熔断（自动恢复核心）
+// 4. Resilience4j 熔断（自动恢复核心）
 @Configuration
 public class ResilienceConfig {
     @Bean
@@ -360,24 +411,35 @@ public class ResilienceConfig {
     }
 }
 
-// 4. 业务封装（@Cacheable + 熔断 + DB fallback）
+// 5. 业务服务：@Cacheable 方法体只写 DB 查询（缓存读写与降级由上面各层负责）
 @Service
 public class UserService {
-
-    @Autowired
-    private CircuitBreaker redisCircuitBreaker;
 
     @Autowired
     private UserMapper userMapper;
 
     @Cacheable(value = "user", key = "#userId")
     public User getUser(Long userId) {
-        return redisCircuitBreaker.executeSupplier(
-            () -> userMapper.findById(userId)  // 注：这里只是占位，实际查询放业务方法
-        );
+        // 仅在缓存 miss 时执行本方法；Redis 故障 / 熔断打开时，
+        // CacheErrorHandler 会把缓存读写异常吞掉并按 miss 处理，请求自动落到这里（降级 DB）
+        return userMapper.findById(userId);
     }
 }
 ```
+
+**降级链路（各层职责不重叠）**：
+
+```text
+请求 → @Cacheable 拦截器 → CircuitBreakerCacheDecorator（Redis 读写，熔断包裹）
+├─ Redis 正常 + 命中       → 直接返回缓存值
+├─ Redis 正常 + miss       → 执行方法体查 DB → 回填 Redis
+├─ Redis 故障（抛异常）    → 熔断器计数失败 → CacheErrorHandler 吞异常 → 按 miss 查 DB
+└─ 失败率 ≥ 50% → 熔断 OPEN
+    ├─ 30s 内不再触碰 Redis（CallNotPermittedException 同样被 ErrorHandler 兜底）→ 直接查 DB
+    └─ 30s 后 HALF_OPEN 试探 → 成功则 CLOSED，恢复 Redis 读写（自动恢复）
+```
+
+> **WHY 熔断不包业务方法体**：`@Cacheable` 方法体本身就是"缓存 miss 后的 DB 查询"，把熔断包在里面等于给 DB 查询熔断——语义错误。熔断要保护的是 **Redis 访问层**（故障时快速失败、不反复超时重试），DB 兜底则由 CacheErrorHandler"吞异常 → 按 miss 处理"天然完成。
 
 ---
 

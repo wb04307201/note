@@ -18,7 +18,7 @@ Spring 整合 MyBatis 的"原教旨主义"配置——基于 `SqlSessionFactoryB
 
 ## 🎯 一句话定位
 
-**经典整合 = SqlSessionFactoryBean 创建 SqlSessionFactory + MapperScannerConfigurer 扫描注册 Mapper 接口 + DataSourceTransactionManager 接管事务**——三者缺一不可，Spring Boot 时代虽被自动配置隐藏，但底层依然是这套。
+**经典整合三大件：SqlSessionFactoryBean 建工厂 + MapperScannerConfigurer 注册 Mapper + DataSourceTransactionManager 管事务**——Spring Boot 时代虽被自动配置隐藏，但底层依然是这套。
 
 ---
 
@@ -372,7 +372,9 @@ src/main/resources/com/example/mapper/
 ├── UserMapper.xml           ← 同包同名
 ```
 
-这样 `MapperScannerConfigurer` 扫描包时可通过 `MapperHelper` 自动加载同包 XML，无需配置 `mapperLocations`。
+这样无需配置 `mapperLocations`。真实加载机制**与 `MapperScannerConfigurer` 的扫描动作无关**：扫描只负责把接口注册为 `MapperFactoryBean`；XML 的加载发生在 `MapperFactoryBean.checkDaoConfig()` 调用 `configuration.addMapper(mapperInterface)` 时——`MapperAnnotationBuilder` 解析接口注解之余，会按接口全限定名去 classpath 找同名 XML 资源（`com/example/mapper/UserMapper.xml`）并解析。所以同包同名约定生效的前提是 XML 出现在**编译后的 classpath** 上：放在 `src/main/resources` 下同包路径天然满足；若直接放在 `src/main/java` 包内，需确认构建工具配置了把 `*.xml` 复制进 target/classes（Maven 默认不会复制 java 目录下的非 .java 文件）。
+
+> ⚠️ 网上流传的"`MapperScannerConfigurer` 通过 `MapperHelper` 自动加载同包 XML"是讹传——`MapperHelper` 是 tk.mybatis（通用 Mapper）的类，与原生 MyBatis 的同包加载机制无关。
 
 ### 3. 常见错误排查
 

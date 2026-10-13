@@ -67,14 +67,90 @@
     <result property="name" column="name"/>
 </resultMap>
 
-<!-- 复杂示例：游标返回主从嵌套结构 -->
+<!-- 复杂示例：单游标返回主从嵌套结构（嵌套 resultMap，不发二次 SQL） -->
+<!-- 前提：存储过程用单条 SQL（或多游标各自映射）把主从行拍平到一个结果集，
+     由 MyBatis 按 <id> 聚合——切勿在 collection 里写 select=，那会退化为 N+1 嵌套查询，
+     与游标/CALLABLE 无关 -->
 <resultMap id="orderWithItemsResultMap" type="Order">
     <id property="id" column="order_id"/>
     <result property="userId" column="user_id"/>
-    <collection property="items" ofType="OrderItem" column="order_id"
-                select="selectOrderItemsByOrderId"/>
+    <collection property="items" ofType="OrderItem">
+        <id property="id" column="item_id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="quantity" column="quantity"/>
+    </collection>
 </resultMap>
 ```
+
+## 原理：CallableStatementHandler 如何处理 OUT 参数
+
+`statementType="CALLABLE"` 时，`Configuration.newStatementHandler()` 创建的是 `CallableStatementHandler`（而非 `PreparedStatementHandler`），IN/OUT 参数在它的三个生命周期方法中流转：
+
+```java
+// org.apache.ibatis.executor.statement.CallableStatementHandler（MyBatis 3.5.x 节选）
+public class CallableStatementHandler extends BaseStatementHandler {
+
+    @Override
+    protected Statement instantiateStatement(Connection connection) throws SQLException {
+        // 用 prepareCall 而非 prepareStatement——这是 CALLABLE 的本质区别
+        String sql = boundSql.getSql();
+        if (mappedStatement.getResultSets() != null) {
+            return connection.prepareCall(sql, ResultSet.TYPE_FORWARD_ONLY,
+                                          ResultSet.CONCUR_READ_ONLY,
+                                          ResultSet.HOLD_CURSORS_OVER_COMMIT);
+        }
+        return connection.prepareCall(sql);
+    }
+
+    @Override
+    public void parameterize(Statement statement) throws SQLException {
+        registerOutputParameters((CallableStatement) statement); // ① 先注册 OUT 参数
+        parameterHandler.setParameters((CallableStatement) statement); // ② 再绑定 IN 参数
+    }
+
+    private void registerOutputParameters(CallableStatement cs) throws SQLException {
+        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+        for (int i = 0, j = 1; i < parameterMappings.size(); i++) {
+            ParameterMapping parameterMapping = parameterMappings.get(i);
+            // 只有 mode=OUT / INOUT 的参数才 registerOutParameter；IN 参数被跳过
+            if (parameterMapping.getMode() != ParameterMode.IN) {
+                TypeHandler<?> typeHandler = parameterMapping.getTypeHandler();
+                JdbcType jdbcType = parameterMapping.getJdbcType();
+                if (jdbcType == JdbcType.CURSOR) {
+                    // Oracle 游标：注册 REF_CURSOR，执行后由 ResultSetHandler 走 resultMap 映射
+                    cs.registerOutParameter(j++, jdbcType.VALUE);
+                } else if (jdbcType == JdbcType.OTHER || typeHandler instanceof Jdbc3ArrayTypeHandler) {
+                    cs.registerOutParameter(j++, jdbcType.VALUE, parameterMapping.getNumericScale());
+                } else {
+                    cs.registerOutParameter(j++, jdbcType.VALUE);
+                }
+                if (parameterMapping.getMode() == ParameterMode.INOUT) {
+                    cs.setInt(j, i + 1); // INOUT 既要注册也要设值
+                }
+                if (j != i + 1) { j++; }
+            }
+        }
+    }
+
+    @Override
+    public <E> List<E> query(Statement statement, ResultHandler resultHandler) throws SQLException {
+        CallableStatement cs = (CallableStatement) statement;
+        cs.execute();
+        // ③ 执行后回写 OUT 参数：ResultSetHandler 内部完成
+        List<E> resultList = resultSetHandler.handleResultSets(cs);
+        resultSetHandler.handleOutputParameters(cs);
+        return resultList;
+    }
+}
+```
+
+**关键链路**（对应 [08 核心类图](../01-architecture/08-class-diagram.md) §6.5 的 `localOutputParameterCache` 与 §6.6 StatementHandler）：
+
+1. **IN 参数照常设置，OUT 参数在设参阶段被跳过**：`DefaultParameterHandler.setParameters()` 遍历 `ParameterMapping` 时，`mode=OUT` 的映射不执行 `typeHandler.setParameter()`——OUT 槽位只 `registerOutParameter`，没有值可设。
+2. **执行后写回**：`DefaultResultSetHandler.handleOutputParameters()` 对每个 OUT 映射调 `typeHandler.getResult(cs, i)`，再通过 `MetaObject` 写回参数对象——参数是 `Map` 时写入对应 key（这就是 Java 示例里 `params.get("result")` 能取到值的原因），是 POJO 时写入对应属性。
+3. **`localOutputParameterCache` 的角色**：当同一个 `MappedStatement` 用嵌套查询（`select=`）被多次执行时，`CachingExecutor`/`BaseExecutor` 用该缓存记住每个 `CacheKey` 对应的 OUT 参数 `ParameterMapping` 列表，保证延迟加载完成后再把 OUT 值写回正确的调用行，避免嵌套场景下输出参数错位。
+
+> ⚠️ 游标（`jdbcType=CURSOR`）映射必须给 `resultMap`（如上文 `userCursor` 的写法），MyBatis 拿到 OUT 位置上的 `ResultSet` 后按该 resultMap 走正常的 `ResultSetHandler` 映射，等于把"嵌套 resultMap 映射结果集"复用在游标上。
 
 ## Java代码调用示例
 ```java

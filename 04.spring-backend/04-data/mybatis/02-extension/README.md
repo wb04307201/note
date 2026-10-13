@@ -13,7 +13,6 @@
 > ⬅️ [返回 MyBatis 主目录](../README.md)
 
 ---
----
 
 ## 🎯 一句话定位
 
@@ -143,15 +142,9 @@ User getUser(@Param("name") String userName);
 
 ---
 
-
-- [02-initialization-flow](../01-architecture/02-initialization-flow.md)
-← [返回 MyBatis 总览](../README.md)
-
----
-
 ## 🔗 兄弟主题
 
-- **[01-architecture](../01-architecture/README.md)** — 架构与原理
+- **[01-architecture](../01-architecture/README.md)** — 架构与原理(初始化流程见 [02-initialization-flow](../01-architecture/02-initialization-flow.md))
 - **[03-spring-integration](../03-spring-integration/README.md)** — Spring 整合
 - **[04-mybatis-plus](../04-mybatis-plus/README.md)** — MyBatis-Plus
 

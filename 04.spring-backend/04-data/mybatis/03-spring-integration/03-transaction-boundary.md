@@ -184,6 +184,29 @@ public final class SqlSessionUtils {
 }
 ```
 
+### 4. 版本演进：mybatis-spring 2.x vs 3.x 与 Spring 6 事务管理器
+
+**兼容性基线**（官方 Requirements 表）：
+
+| mybatis-spring | 配套 Spring Framework | Java | 对应 starter |
+|---|---|---|---|
+| 2.x（2.0 / 2.1） | Spring 5.x | Java 8+ | mybatis-spring-boot-starter 2.x（Boot 2） |
+| 3.x | **Spring 6.x** | **Java 17+** | mybatis-spring-boot-starter 3.x（Boot 3） |
+
+**`SqlSessionUtils` 本身的差异**：核心的 `getSqlSession()` / `registerSessionHolder()` / `closeSqlSession()` 逻辑在 2.x 与 3.x **完全一致**（都是"holder 命中即复用，未命中则 openSession 并绑定 ThreadLocal"），唯一实质变化在内部类 `SqlSessionSynchronization`：
+
+```java
+// mybatis-spring 2.x：继承适配器类
+private static final class SqlSessionSynchronization extends TransactionSynchronizationAdapter { ... }
+
+// mybatis-spring 3.x：直接实现接口
+private static final class SqlSessionSynchronization implements TransactionSynchronization { ... }
+```
+
+原因：`TransactionSynchronizationAdapter` 在 Spring 5.3 被标记废弃（接口方法已全部 `default` 化），并在 **Spring 6 中被删除**——mybatis-spring 3.x 为对齐 Spring 6 基线改为直接 `implements TransactionSynchronization`。事务同步的行为语义（`beforeCommit` 刷 BATCH 并更新二级缓存、`beforeCompletion`/`afterCompletion` 解绑并关闭 SqlSession、`getOrder()` 排在 Connection 同步之前）没有变化。
+
+**Spring 6 侧的 `JdbcTransactionManager`**：Spring 5.3 新增、Spring 6 时代常与 Boot 3 搭配使用，它是 `DataSourceTransactionManager` 的**子类**，差异只在事务句柄：`JdbcTransactionManager` 允许在事务中通过句柄暴露 JDBC `DatabaseMetaData`（连接未完全"锁死"给驱动内部使用时），适用于需要读取元数据的场景。对 MyBatis 整合而言两者**行为等价**——`SpringManagedTransaction` 只经由 `DataSourceUtils.getConnection(dataSource)` 拿连接，绑定 key 都是 DataSource，`SqlSessionUtils` 的同步逻辑不区分具体事务管理器类型。因此 2.x → 3.x 升级对事务边界语义是"基线平移"（Java 17 / Spring 6 / Jakarta 命名空间），而非行为变更。
+
 ---
 
 ## 三、事务失效场景（MyBatis 专项）

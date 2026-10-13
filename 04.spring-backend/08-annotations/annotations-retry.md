@@ -10,7 +10,7 @@
 
 # 重试注解
 
-> ⬅️ [返回注解速查](../README.md) | [校验注解](validation.md)
+> ⬅️ [返回注解速查](README.md) | [校验注解](validation.md)
 
 本节是 Spring Retry `@Retryable` / `@Recover` / `@EnableRetry` 的速查手册。**深读请前往 [06-integration/integration-retry](../06-integration/integration-retry.md)**。
 
@@ -202,6 +202,6 @@ public class PaymentService {
 
 ## 相关章节
 
-- ⬅️ [返回注解速查](../README.md)
+- ⬅️ [返回注解速查](README.md)
 - [事务注解](transaction.md) — 重试与事务的边界关系
 - [Spring Retry 深度解析](../06-integration/integration-retry.md) — 重试策略、退避算法、分布式重试完整指南

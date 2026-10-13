@@ -96,7 +96,8 @@ sequenceDiagram
     participant Registrar as MapperScannerRegistrar
     participant Factory as MapperScannerConfigurer
     participant Scanner as ClassPathMapperScanner
-    
+    participant MFB as MapperFactoryBean
+
     App->>Spring: 启动时解析 @Import
     Spring->>Registrar: registerBeanDefinitions()
     Registrar->>Factory: new MapperScannerConfigurer()
@@ -104,8 +105,8 @@ sequenceDiagram
     Factory->>Scanner: scan() 扫描包
     Scanner->>Scanner: 过滤出所有接口
     Scanner->>Spring: 注册 BeanDefinition（BeanClass=MapperFactoryBean）
-    Spring->>MapperFactoryBean: 实例化
-    MapperFactoryBean->>MapperFactoryBean: getObject() = JDK 动态代理
+    Spring->>MFB: 实例化
+    MFB->>MFB: getObject() = JDK 动态代理
 ```
 
 ### 3. 核心源码
@@ -269,64 +270,119 @@ sequenceDiagram
     participant SFB as SqlSessionFactoryBean
     participant ST as SqlSessionTemplate
     participant MSC as MapperScannerConfigurer
-    
+
     Boot->>Auto: @EnableAutoConfiguration 触发
     Auto->>Props: 读取 application.yml 配置
     Boot->>SFB: sqlSessionFactory(DataSource) 创建
     SFB->>SFB: setDataSource / setMapperLocations / setTypeAliasesPackage
     SFB->>SFB: getObject() 构建 SqlSessionFactory
     Boot->>ST: sqlSessionTemplate(SqlSessionFactory) 创建
-    Boot->>MSC: mapperScannerConfigurer() 创建（@ConditionalOnMissingBean）
-    MSC->>MSC: 扫描 basePackage
+    Note over Boot,MSC: 容器中没有 @MapperScan / MapperFactoryBean /<br/>MapperScannerConfigurer 时，由内部类<br/>MapperScannerRegistrarNotFoundConfiguration 触发<br/>AutoConfiguredMapperScannerRegistrar
+    Boot->>MSC: 注册 MapperScannerConfigurer BeanDefinition
+    MSC->>MSC: 扫描 AutoConfigurationPackages（@SpringBootApplication 所在包），只认 @Mapper 接口
 ```
 
 ### 4. 关键源码
 
+> 以下按 mybatis-spring-boot-starter **3.0.3** 真实源码节选（有删减处已注明），完整源码见 [MybatisAutoConfiguration.java](https://github.com/mybatis/spring-boot-starter/blob/mybatis-spring-boot-3.0.3/mybatis-spring-boot-autoconfigure/src/main/java/org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.java)。
+>
+> ⚠️ 注意：`MybatisAutoConfiguration` 中**不存在** `mapperScannerConfigurer()` 这样的 `@Bean` 方法——自动扫描由内部类 `MapperScannerRegistrarNotFoundConfiguration` + `AutoConfiguredMapperScannerRegistrar` 承担（见下）。
+
 ```java
-@org.springframework.context.annotation.Configuration
+@org.springframework.context.annotation.Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({SqlSessionFactory.class, SqlSessionFactoryBean.class})
 @ConditionalOnSingleCandidate(DataSource.class)
 @EnableConfigurationProperties(MybatisProperties.class)
-@AutoConfigurationAfter(DataSourceAutoConfiguration.class)
+@AutoConfigureAfter({DataSourceAutoConfiguration.class, MybatisLanguageDriverAutoConfiguration.class})
 public class MybatisAutoConfiguration implements InitializingBean {
+
+    private final MybatisProperties properties;
+    private final Interceptor[] interceptors;
+    private final TypeHandler[] typeHandlers;
+    private final ResourceLoader resourceLoader;
+    private final DatabaseIdProvider databaseIdProvider;
+    private final List<ConfigurationCustomizer> configurationCustomizers;
+    // ... 构造器通过 ObjectProvider 注入以上协作者（节选略）
 
     @Bean
     @ConditionalOnMissingBean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource);
-        factory.setVfs(SpringBootVFS.class);  // Spring Boot 专用 VFS，用于从 Jar 加载 XML
-
-        // 应用 application.yml 中的 mybatis 配置
-        if (StringUtils.hasText(properties.getConfigLocation())) {
-            factory.setConfigLocation(resourceLoader.getResource(properties.getConfigLocation()));
+        if (properties.getConfiguration() == null
+                || properties.getConfiguration().getVfsImpl() == null) {
+            factory.setVfs(SpringBootVFS.class);  // Spring Boot 专用 VFS，用于从 Jar 加载 XML
         }
-        applyConfiguration(factory);
-        applyMapperLocations(factory);  // 关键：扫描 mapper-locations 配置
-        applyTypeAliasesPackage(factory);
-        applyPlugins(factory);
-        applyTypeHandlers(factory);
-
+        if (StringUtils.hasText(this.properties.getConfigLocation())) {
+            factory.setConfigLocation(this.resourceLoader.getResource(this.properties.getConfigLocation()));
+        }
+        applyConfiguration(factory);              // mybatis.configuration.* 属性 + ConfigurationCustomizer
+        // ... configurationProperties / plugins / databaseIdProvider / typeAliases（节选略）
+        if (StringUtils.hasLength(this.properties.getTypeHandlersPackage())) {
+            factory.setTypeHandlersPackage(this.properties.getTypeHandlersPackage());
+        }
+        Resource[] mapperLocations = this.properties.resolveMapperLocations();
+        if (!ObjectUtils.isEmpty(mapperLocations)) {
+            factory.setMapperLocations(mapperLocations); // 关键：mapper-locations 配置在此生效
+        }
+        // ... 语言驱动相关设置（节选略）
         return factory.getObject();
     }
 
     @Bean
     @ConditionalOnMissingBean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-        ExecutorType executorType = properties.getExecutorType();
+        ExecutorType executorType = this.properties.getExecutorType();
         if (executorType != null) {
             return new SqlSessionTemplate(sqlSessionFactory, executorType);
         }
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer scanner = new MapperScannerConfigurer();
-        scanner.setBasePackage(properties.getMapperLocations() != null
-            ? properties.getBasePackage() : null);
-        return scanner;
+    /**
+     * 自动扫描的真正入口：仅扫描 @SpringBootApplication 所在包（AutoConfigurationPackages），
+     * 且只认标注 @Mapper 的接口。
+     */
+    public static class AutoConfiguredMapperScannerRegistrar
+            implements BeanFactoryAware, EnvironmentAware, ImportBeanDefinitionRegistrar {
+
+        private BeanFactory beanFactory;
+
+        @Override
+        public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata,
+                                            BeanDefinitionRegistry registry) {
+            if (!AutoConfigurationPackages.has(this.beanFactory)) {
+                logger.debug("Could not determine auto-configuration package, automatic mapper scanning disabled.");
+                return;
+            }
+            List<String> packages = AutoConfigurationPackages.get(this.beanFactory);
+            BeanDefinitionBuilder builder =
+                    BeanDefinitionBuilder.genericBeanDefinition(MapperScannerConfigurer.class);
+            builder.addPropertyValue("processPropertyPlaceHolders", true);
+            builder.addPropertyValue("annotationClass", Mapper.class); // 只扫 @Mapper 接口
+            builder.addPropertyValue("basePackage",
+                    StringUtils.collectionToCommaDelimitedString(packages));
+            // ... lazyInitialization / defaultScope / sqlSessionTemplate 绑定（节选略）
+            builder.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
+            registry.registerBeanDefinition(MapperScannerConfigurer.class.getName(),
+                    builder.getBeanDefinition());
+        }
+        // ... setBeanFactory / setEnvironment 略
+    }
+
+    /**
+     * 兜底配置：容器中没有 @MapperScan / MapperFactoryBean / MapperScannerConfigurer
+     * 任何一个时，才通过 @Import 触发上面的自动扫描。
+     */
+    @org.springframework.context.annotation.Configuration(proxyBeanMethods = false)
+    @Import(AutoConfiguredMapperScannerRegistrar.class)
+    @ConditionalOnMissingBean({MapperFactoryBean.class, MapperScannerConfigurer.class})
+    public static class MapperScannerRegistrarNotFoundConfiguration implements InitializingBean {
+        @Override
+        public void afterPropertiesSet() {
+            logger.debug("Not found configuration for registering mapper bean "
+                    + "using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.");
+        }
     }
 }
 ```

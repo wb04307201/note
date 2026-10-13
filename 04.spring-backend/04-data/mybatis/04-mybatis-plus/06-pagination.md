@@ -82,7 +82,9 @@ interceptor.addInnerInterceptor(paginationInterceptor);
 // → 返回的是分组后的行数，而非总组数
 ```
 
-### 3.2 使用 `@SqlParser` 自定义 count（XML 方式）
+### 3.2 自定义 count 查询（`_mpCount` 后缀，XML 方式）
+
+> ⚠️ `@SqlParser` 注解在 MyBatis-Plus **3.4.0 已移除**（分页职责迁至 `PaginationInnerInterceptor`），与自定义 count 也无关——自定义 count 的正确约定是：与原查询**同 namespace** 下定义 `原方法名 + _mpCount` 的语句，`PaginationInnerInterceptor` 执行分页时会自动优先使用它。
 
 ```xml
 <!-- 主查询 -->

@@ -36,9 +36,23 @@ public class DateTypeHandler extends BaseTypeHandler<Date> {
         Timestamp timestamp = rs.getTimestamp(columnName);
         return timestamp != null ? new Date(timestamp.getTime()) : null;
     }
-    // 其他重载方法...
+
+    @Override
+    public Date getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+        Timestamp timestamp = rs.getTimestamp(columnIndex);
+        return timestamp != null ? new Date(timestamp.getTime()) : null;
+    }
+
+    @Override
+    public Date getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+        // 存储过程 OUT 参数入口——本目录 04-stored-procedure 依赖此重载，不可省略
+        Timestamp timestamp = cs.getTimestamp(columnIndex);
+        return timestamp != null ? new Date(timestamp.getTime()) : null;
+    }
 }
 ```
+
+> ⚠️ 三个 `getNullableResult` 重载都要实现：列名映射、列索引映射、存储过程 `CallableStatement`（OUT 参数）走不同入口，缺任何一个都会在对应场景抛 `UnsupportedOperationException` 或返回错误值。完整的对称扩展示例（`EmailTypeHandler`）见 [08-class-diagram §实战源码片段 4](../01-architecture/08-class-diagram.md)。
 
 **配置方式**:
 
@@ -220,6 +234,7 @@ public class JacksonTypeHandler<T> extends BaseTypeHandler<T> {
 
 ## 系列导航
 
+- 深入阅读：[`08 核心类图与职责链路`](../01-architecture/08-class-diagram.md) — §6.7 ParameterHandler 与「实战源码片段 4：参数与结果 TypeHandler 的对称扩展」展示入参/出参两条路径如何汇合到本类
 - 下一篇：[`02 拦截器`](02-interceptor.md) — 插件机制与四大拦截点
 
 ← [返回: 02-extension](README.md)

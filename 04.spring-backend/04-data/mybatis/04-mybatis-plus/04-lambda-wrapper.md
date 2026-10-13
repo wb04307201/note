@@ -50,14 +50,15 @@ List<User> users = userMapper.selectList(wrapper);
 // 场景:姓"张" OR (status=1 且 score>80),按 create_time 倒序,前 10 条
 LambdaQueryWrapper<User> complex = new LambdaQueryWrapper<User>()
     .like(User::getName, "张")                              // name LIKE '%张%'
-    .or(w -> w.eq(User::getStatus, 1).gt(User::getScore, 80)) // AND (status=1 AND score>80)
+    .or(w -> w.eq(User::getStatus, 1).gt(User::getScore, 80)) // OR (status=1 AND score>80)
     .orderByDesc(User::getCreateTime)
     .select(User::getId, User::getName, User::getScore)    // 只查 3 列
     .last("LIMIT 10");
 List<User> topUsers = userMapper.selectList(complex);
 // SQL: SELECT id,name,score FROM user
-//      WHERE name LIKE '%张%' AND (status=1 AND score>80)
+//      WHERE name LIKE '%张%' OR (status=1 AND score>80)
 //      ORDER BY create_time DESC LIMIT 10
+// 注:嵌套 or(Consumer) 内部仍默认用 AND 连接各条件,外层才是 OR
 ```
 
 ### 2.3 动态查询:condition 判空拼接

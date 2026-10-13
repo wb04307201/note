@@ -102,7 +102,7 @@ public CorsFilter corsFilter() {
 1. **带 Cookie 跨域用了 `*`**：浏览器拒绝。必须显式列出 Origin。
 2. **预检失败 (405/403)**：OPTIONS 请求被 Security/拦截器吃掉；放行 `OPTIONS` 或在 Security 中 `disable()`。
 3. **网关层 CORS**：微服务由网关统一加 CORS 响应头，业务服务不加；避免重复。
-4. **Spring Security**：默认开启 CORS 支持，但**不会自动放行 OPTIONS**；需 `cors().and().csrf().disable()` 或自定义 `CorsConfigurationSource`。
+4. **Spring Security**：**默认并不启用 CORS**——Security 过滤链会先拦截跨域请求（预检 OPTIONS 也会被拦）。必须显式开启：`http.cors(Customizer.withDefaults())`（Boot 2.x 旧写法 `cors().and()...`）并提供 `CorsConfigurationSource` Bean（或 MVC 层已有 `@CrossOrigin`/全局 CORS 配置时由 `HandlerMappingIntrospector` 桥接），否则跨域请求直接 403。
 
 ---
 

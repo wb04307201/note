@@ -203,10 +203,24 @@ public void updateSlave() { ... }
 
 ### 2. 引入 Atomikos
 
+> ⚠️ **版本注意**：官方 starter `spring-boot-starter-jta-atomikos` **已在 Spring Boot 3.0 中移除**（最后一个版本是 Boot 2.7.x）。Boot 3 有两条路：
+> - **方案 A（推荐）**：改用 Atomikos 官方社区版 starter（`com.atomikos:transactions-spring-boot3-starter`，6.0.0+）
+> - **方案 B**：手动集成——引入 `com.atomikos:transactions-jta` + `transactions-jdbc`，自己注册 `UserTransactionManager` / `UserTransactionImp` Bean 和 `JtaTransactionManager`；或换用 Narayana（`org.jboss.narayana.jta` + Spring 的 `JBossTransactionManager` 适配）
+
 ```xml
+<!-- Spring Boot 2.x（官方 starter，3.0 已移除，仅历史项目使用） -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-jta-atomikos</artifactId>
+</dependency>
+```
+
+```xml
+<!-- Spring Boot 3.x（Atomikos 官方社区版 starter） -->
+<dependency>
+    <groupId>com.atomikos</groupId>
+    <artifactId>transactions-spring-boot3-starter</artifactId>
+    <version>6.0.0</version>
 </dependency>
 ```
 

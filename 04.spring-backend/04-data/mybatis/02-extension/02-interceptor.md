@@ -10,6 +10,8 @@
 
 # 02 拦截器(Interceptor)
 
+> 🎯 一句话定位：拦截器基于 JDK 动态代理在四大对象创建时织入，是 MyBatis 唯一官方横切扩展点。
+
 > 来源:整合自原 08.mybatis/README.md § 七.7.2 + 原 08.mybatis/interceptor/README.md 全文
 
 ---
@@ -152,16 +154,29 @@ public class EncryptInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         ParameterHandler handler = (ParameterHandler) invocation.getTarget();
-        Field parameterField = handler.getClass().getDeclaredField("parameterObject");
-        parameterField.setAccessible(true);
-        Object param = parameterField.get(handler);
-        if(param instanceof User){
-            ((User)param).setPhone(AESUtil.encrypt(phone));
+        // ✅ 正确写法：通过 Configuration.newMetaObject 访问参数对象，
+        //    不依赖字段名，代理类 / 版本升级均安全
+        MetaObject metaObject = SystemMetaObject.forObject(handler);
+        // 若 handler 已被其他插件代理，先剥到真实的 DefaultParameterHandler
+        while (metaObject.hasGetter("h")) {
+            Object target = metaObject.getValue("h.target");
+            metaObject = SystemMetaObject.forObject(target);
+        }
+        Object param = metaObject.getValue("parameterObject");
+        if (param instanceof User) {
+            User user = (User) param;
+            user.setPhone(AESUtil.encrypt(user.getPhone())); // 加密后 proceed() 绑定的即密文
         }
         return invocation.proceed();
     }
 }
 ```
+
+> ❌ **反例（反射硬取字段）**：`handler.getClass().getDeclaredField("parameterObject")` 有两个问题——
+> 1. 当 handler 已被其他拦截器 `Plugin.wrap()` 代理时，`getClass()` 返回的是 `$ProxyN`，根本没有 `parameterObject` 字段，直接抛 `NoSuchFieldException`；
+> 2. 反射强改私有字段破坏封装，字段名在版本升级中无兼容承诺。
+>
+> ✅ 统一用 `SystemMetaObject.forObject(...)` + `getValue/setValue`，MyBatis 自身内部也走 MetaObject 这套访问协议。
 
 ### 4. ResultSetHandler（结果集处理器）
 
@@ -294,21 +309,52 @@ public Object plugin(Object target) {
 
 ### 1. 数据脱敏系统
 
+拦截 `ResultSetHandler#handleResultSets`，在**结果映射完成后**遍历结果列表，按字段名/注解对字符串字段脱敏：
+
 ```java
+@Intercepts({
+    @Signature(type = ResultSetHandler.class, method = "handleResultSets",
+               args = {Statement.class})
+})
 public class DesensitizationInterceptor implements Interceptor {
-    private static final Map<String, Desensitizer> STRATEGIES = Map.of(
-        "phone", s -> s.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"),
+    // 字段名 → 脱敏策略（生产建议改为读取 @Sensitive 注解扫描实体）
+    private static final Map<String, UnaryOperator<String>> STRATEGIES = Map.of(
+        "phone",  s -> s.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"),
         "idCard", s -> s.replaceAll("(\\d{4})\\d{10}(\\w{4})", "$1**********$2")
     );
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        ResultSetHandler handler = (ResultSetHandler) invocation.getTarget();
-        Field resultMapsField = handler.getClass().getDeclaredField("mappedStatement.resultMaps");
-        // 实现结果集脱敏逻辑...
+        // 先放行完成正常映射，拿到结果列表后再就地脱敏
+        Object result = invocation.proceed();
+        if (result instanceof List) {
+            for (Object row : (List<?>) result) {
+                desensitize(row);
+            }
+        }
+        return result;
+    }
+
+    private void desensitize(Object row) {
+        if (row == null || row.getClass().isPrimitive() || row instanceof String) {
+            return;
+        }
+        // 用 MetaObject 访问属性，避免手写 getter/setter 反射
+        MetaObject metaObject = SystemMetaObject.forObject(row);
+        for (String field : metaObject.getGetterNames()) {
+            UnaryOperator<String> strategy = STRATEGIES.get(field);
+            if (strategy != null) {
+                Object value = metaObject.getValue(field);
+                if (value instanceof String && metaObject.hasSetter(field)) {
+                    metaObject.setValue(field, strategy.apply((String) value));
+                }
+            }
+        }
     }
 }
 ```
+
+> ❌ **常见错误写法**：`handler.getClass().getDeclaredField("mappedStatement.resultMaps")` —— `Field` 名不能带点号，运行必抛 `NoSuchFieldException`；即使分开反射 `mappedStatement` 再取 `resultMaps` 也无意义，脱敏应作用于**结果对象**而非映射元数据。正确姿势如上：`proceed()` 后遍历结果列表。
 
 ### 2. 动态数据源路由
 

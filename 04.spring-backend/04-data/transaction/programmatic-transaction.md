@@ -62,10 +62,9 @@ public class TxConfig {
     // 也可指定属性
     @Bean("readOnlyTx")
     public TransactionTemplate readOnlyTx(PlatformTransactionManager txManager) {
-        return new TransactionTemplate(txManager);
-        // 默认走 @Transactional 全局属性，也可单独设置
-        template.setReadOnly(true);
-        template.setTimeout(30);
+        TransactionTemplate template = new TransactionTemplate(txManager);
+        template.setReadOnly(true);   // 只读事务：驱动层可优化（如 MySQL 只读连接）
+        template.setTimeout(30);      // 超时 30 秒
         return template;
     }
 }

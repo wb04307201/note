@@ -328,7 +328,8 @@ class AutoFillAndLogicDeleteTest {
         // 绕过：selectList 同样过滤已删除
         assertEquals(0, userMapper.selectList(null).size());
 
-        // 物理删除需要走自定义 SQL 或 @SqlParser 绕过
+        // 物理删除需要走自定义 SQL 或 ISqlInjector 注入方法绕过
+        //（旧文档提到的 @SqlParser(filter=true) 已在 MP 3.4.0+ 移除，不再可用）
     }
 }
 ```

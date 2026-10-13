@@ -138,7 +138,7 @@ graph LR
 |--------|-----------|---------|
 | `PathVariableMethodArgumentResolver` | `@PathVariable` | URL 路径 |
 | `RequestParamMethodArgumentResolver` | `@RequestParam` | 查询参数/表单 |
-| `RequestBodyAdvice` | `@RequestBody` | 请求体 |
+| `RequestResponseBodyMethodProcessor` | `@RequestBody` | 请求体 |
 | `RequestHeaderMethodArgumentResolver` | `@RequestHeader` | Header |
 | `CookieValueMethodArgumentResolver` | `@CookieValue` | Cookie |
 | `ModelAttributeMethodProcessor` | `@ModelAttribute` | 表单对象 |

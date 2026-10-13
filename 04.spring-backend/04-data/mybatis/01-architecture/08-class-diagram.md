@@ -855,6 +855,8 @@ public final class EmailTypeHandler extends BaseTypeHandler<Email> {
 
 TypeHandler 的三种读取重载都应实现，因为列名映射、列序号映射与存储过程会走不同入口。值对象构造失败时应抛出带上下文的异常，而不是静默返回 null。
 
+> 📎 TypeHandler 的注册方式、TypeHandlerRegistry 查找顺序与更多自定义实例，见 [02-extension/01-type-handler](../02-extension/01-type-handler.md)。
+
 ## 版本与配置速查
 
 本文以 MyBatis 3.5.x 架构为基线。不同补丁版本可能增加字段或重载，但 Builder、Configuration、SqlSession、Executor 和四大处理器的主职责链长期稳定。

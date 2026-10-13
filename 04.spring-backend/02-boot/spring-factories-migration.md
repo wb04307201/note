@@ -123,11 +123,11 @@ public class AutoConfigurationBenchmark {
   public class WebMvcAutoConfiguration { ... }
   ```
 
-- **包路径的真实情况**：Spring Boot 3 引入 Jakarta Servlet 5+ 命名空间后，自动配置类包路径发生调整：
+- **包路径的真实情况**：`web.servlet` / `web.reactive` 的按栈拆分**早在 Spring Boot 2.0 就已完成**（`WebMvcAutoConfiguration` 自 2.0 起即位于 `org.springframework.boot.autoconfigure.web.servlet`），并非 Boot 3 才引入：
   - `org.springframework.boot.autoconfigure.web.servlet.*`（Servlet 栈，Tomcat/Jetty）
   - `org.springframework.boot.autoconfigure.web.reactive.*`（Reactive 栈，Netty）
-  
-  这些路径**不是简单的"重命名"**，而是按技术栈拆分。**Spring Boot 3.x 中部分旧的混合包路径（如 `org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration`）仍然存在以保持向后兼容**，但新代码应使用更明确的 `web.servlet` / `web.reactive` 子包。
+
+  Boot 3 对该包路径的实际变更是 **Jakarta 命名空间迁移**（`javax.servlet.*` → `jakarta.servlet.*`），类所在的包位置保持不变。**旧的混合路径（如 `org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration`）在 Boot 3.x 中已不存在**，任何仍引用该路径的代码/文档都属于 1.x 时代的过期内容。
 
 ### 2. Jakarta EE 适配
 

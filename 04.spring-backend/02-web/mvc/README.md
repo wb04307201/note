@@ -338,7 +338,8 @@ protected ModelAndView handleInternal(HttpServletRequest request,
 |:-----|:---------|:-----|
 | **Spring MVC 4.x** | `@RestController` 引入（4.0），`@RequestMapping` 全功能 | REST 开发标准化 |
 | **Spring MVC 5.0** | `RouterFunction` 函数式路由（替代注解路由）| 可选的编程式路由风格 |
-| **Spring MVC 5.3** | `@HttpExchange` 声明式 HTTP 客户端（类似 Feign 但原生）| 替代 RestTemplate/WebClient 部分场景 |
+| **Spring MVC 5.3** | 一致性改进与可观测性增强（如 `PathPattern` 默认解析器可切换） | 为 6.0 迁移铺路 |
+| **Spring Framework 6.0** | `@HttpExchange` 声明式 HTTP 客户端（类似 Feign 但原生）| 替代 RestTemplate/WebClient 部分场景 |
 | **Spring Boot 2.x** | 自动配置 `DispatcherServlet` + 内嵌 Tomcat/Netty | 零配置启动 Web 应用 |
 | **Spring Boot 3.x / Spring 6.0** | `javax.servlet.*` → `jakarta.servlet.*`；ProblemDetail（RFC 7807）标准错误体 | 破坏性迁移 + 错误响应标准化 |
 | **Spring Boot 3.2+** | Virtual Threads 默认启用（`spring.threads.virtual.enabled`）；RestClient 替代 RestTemplate | 高并发场景吞吐量提升；HTTP 客户端 API 现代化 |

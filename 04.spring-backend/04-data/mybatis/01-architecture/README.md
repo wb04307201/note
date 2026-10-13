@@ -26,7 +26,7 @@
 | [05](./05-dynamic-sql.md) | 动态 SQL | if/where/foreach/choose 如何拼接条件? | 8 min | ⭐⭐ |
 | [06](./06-result-mapping.md) | 关联映射 | 一对一、一对多怎么映射到对象? | 8 min | ⭐⭐ |
 | [07](./07-cache-mechanism.md) | 缓存机制 | 一级/二级缓存怎么配合,如何防穿透? | 10 min | ⭐⭐⭐ |
-| [08](./08-class-diagram.md) | 核心类关系图(附录) | 关键类的依赖关系长什么样? | 3 min | ⭐ |
+| [08](./08-class-diagram.md) | 核心类图与职责链路(含源码) | 关键类的依赖关系长什么样?一次 SQL 全链路怎么走? | 20 min | ⭐⭐⭐ |
 
 ---
 
