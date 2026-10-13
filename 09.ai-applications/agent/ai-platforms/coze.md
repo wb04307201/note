@@ -10,7 +10,7 @@
 
 # Coze（扣子）
 
-> ⬅️ [返回 AI 平台](README.md) | [Dify](dify.md) | [LangGraph](langgraph.md) | BPMN+AI 融合 | [11 AI 知识体系](../README.md)
+> ⬅️ [返回 AI 平台](README.md) | [Dify](dify.md) | [LangGraph](langgraph.md) | [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) | [Agent 目录](../README.md)
 
 ## 🎯 一句话定位
 
@@ -64,6 +64,8 @@ graph TB
 | **豆包** | 豆包 App 插件 / 语音对话 / 智能体联动 |
 | **巨量引擎** | 广告投放自动化 / 数据分析 |
 | **即梦 AI** | 文生图 / 文生视频 / Agent 调用 |
+
+> 🔗 官方入口：扣子（国内版）https://www.coze.cn/ · Coze（国际版）https://www.coze.com/ · 开发者文档 https://www.coze.cn/docs/ （API / 插件开发 / 工作流节点说明）
 
 ---
 
@@ -190,7 +192,7 @@ graph LR
 ## 相关章节
 
 - ⬅️ [返回 AI 平台](README.md) — 6 大平台对比与决策树
-- [11 AI 知识体系](../README.md) — 章节根目录
+- [Agent 目录](../README.md) — 章节根目录
 - [Dify](dify.md) — DSL 入 Git + 私有化首选
 - [LangGraph](langgraph.md) — 代码优先复杂 Agent 框架
 - [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — Coze + Camunda 8 混合架构（适合国内企业落地）

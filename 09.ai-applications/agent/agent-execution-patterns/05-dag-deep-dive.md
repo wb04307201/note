@@ -116,11 +116,12 @@ Loop 节点 = 子 DAG + 循环条件
 ## 典型实现框架
 | 框架 | 特点 | 适用 |
 |------|------|------|
-| **LangGraph** | LangChain 生态，Python 原生，节点=函数 | Python Agent 首选 |
-| **Temporal** | 持久化工作流，自动重试+补偿，跨语言 | 企业级长事务 |
-| **Cursor Composer** | IDE 内置，可视化编辑 | 开发工具链 |
-| **Prefect** | 数据管道 + DAG，可观测性强 | 数据工程 |
-| **Airflow** | 大数据调度，成熟稳定 | ETL / 批处理 |
+| **[LangGraph](https://github.com/langchain-ai/langgraph)** | LangChain 生态，Python 原生，节点=函数 | Python Agent 首选 |
+| **[Temporal](https://temporal.io/)** | 持久化工作流，自动重试+补偿，跨语言 | 企业级长事务 |
+| **[Prefect](https://github.com/PrefectHQ/prefect)** | 数据管道 + DAG，可观测性强 | 数据工程 |
+| **[Airflow](https://airflow.apache.org/)** | 大数据调度，成熟稳定 | ETL / 批处理 |
+
+> 注：Cursor Composer 等 IDE 的 Agent 功能内部虽以 DAG 式确定性流程编排编辑步骤，但它是 **IDE 内置能力而非独立编排框架**，不作为可复用框架列入上表；可作为"DAG 模式在开发工具链落地"的参考案例。
 
 ### LangGraph 示例
 

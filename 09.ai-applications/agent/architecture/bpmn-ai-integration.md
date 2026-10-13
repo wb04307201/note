@@ -3,14 +3,14 @@
   slug: 09.ai-applications/agent/architecture/bpmn-ai-integration
   type: article
   category: 主模块子文章
-  summary: AI + BPMN 融合
+  summary: AI + BPMN 融合 —— 4 大融合模式（LLM Service Task / 自研 Zeebe AI Worker / 流程引擎作为 Agent 工具 / HITL）+ Camunda 8.8 fromAi() + 决策树 + 落地清单
   depth: ⭐⭐⭐
   status: active
 -->
 
 # AI + BPMN 融合
 
-> ⬅️ [返回 AI 平台](../ai-platforms/README.md) | [Dify](../ai-platforms/dify.md) | [Coze](../ai-platforms/coze.md) | [LangGraph](../ai-platforms/langgraph.md) | Camunda 8 | [11 AI 知识体系](../README.md) | 07 工作流
+> ⬅️ [返回 AI 平台](../ai-platforms/README.md) | [Dify](../ai-platforms/dify.md) | [Coze](../ai-platforms/coze.md) | [LangGraph](../ai-platforms/langgraph.md) | [Camunda 8](../../../07.devops-and-tools/02-workflow/process-engine/camunda/camunda-8/README.md) | [Agent 目录](../README.md) | [07 工作流](../../../07.devops-and-tools/02-workflow/README.md)
 
 ## 🎯 一句话定位
 
@@ -76,6 +76,8 @@ flowchart LR
 - 私有 LLM / 非官方 provider 仍需走模式 B（自研 Zeebe AI Worker）
 
 ### 2.2 模式 B：自研 Zeebe AI Worker
+
+> 🔗 官方资源：Camunda 8 文档 https://docs.camunda.io/ · Zeebe GitHub https://github.com/camunda/camunda （Zeebe 引擎已并入 camunda/camunda monorepo；历史仓库 camunda/zeebe 已归档迁移）
 
 **思路**：把 LLM/Agent 框架（LangGraph / Dify / CrewAI）包装为 Zeebe Job Worker。
 
@@ -352,7 +354,7 @@ Q4: 是否需要人工审核？
 ## 相关章节
 
 - ⬅️ [返回 AI 平台](../ai-platforms/README.md) — 6 大平台对比与决策树
-- [11 AI 知识体系](../README.md) — 章节根目录
+- [Agent 目录](../README.md) — 章节根目录
 - [07 工作流](../../../07.devops-and-tools/02-workflow/README.md) — 工作流章节根目录
 - [Dify](../ai-platforms/dify.md) — 模式 A/B 中 LLM 推理的常见载体
 - [LangGraph](../ai-platforms/langgraph.md) — 模式 B/C 中 Agent 框架的工业界主流

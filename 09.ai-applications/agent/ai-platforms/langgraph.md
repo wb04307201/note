@@ -10,7 +10,7 @@
 
 # LangGraph
 
-> ⬅️ [返回 AI 平台](README.md) | [Dify](dify.md) | [Coze](coze.md) | BPMN+AI 融合 | [11 AI 知识体系](../README.md)
+> ⬅️ [返回 AI 平台](README.md) | [Dify](dify.md) | [Coze](coze.md) | [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) | [Agent 目录](../README.md)
 
 ## 🎯 一句话定位
 
@@ -99,6 +99,17 @@ result = app.invoke({"query": "..."}, config=config)
 - `MemorySaver`（开发用）
 - `SqliteSaver` / `PostgresSaver`（生产用）
 - `RedisSaver`（高吞吐）
+
+**Checkpoint 存储选型考量**（量级口径，非官方基准）：
+
+| 存储 | 数据量适配 | 读写延迟量级 | 选型理由 |
+|------|-----------|-------------|---------|
+| MemorySaver | 进程内存，重启即失 | ~µs | 仅本地开发/单测 |
+| SQLite | 单文件，GB 级以内 | ~ms（本地磁盘） | 单机 Demo / 小规模生产 |
+| Postgres | 水平扩展至 TB 级，可备份/多副本 | ~1-10ms（同机房） | 生产默认：状态需持久审计 + Time Travel 历史回放依赖全量 checkpoint |
+| Redis | 内存态，适合热数据 | ~亚毫秒 | 高 QPS 场景降低 invoke 尾延迟，但需另配持久化兜底 |
+
+> 关键权衡：checkpoint 数 = 步数 × thread 数，长流程 + 高并发下 Postgres 表增长快，需定期清理历史 thread 或分层归档——这是"状态可回放"能力的隐性存储成本。
 
 ### 2.3 Time Travel 时间旅行
 
@@ -250,14 +261,19 @@ app = swarm.compile()
 
 ---
 
-## 七、2025-2026 重要更新
+## 七、2024-2026 版本演进
 
-| 版本 | 特性 |
-|------|------|
-| **0.1.x（2024-Q4）** | 基础 StateGraph + Checkpointer |
-| **0.2.x（2025-Q1）** | Time Travel 稳定 + LangSmith 集成 |
-| **0.3.x（2025-Q3）** | `interrupt()` HITL 完善 + Swarm 模式 |
-| **1.0.x（2026-Q1）** | API 稳定 + 多模态原生 + MCP 双向 |
+> 📌 已对照 [GitHub Releases](https://github.com/langchain-ai/langgraph/releases) 校对（截至 2026-10）：1.0.0 实际发布于 **2025-10**（与 LangChain 1.0 同期），当前最新为 1.2.x（保持每周多个 patch 的快节奏迭代）。仓库约 4.3 万 stars（2026-10，GitHub API 实查），是 Python 侧最主流的 Agent 编排框架之一。
+
+| 版本 | 时间 | 特性 |
+|------|------|------|
+| **0.1.x** | 2024 | 基础 StateGraph + Checkpointer |
+| **0.2.x** | 2024-Q4~2025-Q1 | Time Travel 稳定 + LangSmith 集成 |
+| **0.3.x~0.6.x** | 2025 | `interrupt()` HITL 完善 + Swarm / Supervisor 官方多 Agent 模式 |
+| **[1.0.0](https://github.com/langchain-ai/langgraph/releases/tag/1.0.0)** | 2025-10 | API 稳定承诺（与 LangChain 1.0 同期发布），Python 3.14 支持 |
+| **1.2.x** | 2026 | Checkpoint/DeltaChannel 语义持续修复与增强；MCP 工具生态互通（经 LangChain 适配层）|
+
+> ⚠️ 旧版表中"1.0.x（2026-Q1）多模态原生 + MCP 双向"为当时推测，未见于官方 release notes——已按 GitHub Releases 实际记录修正。多模态与 MCP 能力主要经由 LangChain 1.x 消息抽象与适配器提供，而非 LangGraph 核心版本号特性。
 
 ---
 

@@ -16,8 +16,8 @@
 
 | # | 案例 | 路径 | 摘要 |
 |---|------|------|------|
-| 1 | Salesforce Agentforce | [salesforce-agentforce/](salesforce-agentforce/README.md) | Salesforce 企业级 Agent 平台（Apex/Flow/Agentforce 集成） |
-| 2 | Shopify AI Agent | [shopify-ai-agent/](shopify-ai-agent/README.md) | Shopify Sidekick 商家 AI Agent（Shopify Magic + Sidekick） |
+| 1 | Salesforce Agentforce | [salesforce-agentforce/](salesforce-agentforce/README.md) | Salesforce 企业级 Agent 平台（Apex/Flow/Agentforce 集成）· [官方产品页](https://www.salesforce.com/agentforce/) |
+| 2 | Shopify AI Agent | [shopify-ai-agent/](shopify-ai-agent/README.md) | Shopify Sidekick 商家 AI Agent（Shopify Magic + Sidekick）· [官方产品页](https://www.shopify.com/magic) |
 
 ## 阅读路径
 
@@ -38,7 +38,7 @@
 "Agent 真实案例"目录聚焦**已经大规模生产落地**的 AI Agent 产品复盘——不是 Demo、不是 Hackathon 项目,而是日活在百万级、商用 SLA 承诺的产品。
 
 > **本目录不收录**:
-> - 论文中的 Agent 框架(去 [../agent-architecture/](../agent-architecture/))
+> - 论文中的 Agent 框架 / 框架源码对比(去 [../agent-architecture/](../agent-architecture/)——含多 Agent 模式、通信协议与演进史、框架源码对比 3 篇专文)
 > - 自研小项目(去 [../coding-agents/](../coding-agents/) 看编码 Agent 的工程实践)
 > - 模型训练相关案例(去 [../../../08.ai-foundations/](../../../08.ai-foundations/))
 
@@ -73,7 +73,7 @@
 
 ## 与相邻主题的反向链
 
-- **[../agent-architecture/](../agent-architecture/)** — Agent 架构演进史。理解案例用了哪代架构(单 Agent / 多 Agent / Agent Mesh)。
+- **[../agent-architecture/](../agent-architecture/)** — Agent 架构全景与深化专文(多 Agent 模式 / 通信协议与演进史 / 框架源码对比)。理解案例用了哪代架构(单 Agent / 多 Agent / Agent Mesh)。
 - **[../agent-execution-patterns/](../agent-execution-patterns/)** — ReAct / Plan-Execute / Planning-Acting-Monitoring 等执行模式。案例中的 Agent 行为都可以映射到这些模式。
 - **[../agent-evaluation/](../agent-evaluation/)** — 案例中均涉及评测体系。LLM-as-judge、A/B 测试、回归集这套体系是上生产的必备。
 - **[../production-agent/](../production-agent/)** — 大厂案例的工程实践:监控、降级、限流、成本控制。

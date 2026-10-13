@@ -1,9 +1,9 @@
 <!--module:
   parent: ai
-  slug: ai/llm-evaluation
+  slug: ai/agent/agent-evaluation/llm-evaluation
   type: article
   category: 主模块子文章
-  summary: LLM 评估体系
+  summary: LLM 评估体系 —— 6 维度 + 5 方法 + Benchmark 生态 + CI 流水线
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -126,6 +126,8 @@
 
 ### 6.2 DeepEval 示例
 
+> DeepEval 开源仓库：https://github.com/confident-ai/deepeval
+
 ```python
 from deepeval import evaluate
 from deepeval.metrics import AnswerRelevancyMetric, FaithfulnessMetric
@@ -204,7 +206,7 @@ LLM 答案：{llm_answer}
 
 ### 7.3 评估数据平台
 
-- **Label Studio**（开源）
+- **[Label Studio](https://labelstud.io/)**（开源）
 - **Scale AI**（商业）
 - **Labelbox**（商业）
 - **Amazon SageMaker Ground Truth**
@@ -240,7 +242,7 @@ v1 模型回答 vs v2 模型回答
 ### 8.3 工具
 
 - **LaunchDarkly**（Feature Flag + A/B）
-- **Statsig**（A/B Test + 指标）
+- **[Statsig](https://statsig.com/)**（A/B Test + 指标）
 - **Eppo**（企业 A/B Test）
 
 ---
@@ -258,6 +260,8 @@ v1 模型回答 vs v2 模型回答
 | **数学推理** | GSM8K / MATH / AIME | 小学→竞赛级数学 | 正确率 % |
 | **对话质量** | MT-Bench / AlpacaEval | 多轮对话 / 指令跟随 | LLM Judge 1-10 分 |
 | **竞技场** | Chatbot Arena | 盲测对比 | ELO Rating |
+
+> 关键论文：MT-Bench / Chatbot Arena 出自 Zheng et al., *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*（NeurIPS 2023）https://arxiv.org/abs/2306.05685 ；HumanEval 出自 Chen et al., *Evaluating Large Language Models Trained on Code*（2021）https://arxiv.org/abs/2107.03374 。Chatbot Arena 实时榜单：https://lmarena.ai/
 
 ### 9.2 Chatbot Arena ELO 原理
 
@@ -376,7 +380,7 @@ LLM-as-Judge（GPT-4 评分）：
 
 ## 深度扩展
 
-🆕 **5 大灵魂拷问（重点看 Q5 监控）**：llm-production-thinking/05-online-monitoring —— 把 6 维评估延伸为线上 4 维监控 + Trace + 黄金集回归 + 漂移检测（含 5 分钟定位实战）。
+🆕 **5 大灵魂拷问（重点看 Q5 监控）**：[05-online-monitoring](../../production-stability/05-online-monitoring.md) —— 把 6 维评估延伸为线上 4 维监控 + Trace + 黄金集回归 + 漂移检测（含 5 分钟定位实战）。
 
 ---
 

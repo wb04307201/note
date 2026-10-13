@@ -264,8 +264,9 @@ agent = initialize_agent(
 ```python
 # 每 5 轮压缩一次历史
 if iter % 5 == 0:
-    summary = llm.invoke(f"压缩最近 5 轮：{history[-10:]}")
-    history = [summary] + history[-2:]  # 保留最新 2 轮
+    # 每轮 = Thought+Action+Observation ≈ 3 条消息，5 轮 ≈ 15 条
+    summary = llm.invoke(f"压缩最近 5 轮：{history[-15:]}")
+    history = [summary] + history[-6:]  # 保留最新 2 轮（2 × 3 条）
 ```
 
 ### 6.3 工具约束

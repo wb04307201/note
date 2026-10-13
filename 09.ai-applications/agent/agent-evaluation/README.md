@@ -156,7 +156,7 @@ def agent_score(trajectory, outcome, cost, feedback):
 |------|------|---------|
 | Agent A/B Test 系统设计 | [02-ab-testing-design/](02-ab-testing-design/README.md) | 多指标 + 流量分层 + 离线/在线双轨 + 显著性检验 + 自动决策 |
 | RAG 评估 | ../../rag/04-evaluation.md | RAGAS / TruLens / DeepEval 3 大工具横评 + 检索质量 + 生成质量指标 + 黄金集最佳实践 |
-| LLM 评估体系 | llm-evaluation/README.md | 6 大维度 + 5 种评估方法（自动化 / 黄金集 / LLM-as-Judge / 人工 / A/B Test） |
+| LLM 评估体系 | [llm-evaluation/README.md](llm-evaluation/README.md) | 6 大维度 + 5 种评估方法（自动化 / 黄金集 / LLM-as-Judge / 人工 / A/B Test） |
 
 > ⚠️ **断号说明**：系列文章原为 01–09 连续编号，第 09 章 `09-rag-evaluation` 已由 Task 13 迁至 RAG MOC（`../../rag/04-evaluation.md`），本目录系列现为 01–08。`02-ab-testing-design/` 与 `02-five-methods.md` 共用编号 02 但属于不同类型（目录 vs 文件），不会冲突。
 
@@ -187,6 +187,10 @@ Agent Evaluation 公式：
 - **面试题**：[12.interview/11.ai/agent-performance-evaluation](../../../12.interview/11.ai/agent-performance-evaluation/README.md) —— 7 道精选 Q&A
 - **真实案例**：[Salesforce Agentforce 评测实践](../case-studies/salesforce-agentforce/README.md)
 - **生产级 Agent**：[Shopify Sidekick 评测流程](../production-agent/README.md)
+- **外部权威引用**：
+  - MT-Bench / Chatbot Arena（LLM-as-Judge 方法论来源）：Zheng et al., *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*, NeurIPS 2023 — https://arxiv.org/abs/2306.05685
+  - RAGAS（RAG 评估框架）：https://github.com/explodinggradients/ragas
+  - DeepEval（LLM/Agent 评估开源框架）：https://github.com/confident-ai/deepeval
 
 ---
 

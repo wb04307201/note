@@ -360,34 +360,46 @@ user_proxy.initiate_chat(
 
 **0.4 风格（autogen-agentchat 新 API）**：
 
+> ⚠️ 0.4 中 `initiate_chat` + `code_execution_config` 的 0.2 写法已不再适用：代码执行改由 **`CodeExecutorAgent` + `LocalCommandLineCodeExecutor`** 承载，多 Agent 会话用 **`RoundRobinGroupChat` + `await team.run(...)`**；`UserProxyAgent` 在 0.4 中仅用于人工输入（human-in-the-loop），不负责代码执行。
+
 ```python
-from autogen_agentchat.agents import AssistantAgent, UserProxyAgent
+import asyncio
+from autogen_agentchat.agents import AssistantAgent, CodeExecutorAgent
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.ui import Console
+from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 model_client = OpenAIChatCompletionClient(model="gpt-4o")
 
+# 1. LLM Agent：生成代码
 assistant = AssistantAgent(
     name="assistant",
     model_client=model_client,
-    system_message="You are a helpful AI assistant.",
+    system_message="You are a helpful AI assistant. Write code to solve tasks.",
 )
 
-user_proxy = UserProxyAgent(
-    name="user",
-    code_execution_config={"work_dir": "coding"},
+# 2. 代码执行 Agent（替代 0.2 的 UserProxyAgent + code_execution_config）
+executor = CodeExecutorAgent(
+    name="executor",
+    code_executor=LocalCommandLineCodeExecutor(work_dir="coding"),
 )
 
-# 启动对话循环
-await user_proxy.initiate_chat(
-    assistant,
-    message="Write a Python function to compute Fibonacci numbers.",
-)
+# 3. 组队轮流对话（0.4 的 teams 抽象）
+team = RoundRobinGroupChat([assistant, executor], max_turns=10)
+
+async def main():
+    await Console(team.run_stream(task="Write a Python function to compute Fibonacci numbers."))
+
+asyncio.run(main())
 ```
 
-**GroupChat 多 Agent 模式**：
+**GroupChat 多 Agent 模式（0.2 兼容写法）**：
+
+> 注：以下 `GroupChat` + `GroupChatManager` 为 0.2 API（`pip install pyautogen` 的兼容包仍可用）；0.4 对应写法是上例的 `RoundRobinGroupChat`（可换 `SelectorGroupChat` 实现"由 LLM 选下一个发言者"）。
 
 ```python
-# 多个 Assistant + 一个 GroupChat Manager
+# 0.2 兼容：多个 Assistant + 一个 GroupChat Manager
 planner = AssistantAgent("planner", llm_config=...)
 coder = AssistantAgent("coder", llm_config=...)
 reviewer = AssistantAgent("reviewer", llm_config=...)

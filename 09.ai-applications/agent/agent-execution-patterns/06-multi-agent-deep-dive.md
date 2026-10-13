@@ -4,7 +4,7 @@
   type: topic
   category: Multi-Agent 深度
   summary: Multi-Agent 深度剖析 —— 通信协议 + 协调者模式 + CrewAI/AutoGen 实现 + 循环调用防护 + 5 个反模式
-  depth: ⭐⭐⭐⭐⭐
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
@@ -191,6 +191,9 @@ result = crew.kickoff()
 ---
 
 ## Multi-Agent vs 单 Agent
+
+> ⚠️ 下表 Token 成本倍数与适用比例为**社区实践中的经验值**（无严格出处），量化对比数据（同等任务的 token / 延迟 / 完成率）见 [03-six-dimensions-comparison](03-six-dimensions-comparison.md) §4「量化数据参考」。
+
 | 维度 | Multi-Agent | 单 Agent |
 |------|------------|---------|
 | **能力上限** | 更高（专业化分工） | 受限于单个 LLM |
@@ -257,8 +260,10 @@ result = crew.kickoff()
 
 ---
 
+## 相关章节
 
-- [shared-memory](../agent-memory/shared-memory.md)
+- [shared-memory](../agent-memory/shared-memory.md) —— §2.3 黑板模式（Blackboard / Shared State）的落地实现即 Agent 间共享记忆：多 Agent 写入 / 读取同一状态空间，详见共享记忆篇。
+
 ← [返回: Agent 4 大模式](../README.md) · 上一章：[05-dag](05-dag-deep-dive.md)
 
 ---

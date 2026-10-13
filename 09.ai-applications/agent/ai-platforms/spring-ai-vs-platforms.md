@@ -10,7 +10,7 @@
 
 # Spring AI vs 编排平台：代码优先与低代码的边界
 
-> ⬅️ [返回 AI 平台](README.md) | [Dify](dify.md) | [Coze](coze.md) | [LangGraph](langgraph.md) | BPMN+AI 融合 | [深度对比长文](../ai-platforms/spring-ai-vs-dify.md) | [11 AI 知识体系](../../README.md)
+> ⬅️ [返回 AI 平台](README.md) | [Dify](dify.md) | [Coze](coze.md) | [LangGraph](langgraph.md) | [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) | [深度对比长文](spring-ai-vs-dify.md) | [Agent 目录](../README.md)
 
 ## 🎯 一句话定位
 

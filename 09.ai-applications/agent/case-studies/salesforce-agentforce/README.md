@@ -10,14 +10,11 @@
 
 # Salesforce Agentforce：让销售 Agent 自己挖线索、约会议、跟进客户
 
-#销售 #CRM #办公 #客服
-
 > **一句话总结**：Agentforce 不是"聊天机器人+CRM 插件"，而是把销售流程拆成 Agent 自主闭环的"数字劳务市场"——销售 Agent 第一次有了"自己判断下一步"的能力，而不是按剧本跑。
 
 > 原文链接：https://www.salesforce.com/agentforce/
 > 产品深度解读：https://www.scrm.com/29767/%e4%ba%86%e8%a7%a3ec/hyzs/
 
----
 ---
 
 ## 一、从 Copilot 到 Agentforce：Salesforce 的"换挡"

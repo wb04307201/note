@@ -1,6 +1,6 @@
 <!--module:
   parent: ai/08-llmops/agent-evaluation
-  slug: ai/08-llmops/agent-evaluation/07-decision-tree
+  slug: ai/agent/agent-evaluation/07-selection-decision-tree
   type: topic
   category: 选型决策
   summary: Agent 评测选型决策 —— 按阶段 / 团队 / 预算选评测方案 + checklist
@@ -33,7 +33,7 @@ Q3：预算？
 ├─ $1k-10k/月 → + LLM-judge 多模型投票
 └─ > $10k/月 → + 用户模拟（GPU）+ 漂移监控系统
 
-Q4：任务类型？
+Q4：任务类型？（详见下文「任务类型选型」表）
 ├─ 结构化（订机票 / 退款）→ 自动化为主
 ├─ 开放式（对话 / 写作）→ LLM-judge 为主
 └─ 多步工具 → Trajectory 分析 + 工具准确率

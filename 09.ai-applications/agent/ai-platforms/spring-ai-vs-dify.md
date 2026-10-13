@@ -463,7 +463,7 @@ public String knowledgeBaseQuery(@ToolParam String question) {
 1. **AGPL License 风险**：修改 Dify 源码需开源，**SaaS 内部使用 OK，对外提供服务有边界争议**
 2. **多租户隔离**：Dify 内置 workspace，但隔离级别不如业务系统（数据库、向量库共享）
 3. **审计日志断层**：平台日志与业务日志两套存储，合规对账痛苦
-4. **企业版昂贵**：5000-20000 美元/月，规模化后成本超过自研
+4. **企业版昂贵**：询价制（官方不公开报价），社区反馈量级约数千至两万美元/月（经验值，无官方出处），规模化后成本可能超过自研
 5. **生态绑定**：长期使用 Dify 后想迁移，DSL YAML 难以转换到代码
 
 ### 6.2 Spring AI 踩坑
@@ -509,5 +509,15 @@ public String knowledgeBaseQuery(@ToolParam String question) {
 - [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — 另一种跨界决策范式
 - [12.interview/11.ai](../../../12.interview/11.ai/README.md) — AI 面试高频题（建议补充本主题的 3 个高频问题）
 - [Spring AI 官方文档](https://docs.spring.io/spring-ai/reference/) — 外部：Spring AI 工程实践一手资料
+
+---
+
+## 📚 参考来源
+
+1. **Spring AI 官方文档**：https://docs.spring.io/spring-ai/reference/ （ChatClient / VectorStore / RAG / MCP 模块一手资料）
+2. **Spring AI GitHub**：https://github.com/spring-projects/spring-ai
+3. **Spring AI Alibaba**：https://github.com/alibaba/spring-ai-alibaba （Graph / Agent 增强）
+4. **Dify 官方文档**：https://docs.dify.ai/ （工作流 / 知识库 / MCP 集成说明）
+5. **Dify GitHub**：https://github.com/langgenius/dify （AGPL 源码 + Releases）
 
 ← [返回笔记目录](../../README.md)

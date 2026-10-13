@@ -16,7 +16,7 @@
 
 ---
 
-## Plan-and-Execute 的本质
+## 1. Plan-and-Execute 的本质
 ```text
 ┌──────────────────────────────────────────────────────────┐
 │ Stage 1：Planner（规划）                                  │
@@ -42,7 +42,7 @@
 
 ---
 
-## 4 大对比优势（vs ReAct）
+## 2. 5 大对比优势（vs ReAct）
 | 维度 | ReAct | Plan-and-Execute |
 |------|-------|------------------|
 | **决策次数** | 每步都让 LLM 决策 | 一次性规划，逐步执行 |
@@ -55,7 +55,7 @@
 
 ---
 
-## 规划方法论（Plan 的 5 大要素）
+## 3. 规划方法论（Plan 的 5 大要素）
 ```python
 @dataclass
 class PlanStep:
@@ -104,7 +104,7 @@ class PlanStep:
 
 ---
 
-## 3 大重规划机制（核心！）
+## 4. 3 大重规划机制（核心！）
 ### 4.1 RePlan（重新规划）
 
 ```text
@@ -161,10 +161,13 @@ Plan: [Step1, Step2, Step3-fixed, Step4]
 
 ---
 
-## LangChain / LangGraph 实现
+## 5. LangChain / LangGraph 实现
 ### 5.1 LangChain 基础实现
 
+> ⚠️ **版本注记**：`langchain.experimental.plan_and_execute` 模块自 LangChain 0.1 起已迁移至独立包 `langchain_experimental`（需 `pip install langchain_experimental`），import 路径应改为 `from langchain_experimental.plan_and_execute import ...`。该 API 偏实验性质，生产环境推荐下方 5.2 的 LangGraph 实现。
+
 ```python
+# 旧版路径（LangChain ≤ 0.0.x）；新版需改为 langchain_experimental.plan_and_execute
 from langchain.experimental.plan_and_execute import (
     PlanAndExecute, 
     load_agent_executor, 
@@ -253,7 +256,7 @@ result = app.invoke({
 
 ---
 
-## Plan-and-Execute 适用场景 vs 不适用场景
+## 6. Plan-and-Execute 适用场景 vs 不适用场景
 ### 6.1 适用 ✅
 
 | 场景 | 原因 |
@@ -274,7 +277,7 @@ result = app.invoke({
 
 ---
 
-## Plan-and-Execute 优化方向
+## 7. Plan-and-Execute 优化方向
 ### 7.1 分层规划
 
 ```text

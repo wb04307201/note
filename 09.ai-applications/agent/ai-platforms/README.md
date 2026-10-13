@@ -57,17 +57,19 @@ graph TD
     P3 --> Cost3[成本:中<br/>灵活度:中-高<br/>学习成本:中]
 ```
 
-> **口诀**:**"快 Demo 选 Coze,做产品选 LangGraph,Java 栈选 Spring AI,特殊场景才自研"**。
+> **口诀**:**"快 Demo 选 Coze,做产品选 LangGraph,Java 栈选 Spring AI,特殊场景才自研"**。(「自研」= 裸调 API + 自研编排,本目录暂无专文,编排模式见 [../agent-architecture/](../agent-architecture/))
 
 ## 平台能力矩阵速查
 
-| 平台/框架 | 类型 | 可视化编排 | 知识库/RAG | 多 Agent | 企业集成 | 学习曲线 | 典型场景 |
-|----------|------|-----------|-----------|---------|---------|---------|---------|
-| **[Coze](https://www.coze.cn/)** | 低代码平台 | 强(可视化拖拽) | 内置 | 支持 | 中(主要面向 C 端/中小企业) | 低 | Bot 产品、客服、内部工具 |
-| **[Dify](https://dify.ai/)** | 低代码+BaaS | 强 | 内置 RAG 引擎 | 支持 | 中-高(可自部署) | 低-中 | 企业知识库、智能客服、自部署场景 |
-| **[LangGraph](https://github.com/langchain-ai/langgraph)** | 代码框架(Python) | 弱(图代码) | 需自接 | 强(图原生) | 中 | 中-高 | 复杂 Agent 编排、研究型项目、生产级定制 |
-| **[Spring AI](https://spring.io/projects/spring-ai)** | 代码框架(Java) | 弱 | 需自接 | 中 | 强(Spring 生态) | 中(需熟悉 Spring) | Java 栈企业接入、与现有微服务集成 |
-| **裸调 API** | 自研 | 无 | 自建 | 自建 | 自建 | 高 | 特殊定制、性能极致优化、深度业务耦合 |
+| 平台/框架 | 类型 | 可视化编排 | 知识库/RAG | 多 Agent | 企业集成 | 学习曲线 | Demo 上线量级* | 典型场景 |
+|----------|------|-----------|-----------|---------|---------|---------|---------------|---------|
+| **[Coze](https://www.coze.cn/)** | 低代码平台 | 强(可视化拖拽) | 内置 | 支持 | 中(主要面向 C 端/中小企业) | 低 | 数小时~1 天 | Bot 产品、客服、内部工具 |
+| **[Dify](https://dify.ai/)** | 低代码+BaaS | 强 | 内置 RAG 引擎 | 支持 | 中-高(可自部署) | 低-中 | 1~3 天(含自部署) | 企业知识库、智能客服、自部署场景 |
+| **[LangGraph](https://github.com/langchain-ai/langgraph)** | 代码框架(Python) | 弱(图代码) | 需自接 | 强(图原生) | 中 | 中-高 | 1~2 周 | 复杂 Agent 编排、研究型项目、生产级定制 |
+| **[Spring AI](https://spring.io/projects/spring-ai)** | 代码框架(Java) | 弱 | 需自接 | 中 | 强(Spring 生态) | 中(需熟悉 Spring) | 1~2 周(Spring 项目内) | Java 栈企业接入、与现有微服务集成 |
+| **裸调 API** | 自研 | 无 | 自建 | 自建 | 自建 | 高 | 2 周以上(编排/重试/监控全自建) | 特殊定制、性能极致优化、深度业务耦合 |
+
+> *「Demo 上线量级」为**经验值**(社区分享中反复出现的量级口径,非受控实测),用于横向感知投入差异,实际随团队熟练度/需求复杂度浮动。运行时 token 成本与平台无关(均由底层模型计价决定);低代码平台的额外成本主要是订阅费(Coze/Dify 均有免费层,SaaS 层量级约数十~数百美元/月,以官网定价页为准)。
 
 > 详细对比见 [coze.md](./coze.md) / [dify.md](./dify.md) / [langgraph.md](./langgraph.md) / [spring-ai-vs-dify.md](./spring-ai-vs-dify.md) / [spring-ai-vs-platforms.md](./spring-ai-vs-platforms.md)。
 
@@ -164,6 +166,8 @@ mindmap
 | 已有 LangChain 代码,想升级到生产 | LangGraph | LangChain 团队出品,平滑迁移 |
 | 客户要求私有化部署 | Dify / Spring AI | 二者都支持自部署,LangGraph 需自建 |
 | 极致定制,工期充裕 | 裸调 API + 自研编排 | 灵活度最高,但维护成本也最高 |
+
+> 注:「裸调 API + 自研编排」路线本目录暂无专文——自研编排所需的模式知识(ReAct / DAG / Plan-and-Execute 等)见 [../agent-architecture/](../agent-architecture/) 与 [../agent-execution-patterns/](../agent-execution-patterns/)。
 
 > **Tip**:选型后立刻配套 [../agent-evaluation/](../agent-evaluation/)——平台选对了,评估体系没跟上,效果好坏就只能靠"老板拍脑袋"。
 

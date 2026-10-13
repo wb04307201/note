@@ -10,7 +10,7 @@
 
 # Dify
 
-> ⬅️ [返回 AI 平台](README.md) | [Coze](coze.md) | [LangGraph](langgraph.md) | BPMN+AI 融合 | [11 AI 知识体系](../../README.md)
+> ⬅️ [返回 AI 平台](README.md) | [Coze](coze.md) | [LangGraph](langgraph.md) | [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) | [Agent 目录](../../README.md)
 
 ## 🎯 一句话定位
 
@@ -215,7 +215,7 @@ nodes:
 
 ## 七、Dify vs 传统 BPMN 引擎 8 维对比
 
-> 📌 **注**：Dify 是 AI 平台，BPMN 是工作流引擎；二者并非同一类工具。**Dify 强在 LLM 推理 + 业务快速试错；BPMN 强在确定性事务 + 合规审计**。生产中常**组合使用**——详见 BPMN+AI 融合。
+> 📌 **注**：Dify 是 AI 平台，BPMN 是工作流引擎；二者并非同一类工具。**Dify 强在 LLM 推理 + 业务快速试错；BPMN 强在确定性事务 + 合规审计**。生产中常**组合使用**——详见 [BPMN+AI 融合](../architecture/bpmn-ai-integration.md)。
 
 | 维度 | **Dify** | **传统 BPMN（Camunda 7）** |
 |------|---------|---------------------------|
@@ -267,6 +267,8 @@ nodes:
 
 **自托管最低配置**：2 核 4G 单机可跑 Demo；生产建议 4 核 8G + 独立 PG + Qdrant + Redis。
 
+> 🔗 官方资源：Dify GitHub https://github.com/langgenius/dify （AGPL 源码 + Docker Compose 部署指南）· 官方文档 https://docs.dify.ai/ · 官网 https://dify.ai/
+
 ---
 
 ## 十一、2025-2026 重要更新
@@ -297,10 +299,9 @@ nodes:
 ## 相关章节
 
 - ⬅️ [返回 AI 平台](README.md) — 6 大平台对比与决策树
-- [11 AI 知识体系](../../README.md) — 章节根目录
+- [Agent 目录](../../README.md) — 章节根目录
 - [Coze（扣子）](coze.md) — 字节系国内最强生态
 - [LangGraph](langgraph.md) — 代码优先复杂 Agent 框架
-- BPMN+AI 融合 — Dify + Camunda 8 混合架构
-
-- [spring-ai-vs-platforms](spring-ai-vs-platforms.md)
-- [spring-ai-vs-dify](../ai-platforms/spring-ai-vs-dify.md)
+- [BPMN+AI 融合](../architecture/bpmn-ai-integration.md) — Dify + Camunda 8 混合架构
+- [spring-ai-vs-platforms](spring-ai-vs-platforms.md) — 代码优先与低代码平台的边界
+- [spring-ai-vs-dify](spring-ai-vs-dify.md) — Spring AI 与 Dify 的企业级取舍
