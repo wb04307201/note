@@ -20,11 +20,11 @@
 ## 题目列表
 | # | 题目 | 场景类型 | 难度 | 核心考点 |
 |---|------|---------|------|---------|
-| 1 | [Git Rebase vs Merge 怎么选？](git-rebase-vs-merge/README.md) | 架构选型 | ⭐⭐⭐⭐ | 线性历史 / Golden Rule / 冲突解决 |
-| 2 | [Docker 多阶段构建为什么能大幅减小镜像体积？](docker-multi-stage/README.md) | 性能对比 | ⭐⭐⭐⭐ | 层缓存 / distroless / .dockerignore |
-| 3 | [Nginx 反向代理的负载均衡策略有哪些？](nginx-reverse-proxy/README.md) | 架构选型 | ⭐⭐⭐⭐ | upstream 策略 / 健康检查 / sticky session |
-| 4 | [K8s Pod 生命周期中有哪些容易忽略的状态？](k8s-pod-lifecycle/README.md) | 生产 Bug | ⭐⭐⭐⭐⭐ | Probe 三兄弟 / Init Container / PreStop |
-| 5 | [为什么大公司用 CI/CD，小公司却手动发版？](cicd-adoption/README.md) | 架构选型 | ⭐⭐⭐⭐ | 团队规模 / 发布频率 / ROI / 康威定律 |
+| 1 | [Git Rebase vs Merge 怎么选？](git-rebase-vs-merge/README.md) | 架构选型 | ⭐⭐⭐ | 线性历史 / Golden Rule / 冲突解决 |
+| 2 | [Docker 多阶段构建为什么能大幅减小镜像体积？](docker-multi-stage/README.md) | 性能对比 | ⭐⭐⭐ | 层缓存 / distroless / .dockerignore |
+| 3 | [Nginx 反向代理的负载均衡策略有哪些？](nginx-reverse-proxy/README.md) | 架构选型 | ⭐⭐⭐ | upstream 策略 / 健康检查 / sticky session |
+| 4 | [K8s Pod 生命周期中有哪些容易忽略的状态？](k8s-pod-lifecycle/README.md) | 生产 Bug | ⭐⭐⭐⭐ | Probe 三兄弟 / Init Container / PreStop |
+| 5 | [为什么大公司用 CI/CD，小公司却手动发版？](cicd-adoption/README.md) | 架构选型 | ⭐⭐⭐ | 团队规模 / 发布频率 / ROI / 康威定律 |
 
 ---
 

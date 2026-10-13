@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-llm-cost-control
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 成本控制, 降级, 路由, Production]
@@ -105,6 +105,6 @@ P99 单请求 $0.05 触发降级。"
 
 ---
 
-> 📅 2026-07-26 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 成本控制 · 含 60 秒话术 + 反模式
+> 📅 2026-07-26 · 咬文嚼字 · 11.ai · ⭐⭐ · 成本控制 · 含 60 秒话术 + 反模式
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

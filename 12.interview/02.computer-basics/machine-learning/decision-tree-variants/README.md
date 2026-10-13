@@ -1,7 +1,7 @@
 <!--question:
   id: 02.computer-basics-decision-tree-variants
   topic: 02.computer-basics
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 概念辨析
   tags: [ML, 决策树, ID3, C4.5, CART, 信息增益, Gini]
@@ -144,4 +144,4 @@ clf = DecisionTreeClassifier(
 
 ---
 
-> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐
+> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐

@@ -1,7 +1,7 @@
 <!--question:
   id: 10.big-data-kafka-exactly-once
   topic: 10.big-data
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Kafka, Exactly-Once, 幂等, 事务, Producer ID, Consumer Offset]
@@ -256,6 +256,6 @@ Kafka Exactly-Once 使用决策树：
 
 ---
 
-> 📅 2026-07-16 · 咬文嚼字 · 大数据 · 消息可靠性 · ⭐⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 大数据 · 消息可靠性 · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 大数据](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: tools-nginx-reverse-proxy
   topic: tools
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [tools, Nginx, 反向代理, 负载均衡, upstream, 健康检查]
@@ -134,4 +134,4 @@ upstream backend {
 
 ← [返回: 咬文嚼字 · 工具](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐⭐（高频面试 + 生产运维必会）
+> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐（高频面试 + 生产运维必会）

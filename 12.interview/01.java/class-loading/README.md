@@ -1,7 +1,7 @@
 <!--question:
   id: 01.java-class-loading
   topic: 01.java
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, class, loading]
@@ -320,6 +320,6 @@ graph LR
 - 深度阅读：[`01.java-and-jvm`](../../../01.java-and-jvm/README.md) — 主模块详细内容
 - 兄弟实战：[`生产 NoClassDefFoundError 排查全链路`](../no-class-def-found-troubleshooting/README.md) — 链接阶段失败的部署视角（JVM 机制视角看 class-loading，部署确定性视角看 NoClassDefFoundError）
 
-> 📅 2026-09-01 · 咬文嚼字 · 类加载 · ⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 类加载 · ⭐⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · class-loading](../README.md)

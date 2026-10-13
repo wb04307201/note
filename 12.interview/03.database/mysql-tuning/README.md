@@ -1,7 +1,7 @@
 <!--question:
   id: 03.database-tuning
   topic: 03.database
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [03.database, MySQL, tuning]
@@ -377,6 +377,6 @@ SHOW TABLE STATUS LIKE 'users';        -- 查看数据量、索引大小
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)

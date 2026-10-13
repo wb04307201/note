@@ -1,7 +1,7 @@
 <!--question:
   id: tools-k8s-pod-lifecycle
   topic: tools
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产Bug
   tags: [tools, Kubernetes, Pod, 生命周期, Probe, Init Container, PreStop]
@@ -148,4 +148,4 @@ lifecycle:
 
 ← [返回: 咬文嚼字 · 工具](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐⭐⭐（高频面试 + 生产事故高发区）
+> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐⭐（高频面试 + 生产事故高发区）

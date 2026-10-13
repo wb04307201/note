@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-llm-benchmark
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [11.ai, benchmark, MMLU, HumanEval, SWE-bench, Arena, 数据污染]

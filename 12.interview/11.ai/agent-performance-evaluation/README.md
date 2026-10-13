@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-agent-performance-evaluation
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, Agent, 评测, Evaluation, LLM-as-Judge, A/B Test, 性能评估, 量化指标]
@@ -411,7 +411,7 @@ Q5：贵司的黄金集多久更新一次？
 
 ---
 
-> 📅 2026-07-10 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 6 道精选 Q&A · 含阿里一面原题深度回答话术 + 7 反模式 + 4 工业方案
+> 📅 2026-07-10 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 6 道精选 Q&A · 含阿里一面原题深度回答话术 + 7 反模式 + 4 工业方案
 
 ## 反向链
 

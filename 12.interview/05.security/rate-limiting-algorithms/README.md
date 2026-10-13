@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-rate-limiting-algorithms
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, 限流, 令牌桶, 漏桶, 滑动窗口, 固定窗口]
@@ -129,4 +129,4 @@ return 1  -- 拒绝
 
 ← [返回: 咬文嚼字 · 安全](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐

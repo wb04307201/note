@@ -24,18 +24,18 @@
 ### IoC 与 Bean
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Bean 生命周期详解](bean-lifecycle/) | ⭐⭐⭐⭐ | 实例化 → 注入 → 初始化 → 销毁 12 步 |
+| [Bean 生命周期详解](bean-lifecycle/) | ⭐⭐⭐ | 实例化 → 注入 → 初始化 → 销毁 12 步 |
 | [@Bean vs @Component](bean-vs-component/) | ⭐⭐⭐⭐ | 两种 Bean 注册方式的区别与选择 |
-| [Spring Boot 自动配置原理](auto-configuration/) | ⭐⭐⭐⭐⭐ | @EnableAutoConfiguration + spring.factories + 条件注解 |
+| [Spring Boot 自动配置原理](auto-configuration/) | ⭐⭐⭐⭐ | @EnableAutoConfiguration + spring.factories + 条件注解 |
 | [循环依赖三级缓存](circular-dependency/) | ⭐⭐⭐⭐⭐ | DefaultSingletonBeanRegistry 如何解决循环依赖 |
 
 ### AOP 与事务
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [@Transactional 失效 8 种场景](transactional-pitfalls/) | ⭐⭐⭐⭐⭐ | 同类调用 / 异常类型 / 多线程 / 传播行为 |
+| [@Transactional 失效 8 种场景](transactional-pitfalls/) | ⭐⭐⭐ | 同类调用 / 异常类型 / 多线程 / 传播行为 |
 | [@Transactional 传播行为](transactional-propagation/) | ⭐⭐⭐⭐⭐ | 7 种 propagation（REQUIRED / REQUIRES_NEW / NESTED ...） |
 | [JDK 动态代理 vs CGLIB](jdk-proxy-vs-cglib/) | ⭐⭐⭐⭐ | 两种代理机制的原理、区别与 Spring 选择策略 |
-| [AOP 实现原理](aop-principle/) | ⭐⭐⭐⭐ | 切面、通知、连接点、切入点概念与底层实现 |
+| [AOP 实现原理](aop-principle/) | ⭐⭐⭐ | 切面、通知、连接点、切入点概念与底层实现 |
 | [@Async 失效 4 种场景](async-pitfalls/) | ⭐⭐⭐⭐ | 同类调用 / 非 @Bean / 线程池缺失 / 内部方法调用 |
 | [Spring 事件机制](event-mechanism/) | ⭐⭐⭐⭐ | ApplicationEvent / ApplicationListener / @EventListener |
 
@@ -52,7 +52,7 @@
 ### Spring Cloud
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [注册发现选型：Nacos / Eureka / Consul / ZK](cloud-registry-comparison/) | ⭐⭐⭐⭐ | CAP 取舍 / 健康检查 / 配置中心 / Eureka 已停维 / Nacos 推荐 |
+| [注册发现选型：Nacos / Eureka / Consul / ZK](cloud-registry-comparison/) | ⭐⭐⭐ | CAP 取舍 / 健康检查 / 配置中心 / Eureka 已停维 / Nacos 推荐 |
 
 ---
 

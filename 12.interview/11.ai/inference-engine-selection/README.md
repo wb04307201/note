@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-inference-engine-selection
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [11.ai, vLLM, Ollama, PagedAttention, 推理引擎, 量化, 分布式]
@@ -425,6 +425,6 @@ Q4：贵司 LLM 应用 RAG / Agent / Few-shot 哪种多？
 
 ---
 
-> 📅 2026-07-06 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板
+> 📅 2026-07-06 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板
 
 ← [返回: 咬文嚼字 · inference-engine-selection](../README.md)

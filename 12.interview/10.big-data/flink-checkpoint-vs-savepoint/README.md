@@ -1,7 +1,7 @@
 <!--question:
   id: 10.big-data-flink-checkpoint-vs-savepoint
   topic: 10.big-data
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Flink, Checkpoint, Savepoint, barrier, Exactly-Once, 状态后端]
@@ -205,6 +205,6 @@ flink run -s hdfs:///savepoints/upgrade-v2/savepoint-xxxxx myapp-v2.jar
 
 ---
 
-> 📅 2026-07-16 · 咬文嚼字 · 大数据 · Flink 容错 · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 大数据 · Flink 容错 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 大数据](../README.md)

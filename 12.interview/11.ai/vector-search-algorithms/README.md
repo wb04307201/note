@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-vector-search-algorithms
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [11.ai, Vector Search, HNSW, IVF, DiskANN, ANN, 10亿级]
@@ -300,6 +300,6 @@ results = collection.search(
 
 ---
 
-> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐
+> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · vector-search-algorithms](../README.md)

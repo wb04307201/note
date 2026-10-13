@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-async-await-try-catch
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 异步错误处理
   tags: [09.front-end, async, await, try/catch, Promise, unhandledrejection, ErrorBoundary]
@@ -435,6 +435,6 @@ Q5：贵司有取消重复请求的机制吗？
 
 ---
 
-> 📅 2026-07-06 · 咬文嚼字 · 09.front-end · ⭐⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 5 反模式 + 4 实战方案
+> 📅 2026-07-06 · 咬文嚼字 · 09.front-end · ⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 5 反模式 + 4 实战方案
 
 ← [返回: 咬文嚼字 · async-await-try-catch](../README.md)

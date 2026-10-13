@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-multi-field-ranking
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 排名, 归一化, 加权, 系统设计]
@@ -210,6 +210,6 @@ Redis ZADD / DB UPDATE
 
 ---
 
-> 📅 2026-09-01 · 咬文嚼字 · 多字段排名 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 多字段排名 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 04.system-design](../README.md)

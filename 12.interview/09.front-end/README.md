@@ -19,12 +19,12 @@
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [闭包 Closure](closure/) | ⭐⭐⭐⭐ | 私有变量 / 内存泄漏 / React Hooks 陷阱 |
-| [事件循环 Event Loop](event-loop/) | ⭐⭐⭐⭐ | 宏任务 / 微任务 / async-await 本质 |
+| [事件循环 Event Loop](event-loop/) | ⭐⭐⭐ | 宏任务 / 微任务 / async-await 本质 |
 | [原型链与继承](prototype-chain/) | ⭐⭐⭐⭐ | `__proto__` vs `prototype` / 继承方案 |
 | [this 绑定规则](this-binding/) | ⭐⭐⭐⭐ | 默认 / 隐式 / 显式 / new / 箭头函数 |
 | [防抖 + 节流手写](debounce-throttle/) | ⭐⭐⭐⭐ | debounce / throttle 实现与应用场景 |
-| [防抖流式场景不合适](debounce-streaming/) | ⭐⭐⭐⭐ | AI/SSE 流式输出中的 3 大问题 + 正确方案 |
-| 🆕 [async/await 必须 try/catch 吗](async-await-try-catch/) | ⭐⭐⭐⭐⭐ | 4 种错误处理方式 + 5 反模式 + React/Vue 全链路 |
+| [防抖流式场景不合适](debounce-streaming/) | ⭐⭐ | AI/SSE 流式输出中的 3 大问题 + 正确方案 |
+| 🆕 [async/await 必须 try/catch 吗](async-await-try-catch/) | ⭐⭐⭐⭐ | 4 种错误处理方式 + 5 反模式 + React/Vue 全链路 |
 
 ### HTTP 与网络
 | 主题 | 难度 | 核心问题 |
@@ -32,7 +32,7 @@
 | [HTTP 缓存机制](http-cache/) | ⭐⭐⭐⭐ | 强缓存 Cache-Control / 协商缓存 ETag |
 | [CORS 跨域详解](cors/) | ⭐⭐⭐⭐ | 简单请求 / 预检请求 / 常见头部 |
 | [HTTPS 握手过程](https-handshake/) | ⭐⭐⭐⭐⭐ | TLS 1.2 vs 1.3 / 证书验证 |
-| 🆕 [WebSocket 丢包前端处理](websocket-loss-handling/) | ⭐⭐⭐⭐⭐ | 5 策略（心跳 / 指数退避重连 / ACK / 排序 / 去重）+ 7 反直觉点（含 30 行心跳 / 指数退避 / ACK 重传 / LRU 去重 + 90s 话术 + 5 追问）|
+| 🆕 [WebSocket 丢包前端处理](websocket-loss-handling/) | ⭐⭐⭐⭐ | 5 策略（心跳 / 指数退避重连 / ACK / 排序 / 去重）+ 7 反直觉点（含 30 行心跳 / 指数退避 / ACK 重传 / LRU 去重 + 90s 话术 + 5 追问）|
 
 ### CSS
 | 主题 | 难度 | 核心问题 |
@@ -43,12 +43,12 @@
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [消息机制](message/) | ⭐⭐⭐ | 浏览器事件循环 + 宏任务 / 微任务 |
-| [存储方案](storage/) | ⭐⭐ | Cookie / LocalStorage / SessionStorage / IndexedDB |
-| [从 URL 输入到页面展示](from-url-to-page/) | ⭐⭐⭐⭐⭐ | 综合题：网络 + 解析 + 渲染全链路 |
+| [存储方案](storage/) | ⭐⭐⭐ | Cookie / LocalStorage / SessionStorage / IndexedDB |
+| [从 URL 输入到页面展示](from-url-to-page/) | ⭐⭐⭐ | 综合题：网络 + 解析 + 渲染全链路 |
 | [CSS 渲染阻塞](css-render-blocking/) | ⭐⭐⭐⭐ | CSS 位置 vs 首屏白屏 + 6 种优化姿势 |
 | [回流与重绘](reflow-repaint/) | ⭐⭐⭐⭐ | 渲染队列机制 + Layout Thrashing 避免 |
-| [script async / defer](script-async-defer/) | ⭐⭐⭐⭐ | 加载 vs 执行时机 + DOMContentLoaded |
-| [懒加载 vs 预加载](lazy-load-preload/) | ⭐⭐⭐⭐ | preload / prefetch / preconnect / dns-prefetch |
+| [script async / defer](script-async-defer/) | ⭐⭐⭐ | 加载 vs 执行时机 + DOMContentLoaded |
+| [懒加载 vs 预加载](lazy-load-preload/) | ⭐⭐⭐ | preload / prefetch / preconnect / dns-prefetch |
 
 ### 工具与测试
 | 主题 | 难度 | 核心问题 |
@@ -59,15 +59,15 @@
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [Virtual DOM Diff](virtual-dom-diff/) | ⭐⭐⭐⭐ | O(n) 复杂度 / key 的作用 / diff 策略 |
-| [React Hooks 原理](react-hooks/) | ⭐⭐⭐⭐ | useState / useEffect / useMemo / useCallback |
+| [React Hooks 原理](react-hooks/) | ⭐⭐⭐ | useState / useEffect / useMemo / useCallback |
 | [Vue 响应式原理](vue-reactivity/) | ⭐⭐⭐⭐ | Object.defineProperty vs Proxy |
-| 🆕 [Vue 大列表性能调优](large-list-perf/) | ⭐⭐⭐⭐⭐ | 1 万条+嵌套+深层修改卡 2 秒 → 排查 4 步 + 4 层优化（shallowRef/Map/虚拟滚动）+ 量化基准 |
+| 🆕 [Vue 大列表性能调优](large-list-perf/) | ⭐⭐⭐⭐ | 1 万条+嵌套+深层修改卡 2 秒 → 排查 4 步 + 4 层优化（shallowRef/Map/虚拟滚动）+ 量化基准 |
 
 ### 安全
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [XSS / CSRF 攻击防御](xss-csrf/) | ⭐⭐⭐⭐ | 反射型 / 存储型 / Token / SameSite Cookie |
-| **🆕 [用户登录 Token 存储安全](token-storage-security/)** | ⭐⭐⭐⭐ | localStorage / sessionStorage / HttpOnly Cookie + 双 Token 方案 |
+| **🆕 [用户登录 Token 存储安全](token-storage-security/)** | ⭐⭐⭐ | localStorage / sessionStorage / HttpOnly Cookie + 双 Token 方案 |
 
 ### 工具方法
 | 主题 | 难度 | 核心问题 |
@@ -77,7 +77,7 @@
 ### 工程迁移
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Webpack → Vite/Rspack 迁移坑](webpack-vite-migration/) | ⭐⭐⭐⭐ | CJS vs ESM / Tree-Shaking 差异 / 环境变量迁移 |
+| [Webpack → Vite/Rspack 迁移坑](webpack-vite-migration/) | ⭐⭐⭐ | CJS vs ESM / Tree-Shaking 差异 / 环境变量迁移 |
 
 ### 跨端架构（架构师视角）
 | 主题 | 难度 | 核心问题 |
@@ -92,7 +92,7 @@
 ### Promise 专题
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Promise 手写实现](promise-handwriting/) | ⭐⭐⭐⭐⭐ | resolve / reject / then / catch / all / race |
+| [Promise 手写实现](promise-handwriting/) | ⭐⭐⭐ | resolve / reject / then / catch / all / race |
 
 ---
 

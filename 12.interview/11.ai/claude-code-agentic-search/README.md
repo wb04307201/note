@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-claude-code-agentic-search
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉辨析
   tags: [11.ai, Claude Code, Agentic Search, RAG, 检索, AI Coding]
@@ -179,6 +179,6 @@ RAG 不是被淘汰，是**场景化**：
 
 ---
 
-> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐
+> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · claude-code-agentic-search](../README.md)

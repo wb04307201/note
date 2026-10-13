@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-vector-search-at-scale
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中高频
   scenario_type: 架构演进
   tags: [11.ai, Vector Search, 千亿级, 分布式, ScANN, DiskANN, GPU]
@@ -315,6 +315,6 @@ GPU 距离计算：512 维 × 1 亿向量 × 8 字节 = 0.5ms（100x）
 
 ---
 
-> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐
+> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · vector-search-at-scale](../README.md)

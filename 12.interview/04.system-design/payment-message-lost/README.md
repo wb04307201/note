@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-payment-message-lost
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 生产 Bug
   tags: [04.system-design, 消息丢失, 支付回调, 排查, MQ 可靠性]
@@ -199,6 +199,6 @@ GET idempotent:pay-notify:12345
 
 ---
 
-> 📅 2026-07-07 · 咬文嚼字 · 支付消息丢失排查 · ⭐⭐⭐⭐（高频面试 + 生产必备）
+> 📅 2026-07-07 · 咬文嚼字 · 支付消息丢失排查 · ⭐⭐⭐（高频面试 + 生产必备）
 
 ← [返回系统设计咬文嚼字](../README.md)

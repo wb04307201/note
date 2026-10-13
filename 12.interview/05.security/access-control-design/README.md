@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-access-control-design
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [05.security, RBAC, ABAC, 权限系统, 系统设计, Spring-Security, 多租户]
@@ -390,6 +390,6 @@ CREATE TABLE audit_log (
 
 - 深度阅读：[`04.system-design`](../../../06.distributed-systems/README.md) — 系统设计主模块
 
-> 📅 2026-09-01 · 咬文嚼字 · 权限系统 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 权限系统 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · access-control-design](../README.md)

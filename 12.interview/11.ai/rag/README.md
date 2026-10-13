@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-rag
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [11.ai, RAG, rag]
@@ -191,7 +191,7 @@ RAG 的权限必须与源系统（Google Drive / Slack / Confluence）保持一�
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · 企业 LLM 标配 · ⭐⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · 企业 LLM 标配 · ⭐⭐⭐⭐
 
 ## 反向链
 

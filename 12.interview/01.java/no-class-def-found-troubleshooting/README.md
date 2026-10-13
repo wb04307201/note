@@ -1,7 +1,7 @@
 <!--question:
   id: 01.java-no-class-def-found-troubleshooting
   topic: 01.java
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中高频（生产 Top 5 启动故障）
   scenario_type: 生产 Bug
   tags: [01.java, NoClassDefFoundError, maven, 部署确定性, fat-jar, fastjson, transitive-dependency]
@@ -425,6 +425,6 @@ curl -X POST http://localhost:8080/api/order/create \
 
 ---
 
-> 📅 2026-08-28 · 咬文嚼字 · NoClassDefFoundError 排查 · ⭐⭐⭐⭐⭐（生产部署治理 + Maven 传递依赖深度题）
+> 📅 2026-08-28 · 咬文嚼字 · NoClassDefFoundError 排查 · ⭐⭐⭐⭐（生产部署治理 + Maven 传递依赖深度题）
 
 ← [返回 12.interview/01.java 目录表](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: live-barrage-100k
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 弹幕系统, WebSocket, IM, 高并发, 实时分发, 系统设计]
@@ -390,6 +390,6 @@ CDN 在推流给客户端时把弹幕一并打包
 3. [WebSocket 千万连接调优实战 - 美团技术](https://tech.meituan.com/...)
 4. [Kafka 在直播场景的应用 - Confluent 官方](https://docs.confluent.io/...)
 
-> 📅 2026-09-01 · 咬文嚼字 · 直播弹幕 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 直播弹幕 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 系统设计咬文嚼字](../README.md)

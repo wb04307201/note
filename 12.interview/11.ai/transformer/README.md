@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-transformer
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, Transformer, transformer]
@@ -220,6 +220,6 @@ GQA（省 KV 头数）× Flash Attention（省 attention 显存）× PagedAttent
 
 ---
 
-> 📅 2026-08-10 · 增量更新 2024 推理工程 · 咬文嚼字 · AI 基础必问 · ⭐⭐⭐⭐⭐
+> 📅 2026-08-10 · 增量更新 2024 推理工程 · 咬文嚼字 · AI 基础必问 · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · transformer](../README.md)

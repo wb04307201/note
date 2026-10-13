@@ -1,7 +1,7 @@
 <!--question:
   id: 02.computer-basics-boosting-comparison
   topic: 02.computer-basics
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 选型对比
   tags: [ML, XGBoost, LightGBM, CatBoost, Boosting, GBDT]
@@ -190,4 +190,4 @@ base_params = dict(
 
 ---
 
-> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐
+> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐

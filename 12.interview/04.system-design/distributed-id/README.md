@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-distributed-id
   topic: 04.system-design
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [04.system-design, distributed]
@@ -373,6 +373,6 @@ long safeOrderId = maskedId * 10 + random(0, 9);  // 加随机尾数
 
 - 深度阅读：[`04.system-design`](../../../06.distributed-systems/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · 分布式ID · ⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 分布式ID · ⭐⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回系统设计咬文嚼字](../README.md)

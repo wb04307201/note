@@ -1,7 +1,7 @@
 <!--question:
   id: 02.computer-basics-sse-vs-websocket
   topic: 02.computer-basics
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [02.computer-basics, SSE, WebSocket, AI, streaming]
@@ -205,6 +205,6 @@ WebSocket 需要：协议升级处理 + 连接管理器 + 心跳线程 + 消息�
 
 ---
 
-> 📅 2026-07-09 · 咬文嚼字 · 网络协议 · ⭐⭐⭐⭐
+> 📅 2026-07-09 · 咬文嚼字 · 网络协议 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 02.computer-basics](../../README.md)

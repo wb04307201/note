@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-bargain-algorithm
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中高
   scenario_type: 业务建模 / 风控架构
   tags: [04.system-design, 砍一刀, K-Factor, 病毒营销, 风控引擎, 黑产对抗]
@@ -156,6 +156,6 @@
 
 ---
 
-> 📅 2026-09-01 · 咬文嚼字 · 砍一刀 · ⭐⭐⭐⭐⭐（中高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 砍一刀 · ⭐⭐⭐（中高频面试 + 实战必会）
 
 ← [返回系统设计咬文嚼字](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-reflow-repaint
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [09.front-end, reflow, repaint]

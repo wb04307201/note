@@ -20,7 +20,7 @@
 ### 集合与数据结构
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [HashSet 替代 LinkedList 查找](replace-linkedlist-with-hashset/) | ⭐⭐ | 什么时候该换数据结构？ |
+| [HashSet 替代 LinkedList 查找](replace-linkedlist-with-hashset/) | ⭐⭐⭐ | 什么时候该换数据结构？ |
 | [HashMap 扩容](hashmap-resizing/) | ⭐⭐⭐⭐ | 1GB 的 HashMap 扩容会发生什么？ |
 | [HashMap 线程不安全](hashmap-thread-unsafe/) | ⭐⭐⭐⭐ | 3 大不安全表现 + 源码分析 + 4 大解决方案 |
 | [快速给 Map 排序](sort-map/) | ⭐⭐ | TreeMap vs LinkedHashMap 选型 |
@@ -30,13 +30,13 @@
 |------|------|---------|
 | [ConcurrentHashMap 原理](concurrent-hashmap/) | ⭐⭐⭐⭐⭐ | ConcurrentHashMap 原理（JDK 7 vs 8） |
 | [ThreadLocal 原理](threadlocal/) | ⭐⭐⭐⭐⭐ | ThreadLocal 原理与内存泄漏 |
-| [父子线程数据传递](parent-child-thread/) | ⭐⭐⭐ | InheritableThreadLocal + TransmittableThreadLocal + CompletableFuture |
+| [父子线程数据传递](parent-child-thread/) | ⭐⭐⭐⭐ | InheritableThreadLocal + TransmittableThreadLocal + CompletableFuture |
 | [synchronized 锁升级](synchronized-lock-upgrade/) | ⭐⭐⭐⭐⭐ | synchronized 锁升级过程 |
 | [volatile 内存语义](volatile/) | ⭐⭐⭐⭐⭐ | volatile 可见性、有序性、原子性 |
 | [AQS 框架原理](aqs/) | ⭐⭐⭐⭐⭐ | AbstractQueuedSynchronizer 实现机制 |
 | [线程池 7 大参数](thread-pool/) | ⭐⭐⭐⭐⭐ | ThreadPoolExecutor 核心参数详解 |
 | 🆕 [并发 vs 并行](concurrency-vs-parallelism/) | ⭐⭐⭐ | Rob Pike 定义 + 6 大误区 + CPU/IO 选型矩阵 + 90 秒话术 | [Java 并发编程导航 第 1.3 节](../../01.java-and-jvm/03-concurrency/README.md) |
-| [Atomic 替代 synchronized](replace-synchronized-with-atomic/) | ⭐⭐⭐ | CAS 无锁编程 |
+| [Atomic 替代 synchronized](replace-synchronized-with-atomic/) | ⭐⭐⭐⭐ | CAS 无锁编程 |
 | [3 线程按顺序执行](thread-sequential-execution/) | ⭐⭐⭐ | T1→T2→T3 的 3 语义 + 8 方案对比 + Top 3 推荐 |
 | **🆕 [虚拟线程](virtual-threads/)** | ⭐⭐⭐⭐ | carrier thread / mount-unmount / pinning / ScopedValue |
 | **🆕 [Excel 导出 OOM](excel-export-oom/)** | ⭐⭐⭐⭐ | 3 大根因 + 流式写入 + 分批查询 + 多线程分片 + 内存改善原理 |
@@ -46,10 +46,10 @@
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [JVM 内存区域](jvm-memory/) | ⭐⭐⭐⭐⭐ | JVM 内存模型 + 对象创建流程 |
-| [GC 算法与收集器](gc-algorithms/) | ⭐⭐⭐⭐⭐ | GC 算法 + 垃圾收集器对比 |
-| [类加载机制](class-loading/) | ⭐⭐⭐⭐⭐ | 双亲委派模型 + 自定义类加载器 |
-| [CPU 飙升排查](cpu-spike-troubleshooting/) | ⭐⭐⭐⭐ | 线上 CPU 100% 排查全流程（-Xmx 过小） |
-| [生产 NoClassDefFoundError 排查全链路](no-class-def-found-troubleshooting/) | ⭐⭐⭐⭐⭐ | Maven 传递依赖 4 类漏点 + 3 招修复 + 90s 话术 |
+| [GC 算法与收集器](gc-algorithms/) | ⭐⭐⭐⭐ | GC 算法 + 垃圾收集器对比 |
+| [类加载机制](class-loading/) | ⭐⭐⭐⭐ | 双亲委派模型 + 自定义类加载器 |
+| [CPU 飙升排查](cpu-spike-troubleshooting/) | ⭐⭐⭐ | 线上 CPU 100% 排查全流程（-Xmx 过小） |
+| [生产 NoClassDefFoundError 排查全链路](no-class-def-found-troubleshooting/) | ⭐⭐⭐⭐ | Maven 传递依赖 4 类漏点 + 3 招修复 + 90s 话术 |
 | [JVM 内存配置踩坑](jvm-memory-pitfall/) | ⭐⭐⭐⭐ | -Xmx 超过系统可用内存导致启动失败 |
 | 🆕 [JVM Metaspace 调优踩坑](metaspace-tuning-troubleshooting/) | ⭐⭐⭐⭐ | 只设 MaxMetaspaceSize 不设 MetaspaceSize 触发频繁 GC + 容器默认 Xmx 陷阱 |
 
@@ -65,13 +65,13 @@
 | [final/finally/finalize](final-finally-finalize/) | ⭐⭐⭐ | 三个关键字的区别与用法 |
 | [Error vs Exception](error-vs-exception/) | ⭐⭐⭐ | Error 和 Exception 的 6 维度对比 + 反模式 |
 | **🆕 [try-catch 性能](try-catch-performance/)** | ⭐⭐⭐ | 正常路径零开销 / fillInStackTrace / OmitStackTraceInFastThrow |
-| [SPI 机制](spi/) | ⭐⭐⭐⭐ | Service Provider Interface 扩展机制 |
+| [SPI 机制](spi/) | ⭐⭐⭐ | Service Provider Interface 扩展机制 |
 
 ### 对象与类型
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [接口 vs 抽象类](interface-vs-abstract/) | ⭐⭐⭐ | 6 维对比 + 设计哲学 + JDK 8+ 变化 + 选择原则 |
-| [Integer 缓存](integer-cache/) | ⭐⭐⭐ | -128 到 127 的复用机制与陷阱 |
+| [Integer 缓存](integer-cache/) | ⭐⭐⭐⭐ | -128 到 127 的复用机制与陷阱 |
 | [new String("123") 创建几个对象](new-string/) | ⭐⭐⭐⭐ | 字符串常量池 vs 堆 |
 | **🆕 [多态深挖](polymorphism/)** | ⭐⭐⭐⭐ | 编译时 vs 运行时 / vtable / default 冲突 / @Override |
 
@@ -83,7 +83,7 @@
 ### 综合
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [高频面试题合集](questions/) | ⭐⭐⭐⭐⭐ | Java 综合高频问题深度解析（原理 → 演进 → 场景 → 权衡） |
+| [高频面试题合集](questions/) | ⭐⭐⭐ | Java 综合高频问题深度解析（原理 → 演进 → 场景 → 权衡） |
 
 ---
 

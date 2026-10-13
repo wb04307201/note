@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-long-document-pdf
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: RAG 工程
   tags: [11.ai, Long Document, PDF, Contract, Chunking, Lost-in-Middle, YaRN, LongRoPE, Docling, LongLLMLingua]
@@ -263,6 +263,6 @@ GPT-4 128K / Claude 200K 对中间位置信息的 recall 率只有 ~40%。
 
 ← 返回 [AI 咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · 长文档 PDF · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 长文档 PDF · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

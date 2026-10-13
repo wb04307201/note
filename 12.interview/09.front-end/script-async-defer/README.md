@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-script-async-defer
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, script, async]
@@ -203,6 +203,6 @@ document.body.appendChild(script);  // 默认异步加载
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · 浏览器机制 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · 浏览器机制 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · script-async-defer](../README.md)

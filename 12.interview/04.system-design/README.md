@@ -26,12 +26,12 @@
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [缓存与数据库双写一致性](cache-consistency/) | ⭐⭐⭐⭐⭐ | 延迟双删 vs 监听 binlog |
-| [缓存热点 Key 问题](cache-hot-key/) | ⭐⭐⭐⭐ | 本地缓存 + 分布式锁 + Key 拆分 + 热点探测 |
-| [限流算法](rate-limiting/) | ⭐⭐⭐⭐ | 计数器 / 滑动窗口 / 漏桶 / 令牌桶 |
+| [缓存热点 Key 问题](cache-hot-key/) | ⭐⭐⭐ | 本地缓存 + 分布式锁 + Key 拆分 + 热点探测 |
+| [限流算法](rate-limiting/) | ⭐⭐⭐ | 计数器 / 滑动窗口 / 漏桶 / 令牌桶 |
 | [无 Redis 秒杀](seckill-without-redis/) | ⭐⭐⭐⭐ | 主流方案被禁用时的单机秒杀策略 |
 | [商品搜索系统设计](product-search/) | ⭐⭐⭐⭐ | 倒排索引 + BM25 + 多阶段排序 + 数据同步一致性 |
 | [搜索框 typeahead 系统设计](search-typeahead/) | ⭐⭐⭐⭐⭐ | Trie 树 + Redis ZSet + 实名商家权重 + 实时增量更新 + 5 大反模式 |
-| [多字段动态排名](multi-field-ranking/) | ⭐⭐⭐⭐ | 归一化方法论 + 加权公式 + 动态权重 + Redis ZSet + 6 大场景 |
+| [多字段动态排名](multi-field-ranking/) | ⭐⭐⭐ | 归一化方法论 + 加权公式 + 动态权重 + Redis ZSet + 6 大场景 |
 | [大文件上传系统](file-upload/) | ⭐⭐⭐⭐ | 分片 + 断点续传 + 秒传 + 对象存储 |
 | [1→N 大文件分发系统设计](file-distribution-1toN/) | ⭐⭐⭐⭐⭐ | 带宽成本估算 + CDN/P2P/分片签名选型 + 断点续传 + 防盗链 + 5 大反模式 |
 
@@ -44,30 +44,30 @@
 ### 高并发与架构
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [幂等性设计 6 大方案](idempotency/) | ⭐⭐⭐⭐⭐ | Token / 状态机 / 唯一索引 / 去重表 |
-| [熔断降级实战](circuit-breaker/) | ⭐⭐⭐⭐ | Sentinel / Resilience4j 落地 |
-| [微服务 vs 单体](microservices-vs-monolith/) | ⭐⭐⭐⭐⭐ | 6 大核心优势 + 6 大反模式 + Spring Cloud 全套 + 何时该拆决策 |
+| [幂等性设计 6 大方案](idempotency/) | ⭐⭐⭐ | Token / 状态机 / 唯一索引 / 去重表 |
+| [熔断降级实战](circuit-breaker/) | ⭐⭐⭐ | Sentinel / Resilience4j 落地 |
+| [微服务 vs 单体](microservices-vs-monolith/) | ⭐⭐⭐ | 6 大核心优势 + 6 大反模式 + Spring Cloud 全套 + 何时该拆决策 |
 | [短链系统设计](url-shortener/) | ⭐⭐⭐⭐ | Base62 + 发号器 + 302 重定向 + 缓存 + 统计 |
-| [多租户 SaaS 系统设计](multi-tenant-saas/) | ⭐⭐⭐⭐⭐ | 6 大隔离模型 + 4 大应用层关注点 + 5 反模式 + PostgreSQL RLS + noisy neighbor 防御 |
-| [可踢下线登录凭证设计](login-credential-kickable/) | ⭐⭐⭐⭐ | Session 主动失效 4 大方案 + 多端管理 4 模式 + 千万级踢下线性能 + 5 大反模式 |
-| [10 万人直播弹幕系统设计](live-barrage-100k/) | ⭐⭐⭐⭐⭐ | WebSocket 网关集群 + Kafka 分层 + 消息合并 + 5 大反模式 |
+| [多租户 SaaS 系统设计](multi-tenant-saas/) | ⭐⭐⭐ | 6 大隔离模型 + 4 大应用层关注点 + 5 反模式 + PostgreSQL RLS + noisy neighbor 防御 |
+| [可踢下线登录凭证设计](login-credential-kickable/) | ⭐⭐⭐ | Session 主动失效 4 大方案 + 多端管理 4 模式 + 千万级踢下线性能 + 5 大反模式 |
+| [10 万人直播弹幕系统设计](live-barrage-100k/) | ⭐⭐⭐ | WebSocket 网关集群 + Kafka 分层 + 消息合并 + 5 大反模式 |
 
 ### 数据库扩展
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [分库分表策略](sharding-strategy/) | ⭐⭐⭐⭐⭐ | 垂直拆分 / 水平分片 / ShardingSphere / 跨库查询 / 数据迁移 |
+| [分库分表策略](sharding-strategy/) | ⭐⭐⭐ | 垂直拆分 / 水平分片 / ShardingSphere / 跨库查询 / 数据迁移 |
 
 ### 排查与运维
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [支付消息丢失排查](payment-message-lost/) | ⭐⭐⭐⭐ | 全链路 5 段排查 + 6 种根因 + 短期止血 + 长期方案 |
+| [支付消息丢失排查](payment-message-lost/) | ⭐⭐⭐ | 全链路 5 段排查 + 6 种根因 + 短期止血 + 长期方案 |
 
 ### 业务系统设计
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [消息已读未读功能设计](message-read-status/) | ⭐⭐⭐⭐ | 数据库 + 缓存 + 推送 + 性能优化 |
-| [媒体上传系统设计](media-upload/) | ⭐⭐⭐⭐ | 分片 + 断点续传 + 秒传 + 对象存储 |
-| [砍一刀算法](砍一刀算法/) | ⭐⭐⭐⭐ | 助力活动系统设计 |
+| [消息已读未读功能设计](message-read-status/) | ⭐⭐⭐ | 数据库 + 缓存 + 推送 + 性能优化 |
+| [媒体上传系统设计](media-upload/) | ⭐⭐⭐ | 分片 + 断点续传 + 秒传 + 对象存储 |
+| [砍一刀算法](砍一刀算法/) | ⭐⭐⭐ | 助力活动系统设计 |
 
 ### 项目管理（已全部迁走，split-hairs 不再收此分类）
 

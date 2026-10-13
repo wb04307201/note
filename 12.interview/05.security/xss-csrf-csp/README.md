@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-xss-csrf-csp
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 生产Bug
   tags: [05.security, XSS, CSRF, CSP, 安全头, SameSite, HttpOnly]
@@ -111,4 +111,4 @@ CSP 渐进上线：先 Report-Only 观察 → 分析违规报告 → 切 Enforce
 
 ← [返回: 咬文嚼字 · 安全](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐

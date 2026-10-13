@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-loop-engineering
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [11.ai, Loop, loop]
@@ -145,7 +145,7 @@ Task → Agent → 检查结果
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐
 
 ## 反向链
 

@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-multi-agent-shared-memory
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构设计追问
   tags: [11.ai, Multi-Agent, Shared-Memory, Blackboard, Coordinator, Vector-Store, Kafka]
@@ -266,6 +266,6 @@ Q5：共享 Memory 的 4 层延迟分别多少？
 
 ---
 
-> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 5 维度 + 3 层 + 6 模式 + 5 反模式 + 90 秒话术 + 11 兄弟导航
+> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 5 维度 + 3 层 + 6 模式 + 5 反模式 + 90 秒话术 + 11 兄弟导航
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

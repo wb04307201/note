@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-sso
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, SSO, OAuth2, OIDC, JWT, Spring Security, 单点登录]
@@ -429,6 +429,6 @@ Q5：贵司是否需 IdP 集中失效？
 
 ---
 
-> 📅 2026-07-06 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 5 大反模式 + 4 工业方案
+> 📅 2026-07-06 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 5 大反模式 + 4 工业方案
 
 ← [返回: 咬文嚼字 · sso](../README.md)

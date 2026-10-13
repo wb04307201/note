@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-microservices-vs-monolith
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [04.system-design, microservice, monolith, Spring Cloud, 分布式]
@@ -419,6 +419,6 @@ Q5：贵司服务调用链监控怎么做的？
 
 ---
 
-> 📅 2026-07-06 · 咬文嚼字 · 04.system-design · ⭐⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 6 大反模式 + 3 工业方案
+> 📅 2026-07-06 · 咬文嚼字 · 04.system-design · ⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 6 大反模式 + 3 工业方案
 
 ← [返回: 咬文嚼字 · microservices-vs-monolith](../README.md)

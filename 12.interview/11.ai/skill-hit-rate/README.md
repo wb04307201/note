@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-skill-hit-rate
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 工程权衡
   tags: [11.ai, Claude Code, Skill, Agent, Harness, Routing, 命中率]
@@ -193,6 +193,6 @@ description: 诊断（排查/修复）API 调用报错、超时与非预期响�
 
 ---
 
-> 📅 2026-07-06 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐
+> 📅 2026-07-06 · 咬文嚼字 · 11.ai · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · skill-hit-rate](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-prompt-engineering
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [11.ai, Prompt, prompt]
@@ -89,6 +89,6 @@
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · 面试高频 · ⭐⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · 面试高频 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · prompt-engineering](../README.md)

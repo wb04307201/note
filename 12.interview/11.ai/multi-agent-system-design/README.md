@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-multi-agent-system-design
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 + 架构选型
   tags: [11.ai, Multi-Agent, CrewAI, AutoGen, 死循环防护, max-turns, Orchestrator]
@@ -252,7 +252,7 @@ Q5：贵司 Agent 通信怎么防 Token 爆炸？
 
 ---
 
-> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 5 组件 + 3 通信模式 + 4 兜底 + 6 反模式 + 90 秒话术 + 13 兄弟导航
+> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 5 组件 + 3 通信模式 + 4 兜底 + 6 反模式 + 90 秒话术 + 13 兄弟导航
 
 ## 反向链
 

@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-ai-code-churn
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [11.ai, code, churn]
@@ -296,7 +296,7 @@ def get_user_orders(user_id):
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐⭐（2026 面试热点）
+> 📅 2026-06-28 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐（2026 面试热点）
 
 ## 反向链
 

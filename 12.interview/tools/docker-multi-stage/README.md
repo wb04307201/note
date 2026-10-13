@@ -1,7 +1,7 @@
 <!--question:
   id: tools-docker-multi-stage
   topic: tools
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [tools, Docker, 多阶段构建, 镜像优化, Dockerfile, 层缓存]
@@ -147,4 +147,4 @@ COPY --from=builder /app/server /server
 
 ← [返回: 咬文嚼字 · 工具](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐⭐（高频面试 + 生产必会）
+> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐（高频面试 + 生产必会）

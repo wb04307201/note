@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-prompt-injection
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 安全攻防
   tags: [11.ai, Prompt Injection, OWASP LLM01, EchoLeak, Agent Security, Red Team]
@@ -197,6 +197,6 @@ Agent 自动读取内部资料并调用外发工具
 
 ← 返回 [AI 咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · Prompt 注入 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Prompt 注入 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

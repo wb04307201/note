@@ -1,7 +1,7 @@
 <!--question:
   id: 06.spring-bean-lifecycle
   topic: 06.spring
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [06.spring, Bean, bean]
@@ -187,6 +187,6 @@ public class MyBean implements InitializingBean, DisposableBean,
 
 - 深度阅读：[`06.spring`](../../../04.spring-backend/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · Spring · Bean 生命周期 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Spring · Bean 生命周期 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · bean-lifecycle](../README.md)

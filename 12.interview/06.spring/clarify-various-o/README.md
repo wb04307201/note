@@ -1,7 +1,7 @@
 <!--question:
   id: 06.spring-clarify-various-o
   topic: 06.spring
-  difficulty: ⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
   tags: [06.spring, clarify, various]
@@ -254,6 +254,6 @@ com.example.user.infrastructure.dao.UserDao
 
 - 深度阅读：[`06.spring`](../../../04.spring-backend/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · Spring · POJO 对象类型 · ⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Spring · POJO 对象类型 · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · clarify-various-o](../README.md)

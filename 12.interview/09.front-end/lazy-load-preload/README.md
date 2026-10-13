@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-lazy-load-preload
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, lazy, load]
@@ -251,6 +251,6 @@ const About = React.lazy(() => import('./pages/About'));
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · 浏览器机制 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · 浏览器机制 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · lazy-load-preload](../README.md)

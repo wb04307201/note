@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-transformer-long-context-performance
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构性能
   tags: [11.ai, Transformer, 长上下文, O(n²), KV Cache, Flash Attention, Sparse Attention, Linear Attention, MQA, GQA]
@@ -260,6 +260,6 @@ Ring Attention（8 卡）：每卡 86 GB（可行）
 
 ---
 
-> 📅 2026-09-01 · 咬文嚼字 · 长上下文 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 长上下文 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 11.ai 咬文嚼字](../README.md)

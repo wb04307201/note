@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-rag-permission-isolation
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 生产 Bug
   tags: [11.ai, RAG, permission, access-control, security, multi-tenant]
@@ -287,6 +287,6 @@ SaaS RAG 平台（如 Notion AI / Confluence AI）：
 
 ---
 
-> 📅 2026-07-08 · 咬文嚼字 · RAG 权限隔离设计 · ⭐⭐⭐⭐⭐（高频面试 + 企业 RAG 落地必备）
+> 📅 2026-07-08 · 咬文嚼字 · RAG 权限隔离设计 · ⭐⭐⭐⭐（高频面试 + 企业 RAG 落地必备）
 
 ← [返回 AI 咬文嚼字](../README.md)

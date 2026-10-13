@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-peft-lora
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, PEFT, LoRA, QLoRA, DoRA, NF4, 参数高效微调]
@@ -106,6 +106,6 @@ LoRA r=8 微调：     2GB 显存（3090 即可）
 
 ← 返回 [AI 咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · PEFT/LoRA · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · PEFT/LoRA · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字](../README.md)

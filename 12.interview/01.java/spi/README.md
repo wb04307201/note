@@ -1,7 +1,7 @@
 <!--question:
   id: 01.java-spi
   topic: 01.java
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [01.java, spi]
@@ -243,6 +243,6 @@ http=com.apache.dubbo.rpc.protocol.http.HttpProtocol
 
 - 深度阅读：[`01.java-and-jvm`](../../../01.java-and-jvm/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · Java SPI · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Java SPI · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · spi](../README.md)

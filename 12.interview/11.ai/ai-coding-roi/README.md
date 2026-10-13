@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-ai-coding-roi
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, coding, roi]
@@ -307,7 +307,7 @@ Review 拒绝率 = 被拒绝合并的 AI 代码 / 总 AI 代码
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐⭐（2026 面试热点 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐（2026 面试热点 + 实战必会）
 
 ## 反向链
 

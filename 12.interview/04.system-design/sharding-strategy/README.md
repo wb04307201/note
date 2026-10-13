@@ -1,7 +1,7 @@
 <!--question:
   id: sharding-strategy
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构决策困境
   tags: [分库分表, ShardingSphere, 数据迁移, 分布式ID]
@@ -167,6 +167,6 @@ spring:
 - 主模块：[`MySQL`](../../../03.data-stack/01-database/05-mysql/README.md) — MySQL 索引优化与读写分离
 - 主模块：[`数据库总览`](../../../03.data-stack/01-database/README.md) — 数据库知识体系
 
-> 📅 2026-09-01 · 咬文嚼字 · 分库分表 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 分库分表 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回系统设计咬文嚼字](../README.md)

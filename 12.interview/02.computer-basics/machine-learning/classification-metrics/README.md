@@ -1,7 +1,7 @@
 <!--question:
   id: 02.computer-basics-classification-metrics
   topic: 02.computer-basics
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 概念辨析
   tags: [ML, 评估指标, F1, AUC, ROC, 混淆矩阵, LogLoss]
@@ -290,4 +290,4 @@ graph TD
 
 ---
 
-> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐
+> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐

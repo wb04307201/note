@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-vector-search-trillion
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 低频
   scenario_type: 前沿架构
   tags: [11.ai, Vector Search, 万亿级, 联邦, TPU, 极限压缩, 跨数据中心]
@@ -407,6 +407,6 @@ vs Google TPU v5：
 
 ---
 
-> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐
+> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · vector-search-trillion](../README.md)

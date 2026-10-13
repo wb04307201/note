@@ -1,7 +1,7 @@
 <!--question:
   id: message-read-status
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构困境
   tags: [IM, 消息已读未读, Redis, WebSocket, SSE, 位图, 推送]
@@ -323,6 +323,6 @@ pipe.execute()  # 1 次网络往返
 
 ---
 
-> 📅 2026-07-30 · 咬文嚼字 · 消息已读未读 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-07-30 · 咬文嚼字 · 消息已读未读 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 系统设计咬文嚼字](../README.md)

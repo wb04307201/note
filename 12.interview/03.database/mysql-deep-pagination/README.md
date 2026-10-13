@@ -1,7 +1,7 @@
 <!--question:
   id: 03.database-deep-pagination
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, deep, pagination]
@@ -159,6 +159,6 @@ SELECT * FROM user WHERE id IN (
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · MySQL · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · MySQL · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)

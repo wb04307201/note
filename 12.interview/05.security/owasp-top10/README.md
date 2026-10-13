@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-owasp-top10
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, OWASP, Top 10, 注入, 认证, 敏感数据, SSRF]
@@ -118,4 +118,4 @@ SSRF 3 个：图片上传接口接受 URL，可探测内网
 
 ← [返回: 咬文嚼字 · 安全](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐

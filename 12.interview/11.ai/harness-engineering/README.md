@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-harness-engineering
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, Harness, harness]
@@ -103,7 +103,7 @@ Harness = 规范 + 流程 + 工具 + 反馈
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · 2026 面试热点 · ⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · 2026 面试热点 · ⭐⭐
 
 ## 反向链
 

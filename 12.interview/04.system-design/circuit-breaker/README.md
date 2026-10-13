@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-circuit-breaker
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [04.system-design, circuit, breaker]
@@ -303,6 +303,6 @@ new DegradeRule("service")
 
 - 深度阅读：[`04.system-design`](../../../06.distributed-systems/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · 熔断降级 · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 熔断降级 · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · circuit-breaker](../README.md)

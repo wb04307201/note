@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-login-credential-kickable
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 登录凭证, Session, JWT, 踢下线, Token 失效, 系统设计]
@@ -628,6 +628,6 @@ DEL session:sessionId
 4. [Redis Cluster 在会话管理中的应用 - 美团技术团队](https://tech.meituan.com/)
 5. [Auth0 Refresh Token 实践指南](https://auth0.com/docs/secure/tokens/refresh-tokens)
 
-> 📅 2026-09-01 · 咬文嚼字 · 登录凭证 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 登录凭证 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 系统设计咬文嚼字](../README.md)

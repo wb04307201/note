@@ -1,7 +1,7 @@
 <!--question:
   id: 04.system-design-media-upload
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [04.system-design, 媒体上传, 图片转码, WebP, AVIF, HLS, CDN, 高可用, DRM]
@@ -241,6 +241,6 @@ ffmpeg -i source.mp4 \
 - [FFmpeg 官方文档 — HLS muxer](https://ffmpeg.org/documentation.html)
 - [AOMedia AV1 / WebP — 下一代图像压缩标准](https://aomedia.googlesource.com/)
 
-> 📅 2026-09-01 · 咬文嚼字 · 媒体上传 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 媒体上传 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回 AI 咬文嚼字](../README.md)

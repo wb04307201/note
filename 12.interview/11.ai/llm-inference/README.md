@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-llm-inference
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, KV Cache, PagedAttention, Continuous Batching, Speculative Decoding, 量化, 推理优化]
@@ -179,6 +179,6 @@ block_table[req_id] = [7, 2, 15, ..., 3]  # 类似 OS 页表
 
 ← 返回 [AI 咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · LLM 推理 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · LLM 推理 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字](../README.md)

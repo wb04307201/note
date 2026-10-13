@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-planning-acting-monitoring
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: Agent 架构
   tags: [11.ai, Agent, Planning, Acting, Monitoring, 三阶段闭环]
@@ -160,6 +160,6 @@ Q：Monitoring 阶段具体监控什么？
 
 ---
 
-> 📅 2026-09-01 · 咬文嚼字 · Agent 闭环 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Agent 闭环 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: AI 咬文嚼字](../README.md)

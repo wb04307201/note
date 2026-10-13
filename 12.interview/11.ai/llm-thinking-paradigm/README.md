@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-llm-thinking-paradigm
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 思维范式, Prompt, if-else, Production]
@@ -105,6 +105,6 @@ LLM 是处理自然语言模糊性专用工具，不是通用计算器。核心�
 
 ---
 
-> 📅 2026-07-26 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 思维范式 · 含 60 秒话术 + 反模式
+> 📅 2026-07-26 · 咬文嚼字 · 11.ai · ⭐⭐ · 思维范式 · 含 60 秒话术 + 反模式
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

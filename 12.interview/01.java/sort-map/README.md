@@ -1,7 +1,7 @@
 <!--question:
   id: 01.java-sort-map
   topic: 01.java
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [01.java, sort, map]
@@ -190,6 +190,6 @@ map.entrySet().stream()
 - 深度阅读：[`01.java/集合框架`](../../../01.java-and-jvm/collection/README.md) — TreeMap、LinkedHashMap 源码
 - 相关：[`12.interview/hashmap-resizing`](../hashmap-resizing/README.md) — HashMap 扩容
 
-> 📅 2026-09-01 · 咬文嚼字 · Map 排序 · ⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Map 排序 · ⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · sort-map](../README.md)

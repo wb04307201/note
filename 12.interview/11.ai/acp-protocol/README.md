@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-acp-protocol
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频（2025 新兴，2026 起高频）
   scenario_type: 反直觉辨析
   tags: [11.ai, ACP, agent-client-protocol, zed, jetbrains, mcp, a2a, json-rpc]
@@ -236,6 +236,6 @@
 
 ---
 
-> 📅 2026-07-25 · 咬文嚼字 · 11.ai ACP 协议 · ⭐⭐⭐⭐（架构师级 · 中频新增）
+> 📅 2026-07-25 · 咬文嚼字 · 11.ai ACP 协议 · ⭐⭐⭐（架构师级 · 中频新增）
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

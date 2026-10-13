@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-from-url-to-page
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [09.front-end, from, url]
@@ -241,6 +241,6 @@ graph LR
 
 - 深度阅读：[`05.frontend`](../../../05.frontend/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · from-url-to-page · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · from-url-to-page · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · from-url-to-page](../README.md)

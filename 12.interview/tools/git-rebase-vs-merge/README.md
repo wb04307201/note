@@ -1,7 +1,7 @@
 <!--question:
   id: tools-git-rebase-vs-merge
   topic: tools
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [tools, Git, Rebase, Merge, 提交历史, 冲突解决]
@@ -145,4 +145,4 @@ git merge --squash feature/login  # 或直接 merge（已经 rebase 过了）
 
 ← [返回: 咬文嚼字 · 工具](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐⭐（高频面试 + 团队协作规范）
+> 📅 2026-07-16 · 咬文嚼字 · 工具 · ⭐⭐⭐（高频面试 + 团队协作规范）

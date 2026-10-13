@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-knowledge-ingestion-pipeline
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: RAG 工程
   tags: [11.ai, Knowledge Ingestion, Connectors, PDF, OCR, Deduplication, CDC, Vector Database]
@@ -165,6 +165,6 @@
 
 ← 返回 [AI 咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · 知识入库 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 知识入库 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: 02.computer-basics-sensitive-word-filter
   topic: 02.computer-basics
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 + 算法
   tags: [02.computer-basics, AC 自动机, Trie, 字典树, KMP, 高并发, 敏感词]
@@ -438,6 +438,6 @@ Q5：贵司用 Java 还是其他语言？
 
 ---
 
-> 📅 2026-07-07 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 5 反模式 + 4 工业方案
+> 📅 2026-07-07 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板 + 5 反模式 + 4 工业方案
 
 ← [返回: 咬文嚼字 · 02.computer-basics](../../README.md)

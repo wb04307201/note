@@ -1,7 +1,7 @@
 <!--question:
   id: tools-cicd-adoption
   topic: tools
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [tools, CI/CD, 组织决策, 团队规模, ROI, 成熟度]
@@ -149,6 +149,6 @@ CI/CD 不只是"搭一次就完事" —— 还有持续维护成本：
 - [架构演进（阿明餐厅）](../../../13.story/02-system-architecture-evolution.md) —— IT 成熟度 L1-L7 评估
 - [从接单到出餐（阿明餐厅）](../../../13.story/09-cicd-devops.md) —— CI/CD 流水线 + 灰度发布的餐厅叙事
 
-> 📅 2026-09-01 · 咬文嚼字 · CI/CD · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · CI/CD · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 开发工具面试题](../README.md)

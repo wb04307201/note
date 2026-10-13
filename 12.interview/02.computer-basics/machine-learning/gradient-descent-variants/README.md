@@ -1,7 +1,7 @@
 <!--question:
   id: 02.computer-basics-gradient-descent-variants
   topic: 02.computer-basics
-  difficulty: ⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [ML, 梯度下降, SGD, Adam, AdamW, 学习率]
@@ -160,4 +160,4 @@ SGD + Momentum 在 CV / CNN 任务上仍常占优：虽然前期收敛慢，但�
 
 ---
 
-> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐ · 梯度下降变体
+> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐ · 梯度下降变体

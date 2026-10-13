@@ -1,7 +1,7 @@
 <!--question:
   id: 03.database-mvcc
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [03.database, MVCC, mvcc]
@@ -235,6 +235,6 @@ MVCC 的可见性判断仅适用于**快照读**（Snapshot Read），即普通�
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · MySQL MVCC · ⭐⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MySQL MVCC · ⭐⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · mvcc](../README.md)

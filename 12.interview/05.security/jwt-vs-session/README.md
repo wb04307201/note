@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-jwt-vs-session
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, JWT, Session, Cookie, Token, 认证]
@@ -110,4 +110,4 @@ Session 安全加固：HttpOnly + Secure + SameSite=Lax + 登录成功后 regene
 
 ← [返回: 咬文嚼字 · 安全](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐

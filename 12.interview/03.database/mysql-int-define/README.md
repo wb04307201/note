@@ -1,7 +1,7 @@
 <!--question:
   id: 03.database-int(4)-define
   topic: 03.database
-  difficulty: ⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [03.database, MySQL, define]
@@ -243,6 +243,6 @@ ALTER TABLE users MODIFY id BIGINT UNSIGNED AUTO_INCREMENT;
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: 03.database-search
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [03.database, Redis, search]

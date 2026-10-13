@@ -1,7 +1,7 @@
 <!--question:
   id: 10.big-data-iceberg-acid
   topic: 10.big-data
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Iceberg, ACID, 数据湖, Snapshot, Manifest, MVCC]
@@ -198,6 +198,6 @@ Iceberg 使用决策树：
 
 ---
 
-> 📅 2026-07-16 · 咬文嚼字 · 大数据 · 数据湖 · ⭐⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 大数据 · 数据湖 · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 大数据](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-agent-reliability
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 工程困境
   tags: [11.ai, Agent, 可靠性, 跑偏, 死循环]
@@ -195,6 +195,6 @@ search("login API") → 空
 
 ---
 
-> 📅 2026-07-27 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐⭐
+> 📅 2026-07-27 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐
 
 ← [返回: 11.ai 面试题](../README.md)

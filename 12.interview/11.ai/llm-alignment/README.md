@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-llm-alignment
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计
   tags: [11.ai, RLHF, DPO, PPO, Constitutional AI, 对齐, SFT]
@@ -125,6 +125,6 @@
 
 ← 返回 [AI 咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · LLM 对齐 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · LLM 对齐 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字](../README.md)

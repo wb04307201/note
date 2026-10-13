@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-websocket-loss-handling
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 通信可靠性
   tags: [09.front-end, WebSocket, realtime, heartbeat, reconnect]
@@ -853,6 +853,6 @@ channel.onmessage = (e) => {
 
 ---
 
-> 📅 2026-09-21 · 咬文嚼字 · WebSocket 可靠性 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会 + 5 策略 + 7 反直觉点）
+> 📅 2026-09-21 · 咬文嚼字 · WebSocket 可靠性 · ⭐⭐⭐⭐（高频面试 + 实战必会 + 5 策略 + 7 反直觉点）
 
 ← [返回: 09.front-end](../README.md)

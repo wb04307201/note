@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-token
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
   tags: [11.ai, LLM, token]
@@ -137,6 +137,6 @@ PM："……"
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · AI 经济学基础 · ⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · AI 经济学基础 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · token](../README.md)

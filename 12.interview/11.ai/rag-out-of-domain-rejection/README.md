@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-rag-out-of-domain-rejection
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: RAG 落地追问
   tags: [11.ai, RAG, OOD, threshold, refusal, hallucination, 知识库边界, NLI]
@@ -313,6 +313,6 @@ Q5：高风险领域（医疗/法律）怎么特别处理？
 
 ---
 
-> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 6 检测 + 5 拒答 + 4 步阈值 + 5 反模式 + 90 秒话术 + 11 兄弟导航
+> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 6 检测 + 5 拒答 + 4 步阈值 + 5 反模式 + 90 秒话术 + 11 兄弟导航
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

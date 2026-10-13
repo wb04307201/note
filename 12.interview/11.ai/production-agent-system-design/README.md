@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-production-agent-system-design
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 系统设计 + 端到端架构
   tags: [11.ai, Agent, 端到端, 系统设计, 架构选型, Harness, Loop, 可靠性]
@@ -333,6 +333,6 @@ Q5：贵司 Agent 系统的可靠性防线是几层？
 
 ---
 
-> 📅 2026-07-29 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 8 步流水线 + 8 大组件 + 90 秒话术 + 14 兄弟导航
+> 📅 2026-07-29 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 8 步流水线 + 8 大组件 + 90 秒话术 + 14 兄弟导航
 
 ← [返回: 11.ai 面试题](../README.md)

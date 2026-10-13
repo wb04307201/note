@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-agent-memory
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构辨析
   tags: [11.ai, Agent, Memory, 三维分类, episodic, semantic, procedural]
@@ -184,7 +184,7 @@
 
 ---
 
-> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐
+> 📅 2026-07-03 · 咬文嚼字 · 11.ai · ⭐⭐⭐
 
 ## 反向链
 

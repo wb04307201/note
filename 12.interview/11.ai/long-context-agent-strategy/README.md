@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-long-context-agent-strategy
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: Agent 架构选型
   tags: [11.ai, Agent, 长上下文, Context Engineering, RAG, Memory, Sub-Agents]
@@ -417,6 +417,6 @@ Q4：贵司对答案准确性要求？
 
 ---
 
-> 📅 2026-07-06 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板
+> 📅 2026-07-06 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 7 道精选 Q&A · 含 90 秒话术模板
 
 ← [返回: 咬文嚼字 · long-context-agent-strategy](../README.md)

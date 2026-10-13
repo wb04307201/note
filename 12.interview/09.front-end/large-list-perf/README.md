@@ -1,7 +1,7 @@
 <!--question:
   id: 09.front-end-large-list-perf
   topic: 09.front-end
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能调优
   tags: [09.front-end, vue, performance, list]
@@ -166,4 +166,4 @@ function update(id: number, newVal: any) {
 
 ← [返回 前端咬文嚼字](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · large-list-perf · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · large-list-perf · ⭐⭐⭐⭐（高频面试 + 实战必会）

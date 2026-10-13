@@ -1,7 +1,7 @@
 <!--question:
   id: 10.big-data-hive-partition-vs-bucket
   topic: 10.big-data
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Hive, 分区, 分桶, Partition, Bucket, Map-Join, Pruning]
@@ -199,6 +199,6 @@ SET hive.input.format = org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
 
 ---
 
-> 📅 2026-07-16 · 咬文嚼字 · 大数据 · Hive 存储 · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 大数据 · Hive 存储 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 大数据](../README.md)

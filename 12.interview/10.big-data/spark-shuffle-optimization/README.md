@@ -1,7 +1,7 @@
 <!--question:
   id: 10.big-data-spark-shuffle-optimization
   topic: 10.big-data
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 性能对比
   tags: [10.big-data, Spark, Shuffle, 数据倾斜, AQE, Broadcast Join]
@@ -235,6 +235,6 @@ SELECT * FROM orders_bucketed o JOIN merchants_bucketed m ON o.merchant_id = m.i
 
 ---
 
-> 📅 2026-07-16 · 咬文嚼字 · 大数据 · Spark 性能 · ⭐⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 大数据 · Spark 性能 · ⭐⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 大数据](../README.md)

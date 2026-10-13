@@ -20,32 +20,32 @@
 ### 实时计算与流处理
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Flink Checkpoint vs Savepoint](flink-checkpoint-vs-savepoint/) | ⭐⭐⭐⭐ | 自动 vs 手动、格式兼容性、增量检查点、Exactly-Once 语义 |
+| [Flink Checkpoint vs Savepoint](flink-checkpoint-vs-savepoint/) | ⭐⭐⭐ | 自动 vs 手动、格式兼容性、增量检查点、Exactly-Once 语义 |
 
 ### 批处理与 Shuffle
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Spark Shuffle 优化](spark-shuffle-optimization/) | ⭐⭐⭐⭐⭐ | 数据倾斜检测、加盐、AQE 自适应、Broadcast Join 阈值 |
+| [Spark Shuffle 优化](spark-shuffle-optimization/) | ⭐⭐⭐⭐ | 数据倾斜检测、加盐、AQE 自适应、Broadcast Join 阈值 |
 
 ### 数据仓库
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Hive 分区 vs 分桶](hive-partition-vs-bucket/) | ⭐⭐⭐⭐ | Partition Pruning、Bucket Map Join、动态分区、小文件问题 |
+| [Hive 分区 vs 分桶](hive-partition-vs-bucket/) | ⭐⭐⭐ | Partition Pruning、Bucket Map Join、动态分区、小文件问题 |
 
 ### 数据湖
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Iceberg ACID 事务](iceberg-acid/) | ⭐⭐⭐⭐⭐ | Snapshot 隔离、Manifest 文件、MVCC、Merge-on-Read vs Copy-on-Write |
+| [Iceberg ACID 事务](iceberg-acid/) | ⭐⭐⭐⭐ | Snapshot 隔离、Manifest 文件、MVCC、Merge-on-Read vs Copy-on-Write |
 
 ### OLAP 引擎
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Doris vs ClickHouse](doris-vs-clickhouse/) | ⭐⭐⭐⭐ | 架构对比、Join 性能、实时导入、生态选型 |
+| [Doris vs ClickHouse](doris-vs-clickhouse/) | ⭐⭐⭐ | 架构对比、Join 性能、实时导入、生态选型 |
 
 ### 消息队列
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
-| [Kafka Exactly-Once](kafka-exactly-once/) | ⭐⭐⭐⭐⭐ | 幂等 Producer、事务 API、Consumer Offset、Kafka Streams |
+| [Kafka Exactly-Once](kafka-exactly-once/) | ⭐⭐⭐⭐ | 幂等 Producer、事务 API、Consumer Offset、Kafka Streams |
 
 ---
 

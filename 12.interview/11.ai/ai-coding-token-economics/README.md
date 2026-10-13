@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-ai-coding-token-economics
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 生产 Bug
   tags: [11.ai, coding, token, economics, agent, cost]
@@ -256,6 +256,6 @@ Anthropic / OpenAI 的 Prompt Cache：
 
 ---
 
-> 📅 2026-07-07 · 咬文嚼字 · AI 编程 Token 经济学 · ⭐⭐⭐⭐（高频面试 + AI 工程必备）
+> 📅 2026-07-07 · 咬文嚼字 · AI 编程 Token 经济学 · ⭐⭐⭐（高频面试 + AI 工程必备）
 
 ← [返回 AI 咬文嚼字](../README.md)

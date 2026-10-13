@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-ai-coding-productivity-paradox
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 生产 Bug
   tags: [11.ai, coding, productivity]
@@ -225,6 +225,6 @@
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐⭐（2026 面试热点 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · AI 新概念 · ⭐⭐⭐（2026 面试热点 + 实战必会）
 
 ← [返回: 咬文嚼字 · ai-coding-productivity-paradox](../README.md)

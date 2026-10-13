@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-context-engineering
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
   tags: [11.ai, Context, context]
@@ -104,6 +104,6 @@ Context = System Prompt + 历史消息 + Tools Schema + RAG 文档 + 长期记�
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · 2026 面试热点 · ⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · 2026 面试热点 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · context-engineering](../README.md)

@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-agent-ab-testing
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: AI 生产工程
   tags: [11.ai, A.B.Testing, Experiment, Traffic, Statistics, Drift, Holdout, Sticky-Session]
@@ -309,6 +309,6 @@ Q5：怎么防版本迭代后召回率突变？
 
 ---
 
-> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 5 组件 + 4 流量 + 显著性 + 5 反模式 + 90 秒话术 + 11 兄弟导航
+> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 5 组件 + 4 流量 + 显著性 + 5 反模式 + 90 秒话术 + 11 兄弟导航
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

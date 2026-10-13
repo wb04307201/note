@@ -1,7 +1,7 @@
 <!--question:
   id: 05.security-encryption-at-rest-transit
   topic: 05.security
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [05.security, TLS, AES, 传输加密, 存储加密, KMS, HSM]
@@ -120,4 +120,4 @@ public class FieldEncryptor {
 
 ← [返回: 咬文嚼字 · 安全](../README.md)
 
-> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 05.security · ⭐⭐⭐

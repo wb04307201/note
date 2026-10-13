@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-llm-monitoring
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐
   frequency: 高频
   scenario_type: AI Production Engineering
   tags: [11.ai, LLM, 监控, Trace, 漂移检测, 黄金集, Production]
@@ -126,6 +126,6 @@
 
 ---
 
-> 📅 2026-07-26 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐⭐ · 4 维监控 + Trace · 含 60 秒话术 + 反模式
+> 📅 2026-07-26 · 咬文嚼字 · 11.ai · ⭐⭐ · 4 维监控 + Trace · 含 60 秒话术 + 反模式
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

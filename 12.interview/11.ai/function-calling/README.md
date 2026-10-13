@@ -1,7 +1,7 @@
 <!--question:
   id: 11.ai-function-calling
   topic: 11.ai
-  difficulty: ⭐⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐⭐
   frequency: 高频
   scenario_type: 反直觉代码
   tags: [11.ai, Function Calling, function, tencent, aliyun, bytedance, tool-use, 一面高频]
@@ -122,7 +122,7 @@ LLM    →  宿主（选第一家："调用 create_order"）
 
 ---
 
-> 📅 2026-06-30 · 咬文嚼字 · Agent 核心机制 · ⭐⭐⭐⭐⭐
+> 📅 2026-06-30 · 咬文嚼字 · Agent 核心机制 · ⭐⭐⭐⭐
 
 ---
 

@@ -1,7 +1,7 @@
 <!--question:
   id: cache-hot-key
   topic: 04.system-design
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 生产Bug
   tags: [缓存, 热点Key, 本地缓存, 分布式锁]
@@ -155,6 +155,6 @@ public class ProductService {
 - 主模块：[`缓存穿透/击穿/雪崩`](../../../03.data-stack/01-database/06-cache/README.md) — 缓存三大问题与解决方案
 - 主模块：[`Redis`](../../../03.data-stack/01-database/07-redis/README.md) — Redis 集群与分片原理
 
-> 📅 2026-09-01 · 咬文嚼字 · 缓存热点Key · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 缓存热点Key · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回系统设计咬文嚼字](../README.md)

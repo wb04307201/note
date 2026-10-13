@@ -1,7 +1,7 @@
 <!--question:
   id: 03.database-redis-distributed-lock
   topic: 03.database
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 面试追问陷阱
   tags: [03.database, redis, distributed-lock, redisson, watchdog]
@@ -246,6 +246,6 @@ HDEL order:123 thread-a:1  // 第二次释放，计数 = 0，删除锁
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · Redis · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Redis · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · redis-distributed-lock](../README.md)

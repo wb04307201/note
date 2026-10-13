@@ -1,7 +1,7 @@
 <!--question:
   id: 10.big-data-doris-vs-clickhouse
   topic: 10.big-data
-  difficulty: ⭐⭐⭐⭐
+  difficulty: ⭐⭐⭐
   frequency: 高频
   scenario_type: 架构选型
   tags: [10.big-data, Doris, ClickHouse, OLAP, MergeTree, Colocate-Join, MPP]
@@ -224,6 +224,6 @@ OLAP 引擎选型决策树：
 
 ---
 
-> 📅 2026-07-16 · 咬文嚼字 · 大数据 · OLAP 选型 · ⭐⭐⭐⭐
+> 📅 2026-07-16 · 咬文嚼字 · 大数据 · OLAP 选型 · ⭐⭐⭐
 
 ← [返回: 咬文嚼字 · 大数据](../README.md)
