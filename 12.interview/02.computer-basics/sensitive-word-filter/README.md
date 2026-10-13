@@ -69,14 +69,18 @@
 ### 1.3 AC 自动机匹配流程
 
 ```text
-扫描 "hello":
-h → 命中 Trie 节点 h
-e → 沿 fail 跳到 e（假设 e 是 fail 的 child）
-l → 命中
-l → 命中
-o → 沿 fail 跳到 o（"she" 的 e 的 fail 是 o）
-   检查 output：命中 "hello" 和 "she"
+词典 {he, she, his, hers}，扫描文本 "ushers"：
+u → root 无 child 'u'，停留 root
+s → root 有 child 's'，进入节点 s
+h → s 有 child 'h'，进入节点 sh
+e → sh 有 child 'e'，进入节点 she
+    检查 output：命中 "she"
+    沿 fail(she) = he 走 output 链 → 追加命中 "he"
+r → she 无 child 'r' → 沿 fail 跳到节点 he
+    he 有 child 'r' → 进入节点 her（非终止节点，无命中）
+s → her 有 child 's' → 进入节点 hers，命中 "hers"
 
+命中序列：第 4 字符处命中 she + he，第 6 字符处命中 hers
 O(n) 单次扫描，找到所有匹配 patterns
 ```
 

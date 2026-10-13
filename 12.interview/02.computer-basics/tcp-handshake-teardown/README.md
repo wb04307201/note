@@ -156,8 +156,9 @@
 
 **2MSL**（Maximum Segment Lifetime，报文最大生存时间）。
 
-- Linux 默认 MSL = 60 秒 → 2MSL = **120 秒**（有些系统为 60 秒）
-- 可通过 `/proc/sys/net/ipv4/tcp_fin_timeout` 调整（注意：这个参数实际控制 FIN-WAIT-2 超时，不是 TIME_WAIT）
+- RFC 793 建议 MSL = 2 分钟 → 2MSL = **4 分钟**
+- Linux 实现并未采用 RFC 建议值：内核硬编码 `TCP_TIMEWAIT_LEN = 60s`（`include/net/tcp.h`，相当于取 MSL = 30 秒），**无 sysctl 可调**
+- 常被误认为可调的 `/proc/sys/net/ipv4/tcp_fin_timeout` 实际控制的是 FIN-WAIT-2 超时（默认也取 60s），**不是 TIME_WAIT**
 
 ### 3.3 为什么需要 TIME_WAIT？
 

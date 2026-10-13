@@ -135,7 +135,7 @@ WebSocket 需要：协议升级处理 + 连接管理器 + 心跳线程 + 消息�
 | **用户中途打断 AI 生成** | "需要 WebSocket 双向" | ✅ **SSE + HTTP POST**：SSE 流式推送，停止用 `POST /api/abort` |
 | **Function Calling（工具调用）** | "需要 WebSocket 双向传工具结果" | ✅ **SSE + HTTP POST**：SSE 推送工具调用事件，客户端执行后 `POST /api/tool-result` 返回结果 |
 | **多轮 Agent** | "需要 WebSocket 持续双向" | ✅ **SSE + HTTP POST**：每轮 Agent 思考用 SSE 推送，用户操作/工具结果用 HTTP POST |
-| **MCP（Model Context Protocol）** | — | ✅ **就是 SSE + HTTP POST**：MCP 标准协议本身就用 SSE 做 server→client 流式传输 |
+| **MCP（Model Context Protocol）** | — | ✅ **SSE + HTTP POST 模式**：MCP 自 **2025-03-26 规范**起用 Streamable HTTP transport 取代旧版 HTTP+SSE transport——单一 HTTP 端点收 POST，server 流式响应时在同一响应内返回 SSE 流（模式不变，传输层已升级） |
 
 **核心模式**："SSE 负责服务器→客户端的流式推送，HTTP POST 负责客户端→服务器的指令/数据回传"。这个组合已经足够处理 ChatGPT、Claude、通义千问等所有主流 AI 产品的交互需求。
 

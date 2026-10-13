@@ -112,7 +112,7 @@ listen(fd_b, ...);
 | 2 | ❌ **"两个进程监听会都失败"** | 加 SO_REUSEPORT 后两者**都成功**，内核 hash 分发 |
 | 3 | ❌ **"SO_REUSEPORT 用于 TIME_WAIT"** | 错，那是 SO_REUSEADDR 的事 |
 | 4 | ❌ **"SO_REUSEPORT 不影响 accept 公平"** | 错，**内核有 thundering herd 风险**（罕见但要防）|
-| 5 | ❌ **"SO_REUSEPORT 在 Windows 上能用"** | 错，Windows 用 `SO_REUSEPORT` 但**语义不同**（共享 vs 排他）|
+| 5 | ❌ **"SO_REUSEPORT 在 Windows 上能用"** | 错，**Winsock 根本没有 SO_REUSEPORT**；且 Windows 的 `SO_REUSEADDR` 语义危险——**允许第二个 socket 强行绑定他人已占用端口（"hijack" 抢占）**，绑定后该端口上所有 socket 收包行为不确定（与 Unix "仅复用 TIME_WAIT" 完全不同）；Windows 防抢占应使用 `SO_EXCLUSIVEADDRUSE`（依据：Microsoft Winsock 文档 *Using SO_REUSEADDR and SO_EXCLUSIVEADDRUSE*）|
 
 ---
 
