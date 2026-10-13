@@ -12,7 +12,7 @@
 
 ---
 
-> **一句话定位**：`String` 用 `final char[]` + 字面量池 + 不可变设计，保证安全、哈希稳定与 JVM 字符串常量池去重。
+> **一句话定位**：`String` 用 `final byte[]`（Java 9+ Compact Strings，Latin-1/UTF-16 双编码）+ 字面量池 + 不可变设计，保证安全、哈希稳定与常量池去重。
 
 ## `String`的不可变性
 

@@ -126,8 +126,7 @@ BigDecimal c = BigDecimal.valueOf(0.1);
 BigDecimal d = BigDecimal.valueOf(0.2);
 System.out.println(c.add(d));  // 0.3
 // valueOf(double) 相比 new BigDecimal(double) 的优势在于内部先调用 Double.toString(double)，
-// 能将 double 转为最简洁的十进制字符串表示，避免直接使用 double 构造带来的精度问题。
-// 注意：valueOf(double) 内部先调用 Double.toString(double) 再构造，因此不会有精度问题。
+// 将 double 转为最简洁的十进制字符串表示再构造，因此不会有精度问题。
 ```
 
 ## 类型转换（Casting）

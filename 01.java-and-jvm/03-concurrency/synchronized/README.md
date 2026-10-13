@@ -8,6 +8,10 @@
   status: active
 -->
 
+# synchronized 详解
+
+> **一句话定位**：JVM 内置互斥锁，从对象头 Mark Word 与锁升级（偏向→轻量→重量）讲透实现原理，并对比 ReentrantLock 与 JIT 锁优化。
+
 ## 一、synchronized 的三种用法
 
 `synchronized` 是 Java 语言内置的互斥锁机制，由 JVM 在字节码层面通过 `monitorenter` / `monitorexit` 指令实现，保证同一时刻只有一个线程可以执行被保护的代码。

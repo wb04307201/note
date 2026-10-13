@@ -338,7 +338,7 @@ System.out.println(p1.getAddress().getCity());          // "北京"（p1 不受�
 
 ## `hashCode()` 与哈希表
 
-> `Object.hashCode()` 的默认行为（JVM 决定的哈希码，通常与内存地址相关）参见 [object/README.md](../../../README.md#2-hashcode)。本节聚焦于重写契约与最佳实践。
+> `Object.hashCode()` 的默认行为（JVM 决定的哈希码，通常与内存地址相关）参见 [object/README.md](../object/README.md#2-hashcode)。本节聚焦于重写契约与最佳实践。
 
 `hashCode()`的作用是获取哈希码（`int`整数），用于确定该对象在哈希表中的索引位置，从而快速检索对象。
 

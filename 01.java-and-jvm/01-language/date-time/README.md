@@ -302,7 +302,7 @@ Period normalized = Period.ofMonths(14).normalized(); // P1Y2M
 | 适用场景 | 时间差、耗时统计 | 年龄计算、日期间隔 |
 | 创建方式 | `Duration.between(Instant, Instant)` | `Period.between(LocalDate, LocalDate)` |
 | ISO 格式 | `PT2H30M15S` | `P2Y6M15D` |
-| 是否考虑闰秒 | 不考虑 | 考虑日历语义 |
+| 时间语义 | 机器时间（秒/纳秒） | 日历时间（年/月/日） |
 
 ### 3.4 ZoneId 和 ZonedDateTime
 
