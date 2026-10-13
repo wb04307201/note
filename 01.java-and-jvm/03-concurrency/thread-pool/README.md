@@ -1545,6 +1545,7 @@ Web 容器
 - [Dubbo 线程池模型（06.distributed-systems）](../../../06.distributed-systems/02-distributed/rpc/dubbo-threadpool/README.md) — Dubbo 4 种内置线程池（fixed/cached/limited/eager）
 - [Netty EventLoop 与线程模型（06.distributed-systems）](../../../06.distributed-systems/02-distributed/netty-eventloop/README.md) — Netty 业务线程池 UnorderedThreadPoolExecutor
 - [Tomcat 线程池调优（06.distributed-systems）](../../../06.distributed-systems/02-distributed/tomcat-threadpool/README.md) — Tomcat TaskQueue 定制
+- [异步 vs 多线程（12.interview）](../../../12.interview/01.java/async-vs-multithread/README.md) — 概念辨析：异步 ≠ 多线程（线程池 + Future.get() 是多线程但同步）
 
 ### 18.2 向下链（本文被引用）
 
@@ -1554,10 +1555,6 @@ Web 容器
 ---
 
 ⭐⭐⭐⭐（高频面试 + 实战必会）
-
-## 反向链
-
-- [异步 vs 多线程](../../../12.interview/01.java/async-vs-multithread/README.md) — 概念辨析：异步 ≠ 多线程（线程池 + Future.get() 是多线程但同步）
 
 ---
 
