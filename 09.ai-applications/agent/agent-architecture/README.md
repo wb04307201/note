@@ -195,6 +195,7 @@ Q4: 是否需要灵活性 > 稳定性？
 
 - 上游：智能系统分层（⚠️ 待 Phase 1+ 迁入；占位 `../architecture/intelligent-system-layers/`） — Agent 在分层架构中的位置
 - 关联：[Agent Memory 架构](../agent-memory/README.md) — Memory × Agent 执行架构（DAG/ReAct/Plan 的 Memory 特殊要求）
+- 关联：手搓 vs 框架决策（本文 §二十三）— 抽象税 4 层拆解 + 7 信号决策树 + 5 大手搓开源项目学习地图（🆕 2026-10）
 - 关联：Loop Engineering — ⚠️ 待 Phase 1+ 迁入（占位 `../agent-execution-patterns/loop-engineering/`） — DAG 的兜底机制
 - 关联：Harness Engineering — ⚠️ 待 Phase 1+ 迁入（占位 `../agent-execution-patterns/harness-engineering/`） — DAG 是 Harness 的强约束
 - 关联：[LLM 驾驭演进史](llm-control-evolution/README.md) — Prompt → Context → Harness → Loop 4 阶段演进叙事
@@ -1610,6 +1611,8 @@ graph LR
 - **Anthropic "Building Effective Agents"**：https://www.anthropic.com/research/building-effective-agents
 - **LangChain Blog**：https://blog.langchain.dev/
 - **Google A2A Whitepaper**：https://google.github.io/A2A/
+- **Octomind "Agent frameworks shooting themselves in the foot"**（§23.3 弃用案例出处）：https://www.octomind.dev/blog/agent-frameworks-shooting-themselves-in-the-foot
+- **二哥 Java 进阶之路·手搓 Agent**（§23 源文）：https://javabetter.cn/ai/video/why-handcraft-agent-not-framework.html
 
 ---
 
@@ -1623,6 +1626,98 @@ graph LR
 | A2A 协议核心？ | "Agent Card 发现 + Task Lifecycle 状态机 + Streaming + Push Notifications。" |
 | Supervisor 缺点？ | "单点瓶颈 + 上下文压力 + 误判。优化：多 Master + 持久化 + 限职责。" |
 | 多 Agent 一定好？ | "不一定。通信开销 2-3x Token，简单任务用多 Agent 反而效率低。" |
+| 手搓 vs 框架？ | "重是现象不是理由：抽象税 4 层（调用栈/版本/黑盒/冗余提示词）。延迟敏感+动态工具+插桩需求 2 命中即手搓；原型期用框架。心脏手写，四肢借用。" |
+
+---
+
+## 二十三、手搓 vs 框架：抽象税与决策权（🆕 2026-10）
+
+> 定位：本文 §十六「决策树：选哪种架构」解决的是**架构形态**问题（DAG / ReAct / Plan / Multi-Agent）；本节解决的是**实现载体**问题——同一套架构，用 LangChain/CrewAI 这类框架搭，还是直接调 LLM API 手写 Agent 循环。面试题版（三问检验 + 30 秒话术）见文末交叉引用。
+
+### 23.1 核心命题：「框架太重」是现象不是理由
+
+"LangChain 太重了" 是社区高频抱怨，但**重是现象，不是决策依据**。只说"重"等于没做架构决策。给出三问检验框架：
+
+| # | 问题 | 指向 |
+|---|------|------|
+| 1 | **重在哪？** | 抽象税的量化拆解（→ §23.2，4 层） |
+| 2 | **代价是什么？** | 分层归因：性能 / 可观测 / 版本 / 安全（→ §23.5 对照表） |
+| 3 | **怎么权衡？** | 场景化决策，7 信号任 2 命中即手搓（→ §23.6 决策树） |
+
+> 反直觉：手搓的动机不是"框架不好"，而是**决策权归属**——当你的业务核心价值就藏在 Agent 循环的每个中间状态里时，把循环交给框架等于把核心决策权外包。
+
+### 23.2 抽象税 4 层拆解（重在哪）
+
+| 层 | 表现 | 量化方式 |
+|----|------|---------|
+| **L1 调用栈** | 一次简单文本生成要穿 Chain → LLMChain → BaseChain → BaseLLM → BaseOpenAI → OpenAI 等多层类 | 调用栈深度约 5×（对比裸 SDK 直调 1 层） |
+| **L2 版本变动** | 业务没变代码跟着改：Chain API → LCEL，`create_react_agent` → `create_agent` | 升级成本（框架大版本≈一次全量回归测试） |
+| **L3 黑盒可观测** | 框架隐藏了拼给你的原始提示词，出问题时日志里看到的是框架中间对象而非真实 prompt | 调试成本（定位一次问题的时间 ×2~×3） |
+| **L4 冗余提示词** | 通用封装为覆盖各种场景夹带的模板提示词，破坏前缀对齐 → **Prompt Caching 频繁失效** | token 成本（缓存命中率下降直接换算成钱） |
+
+**L4 是最容易被忽略的一层**：前缀缓存按"相同前缀命中"计费打折，框架封装层每次拼 prompt 的顺序/模板差异都会打断前缀对齐——抽象税最终以 token 账单的形式结算。
+
+### 23.3 权威佐证
+
+- **Anthropic 官方（«Building Effective Agents» 2024-12）**：框架为了通用性需要额外抽象层，会**隐藏最初的提示词**，使调试更困难；建议大多数场景直接调用 API，从简单模式（Workflow）开始，只在确实需要 Agent 灵活性时才引入框架抽象。参见本文 §12.1 案例 1。
+- **Octomind 真实弃用案例**：用 LangChain 一年多后弃用改手搓——触发点是**需要在 Agent 运行中动态调整可用工具集**，框架没有提供观察/控制中间状态的机制，每次想介入都要先理解框架内部实现。原文：*Agent frameworks shooting themselves in the foot*（链接见 §21.3）。
+
+### 23.4 手搓的 3 大回报（不是从头造轮子）
+
+手搓 ≠ 从零实现工具调用协议、重写 HTTP 客户端。**SDK 层（anthropic / openai 官方 SDK）照用**，手搓的只是中间那一层 Agent 循环（ReAct loop、上下文管理、调度策略）：
+
+1. **ReAct 绝对掌控**：模型每步在想什么、调了什么工具、工具返回值合不合理——全部可实时插桩（interceptor）、中断、动态修正。框架下这需要先读懂框架源码再找 hook 点。
+2. **上下文工程极致压缩**：手写循环才能做前缀感知与动态压缩——工具输出截断、对话历史折叠、时间维度裁剪、按需摘要（Claude Code 同款做法，详见 [coding-agents](../coding-agents/README.md)）。框架的通用 memory 组件做不到按你业务定制。
+3. **流式交互与并发调度**：只读工具全量并发、写操作严格串行、超时中断秒级终止——这些调度策略天然是业务决策，不是框架能预设的。
+
+### 23.5 代价对照表
+
+| 维度 | 框架 | 手搓 |
+|------|------|------|
+| **单次执行延迟** | 约 200~500ms（封装层 + 状态转换 + Callback 机制） | 约 100ms（纯 API 直调） |
+| **开发速度** | 工具调用几十分钟接好 | 自写要几天（Tool 注册 / 参数解析 / 异常处理 / 消息管理） |
+| **生态** | RAG / Memory / VectorDB / Prompt 模板现成 | 全部自建 |
+| **可控性** | 中间状态难干预（要读框架源码找 hook） | 每步插桩 |
+| **数据安全** | Prompt 与执行记录过第三方抽象层 | 自管（合规域内闭环） |
+| **适用** | 原型验证 / demo / 生态依赖重 | 生产 / 机器人 / 低延迟 / 强合规 |
+
+> 延迟数字为量级参考（截至 2026-10 源文数据），随框架版本变化，核心是**相对关系**：框架开销主要来自封装层状态转换与 Callback 链，手搓省掉的正是这部分。
+
+### 23.6 决策树：什么时候手搓，什么时候用框架
+
+**7 个信号（任 2 个命中 → 手搓）**：
+
+| # | 信号 | 典型场景 |
+|---|------|---------|
+| 1 | 延迟敏感 | 实时机器人 / 自动驾驶 / 高频交易 |
+| 2 | 需要运行中动态调整工具集 | Octomind 场景（框架无此机制） |
+| 3 | 需要每步插桩 / 中断 / 修正 | ReAct 掌控需求 |
+| 4 | 上下文成本敏感 | 前缀缓存优化（L4 抽象税） |
+| 5 | 数据合规 | Prompt / 执行记录不出域 |
+| 6 | 业务是 Agent + Workflow 混合 | 纯 Agent 框架不合身（见 §十六架构决策树） |
+| 7 | 已有工程团队维护能力 | 有能力养自研循环 |
+
+**框架占优**：原型期 / 创业快速验证 / 生态依赖重（RAG 全家桶）/ 团队 AI 工程经验少。
+
+**折中方案（生产最常见）**：**核心循环手写 + 周边工具性能力借用**——ReAct 循环、上下文管理、调度自写；tracing、文档解析、向量库 client 这些工具性能力直接用现成库。一句话：**「心脏手写，四肢借用」**。
+
+### 23.7 5 大手搓开源项目（学习地图）
+
+| 项目 | 星标（截至 2026-10 源文数据，约数） | 核心学习点 |
+|------|------|-----------|
+| [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | 约 7.5k | 约 100 行实现完整 Agent + SWE-bench 高分 — **最极简骨架**，先读它 |
+| [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) | 约 30k | Agent / Runner / Tool / Guardrail / Handoff 5 概念白盒化 — **最标准范式** |
+| [Aider](https://github.com/Aider-AI/aider) | 约 50k | repo map（仓库压缩成结构地图）+ diff / udiff / 全文件 3 编辑模式 — **上下文工程教科书** |
+| [Goose（Block）](https://github.com/block/goose) | 约 54k | Rust 高性能 + MCP 深度集成 — **系统级并发架构** |
+| [PydanticAI](https://github.com/pydantic/pydantic-ai) | 20k+ | FastAPI 式类型安全 + 依赖注入 + 结构化输出 — **生产级类型安全** |
+
+> 学习路径建议：mini-swe-agent（看懂最小循环）→ OpenAI Agents SDK（看懂标准抽象）→ Aider（看懂上下文工程）→ Goose/PydanticAI（看懂生产化）。
+
+### 23.8 交叉引用
+
+- 面试题版（双层互链）：[12.interview/11.ai/handcraft-vs-framework](../../../12.interview/11.ai/handcraft-vs-framework/README.md) — 三问检验 + 30 秒话术 + 反直觉陷阱
+- 本模块内部：§十一（6 大框架源码对比）、§十二（Anthropic «Building Effective Agents» 案例）、§十六（架构形态决策树，与本节实现载体决策互补）
+- 关联：[coding-agents](../coding-agents/README.md) — Claude Code / Codex / OpenCode / OMP 成品 Agent 横向对比（手搓范式的工业级实证）
 
 ---
 
