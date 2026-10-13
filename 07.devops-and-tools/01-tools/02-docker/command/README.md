@@ -38,7 +38,7 @@
 | `docker rm <container>`                                | 删除容器（加 `-f` 可强制删除运行中的容器）                                                                                                                                                 |
 | `docker exec -it <container> /bin/bash`                | 进入运行中的容器（执行命令）                                                                                                                                                           |
 | `docker logs <container>`                              | 查看容器日志（加 `-f` 可实时跟踪）                                                                                                                                                     |
-| `docker inspect <container                             | image>`                                                                                                                                                                  | 查看容器或镜像的详细信息（JSON 格式） |
+| `docker inspect <容器名或镜像名>`                             | 查看容器或镜像的详细信息（JSON 格式） |
 | `docker cp <container>:<path> <local_path>`            | 在容器和本地之间复制文件                                                                                                                                                             |
 | `docker container update --restart=always <container>` | 设置容器自动重启(#no - Container不重启 #on-failure - container推出状态非0时重启 #always - 始终重启)                                                                                             |
 
@@ -120,13 +120,4 @@
 
 ---
 
-如果你有具体使用场景（比如部署 Nginx、MySQL，或构建镜像等），可以告诉我，我可以给出更具体的命令示例！
-
----
-
 ← [返回 Docker](../README.md)
-## 一句话定位
-
-> **Docker 命令 = 镜像/容器/网络/卷/系统/Compose 6 大类**——本指南按场景分类，覆盖所有日常 docker CLI 用法（100+ 命令 + 5 个 Compose 实战模板）。
-
-**摘要补充**：`Docker 命令` 不仅是 `docker run`，还包含 `docker build`（镜像构建）、`docker exec`（容器内执行）、`docker logs`（日志查看）、`docker volume`（数据卷）、`docker network`（容器网络）、`docker-compose`（多容器编排）6 大领域。
