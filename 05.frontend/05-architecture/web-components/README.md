@@ -35,6 +35,57 @@ Web Components 由**三大核心技术**构成，共同实现组件的封装与�
 >
 > 参考：[MDN — HTML Imports](https://developer.mozilla.org/en-US/docs/Web/Web_Components/HTML_Imports)
 
+### 最小完整示例：`<my-button>`
+
+三件套（Custom Element + Shadow DOM + `<template>`）组合成一个可运行的自定义按钮：
+
+```html
+<template id="btn-tpl">
+  <style>
+    /* 样式被 Shadow DOM 隔离，不会泄漏到页面，也不受外部 CSS 影响 */
+    button { padding: 6px 16px; border-radius: 4px; border: 1px solid #4a7; }
+    :host([disabled]) button { opacity: 0.5; cursor: not-allowed; }
+  </style>
+  <button part="inner"><slot>默认文本</slot></button>
+</template>
+
+<script>
+class MyButton extends HTMLElement {
+  constructor() {
+    super();
+    // 创建 Shadow Root，实现 DOM/样式隔离
+    this.attachShadow({ mode: 'open' });
+    // 克隆 <template> 内容作为组件的内部结构
+    const tpl = document.getElementById('btn-tpl');
+    this.shadowRoot.appendChild(tpl.content.cloneNode(true));
+  }
+  connectedCallback() {
+    // 元素插入文档时触发：绑定事件、读取初始属性
+    this.shadowRoot.querySelector('button')
+      .addEventListener('click', () => this.dispatchEvent(new CustomEvent('my-click')));
+  }
+  static get observedAttributes() { return ['label']; }
+  attributeChangedCallback(name, _, val) {
+    if (name === 'label') this.shadowRoot.querySelector('slot').textContent = val;
+  }
+}
+customElements.define('my-button', MyButton); // 注册标签名（必须含连字符）
+</script>
+
+<!-- 使用：像原生标签一样 -->
+<my-button label="提交"></my-button>
+```
+
+**Shadow DOM 隔离效果**（为何"组件内样式互不干扰"）：
+
+```html
+<style>p { color: red; }</style>
+<p>我是页面里的段落，红色</p>
+<my-button></my-button> <!-- Shadow DOM 内部的 <p>/按钮不受外部 p{color:red} 影响 -->
+```
+
+外部选择器无法穿透 Shadow 边界（除非组件用 `::part` / CSS 变量显式暴露），这就是"封装性与安全性"的技术来源。
+
 ## 二、核心优势
 1. **跨框架兼容性**
     - 作为浏览器原生技术，Web Components 可无缝集成到 React、Vue、Angular 等任意框架中，甚至用于纯 JavaScript 项目或服务端渲染（SSR）。

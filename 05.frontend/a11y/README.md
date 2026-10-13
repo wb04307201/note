@@ -377,16 +377,21 @@ async function auditAccessibility(url) {
   const result = await lighthouse(url, {
     onlyCategories: ['accessibility']
   });
-  
+
   const score = result.lhr.categories.accessibility.score; // 0-1
-  const audits = result.lhr.audits;
-  
+  // 注意：result.lhr.audits 是以 audit id 为键的对象（keyed object），
+  // 不存在 .passed / .failed 数组，需先 Object.values 再按 score 分类
+  const audits = Object.values(result.lhr.audits)
+    .filter(a => a.score !== null); // 过滤不适用（Not Applicable）的审计项
+  const passed = audits.filter(a => a.score >= 0.9);
+  const failed = audits.filter(a => a.score < 0.5);
+
   console.log(`可访问性得分: ${score * 100}`);
-  console.log(`通过: ${audits.passed.length}`);
-  console.log(`失败: ${audits.failed.length}`);
-  
+  console.log(`通过: ${passed.length}`);
+  console.log(`失败: ${failed.length}`);
+
   // 详细报告
-  audits.failed.forEach(audit => {
+  failed.forEach(audit => {
     console.log(`❌ ${audit.title}: ${audit.description}`);
   });
 }
