@@ -236,7 +236,7 @@ skills/
 - Context Engineering — Token 预算与上下文压缩
 
 **面试题层（12.interview）**：
-- Skill 命中率面试 5 题 — 配套面试题
+- [Skill 数量一多，Agent 命中率怎么保证？](../../../../12.interview/11.ai/skill-hit-rate/README.md) — 配套面试题（Skill 命中率 5 题）
 
 **叙事层（13.story）**：
 - 扩招 50 个厨师：Skill 调度的餐厅隐喻 — 餐厅叙事版

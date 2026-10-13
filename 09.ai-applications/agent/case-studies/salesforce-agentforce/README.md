@@ -1,9 +1,9 @@
 <!--module:
-  parent: ai
-  slug: ai/case-agentforce
+  parent: 09.ai-applications/agent/case-studies
+  slug: 09.ai-applications/agent/case-studies/salesforce-agentforce
   type: article
   category: 主模块子文章
-  summary: Salesforce Agentforce
+  summary: Salesforce Agentforce 案例复盘——销售 Agent 从 Copilot 到自主闭环的"hard swap"：五段式自主工作流（线索挖掘/邮件预约/会议情报/商机更新/跨系统协同）+ 四大工程底座（Atlas 推理引擎/无代码 Agent Builder/Data Cloud 权限继承/预构建+自定义双轨）+ help.salesforce.com 实测数据（83% 问题 Agent 独立解决）。
   depth: ⭐⭐⭐
   status: active
 -->

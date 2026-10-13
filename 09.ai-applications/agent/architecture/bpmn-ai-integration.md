@@ -38,13 +38,15 @@
 
 ## 二、4 大融合模式
 
-### 2.1 模式 A：LLM 包装为 Service Task（Camunda 8.5+）
+### 2.1 模式 A：LLM 包装为 Service Task（Camunda 8.8+）
 
-**思路**：把 LLM 推理包装成 BPMN Service Task，通过 FEEL 表达式 `fromAi()` 调用。
+**思路**：把 LLM 推理包装成 BPMN Service Task / ad-hoc sub-process 内工具，由 Camunda 官方 **AI Agent connector** 驱动；工具入参用 FEEL 扩展函数 `fromAi()` 声明，LLM 在 agent loop 中自动填充。
+
+> ⚠️ 版本口径（2026-10 核查）：`fromAi()` 与 AI Agent Sub-process 属于 **agentic orchestration** 能力，随 **Camunda 8.8** 发布（见 [8.8 What's New](https://docs.camunda.io/docs/reference/announcements-release-notes/880/whats-new-in-88/)、[AI Agent connector 文档](https://docs.camunda.io/docs/components/connectors/out-of-the-box-connectors/agentic-ai-aiagent/)）。它**不是 BPMN 内置图元**，而是"ad-hoc sub-process + connector 元素模板 + job worker"的实现。
 
 ```mermaid
 flowchart LR
-    User[User Task<br/>客户提交投诉] --> AI[Service Task<br/>fromAi 分类]
+    User[User Task<br/>客户提交投诉] --> AI[AI Agent Task/Sub-process<br/>工具: classify]
     AI -->|差评| Director[User Task<br/>主管审批]
     AI -->|好评| Auto[Service Task<br/>自动回复]
     Director --> Notify[Service Task<br/>发送通知]
@@ -52,27 +54,26 @@ flowchart LR
     Notify --> End
 ```
 
-**FEEL 表达式**：
+**FEEL 表达式**（`fromAi()` 的真实签名：第一个参数必须是 `toolCall.<参数名>` 变量引用，用于**声明工具入参**，实际值由 LLM 在调用工具时填充；来源：[AI agent FEEL 函数文档](https://docs.camunda.io/docs/components/modeler/feel/builtin-functions/feel-built-in-functions-ai-agent/)）：
 
 ```feel
 {
-  category: fromAi("判断投诉类型", { allowedValues: ["差评", "好评", "咨询"] }),
-  priority: fromAi("评估紧急程度", { allowedValues: ["高", "中", "低"] }),
-  summary: fromAi("生成 50 字以内的投诉摘要")
+  category: fromAi(toolCall.category, "投诉类型", "string", { enum: ["差评", "好评", "咨询"] }),
+  priority: fromAi(toolCall.priority, "紧急程度", "string", { enum: ["高", "中", "低"] }),
+  summary: fromAi(toolCall.summary, "50 字以内的投诉摘要", "string")
 }
 ```
 
 **优势**：
 
-- 工程师友好（FEEL 表达式）
-- 引擎原生支持，零外部依赖
-- 流程实例可审计
+- 官方 connector 支持（Anthropic / OpenAI / Gemini / Bedrock 等主流 LLM provider）
+- 工程师友好（FEEL 声明式工具入参，无需写胶水代码）
+- 流程实例可审计；配合 ad-hoc sub-process 可实现多步 agent loop + 自动工具调用（[AI Agent Sub-process connector](https://docs.camunda.io/docs/components/connectors/out-of-the-box-connectors/agentic-ai-aiagent-subprocess/)）
 
 **局限**：
 
-- 仅支持**单步 LLM 调用**（无多步推理）
-- 工具调用需手动实现
-- 适合**轻量 AI 嵌入**场景
+- 仅 8.8+ 可用，且属 agentic orchestration 新能力，生态与最佳实践仍在沉淀
+- 私有 LLM / 非官方 provider 仍需走模式 B（自研 Zeebe AI Worker）
 
 ### 2.2 模式 B：自研 Zeebe AI Worker
 
@@ -121,7 +122,7 @@ public void handle(final JobClient client, final ActivatedJob job) {
 
 **适用**：
 
-- Camunda 8.5 之前的版本
+- Camunda 8.8 之前的版本
 - 需要复杂 Agent 推理
 - 私有 LLM 接入
 
@@ -207,8 +208,8 @@ Q1: AI 推理复杂度？
 └── 多步推理 / 工具调用 → 继续
 
 Q2: Camunda 版本？
-├── 8.5+ 且轻量场景 → 模式 A（AI Agent Sub-process）
-└── 8.5 之前 或 需要 LangGraph → 模式 B（自研 Zeebe AI Worker）
+├── 8.8+ 且轻量场景 → 模式 A（AI Agent Sub-process）
+└── 8.8 之前 或 需要 LangGraph → 模式 B（自研 Zeebe AI Worker）
 
 Q3: 谁主动？
 ├── BPMN 流程主动调 AI → 模式 A / B
@@ -318,7 +319,7 @@ Q4: 是否需要人工审核？
 | 趋势 | 影响 |
 |------|------|
 | **MCP 协议普及** | AI 工具调用标准化，BPMN 工具可被任意 AI 消费 |
-| **AI Agent Sub-process 一等公民** | Camunda 8.5+ 把 Agent 节点提升为内置图元 |
+| **AI Agent Sub-process（官方 connector 形态）** | Camunda 8.8+ 以 ad-hoc sub-process + AI Agent connector 提供 agentic orchestration（非 BPMN 内置图元，见 [8.8 What's New](https://docs.camunda.io/docs/reference/announcements-release-notes/880/whats-new-in-88/)）|
 | **多模态原生** | BPMN 节点支持图像 / 语音 / 视频输入（GPT-4o / Claude 3.5）|
 | **小模型 + 大模型混合** | 简单分类用本地 7B 小模型，复杂推理用云端 GPT-4o |
 | **流程智能（Process Intelligence）** | AI 反哺 BPMN：流程挖掘 + 自动优化 |
@@ -328,10 +329,10 @@ Q4: 是否需要人工审核？
 ## 🤔 思考
 
 1. **AI + BPMN 融合 vs 端到端 Agent？** 端到端 Agent 灵活但难审计、难合规。**生产级落地**几乎都选融合——BPMN 管确定性骨架，AI 管非结构化推理，两者互补。
-2. **模式 A 和模式 B 怎么选？** 单步分类 / 提取用模式 A（FEEL 简单）；多步推理 / 工具调用用模式 B（更灵活）。**Camunda 8.5+ 优先模式 A**，之前版本用模式 B。
+2. **模式 A 和模式 B 怎么选？** 单步分类 / 提取用模式 A（FEEL 简单）；多步推理 / 工具调用用模式 B（更灵活）。**Camunda 8.8+ 优先模式 A**，之前版本用模式 B。
 3. **模式 C 的最大风险？** AI Agent 可能"忘记"调用流程（幻觉）→ 需要在 Prompt 中**强约束** + 在工具描述中**明示边界** + 监控告警。
 4. **HITL 会让 AI 失去价值吗？** 不会。HITL 解决的是"**高风险决策的兜底**"，90% 的常规决策仍可全自动；HITL 让 AI 获得在企业落地的"信任票"。
-5. **未来 3 年的趋势？** 2026-2028 年，**BPMN 引擎原生 AI 化**（Camunda 8.5+ 路线）+ **AI 平台原生流程化**（Dify 引入子流程）双向靠拢；最终可能融合为"**AI-native BPMN**"——既有图灵完备的图状编排，又有原生 LLM 节点 + 工具调用。
+5. **未来 3 年的趋势？** 2026-2028 年，**BPMN 引擎原生 AI 化**（Camunda 8.8+ agentic orchestration 路线）+ **AI 平台原生流程化**（Dify 引入子流程）双向靠拢；最终可能融合为"**AI-native BPMN**"——既有图灵完备的图状编排，又有原生 LLM 节点 + 工具调用。
 
 ---
 
@@ -342,7 +343,7 @@ Q4: 是否需要人工审核？
 - 07 工作流 — 章节根目录
 - [Dify](../ai-platforms/dify.md) — 模式 A/B 中 LLM 推理的常见载体
 - [LangGraph](../ai-platforms/langgraph.md) — 模式 B/C 中 Agent 框架的工业界主流
-- Camunda 8 — 模式 A 8.5+ AI Agent Sub-process 详解
+- Camunda 8 — 模式 A 8.8+ AI Agent connector / Sub-process 详解
 - Zeebe — 模式 B Zeebe AI Worker 实现
 - 微服务编排 — 流程引擎在微服务场景的演化
 - 05.frontend / 05 架构 / BFF — BFF 模式详解：与 AI 融合中的"端侧适配层"实践

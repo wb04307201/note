@@ -405,12 +405,9 @@ define flow harmful
 
 | # | 章节 | 一句话定位 |
 |---|------|-----------|
-| 1 | RAG vs Fine-tuning vs Prompt | 三大定制策略对比与选型决策 |
-| 2 | [LLMOps 栈](./README.md) | 数据/训练/部署/监控/反馈全链路工程栈 |
-| 3 | [向量库 vs 缓存](./README.md) | Embedding 检索 vs KV 缓存边界与协同 |
-| 4 | [LLM 评测](./README.md) | 自动化指标 + 人工评测 + A/B + 红队对抗 |
-| 5 | LLM 安全 | OWASP LLM Top 10 + 6 层防御 + Guardrails 实战 |
-| 6 | [RAG 超范围拒答](./README.md) | 6 大检测机制 + 5 大拒答模式 + 4 步调优 |
+| 1 | [RAG vs Fine-tuning vs Prompt](../../../rag/03-rag-vs-finetuning.md) | 三大定制策略对比与选型决策 |
+| 2 | [LLM 评测](../../../eval/README.md) | 自动化指标 + 人工评测 + A/B + 红队对抗 |
+| 3 | [RAG 超范围拒答](../../../rag/05-out-of-domain-rejection.md) | 6 大检测机制 + 5 大拒答模式 + 4 步调优 |
 
 ## 反向链
 

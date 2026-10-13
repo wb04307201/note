@@ -360,7 +360,7 @@ evaluation:
 - Harness Engineering 体系 — 上下文工程总论
 
 **面试题（12.interview）**：
-- Skill 设计面试 5 题 — 配套面试题
+- [Skill 从 0 到 1 怎么设计？](../../../../12.interview/11.ai/skill-design/README.md) — 配套面试题（Skill 设计 5 题）
 
 ---
 
