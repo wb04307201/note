@@ -5,7 +5,7 @@
   category: 后端框架 / Spring 全家桶
   topic: Spring 数据层
   audience: Java 后端工程师
-  summary: Spring 数据层 = 事务 + 缓存 + 数据访问（39 篇：声明式/编程式事务/传播隔离失效/多数据源/JTA/JPA/Cache 4 模式/多级缓存/序列化/MyBatis 全栈 4 主题 27 篇）
+  summary: Spring 数据层 = 事务 + 缓存 + 数据访问（40 篇：声明式/编程式事务/传播隔离失效/多数据源/JTA/JPA/Cache 4 模式/多级缓存/序列化/MyBatis 全栈 4 主题 27 篇）
   depth: ⭐⭐⭐
   status: active
 -->
@@ -146,15 +146,15 @@ graph TB
 | 子目录 | 篇数 |
 |:------|:----:|
 | `04-data/`（本目录直接） | 0 |
-| ├─ `cache/` | 5 |
+| ├─ `cache/` | 6 |
 | ├─ `transaction/` | 7 |
 | └─ `mybatis/`（重点项目） | 27 |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `01-architecture/` | 8 |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `02-extension/` | 4 |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `03-spring-integration/` | 5 |
 | &nbsp;&nbsp;&nbsp;&nbsp;└─ `04-mybatis-plus/` | 10 |
-| **合计** | **39** |
+| **合计** | **40** |
 
-> 数字基线：以 leaf MD 数（含子目录与子子目录的 .md，不含任何 README 索引页）为统计口径。统计时间 2026-07-01。
+> 数字基线：以 leaf MD 数（含子目录与子子目录的 .md，不含任何 README 索引页）为统计口径。统计时间 2026-10-13（上次 2026-07-01：cache 5→6，新增 1 篇 leaf）。
 
 ← [返回 Spring 顶层](../README.md)

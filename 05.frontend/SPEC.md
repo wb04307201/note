@@ -3,7 +3,7 @@
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override
-> **Updated**: 2026-08-13
+> **Updated**: 2026-10-13
 
 ---
 
@@ -37,11 +37,12 @@
 - 用 ✅/❌ 展示可控渲染、缓存、组件拆分、懒加载和安全输入的实践与反例。
 - 跨浏览器结论必须有明确的兼容性矩阵、Polyfill 或降级策略。
 
-### 子目录约定
+### 子目录约定（2026-10-13 对齐，11 个，find 校对）
 
 - `01-foundation/`：HTML、CSS、浏览器、网络与 Web 基础。
 - `02-language/`：JavaScript/TypeScript、运行时与工程语法。
 - `03-frameworks/`：React、Vue、Solid 等现代前端框架。
+- `03-network/`：HTTP 协议、WebSocket 等前端网络层专题。🆕 2026-10-13 补声明
 - `04-engineering/`：构建、测试、代码质量、包管理与研发流程。
 - `05-architecture/`：组件设计、状态管理、微前端与应用架构。
 - `06-performance/`：渲染、加载、缓存、资源与性能优化。
