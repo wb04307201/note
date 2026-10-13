@@ -52,4 +52,4 @@ Java 语言基础 + JVM 原理 + 并发编程 + 设计模式。
 | `modules/` | JPMS 模块系统 |
 | `network/` | 网络编程（BIO / NIO / AIO / Reactor） |
 | `testing/` | 测试技术（JUnit 5 / Mockito / JaCoCo）—— 有子 SPEC |
-| `version/` | Java 版本演进编年史（java-10 → java-25 + 横切专题） |
+| `version/` | Java 版本演进编年史（java-8 → java-26 + 特性轴专题）—— 有子 SPEC |

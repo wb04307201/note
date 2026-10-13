@@ -3,7 +3,7 @@
 
 > **Inherits from**: [../SPEC.md](../SPEC.md)
 > **Mode**: append + override
-> **Updated**: 2026-08-13
+> **Updated**: 2026-10-13
 
 ---
 
@@ -39,7 +39,7 @@
 
 ### 子目录约定
 
-- `01-foundation/`：分布式系统概念、网络、时间、时钟与一致性基础。
+- `01-foundation/`：分布式系统概念、架构演进、系统设计基础与技术债（理论与方法论前置层）—— 有子 SPEC（L1x）。
 - `02-distributed/`：RPC、消息、服务发现、分布式事务与协调。
 - `03-high-availability/`：容灾、故障转移、限流、降级与高可用设计。
 - `04-high-performance/`：缓存、分片、并发、批流处理与性能工程。
