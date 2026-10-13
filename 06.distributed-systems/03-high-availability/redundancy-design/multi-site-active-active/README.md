@@ -63,7 +63,7 @@
 
 4. **云服务提供商**（如阿里云、AWS）
     - 阿里云通过“单元化”架构实现应用多活，支持分钟级流量切换，资源利用率提升30%以上。
-    - AWS Global Spanner支持跨区域强一致性，通过TrueTime API解决时钟同步问题。
+    - Google Spanner通过TrueTime API解决时钟同步问题，实现跨区域强一致性；AWS对应方案是DynamoDB Global Tables，采用最终一致性模型。
 
 ## 四、异地多活的常见问题与解决方案
 | **挑战**    | **解决方案**                                    |

@@ -1,9 +1,9 @@
 <!--module:
-  parent: 04.system-design
-  slug: 12.interview/04.system-design/01-foundation/system-design-basics/archimate/viewpoints
+  parent: 06.distributed-systems
+  slug: 06.distributed-systems/01-foundation/system-design-basics/archimate/viewpoints
   type: article
   category: 主模块子文章
-  summary: ---
+  summary: 第二章：视点：给不同人看不同的图
   depth: ⭐⭐⭐⭐
   status: active
 -->

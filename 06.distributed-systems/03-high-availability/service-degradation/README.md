@@ -100,13 +100,13 @@
 ```json
 [
   {
-    “resource”: “getUserRecommend”,
-    “grade”: 1,
-    “count”: 50,
-    “timeWindow”: 5,
-    “minRequestAmount”: 10,
-    “statIntervalMs”: 1000,
-    “slowRatioThreshold”: 0.5
+    "resource": "getUserRecommend",
+    "grade": 1,
+    "count": 50,
+    "timeWindow": 5,
+    "minRequestAmount": 10,
+    "statIntervalMs": 1000,
+    "slowRatioThreshold": 0.5
   }
 ]
 ```
@@ -121,9 +121,9 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 public class RecommendService {
 
     @SentinelResource(
-        value = “getUserRecommend”,
-        blockHandler = “recommendFallback”,
-        fallback = “recommendFallback”
+        value = "getUserRecommend",
+        blockHandler = "recommendFallback",
+        fallback = "recommendFallback"
     )
     public List<Item> recommend(Long userId) {
         return remoteRecommendClient.fetch(userId);
@@ -143,14 +143,14 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 @Service
 public class PaymentService {
 
-    @CircuitBreaker(name = “payment”, fallbackMethod = “degradedPay”)
+    @CircuitBreaker(name = "payment", fallbackMethod = "degradedPay")
     public PayResult pay(Order order) {
         return remotePayClient.charge(order);
     }
 
-    // 降级：返回”稍后重试”占位
+    // 降级：返回"稍后重试"占位
     public PayResult degradedPay(Order order, Throwable t) {
-        return PayResult.deferred(“支付通道繁忙，请稍后重试”);
+        return PayResult.deferred("支付通道繁忙，请稍后重试");
     }
 }
 ```

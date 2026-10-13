@@ -3,7 +3,7 @@
   slug: system-design/03-relationship-and-hybrid
   type: article
   category: 主模块子文章
-  summary: 关系与混合族：关系图与实战组合 本应该很简单，一句话定位：用"实体间关系"作为决策依据的模型，以及工程实战中最常见的组合
+  summary: 关系与混合族导览：ReBAC 以实体间关系图作为决策依据（Zanzibar 风格），混合模型给出 RBAC+ABAC 工程实战组合
   depth: ⭐
   status: active
 -->
