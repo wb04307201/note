@@ -56,14 +56,17 @@ graph LR
 
 ---
 
-## 三、4 种内置负载均衡策略
+## 三、负载均衡策略
 
-| 策略 | 类 | 算法 | 适用场景 |
-|------|------|------|---------|
-| **轮询**（**默认**） | `RoundRobinLoadBalancer` | 按顺序依次选 | 性能相近的实例 |
-| **随机** | `RandomLoadBalancer` | 随机选 | 简单场景 |
-| **权重响应时间** | `WeightedResponseTimeLoadBalancer` | 响应越快权重越高 | 实例性能不均 |
-| **Nacos 权重** | `NacosLoadBalancer` | 按 Nacos 配置的权重 | 与 Nacos 集成 |
+> Spring Cloud LoadBalancer **内置只有 2 种** `ReactiveLoadBalancer` 实现（官方文档原话："a Round-Robin-based and Random implementations have been provided"）。其余策略要么通过 `ServiceInstanceListSupplier` 装饰器实现（如加权/Zone 偏好/健康检查），要么需自定义或来自 Nacos 等扩展。
+
+| 策略 | 类 | 来源 | 算法 | 适用场景 |
+|------|------|------|------|---------|
+| **轮询**（**默认**） | `RoundRobinLoadBalancer` | Spring Cloud LoadBalancer 内置 | 按顺序依次选 | 性能相近的实例 |
+| **随机** | `RandomLoadBalancer` | Spring Cloud LoadBalancer 内置 | 随机选 | 简单场景 |
+| **元数据权重** | `WeightedServiceInstanceListSupplier` | 官方 Supplier 装饰器（非 LoadBalancer 实现） | 按实例 metadata 中 `weight` 加权 | 实例性能不均 |
+| **Nacos 权重** | `NacosLoadBalancer` | Nacos 扩展（spring-cloud-alibaba） | 按 Nacos 配置的权重 | 与 Nacos 集成 |
+| **权重响应时间** | `WeightedResponseTimeRule` | ⚠️ Ribbon（已停更）的类，**Spring Cloud LoadBalancer 中不存在** `WeightedResponseTimeLoadBalancer` | 响应越快权重越高 | 迁移旧项目时留意 |
 
 ---
 

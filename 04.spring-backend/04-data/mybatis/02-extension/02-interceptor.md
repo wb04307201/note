@@ -50,35 +50,31 @@ MyBatis拦截器通过JDK动态代理实现，基于`org.apache.ibatis.plugin.In
 - **Plugin工具类**：通过`wrap()`方法生成代理对象
 - **InterceptorChain**：维护拦截器链，按配置顺序执行`pluginAll()`方法
 
-```plantuml
-@startuml
-interface Interceptor {
-  +intercept(Invocation) : Object
-  +plugin(Object) : Object
-  +setProperties(Properties) : void
-}
-
-class Plugin {
-  +wrap(Object, Interceptor) : Object
-}
-
-class InterceptorChain {
-  -interceptors : List<Interceptor>
-  +pluginAll(Object) : Object
-  +addInterceptor(Interceptor) : void
-}
-
-class Invocation {
-  -target : Object
-  -method : Method
-  -args : Object[]
-  +proceed() : Object
-}
-
-Interceptor <|-- Plugin
-InterceptorChain o-- Interceptor
-Invocation --> Interceptor : "被拦截"
-@enduml
+```mermaid
+classDiagram
+    class Interceptor {
+        <<interface>>
+        +intercept(Invocation) Object
+        +plugin(Object) Object
+        +setProperties(Properties) void
+    }
+    class Plugin {
+        +wrap(Object, Interceptor) Object
+    }
+    class InterceptorChain {
+        -interceptors List~Interceptor~
+        +pluginAll(Object) Object
+        +addInterceptor(Interceptor) void
+    }
+    class Invocation {
+        -target Object
+        -method Method
+        -args Object[]
+        +proceed() Object
+    }
+    Plugin --> Interceptor : 依赖（wrap 时包装目标）
+    InterceptorChain o-- Interceptor : 维护拦截器链
+    Invocation --> Interceptor : 被拦截
 ```
 
 ---
@@ -122,20 +118,21 @@ public class ExecutionTimeInterceptor implements Interceptor {
     - 动态表名替换
     - 防SQL注入
 
-```plantuml
-@startuml
-class RoutingStatementHandler {
-  -delegate : StatementHandler
-}
-
-class PreparedStatementHandler {
-  -parameterHandler : ParameterHandler
-  -resultSetHandler : ResultSetHandler
-}
-
-StatementHandler <|-- RoutingStatementHandler
-StatementHandler <|-- PreparedStatementHandler
-@enduml
+```mermaid
+classDiagram
+    class StatementHandler {
+        <<interface>>
+    }
+    class RoutingStatementHandler {
+        -delegate StatementHandler
+    }
+    class PreparedStatementHandler {
+        -parameterHandler ParameterHandler
+        -resultSetHandler ResultSetHandler
+    }
+    StatementHandler <|.. RoutingStatementHandler
+    StatementHandler <|.. PreparedStatementHandler
+    RoutingStatementHandler o-- PreparedStatementHandler : delegate
 ```
 
 ### 3. ParameterHandler（参数处理器）
@@ -174,16 +171,17 @@ public class EncryptInterceptor implements Interceptor {
     - 嵌套结果处理
     - 空值转换
 
-```plantuml
-@startuml
-class DefaultResultSetHandler {
-  -executor : Executor
-  -mappedStatement : MappedStatement
-  +handleResultSets(Statement) : List<Object>
-}
-
-ResultSetHandler <|-- DefaultResultSetHandler
-@enduml
+```mermaid
+classDiagram
+    class ResultSetHandler {
+        <<interface>>
+    }
+    class DefaultResultSetHandler {
+        -executor Executor
+        -mappedStatement MappedStatement
+        +handleResultSets(Statement) List~Object~
+    }
+    ResultSetHandler <|.. DefaultResultSetHandler
 ```
 
 ---
@@ -237,28 +235,20 @@ public class MyBatisConfig {
     1. 不同类型拦截器：Executor → StatementHandler → ParameterHandler → ResultSetHandler
     2. 同类型拦截器：按配置顺序执行（后配置的在外层）
 
-```plantuml
-@startuml
-interface Executor {
-  +query() : List
-}
-
-class InterceptorA {
-  +intercept() : Object
-}
-
-class InterceptorB {
-  +intercept() : Object
-}
-
-Executor <|-- ProxyA
-ProxyA <|-- ProxyB
-ProxyB --> "target" ExecutorImpl
-
-note right of ProxyA : InterceptorB代理\nInterceptorA
-note left of ProxyB : InterceptorA代理\n原始Executor
-@enduml
+```mermaid
+flowchart LR
+    subgraph 代理嵌套结构（pluginAll 按注册顺序层层包装）
+        ProxyB["ProxyB（InterceptorB 生成的代理）"]
+        ProxyA["ProxyA（InterceptorA 生成的代理）"]
+        ExecutorImpl["ExecutorImpl（原始 Executor）"]
+        ProxyB -->|target| ProxyA
+        ProxyA -->|target| ExecutorImpl
+    end
+    IA[InterceptorA] -.先注册，先包装原始 Executor.-> ProxyA
+    IB[InterceptorB] -.后注册，包在最外层.-> ProxyB
 ```
+
+> 读图：**后注册的拦截器位于外层**——调用先经过 ProxyB（InterceptorB.intercept），`proceed()` 后进入 ProxyA（InterceptorA.intercept），最后到达原始 Executor。
 
 ### 2. 与PageHelper整合
 
@@ -322,20 +312,17 @@ public class DesensitizationInterceptor implements Interceptor {
 
 ### 2. 动态数据源路由
 
-```plantuml
-@startuml
-class DynamicDataSourceInterceptor {
-  -dataSourceRouter : DataSourceRouter
-  +intercept(Invocation) : Object
-}
-
-class DataSourceRouter {
-  -dataSources : Map<String, DataSource>
-  +determineCurrentLookupKey() : String
-}
-
-DynamicDataSourceInterceptor --> DataSourceRouter : "使用"
-@enduml
+```mermaid
+classDiagram
+    class DynamicDataSourceInterceptor {
+        -dataSourceRouter DataSourceRouter
+        +intercept(Invocation) Object
+    }
+    class DataSourceRouter {
+        -dataSources Map~String, DataSource~
+        +determineCurrentLookupKey() String
+    }
+    DynamicDataSourceInterceptor --> DataSourceRouter : 使用
 ```
 
 ### 3. SQL审计系统

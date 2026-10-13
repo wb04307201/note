@@ -186,7 +186,9 @@ public class GlobalExceptionHandler {
 }
 ```
 
-> 异步请求**不会**自动进 `@ExceptionHandler`——必须在回调内（`setErrorResult` / `onError`）显式传响应。
+> **两类异常，两条路径**：
+> - **业务异步线程内的异常**（如 `DeferredResult` 后台任务抛错）**不会**自动进 `@ExceptionHandler`——必须在回调内显式传播：`deferredResult.setErrorResult(ex)` / `emitter.completeWithError(ex)`，之后才会重新进入 MVC 异常解析链。
+> - **框架级超时异常**（如 `AsyncRequestTimeoutException`）由 Spring MVC 自身抛出，**可以**被 `@RestControllerAdvice` + `@ExceptionHandler` 捕获（即上方示例的标准做法）。
 
 ---
 

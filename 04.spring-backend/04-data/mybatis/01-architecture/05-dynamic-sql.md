@@ -44,7 +44,7 @@
 |---------|------|------|
 | `<bind>` | 绑定变量避免重复计算 | `<bind name="pattern" value="'%' + name + '%'" />` |
 | OGNL 静态方法 | 需开启配置 | `test="@com.example.Util@isEmpty(name)"` |
-| MyBatis 3.5.x | 新增 `<bind>` 支持 | 可在 `<where>` 内使用变量绑定 |
+| `<bind>` 版本说明 | 自 **3.2 起**即存在（并非 3.5.x 新增），可在 `<where>` 等标签内使用变量绑定 | 3.5.x 动态 SQL 标签体系与 3.2 基本一致 |
 
 ## 完整标签体系
 

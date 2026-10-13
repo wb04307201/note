@@ -66,9 +66,26 @@ MyBatis 提供三种执行器实现：
 
 ### 3. 执行器创建流程
 ```java
-// 配置解析阶段创建执行器
-Executor executor =
-    new ExecutorFactory().createExecutor(transaction, execType);
+// MyBatis 并没有 ExecutorFactory 类——执行器由 Configuration.newExecutor() 创建
+// （org.apache.ibatis.session.Configuration，按 3.5.x 主线删减）：
+public Executor newExecutor(Transaction tx, ExecutorType execType) {
+    execType = execType == null ? defaultExecutorType : execType;
+    Executor executor;
+    switch (execType) {                       // 按执行器类型三选一
+        case BATCH:
+            executor = new BatchExecutor(this, tx);
+            break;
+        case REUSE:
+            executor = new ReuseExecutor(this, tx);
+            break;
+        default:
+            executor = new SimpleExecutor(this, tx);
+    }
+    if (cacheEnabled) {                       // 二级缓存开启时再套一层装饰器
+        executor = new CachingExecutor(executor);
+    }
+    return (Executor) interceptorChain.pluginAll(executor); // 插件链代理包装
+}
 
 // execType 来源于配置：
 // <settings>

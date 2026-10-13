@@ -262,8 +262,8 @@ List<User> users = userMapper.selectAll(); // 1 次 SQL
 <settings>
     <!-- 开启延迟加载（默认 false）-->
     <setting name="lazyLoadingEnabled" value="true"/>
-    <!-- 3.x 已移除 aggressiveLazyLoading,4.x 仍存在 -->
-    <!-- 任意属性访问即触发加载 -->
+    <!-- aggressiveLazyLoading：3.x 一直保留（未移除），默认 false（≤3.4.1 曾默认 true）-->
+    <!-- true 时：调用对象任意方法都会触发加载全部懒加载属性 -->
     <setting name="aggressiveLazyLoading" value="false"/>
 </settings>
 ```

@@ -243,7 +243,7 @@ kubectl run myapp --image=myorg/myapp:native --port=8080
 1. **Native Image 适合什么场景？** Serverless（FaaS）、K8s HPA 快速扩容、CLI 工具、内存敏感型微服务。
 2. **为什么不所有应用都上 Native？** 编译时间长（5-15 分钟）、生态成熟度仍在演进、运行时反射受限。
 3. **Spring Boot 3 Native 最大的改进是什么？** AOT 引擎 + 自动 RuntimeHints 注册——开发者**不需要写一行 native 配置**就能跑通绝大多数 Web / Data 场景。
-4. **Native 镜像能跑 Tomcat 吗？** 可以，但**不再需要 Servlet 容器**（直接编译期织入）；实测推荐改用 `spring-boot-starter-webflux` + Undertow 以减小镜像。
+4. **Native 镜像能跑 Tomcat 吗？** 可以——`spring-boot-starter-web`（Spring MVC）在 Native 下**仍然内嵌 Tomcat**，Servlet 容器并没有被"编译期织入"取代，AOT 只是把 Bean 装配、代理生成等工作**提前到构建期**完成。想减小镜像可改用 `spring-boot-starter-webflux`（其默认容器是 **Netty**，非 Servlet 栈）；若坚持 Servlet 栈也可排除 Tomcat 换 Undertow/Jetty，但收益通常不如切 WebFlux 明显。
 
 ---
 
