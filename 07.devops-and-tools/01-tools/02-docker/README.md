@@ -123,6 +123,7 @@ Red Hat 主导的无守护进程容器引擎，支持 Rootless 模式和原生 P
 - 上游：[`工具链`](../README.md)
 - 关联：[`04-nginx`](../04-nginx/README.md) — Nginx 反向代理常与 Docker 配合部署
 - 关联：[`06-ali-microservices`](../06-ali-microservices/README.md) — 微服务容器化部署
+- 面试题：[Docker 多阶段构建](../../../12.interview/tools/docker-multi-stage/README.md) — 镜像瘦身 10-50 倍的原理与实践
 
 ---
 

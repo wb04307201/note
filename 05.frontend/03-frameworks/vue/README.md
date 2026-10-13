@@ -61,6 +61,87 @@ flowchart TD
 - **watch 滥用**：能用 computed 就不用 watch
 - **provide/inject 滥用**：跟 Context 一样，高频更新用 Pinia
 
+---
+
+## 可访问性（a11y）
+
+> Vue 3 的可访问性最佳实践：**语义化模板 + ARIA 绑定 + 键盘事件 + 焦点管理**（与 [React 篇 a11y 章节](../react/README.md#可访问性a11y) 同一套原则，落地为 Vue 语法）。
+
+### 核心原则
+
+| 原则 | 说明 | Vue 实践 |
+|------|------|---------|
+| **语义化模板** | `<template>` 中优先原生 HTML 元素 | `<button @click>` 优于 `<div @click>` |
+| **ARIA 动态绑定** | 用 `:aria-*` 把响应式状态同步给辅助技术 | `:aria-expanded="isOpen"` |
+| **键盘导航** | 所有交互可键盘触达 | `@keydown.enter` / `@keydown.esc` |
+| **焦点管理** | 动态内容变化时管理焦点 | 模态框打开 → `ref` + `nextTick` focus / focus trap |
+| **颜色对比度** | 文本与背景对比度 ≥ 4.5:1 | WCAG AA 标准 |
+
+### Vue 3 a11y 要点
+
+```vue
+<!-- ✅ 语义化 + ARIA 动态绑定 + 键盘事件 -->
+<script setup>
+import { ref, nextTick, onMounted } from 'vue'
+
+const isOpen = ref(false)
+const dialogEl = ref(null)
+
+const toggle = () => { isOpen.value = !isOpen.value }
+
+// 焦点管理：模态框打开后把焦点移入对话框（focus trap 入口）
+const openDialog = async () => {
+  isOpen.value = true
+  await nextTick()               // 等 DOM 更新后再 focus
+  dialogEl.value?.focus()
+}
+</script>
+
+<template>
+  <button
+    :aria-expanded="isOpen"
+    aria-controls="panel-content"
+    @click="toggle"
+    @keydown.enter.prevent="toggle"
+  >
+    {{ isOpen ? '收起' : '展开' }}
+  </button>
+
+  <div
+    v-if="isOpen"
+    id="panel-content"
+    ref="dialogEl"
+    role="dialog"
+    aria-modal="true"
+    aria-label="示例对话框"
+    tabindex="-1"
+    @keydown.esc="isOpen = false"
+  >
+    面板内容
+  </div>
+</template>
+```
+
+```vue
+<!-- ❌ 反模式：div 模拟按钮（无语义、无键盘支持，屏幕阅读器读不出"按钮"） -->
+<template>
+  <div @click="toggle">点击我</div>
+</template>
+```
+
+> **注意**：`v-on` 只绑定鼠标事件（`@click`）而缺少对应键盘事件（`@keydown.enter`）是 Vue 模板中最常见的 a11y 缺陷——原生 `<button>` / `<a>` 自带键盘行为，`<div>` / `<span>` 没有，这正是"优先语义化元素"的原因。`<transition>` 控制的动态内容出现/消失时，要主动把焦点移到新内容或归还触发元素，避免焦点"悬空"。
+
+### 工具链
+
+| 工具 | 用途 |
+|------|------|
+| **eslint-plugin-vuejs-accessibility** | 编译期 a11y 规则检查（配合 eslint-plugin-vue） |
+| **axe-core**（@axe-core/playwright） | 运行时 a11y 审计 |
+| **@vue/test-utils + Vitest** | 按语义查询测试（DOM Testing Library `getByRole('button')`） |
+| **Lighthouse** | 浏览器 a11y 评分 |
+
+---
+
 ## 学习资源
 - 官方文档：https://cn.vuejs.org/
 - Pinia 文档：https://pinia.vuejs.org/

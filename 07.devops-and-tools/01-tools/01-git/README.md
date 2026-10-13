@@ -110,6 +110,7 @@ graph TB
 ## 相关章节
 - 上游：[`工具链`](../README.md)
 - 关联：[`05-monorepo`](../05-monorepo/README.md) — Monorepo 仓库管理依赖 Git 子模块/worktree
+- 面试题：[Git Rebase vs Merge](../../../12.interview/tools/git-rebase-vs-merge/README.md) — 改写历史的 Golden Rule 与分支合并策略
 
 ---
 

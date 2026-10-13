@@ -26,7 +26,7 @@ Q：async/await 必须使用 try/catch 吗？
 1. **明确答案**：不是必须，但 try/catch 是**最常用**
 2. **4 种错误处理方式**：try/catch、.catch()、全局 unhandledrejection、Result 模式
 3. **何时用哪个**：根据错误是否可恢复、调用层级、是否需要冒泡
-4. **5 大反模式**：未捕获 / 静默吞掉 / 在 finally 抛 / 异步函数未 await
+4. **5 大反模式**：未捕获 / 静默吞掉 / 在 finally 抛 / 异步函数未 await / 错误污染（catch 不抛，错误被中途吃掉）
 
 完整 5-7 道精选面试题见 [12.interview/09.front-end/async-await-try-catch](../../../../12.interview/09.front-end/async-await-try-catch/README.md)。
 

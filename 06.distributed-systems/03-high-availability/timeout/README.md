@@ -105,20 +105,35 @@
   }
   ```
 
-  > 非阻塞版（推荐在线程池中运行）：用 `ScheduledExecutorService.schedule(...)` 提交下一次重试，避免占用业务线程。
+  > 非阻塞版（推荐在线程池中运行）：用 `ScheduledExecutorService.schedule(...)` 递归提交下一次重试，避免 `Thread.sleep` 占用业务线程。
   ```java
   ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-  for (int i = 0; i < maxRetries; i++) {
-      try {
-          return callServiceWithTimeout(timeoutMs);
-      } catch (TimeoutException e) {
-          if (i == maxRetries - 1) throw e;
-          long backoff = (long) (initialInterval * Math.pow(2, i));
-          final int next = i + 1;
-          return CompletableFuture.supplyAsync(
-              () -> retryWithBackoff(next, maxRetries), scheduler);
-      }
+
+  /** 非阻塞指数退避重试：返回 CompletableFuture，不占用调用线程 */
+  CompletableFuture<String> retryWithBackoffAsync(int attempt, int maxRetries,
+                                                  long initialInterval, long timeoutMs) {
+      return CompletableFuture
+          .supplyAsync(() -> callServiceWithTimeout(timeoutMs))   // 可能抛 TimeoutException
+          .exceptionallyCompose(ex -> {
+              if (!(ex.getCause() instanceof TimeoutException) || attempt >= maxRetries - 1) {
+                  return CompletableFuture.failedFuture(ex);      // 非超时错误或次数用尽
+              }
+              long backoff = (long) (initialInterval * Math.pow(2, attempt));
+              CompletableFuture<String> delayed = new CompletableFuture<>();
+              // 延迟 backoff 后由 scheduler 线程触发下一次尝试（递归调度，无阻塞 sleep）
+              scheduler.schedule(
+                  () -> retryWithBackoffAsync(attempt + 1, maxRetries, initialInterval, timeoutMs)
+                          .whenComplete((v, e) -> {
+                              if (e != null) delayed.completeExceptionally(e);
+                              else delayed.complete(v);
+                          }),
+                  backoff, TimeUnit.MILLISECONDS);
+              return delayed;
+          });
   }
+
+  // 调用入口
+  CompletableFuture<String> result = retryWithBackoffAsync(0, maxRetries, initialInterval, timeoutMs);
   ```
 
 ## 四、超时的风险与控制

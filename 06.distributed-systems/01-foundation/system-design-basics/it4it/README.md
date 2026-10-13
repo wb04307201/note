@@ -3,7 +3,7 @@
   slug: system-design/it4it
   type: article
   category: 主模块子文章
-  summary: **IT4IT**（Information Technology Infrastructure Library for IT, "IT 的 ITIL"）是 Th...
+  summary: **IT4IT** 是 The Open Group 维护的 IT 价值流参考架构标准（Strategy/Design/Operate/Consume 视角），回答"IT 部门怎么交付服务"...
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -12,7 +12,7 @@
 
 > **定位**：IT4IT 参考架构：The Open Group 提出的 IT 价值链管理标准（Strategy/Design/Operate/Consume 4 大流程）vs ITIL/CMMI。
 
-> **IT4IT**（Information Technology Infrastructure Library for IT, "IT 的 ITIL"）是 The Open Group 维护的**IT 运营价值流参考架构**。  
+> **IT4IT** 是 The Open Group 维护的**IT 运营价值流参考架构标准**——注意它并非 "IT 的 ITIL"，也没有 "Information Technology Infrastructure Library for IT" 这样的全称展开（那是把 ITIL 的全称错误嫁接）；IT4IT 与 ITIL 是互补关系：ITIL 偏流程实践，IT4IT 偏价值流与工具链数据模型（见下文三件套对照与第三章）。  
 > 与 TOGAF（治理方法论）、ArchiMate（建模语言）并列为"数字开放标准组合"第三件套。  
 > 最新版本是 **IT4IT 3.0**（2024 年发布），相比 2.x 强化了**数字产品交付**和**云原生**适配。  
 ---

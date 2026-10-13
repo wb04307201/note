@@ -141,4 +141,10 @@ K8s 编排：自动调度 + 自愈 + 弹性扩缩 + 滚动更新 + 服务发现
 
 ---
 
+## 九、相关章节
+
+- 面试题：[K8s Pod 生命周期](../../../12.interview/tools/k8s-pod-lifecycle/README.md) — Init Container / 三种 Probe / PreStop Hook 的生产级踩坑
+
+---
+
 ← [返回工具链总览](../README.md) · 📅 2026-06-28
