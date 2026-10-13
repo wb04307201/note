@@ -7,6 +7,7 @@
   depth: ⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 高可用篇
 
@@ -78,14 +79,12 @@ graph TD
 
 ---
 
-
-- [batch](../../04.spring-backend/06-integration/batch.md)
 ## 📊 本节统计
 
-| 子目录 | leaf 主题数 | 备注 |
+| 子目录 | leaf README 数 | 备注 |
 |:-------|:-----------:|:-----|
-| `03-high-availability/`（本文） | 10 | 限流 · 熔断 · 重试 · 超时 · 降级 · 冗余 · 弹性 · 混沌 · 代码质量 · 秒杀实战 |
-| ├─ `rate-limiting/` | 1 | 固定窗口/滑动窗口/漏桶/令牌桶 |
+| `03-high-availability/`（本文） | 1 | 顶层 README |
+| ├─ `rate-limiting/` | 1 | 固定窗口/滑动窗口/漏桶/令牌桶（另含 seckill-without-redis.md 实战 leaf） |
 | ├─ `circuit-break/` | 1 | 三态状态机 |
 | ├─ `retry/` | 1 | 重试策略与退避 |
 | ├─ `timeout/` | 1 | 超时与级联超时 |
@@ -93,11 +92,13 @@ graph TD
 | ├─ `redundancy-design/` | 3 | 冗余 · 集群 · 多活 |
 | ├─ `elastic-architecture/` | 1 | 自动扩缩容 |
 | ├─ `chaos-engineering/` | 1 | Chaos Mesh / 故障注入 |
-| └─ `code-quality/` | 2 | 2 行/8 行原则 |
-| **README 覆盖** | 12 depth-2 leaf + 1 顶层 = **13** | 100% frontmatter |
-| **聚合主题数** | 9（见上方模块导航） | 全部聚合在本章及子 README |
+| ├─ `code-quality/` | 2 | 顶层 + 2 行/8 行原则 |
+| └─ `risk-control-engine/` | 1 | 业务层风控引擎 |
+| **README 合计** | **14**（13 子目录 leaf + 1 顶层） | 100% frontmatter |
+| **.md 文件合计** | **15** | 含 rate-limiting/seckill-without-redis.md |
+| **模块导航行数** | 11（见上方模块导航表） | 含秒杀实战与风控引擎 |
 
-> 数字基线：以子目录 leaf README 数 + 顶层章节主题数统计
+> 数字基线：`find 06.distributed-systems/03-high-availability -name '*.md' | wc -l` = 15、`-name 'README.md'` = 14（2026-10-13 实数校对）
 
 ---
 

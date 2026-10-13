@@ -7,6 +7,7 @@
   depth: ⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 安全篇
 
@@ -45,6 +46,7 @@ graph TD
 | 1 | 鉴权 | [JWT 安全](jwt-security/README.md) | JWT 结构 / 攻击防御 / 安全存储 / Token 撤销 |
 | 2 | 鉴权 | [OAuth2.0 与 OIDC](oauth2-oidc/README.md) | 授权码 / PKCE / 客户端凭证 |
 | 3 | 鉴权 | [🆕 单点登录 SSO](sso/README.md) | 6 大方案详解（Cookie/CAS/OAuth2+OIDC/SAML/JWT/代理）+ Spring Security 实战 + 选型决策 |
+| 4 | 访问控制 | [访问控制总览](access-control/README.md) | DAC/MAC · RBAC/ABAC · ReBAC/混合 三族总入口 |
 | 5 | ↳ | [传统族](access-control/01-traditional/README.md) | DAC / MAC |
 | 6 | ↳ | [角色属性族](access-control/02-role-and-attribute/README.md) | RBAC / ABAC |
 | 7 | ↳ | [关系混合族](access-control/03-relationship-and-hybrid/README.md) | ReBAC / RBAC+ABAC |
@@ -69,12 +71,6 @@ graph TD
 
 ---
 
-
-- [01-sso-concept](sso/01-sso-concept.md)
-- [02-six-schemes-comparison](sso/02-six-schemes-comparison.md)
-- [03-spring-security-implementation](sso/03-spring-security-implementation.md)
-- [04-jwt-implementation](sso/04-jwt-implementation.md)
-- [05-selection-decision-tree](sso/05-selection-decision-tree.md)
 ## 📊 本节统计
 
 | 子目录 | leaf README 数 | 备注 |
@@ -87,13 +83,13 @@ graph TD
 | ├─ `encryption/` | 1 | 对称/非对称/哈希/TLS/KMS |
 | ├─ `jwt-security/` | 1 | JWT 结构 / 攻击防御 / 安全存储 / Token 撤销 |
 | ├─ `oauth2-oidc/` | 1 | 授权码 / PKCE / 客户端凭证 |
-| ├─ `sso/` 🆕 | 6 | SSO 综述 + 6 方案详解 + Spring Security 实战 + JWT 自建 + 选型 |
+| ├─ `sso/` 🆕 | 1 | SSO 总目录（下辖 01-05 共 5 篇专题 leaf） |
 | └─ `secrets-management/` | 1 | Vault / KMS / 轮换 / 12-Factor |
-| **leaf README 合计** | 9 depth-2 子目录 + 3 access-control 子分类 + 1 顶层 = **13** | 100% frontmatter |
-| **模块导航行数** | 12（见上方模块导航表） | 含 access-control 3 子项 |
-| **leaf .md** | 6 | access-control 下的 dac/mac/abac/rbac/rebac/hybrid |
+| **README 合计** | **13**（12 子目录 leaf + 1 顶层） | 100% frontmatter |
+| **.md 文件合计** | **24** | 含 access-control 6 篇 leaf（dac/mac/rbac/abac/rebac/hybrid）+ sso 5 篇专题 |
+| **模块导航行数** | 13（见上方模块导航表） | 含 access-control 总览 + 3 子分类 |
 
-> 数字基线：以 leaf README 数 + 模块导航行数双口径统计（`find … -name README.md` 实时校对）。
+> 数字基线：`find 06.distributed-systems/05-security -name '*.md' | wc -l` = 24、`-name 'README.md'` = 13（2026-10-13 实数校对）
 
 ---
 

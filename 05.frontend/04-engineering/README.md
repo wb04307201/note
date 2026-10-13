@@ -7,6 +7,7 @@
   depth: ⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 04 工程化
 
@@ -21,9 +22,9 @@
 |------|------|------|
 | Vite 5+ | ✓ 已有 | [vite/](vite/) — 构建工具首选 / HMR / 插件体系 |
 | Monorepo 实践 | ✓ 已有 | [monorepo-practice/](monorepo-practice/) — pnpm workspace / Turborepo / Nx |
-| 包管理 | 📝 速查 | npm / pnpm / yarn 选型,详见顶层速查 |
-| 测试体系 | 📝 速查 | Vitest / Jest / Playwright,详见顶层速查 |
-| Lint / Format | 📝 速查 | ESLint / Prettier / Biome,详见顶层速查 |
+| 包管理 | 📝 速查 | npm / pnpm / yarn 选型,详见[顶层速查要点](../README.md#速查要点) |
+| 测试体系 | 📝 速查 | Vitest / Jest / Playwright,详见[顶层最佳实践](../README.md#四最佳实践) |
+| Lint / Format | 📝 速查 | ESLint / Prettier / Biome,详见[顶层最佳实践](../README.md#四最佳实践) |
 
 ### 1.1 学习路径
 
@@ -71,7 +72,7 @@ flowchart TD
 - Monorepo 首选 pnpm workspaces + Turborepo,避免 npm workspaces 的兼容陷阱
 - Lint 用 ESLint 9 flat config + Prettier + lint-staged,提交前自动格式化
 - 测试金字塔落地:Vitest(单测)+ Testing Library(组件)+ Playwright(E2E)
-- CI 用 GitHub Actions 跑测试、Lighthouse 阈值卡构建,失败阻断合并
+- CI 用 GitHub Actions 跑测试、Lighthouse 阈值卡构建(如 performance ≥ 85 / accessibility ≥ 90,低于阈值即失败阻断合并)
 
 ---
 

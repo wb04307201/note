@@ -3,7 +3,7 @@
   slug: system-design/rpc
   type: article
   category: 主模块子文章
-  summary: RPC 本应该很简单，RPC（Remote Procedure Call，远程过程调用）是一种计算机通信协议，允许程序像调用本地函数一样透明地执行另一台计算机上...
+  summary: RPC 综述——Stub/Skeleton 工作原理、序列化/服务发现/负载均衡关键组件、gRPC/Dubbo/Thrift 框架对比 + 最小 proto 示例
   depth: ⭐⭐⭐
   status: active
 -->
@@ -53,6 +53,65 @@ sequenceDiagram
     Net-->>Stub: 传输回客户端
     Stub-->>C: 反序列化，返回结果
 ```
+
+## 最小示例：gRPC 一次调用的两端
+
+本页只给"最小可懂"的骨架，帮助理解 Stub/Skeleton 到底生成了什么；深入（流式通信、Spring Boot 集成、错误处理）见 [gRPC 专题](grpc.md)。
+
+**第 1 步：用 IDL 定义契约**（`.proto` 文件，客户端与服务端共享）：
+
+```protobuf
+syntax = "proto3";
+
+package user;
+
+// 服务定义——protoc 会为 Java 生成 UserServiceGrpc（含 Stub 与 ImplBase）
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+}
+
+message GetUserRequest {
+  int64 user_id = 1;   // 字段编号（非默认值）用于二进制编码，一旦发布不可复用
+}
+
+message GetUserResponse {
+  string name = 1;
+  string email = 2;
+}
+```
+
+**第 2 步：服务端实现 Skeleton**（Java，继承生成的 `ImplBase`）：
+
+```java
+public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
+    @Override
+    public void getUser(GetUserRequest req, StreamObserver<GetUserResponse> observer) {
+        User u = userRepository.findById(req.getUserId());  // 真正的业务逻辑
+        observer.onNext(GetUserResponse.newBuilder()
+                .setName(u.getName())
+                .setEmail(u.getEmail())
+                .build());
+        observer.onCompleted();  // 结束本次调用
+    }
+}
+```
+
+**第 3 步：客户端通过 Stub 像调本地方法一样调用**：
+
+```java
+ManagedChannel channel = ManagedChannelBuilder
+        .forAddress("user-service.internal", 9090)
+        .usePlaintext()
+        .build();
+UserServiceGrpc.UserServiceBlockingStub stub =
+        UserServiceGrpc.newBlockingStub(channel);  // 同步 Stub；还有异步/Future 两种
+
+GetUserResponse resp = stub.getUser(
+        GetUserRequest.newBuilder().setUserId(123).build());
+System.out.println(resp.getName());  // 网络细节全部被 Stub 屏蔽
+```
+
+对照 mermaid 时序图：`stub.getUser(...)` 那一行背后发生了序列化 → HTTP/2 传输 → 反序列化 → 调用实现的完整往返。
 
 ## 关键组件
 - **序列化/反序列化**：将数据转换为可传输格式（如JSON、Protobuf、Thrift）。

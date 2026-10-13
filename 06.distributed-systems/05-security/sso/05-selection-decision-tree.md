@@ -58,6 +58,80 @@ Q6：Spring 框架生态？
 | Spring 全家桶 | Spring Authorization Server | Keycloak | 集成度 |
 | 多语言企业 | Keycloak | Auth0 | 全产品 |
 
+### 各方案最小配置片段
+
+**① Cookie 共享（同根域）— Set-Cookie 关键参数**
+```nginx
+Set-Cookie: session_id=xxx; Path=/; Domain=.example.com; HttpOnly; Secure; SameSite=Lax
+```
+> `Domain` 必须是根域（`.example.com`）；跨站场景需 `SameSite=None; Secure`（仅 HTTPS 生效）。
+
+**② OAuth2 + OIDC — Spring Authorization Server 注册客户端（PKCE + Token TTL）**
+```java
+RegisteredClient.withId(UUID.randomUUID().toString())
+    .clientId("app-a").clientSecret("{bcrypt}...")
+    .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+    .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+    .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+    .redirectUri("https://app-a.com/callback").scope(OidcScopes.OPENID).scope("profile")
+    .clientSettings(ClientSettings.builder().requireProofKey(true).build())  // 强制 PKCE
+    .tokenSettings(TokenSettings.builder()
+        .accessTokenTimeToLive(Duration.ofMinutes(30))   // Access 短
+        .refreshTokenTimeToLive(Duration.ofDays(7))
+        .reuseRefreshTokens(false)                       // Refresh Rotate
+        .build())
+    .build();
+```
+
+**③ CAS — 服务端 service 白名单（JSON 注册，Apereo CAS 6.x）**
+```json
+{
+  "@class": "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId": "https://app-[a-z]+\\.example\\.com/.*",
+  "name": "app-family", "id": 1,
+  "accessStrategy": { "@class": "org.apereo.cas.services.DefaultRegisteredServiceAccessStrategy",
+                      "enabled": true, "ssoEnabled": true }
+}
+```
+> 客户端引 `cas-server-core-validation`，验票走 `/serviceValidate?ticket=ST-xxx`。
+
+**④ SAML 2.0 — Spring Security SAML2 Relying Party**
+```yaml
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          okta:
+            entity-id: https://sp.example.com/saml2/service-provider-metadata/okta
+            assertionconsumer:
+              location: https://sp.example.com/login/saml2/sso/okta
+            identityprovider:
+              metadata-uri: https://idp.okta.com/app/xxx/sso/saml/metadata  # IdP 元数据
+```
+
+**⑤ JWT 自建 + Redis 黑名单 — 签发与踢出**
+```java
+// 签发：短 TTL + jti（撤销定位用）
+String jwt = Jwts.builder().setSubject("user-123").setId(UUID.randomUUID().toString())
+    .setExpiration(Date.from(Instant.now().plus(Duration.ofHours(1))))
+    .signWith(Keys.hmacShaKeyFor(secret), SignatureAlgorithm.HS256).compact();
+
+// 登出/踢人：jti 写入 Redis 黑名单，TTL = token 剩余有效期
+redis.opsForValue().set("jwt:blacklist:" + jti, "1", remainingTtl, TimeUnit.SECONDS);
+// 验签通过后多一步：EXISTS jwt:blacklist:{jti} → 存在即拒绝
+```
+
+**⑥ Keycloak — OIDC Client（客户端配置口径）**
+```text
+Realm: my-realm                     Client ID: app-a
+Client protocol: openid-connect     Standard flow: ON（授权码）
+Valid redirect URIs: https://app-a.com/callback
+Web origins: https://app-a.com      PKCE: ON（Proof Key for Code Exchange）
+Access Token Lifespan: 30m          SSO Session Max: 8h
+```
+> Keycloak 界面外也可用 Client Scopes + Token Exchange 精细化，详见 [../oauth2-oidc](../oauth2-oidc/README.md)。
+
 ---
 
 ## 实施 Checklist
@@ -147,3 +221,7 @@ Q6：Spring 框架生态？
 ---
 
 ← [返回: SSO 总目录](../README.md) · 上一章：[04-jwt-implementation](04-jwt-implementation.md) · 专题结束
+
+**本篇前置章节**：[01-sso-concept](01-sso-concept.md)（概念与协议基础）· [02-six-schemes-comparison](02-six-schemes-comparison.md)（6 大方案详解，其「选型决策」节已指向本篇）· [03-spring-security-implementation](03-spring-security-implementation.md)（Spring Security 落地）
+
+**相关专题**：[../oauth2-oidc](../oauth2-oidc/README.md)（OAuth2/OIDC 协议深度）· [../jwt-security](../jwt-security/README.md)（JWT 攻防与安全实践）

@@ -95,7 +95,8 @@ customElements.define('my-button', MyButton); // 注册标签名（必须含连�
     - 不依赖特定框架版本，避免框架升级或停更带来的风险。例如，Github 逐步用 Web Components 替换 jQuery，降低技术债务。
 
 3. **原生性能优势**
-    - 直接运行在浏览器中，无需虚拟 DOM 或额外渲染层，代码体积更小，执行效率更高。
+    - 直接运行在浏览器中，无需虚拟 DOM 或额外渲染层。
+    - 体积与效率的**定性结论**：原生 Custom Element 不需要打包框架运行时（React/Vue 运行时本身即为数十 KB 级的额外依赖），因此在"只交付组件"的场景下整体交付体积通常更小、启动开销更低。具体数字随组件复杂度与所用库（原生 vs Lit vs Stencil）差异很大，如需精确对比请以 [bundlephobia](https://bundlephobia.com/) 实测各库 minified + gzip 体积为准，不建议直接引用固定数字。
 
 4. **封装性与安全性**
     - Shadow DOM 隔离样式和脚本，防止组件间冲突；自定义元素命名空间避免全局标签污染。
@@ -125,6 +126,13 @@ customElements.define('my-button', MyButton); // 注册标签名（必须含连�
 3. **生态成熟度**
     - **对比框架**：社区规模和工具链不如 React/Vue 完善，但快速增长中。
     - **趋势**：Material Web Components、Shoelace 等开源库逐步完善，企业级应用案例增多。
+
+4. **无障碍（a11y）挑战**
+    - **问题**：Shadow DOM 的隔离边界同时挡住了辅助技术（屏幕阅读器）与全局样式/焦点管理的"惯例路径"，是最容易被忽视的一类坑。
+    - **ARIA 穿透**：Shadow 边界内外的 ARIA 关联会断裂——外部元素的 `aria-labelledby` 无法指向 Shadow 内部的节点，反之亦然。解法：把 `role` / `aria-*` 写在**宿主元素本身**（custom element 标签上），或组件内部用 `ElementInternals`（`this.attachInternals()`）声明语义（如 `internals.role = 'button'`），这是目前标准化的正确姿势。
+    - **焦点管理**：Tab 键可以进入 Shadow DOM 内部的聚焦元素（浏览器原生支持），但常见坑有三个：① 宿主元素自身默认不可聚焦，需要显式 `tabindex`；② 焦点进入 Shadow 内部后，`document.activeElement` 只显示宿主，调试要用 `shadowRoot.activeElement`（或 `event.composedPath()`）；③ 模态类组件需要自己实现焦点圈闭（focus trap）与 `Esc` 关闭，Shadow DOM 不会代劳。
+    - **样式穿透**：外部无法用普通选择器给 Shadow 内部元素加样式（包括 `:focus-visible` 高亮、Windows 高对比度模式适配）。组件作者必须主动暴露定制点：用 `::part()` 导出内部部件（`<button part="inner">` → 外部 `my-button::part(inner) { outline: ... }`）、用 CSS 自定义属性做主题通道（`--my-btn-color`）、并支持 `:host-context()` / 媒体查询响应系统级偏好（`prefers-reduced-motion`、`forced-colors`）。
+    - **建议**：把 a11y 当作组件 API 的一部分设计（role/label/焦点行为在组件内部实现好），而不是留给使用方补救；可参考 Shoelace、Material Web 等成熟库的 a11y 实现方式。
 
 ## 五、未来展望
 - **标准化推进**：WHATWG 和 W3C 持续完善规范，浏览器原生支持将更广泛。

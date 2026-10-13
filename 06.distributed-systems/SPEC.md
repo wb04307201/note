@@ -39,7 +39,7 @@
 
 ### 子目录约定
 
-- `01-foundation/`：分布式系统概念、架构演进、系统设计基础与技术债（理论与方法论前置层）—— 有子 SPEC（L1x）。
+- `01-foundation/`：分布式系统概念、架构演进、系统设计基础与技术债（理论与方法论前置层）—— 有子 SPEC（L1x）：[01-foundation/SPEC.md](01-foundation/SPEC.md)。
 - `02-distributed/`：RPC、消息、服务发现、分布式事务与协调。
 - `03-high-availability/`：容灾、故障转移、限流、降级与高可用设计。
 - `04-high-performance/`：缓存、分片、并发、批流处理与性能工程。
@@ -48,3 +48,7 @@
 - `07-deployment/`：容器、Kubernetes、服务网格、Serverless 与发布。
 - `08-observability/`：指标、日志、链路追踪、事件关联与告警。
 - `09-emerging-tech/`：云原生演进与新技术实践。
+
+---
+
+← [返回 06.distributed-systems](README.md) · [根 SPEC](../SPEC.md)

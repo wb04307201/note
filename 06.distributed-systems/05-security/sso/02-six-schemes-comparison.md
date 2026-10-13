@@ -311,31 +311,10 @@ String jwt = Jwts.builder()
 ---
 
 ## 选型决策
-```text
-场景：我要做 SSO，怎么选？
 
-Q1：跨主域吗？
-├─ 否 → Cookie 共享（同公司）
-└─ 是 ↓
-
-Q2：现代互联网产品（Web + App）？
-├─ 是 → OAuth2 + OIDC（推荐 ✅）
-└─ 否 ↓
-
-Q3：跨国 / 合规 / 金融？
-├─ 是 → SAML 2.0
-└─ 否 ↓
-
-Q4：10 年以上老系统（Java EE）？
-├─ 是 → CAS
-└─ 否 ↓
-
-Q5：内部微服务（API 调用）？
-├─ 是 → JWT 自建 + Redis 黑名单
-└─ 否 ↓
-
-默认推荐：OAuth2 + OIDC + Keycloak（80% 场景）
-```
+> 一句话口径：**同根域选 Cookie；现代互联网选 OAuth2+OIDC；跨国/合规选 SAML；Java EE 老系统选 CAS；微服务内部选 JWT 自建；Spring 生态选 Spring Authorization Server，否则 Keycloak/Authing。**
+>
+> 完整的「5 分钟决策树（Q1-Q6）+ 配置矩阵 + 实施 Checklist + 反模式速查」见 → **[05-selection-decision-tree](05-selection-decision-tree.md)**（单一来源，避免两处口径漂移）。
 
 ---
 

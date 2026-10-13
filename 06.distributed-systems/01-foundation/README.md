@@ -3,16 +3,18 @@
   slug: system-design/01-foundation
   type: article
   category: 主模块子文章
-  summary: 基础篇 本应该很简单，软件工程的核心理论基础与系统设计方法论，是理解后续分布式、高可用、高性能等高级主题的基石
+  summary: 基础篇——软件工程的核心理论基础与系统设计方法论，是理解后续分布式、高可用、高性能等高级主题的基石
   depth: ⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 基础篇
 
 ---
 
 > 软件工程的核心理论基础与系统设计方法论，是理解后续分布式、高可用、高性能等高级主题的基石。
+
 ## 学习路径
 
 1. [软件工程](software-engineering/README.md) — 学科定位、开发流程、工具与质量保障
@@ -82,12 +84,13 @@ graph LR
 | `01-foundation/`（本文） | 1 | 顶层 README |
 | ├─ `02-evolution/` | 3 | 单体到微服务 · Serverless |
 | ├─ `software-engineering/` | 4 | 顶层 + 开发流程 · 质量保障 · 工具模型 |
-| ├─ `system-design-basics/` | 24 | 顶层 + api/archimate/architecture 等 12 子目录 |
+| ├─ `system-design-basics/` | 25 | 顶层 + api/archimate/architecture 等子目录 |
 | └─ `technical-debt/` | 1 | 技术债识别与偿还 |
-| **leaf README 合计** | 32 depth-2/3 leaf + 1 顶层 = **33** | 100% frontmatter |
+| **README 合计** | **34**（33 子目录 leaf + 1 顶层） | 100% frontmatter |
+| **.md 文件合计** | **47** | 含非 README 的 leaf 文章 |
 | **学习路径主题数** | 18（见上方学习路径列表） | 含 development-process 等子主题 |
 
-> 数字基线：本节以 leaf README 数 + 学习路径主题数双口径统计
+> 数字基线：`find 06.distributed-systems/01-foundation -name '*.md' | wc -l` = 47、`-name 'README.md'` = 34（2026-10-13 实数校对）
 
 ---
 

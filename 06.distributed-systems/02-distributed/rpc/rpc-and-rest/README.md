@@ -3,7 +3,7 @@
   slug: system-design/rpc-and-rest
   type: article
   category: 主模块子文章
-  summary: RPC和REST 本应该很简单，RPC（Remote Procedure Call，远程过程调用）和REST（Representational State Tr...
+  summary: RPC vs REST 架构风格对比——过程调用 vs 资源状态、Protobuf/HTTP2 vs JSON/HTTP1.1、性能与扩展性权衡、适用场景与融合趋势 + 同一业务双风格并排示例
   depth: ⭐⭐⭐
   status: active
 -->
@@ -61,6 +61,59 @@ RPC（Remote Procedure Call，远程过程调用）和REST（Representational St
     - 公开API（如第三方接口、移动端API），需要跨平台、跨语言支持，且易于调试和文档化（如Swagger/OpenAPI）。
     - 浏览器端与后端通信（如SPA应用），天然兼容浏览器HTTP请求。
     - 资源导向的系统（如内容管理系统、电商系统），强调资源的CRUD操作。
+
+## 同一业务的双风格对照：获取用户
+
+抽象差异看完容易忘，用同一个需求"根据 ID 获取用户"分别写成 RPC 与 REST，差异一目了然。
+
+**RPC 风格（gRPC）**——契约先行，动作导向：
+
+```protobuf
+syntax = "proto3";
+package user;
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);  // 契约即方法签名
+}
+
+message GetUserRequest  { int64 user_id = 1; }
+message GetUserResponse { string name = 1; string email = 2; }
+```
+
+```java
+// 客户端：调用本地方法一样，类型由 proto 生成，编译期就能发现字段错误
+UserServiceGrpc.UserServiceBlockingStub stub = UserServiceGrpc.newBlockingStub(channel);
+GetUserResponse user = stub.getUser(
+        GetUserRequest.newBuilder().setUserId(123).build());
+```
+
+**REST 风格**——资源导向，HTTP 语义即契约：
+
+```http
+GET /users/123 HTTP/1.1
+Host: api.example.com
+Accept: application/json
+```
+
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{ "id": 123, "name": "Alice", "email": "alice@example.com" }
+```
+
+**逐项对比**：
+
+| 维度 | RPC（gRPC） | REST |
+|------|------------|------|
+| 契约表达 | `.proto` IDL，强类型，代码生成 | URI + HTTP 方法约定，OpenAPI 可选 |
+| 错误处理 | gRPC Status Code（如 `NOT_FOUND=5`） | HTTP 状态码（`404`）+ 自定义错误体 |
+| 传输体积 | Protobuf 二进制，本例约 20 字节 | JSON 文本，本例约 60 字节（含字段名） |
+| 用户不存在时 | `stub` 抛 `StatusRuntimeException(NOT_FOUND)` | 返回 `404`，客户端自行解析 |
+| 调试成本 | 需要 grpcurl 等工具 | 浏览器/curl 直接可测 |
+| 缓存 | 默认无（HTTP/2 无标准缓存语义） | `GET` 天然可被 CDN/代理缓存 |
+
+这个对照解释了"内部用 RPC、对外用 REST"的常见分工：内部高频调用在乎的是二进制体积与强类型契约；对外 API 在乎的是可调试性、可缓存性与生态兼容（任何语言发 HTTP 请求零成本）。
 
 ## 联系与融合趋势
 

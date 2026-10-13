@@ -1,9 +1,9 @@
 <!--module:
   parent: system-design
-  slug: 12.interview/04.system-design/01-foundation/software-engineering/quality-assurance
+  slug: system-design/quality-assurance
   type: article
   category: 主模块子文章
-  summary: 质量保障体系 本应该很简单，以下是从不同维度对软件工程中质量保障体系的详细阐述，涵盖单元测试、集成测试、CI/CD、代码审查与性能监控等关键环节，并补充其他重要...
+  summary: 质量保障体系全景——测试金字塔/单元与集成测试、CI/CD 流水线、代码审查、性能监控告警 + FIRST 原则单元测试正反例
   depth: ⭐
   status: active
 -->
@@ -24,6 +24,33 @@
         - 遵循FIRST原则（Fast、Isolated、Repeatable、Self-validating、Timely）。
         - 结合Mock技术隔离外部依赖（如数据库、API）。
     - **价值**：早期发现编码错误，降低修复成本，提升代码可维护性。
+    - **FIRST 原则正反例**（以"订单折扣计算"依赖外部汇率 API 为例，Java + JUnit 5 + Mockito）：
+
+```java
+// ❌ 反例：违反 Fast / Isolated / Repeatable —— 直连真实外部服务
+@Test
+void applyDiscount_bad() {
+    OrderService svc = new OrderService(new RealRateApiClient()); // 真实 HTTP 调用
+    // 慢（秒级网络往返）、不隔离（测的是汇率服务+网络，不是折扣逻辑）、
+    // 不可重复（汇率随时间变化，今天绿明天红）
+    assertEquals(68.0, svc.applyDiscount("USD", 100.0));
+}
+
+// ✅ 正例：Mock 隔离外部依赖 —— 毫秒级、可重复、只验证折扣逻辑
+@Test
+void applyDiscount_good() {
+    RateApiClient rateApi = mock(RateApiClient.class);
+    when(rateApi.getRate("USD", "CNY")).thenReturn(7.0); // 固定桩数据
+
+    OrderService svc = new OrderService(rateApi);
+    double result = svc.applyDiscount("USD", 100.0);
+
+    assertEquals(686.0, result);              // 100 * 7.0 * 0.98（VIP 折扣）
+    verify(rateApi, times(1)).getRate("USD", "CNY"); // 验证依赖交互恰好一次
+}
+```
+
+> 判据：单元测试跑一次应该在**毫秒级**完成、**断网也能跑**、**任何时候跑结果一致**。做不到这三条，通常是外部依赖没有隔离。
 
 2. **集成测试（Integration Testing）**
     - **核心目标**：验证模块间交互的正确性，识别接口、数据流等集成问题。
@@ -110,7 +137,7 @@
     - 实时监控API响应时间、数据库连接池状态。
     - 每日生成质量日报，分析问题趋势。
 
-通过上述体系化措施，可显著降低软件缺陷率（如从5%降至0.5%以下），提升用户满意度，同时缩短交付周期（如从2周缩短至3天）。质量保障不仅是技术问题，更是工程化、流程化、文化化的综合实践。
+通过上述体系化措施，典型团队报告缺陷率与交付周期可获得约一个数量级的改善（经验值，因组织成熟度、业务形态而异，不应作为承诺指标），同时提升用户满意度。质量保障不仅是技术问题，更是工程化、流程化、文化化的综合实践。
 
 ---
 
