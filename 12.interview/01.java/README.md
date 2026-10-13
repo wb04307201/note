@@ -11,11 +11,11 @@
 
 > **定位**：Java 高频面试题与细节深挖（集合 / 并发 / JVM / 类型 / 设计模式）。
 
-> Java 高频面试题与细节深挖，对齐主模块 [`01.java`](../../01.java-and-jvm/README.md)。41 篇分集合 / 并发 / JVM / 语言基础 / 对象类型 / 设计模式 / 综合 7 组（find 校对 2026-08-28；2026-08-10 迁出 6 篇灰色地带面试题到主模块 [01.java](../../01.java-and-jvm/README.md)：`object` → `concepts/data-types`，`create-object` → `concepts/object`，`singleton-pattern` → `design-patterns/creation/singleton.md`，`large-data-into-hashmap` → `collection/hashmap-performance.md`，`record-t` → `concepts/record`，`arrayList-distinct` → `collection/arraylist-distinct.md`），覆盖 90% 后端面试 Java 高频题。
+> Java 高频面试题与细节深挖，对齐主模块 [`01.java`](../../01.java-and-jvm/README.md)。40 篇分集合 / 并发 / JVM / 语言基础 / 对象类型 / 设计模式 / 综合 7 组（find 校对 2026-10-13；2026-08-10 迁出 6 篇灰色地带面试题到主模块 [01.java](../../01.java-and-jvm/README.md)：`object` → `concepts/data-types`，`create-object` → `concepts/object`，`singleton-pattern` → `design-patterns/creation/singleton.md`，`large-data-into-hashmap` → `collection/hashmap-performance.md`，`record-t` → `concepts/record`，`arrayList-distinct` → `collection/arraylist-distinct.md`），覆盖 90% 后端面试 Java 高频题。
 
 ---
 
-## 文章清单（共 41 篇，find 校对 2026-08-28）
+## 文章清单（共 40 篇，find 校对 2026-10-13）
 
 ### 集合与数据结构
 | 主题 | 难度 | 核心问题 |
