@@ -145,7 +145,23 @@ public class MyBean implements InitializingBean, DisposableBean,
 
 ---
 
-## 四、面试话术（30 秒版）
+## 四、常见陷阱
+
+### 陷阱 1：@PostConstruct 里 this 调用 @Transactional 方法，事务不生效
+- **真相**：生命周期第 7 步执行 `@PostConstruct` 时，操作的是**原始对象**；AOP 代理要到第 10 步（`postProcessAfterInitialization`）才创建。所以在 `@PostConstruct` 里通过 `this.xxx()` 调用本类的 `@Transactional` 方法，走的是原始对象而不是代理，**事务完全不生效**。需要事务的初始化逻辑应拆到另一个 Bean，或用 `ApplicationRunner` / 事件监听在容器就绪后执行。
+
+### 陷阱 2：原型（prototype）Bean 容器不调用销毁回调
+- **真相**：第 12 步的销毁流程（`@PreDestroy` → `DisposableBean.destroy` → `destroy-method`）**只对单例 Bean 生效**。prototype Bean 创建后交给调用方，容器不再跟踪其生命周期——`@PreDestroy` 永远不会被执行，持有资源（连接、线程）的 prototype Bean 必须调用方自己清理，或用 `DestructionAwareBeanPostProcessor` 手动兜底。
+
+### 陷阱 3：以为 @PreDestroy 和 DisposableBean 二选一、顺序随意
+- **真相**：两者可以共存，且顺序固定：**@PreDestroy → DisposableBean.destroy() → 自定义 destroy-method**（与初始化侧 `@PostConstruct → afterPropertiesSet → init-method` 完全对称，见第一节第 7-9 步 / 第 12 步）。三处都写了清理逻辑会**按此顺序全部执行**，重复释放资源可能抛异常；工程上推荐只用 `@PreDestroy`（注解驱动、不耦合 Spring 接口）。
+
+### 陷阱 4：构造方法里使用 @Autowired 字段，拿到的是 null
+- **真相**：第 1 步实例化（构造方法执行）发生在第 2 步属性注入**之前**，构造函数里读取 `@Autowired` 字段必然是 `null`。依赖注入后的初始化逻辑要放 `@PostConstruct`（第 7 步），或者改用构造器注入让依赖在实例化时就位。
+
+---
+
+## 五、面试话术（30 秒版）
 
 > "Bean 生命周期分 7 个阶段：
 > 
@@ -161,7 +177,7 @@ public class MyBean implements InitializingBean, DisposableBean,
 
 ---
 
-## 五、交叉引用
+## 六、交叉引用
 
 - 主模块：[`04.spring-backend`](../../../04.spring-backend/README.md) — Spring 知识体系
 - 相关：[`12.interview/06.spring/not-use-@autowired/`](../not-use-@autowired/) — @Autowired 推荐用法

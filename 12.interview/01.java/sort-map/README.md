@@ -147,7 +147,45 @@ map.entrySet().stream()
 - **线程安全**：归并时确保线程安全（如使用`ConcurrentLinkedQueue`或`Phaser`同步）。
 - **错误处理**：添加异常处理（如`IOException`），确保临时文件可清理。
 
-通过分块+外部排序，可在有限内存下高效处理1亿数据，同时利用多核并行加速。实际执行时需根据硬件资源（内存、CPU核心数）调整分块大小和并行度。## 相关章节
+通过分块+外部排序，可在有限内存下高效处理1亿数据，同时利用多核并行加速。实际执行时需根据硬件资源（内存、CPU核心数）调整分块大小和并行度。
+
+## 六、常见陷阱
+
+### 陷阱 1：归并时丢失元素来源流
+- **真相**：步骤 3 的简化代码里 `streams.get(streams.size() - 1)` 永远从最后一个流补数据——归并的前提是"堆顶元素弹出后，从**它来自的那个流**读下一条"。正确做法是把 `(entry, sourceStream)` 包装成对象入堆，或用下标数组跟踪每个堆顶的来源，否则归并结果直接错乱。
+
+### 陷阱 2：临时文件未清理
+- **真相**：分块 + 排序会产生 `chunk_*.dat` 和 `sorted_chunk_*.dat` 两批临时文件，1 亿数据可能占几十 GB 磁盘。归并中途抛 `IOException` 退出时，如果没在 `finally` 里删除（或没用 `File.deleteOnExit()` / `Files.createTempFile`），磁盘会被悄悄占满——这正是第五节"错误处理：确保临时文件可清理"强调的原因。
+
+### 陷阱 3：ObjectOutputStream 未 flush/close 导致数据截断
+- **真相**：`ObjectOutputStream` 内部有 1KB 缓冲块，只 `writeObject` 不 `flush()`/`close()`，最后一个块可能没落盘，读回时数据悄悄丢失。示例代码用 try-with-resources 就是为此；另外 `ObjectInputStream` 读到底抛的是 `EOFException`，必须捕获它作为正常结束信号，而不是当错误吞掉。
+
+### 陷阱 4：数据量不大也硬上外排 / TreeMap 全量加载 OOM
+- **真相**：两个极端都会翻车。百万级以下直接 `TreeMap` 或 Stream 排序即可，上外排纯属浪费磁盘 I/O；反过来，1 亿条数据硬塞 `new TreeMap<>(map)`，每节点 48-64 字节，需要 4.8-6.4GB 内存，大概率 `OutOfMemoryError`——方案选型先看数据量级。
+
+## 七、面试话术
+
+### 30 秒版
+
+> "Map 排序按数据量分档：百万级以内直接 `TreeMap` 或 Stream `sorted()` + `LinkedHashMap` 收集就够了。1 亿级必须外部排序，三步走：**分块**——按固定大小（如 100 万条/块）写入临时文件；**块内排序**——每块读进内存用 `TreeMap`/`sort()` 排好写回；**多路归并**——用优先队列（堆）从各有序块取最小元素合并输出，配合多线程并行加速。核心是任何时刻内存里只有一个块 + 一个堆，避免 OOM。"
+
+### 90 秒版
+
+> "先反问数据量级，这决定方案。小数据（<100 万）用 `TreeMap` 或 Stream 一行搞定，别过度设计。
+>
+> 1 亿条数据直接内存排序会 OOM——`TreeMap` 每个节点 48-64 字节，全量加载要 5GB 左右堆。所以走**外部排序**：
+>
+> **第一步分块**：遍历 Map，每 100 万条序列化写一个临时文件（`ObjectOutputStream` + 缓冲流）。
+>
+> **第二步块内排序**：逐块读入内存，`entries.sort(Map.Entry.comparingByKey())` 排好写回。块大小按 `-Xmx` 反推，保证峰值内存在堆的一半以内。
+>
+> **第三步多路归并**：为每个有序块开一个输入流，堆里放 `(元素, 来源流)` 对，每次弹出最小元素输出，再从**它的来源流**补一条——注意不能丢来源，否则归并错乱。
+>
+> 优化点：并行分块/归并用 ForkJoinPool；键是基本类型时改 `long[]` + 快排省对象开销；数据源是数据库时直接 `ORDER BY` 让 DB 排。
+>
+> 工程上三个坑必提：临时文件要在 `finally` 清理、流要 try-with-resources 保证 flush/close、`EOFException` 是正常结束信号。"
+
+## 相关章节
 
 - 深度阅读：[`01.java/集合框架`](../../../01.java-and-jvm/collection/README.md) — TreeMap、LinkedHashMap 源码
 - 相关：[`12.interview/hashmap-resizing`](../hashmap-resizing/README.md) — HashMap 扩容

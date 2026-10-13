@@ -207,13 +207,32 @@ http=com.apache.dubbo.rpc.protocol.http.HttpProtocol
 
 ---
 
-## 六、面试话术（30 秒版）
+## 六、常见陷阱
+
+### 陷阱 1：以为 ServiceLoader 是"按需加载单个实现"
+- **真相**：`ServiceLoader.load()` 本身确实不实例化（懒加载迭代器），但只要你遍历迭代器，就会**依次实例化配置文件里的所有实现**——哪怕你只需要其中一个。某个实现的构造函数有重开销（建连接、起线程），或者干脆抛异常，整个遍历就废了。这正是 Dubbo SPI 改成 KV 格式 + `getExtension("dubbo")` 按需加载的原因（见第五节对比表）。
+
+### 陷阱 2：把 ServiceLoader 的迭代器当线程安全的用
+- **真相**：`ServiceLoader` 及其迭代器**非线程安全**，多线程共享同一个实例并发 `next()` 会状态错乱甚至抛异常。正确姿势：每个线程自己 `load()` 一个，或者遍历完把实现收集到不可变 List 里再共享。
+
+### 陷阱 3：TCCL 在线程池 / 容器环境引发类加载器泄漏
+- **真相**：SPI 靠线程上下文类加载器（TCCL）打破双亲委派，但 TCCL 是**跟着线程走**的。线程池的线程长期存活，如果任务里设置的 TCCL 指向 Web 应用的 ClassLoader 且用完不还原，线程会一直强引用该 ClassLoader——应用热部署/重启时旧 ClassLoader 无法回收，导致 Metaspace 泄漏。规范做法：`try { thread.setContextClassLoader(x); ... } finally { thread.setContextClassLoader(old); }`，容器（Tomcat）也是这么包装应用线程的。
+
+### 陷阱 4：依赖多个实现的加载顺序
+- **真相**：`ClassLoader.getResources()` 返回的配置文件中实现的顺序**不作任何保证**（依赖 classpath 扫描顺序），换个环境、换个 fat-jar 打包方式顺序就可能变。需要优先级时自己在拿到实现列表后排序，或学 Dubbo 用显式 key 指定，而不是"把想优先的写在文件第一行"。
+
+### 陷阱 5：配置文件写错静默失效
+- **真相**：文件名必须是接口全限定名、内容必须是实现类全限定名，写错包名/文件名不会报编译错，`ServiceLoader` 遍历时要么找不到（静默为空），要么抛 `ServiceConfigurationError`。排查 SPI 不生效先检查 `META-INF/services/` 下的文件名和内容，再看实现类是否有**无参构造**。
+
+---
+
+## 七、面试话术（30 秒版）
 
 > "SPI 是服务提供者接口机制，框架定义接口，第三方通过 `META-INF/services/` 下的配置文件注册实现。`ServiceLoader` 采用懒加载方式，只在遍历迭代器时才实例化实现类。JDBC 是典型应用，通过线程上下文类加载器打破双亲委派，让 Bootstrap 加载的 `DriverManager` 能够加载 App ClassLoader 中的驱动实现。Dubbo 在此基础上做了增强，支持按需加载和自适应扩展。"
 
 ---
 
-## 七、交叉引用
+## 八、交叉引用
 
 - 主模块：[`01.java`](../../../01.java-and-jvm/) — Java 知识体系
 - [类加载机制](../class-loading/README.md) — 类加载与双亲委派

@@ -589,6 +589,30 @@ DEL session:sessionId
 
 ---
 
+## 九、面试话术
+
+### 30 秒版本
+
+> "可踢下线的登录凭证，本质是把'凭证 → 用户'映射从有效变无效，核心是**失效实时性与验证性能的权衡**。四大方案按规模选：百万级用 **Session + Redis**（DEL key 立即失效，<10ms，但每次请求查 Redis）；已上 JWT 的中型系统用 **JWT + 黑名单**（jti 入 Redis，TTL 与 exp 对齐防膨胀）；千万级首选 **Refresh + Access 双 Token**——Access 短期 15min 无状态验证不查 Redis，踢人只禁用 Refresh，最长 15min 生效，这是 OAuth2 大厂主流；亿级用**中心化会话服务** + MQ 广播 + 网关本地缓存 5s TTL，踢人 <1s 全网生效。答完方案再补多端策略（互踢/并存/限 N 端）和防 token 盗用（Refresh 一次性 + HTTPS + HttpOnly），就是完整的高分答案。"
+
+### 90 秒版本
+
+> "先和面试官对齐语义：踢下线 ≠ 登出 ≠ 封号——登出是用户主动、只影响当前设备；踢下线是系统触发、目标其他会话；封号是永久失效全部凭证。三者技术实现相通，但范围与时效不同。
+>
+> **方案 1：Session + Redis**。登录生成 SessionId 存 Redis，踢人 DEL key，下次请求 401，失效 <10ms。缺点是每请求查 Redis、百万在线时 Redis 成瓶颈。适合中小厂和高安全后台。
+>
+> **方案 2：JWT + 黑名单**。JWT 无状态没法收回，就把被踢 token 的 jti 写入 Redis 黑名单，**TTL 必须与 exp 对齐**（否则黑名单无限膨胀），可用本地缓存 5s TTL 减压。适合已有 JWT 的过渡场景。
+>
+> **方案 3：双 Token（推荐）**。Access Token 15min 短期、验证纯无状态不查 Redis；Refresh Token 30 天但服务端可禁用。踢人只标记 revoked，最长 15min 随 Access 过期生效。Refresh 换新做**一次性使用**：已被使用过说明可能被盗，吊销该用户全部 Refresh。90% 请求零 Redis 开销，是 Auth0/OAuth2 标准实践。
+>
+> **方案 4：中心化会话服务**。独立微服务管理凭证生命周期，网关本地缓存 5s TTL + Redis 权威存储，踢人走 Kafka 广播更新所有网关，<1s 全网生效，支撑亿级用户。
+>
+> **多端策略**四档：单端互踢（银行）、多端并存（抖音）、限 N 端踢最早（Netflix）、分级管理（普通浏览多端、支付单端）。
+>
+> **性能与安全细节**：批量踢人用 Pipeline 而非循环 DEL（百万级从几十分钟到几秒）；踢人接口做频率限制 + 审计日志防'踢下线风暴'；token 绑定 deviceId + 异地 IP 自动失效。"
+
+---
+
 ## 相关章节
 
 - [缓存一致性](../cache-consistency/README.md) — Redis 缓存失效机制
