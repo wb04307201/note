@@ -65,7 +65,7 @@
 | **Java 后端** | [01.java](01.java/) 39 篇 → [06.spring](06.spring/) 15 篇 → [03.database](03.database/) 31 篇 |
 | **系统设计 / 后端架构** | [04.system-design](04.system-design/) 26 篇 → [03.database](03.database/) 31 篇 |
 | **前端** | [09.front-end](09.front-end/) 28 篇（含网络 / CSS / 框架 / 安全 / 工程化） |
-| **AI 方向** | [11.ai](11.ai/) 55 篇（含主模块精炼版 + 新增专题：dropout / harness / 上下文工程 / RAG / 向量搜索 / Prompt 工程等） |
+| **AI 方向** | [11.ai](11.ai/) 56 篇（含主模块精炼版 + 新增专题：dropout / harness / 上下文工程 / RAG / 向量搜索 / Prompt 工程等） |
 | **安全工程师** | [05.security](05.security/) 10 篇（认证 / Web 安全 / 限流 / OWASP） → [04.system-design](04.system-design/) 26 篇 |
 | **大数据 / 数据平台** | [10.big-data](10.big-data/) 6 篇（Flink / Spark / Hive / Iceberg / Doris / Kafka） → [03.database](03.database/) 31 篇 |
 | **DevOps / SRE** | [tools/](tools/) 5 篇（Git / Docker / Nginx / K8s） → [04.system-design](04.system-design/) 26 篇 |
