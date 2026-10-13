@@ -231,10 +231,10 @@ Token 成本：          +1000%
 
 ### 七、相关章节
 
-- [`44-ai-engineer-responsibility`](./42-ai-engineer-responsibility.md) — 续集 18：AI 替你写代码，谁替系统负责（本篇是续集 18 的"数据真相"延伸）
-- [`46-tech-debt-career-trap`](./44-tech-debt-career-trap.md) — 续集 20：技术债困局（本篇是续集 20 的"组织/团队"侧输入）
-- 续集七：[`31-codebase-cognitive-debt`](./29-codebase-cognitive-debt.md) — 认知债：代码流失的根因
-- 续集八：[`32-agent-harness`](./30-agent-harness.md) — Harness：减少代码流失的工程解药
+- [`42-ai-engineer-responsibility`](./42-ai-engineer-responsibility.md) — 续集 18：AI 替你写代码，谁替系统负责（本篇是续集 18 的"数据真相"延伸）
+- [`44-tech-debt-career-trap`](./44-tech-debt-career-trap.md) — 续集 20：技术债困局（本篇是续集 20 的"组织/团队"侧输入）
+- 续集七：[`29-codebase-cognitive-debt`](./29-codebase-cognitive-debt.md) — 认知债：代码流失的根因
+- 续集八：[`30-agent-harness`](./30-agent-harness.md) — Harness：减少代码流失的工程解药
 - 咬文嚼字：[`12.interview/11.ai/ai-coding-productivity-paradox`](../12.interview/11.ai/ai-coding-productivity-paradox/README.md) — 4 大研究 + DORA 框架
 - 咬文嚼字：[`12.interview/11.ai/ai-code-churn`](../12.interview/11.ai/ai-code-churn/README.md) — 代码流失率专题
 - 咬文嚼字：[`12.interview/11.ai/ai-coding-roi`](../12.interview/11.ai/ai-coding-roi/README.md) — ROI 度量框架

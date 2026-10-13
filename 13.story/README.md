@@ -13,7 +13,7 @@
 
 > 用开餐厅的故事，讲明白五十篇技术大事 —— 从架构演进到 AI 智能体，从流量治理到 AI 私有化部署。
 
-本系列按**叙事逻辑**组织（**前传 → 续集一 → 正传 → 终章 → 番外 → 续集二十一**），每篇标注文件编号方便检索。原编号 17 / 23 已合并到相邻主题（原 17 并入现 17-distributed-puzzles，原 23 并入现 22-database-migration），重编号后编号连续无跳跃。**番外九「扩招 50 个厨师」+ LLM 推理优化篇陆续追加**，总篇数升至 **50 篇**：47 个叙事段中，32 / 33 / 34 各含 2 个子文件（a / b），故实际 `.md` 文件共 **50 个**（47 段 + 3 个拆分）。
+本系列按**叙事逻辑**组织（**前传 → 续集一 → 正传 → 终章 → 番外 → 续集二十一**），每篇标注文件编号方便检索。原编号 17 / 23 已合并到相邻主题（原 17 并入现 17-distributed-puzzles，原 23 并入现 22-database-migration），重编号后编号连续无跳跃。**番外九「扩招 50 个厨师」+ 番外十「LLM 推理优化」+ 续集二十一陆续追加**，总篇数升至 **50 篇**：47 个叙事段中，32 / 33 / 34 各含 2 个子文件（a / b），故实际 `.md` 文件共 **50 个**（47 段 + 3 个拆分）。
 
 ---
 
@@ -31,7 +31,7 @@
 | 正传 7-10 · 工程质量 | 4 | [12](./12-data-kitchen.md) / [13](./13-frontend-renovation.md) / [15](./15-incident-response.md) / [16](./16-performance-optimization.md) | 数据 / 前端 / 故障 / 性能 |
 | 正传 11-14 · 系统进阶 | 4 | [19](./19-realtime-eventdriven.md) / [17](./17-distributed-puzzles.md) / [20](./20-multiplatform-architecture.md) / [22](./22-database-migration.md) | 异步 / 分布式 / 多端 / 数据库迁移 |
 | 终章 · 组织管理 | 1 | [07](./07-from-chef-to-ceo.md) | 从厨师到 CEO，500 人像 5 人协作 |
-| 番外 · 专题拓展 | 10 | [03](./03-refactoring-guide-for-pm.md) / [14](./14-cloud-finops.md) / [18](./18-saas-multitenant.md) / [21](./21-search-recommendation.md) / [23](./23-lowcode-platform.md) / [24](./24-globalization.md) / [40](./40-prompt-engineering.md) / [41](./41-multimodal-ai.md) / [45 番外九 Skill 调度](./45-skill-scheduling-restaurant.md) / [46 LLM 推理优化](./46-llm-inference.md) | 重构 / FinOps / SaaS / 搜索 / 低代码 / 国际化 / Prompt / 多模态 / Skill 调度 / LLM 推理 |
+| 番外 · 专题拓展 | 10 | [03](./03-refactoring-guide-for-pm.md) / [14](./14-cloud-finops.md) / [18](./18-saas-multitenant.md) / [21](./21-search-recommendation.md) / [23](./23-lowcode-platform.md) / [24](./24-globalization.md) / [40](./40-prompt-engineering.md) / [41](./41-multimodal-ai.md) / [45 番外九 Skill 调度](./45-skill-scheduling-restaurant.md) / [46 番外十 LLM 推理优化](./46-llm-inference.md) | 重构 / FinOps / SaaS / 搜索 / 低代码 / 国际化 / Prompt / 多模态 / Skill 调度 / LLM 推理 |
 | 续集 2-21 · AI 时代 | 23 | [11](./11-ai-learning-paradox.md) ~ [47](./47-boss-hallucination.md)（含 [32a](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) / [33a](./33a-mcp-protocol.md) / [33b](./33b-a2a-protocol.md) / [34a](./34a-ai-token-cost-structure.md) / [34b](./34b-ai-token-cost-optimization.md)） | AI 时代 23 大主题 |
 | **合计** | **50** | — | 47 叙事段 + 3 个 a/b 拆分 |
 

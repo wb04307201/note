@@ -577,7 +577,7 @@ graph TD
 
 - [13-frontend-renovation.md](./13-frontend-renovation.md) —— 正传 8，多端架构与前端工程化的关系：组件库、设计系统、构建产物
 - [18-saas-multitenant.md](./18-saas-multitenant.md) —— 番外三，多端架构支持 SaaS 多租户的入口分流：不同终端对应不同租户
-- [26-globalization.md](./24-globalization.md) —— 番外六，多端架构下的国际化：不同地区、不同语言、不同端 UI 适配
+- [24-globalization.md](./24-globalization.md) —— 番外六，多端架构下的国际化：不同地区、不同语言、不同端 UI 适配
 
 ---
 

@@ -775,9 +775,9 @@ API 方案（GPT-4o）：
 
 ## 延伸阅读（2026 新增）
 
-- 续集十八：[`44-ai-engineer-responsibility`](./42-ai-engineer-responsibility.md) —— **私有化场景下的责任分工**：私有化后谁负责运维、谁负责安全、谁负责更新
-- 续集十九：[`45-ai-productivity-paradox`](./43-ai-productivity-paradox.md) —— **私有化的 ROI 真相**：DORA 放大器理论告诉你私有化是否值得
-- 续集十二：[`36b-ai-token-cost-optimization`](./34b-ai-token-cost-optimization.md) —— **私有化的成本优化**：5 层路由 + 3 级缓存 + 4 策略压缩
+- 续集十八：[`42-ai-engineer-responsibility`](./42-ai-engineer-responsibility.md) —— **私有化场景下的责任分工**：私有化后谁负责运维、谁负责安全、谁负责更新
+- 续集十九：[`43-ai-productivity-paradox`](./43-ai-productivity-paradox.md) —— **私有化的 ROI 真相**：DORA 放大器理论告诉你私有化是否值得
+- 续集十二：[`34b-ai-token-cost-optimization`](./34b-ai-token-cost-optimization.md) —— **私有化的成本优化**：5 层路由 + 3 级缓存 + 4 策略压缩
 
 > 🆕 **阿明餐厅工业部署选型实战**：当连锁开到 30 家（从私部署 Ollama 升级到 vLLM），怎么选推理引擎？→ 详见 [vLLM vs Ollama 工业级选型深度专题](../09.ai-applications/llm-inference/vllm-vs-ollama/README.md)（PagedAttention 原理 + 4 引擎对比 + 场景化决策树）。
 

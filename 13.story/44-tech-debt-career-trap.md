@@ -244,10 +244,10 @@
 
 ### 七、相关章节
 
-- [`44-ai-engineer-responsibility`](./42-ai-engineer-responsibility.md) — 续集 18：AI 替你做菜，谁替厨房负责（系统责任金字塔是本篇的"组织"前提）
-- [`45-ai-productivity-paradox`](./43-ai-productivity-paradox.md) — 续集 19：AI 提效悖论（4 大研究数据 + DORA 放大器是本篇的"数据"基础）
-- 续集七：[`31-codebase-cognitive-debt`](./29-codebase-cognitive-debt.md) —— 老厨房认知债：菜谱看不懂，技术视角
-- 续集八：[`32-agent-harness`](./30-agent-harness.md) —— AI 厨师 Harness：工程视角的解药
+- [`42-ai-engineer-responsibility`](./42-ai-engineer-responsibility.md) — 续集 18：AI 替你做菜，谁替厨房负责（系统责任金字塔是本篇的"组织"前提）
+- [`43-ai-productivity-paradox`](./43-ai-productivity-paradox.md) — 续集 19：AI 提效悖论（4 大研究数据 + DORA 放大器是本篇的"数据"基础）
+- 续集七：[`29-codebase-cognitive-debt`](./29-codebase-cognitive-debt.md) —— 老厨房认知债：菜谱看不懂，技术视角
+- 续集八：[`30-agent-harness`](./30-agent-harness.md) —— AI 厨师 Harness：工程视角的解药
 - 番外一：[`03-refactoring-guide-for-pm.md`](./03-refactoring-guide-for-pm.md) —— 老厨房改造指南：PM 视角
 - 主模块：`11.product-and-pm/ai-pm-dora-space/` —— AI 行业应用
 

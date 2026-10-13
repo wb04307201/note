@@ -684,9 +684,9 @@ graph TD
 
 ## 延伸阅读（2026 新增）
 
-- 续集二十：[`46-tech-debt-career-trap`](./44-tech-debt-career-trap.md) —— **技术债如何把个人困死**：本篇讲"代码/团队"侧的技术债，续集 20 讲"个人职业"侧的技术债
-- 续集十九：[`45-ai-productivity-paradox`](./43-ai-productivity-paradox.md) —— **AI 时代的代码流失率**：DORA 放大器理论告诉你为什么认知债在 AI 时代更严重
-- 续集八：[`32-agent-harness`](./30-agent-harness.md) —— **Harness 治理**：减少认知债的工程解药
+- 续集二十：[`44-tech-debt-career-trap`](./44-tech-debt-career-trap.md) —— **技术债如何把个人困死**：本篇讲"代码/团队"侧的技术债，续集 20 讲"个人职业"侧的技术债
+- 续集十九：[`43-ai-productivity-paradox`](./43-ai-productivity-paradox.md) —— **AI 时代的代码流失率**：DORA 放大器理论告诉你为什么认知债在 AI 时代更严重
+- 续集八：[`30-agent-harness`](./30-agent-harness.md) —— **Harness 治理**：减少认知债的工程解药
 
 ← [返回系列导读](./index.md)
 

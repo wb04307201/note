@@ -396,7 +396,7 @@ Google 的 Core Web Vitals 是前端体验的"健康体检"：
 
 - [10-api-design.md](./10-api-design.md) —— 正传 6，前端工程化与 API 设计的协同：BFF、契约类型生成、Mock 数据
 - [20-multiplatform-architecture.md](./20-multiplatform-architecture.md) —— 正传 13，前端工程化向多端延伸：组件库的跨端复用、构建产物的多平台输出
-- [26-globalization.md](./24-globalization.md) —— 番外六，前端国际化是工程化的重要维度：i18n、文案管理、本地化构建
+- [24-globalization.md](./24-globalization.md) —— 番外六，前端国际化是工程化的重要维度：i18n、文案管理、本地化构建
 
 ---
 
