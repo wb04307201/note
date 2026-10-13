@@ -41,6 +41,95 @@ Paxos算法通过三种角色和两个阶段实现一致性：
         - 当一个提案被多数Acceptor接受后，Proposer将该提案值广播给所有Learner。
         - Learner学习并记录该值，完成一致性决策。
 
+### 两阶段伪代码（Proposer / Acceptor）
+
+```python
+class Proposer:
+    def __init__(self, id):
+        self.id = id
+        self.proposal_num = 0
+        self.value = None
+
+    def propose(self, value):
+        self.value = value
+
+        # 阶段 1：Prepare
+        self.proposal_num += 1
+        promises = []
+        for acceptor in acceptors:
+            response = acceptor.prepare(self.proposal_num)
+            if response.type == 'PROMISE':
+                promises.append(response)
+
+        # 检查是否收到多数派响应
+        if len(promises) < len(acceptors) // 2 + 1:
+            return False  # 提案失败
+
+        # 如果有已接受的值，使用它；否则使用自己的值
+        accepted_values = [p.accepted_value for p in promises if p.accepted_value]
+        if accepted_values:
+            self.value = max(accepted_values, key=lambda x: x[0])[1]
+
+        # 阶段 2：Accept
+        accepted = []
+        for acceptor in acceptors:
+            response = acceptor.accept(self.proposal_num, self.value)
+            if response.type == 'ACCEPTED':
+                accepted.append(response)
+
+        # 检查是否提交
+        if len(accepted) >= len(acceptors) // 2 + 1:
+            return True  # 提案提交成功
+        return False
+
+class Acceptor:
+    def __init__(self, id):
+        self.id = id
+        self.promised_num = 0  # 已承诺的最大编号
+        self.accepted_num = 0  # 已接受的最大编号
+        self.accepted_value = None
+
+    def prepare(self, proposal_num):
+        if proposal_num > self.promised_num:
+            self.promised_num = proposal_num
+            return Promise(proposal_num, self.accepted_value)
+        return Reject(proposal_num)
+
+    def accept(self, proposal_num, value):
+        if proposal_num >= self.promised_num:
+            self.promised_num = proposal_num
+            self.accepted_num = proposal_num
+            self.accepted_value = value
+            return Accepted(proposal_num)
+        return Reject(proposal_num)
+```
+
+### 两阶段消息时序图
+
+以 1 个 Proposer + 2 个 Acceptor（多数派 = 2）为例，展示 Prepare/Promise → Accept/Accepted 完整消息流：
+
+```mermaid
+sequenceDiagram
+    participant P as Proposer
+    participant A1 as Acceptor1
+    participant A2 as Acceptor2
+
+    Note over P: 阶段 1：Prepare(n=1)
+    P->>A1: PREPARE(n=1)
+    P->>A2: PREPARE(n=1)
+    A1-->>P: PROMISE(n=1, 无已接受值)
+    A2-->>P: PROMISE(n=1, 无已接受值)
+
+    Note over P: 收到多数派 Promise，选定值 v
+    Note over P: 阶段 2：Accept(n=1, v)
+    P->>A1: ACCEPT(n=1, v)
+    P->>A2: ACCEPT(n=1, v)
+    A1-->>P: ACCEPTED(n=1)
+    A2-->>P: ACCEPTED(n=1)
+
+    Note over P,A2: 多数派确认，提案 (n=1, v) 提交
+```
+
 ## 三、关键机制与特性
 1. **提案编号与优先级**：
     - 提案编号用于标识提案的先后顺序，编号越大的提案优先级越高。

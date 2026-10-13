@@ -67,96 +67,9 @@ FLP 不可能性：
 
 Paxos 是 Leslie Lamport 1989 年提出的经典共识算法，分为 Basic Paxos 和 Multi Paxos。
 
-**Basic Paxos 两阶段提交**：
+**Basic Paxos 两阶段提交**（导览）：
 
-```text
-角色：
-  - Proposer（提案者）：发起提案
-  - Acceptor（接受者）：投票表决
-  - Learner（学习者）：学习最终结果
-
-阶段 1：Prepare（准备）
-  Proposer → Acceptor: PREPARE(n)
-    "我提议一个值为 v，提案编号为 n"
-  
-  Acceptor → Proposer: PROMISE(n, v') 或 REJECT
-    "我承诺不再接受编号 < n 的提案"
-    v' = 已接受的最大编号提案的值（可选）
-
-阶段 2：Accept（接受）
-  Proposer → Acceptor: ACCEPT(n, v)
-    "请接受编号 n，值为 v 的提案"
-  
-  Acceptor → Proposer: ACCEPTED(n) 或 REJECT
-    "我接受了提案" 或 "我拒绝了（因为已承诺更大的编号）"
-
-提交条件：
-  当 Proposer 收到多数派（> N/2）的 ACCEPTED 响应时，
-  提案被提交，所有节点学习该值。
-```
-
-**Paxos 伪代码**：
-
-```python
-class Proposer:
-    def __init__(self, id):
-        self.id = id
-        self.proposal_num = 0
-        self.value = None
-    
-    def propose(self, value):
-        self.value = value
-        
-        # 阶段 1：Prepare
-        self.proposal_num += 1
-        promises = []
-        for acceptor in acceptors:
-            response = acceptor.prepare(self.proposal_num)
-            if response.type == 'PROMISE':
-                promises.append(response)
-        
-        # 检查是否收到多数派响应
-        if len(promises) < len(acceptors) // 2 + 1:
-            return False  # 提案失败
-        
-        # 如果有已接受的值，使用它；否则使用自己的值
-        accepted_values = [p.accepted_value for p in promises if p.accepted_value]
-        if accepted_values:
-            self.value = max(accepted_values, key=lambda x: x[0])[1]
-        
-        # 阶段 2：Accept
-        accepted = []
-        for acceptor in acceptors:
-            response = acceptor.accept(self.proposal_num, self.value)
-            if response.type == 'ACCEPTED':
-                accepted.append(response)
-        
-        # 检查是否提交
-        if len(accepted) >= len(acceptors) // 2 + 1:
-            return True  # 提案提交成功
-        return False
-
-class Acceptor:
-    def __init__(self, id):
-        self.id = id
-        self.promised_num = 0  # 已承诺的最大编号
-        self.accepted_num = 0  # 已接受的最大编号
-        self.accepted_value = None
-    
-    def prepare(self, proposal_num):
-        if proposal_num > self.promised_num:
-            self.promised_num = proposal_num
-            return Promise(proposal_num, self.accepted_value)
-        return Reject(proposal_num)
-    
-    def accept(self, proposal_num, value):
-        if proposal_num >= self.promised_num:
-            self.promised_num = proposal_num
-            self.accepted_num = proposal_num
-            self.accepted_value = value
-            return Accepted(proposal_num)
-        return Reject(proposal_num)
-```
+Paxos 由 Proposer（提案者）、Acceptor（接受者）、Learner（学习者）三种角色协作，通过 Prepare/Promise 和 Accept/Accepted 两个阶段达成多数派共识：阶段 1 中 Proposer 以全局递增的提案编号 n 请求 Acceptor 承诺不再接受编号 < n 的提案；阶段 2 中 Proposer 选定值 v（若 Promise 响应中携带已接受值，必须沿用编号最大的那个）并请求接受，收到多数派（> N/2）ACCEPTED 后提案提交。完整消息流伪代码（Proposer/Acceptor 实现）与两阶段时序图 [详见 paxos 子页](paxos/README.md)。
 
 **优缺点**：
 
