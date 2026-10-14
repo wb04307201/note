@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\cache\patterns
+  slug: 04.spring-backend/04-data/cache/patterns
   type: article
   category: 主模块子文章
   summary: 缓存 4 大模式（Patterns）

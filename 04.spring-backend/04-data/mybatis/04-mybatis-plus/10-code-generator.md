@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\10-code-generator
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/10-code-generator
   type: article
   category: 主模块子文章
   summary: 10 代码生成器

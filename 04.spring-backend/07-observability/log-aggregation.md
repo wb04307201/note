@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\07-observability\log-aggregation
+  slug: 04.spring-backend/07-observability/log-aggregation
   type: article
   category: 主模块子文章
   summary: 日志聚合（ELK / Loki / Fluentd）

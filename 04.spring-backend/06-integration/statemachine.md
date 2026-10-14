@@ -6,6 +6,7 @@
   summary: Spring Statemachine 状态机
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [状态机, StateMachine, 工作流]
 -->
 
 # Spring Statemachine 状态机

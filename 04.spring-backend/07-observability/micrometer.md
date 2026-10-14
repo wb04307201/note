@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\07-observability\micrometer
+  slug: 04.spring-backend/07-observability/micrometer
   type: article
   category: 主模块子文章
   summary: Micrometer 指标监控

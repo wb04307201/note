@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\01-core\tools-reference
+  slug: 04.spring-backend/01-core/tools-reference
   type: article
   category: 主模块子文章
   summary: Spring 自带24个工具类
@@ -198,16 +198,18 @@ classFilter =ClassFilters.intersection(classFilters);
 ### ReflectUtils ⭐
 该工具主要用于通过反射进行相关的操作。
 
-如下示例：
+如下示例（Spring 6.x 口径；`newInstance`/`findDeclaredMethod` 等旧 API 已在 4.x 起移除）：
 ```java
-/**1.创建实例*/
-ReflectUtils.newInstance(UserDAO.class);
-/**2.查找Method对象*/
-ReflectUtils.findDeclaredMethod(UserDAO.class, "create",new Class<?>[] {
-        String.class
-});
-/**3.获取java bean对应的所有getter方法*/
-PropertyDescriptor[] getters = ReflectUtils.getGetters();
+/**1.获取 java bean 某属性的 getter 方法*/
+PropertyDescriptor pd = ReflectUtils.findProperty("name", UserDAO.class);
+Method getter = ReflectUtils.getReadMethod(pd);
+/**2.查找 Field 并读写*/
+Field field = ReflectUtils.findField(UserDAO.class, "name");
+ReflectUtils.makeAccessible(field);
+ReflectUtils.setField(field, userDao, "zhangsan");
+/**3.反射调用方法*/
+Method method = ReflectUtils.findMethod(UserDAO.class, "create", String.class);
+ReflectUtils.invokeMethod(method, userDao, "zhangsan");
 ```
 
 ### ResourcePatternUtils

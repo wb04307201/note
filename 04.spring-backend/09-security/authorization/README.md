@@ -328,10 +328,17 @@ ACL 提供数据对象级别的权限控制，适用于"用户 A 只能编辑自
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AclConfig {
 
+    /** ACL 缓存的 CacheManager（需要 spring-context-support + Caffeine 依赖） */
+    @Bean
+    public CacheManager caffeineCacheManager() {
+        return new CaffeineCacheManager("acl");
+    }
+
     @Bean
     public AclService aclService(DataSource dataSource) {
         JdbcMutableAclService aclService = new JdbcMutableAclService(
-            dataSource, lookupStrategy(), aclCache());
+            dataSource, lookupStrategy(dataSource), aclCache(caffeineCacheManager()));
+        aclService.setAclAuthorizationStrategy(aclAuthorizationStrategy());
         return aclService;
     }
 
@@ -341,18 +348,24 @@ public class AclConfig {
             new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
+    /** 权限授予策略：READ/WRITE/DELETE 分别要求的权限 */
     @Bean
-    public LookupStrategy lookupStrategy() {
-        return new BasicLookupStrategy(
-            dataSource, aclCache(), 
-            aclAuthorizationStrategy(), 
-            new ConsoleAuditLogger());
+    public PermissionGrantingStrategy permissionGrantingStrategy() {
+        return new DefaultPermissionGrantingStrategy(new ConsoleAuditLogger());
     }
 
     @Bean
-    public AclCache aclCache() {
+    public LookupStrategy lookupStrategy(DataSource dataSource) {
+        return new BasicLookupStrategy(
+            dataSource, aclCache(caffeineCacheManager()),
+            aclAuthorizationStrategy(),
+            permissionGrantingStrategy());
+    }
+
+    @Bean
+    public AclCache aclCache(CacheManager cacheManager) {
         return new SpringCacheBasedAclCache(
-            caffeineCacheManager.getCache("acl"),
+            cacheManager.getCache("acl"),
             permissionGrantingStrategy(),
             aclAuthorizationStrategy());
     }

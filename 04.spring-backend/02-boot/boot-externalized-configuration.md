@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-boot\boot-externalized-configuration
+  slug: 04.spring-backend/02-boot/boot-externalized-configuration
   type: article
   category: 主模块子文章
   summary: Spring Boot 外部化配置
@@ -24,7 +24,7 @@
 
 ## 一、`application.yml` 加载顺序与优先级
 
-Spring Boot 按以下**从高到低**的优先级加载配置（后加载的覆盖先加载的）：
+Spring Boot 按以下**从高到低**的优先级加载配置（优先级高的来源覆盖优先级低的来源）：
 
 | 优先级 | 来源 | 备注 |
 |:------:|------|------|

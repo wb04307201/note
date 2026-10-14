@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\bus
+  slug: 04.spring-backend/03-cloud/bus
   type: article
   category: 主模块子文章
   summary: Spring Cloud Bus 集群事件总线
@@ -105,33 +105,65 @@ curl -X POST http://config-server:8080/actuator/busrefresh/order-service:**
 ## 六、自定义事件广播
 
 ```java
-// 1. 自定义事件
+// 1. 自定义事件（继承 RemoteApplicationEvent）
 public class CacheClearEvent extends RemoteApplicationEvent {
     private String cacheName;
-    // getters/setters...
+
+    // Jackson 反序列化需要无参构造器（跨服务传输时必需）
+    public CacheClearEvent() {
+    }
+
+    public CacheClearEvent(Object source, String originService, String cacheName) {
+        super(source, originService);
+        this.cacheName = cacheName;
+    }
+
+    public String getCacheName() {
+        return cacheName;
+    }
+
+    public void setCacheName(String cacheName) {
+        this.cacheName = cacheName;
+    }
 }
 
-// 2. 发布事件
-@Resource
-private BusProperties busProperties;
+// 2. 发布事件（applicationEventPublisher 必须显式声明并注入）
+@Service
+public class CacheClearPublisher {
+    private final ApplicationEventPublisher applicationEventPublisher;
 
-public void clearCache(String name) {
-    CacheClearEvent event = new CacheClearEvent(this, busProperties.getId(),
-            new HashMap<>());
-    event.setCacheName(name);
-    applicationEventPublisher.publishEvent(event);
+    public CacheClearPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
+    }
+
+    public void clearCache(String name) {
+        CacheClearEvent event = new CacheClearEvent(this, null, name);
+        applicationEventPublisher.publishEvent(event);
+    }
 }
 
-// 3. 监听事件
+// 3. 监听事件（本地发布 + Bus 跨服务广播都会触发）
+@Slf4j
 @Component
 public class CacheClearListener {
+    private final CacheManager cacheManager;
+
+    public CacheClearListener(CacheManager cacheManager) {
+        this.cacheManager = cacheManager;
+    }
+
     @EventListener
     public void onEvent(CacheClearEvent event) {
         log.info("收到集群广播: 清空缓存 {}", event.getCacheName());
-        cacheManager.getCache(event.getCacheName()).clear();
+        Cache cache = cacheManager.getCache(event.getCacheName());
+        if (cache != null) {
+            cache.clear();
+        }
     }
 }
 ```
+
+> 📌 自定义事件默认不在 Bus 的扫描范围内，需在发布方启动类（或配置类）加 `@RemoteApplicationEventScan("com.example.bus.event")` 声明事件所在包，Bus 才会把它序列化后经 Kafka/RabbitMQ 广播到其他服务。
 
 ---
 

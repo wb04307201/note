@@ -1,9 +1,9 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\06-integration\validation\validation-annotations-and-usage
+  slug: 04.spring-backend/06-integration/validation/validation-annotations-and-usage
   type: article
   category: 主模块子文章
-  summary: Spring Validation
+  summary: JSR-380 校验注解体系与 @Valid/@Validated 用法，含分组验证与 @GroupSequence。
   depth: ⭐⭐⭐
   status: active
 -->

@@ -335,14 +335,12 @@ Spring Boot 通过 3 个自动配置类按优先级装配服务器：
 
 ```mermaid
 graph LR
-    A[ServletWebServerFactoryAutoConfiguration] --> B{classpath 有 servlet 3.1+?}
-    B -- 是 --> C[导入 EmbeddedTomcat / Jetty / Undertow]
-    B -- 否 --> D[不装配内嵌服务器]
-    
-    C --> E[创建 TomcatServletWebServerFactory]
-    C --> F[创建 JettyServletWebServerFactory]
-    C --> G[创建 UndertowServletWebServerFactory]
-    
+    A[ServletWebServerFactoryAutoConfiguration] --> B{分别检测 Tomcat / Jetty / Undertow<br/>核心类是否在 classpath（@ConditionalOnClass）}
+    B -- 有 Tomcat 类 --> E[创建 TomcatServletWebServerFactory]
+    B -- 有 Jetty 类 --> F[创建 JettyServletWebServerFactory]
+    B -- 有 Undertow 类 --> G[创建 UndertowServletWebServerFactory]
+    B -- 都没有 --> D[不装配内嵌服务器]
+
     E --> H[读取 server.* 属性]
     H --> I[应用所有 WebServerFactoryCustomizer]
     I --> J[创建 Tomcat 实例并启动]

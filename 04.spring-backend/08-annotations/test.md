@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\test
+  slug: 04.spring-backend/08-annotations/test
   type: article
   category: 主模块子文章
   summary: 测试注解
@@ -253,5 +253,4 @@ doReturn(mockResult).when(orderService).complexMethod(any());   // 仅这一方�
 - ⬅️ [返回注解速查](../README.md)
 - [配置注解](configuration.md) — @Configuration、@SpringBootApplication
 - [AOP 注解](aop.md) — AOP 切面也常被测试
-
-- [testing](../02-web/webflux/testing.md)
+- [WebFlux 测试](../02-web/webflux/testing.md) — 响应式场景下 @SpringBootTest/WebTestClient 的切片测试用法

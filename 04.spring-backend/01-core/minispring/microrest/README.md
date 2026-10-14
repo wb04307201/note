@@ -1,9 +1,9 @@
 <!--module:
-  parent: spring
-  slug: spring/microrest
+  parent: 04.spring-backend
+  slug: 04.spring-backend/01-core/minispring/microrest
   type: article
   category: 主模块子文章
-  summary: MicroRest
+  summary: MicroRest 轻量实现：200 行 Servlet 模拟 Spring IoC + MVC，覆盖 Bean 扫描、字段注入、GET 请求分发。
   depth: ⭐⭐⭐
   status: active
 -->

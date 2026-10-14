@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\load-balancer
+  slug: 04.spring-backend/03-cloud/load-balancer
   type: article
   category: 主模块子文章
   summary: 客户端负载均衡（LoadBalancer）

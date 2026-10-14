@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\01-core\module
+  slug: 04.spring-backend/01-core/module
   type: article
   category: 主模块子文章
   summary: Spring Framework 模块结构
@@ -9,6 +9,8 @@
 -->
 
 # Spring Framework 模块结构
+
+> **一句话定位**：梳理 Spring Framework 4.x/5.x 的模块划分（核心容器 / AOP / 数据访问 / Web / 测试 / Messaging）与各模块间的依赖关系。
 
 > ⬅️ [返回 01 核心容器](README.md)
 
@@ -100,10 +102,6 @@ graph TB
 ```
 
 > Spring 5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。
->
-> **Portlet 废弃原因**：Portlet 是 JSR-168/286 规范的实现，主要用于门户（Portal）系统，但随着现代 SPA + 微服务架构的兴起，Portlet 生态已大幅萎缩。Spring 5.0 起不再提供 `spring-webmvc-portlet` 模块。
->
-> **替代方案**：需要门户功能的场景建议使用 **Spring WebFlux + API Gateway**（如 Spring Cloud Gateway）或前端微服务组合（Micro-Frontends）模式。
 >
 > **Portlet 废弃原因**：Portlet 是 JSR-168/286 规范的实现，主要用于门户（Portal）系统，但随着现代 SPA + 微服务架构的兴起，Portlet 生态已大幅萎缩。Spring 5.0 起不再提供 `spring-webmvc-portlet` 模块。
 >

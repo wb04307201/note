@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\02-crud-basics
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/02-crud-basics
   type: article
   category: MyBatis-Plus 实战
   summary: MyBatis-Plus CRUD 与条件构造器基础——BaseMapper 17 个方法 + Wrapper 常用 API 完整清单。

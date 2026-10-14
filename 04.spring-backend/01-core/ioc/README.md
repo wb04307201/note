@@ -1,6 +1,6 @@
 <!--module:
-  parent: spring
-  slug: spring/ioc
+  parent: 04.spring-backend
+  slug: 04.spring-backend/01-core/ioc
   type: article
   category: 主模块子文章
   summary: IoC（Inversion of Control）控制反转
@@ -12,7 +12,6 @@
 
 > ⬅️ [返回 01 核心容器](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位

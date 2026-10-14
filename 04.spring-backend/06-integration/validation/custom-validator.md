@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\06-integration\validation\custom-validator
+  slug: 04.spring-backend/06-integration/validation/custom-validator
   type: article
   category: 主模块子文章
   summary: 使用自定义注解进行验证

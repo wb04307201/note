@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\01-core\ioc\FactoryBean
+  slug: 04.spring-backend/01-core/ioc/FactoryBean
   type: article
   category: 主模块子文章
   summary: FactoryBean 与复杂对象创建

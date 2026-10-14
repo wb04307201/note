@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\stream
+  slug: 04.spring-backend/03-cloud/stream
   type: article
   category: 主模块子文章
   summary: Spring Cloud Stream 消息驱动微服务

@@ -1,5 +1,5 @@
 <!--module:
-  parent: 04.spring-backend
+  parent: 04.spring-backend/04-data/mybatis/01-architecture
   slug: 04.spring-backend/04-data/mybatis/01-architecture/02-initialization-flow
   type: topic
   category: MyBatis 内部原理

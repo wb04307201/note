@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-boot\startup-flow
+  slug: 04.spring-backend/02-boot/startup-flow
   type: article
   category: 主模块子文章
   summary: Spring Boot 启动流程（`SpringApplication.run()` 6 阶段）

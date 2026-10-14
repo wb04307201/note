@@ -8,15 +8,13 @@
   summary: Spring 集成组件 = 业务级 Spring 子项目（6 篇：Validation/Retry/StateMachine/Batch + Validation 3 篇深度）
   depth: ⭐⭐⭐
   status: active
+  tags: [Spring集成, Validation, Retry, StateMachine, Batch]
 -->
 
 # 06 集成组件
 
-> 一句话定位：**Spring 集成组件 = 业务级 Spring 子项目**——解决特定业务场景（校验/重试/状态机/批处理）的独立框架。
->
 > ⬅️ [返回 Spring 顶层](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位

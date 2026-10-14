@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-web\mvc\exception-resolver
+  slug: 04.spring-backend/02-web/mvc/exception-resolver
   type: article
   category: 主模块子文章
   summary: HandlerExceptionResolver 异常处理
   depth: ⭐⭐⭐
   status: active
+  tags: [Spring MVC, 异常处理, HandlerExceptionResolver, ControllerAdvice]
 -->
 
 # HandlerExceptionResolver 异常处理

@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\cache
+  slug: 04.spring-backend/08-annotations/cache
   type: article
   category: 主模块子文章
   summary: 缓存注解

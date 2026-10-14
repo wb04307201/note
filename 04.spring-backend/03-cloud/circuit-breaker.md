@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\circuit-breaker
+  slug: 04.spring-backend/03-cloud/circuit-breaker
   type: article
   category: 主模块子文章
   summary: 熔断降级与限流

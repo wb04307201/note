@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\aop
+  slug: 04.spring-backend/08-annotations/aop
   type: article
   category: 主模块子文章
   summary: AOP 注解
@@ -187,8 +187,7 @@ sequenceDiagram
 - [01 核心容器/AOP 总览](../../README.md) — AOP 核心概念
 - [01 核心容器/AOP 通知顺序](../01-core/aop/advice-order-and-best-practices.md) — 多切面排序
 - [配置注解](configuration.md) — @Configuration
-
-- [cache-annotations-and-usage](../04-data/cache/cache-annotations-and-usage.md)
-- [implementations-and-best-practices](../04-data/cache/implementations-and-best-practices.md)
-- [test](test.md)
-- [transaction](transaction.md)
+- [缓存注解与使用](../04-data/cache/cache-annotations-and-usage.md) — @Cacheable 系列注解也是 AOP 代理实现
+- [缓存实现与最佳实践](../04-data/cache/implementations-and-best-practices.md) — 缓存切面背后的 CacheManager 实现
+- [测试注解](test.md) — @SpringBootTest 等测试环境注解
+- [事务注解](transaction.md) — @Transactional 与 AOP 同属代理机制

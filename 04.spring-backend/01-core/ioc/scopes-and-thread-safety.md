@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\01-core\ioc\scopes-and-thread-safety
+  slug: 04.spring-backend/01-core/ioc/scopes-and-thread-safety
   type: article
   category: 主模块子文章
   summary: Bean 作用域与线程安全

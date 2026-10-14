@@ -12,11 +12,8 @@
 
 # 05 Spring Cloud
 
-> 一句话定位：**Spring Cloud = 微服务治理工具集**——基于 Spring Boot，把 Netflix/Alibaba 等公司的微服务最佳实践封装为开箱即用的组件。
->
 > ⬅️ [返回 Spring 顶层](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位

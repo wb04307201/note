@@ -12,11 +12,8 @@
 
 # 03 数据层
 
-> 一句话定位：**Spring 数据层 = 事务管理 + 缓存抽象 + 数据访问（JDBC/JPA/MyBatis）**——聚焦"事务"和"缓存"两大支柱，新增 **MyBatis 整合**专题。
->
 > ⬅️ [返回 Spring 顶层](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位
@@ -131,16 +128,14 @@ graph TB
 - ➡️ [04 Spring Boot](../02-boot/README.md) — Spring Data JPA 简化数据访问
 - [12.interview/04.system-design/02-distributed/distributed-transaction](../../06.distributed-systems/02-distributed/distributed-transaction/README.md) — 分布式事务理论
 - [MyBatis 全栈](mybatis/README.md) — MyBatis 核心原理与 Spring 整合
+- [MyBatis 核心类图](mybatis/01-architecture/08-class-diagram.md) — 01-architecture 类关系图
+- [JPA 注解](../08-annotations/jpa.md) — Spring Data JPA 常用注解速查
 
 ---
 
 > 🚀 从 [事务管理总览](transaction/README.md) 开始，或直接看 [MyBatis 全栈](mybatis/README.md)
 
 ---
-
-
-- [08-class-diagram](mybatis/01-architecture/08-class-diagram.md)
-- [jpa](../08-annotations/jpa.md)
 ## 📊 本节统计（leaf MD 数）
 
 | 子目录 | 篇数 |

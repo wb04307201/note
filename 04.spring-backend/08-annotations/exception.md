@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\exception
+  slug: 04.spring-backend/08-annotations/exception
   type: article
   category: 主模块子文章
   summary: 异常处理注解
@@ -172,6 +172,5 @@ graph TB
 - [01 核心容器/异常处理](../01-core/exception-handling.md) — 完整的异常处理机制
 - [Web 注解](web.md) — @Controller、@RestController
 - [06 集成组件/Validation](../06-integration/validation/validation-annotations-and-usage.md) — 校验异常的处理
-
-- [event](../01-core/event.md)
-- [validation](validation.md)
+- [事件注解](../01-core/event.md) — @TransactionalEventListener 中异常的传播边界
+- [校验注解](validation.md) — MethodArgumentNotValidException 的来源注解

@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\09-best-practices
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/09-best-practices
   type: article
   category: 主模块子文章
   summary: 09 最佳实践与踩坑
@@ -72,15 +72,15 @@ public UserVO getUser(...) { return new UserVO(); }
 
 统一三端：
 
-```java
-// 方案 A：application.yml 全局开启驼峰转换（推荐）
+```yaml
+# 方案 A：application.yml 全局开启驼峰转换（推荐）
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
-// DB: user_name
-// 实体: userName → 自动映射 user_name
-// JSON: 实体序列化后 {"userName": "tom"}
+# DB: user_name
+# 实体: userName → 自动映射 user_name
+# JSON: 实体序列化后 {"userName": "tom"}
 ```
 
 ```java

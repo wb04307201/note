@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\03-spring-integration\04-multi-datasource
+  slug: 04.spring-backend/04-data/mybatis/03-spring-integration/04-multi-datasource
   type: article
   category: 主模块子文章
   summary: 04 多数据源路由

@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\08-advanced-interceptors
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/08-advanced-interceptors
   type: article
   category: 主模块子文章
   summary: 08 高级特性(动态表名 / 性能分析 / SQL 注入器)

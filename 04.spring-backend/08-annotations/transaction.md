@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\transaction
+  slug: 04.spring-backend/08-annotations/transaction
   type: article
   category: 主模块子文章
   summary: 事务注解
@@ -194,7 +194,6 @@ public class OrderServiceImpl implements OrderService {
 - ⬅️ [返回注解速查](../README.md)
 - [AOP 注解](aop.md) — @Transactional 基于 AOP 代理实现
 - [JPA 注解](jpa.md) — 实体 + Repository 与事务配合
-
-- [annotations-retry](annotations-retry.md)
-- [cache](cache.md)
-- [scheduling-and-async](scheduling-and-async.md)
+- [重试注解](annotations-retry.md) — @Retryable 与 @Transactional 常组合使用；注意代理顺序（重试应在事务外层，否则回滚后不会重开新事务）
+- [缓存注解](cache.md) — 事务提交后再刷新/失效缓存（@CacheEvict + afterCommit 语义）
+- [调度与异步注解](scheduling-and-async.md) — @Async 跨线程调用会使事务上下文丢失，与 @Transactional 组合需谨慎

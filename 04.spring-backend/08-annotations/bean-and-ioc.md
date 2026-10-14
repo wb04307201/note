@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\bean-and-ioc
+  slug: 04.spring-backend/08-annotations/bean-and-ioc
   type: article
   category: 主模块子文章
   summary: Bean 与 IoC 注解
@@ -341,6 +341,5 @@ public class LogAspect { ... }
 - [13 辨析/为什么不推荐 @Autowired 字段注入](../../12.interview/06.spring/not-use-@autowired/README.md)
 - [配置注解](configuration.md) — @Configuration + @Bean
 - [Web 注解](web.md) — @Controller 用法
-
-- [scopes-and-thread-safety](../01-core/ioc/scopes-and-thread-safety.md)
-- [jpa](jpa.md)
+- [Bean 作用域与线程安全](../01-core/ioc/scopes-and-thread-safety.md) — @Scope 各作用域的线程安全边界
+- [JPA 注解](jpa.md) — @Entity 等持久化 Bean 的注解体系

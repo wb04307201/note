@@ -6,6 +6,7 @@
   summary: Spring Validation 跨字段与类级别校验：@ScriptAssert / 类级 @Constraint / @Valid 容器元素 / @AssertTrue。
   depth: ⭐⭐⭐
   status: active
+  tags: [Validation, 跨字段校验, JSR-380]
 -->
 
 # 跨字段校验（Cross-Field Validation）

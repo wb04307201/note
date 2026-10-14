@@ -1,5 +1,5 @@
 <!--module:
-  parent: spring
+  parent: 04.spring-backend
   slug: spring/security
   type: index
   category: 后端框架 / Spring 全家桶
@@ -12,11 +12,8 @@
 
 # 09 Spring Security
 
-> 一句话定位：**Spring Security = SecurityFilterChain（过滤器链）+ Authentication（认证）+ Authorization（授权）+ 安全防护（CORS/CSRF/Session/Header）**——Java 生态最主流的安全框架，从登录到接口鉴权到防护策略一站式搞定。
->
 > ⬅️ [返回 Spring 顶层](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位

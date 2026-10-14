@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-boot\custom-condition
+  slug: 04.spring-backend/02-boot/custom-condition
   type: article
   category: 主模块子文章
   summary: 自定义 Condition 类（高级）
@@ -22,7 +22,7 @@
 
 ---
 
-## 十一、自定义 `Condition` 类
+## 自定义 `Condition` 类
 
 当内置的 11 个 `@ConditionalOn*` 注解无法表达你的业务规则（例如"配置文件存在且版本号 ≥ 1.5"），可以**自己实现 `Condition` 接口**，再用通用的 `@Conditional(MyCondition.class)` 引用。
 

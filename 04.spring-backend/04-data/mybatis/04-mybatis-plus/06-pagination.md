@@ -1,6 +1,6 @@
 <!--module:
-  parent: spring
-  slug: spring/mybatis-plus/pagination
+  parent: 04.spring-backend
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/06-pagination
   type: article
   category: 主模块子文章
   summary: MyBatis-Plus 分页插件——配置、自定义 count 查询与常见陷阱。

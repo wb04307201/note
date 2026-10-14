@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-boot\graalvm-native
+  slug: 04.spring-backend/02-boot/graalvm-native
   type: article
   category: 主模块子文章
   summary: Spring Boot 3 + GraalVM Native Image 简介
@@ -235,6 +235,48 @@ kubectl run myapp --image=myorg/myapp:native --port=8080
 4. **反射扫描** — 必须显式 `registerType`，否则 `ClassNotFoundException`。
 5. **资源文件** — 用 `getResourceAsStream()` 加载的非 .class 资源必须 `registerPattern`。
 6. **延迟初始化** — Native 编译期已确定所有 Bean，lazy-init 效果与 JVM 不同。
+
+**❌ 未注册 hints 的反射/资源访问（JVM 下正常，Native 运行时失败）**：
+
+```java
+// Native 下抛 ClassNotFoundException（类未进入封闭世界分析可达集合）
+Class<?> clazz = Class.forName("com.example.plugin.CustomPlugin");
+
+// Native 下返回 null（资源文件未被打包进镜像）
+try (InputStream in = getClass().getResourceAsStream("/templates/report.json")) {
+    // in == null，后续 NPE
+}
+```
+
+**✅ 用 `RuntimeHintsRegistrar` 显式注册**：
+
+```java
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportRuntimeHints;
+
+@Configuration
+@ImportRuntimeHints(MyPluginHints.class)
+public class MyPluginConfig {
+    // ...
+}
+
+class MyPluginHints implements RuntimeHintsRegistrar {
+    @Override
+    public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+        // 反射：注册类型 + 可访问的构造器/方法
+        hints.reflection()
+             .registerType(com.example.plugin.CustomPlugin.class,
+                 MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS,
+                 MemberCategory.INVOKE_PUBLIC_METHODS);
+        // 资源：注册路径模式
+        hints.resources().registerPattern("templates/report.json");
+    }
+}
+```
+
+> 📌 也可以走 `reflect-config.json` / `resource-config.json`（native-image 原生配置文件），但 Spring Boot 3 推荐 `RuntimeHintsRegistrar`——与 AOT 引擎同一套机制，构建期自动合并。
 
 ---
 

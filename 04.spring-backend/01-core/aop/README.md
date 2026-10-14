@@ -3,7 +3,7 @@
   slug: spring/aop
   type: article
   category: 主模块子文章
-  summary: Spring AOP 深度解析
+  summary: Spring AOP 核心机制：4 大概念（连接点/切点/通知/切面）、5 种通知类型与执行顺序、JDK 动态代理 vs CGLIB 及多切面顺序控制
   depth: ⭐⭐
   status: active
 -->
@@ -12,7 +12,6 @@
 
 > ⬅️ [返回 01 核心容器](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位

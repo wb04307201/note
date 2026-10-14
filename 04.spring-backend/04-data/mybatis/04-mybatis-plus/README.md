@@ -1,6 +1,6 @@
 <!--module:
-  parent: spring
-  slug: spring/mybatis-plus
+  parent: 04.spring-backend
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus
   type: article
   category: 主模块子文章
   summary: MyBatis-Plus 全家桶
@@ -12,7 +12,6 @@
 
 > **MyBatis-Plus 全家桶——CRUD、条件构造器、Lambda 链式调用、分页、自动填充、逻辑删除、动态表名、代码生成器。是 Spring Boot 项目的默认增强选择。**
 
----
 ---
 
 ## 章节导航

@@ -6,7 +6,7 @@
   topic: Spring 核心容器
   audience: Java 后端工程师
   summary: Spring 核心容器 = IoC 容器 + AOP 框架 + 工具集（13 篇：IoC/AOP/依赖注入/配置/事件/异常/工具类/手写 mini Spring）
-  depth: ⭐
+  depth: ⭐⭐
   status: active
 -->
 
@@ -15,13 +15,6 @@
 > 一句话定位：**Spring 核心容器 = IoC 容器 + AOP 框架 + 工具集**——掌握这三者，你就理解了 Spring 其他所有模块（Boot/Cloud/Data）的底层机制。
 >
 > ⬅️ [返回 Spring 顶层](../README.md)
-
----
----
-
-## 🎯 一句话定位
-
-**Spring 核心容器 = IoC 容器 + AOP 框架 + 工具集**——掌握了这三者，你就理解了 Spring 其他所有模块（Boot/Cloud/Data）的底层机制。
 
 ---
 
@@ -35,6 +28,7 @@
 | **@Configuration 进阶** | [configuration-lite-vs-full.md](configuration-lite-vs-full.md) | Lite vs Full Mode？@Import 三机制？ | 15 min |
 | **外部化配置** | [externalized-configuration.md](core-externalized-configuration.md) | @Value vs @ConfigurationProperties？ | 15 min |
 | **AOP 总览** | [aop/README.md](aop/README.md) | 什么是面向切面编程？Spring AOP 的核心概念 | 25 min |
+| **切入点表达式** | [aop/pointcut-expression.md](aop/pointcut-expression.md) | Pointcut 表达式语法与匹配规则？ | 10 min |
 | **Event 机制** | [event.md](event.md) | Spring Event 发布订阅？@TransactionalEventListener？ | 10 min |
 | **异常处理** | [exception-handling.md](exception-handling.md) | 4 大异常处理层级？@ControllerAdvice？ | 12 min |
 | **工具类** | [tools-reference.md](tools-reference.md) | Spring 自带 24 个工具类速查 | 速查 |
@@ -108,8 +102,6 @@ graph LR
 
 ---
 
-
-- [pointcut-expression](aop/pointcut-expression.md)
 ## 📊 本节统计（leaf MD 数）
 
 | 子目录 | 篇数 |

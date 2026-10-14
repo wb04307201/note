@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\web
+  slug: 04.spring-backend/08-annotations/web
   type: article
   category: 主模块子文章
   summary: Web 注解（Spring MVC）

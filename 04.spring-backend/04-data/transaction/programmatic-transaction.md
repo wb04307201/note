@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\transaction\programmatic-transaction
+  slug: 04.spring-backend/04-data/transaction/programmatic-transaction
   type: article
   category: 主模块子文章
   summary: 编程式事务（TransactionTemplate）
   depth: ⭐⭐⭐
   status: active
+  tags: [编程式事务, TransactionTemplate]
 -->
 
 # 编程式事务（TransactionTemplate）

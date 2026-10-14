@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\cache\serialization
+  slug: 04.spring-backend/04-data/cache/serialization
   type: article
   category: 主模块子文章
   summary: Redis 缓存序列化

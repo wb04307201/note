@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\distributed-tracing
+  slug: 04.spring-backend/03-cloud/distributed-tracing
   type: article
   category: 主模块子文章
   summary: 分布式链路追踪

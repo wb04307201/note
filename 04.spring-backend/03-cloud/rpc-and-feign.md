@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\rpc-and-feign
+  slug: 04.spring-backend/03-cloud/rpc-and-feign
   type: article
   category: 主模块子文章
   summary: RPC 与 OpenFeign
@@ -189,14 +189,47 @@ feign:
 ```
 
 ```java
+/**
+ * 最多重试 3 次，固定间隔 100ms。
+ * 注意：Feign 对每个请求会调用 clone() 获取独立的 Retryer 实例，
+ * 因此计数状态必须放在 clone 出来的实例里，不能是共享字段。
+ */
 public class CustomRetryer implements Retryer {
+    private final int maxAttempts;
+    private final long period;   // 重试间隔（毫秒）
+    private int attempt;         // 实例级计数，clone 后独立
+
+    public CustomRetryer() {
+        this(3, 100L);
+    }
+
+    public CustomRetryer(int maxAttempts, long period) {
+        this.maxAttempts = maxAttempts;
+        this.period = period;
+        this.attempt = 1;
+    }
+
     @Override
     public void continueOrPropagate(RetryableException e) {
-        // 重试 3 次，每次间隔 100ms
-        if (attempt++ >= 3) throw e;
+        if (attempt++ >= maxAttempts) {
+            throw e;  // 超过次数，向外抛出
+        }
+        try {
+            Thread.sleep(period);
+        } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+            throw e;
+        }
+    }
+
+    @Override
+    public Retryer clone() {
+        return new CustomRetryer(maxAttempts, period);  // 每个请求独立计数
     }
 }
 ```
+
+> 📌 不想自定义也可以直接用内置实现：`new Retryer.Default(100, 1000, 3)`（初始间隔 100ms、最大间隔 1s、最多 3 次尝试，指数退避）；配置 `Retryer.NEVER_RETRY` 则关闭重试。默认情况下 Feign 的 `Retryer.Default` 生效，但 Spring Cloud OpenFeign 在配置了超时后通常配合熔断/网关重试使用，避免多层重试叠加放大流量。
 
 ### 3. 日志
 

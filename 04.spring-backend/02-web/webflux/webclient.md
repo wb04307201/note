@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-web\webflux\webclient
+  slug: 04.spring-backend/02-web/webflux/webclient
   type: article
   category: 主模块子文章
   summary: WebClient 响应式 HTTP 客户端
   depth: ⭐⭐⭐
   status: active
+  tags: [WebFlux, WebClient, 响应式 HTTP, 限流]
 -->
 
 # WebClient 响应式 HTTP 客户端
@@ -158,15 +159,28 @@ Mono<User> user = webClient.get()
         .filter(t -> t instanceof WebClientRequestException))
 ```
 
-### 3. 限流（Resilience4j 集成）
+### 3. 限流（Resilience4j 响应式集成）
+
+WebFlux 业务链路禁止 `block()`，因此**不能**用 `rateLimiter.executeSupplier(...)` 包住阻塞调用，应使用 `resilience4j-reactor` 提供的响应式 Operator：
 
 ```java
+// ❌ 反例：在响应式链路里 block()，占死 Netty EventLoop 线程
 User result = rateLimiter.executeSupplier(() ->
         webClient.get().uri("/users/{id}", id).retrieve().bodyToMono(User.class).block()
 );
+
+// ✅ 正例：transformDeferred + 响应式 Operator，全程非阻塞
+Mono<User> user = webClient.get().uri("/users/{id}", id)
+        .retrieve()
+        .bodyToMono(User.class)
+        .transformDeferred(RateLimiterOperator.of(rateLimiter))
+        .transformDeferred(CircuitBreakerOperator.of(circuitBreaker))
+        .transformDeferred(TimeLimiterOperator.of(timeLimiter))
+        .onErrorResume(CallNotPermittedException.class,
+                e -> Mono.error(new BizException("RATE_LIMITED")));
 ```
 
-或者通过 `WebClientCustomizer` + `Resilience4jWebClient` 装饰器为每个请求加熔断/限流。
+> 📌 `transformDeferred` 保证每次订阅时才应用 Operator 逻辑（订阅级限流/熔断计数）；Operator 类均来自 `io.github.resilience4j:resilience4j-reactor` 依赖。
 
 ---
 

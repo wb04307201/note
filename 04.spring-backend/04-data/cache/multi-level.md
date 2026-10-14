@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\cache\multi-level
+  slug: 04.spring-backend/04-data/cache/multi-level
   type: article
   category: 主模块子文章
   summary: 多级缓存与防护（Multi-Level Cache）

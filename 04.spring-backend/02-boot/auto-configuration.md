@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-boot\auto-configuration
+  slug: 04.spring-backend/02-boot/auto-configuration
   type: article
   category: 主模块子文章
   summary: Spring Boot 自动配置原理
@@ -239,12 +239,15 @@ spring:
       - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
 ```
 
-### 方式 3：按条件排除
+### 方式 3：按类名字符串排除（`excludeName`）
+
+当不便直接依赖自动配置类时使用（注意：`@SpringBootApplication` 只有 `exclude` / `excludeName` 两个属性，不存在 `excludeAutoConfiguration`）：
 
 ```java
-@SpringBootApplication(excludeAutoConfiguration = {
-    SecurityAutoConfiguration.class
-}, excludeName = "...")
+@SpringBootApplication(
+    excludeName = "org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration"
+)
+public class MyApp { ... }
 ```
 
 ---

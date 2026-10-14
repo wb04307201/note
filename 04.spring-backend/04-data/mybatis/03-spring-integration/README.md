@@ -1,6 +1,6 @@
 <!--module:
-  parent: spring
-  slug: spring/mybatis-integration
+  parent: 04.spring-backend
+  slug: 04.spring-backend/04-data/mybatis/03-spring-integration
   type: article
   category: 主模块子文章
   summary: Spring 整合 MyBatis
@@ -12,7 +12,6 @@
 
 > ⬅️ [返回 03 数据层](../README.md)
 
----
 ---
 
 ## 🎯 一句话定位

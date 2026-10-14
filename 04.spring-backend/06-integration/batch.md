@@ -6,6 +6,7 @@
   summary: Spring Batch 批处理——分层架构、Job/Step 模型与大数据量实战。
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [Spring Batch, 批处理, 分区并行]
 -->
 
 # Spring Batch 批处理

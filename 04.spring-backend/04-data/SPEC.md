@@ -50,3 +50,7 @@ Spring 数据层 MOC：**事务管理 + 缓存抽象 + 数据访问**三大支�
 - ❌ 缓存文章无序列化/一致性代价（只教 `@Cacheable` 开关）
 - ❌ MyBatis-Plus 与原生 MyBatis 内容混放（应按 04-mybatis-plus / 01-architecture 分位）
 - ❌ 事务传播行为表无 WHY（`REQUIRES_NEW` 挂起连接的连接池代价必须点出）
+
+---
+
+← [返回 04.spring-backend](../README.md)

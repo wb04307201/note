@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\07-observability\prometheus-grafana
+  slug: 04.spring-backend/07-observability/prometheus-grafana
   type: article
   category: 主模块子文章
   summary: Prometheus + Grafana 可视化监控

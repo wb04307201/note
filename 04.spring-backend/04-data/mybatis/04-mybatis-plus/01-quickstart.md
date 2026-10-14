@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\01-quickstart
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/01-quickstart
   type: article
   category: MyBatis-Plus 实战
   summary: MyBatis-Plus 快速入门——10 分钟引入 MP,完成依赖、实体类、Mapper、第一个 CRUD。
@@ -254,17 +254,34 @@ mybatis-plus:
 
 ## 常见陷阱(3 个)
 
-### 陷阱 1:`@TableName` 的 value 不能省略
+### 陷阱 1:全局 `table-prefix` 与 `@TableName` 的拼接规则容易想反
+
+```yaml
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_   # 全局表前缀
+```
 
 ```java
-// ❌ 编译期没问题,但运行时 MP 不识别 → 仍按类名转下划线
-@TableName()
+// ❌ 想当然:以为显式 @TableName 也会自动拼全局前缀 → 按 "user" 找表,实际表是 t_user
+// 规则:@TableName 显式给了 value 时,默认【不拼】全局前缀(除非 keepGlobalPrefix = true)
+@TableName("user")
 public class User { /* ... */ }
 
-// ✅ value 必填(或省略 @TableName 走默认约定)
+// ✅ 写法一(推荐):省略 value,走"类名转下划线 + 全局前缀"默认策略 → t_user
+public class User { /* ... */ }
+
+// ✅ 写法二:显式写完整表名(含前缀)→ t_user
 @TableName("t_user")
 public class User { /* ... */ }
+
+// ❌ 手滑写成 keepGlobalPrefix = true 且 value 又带前缀 → t_t_user(前缀重复,表不存在)
+@TableName(value = "t_user", keepGlobalPrefix = true)
+public class User { /* ... */ }
 ```
+
+> 说明:`@TableName` 的 value 可以省略——省略时 MP 按"类名转下划线 + table-prefix"推断表名,不存在"运行时不识别"的问题。真正的坑是**显式 value 默认不拼全局前缀**、以及 `keepGlobalPrefix = true` 时 value 里再手写前缀导致重复拼接。
 
 ### 陷阱 2:`BaseMapper` 的泛型必须是实体类
 

@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\01-core\event
+  slug: 04.spring-backend/01-core/event
   type: article
   category: 主模块子文章
   summary: Spring Event 事件机制

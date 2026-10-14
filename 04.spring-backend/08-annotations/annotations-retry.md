@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\annotations-retry
+  slug: 04.spring-backend/08-annotations/annotations-retry
   type: article
   category: 主模块子文章
   summary: 重试注解
@@ -189,7 +189,7 @@ public class PaymentService {
 ## 🤔 思考
 
 1. **什么时候用 retry？** 失败**临时性** + **可重入**（幂等）——例如 HTTP 503、DB 死锁。
-2. **重试与熔断的关系？** 重试放外面（补刀），熔断放外面（自我保护，避免放大故障）。生产建议**重试 + 熔断 + 限流**三件套：Resilience4j。
+2. **重试与熔断的关系？** 标准层次是**熔断在外、重试在内**：熔断器保护整体链路（避免放大故障），重试只对单次调用内的临时失败"补刀"。若把重试放最外层，多次重试会反复穿透熔断统计、放大故障流量。生产建议**熔断 + 重试 + 限流**三件套：Resilience4j。
 3. **@Retryable 与 @Transactional 顺序？** 代理层面，**事务在外、重试在内**：外层事务包裹整个"重试循环"，失败会回滚所有尝试。建议把 `@Retryable` 放在**单独 Bean** 而非事务方法上。
 4. **同步重试 vs 异步重试？** Spring Retry 默认同步阻塞；如需异步可结合 `@Async`（注意线程安全）。
 

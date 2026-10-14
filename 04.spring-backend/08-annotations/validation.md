@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\validation
+  slug: 04.spring-backend/08-annotations/validation
   type: article
   category: 主模块子文章
   summary: 校验注解
@@ -242,5 +242,3 @@ public class UserController {
 - ⬅️ [返回注解速查](../README.md)
 - [Web 注解](web.md) — @RequestBody + @Valid
 - [异常处理](exception.md) — @ControllerAdvice 统一处理校验异常
-
-- [annotations-retry](annotations-retry.md)

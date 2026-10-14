@@ -1,6 +1,6 @@
 <!--module:
-  parent: spring
-  slug: spring/ioc/dependency-injection
+  parent: 04.spring-backend
+  slug: 04.spring-backend/01-core/ioc/dependency-injection
   type: article
   category: 主模块子文章
   summary: Spring 依赖注入 4 种方式：构造器、Setter、字段、@Bean/工厂方法。

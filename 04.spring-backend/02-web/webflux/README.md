@@ -1,11 +1,12 @@
 <!--module:
-  parent: spring
-  slug: spring/webflux
+  parent: 04.spring-backend
+  slug: 04.spring-backend/02-web/webflux
   type: article
   category: 主模块子文章
-  summary: Spring WebFlux 概览
+  summary: Spring WebFlux 概览：响应式编程模型 + Reactor + 背压机制 + 与 Spring MVC 对比选型。
   depth: ⭐⭐⭐
   status: active
+  tags: [WebFlux, Reactor, 响应式编程, 背压]
 -->
 
 # Spring WebFlux 概览
@@ -16,7 +17,6 @@
 
 **Spring WebFlux = 响应式 Web 框架**——基于 **Reactor + Netty**（也支持 Servlet 3.1+ 容器），提供**非阻塞、事件驱动**的 HTTP 栈，是 Spring 5 引入的"MVC 替代品"。本文讲清楚 WebFlux 的核心概念、线程模型、与 MVC 的边界，以及何时该选谁。
 
----
 ---
 
 ## 🎯 一句话定位

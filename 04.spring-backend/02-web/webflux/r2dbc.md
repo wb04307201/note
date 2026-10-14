@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\02-web\webflux\r2dbc
+  slug: 04.spring-backend/02-web/webflux/r2dbc
   type: article
   category: 主模块子文章
   summary: R2DBC 响应式数据库访问
   depth: ⭐⭐⭐
   status: active
+  tags: [WebFlux, R2DBC, 响应式数据库, 事务]
 -->
 
 # R2DBC 响应式数据库访问
@@ -160,14 +161,24 @@ public class R2dbcConfig {
 public class OrderService {
     private final DatabaseClient db;
 
+    public OrderService(DatabaseClient db) {
+        this.db = db;
+    }
+
     @Transactional
-    public Mono<Void> placeOrder(Order order) {
-        return db.sql("INSERT INTO t_order(...) VALUES(...)")
-                .bind(...)
+    public Mono<Void> placeOrder(Long userId, Long productId, int qty) {
+        return db.sql("INSERT INTO t_order(user_id, product_id, qty) VALUES(:uid, :pid, :q)")
+                .bind("uid", userId)
+                .bind("pid", productId)
+                .bind("q", qty)
                 .fetch().rowsUpdated()
-                .then(db.sql("UPDATE t_stock SET qty = qty - :n WHERE id = :i")
-                        .bind(...)
-                        .fetch().rowsUpdated())
+                .then(db.sql("UPDATE t_stock SET qty = qty - :n WHERE id = :i AND qty >= :n")
+                        .bind("n", qty)
+                        .bind("i", productId)
+                        .fetch().rowsUpdated()
+                        .flatMap(updated -> updated == 1
+                                ? Mono.just(updated)
+                                : Mono.error(new IllegalStateException("库存不足"))))
                 .then();
     }
 }

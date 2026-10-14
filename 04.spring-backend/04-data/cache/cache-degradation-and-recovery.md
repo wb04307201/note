@@ -89,14 +89,10 @@ public class CustomCacheErrorHandler implements CacheErrorHandler {
 
     private static final Logger log = LoggerFactory.getLogger(CustomCacheErrorHandler.class);
 
-    @Autowired
-    private CircuitBreakerRegistry circuitBreakerRegistry;
-
     @Override
     public void handleCacheGetError(RuntimeException e, Cache cache, Object key) {
-        // Redis 读失败 → 记录日志 + 触发熔断
+        // Redis 读失败 → 记录日志，异常被吞掉后 @Cacheable 按 miss 处理，业务方法继续执行（自动走 DB）
         log.warn("Cache GET failed: cache={}, key={}", cache.getName(), key, e);
-        // 业务方法继续执行（@Cacheable 会自动走 DB）
     }
 
     @Override
@@ -142,7 +138,7 @@ public class CacheConfig {
 - ✅ Spring 官方推荐
 
 **缺点**：
-- ❌ 单纯 log 没用，**需要配套熔断器**（避免持续打挂的 Redis）
+- ❌ 单纯 log 没用，**需要配套熔断器**（避免持续打挂的 Redis，见方案 3 / 第四节组合方案）
 
 ---
 

@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\03-cloud\seata-integration
+  slug: 04.spring-backend/03-cloud/seata-integration
   type: article
   category: 主模块子文章
   summary: Seata 集成（Spring Cloud Alibaba 视角）

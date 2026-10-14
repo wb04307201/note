@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\scheduling-and-async
+  slug: 04.spring-backend/08-annotations/scheduling-and-async
   type: article
   category: 主模块子文章
   summary: 调度与异步注解
@@ -247,5 +247,4 @@ public class SchedulingConfig implements SchedulingConfigurer {
 - ⬅️ [返回注解速查](../README.md)
 - [事务注解](transaction.md) — @Async 与 @Transactional 的线程边界
 - [配置注解](configuration.md) — @EnableScheduling / @EnableAsync
-
-- [batch](../06-integration/batch.md)
+- [Spring Batch](../06-integration/batch.md) — 大批量定时任务的批处理框架选型

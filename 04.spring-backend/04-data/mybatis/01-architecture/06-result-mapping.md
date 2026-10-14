@@ -1,6 +1,6 @@
 <!--module:
-  parent: spring/mybatis/01-architecture
-  slug: spring/mybatis/01-architecture/06-result-mapping
+  parent: 04.spring-backend/04-data/mybatis/01-architecture
+  slug: 04.spring-backend/04-data/mybatis/01-architecture/06-result-mapping
   type: topic
   category: MyBatis 内部原理
   summary: 一对一 association / 一对多 collection 关联映射的配置与用法

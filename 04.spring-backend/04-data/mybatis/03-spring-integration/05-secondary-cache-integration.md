@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\03-spring-integration\05-secondary-cache-integration
+  slug: 04.spring-backend/04-data/mybatis/03-spring-integration/05-secondary-cache-integration
   type: article
   category: 主模块子文章
   summary: 05 二级缓存与 Redis/Caffeine 整合

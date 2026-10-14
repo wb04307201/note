@@ -1,18 +1,18 @@
 <!--module:
-  parent: spring
-  slug: spring/minispring
+  parent: 04.spring-backend
+  slug: 04.spring-backend/01-core/minispring
   type: index
   category: 主模块子文章
   summary: 手写 Mini Spring
   depth: ⭐⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 手写 Mini Spring
 
 > 通过 200 行 Servlet 模拟 Spring IoC + MVC，理解框架底层运作机制
 
----
 ---
 
 ## 导航

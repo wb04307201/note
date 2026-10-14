@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\04-lambda-wrapper
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/04-lambda-wrapper
   type: article
   category: MyBatis-Plus 实战
   summary: MyBatis-Plus Lambda 条件构造器——User::getName 类型安全替代硬编码字段名。

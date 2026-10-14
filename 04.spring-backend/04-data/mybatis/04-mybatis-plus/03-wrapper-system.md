@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\mybatis\04-mybatis-plus\03-wrapper-system
+  slug: 04.spring-backend/04-data/mybatis/04-mybatis-plus/03-wrapper-system
   type: article
   category: MyBatis-Plus 实战
   summary: MyBatis-Plus Wrapper 体系——两大维度(用途 + 使用方式)全景 + 决策树。
@@ -34,6 +34,9 @@ classDiagram
     class UpdateWrapper~T~ {
         +set() +setSql()
     }
+    class AbstractLambdaWrapper~T~ {
+        -columnToString(SFunction)
+    }
     class LambdaQueryWrapper~T~ {
         -SFunction~T,~ column
     }
@@ -42,8 +45,9 @@ classDiagram
     }
     AbstractWrapper <|-- QueryWrapper
     AbstractWrapper <|-- UpdateWrapper
-    QueryWrapper <|-- LambdaQueryWrapper
-    UpdateWrapper <|-- LambdaUpdateWrapper
+    AbstractWrapper <|-- AbstractLambdaWrapper
+    AbstractLambdaWrapper <|-- LambdaQueryWrapper
+    AbstractLambdaWrapper <|-- LambdaUpdateWrapper
 ```
 
 > **关键点**:Lambda 版本不是 QueryWrapper 的子类,**而是独立继承链**;两者方法签名完全相同,只是参数从 `String column` 换成 `SFunction<T, ?> column`。
@@ -212,13 +216,13 @@ LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
 wrapper.eq(User::getName, "Tom").eq(User::getAge, 18);
 ```
 
-### ❌/✅ 2:UpdateWrapper 没 set(),SQL 没 SET 子句
+### ❌/✅ 2:UpdateWrapper 没 set(),SQL 缺 SET 子句直接报错
 
 ```java
 // ❌ 只想查 update 数据,结果用了 UpdateWrapper 但忘记 set()
-// 执行后:UPDATE user SET ... WHERE id=1 → 影响 0 行,无 SET 子句报错
+// 执行后生成 SQL:UPDATE user WHERE id=1 → 缺 SET 子句,抛 BadSqlGrammarException(SQL 语法异常)
 UpdateWrapper<User> uw = new UpdateWrapper<>();
-uw.eq(User::getId, 1L);  // 缺 set()
+uw.eq("id", 1L);  // 缺 set();注意 UpdateWrapper(字符串版)的 eq 只接收 String 列名
 userMapper.update(null, uw);
 ```
 

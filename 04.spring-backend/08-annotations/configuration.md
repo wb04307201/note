@@ -1,6 +1,6 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\08-annotations\configuration
+  slug: 04.spring-backend/08-annotations/configuration
   type: article
   category: 主模块子文章
   summary: 配置注解
@@ -149,7 +149,8 @@ public class ConditionalConfig {
         return new C();
     }
 
-    @ConditionalOnMissingClass(KafkaTemplate.class)
+    // @ConditionalOnMissingClass 的属性是 String[] 类全名，不能传 Class 字面量
+    @ConditionalOnMissingClass("org.springframework.kafka.core.KafkaTemplate")
     @Bean
     public D createD() {
         return new D();

@@ -1,11 +1,12 @@
 <!--module:
   parent: 04.spring-backend
-  slug: 04.spring-backend\04-data\transaction\jpa-transaction
+  slug: 04.spring-backend/04-data/transaction/jpa-transaction
   type: article
   category: 主模块子文章
   summary: JPA 事务管理
   depth: ⭐⭐⭐
   status: active
+  tags: [JPA, Spring事务, 乐观锁, 悲观锁]
 -->
 
 # JPA 事务管理
