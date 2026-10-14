@@ -48,12 +48,10 @@
 - [../eval/](../eval/) — 评估方法（Prompt 效果评估）
 - [../../08.ai-foundations/](../../08.ai-foundations/) — AI 基础
 
-## 尚未迁移的 Prompt 相关章节
+## 关联的 Prompt 主题章节
 
-以下 Prompt 相关主题仍在迁移前位置（Phase 8 后将切到 `<planned-path>` 占位），待后续任务迁入本 MOC：
-
-- ⚠️ Function Calling（结构化 Prompt 输出） — `../agent/spec-tools/function-calling/`（待 Phase 1+ 迁入）
-- ⚠️ Context Engineering（广义 Prompt 设计） — `./context-engineering/`（待 Phase 1+ 迁入）
+- Function Calling（结构化 Prompt 输出） — [面试深挖](../../12.interview/11.ai/function-calling/README.md)
+- Context Engineering（广义 Prompt 设计） — [context-engineering](./context-engineering/README.md)
 
 ---
 

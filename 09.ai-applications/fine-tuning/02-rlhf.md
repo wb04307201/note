@@ -358,7 +358,7 @@ Step 5: RL（AI feedback + RM 信号）
 
 - **本专题**：[SFT](01-sft.md) / [DPO](03-dpo.md) / [新方法](05-newer-methods.md)
 - **L2 栈**：[推理优化大专题](../llm-inference/llm-inference-optimization/README.md)
-- **咬文嚼字**：面试深挖（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/agent-performance-evaluation/`）
+- **咬文嚼字**：[LLM 对齐面试深挖（RLHF / DPO / Constitutional AI）](../../12.interview/11.ai/llm-alignment/README.md)
 
 ---
 

@@ -26,7 +26,7 @@
 | **安装** | `curl -fsSL https://omp.sh/install \| sh` / brew / bun / powershell / mise |
 | **生态规模** | **40+ 模型 providers** / **32 内置工具** / **14 LSP ops** / **28 DAP ops** / **100k+ 行 Rust LOC** |
 | **杀手特性** | Hashline 编辑（xxHash32 锚点）+ Subagent 通过 in-process IRC bus 直接 DM + GitHub 是虚拟文件系统 + 进程内 LSP/DAP |
-| **Benchmark** | Grok Code Fast `pass@1: 6.7% → 68.3%` / Grok 4 Fast `-61% output tokens` |
+| **Benchmark** | Grok Code Fast `pass@1: 6.7% → 68.3%` / Grok 4 Fast `-61% output tokens`（项目方自报口径，见其 GitHub README / 发布说明；测试集与评测方式未经第三方复现，仅作相对参考） |
 
 ---
 
@@ -432,9 +432,9 @@ $ omp -r  # 弹出选择器
 ## 十、相关章节
 
 - 横向对比：[Coding Agents README](README.md) — 4 agent 选型决策树 + 模型/MCP 配置对比
-- 单工具深度（Claude Code）：Claude Code Practices（⚠️ 待 Phase 1+ 迁入；占位 `./claude-code-practices/README.md`）
-- 循环调用：Loop Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../../agent-execution-patterns/loop-engineering/]`） — Ralph Wiggum Loop（Fresh Context + 文件系统持久记忆，pre-existing in `note/`，保持 unstaged）
+- 单工具深度（Claude Code）：[Claude Code Practices](./claude-code-practices/README.md)
+- 循环调用：[Loop Engineering](../loop-engineering/README.md) — Ralph Wiggum Loop（Fresh Context + 文件系统持久记忆）
 - 规范工具：[Agent Spec Tools](../agent-spec-tools/README.md) — Superpowers / Spec-Kit / OpenSpec
-- 概念层：Harness Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../../agent-execution-patterns/harness-engineering/]`）
+- 概念层：[Harness Engineering](../../../12.interview/11.ai/harness-engineering/README.md)
 
 ← [返回: Coding Agents 对比](README.md)

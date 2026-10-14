@@ -74,13 +74,13 @@ KTO:     L = λ_w·σ(r_w) + λ_l·σ(-r_l)  # 价值函数
 
 ## 🔗 兄弟章节
 
-- **AI 基础**：[Transformer 架构](../../08.ai-foundations/03-transformer/transformer-architecture.md) / MoE（⚠️ 待 Phase 1+ 迁入；占位 `../../08.ai-foundations/02-deep-learning/moe-architecture/`）
+- **AI 基础**：[Transformer 架构](../../08.ai-foundations/03-transformer/transformer-architecture.md) / [MoE 推理优化](../llm-inference/moe-inference/README.md)
 - **LLM 推理**：[推理优化大专题](../llm-inference/llm-inference-optimization/README.md)
 - **LLM 评估**：[LLM 评估体系](../eval/README.md) — 微调后的效果评估
 - **Agent 评测**：[../agent/agent-evaluation/README.md](../agent/agent-evaluation/README.md) — Agent 场景评估
 - **RAG 评估**：[../rag/04-evaluation.md](../rag/04-evaluation.md) — RAG 场景评估
 - **L7 研究**：知识蒸馏（⚠️ 待 Phase 1+ 迁入；占位 `../../08.ai-foundations/07-research/distillation/`） — Teacher-Student 模型蒸馏，常与 SFT/RLHF 组合（先蒸馏降参，再对齐）
-- **咬文嚼字**：面试深挖（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/agent-performance-evaluation/`） 顺带提
+- **咬文嚼字**：[面试深挖（Agent 性能评估）](../../12.interview/11.ai/agent-performance-evaluation/README.md) 顺带提
 
 ---
 

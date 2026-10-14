@@ -14,7 +14,7 @@
 
 > Agent Memory 是 LLM Agent 的核心架构组件。本文从**时间维度**（短期/中期/长期）、**认知科学维度**（情景/语义/程序性）、**工程实现维度**（向量/结构化/文件系统）3 个维度系统讲清楚分类体系，并梳理业界框架（LangChain/LangGraph/Mem0/Letta）的实现差异。
 
-> **面试场景**：这是高频 AI 架构面试题——很多人只想到"对话历史=Memory"，但完整分类是 3 维度、5 大类。面试版（30/60/90 秒话术）见 [咬文嚼字·11.ai/agent-memory-classification](../../../12.interview/11.ai/agent-memory-classification/README.md)（⚠️ 待 Phase 1+ 迁入）。
+> **面试场景**：这是高频 AI 架构面试题——很多人只想到"对话历史=Memory"，但完整分类是 3 维度、5 大类。面试版（30/60/90 秒话术）见 [咬文嚼字·11.ai/agent-memory-classification](../../../12.interview/11.ai/agent-memory-classification/README.md)。
 
 ---
 
@@ -231,7 +231,7 @@ Agent 整体架构：
 
 ### 5.3 Memory × 驾驭演进主线
 
-Memory 演进是 驾驭演进主线 的具体展开（⚠️ 待 Phase 1+ 迁入；占位 `../architecture/llm-control-evolution/`）：
+Memory 演进是 [驾驭演进主线](../agent-architecture/llm-control-evolution/README.md) 的具体展开：
 
 | 驾驭阶段 | Memory 形态 |
 |---------|------------|
@@ -286,17 +286,17 @@ Memory 演进是 驾驭演进主线 的具体展开（⚠️ 待 Phase 1+ 迁入
 ## 八、相关章节
 
 **面试题**：
-- 咬文嚼字·11.ai/agent-memory-classification（30/60/90 秒话术） — ⚠️ 待 Phase 1+ 迁入（占位 `[../../../12.interview/11.ai/agent-memory-classification/](../../../12.interview/11.ai/agent-memory-classification/README.md)`）
-- 🆕 **咬文嚼字·multi-agent-shared-memory 多 Agent 共享记忆** — ⚠️ 待 Phase 1+ 迁入（占位 `../../../../12.interview/11.ai/multi-agent-shared-memory/`）—— 5 大内容维度 + 3 实现层 + 6 模式 + 5 反模式 + 90 秒话术
+- [咬文嚼字·11.ai/agent-memory-classification](../../../12.interview/11.ai/agent-memory-classification/README.md)（30/60/90 秒话术）
+- **咬文嚼字·[multi-agent-shared-memory 多 Agent 共享记忆](../../../12.interview/11.ai/multi-agent-shared-memory/README.md)** —— 5 大内容维度 + 3 实现层 + 6 模式 + 5 反模式 + 90 秒话术
 
 **同主模块**：
 - [Agent 执行架构（DAG/ReAct/Plan）](../agent-architecture/README.md)
-- 驾驭演进主线（Prompt→Context→Harness→Loop） — ⚠️ 待 Phase 1+ 迁入（占位 `../architecture/llm-control-evolution/`）
-- 智能系统分层架构 — ⚠️ 待 Phase 1+ 迁入（占位 `../architecture/intelligent-system-layers/`）
+- [驾驭演进主线（Prompt→Context→Harness→Loop）](../agent-architecture/llm-control-evolution/README.md)
+- [智能系统分层架构](../intelligent-system-layers/README.md)
 
 **实战框架**：
-- LangGraph（Checkpoint） — ⚠️ 待 Phase 1+ 迁入（占位 `../../spec-tools/ai-platforms/langgraph/`）
-- Context Engineering（Memory 是 Context 三大件之一） — ⚠️ 待 Phase 1+ 迁入（占位 `../../spec-tools/context-engineering/` 或 `../../../prompts/context-engineering/`）
+- [LangGraph（Checkpoint）](../ai-platforms/langgraph.md)
+- [Context Engineering（Memory 是 Context 三大件之一）](../../prompts/context-engineering/README.md)
 - 🆕 **长上下文全景（Memory 是 6 策略之一）**：[Agent 长上下文架构](../agent-context/README.md) —— Chunking / Memory / RAG / Sliding Window / Sub-Agents / Long-Context LLMs 6 策略组合决策树
 
 **多 Agent 共享专章（跨域交叉）**：
@@ -717,7 +717,7 @@ Memory 检索（top-k + 图遍历）─────→ 注入 prompt
 
 | 章节 | 关系 | 反向链 |
 |------|------|--------|
-| RAG 系统设计（占位） | RAG 是"外部 Memory"——长期记忆的工程实现 | → `09.ai-applications/rag/rag-system-design/` |
+| [RAG 系统](../../rag/README.md) | RAG 是"外部 Memory"——长期记忆的工程实现 | → `09.ai-applications/rag/` |
 | Prompt Engineering | System prompt 可视为"程序性 Memory" | → `09.ai-applications/prompt-engineering/` |
 
 #### 9.4.3 跨主模块反向链（工程类比）
@@ -733,8 +733,8 @@ Memory 检索（top-k + 图遍历）─────→ 注入 prompt
 
 | 章节 | 关系 | 反向链 |
 |------|------|--------|
-| [agent-memory-classification](../../../12.interview/11.ai/agent-memory-classification/README.md)（占位） | L5 内容浓缩的面试版本 | → `12.interview/11.ai/agent-memory-classification/` |
-| [multi-agent-shared-memory](../../../12.interview/11.ai/multi-agent-shared-memory/README.md)（占位） | 多 Agent 共享 Memory 面试题 | → `12.interview/11.ai/multi-agent-shared-memory/` |
+| [agent-memory-classification](../../../12.interview/11.ai/agent-memory-classification/README.md) | L5 内容浓缩的面试版本 | → `12.interview/11.ai/agent-memory-classification/` |
+| [multi-agent-shared-memory](../../../12.interview/11.ai/multi-agent-shared-memory/README.md) | 多 Agent 共享 Memory 面试题 | → `12.interview/11.ai/multi-agent-shared-memory/` |
 
 ---
 
@@ -1026,7 +1026,7 @@ flowchart TD
 | **D2 准确性（Accuracy）** | 10/10 | 公式均给出可运行实现 + 业界案例均带来源 + 框架对比有官方文档支撑 |
 | **D3 时效性（Recency）** | 10/10 | 覆盖 2022-2026 全时间线 + Claude Skills / Mem0 v0.6 / ChatGPT Memory 均含 |
 | **D4 实用性（Utility）** | 10/10 | 代码可直接运行 + 决策矩阵 + 性能基准 + 反直觉点避坑 |
-| **D5 互链性（Linkability）** | 10/10 | 12 条反向链（同级 / 同模块 / 跨模块 / 面试题）+ 占位链接完整 |
+| **D5 互链性（Linkability）** | 10/10 | 12 条反向链（同级 / 同模块 / 跨模块 / 面试题）全部为有效正式链接 |
 | **总分** | **50/50** | **L5 顶级** |
 
 ---

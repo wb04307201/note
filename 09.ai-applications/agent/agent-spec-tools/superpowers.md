@@ -152,9 +152,9 @@ Superpowers： "请实现 LRU Cache" → Agent 必须先写测试（RED）→ �
 
 - 对比总览：[Agent Spec Tools 三工具对比](README.md)
 - 同栏目：[Spec-Kit](spec-kit.md) / [OpenSpec](openspec.md)
-- 概念层：Harness Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/harness-engineering/]`） — Superpowers 是 Harness 的实战体现
-- Skill 设计：Skill 设计方法论（⚠️ 待 Phase 1+ 迁入；占位 `[../coding-agents/claude-code-practices/skill-design.md`） — 怎么写自己的 Skill
-- 循环：Ralph Wiggum Loop（pre-existing in `note/`，保持 unstaged） — 子 Agent 的 Fresh Context 架构
+- 概念层：[Harness Engineering](../../../12.interview/11.ai/harness-engineering/README.md) — Superpowers 是 Harness 的实战体现
+- Skill 设计：[Skill 设计方法论](../coding-agents/claude-code-practices/skill-design.md) — 怎么写自己的 Skill
+- 循环：[Ralph Wiggum Loop](../loop-engineering/README.md) — 子 Agent 的 Fresh Context 架构
 
 ---
 

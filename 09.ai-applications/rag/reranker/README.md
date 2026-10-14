@@ -291,6 +291,8 @@ Bi-Encoder Top-500 → Cross-Encoder Top-50 → LLM Rerank Top-10
 | BEIR (avg) | 0.61 | 0.78 | +17% |
 | TREC-COVID | 0.71 | 0.91 | +20% |
 
+> ⚠️ 上表为**示意性经验数据**（社区博客/厂商报告的常见量级，非某一具体评测的原始快照）：未固定评测集版本、指标口径（nDCG@10 / Recall 等）与 rerank 模型，数字不可直接引用。权威数据请查 [BEIR 论文](https://arxiv.org/abs/2104.08663) 榜单及各 reranker 官方评测报告（如 Cohere Rerank、bge-reranker），并以自身语料实测为准。
+
 ---
 
 ## 🔬 真实案例研究

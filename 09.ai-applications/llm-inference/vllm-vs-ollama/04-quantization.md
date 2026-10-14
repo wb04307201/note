@@ -32,6 +32,8 @@
 | **INT2 (experimental)** | 0.25 | 1.8 GB | 10-12x | 5%+ |
 
 > 关键概念：**W（权重）bit × A（激活）bit**。W4A16 是「权重 4 bit、激活 16 bit」，推理时 activation 仍要反量化。
+>
+> ⚠️ **"推理速度"列为量级示意（经验值，非实测 benchmark）**：低 bit 权重的加速主要来自**显存带宽节省**，只在 **memory-bound 场景（小 batch decode）**成立；大 batch / prefill 阶段是 compute-bound，加速会大幅缩水甚至持平。实际倍数依 GPU 型号、kernel 实现（Marlin/AWQ/GPTQ）与 batch 大小而定，请以自身负载实测为准。
 
 ---
 

@@ -80,12 +80,14 @@
 
 ### 4.1 训练方法
 
-| 方法 | 原理 | 数据量 | 显存 |
+> 显存为**经验区间**（以 7B 级模型、单卡训练、bf16/量化口径粗估；随模型规模、batch size、序列长度、梯度检查点配置浮动数倍），非精确 benchmark：
+
+| 方法 | 原理 | 数据量 | 显存（7B 模型经验区间） |
 |------|------|--------|------|
-| **Full Fine-tuning** | 改所有参数 | 1 万+ | 100+ GB |
-| **LoRA** | 改低秩矩阵 | 1000+ | 16-24 GB |
-| **QLoRA** | 量化 + LoRA | 1000+ | 8-12 GB |
-| **PEFT** | 多种高效方法 | 100+ | 中等 |
+| **Full Fine-tuning** | 改所有参数 | 1 万+ | 百 GB 级（含优化器状态） |
+| **LoRA** | 改低秩矩阵 | 1000+ | 数十 GB |
+| **QLoRA** | 量化 + LoRA | 1000+ | 单张消费级卡（24 GB 内）可跑 |
+| **PEFT** | 多种高效方法 | 100+ | 介于上述之间，视方法而定 |
 
 ### 4.2 优势 vs 局限
 
@@ -335,7 +337,7 @@ graph TB
 
 ## 面试陷阱速览
 
-> 完整陷阱 + 反直觉 + 30 秒话术见 12.interview RAG（⚠️ 待 Phase 1+ 迁入）
+> 完整陷阱 + 反直觉 + 30 秒话术见 [12.interview · RAG](../../12.interview/11.ai/rag/README.md)
 
 ---
 
@@ -344,8 +346,8 @@ graph TB
 RAG 适合**低频更新、结构化内容**（FAQ / 文档 / 合规），但**不适合高频更新的代码库**——Claude Code 等主流 AI Coding 工具主动放弃了 RAG，改用 Agentic Search。
 
 - 深度原理：[Agentic Search vs RAG](./06-agentic-rag.md)
-- 面试题（高频反直觉）：为什么 Claude Code 放弃了 RAG（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/claude-code-agentic-search/`）
-- 实践原文：Claude Code 最佳实践（⚠️ 待 Phase 1+ 迁入；占位 `../../../09.ai-applications/agent/coding-agents/claude-code-practices/`）
+- 面试题（高频反直觉）：[为什么 Claude Code 放弃了 RAG](../../12.interview/11.ai/claude-code-agentic-search/README.md)
+- 实践原文：[Claude Code 最佳实践](../agent/coding-agents/claude-code-practices/README.md)
 
 ---
 
@@ -360,6 +362,6 @@ RAG 适合**低频更新、结构化内容**（FAQ / 文档 / 合规），但**�
 | 5 | [RAG 超范围拒答](./05-out-of-domain-rejection.md) | 6 大检测机制 + 5 大拒答模式 + 4 步调优 |
 | 6 | [Agentic RAG](./06-agentic-rag.md) | Agentic Search 取代 RAG 索引的极端形态 |
 
-**原 LLMOps 兄弟章节**：LLMOps 栈 / 向量库 vs 缓存 / LLM 安全（⚠️ 待 Phase 1+ 迁入；占位 `../../llm-inference/llmops/02-llmops-stack/` / `../../llm-inference/llmops/03-vector-db-vs-cache/` / `../../llm-inference/llmops/05-llm-security/`） / [LLM 评测](../eval/README.md)
+**兄弟章节**：[LLM 安全](../agent/agent-reliability/llm-security/README.md)（Prompt 注入 / 数据泄露攻防） / [LLM 评测](../eval/README.md)
 
 ← [返回 RAG MOC](./README.md) · 📅 2026-06-28 · 更新：2026-07-03

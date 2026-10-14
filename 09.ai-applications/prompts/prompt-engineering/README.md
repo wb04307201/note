@@ -217,7 +217,7 @@ Observation: 建议户外活动
 ...
 ```
 
-**应用**：Function Calling、AI Agent（详见 function-calling（⚠️ 待 Phase 1+ 迁入；占位 `../../../09.ai-applications/agent/spec-tools/function-calling/`））。
+**应用**：Function Calling、AI Agent（详见 [Agent Spec Tools §7 Function Calling 协议层](../../agent/agent-spec-tools/README.md)；[面试深挖版](../../../12.interview/11.ai/function-calling/README.md)）。
 
 ### 3.2 Self-Consistency（自一致性）
 
@@ -352,7 +352,7 @@ graph LR
 
 ## 相关章节
 
-- 演进下一步：Context Engineering（⚠️ 待 Phase 1+ 迁入；占位 `../../context-engineering/`） — 范式二：给 LLM 提供完整上下文
+- 演进下一步：[Context Engineering](../context-engineering/README.md) — 范式二：给 LLM 提供完整上下文
 - 关联：RAG — Prompt 工程在 RAG 中的应用
 - 面试深挖：12.interview Prompt Engineering — 陷阱 + 反直觉 + 30 秒话术（⚠️ 待 Phase 1+ 迁入）
 - 故事版：[40 · Prompt 工程深度专题](../../../13.story/40-prompt-engineering.md) — 阿明餐厅叙事版

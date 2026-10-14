@@ -203,15 +203,17 @@ Pipe2:    [Comm1][Comm2][Comm3][Comm4]
 
 ## 📊 真实部署案例
 
-| 模型 | 部署方式 | 硬件 | 吞吐量 | 备注 |
+> ⚠️ 吞吐量为社区报告约值（量级参考）：随请求长度分布、并发模式、vLLM/SGLang 版本浮动明显，仅供容量规划起点，非可复现 benchmark。
+
+| 模型 | 部署方式 | 硬件 | 吞吐量（约） | 备注 |
 |------|---------|------|--------|------|
-| Mixtral 8x7B | EP-2 | 2x A100 80G | 30 req/s | 入门，4-bit 量化 |
-| Mixtral 8x22B | EP-4 | 4x A100 80G | 15 req/s | 中等 |
-| DeepSeek-V3 671B | EP-8 + Dual-Pipe | 8x H100 | 50 req/s | SOTA 性价比 |
-| Qwen2-MoE 57B-A14B | EP-4 + AWQ | 4x A100 80G | 80 req/s | 国产最优 |
-| DBRX 132B | TP-4 + EP-2 | 8x A100 | 18 req/s | Databricks |
-| Llama-MoE 8x7B | EP-2 | 2x A100 | 35 req/s | 社区复刻 |
-| GLM-4-MoE 160B | EP-8 + TP-2 | 16x H100 | 22 req/s | 智谱 |
+| Mixtral 8x7B | EP-2 | 2x A100 80G | ~30 req/s | 入门，4-bit 量化 |
+| Mixtral 8x22B | EP-4 | 4x A100 80G | ~15 req/s | 中等 |
+| DeepSeek-V3 671B | EP-8 + Dual-Pipe | 8x H100 | ~50 req/s | SOTA 性价比 |
+| Qwen2-MoE 57B-A14B | EP-4 + AWQ | 4x A100 80G | ~80 req/s | 国产最优 |
+| DBRX 132B | TP-4 + EP-2 | 8x A100 | ~18 req/s | Databricks |
+| Llama-MoE 8x7B | EP-2 | 2x A100 | ~35 req/s | 社区复刻 |
+| GLM-4-MoE 160B | EP-8 + TP-2 | 16x H100 | ~22 req/s | 智谱 |
 
 **性价比排序**（req/s per GPU）：**Qwen2-MoE > Mixtral > DeepSeek-V3 > DBRX**（小激活参数比 + 国产优化）。
 
@@ -380,7 +382,7 @@ buffer = Buffer(group, num_nvl_bytes=64 * 1024 * 1024, num_rdma_bytes=128 * 1024
 
 ### 上游原理（ai-foundations）
 
-- **MoE 架构原理**（⚠️ 待 Phase 1+ 迁入；占位 `../../../../08.ai-foundations/02-deep-learning/moe-architecture/`）— 训练侧 MoE（gating / 路由 / aux loss）
+- **MoE 架构原理** — 训练侧 MoE（gating / 路由 / aux loss）深度文尚未迁入知识库，本篇暂以推理侧视角概述（见上文「核心原理与数学」章节）
 
 ### 面试题（12.interview/11.ai）
 
@@ -462,14 +464,16 @@ buffer = Buffer(group, num_nvl_bytes=64 * 1024 * 1024, num_rdma_bytes=128 * 1024
 
 ---
 
-## 📈 性能基准（vLLM v0.6.2 实测）
+## 📈 性能基准（量级参考，非统一实测）
+
+> ⚠️ 下表为社区部署报告与经验汇总的**量级参考**，非同一硬件 / 同一负载下的对照 benchmark——tok/s 随 vLLM 版本、GPU 型号、序列长度、量化内核差异可达数倍，决策前请用自身场景压测（如 vLLM 自带 `benchmark_throughput.py`）。
 
 | 模型 | 量化 | batch=1 | batch=32 | batch=128 |
 |------|------|---------|----------|-----------|
-| Mixtral 8x7B | FP16 | 45 tok/s | 1200 tok/s | 3800 tok/s |
-| Mixtral 8x7B | AWQ | 55 tok/s | 1500 tok/s | 4500 tok/s |
-| DeepSeek-V3 671B | AWQ | 28 tok/s | 850 tok/s | 2400 tok/s |
-| Qwen2-MoE 57B-A14B | AWQ | 65 tok/s | 1800 tok/s | 5200 tok/s |
+| Mixtral 8x7B | FP16 | ~45 tok/s | ~1200 tok/s | ~3800 tok/s |
+| Mixtral 8x7B | AWQ | ~55 tok/s | ~1500 tok/s | ~4500 tok/s |
+| DeepSeek-V3 671B | AWQ | ~28 tok/s | ~850 tok/s | ~2400 tok/s |
+| Qwen2-MoE 57B-A14B | AWQ | ~65 tok/s | ~1800 tok/s | ~5200 tok/s |
 
 > **观察**：batch 越大 MoE 优势越明显（专家利用率 ↑）；小 batch（< 8）下 dense 模型延迟更低。
 

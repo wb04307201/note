@@ -28,7 +28,7 @@ Q：你的 Agent 如何处理长上下文？1M token 的文档怎么让 LLM 准�
 3. **反模式**：列举 Agent 长上下文 5 大失效点
 4. **何时反选**：盲目灌长上下文 vs 总是用 RAG 的两个极端都错
 
-完整 5-7 道精选面试题见 [12.interview/11.ai/long-context-agent-strategy](../../../12.interview/11.ai/long-context-agent-strategy/README.md)（⚠️ 待 Phase 1+ 迁入）。
+完整 5-7 道精选面试题见 [12.interview/11.ai/long-context-agent-strategy](../../../12.interview/11.ai/long-context-agent-strategy/README.md)。
 
 ---
 
@@ -94,9 +94,9 @@ Q：你的 Agent 如何处理长上下文？1M token 的文档怎么让 LLM 准�
 
 ## 速查 · 关联资源
 - **餐厅叙事**：[13.story · 从厨师到 CEO](../../../13.story/07-from-chef-to-ceo.md)
-- **面试题**：[12.interview/11.ai/long-context-agent-strategy](../../../12.interview/11.ai/long-context-agent-strategy/README.md) —— 5-7 道精选题（⚠️ 待 Phase 1+ 迁入）
+- **面试题**：[12.interview/11.ai/long-context-agent-strategy](../../../12.interview/11.ai/long-context-agent-strategy/README.md) —— 5-7 道精选题
 - **同级兄弟**：[agent-memory](../agent-memory/README.md) · [agent-architecture](../agent-architecture/README.md)
-- **相关章节**：context-engineering（⚠️ 待 Phase 1+ 迁入；占位 `../../../../prompts/context-engineering/`）· rag 选型 · vector-search-algorithms（⚠️ 待 Phase 1+ 迁入；占位 `../../../../12.interview/11.ai/vector-search-algorithms/`）
+- **相关章节**：[context-engineering](../../prompts/context-engineering/README.md) · rag 选型 · [vector-search-algorithms](../../../12.interview/11.ai/vector-search-algorithms/README.md)
 
 ---
 
@@ -295,16 +295,16 @@ $$
 
 | 目标 | 关系类型 | 一句话关联 |
 |------|---------|-----------|
-| → [12.interview/11.ai/long-context-agent-strategy](../../../12.interview/11.ai/long-context-agent-strategy/README.md) | 面试高频 | 5-7 道精选长上下文面试题（待 Phase 1+ 迁入） |
-| → [09.ai-applications/prompts/context-engineering](../../prompts/context-engineering/README.md) | 同模块平行 | Context Engineering vs Long-Context Engineering（占位，待迁入） |
-| → 09.ai-applications/rag/rag-system-design | 同模块平行 | RAG 是长上下文的检索层（占位，待迁入） |
+| → [12.interview/11.ai/long-context-agent-strategy](../../../12.interview/11.ai/long-context-agent-strategy/README.md) | 面试高频 | 5-7 道精选长上下文面试题 |
+| → [09.ai-applications/prompts/context-engineering](../../prompts/context-engineering/README.md) | 同模块平行 | Context Engineering vs Long-Context Engineering |
+| → [09.ai-applications/rag](../../rag/README.md) | 同模块平行 | RAG 是长上下文的检索层 |
 | → [09.ai-applications/agent/agent-memory](../agent-memory/README.md) | 同级兄弟 | Memory 分层策略详解 |
-| → 09.ai-applications/llm-inference/position-encoding | 同模块平行 | LongRoPE / YaRN / RoPE 位置编码扩展（占位，待迁入） |
+| → [08.ai-foundations/03-transformer · RoPE](../../../08.ai-foundations/03-transformer/README.md) | 跨模块基础 | LongRoPE / YaRN / RoPE 位置编码扩展 |
 | → [13.story/07-from-chef-to-ceo](../../../13.story/07-from-chef-to-ceo.md) | 叙事包装 | 阿明餐厅 6 策略决策树 |
 | → 06.distributed-systems/distributed-cache/redis | 跨模块类比 | Redis LRU 淘汰 ↔ Sliding Window 注意力 |
 | → [04.spring-backend/architecture/microservices](../../../04.spring-backend/02-boot/README.md) | 跨模块类比 | Sub-Agents ↔ 微服务拆分 |
-| → [01.java-and-jvm/02-jvm/memory-management-gc](../../../01.java-and-jvm/02-jvm/README.md) | 跨模块类比 | JVM GC ↔ Memory 压缩策略（占位） |
-| → [12.interview/11.ai/vector-search-algorithms](../../../12.interview/11.ai/vector-search-algorithms/README.md) | 面试高频 | 向量检索选型面试题（占位） |
+| → [01.java-and-jvm/02-jvm](../../../01.java-and-jvm/02-jvm/README.md) | 跨模块类比 | JVM GC ↔ Memory 压缩策略 |
+| → [12.interview/11.ai/vector-search-algorithms](../../../12.interview/11.ai/vector-search-algorithms/README.md) | 面试高频 | 向量检索选型面试题 |
 
 **核心跨模块叙事**：
 

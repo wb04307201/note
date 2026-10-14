@@ -132,7 +132,7 @@
 | 重试上限 | 最多 N 次（通常 3 次），超过触发 L3 回滚 |
 | 空结果处理 | 搜索返回空 → 不是换词重试，是"无匹配，请换策略" |
 
-**设计参考**：Verifier 设计（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/loop-engineering/verifier-design.md`）
+**设计参考**：[Verifier 设计](../loop-engineering/verifier-design.md)
 
 ### 3.3 L3 状态快照回滚层
 
@@ -237,7 +237,7 @@ search 返回空结果
 
 ### 5.4 监控定位
 
-结合 LLM 监控做实时追踪：在线监控（⚠️ 待 Phase 1+ 迁入；占位 `[../../llm-inference/llmops/production-stability/05-online-monitoring.md`）
+结合 LLM 监控做实时追踪：[在线监控](../production-stability/05-online-monitoring.md)
 
 ## 六、反直觉点
 
@@ -253,17 +253,17 @@ search 返回空结果
 
 ### 深度链接
 
-- Loop Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/loop-engineering/`）— 循环调用 3 大组件 + 4 大失败模式
-- Harness Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/harness-engineering/`）— 4 大 Harness 类型 + 4 原则
-- Verifier 设计（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/loop-engineering/verifier-design.md`）— Verifier 组件设计详解
+- [Loop Engineering](../loop-engineering/README.md) — 循环调用 3 大组件 + 4 大失败模式
+- [Harness Engineering](../../../12.interview/11.ai/harness-engineering/README.md) — 4 大 Harness 类型 + 4 原则
+- [Verifier 设计](../loop-engineering/verifier-design.md) — Verifier 组件设计详解
 
 ### 咬文嚼字
 
-- Agent 可靠性面试题 — ⚠️ 待 Phase 1+ 迁入（占位 `[../../../../12.interview/11.ai/agent-reliability/`）— 5 大陷阱 + 4 层防线速查
+- [Agent 可靠性面试题](../../../12.interview/11.ai/agent-reliability/README.md) — 5 大陷阱 + 4 层防线速查
 
 ### 监控与稳定性
 
-- 在线监控（⚠️ 待 Phase 1+ 迁入；占位 `[../../llm-inference/llmops/production-stability/05-online-monitoring.md`） — 4 维监控 + Trace
+- [在线监控](../production-stability/05-online-monitoring.md) — 4 维监控 + Trace
 
 ### 本专题文章
 

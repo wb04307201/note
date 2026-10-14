@@ -51,14 +51,14 @@
 - [../prompts/](../prompts/) — Prompt 工程
 - [../../08.ai-foundations/](../../08.ai-foundations/) — AI 基础（Transformer / Attention）
 
-## 尚未迁移的推理相关章节
+## 基础原理章节（沉淀于主模块对应位置）
 
-以下推理相关主题已在 `note/` 中对应位置（部分已迁 / 部分占位待 Phase 1+ 迁入）：
+以下推理相关主题已在知识库中对应位置沉淀：
 
 - ✅ Attention 机制基础 — [`../../08.ai-foundations/03-transformer/attention-mechanism.md`](../../08.ai-foundations/03-transformer/attention-mechanism.md)
 - ✅ Transformer 架构 — [`../../08.ai-foundations/03-transformer/transformer-architecture.md`](../../08.ai-foundations/03-transformer/transformer-architecture.md)
-- ⚠️ MoE 架构基础 — `../../08.ai-foundations/02-deep-learning/moe-architecture/`（待 Phase 1+ 迁入）
-- ⚠️ RoPE 位置编码 — `../../08.ai-foundations/03-transformer/rope-position-encoding/`（待 Phase 1+ 迁入）
+- ✅ MoE 架构基础 — [`../../08.ai-foundations/03-transformer/README.md`](../../08.ai-foundations/03-transformer/README.md)（架构组件章节含 MoE；推理侧深化见 [moe-inference](moe-inference/README.md)）
+- ✅ RoPE 位置编码 — [`../../08.ai-foundations/03-transformer/README.md`](../../08.ai-foundations/03-transformer/README.md)（"RoPE 旋转位置编码"专节：相对位置 / 长度外推 / 演进谱系）
 - ✅ LLM 控制演进 — [`../agent/agent-architecture/llm-control-evolution/README.md`](../agent/agent-architecture/llm-control-evolution/README.md) — Prompt → Context → Harness → Loop 4 阶段驾驭演进史
 
 ---

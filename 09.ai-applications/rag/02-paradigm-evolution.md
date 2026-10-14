@@ -108,6 +108,8 @@ Naive RAG          Advanced RAG         Modular RAG          Agentic RAG
 | **可控性** | 高 | 高 | 中 | 低（需防护） |
 | **适用** | 原型验证 | 生产问答 | 垂直定制 | 复杂开放任务 |
 
+> **量化口径说明**：上表「精度」为定性排序。可参考的量级依据：Advanced 阶段相对 Naive 的提升主要来自 Query Rewrite + Hybrid Search + Rerank 各环节（各环节提升幅度见 [01-pipeline · 各阶段效果提升](./01-pipeline.md)，为社区经验区间而非统一 benchmark）；多跳类任务（如 HotpotQA）上 Agentic 相对单轮检索的优势在学术评测（如 [Self-RAG, ICLR'24](https://arxiv.org/abs/2310.11511)）中有可复现数字。精确对比应以自有语料 + 固定评测集实测为准。
+
 ---
 
 ## 🌲 选型决策树
@@ -139,9 +141,9 @@ Naive RAG          Advanced RAG         Modular RAG          Agentic RAG
 ## 🔗 兄弟章节
 
 - **本原子笔记**：[RAG Pipeline 5 阶段](./01-pipeline.md)（Advanced 落地） / [Agentic Search vs RAG](./06-agentic-rag.md)（Agentic 方向） / [RAG vs Fine-tuning](./03-rag-vs-finetuning.md) / [RAG 评估](./04-evaluation.md)
-- **待迁移子环节**：Query Rewrite / Hybrid Search / Reranker / Chunking（⚠️ 待 Phase 1+ 迁入；占位 `../query-rewrite/` `../hybrid-search/` `../reranker/` `../chunking-strategies/`）
+- **子环节专题**：[Query Rewrite](./query-rewrite/README.md) / [Hybrid Search](./hybrid-search/README.md) / [Reranker](./reranker/README.md) / [Chunking](./chunking-strategies/README.md)
 - **Agent 架构**：[Agent 执行模式](../agent/agent-execution-patterns/README.md)
-- **咬文嚼字**：RAG 面试深挖（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/rag/`）（含演进四阶段面试题）
+- **咬文嚼字**：[RAG 面试深挖](../../12.interview/11.ai/rag/README.md)（含演进四阶段面试题）
 - **餐厅叙事**：[36 · RAG 检索增强生成](../../13.story/36-rag-retrieval-augmented-generation.md) —— 开卷考试
 
 ---

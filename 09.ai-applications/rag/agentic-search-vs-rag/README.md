@@ -60,7 +60,7 @@ class RAGPipeline:
 # T=09:05: AI 给错误答案
 ```
 
-**实际数据**（Anthropic 官方）：
+**实际数据**（[Anthropic 官方工程博客](https://www.anthropic.com/engineering/claude-code-best-practices)，转述）：
 > "嵌入管道跟不上活跃的工程团队，导致索引反映的是数周甚至数天前的代码状态。"
 
 ### 2.2 粒度错配（Granularity Mismatch）
@@ -152,7 +152,7 @@ def search_call_chain(function_name):
 
 ## 四、Claude Code 的 5 大 Harness 扩展点（深度）
 
-Anthropic 官方原话："**围绕模型构建的生态系统（Harness）对 Claude Code 的表现影响更大**"。
+Anthropic 官方原话（[Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)，转述）："**围绕模型构建的生态系统（Harness）对 Claude Code 的表现影响更大**"。
 
 5 个扩展点的**构建顺序很重要**（官方建议）：
 

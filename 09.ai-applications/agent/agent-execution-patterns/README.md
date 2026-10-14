@@ -33,7 +33,7 @@ Q：在构建 AI Agent 系统时，ReAct 和 Plan-and-Execute 是两种主流的
 3. **重规划机制**：Plan-and-Execute 的核心是"Plan Repair"能力
 4. **何时反选**：什么场景下 ReAct 比 Plan-and-Execute 更优
 
-完整 5-7 道精选面试题见 12.interview/11.ai/react-vs-plan-execute（⚠️ 待 Phase 1+ 迁入）。
+完整 5-7 道精选面试题见 [12.interview/11.ai/react-vs-plan-execute](../../../12.interview/11.ai/react-vs-plan-execute/README.md)。
 
 ---
 
@@ -95,9 +95,9 @@ Q：在构建 AI Agent 系统时，ReAct 和 Plan-and-Execute 是两种主流的
 ---
 
 ## 速查 · 关联资源
-- 🆕 **入口路由**：分层路由架构（⚠️ 待 Phase 1+ 迁入；占位 `../architecture/routing-architecture/`）
+- **入口路由**：分层路由架构见 [agent-architecture/multi-agent-patterns · Routing](../agent-architecture/multi-agent-patterns.md)（分类后路由到不同处理路径）
 - **餐厅叙事**：[13.story · 架构是"长"出来的](../../../13.story/02-system-architecture-evolution.md)
-- **面试题**：12.interview/11.ai/react-vs-plan-execute —— 5-7 道精选题（⚠️ 待 Phase 1+ 迁入）
+- **面试题**：[12.interview/11.ai/react-vs-plan-execute](../../../12.interview/11.ai/react-vs-plan-execute/README.md) —— 5-7 道精选题
 - **同级**：[agent-architecture](../agent-architecture/README.md) —— 4 模式综述 + DAG 决策树
 - **相关**：[agent-context/05-sub-agents](../agent-context/05-sub-agents-decomposition.md) —— Multi-Agent Sub-Agents 实战
 
@@ -496,7 +496,7 @@ Tester: 测试通过：{report.md}
 - 角色冲突：不同 agent 可能给出矛盾判断
 - 调试困难：涌现行为难追因
 
-**实验数据**：Anthropic 内部测试显示，GSM8K 上单 agent + chain-of-thought 准确率 92%，Multi-Agent 准确率 89%。
+**经验观察**：业界多份实践报告（如 Anthropic 关于多智能体系统的工程分享）显示，在 GSM8K 这类单跳推理任务上，单 agent + chain-of-thought 的准确率通常不输甚至略优于 Multi-Agent 方案——多 agent 的收益要到"可并行分解 + 上下文可隔离"的任务上才显现（定性结论，非固定 benchmark 数字）。
 
 ### 误区 2：「ReAct 可无限循环」
 

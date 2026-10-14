@@ -493,7 +493,7 @@ def _flash_attn_fwd(
 
 ## 🔗 兄弟章节
 
-- **L1 同级**：[Transformer 架构](../../../08.ai-foundations/03-transformer/transformer-architecture.md) / [注意力机制](../../../08.ai-foundations/03-transformer/attention-mechanism.md) / RoPE 位置编码（⚠️ 待 Phase 1+ 迁入；占位 `../../../../08.ai-foundations/03-transformer/rope-position-encoding/`）
+- **L1 同级**：[Transformer 架构](../../../08.ai-foundations/03-transformer/transformer-architecture.md) / [注意力机制](../../../08.ai-foundations/03-transformer/attention-mechanism.md) / [RoPE 位置编码](../../../08.ai-foundations/03-transformer/README.md)（"RoPE 旋转位置编码"专节）
 - **L2 栈**：[KV Cache](../kv-cache/README.md)（推理复杂度 + MQA/GQA/MLA 对比） / [PagedAttention](../paged-attention/README.md) / [推理性能指标](../inference-metrics/README.md)
 - **工程**：[vLLM 部署](../inference-frameworks/README.md)
 

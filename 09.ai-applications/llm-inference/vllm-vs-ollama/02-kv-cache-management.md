@@ -130,6 +130,15 @@ beam_size=4, seq_len=2048, LLaMA-7B:
 
 ---
 
+## 📚 参考来源
+
+- vLLM PagedAttention 论文：[Efficient Memory Management for Large Language Model Serving with PagedAttention (SOSP'23)](https://arxiv.org/abs/2309.06180) —— 分页 / block 共享 / Copy-on-Write 机制的原始出处
+- vLLM 官方博客：[vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention](https://blog.vllm.ai/2023/06/20/vllm.html)
+- FlashAttention 2 论文：[Fast Attention with Better Parallelism and Work Partitioning](https://arxiv.org/abs/2307.08691) —— §4.2 表中 FlashAttention 2 的出处（IO-aware 精确注意力，减少 HBM 读写；注意它优化的是**注意力计算 IO**，KV cache 显存本身仍需分页/量化/滑窗等手段）
+- vLLM 参数文档：[Engine Arguments](https://docs.vllm.ai/en/latest/serving/engine_args.html) —— 文末速查表参数口径
+
+---
+
 ## 一句话总结
 > **KV cache 管理 = 分页（利用率）+ 共享（命中率）+ 替换（淘汰策略），三机制叠加才能撑住工业级并发。**
 

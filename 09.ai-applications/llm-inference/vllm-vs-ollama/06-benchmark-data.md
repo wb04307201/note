@@ -3,20 +3,23 @@
   slug: ai-platforms/vllm-vs-ollama/06-benchmark-data
   type: topic
   category: 性能基准
-  summary: vLLM / Ollama / TGI / LMDeploy 在吞吐量 / 首 token 延迟 / 显存占用 3 个维度上的实测对比
+  summary: vLLM / Ollama / TGI / LMDeploy 在吞吐量 / 首 token 延迟 / 显存占用 3 个维度上的对比（量级估算，非严格实测）
   depth: ⭐⭐
   status: active
 -->
 
-# Benchmark 数据 · 4 引擎实测对比
+# Benchmark 数据 · 4 引擎对比（量级估算）
 
-> **一句话**：数据说话，但要看「**什么负载下**」——空载单卡 7B 时 4 个引擎差距 < 30%，高并发多卡 70B 时 vLLM 是 Ollama 的 **14-24 倍**。
+> **一句话**：数据说话，但要看「**什么负载下**」——空载单卡 7B 时 4 个引擎差距不大，高并发多卡 70B 时 vLLM 领先 Ollama 可达**一个数量级**（本文表格为量级估算，见下方口径声明）。
 
 ← [返回: vLLM vs Ollama](../README.md)
 
 ---
 
 ## 测试条件与基准
+
+> ⚠️ **全文数据口径声明**：本文所有表格为**基于公开资料的量级估算/示意**（综合 vLLM 论文的相对倍数与各引擎官方 benchmark 的趋势），**非同一环境下的严格实测**——本文未附完整可复现的硬件、软件版本与压测脚本说明。表中数字用于建立"什么负载下谁领先"的直觉，绝对数值请勿直接引用；生产选型请以下方官方 benchmark 页在目标硬件上复测为准。
+
 ### 1.1 硬件
 
 | 设备 | 显存 | NVLink | 典型场景 |
@@ -177,7 +180,7 @@
 ---
 
 ## 一句话总结
-> **数据上 vLLM 在工业级负载（多并发 + 长上下文 + 高 QPS）几乎全面领先 Ollama 5-24x，但单机 / 边缘场景两者差距收窄甚至反转——选型看场景。**
+> **vLLM 在工业级负载（多并发 + 长上下文 + 高 QPS）几乎全面领先 Ollama（高并发下常见数倍至一个数量级，视负载而异），但单机 / 边缘场景两者差距收窄甚至反转——选型看场景。**
 
 ---
 
@@ -187,8 +190,13 @@
 
 ## 📚 参考来源
 
-1. **Efficient Memory Management for Large Language Model Serving with PagedAttention**：Woosuk Kwon et al. *vLLM 论文：PagedAttention + 连续批处理是 6-24x 吞吐优势的核心来源，SOSP 2023*. https://arxiv.org/abs/2309.06180
-2. **FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness**：Tri Dao et al. *FlashAttention 用 IO-aware tiling 把 attention 显存降为 O(N)，NeurIPS 2022*. https://arxiv.org/abs/2205.14135
-3. **FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning**：Tri Dao. *FlashAttention 2：进一步并行化与工作划分优化，2023*. https://arxiv.org/abs/2307.08691
-4. **Accelerating Large Language Model Decoding with Speculative Sampling**：Yaniv Leviathan et al. *Speculative Decoding 推测式采样加速推理，Google 2023*. https://arxiv.org/abs/2211.17192
-5. **SARATHI: Efficient LLM Inference by Piggybacking Decodes with Chunked Prefills**：Amey Agrawal et al. *Chunked Prefill 分块预填：解决 prefill-decode 互相阻塞，OSDI 2024*. https://arxiv.org/abs/2308.16369
+> 说明：以下论文支撑本文的**机制解释**（为什么 vLLM 领先），但本文表格的具体数字与论文数据**不是一一对应**（见文首口径声明）；官方 benchmark 页链接见第 6-8 条，复测时以官方页为准。
+
+1. **Efficient Memory Management for Large Language Model Serving with PagedAttention**：Woosuk Kwon et al. *vLLM 论文：PagedAttention + 连续批处理是高并发吞吐优势的核心机制，支撑 §2 吞吐表、§4.2 显存表的趋势（论文报告的倍数基于其自测环境，与本文表格数字不等同），SOSP 2023*. https://arxiv.org/abs/2309.06180
+2. **FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness**：Tri Dao et al. *FlashAttention 用 IO-aware tiling 把 attention 显存降为 O(N)，支撑 §3 TTFT 表与 §4 显存表的机制解释，NeurIPS 2022*. https://arxiv.org/abs/2205.14135
+3. **FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning**：Tri Dao. *FlashAttention 2：进一步并行化与工作划分优化，支撑 §3 TTFT 表机制解释，2023*. https://arxiv.org/abs/2307.08691
+4. **Accelerating Large Language Model Decoding with Speculative Sampling**：Yaniv Leviathan et al. *Speculative Decoding 推测式采样加速推理（本文未展开，延伸参考），Google 2023*. https://arxiv.org/abs/2211.17192
+5. **SARATHI: Efficient LLM Inference by Piggybacking Decodes with Chunked Prefills**：Amey Agrawal et al. *Chunked Prefill 分块预填：解决 prefill-decode 互相阻塞，支撑 §3 TTFT 表与 §5.2 长上下文技术，OSDI 2024*. https://arxiv.org/abs/2308.16369
+6. **vLLM 官方 Performance Benchmark**：*vLLM 各版本对 HF/TGI/LMDeploy 的官方吞吐与延迟复现脚本与结果，§2/§3 表格趋势的主要参照*. https://docs.vllm.ai/en/latest/performance/benchmarks.html
+7. **LMDeploy 官方 Benchmark**：*TurboMind 引擎吞吐对比数据，§2.1/§2.2 中 LMDeploy 列的趋势参照*. https://lmdeploy.readthedocs.io/en/latest/benchmark/inference_benchmark.html
+8. **TGI 官方 Benchmark / 文档**：*Text Generation Inference 的性能说明，§2 中 TGI 列的趋势参照*. https://huggingface.co/docs/text-generation-inference/index

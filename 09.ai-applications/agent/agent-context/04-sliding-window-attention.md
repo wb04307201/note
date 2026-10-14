@@ -50,7 +50,7 @@ attends: ↑ ↑ ↑ ↑
 - 优点：实现简单，KV cache 上限固定
 - 缺点：完全遗忘 w 之外的旧信息，**对话早期信息丢失**
 
-### 2.2 StreamingLLM（2024，MIT）
+### 2.2 StreamingLLM（2023，Xiao et al., MIT）
 
 **核心洞察**：attention 中存在"attention sinks"——某些特定 token（通常是第一个 token）即使被滑窗丢弃，仍有残存的 attention 流量。
 
@@ -60,9 +60,9 @@ Window + 4 sink tokens：
 ```
 
 **效果**：
-- 32k 上下文部署成本降到 4k 等价
-- 性能损失 < 5%（在标准 benchmark）
-- 已被 Llama 2 / Mistral / Claude 借鉴
+- 保留少量 sink token 后，流式长文本场景下困惑度相比纯滑窗显著改善，部署显存/KV cache 上限固定（原论文口径：4 个 sink token 即可稳定流式推理）
+- 性能损失幅度依任务与 benchmark 而异，原论文报告多数任务上接近滑窗基线（具体数值见 [StreamingLLM 论文, ICLR 2024 / arXiv 2023-09](https://arxiv.org/abs/2309.17453)）
+- 注意：主流商用/开源模型（如 Llama 2）默认仍是 full attention，"已被 XX 借鉴"缺乏公开依据；sink token 思路主要影响流式推理框架与长文本截断策略的设计
 
 ### 2.3 LongLoRA（2023）
 

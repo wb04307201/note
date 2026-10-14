@@ -24,11 +24,11 @@ Q：工业级大模型部署，你为什么优先选 vLLM，而不是极简的 O
 **回答框架（按 4 层递进）**：
 
 1. **场景区分**：先澄清"Ollama 不是被 vLLM 替代，是各自服务不同人群"
-2. **核心差异**：PagedAttention + 连续批处理 → 吞吐量 14-24 倍 vs Ollama
+2. **核心差异**：PagedAttention + 连续批处理 → 高并发下吞吐量数倍至一个数量级领先 Ollama
 3. **反模式**：列举 Ollama 在工业场景下 5 大失效点（无分布式 / 无 PagedAttention / 调度粗糙 / 监控缺失 / 协议单薄）
 4. **何时反选 Ollama**：边缘 / 隐私 / 开发机 / 单 demo / 团队没有 GPU 运维能力
 
-完整 5-7 道精选面试题见 12.interview/11.ai/inference-engine-selection（⚠️ 待 Phase 1+ 迁入）。
+完整 5-7 道精选面试题见 [inference-engine-selection（面试深挖）](../../../12.interview/11.ai/inference-engine-selection/README.md)。
 
 ---
 
@@ -62,7 +62,7 @@ Q：工业级大模型部署，你为什么优先选 vLLM，而不是极简的 O
 
 ## 反直觉点
 - ⚠️ **Ollama 不是"低配版 vLLM"**：底层 llama.cpp（C++），优化方向是「单进程 CPU/GPU 混合推理 + 模型量化的极致压缩」。vLLM 底层是 PyTorch + 自定义 CUDA 算子（PagedAttention + FlashAttention），优化方向是「高并发 GPU 服务化」。
-- ⚠️ **「Ollama 简单」不等于「Ollama 慢」**：在 4090 单卡 7B 模型上 Ollama 和 vLLM 差距 < 30%；一旦上多卡 + 高并发，vLLM 反超 Ollama 14-24 倍（参考 [06-benchmark](06-benchmark-data.md)）。
+- ⚠️ **「Ollama 简单」不等于「Ollama 慢」**：在 4090 单卡 7B 模型上 Ollama 和 vLLM 差距 < 30%；一旦上多卡 + 高并发，vLLM 大幅反超——短输出/小上下文口径实测约 6-8 倍（100-500 并发），长输出/大上下文下 Ollama 单进程 OOM、差距进一步拉大（口径与数据见 [06-benchmark](06-benchmark-data.md)）。
 - ⚠️ **「vLLM 工业级」不代表「永远最优」**：LMDeploy 在中文模型上有时比 vLLM 快（TurboMind 自研 kernel）；TGI 在 transformers 集成度上最丝滑。
 
 ---
@@ -78,7 +78,7 @@ Q：工业级大模型部署，你为什么优先选 vLLM，而不是极简的 O
 
 ## 速查 · 关联资源
 - **餐厅叙事**：[39 · AI 私有化部署](../../../13.story/39-ai-private-deployment.md) —— 阿明餐厅从 Ollama 本地试跑到 vLLM 上生产的演进
-- **面试题**：12.interview/11.ai/inference-engine-selection —— 5-7 道精选题（⚠️ 待 Phase 1+ 迁入）
+- **面试题**：[inference-engine-selection](../../../12.interview/11.ai/inference-engine-selection/README.md) —— 5-7 道精选题
 - **同类平台**：[coze](../../agent/ai-platforms/coze.md) · [dify](../../agent/ai-platforms/dify.md) · [langgraph](../../agent/ai-platforms/langgraph.md) · [spring-ai-vs-platforms](../../agent/ai-platforms/spring-ai-vs-platforms.md) · [spring-ai-vs-dify](../../agent/ai-platforms/spring-ai-vs-dify.md)
 
 ← [返回: AI 平台对比](../README.md)

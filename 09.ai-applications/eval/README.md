@@ -247,7 +247,7 @@ v1 模型回答 vs v2 模型回答
 
 ## 九、公开 Benchmark 生态
 
-> 🔗 面试深挖版：`LLM Benchmark 深度剖析` — 5 大 Benchmark 分类 + ELO 计分原理 + 数据污染 + 刷分手段 + 看榜 checklist（⚠️ 待 Phase 1+ 迁入）
+> 🔗 面试深挖版：[LLM Benchmark 深度剖析](../../12.interview/11.ai/llm-benchmark/README.md) — 5 大 Benchmark 分类 + ELO 计分原理 + 数据污染 + 刷分手段 + 看榜 checklist
 
 ### 9.1 5 大 Benchmark 分类速查
 
@@ -379,15 +379,15 @@ LLM-as-Judge（GPT-4 评分）：
 
 - 下游：[Agent 性能评估](../agent/agent-evaluation/README.md) — 从 LLM 单次调用评估 → Agent 多步任务评估（6 维度 + 5 方法）
 - 关联：[生产级 Agent 系统](../agent/production-agent/README.md) — Shopify Sidekick 的评估实践（LLM-as-Judge + 用户模拟）
-- 关联：Harness Engineering（⚠️ 待 Phase 1+ 迁入；占位 `../agent/execution-patterns/harness-engineering/`） — 评估体系的工程化框架
-- 同模块：LLM 安全（⚠️ 待 Phase 1+ 迁入；占位 `../llm-inference/llmops/05-llm-security/`） — 评估的另一个维度：安全性
-- 面试：如何量化 Agent 性能 — 面试题版本（⚠️ 待 Phase 1+ 迁入）
+- 关联：[Harness Engineering 面试深挖](../../12.interview/11.ai/harness-engineering/README.md) — 评估体系的工程化框架
+- 同模块：[LLM 安全](../agent/agent-reliability/llm-security/README.md) — 评估的另一个维度：安全性
+- 面试：[如何量化 Agent 性能](../../12.interview/11.ai/agent-performance-evaluation/README.md) — 面试题版本
 
 ---
 
 ## 深度扩展
 
-🆕 **5 大灵魂拷问（重点看 Q5 监控）**：llm-production-thinking/05-online-monitoring（⚠️ 待 Phase 1+ 迁入；占位 `../llm-inference/llmops/production-stability/05-online-monitoring.md`）—— 把 6 维评估延伸为线上 4 维监控 + Trace + 黄金集回归 + 漂移检测（含 5 分钟定位实战）。
+🆕 **5 大灵魂拷问（重点看 Q5 监控）**：[Production Stability · 05 线上监控](../agent/production-stability/05-online-monitoring.md) —— 把 6 维评估延伸为线上 4 维监控 + Trace + 黄金集回归 + 漂移检测（含 5 分钟定位实战）。
 
 ---
 
@@ -396,10 +396,10 @@ LLM-as-Judge（GPT-4 评分）：
 | # | 章节 | 一句话定位 |
 |---|------|-----------|
 | 1 | [RAG vs Fine-tuning vs Prompt](../rag/03-rag-vs-finetuning.md) | 三大定制策略对比与选型决策（已迁 RAG MOC） |
-| 2 | LLMOps 栈（⚠️ 待 Phase 1+ 迁入；占位 `../llm-inference/llmops/02-llmops-stack/`） | 数据/训练/部署/监控/反馈全链路工程栈 |
-| 3 | 向量库 vs 缓存（⚠️ 待 Phase 1+ 迁入；占位 `../llm-inference/llmops/03-vector-db-vs-cache/`） | Embedding 检索 vs KV 缓存边界与协同 |
+| 2 | LLMOps 栈（尚未迁入，暂无独立文章；推理侧内容见 [LLM 推理优化](../llm-inference/README.md)） | 数据/训练/部署/监控/反馈全链路工程栈 |
+| 3 | 向量库 vs 缓存（尚未迁入；两侧原理分别见 [向量检索算法](../rag/vector-search-algorithms/README.md) 与 [KV Cache](../llm-inference/kv-cache/README.md)） | Embedding 检索 vs KV 缓存边界与协同 |
 | 4 | [LLM 评测](../README.md) | 自动化指标 + 人工评测 + A/B + 红队对抗 |
-| 5 | LLM 安全（⚠️ 待 Phase 1+ 迁入；占位 `../llm-inference/llmops/05-llm-security/`） | OWASP LLM Top 10 + 6 层防御 + Guardrails 实战 |
+| 5 | [LLM 安全](../agent/agent-reliability/llm-security/README.md) | OWASP LLM Top 10 + 6 层防御 + Guardrails 实战 |
 | 6 | [RAG 超范围拒答](../rag/05-out-of-domain-rejection.md) | 6 大检测机制 + 5 大拒答模式 + 4 步调优 |
 
 ← [返回 09.ai-applications](../README.md) · 📅 2026-06-28

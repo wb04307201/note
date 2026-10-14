@@ -118,16 +118,18 @@ for prompt in prompts:
 
 ---
 
-## 📈 实际效果（Claude 2 数据）
+## 📈 实际效果（Claude 2 数据，定性口径）
 
-| 维度 | RLHF-only | Constitutional AI | 提升 |
+> ⚠️ 口径说明：CAI 论文（[Bai et al., 2022, arXiv:2212.08073](https://arxiv.org/abs/2212.08073)）的评估以人类偏好胜率（win rate）呈现，并未给出下表的精确百分比与美元成本数字；以下为社区流传的**约字口径示意**，仅供建立直觉，引用请以论文原文图表为准。
+
+| 维度 | RLHF-only | Constitutional AI | 趋势 |
 |------|----------|------------------|------|
-| **Harmlessness** | 78% | 91% | +13% |
-| **Helpfulness** | 85% | 84% | -1% |
-| **训练成本** | $1M | $100K | -90% |
-| **标注员心理负担** | 高 | 零 | ∞ |
+| **Harmlessness** | 基准 | 约高一档（论文中以偏好胜率显著占优呈现） | ↑ |
+| **Helpfulness** | 基准 | 与基准大致持平（论文强调"无害且不牺牲帮助性"） | ≈ |
+| **训练成本** | 需人工标注 RLHF 反馈 | 主要靠 AI 反馈（RLAIF），大幅减少人工标注开销 | ↓↓ |
+| **标注员心理负担** | 高（人工审阅有害内容） | 基本消除（AI 反馈替代人工） | ↓↓ |
 
-**结论**：Constitutional AI 在无害性上显著优于 RLHF，帮助性略低。**适合对安全要求高的场景**（如金融、医疗）。
+**结论**：Constitutional AI 在无害性上显著优于 RLHF，帮助性基本持平。**适合对安全要求高的场景**（如金融、医疗）。
 
 ---
 
@@ -186,7 +188,7 @@ $$\mathcal{L}_{\text{RLAIF}}(\theta) = \mathbb{E}_{(x,y_w,y_l) \sim \mathcal{D}_
 ### Claude 2（2023-07）
 - 采用 10 条核心宪法原则（公开）
 - 两阶段训练：先 RLHF 教 Helpfulness，再用 CAI 提升 Harmlessness
-- 内部评估：Harmlessness 91% vs RLHF-only 78%
+- 内部评估：Harmlessness 显著优于 RLHF-only（Anthropic 未公开该精确对比数字，论文口径以 [arXiv:2212.08073](https://arxiv.org/abs/2212.08073) 偏好胜率为准）
 - 宪法原文：`https://www.anthropic.com/news/claudes-constitution`
 
 ### Claude 3（2024-03）

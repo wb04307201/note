@@ -14,7 +14,7 @@
 
 > 2025 年 AI Coding 领域最大的范式转变：Claude Code 等主流工具**主动放弃 RAG**，改用 Agentic Search。本文从工程问题、检索范式、Harness 设计、场景边界 4 个层面系统讲清楚。
 
-> **面试场景**：这是反直觉的高频 AI 面试题——很多人以为 RAG 是 AI Coding 标配，但 Claude Code 官方明确否定。面试版（30/60/90 秒话术）见 咬文嚼字·11.ai/claude-code-agentic-search（⚠️ 待 Phase 1+ 迁入）。
+> **面试场景**：这是反直觉的高频 AI 面试题——很多人以为 RAG 是 AI Coding 标配，但 Claude Code 官方明确否定。面试版（30/60/90 秒话术）见 [咬文嚼字·Claude Code 为什么放弃 RAG](../../12.interview/11.ai/claude-code-agentic-search/README.md)。
 
 > 📌 **与 [agentic-search-vs-rag/](./agentic-search-vs-rag/README.md) 的分工**：本篇是 RAG 系列第 6 章的专题版（聚焦"何时不该用 RAG"的边界判断，随 RAG MOC 学习路径阅读）；子目录 README 为独立深度版（含 12.interview 面试话术入口）。两篇主题高度重叠，后续可考虑合并为单一来源。
 
@@ -246,10 +246,10 @@ Agentic Search 是 AI Coding 检索范式的演进，**与 [驾驭演进主线�
 ## 七、相关章节
 
 **面试题**：
-- 咬文嚼字·11.ai/claude-code-agentic-search（30/60/90 秒话术）（⚠️ 待 Phase 1+ 迁入；占位 `../../../12.interview/11.ai/claude-code-agentic-search/`）
+- [咬文嚼字·claude-code-agentic-search](../../12.interview/11.ai/claude-code-agentic-search/README.md)（30/60/90 秒话术）
 
 **同主模块**：
-- Claude Code 最佳实践（⚠️ 待 Phase 1+ 迁入；占位 `../../../09.ai-applications/agent/coding-agents/claude-code-practices/`）
+- [Claude Code 最佳实践](../agent/coding-agents/claude-code-practices/README.md)
 - [RAG vs Finetuning](./03-rag-vs-finetuning.md)
 
 **架构视角**：

@@ -116,10 +116,10 @@
 
 ## 六、与其他章节的关系
 
-- 概念层：Harness Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/harness-engineering/]`） — 这三个工具都是 Harness 的具体实现
-- 同栏目：Claude Code 实践（⚠️ 待 Phase 1+ 迁入；占位 `[../coding-agents/claude-code-practices/]`） — Skill 设计方法论 + Hit Rate 优化
+- 概念层：[Harness Engineering](../../../12.interview/11.ai/harness-engineering/README.md) — 这三个工具都是 Harness 的具体实现
+- 同栏目：[Claude Code 实践](../coding-agents/claude-code-practices/README.md) — Skill 设计方法论 + Hit Rate 优化
 - 实战：[生产级 Agent](../production-agent/README.md) — 生产环境的 Agent 工程实践
-- 循环：Loop Engineering（⚠️ 待 Phase 1+ 迁入；占位 `[../agent-execution-patterns/loop-engineering/]`）— Agent 循环调用 + Ralph Wiggum Loop（pre-existing in `note/`，保持 unstaged）
+- 循环：[Loop Engineering](../loop-engineering/README.md) — Agent 循环调用 + Ralph Wiggum Loop
 - **正交关系**：[Coding Agents](../coding-agents/README.md) — Superpowers / Spec-Kit / OpenSpec 都**运行在** Coding Agent 上（Claude Code / Codex / OpenCode / OMP）
 
 ---
@@ -501,7 +501,7 @@ for block in response.content:
 
 #### ❌ 误区 #1：「Tool 描述越长越好」
 
-实验数据（OpenAI Cookbook 2024-12 benchmark）：
+社区经验数据（量级示意，非可复现 benchmark；下表数值整理自社区讨论与从业经验，OpenAI Cookbook 并无逐字对应的公开实验，实际甜区随模型与工具集而异）：
 
 | 描述长度 | Tool Call 命中率 | 平均延迟 |
 |----------|------------------|----------|

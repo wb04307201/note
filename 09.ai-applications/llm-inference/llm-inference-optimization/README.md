@@ -59,7 +59,7 @@ Agent / 复杂 prompt = + SGLang RadixAttention
 
 ## 🔗 兄弟章节
 
-- **L1**：[Transformer](../../../08.ai-foundations/03-transformer/transformer-architecture.md) / [注意力机制](../../../08.ai-foundations/03-transformer/attention-mechanism.md) / MoE（⚠️ 待 Phase 1+ 迁入；占位 `../../../../08.ai-foundations/02-deep-learning/moe-architecture/`）
+- **L1**：[Transformer](../../../08.ai-foundations/03-transformer/transformer-architecture.md) / [注意力机制](../../../08.ai-foundations/03-transformer/attention-mechanism.md) / [MoE 推理优化](../moe-inference/README.md)
 - **LLMOps**：08-llmops（⚠️ 待 Phase 1+ 迁入；占位 `../llmops/`） — 监控 + 安全
 - **咬文嚼字**：12.interview/11.ai — 面试深挖版（⚠️ 待 Phase 1+ 迁入）
 
