@@ -31,16 +31,16 @@
 | 01 | [`01.java-and-jvm`](../01.java-and-jvm/) | Java 基础陷阱 | 40 | [01.java/](01.java/) |
 | 02 | [`02.cs-foundations`](../02.cs-foundations/) | 计算机基础（网络 / 算法设计 / 操作系统） | 11 | [02.computer-basics/](02.computer-basics/) |
 | 03 | [`03.data-stack`](../03.data-stack/) | 数据库细节 | 32 | [03.database/](03.database/) |
-| 04 | [`06.distributed-systems`](../06.distributed-systems/) | 系统设计难点 | 26 | [12.interview/04.system-design/](04.system-design/) |
+| 04 | [`06.distributed-systems`](../06.distributed-systems/) | 系统设计难点 | 29 | [12.interview/04.system-design/](04.system-design/) |
 | 05 | [`05.security`](05.security) | 安全（认证 / Web 安全 / 限流 / OWASP） | 11 | [05.security/](05.security/) |
 | 06 | [`04.spring-backend`](../04.spring-backend/) | Spring 面试高频 | 15 | [06.spring/](06.spring/) |
-| 09 | [`05.frontend`](../05.frontend/) | 前端细节 | 32 | [09.front-end/](09.front-end/) |
+| 09 | [`05.frontend`](../05.frontend/) | 前端细节 | 33 | [09.front-end/](09.front-end/) |
 | 10 | — | 大数据（Flink / Spark / Hive / Iceberg / Doris / Kafka） | 6 | [10.big-data/](10.big-data/) |
 | 11 | [`08.ai-foundations`](../08.ai-foundations/) + [`09.ai-applications`](../09.ai-applications/) | AI 面试深挖 | 56 | [11.ai/](11.ai/) |
 | ✦ | tools | 开发工具（Git / Docker / Nginx / K8s） | 5 | [tools/](tools/) |
 | ✦ | [`11.product-and-pm`](../11.product-and-pm/) | **外链**（决策实战，已迁出） | — | [11.product-and-pm/](../11.product-and-pm/) |
 
-**总计：234 篇面试题**（纯题口径：9 主题 229 + tools 5；ls 校对 2026-10-14，`<!--question:-->` frontmatter 实数 234 + SPEC 示例 1。口径定义见根 SPEC §7「数字口径统一」）
+**总计：238 篇面试题**（纯题口径：9 主题 233 + tools 5；find 校对 2026-10-14，`<!--question:-->` frontmatter 实数 238 + SPEC 示例 1。口径定义见根 SPEC §7「数字口径统一」）
 
 > 各分类的具体子主题（如 Java 集合 / 并发 / JVM；数据库 SQL 优化 / Redis / MVCC；系统设计 MQ / 缓存 / 分布式等）见子目录 README。
 
@@ -63,12 +63,12 @@
 | 目标 | 推荐路径 |
 |------|---------|
 | **Java 后端** | [01.java](01.java/) 40 篇 → [06.spring](06.spring/) 15 篇 → [03.database](03.database/) 32 篇 |
-| **系统设计 / 后端架构** | [04.system-design](04.system-design/) 26 篇 → [03.database](03.database/) 32 篇 |
-| **前端** | [09.front-end](09.front-end/) 32 篇（含网络 / CSS / 框架 / 安全 / 工程化 / 状态架构） |
+| **系统设计 / 后端架构** | [04.system-design](04.system-design/) 29 篇 → [03.database](03.database/) 32 篇 |
+| **前端** | [09.front-end](09.front-end/) 33 篇（含网络 / CSS / 框架 / 安全 / 工程化 / 状态架构 / 构建性能排查） |
 | **AI 方向** | [11.ai](11.ai/) 56 篇（含主模块精炼版 + 新增专题：dropout / harness / 上下文工程 / RAG / 向量搜索 / Prompt 工程等） |
-| **安全工程师** | [05.security](05.security/) 11 篇（认证 / Web 安全 / 限流 / OWASP） → [04.system-design](04.system-design/) 26 篇 |
+| **安全工程师** | [05.security](05.security/) 11 篇（认证 / Web 安全 / 限流 / OWASP） → [04.system-design](04.system-design/) 29 篇 |
 | **大数据 / 数据平台** | [10.big-data](10.big-data/) 6 篇（Flink / Spark / Hive / Iceberg / Doris / Kafka） → [03.database](03.database/) 32 篇 |
-| **DevOps / SRE** | [tools/](tools/) 5 篇（Git / Docker / Nginx / K8s） → [04.system-design](04.system-design/) 26 篇 |
+| **DevOps / SRE** | [tools/](tools/) 5 篇（Git / Docker / Nginx / K8s） → [04.system-design](04.system-design/) 29 篇 |
 
 ### 3.2 按难度刷（按面试倒计时）
 

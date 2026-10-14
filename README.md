@@ -5,7 +5,7 @@
   type: index
   audience: 所有读者
   category: 主入口
-  summary: 13 个主模块的知识库总目录（L0 导航），1115 个 .md 文档，frontmatter 覆盖 98.3%（含 module/question/story 三类），含全局 SPEC 规范与 13 模块导航。
+  summary: 13 个主模块的知识库总目录（L0 导航），1132 个 .md 文档，frontmatter 覆盖 97.8%（含 module/question/story 三类），含全局 SPEC 规范与 13 模块导航。
   status: active
 -->
 
@@ -17,13 +17,13 @@
 
 ---
 
-## 一、仓库健康度（2026-10-12 实测 · Phase 1+2 首批体检）
+## 一、仓库健康度（2026-10-14 实测 · find 口径）
 
 | 维度 | 数值 | 备注 |
 |------|------|------|
-| **总 .md** | **1115** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
-| **总 README** | **793** | 1 根目录 + 13 模块 + 子目录 |
-| **frontmatter 覆盖** | **97.8%**（1091/1115）| module 811 + question 229 + story 51 = 1091（剩余 24 个为 SPEC.md / index.md 等索引页，按规范豁免）|
+| **总 .md** | **1132** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
+| **总 README** | **802** | 1 根目录 + 13 模块 + 子目录 |
+| **frontmatter 覆盖** | **97.8%**（1107/1132）| module 819 + question 238 + story 50 = 1107（剩余 25 个为 SPEC.md ×22 + CLAUDE.md / ORCHESTRATION.md / STARTUP-NEW-KB.md，按规范豁免）|
 | **结构断链** | **0** | Session 6 修复 230 处断链后闭环 |
 | **orphan 目录** | **0** | 父 README 100% 回链 |
 | **实质弱关联** | **0** | 235 处合规模板导航保留（G4 合规）|
@@ -44,7 +44,7 @@
 | 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 62 |
 | 10 | [10.business-systems](./10.business-systems/) | 业务系统速查（电商/社交/金融等） | 38 |
 | 11 | [11.product-and-pm](./11.product-and-pm/) | 产品 + PM（Product & PM）| 11 |
-| 12 | [12.interview](./12.interview/) | 高频面试题（**234 篇**）| 245 |
+| 12 | [12.interview](./12.interview/) | 高频面试题（**238 篇**）| 250 |
 | 13 | [13.story](./13.story/) | 「阿明餐厅」技术系列（**50 篇**）| 1 |
 
 ## 三、3 大沉淀模式
