@@ -76,6 +76,47 @@
 
 > 💡 **工程实现参考**：Spring Cloud Stream 将 Kafka/RocketMQ 包装为事件通道，配合 `CompletableFuture` 或 Reactor `Mono`/`Flux` 实现事件驱动的异步处理链路。
 
+最小示例——事件发布 + 异步消费 + Future 编排：
+
+```java
+// 1. 生产者：订单服务发布事件（不关心谁消费——EDA 解耦点）
+@Service
+public class OrderService {
+    private final ApplicationEventPublisher publisher;
+
+    public OrderService(ApplicationEventPublisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public void createOrder(Order order) {
+        save(order);
+        publisher.publishEvent(new OrderCreatedEvent(order.getId())); // 发布即返回
+    }
+}
+
+// 2. 消费者：@Async + @EventListener 异步消费，主线程不被库存/通知拖慢
+@Component
+public class InventoryListener {
+    @Async
+    @EventListener
+    public void onOrderCreated(OrderCreatedEvent event) {
+        deductStock(event.orderId()); // 在独立线程池执行
+    }
+}
+
+// 3. 编排：CompletableFuture 组合多个独立异步任务
+//    为什么非阻塞：库存扣减、积分、通知三者互不依赖，
+//    串行阻塞 = 延迟相加；并行 Future = 延迟取 max，且调用线程可复用
+CompletableFuture<Void> all = CompletableFuture.allOf(
+    CompletableFuture.runAsync(() -> deductStock(orderId), executor),
+    CompletableFuture.runAsync(() -> addPoints(userId), executor),
+    CompletableFuture.runAsync(() -> sendNotification(userId), executor)
+);
+all.join(); // 只在确需结果时等待
+```
+
+> 跨进程场景把 `ApplicationEventPublisher` 换成 Spring Cloud Stream 的 `StreamBridge.send("orderTopic", event)`，消费端用 `@Bean Consumer<Message<OrderCreatedEvent>>` 即可，语义不变。
+
 ## 五、如何选择？
 
 | 维度 | 事件驱动（EDA） | 异步处理 |

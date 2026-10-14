@@ -3,7 +3,7 @@
   slug: system-design/distributed-id
   type: article
   category: 主模块子文章
-  summary: 分布式ID 本应该很简单，分布式ID是在分布式系统中生成的全局唯一标识符，用于解决在多节点、高并发环境下生成唯一ID的难题。其核心需求包括**唯一性**、**有...
+  summary: 分布式ID解决多节点高并发下全局唯一标识难题，核心需求为唯一性、有序性、高性能、可扩展性：UUID、Snowflake、Leaf、Redis 自增等主流方案的原理与选型权衡。
   depth: ⭐⭐⭐
   status: active
 -->

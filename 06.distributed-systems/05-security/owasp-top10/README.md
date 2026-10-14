@@ -10,7 +10,7 @@
 
 # OWASP Top 10（2021）
 
-> OWASP（Open Worldwide Application Security Project）Top 10 是业界公认最权威的 Web 应用安全风险清单，每隔几年更新一次。本文基于 **2021 版**（最新一版）逐项解读，并给出代码层防御建议。完整列表见 <https://owasp.org/Top10/>。
+> 一句话定位：OWASP Top 10（2021 版）逐项解读——最权威的 Web 应用安全风险清单 + 代码层防御建议。
 
 ## 目录
 
@@ -26,7 +26,8 @@
 - [A10: 服务端请求伪造（SSRF）](#a10-服务端请求伪造ssrf)
 - [参考资料](#参考资料)
 
----
+OWASP（Open Worldwide Application Security Project）Top 10 是业界公认最权威的 Web 应用安全风险清单，每隔几年更新一次。本文基于 **2021 版**（最新一版），完整列表见 <https://owasp.org/Top10/>。
+
 ---
 
 ## A01: 失效的访问控制（Broken Access Control）

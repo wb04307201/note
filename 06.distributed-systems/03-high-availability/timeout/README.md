@@ -3,7 +3,7 @@
   slug: system-design/timeout
   type: article
   category: 主模块子文章
-  summary: 超时 本应该很简单
+  summary: 分布式超时控制——连接/读/写/业务 4 类超时、分级配置要点，与重试退避、熔断降级的协同策略。
   depth: ⭐⭐⭐
   status: active
 -->

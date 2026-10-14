@@ -1,6 +1,6 @@
 <!--module:
-  parent: system-design
-  slug: system-design/security/access-control/rbac
+  parent: 06.distributed-systems
+  slug: 06.distributed-systems/05-security/access-control/02-role-and-attribute/rbac
   type: article
   category: 主模块子文章
   summary: RBAC 基于角色的访问控制——User→Role→Permission 三层间接模型 + 4 变体 + 5 表 SQL 落地。

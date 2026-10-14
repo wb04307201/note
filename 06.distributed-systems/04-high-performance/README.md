@@ -80,12 +80,6 @@ graph TD
 
 ---
 
-
-- [03-ranking](product-search/03-ranking.md)
-- [01-architecture](sensitive-word-filter/01-architecture.md)
-- [02-java-implementation](sensitive-word-filter/02-java-implementation.md)
-- [03-high-concurrency-optimization](sensitive-word-filter/03-high-concurrency-optimization.md)
-- [04-selection-decision-tree](sensitive-word-filter/04-selection-decision-tree.md)
 ## 📊 本节统计
 
 > 2026-10-13 实数校对（`find` 口径）：本目录共 **20 个 README**（本文 + 14 个一级子目录 + database-optimization 下 5 个二级子目录）、**31 个 .md**。

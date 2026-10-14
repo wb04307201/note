@@ -14,9 +14,6 @@
 > **TOGAF**（The Open Group Architecture Framework）是目前最主流的企业架构框架，由 The Open Group 维护。最新版本是 **TOGAF 10**（2022 年 4 月发布）。
 
 ---
-## 引言：企业架构（TOGAF 10） 的关键决策
-
-本篇是「企业架构（TOGAF 10）」的核心章节，聚焦"该主题"在实际落地时**5 个 trade-off 的取舍与决策轴**。
 
 ## 🎯 一句话定位
 

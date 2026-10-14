@@ -129,13 +129,17 @@ cookie.setSecure(true);
 // 服务端生成 token
 String token = UUID.randomUUID().toString();
 session.setAttribute("csrf_token", token);
+```
 
-// 前端表单携带
-<form>
+```html
+<!-- 前端表单携带 -->
+<form method="post" action="/transfer">
   <input type="hidden" name="csrf_token" value="${token}">
   ...
 </form>
+```
 
+```java
 // 服务端验证
 String submitted = request.getParameter("csrf_token");
 String expected = (String) session.getAttribute("csrf_token");

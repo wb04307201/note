@@ -1,6 +1,6 @@
 <!--module:
   parent: system-design
-  slug: 12.interview/04.system-design/01-foundation/system-design-basics/architecture-diagram
+  slug: system-design/architecture-diagram
   type: article
   category: 主模块子文章
   summary: 架构图绘制 的用标准化的方式表达系统架构，帮助团队理解系统结构和组件关系
@@ -14,9 +14,9 @@
 
 > **一句话定位**：架构图绘制方法论——4+1 视图与 C4 模型两大视图体系选型与对比。
 
-## 引言：架构图绘制 的关键决策
+## 引言：架构图绘制的关键决策
 
-本篇是「架构图绘制」的核心章节，聚焦"该主题"在实际落地时**5 个 trade-off 的取舍与决策轴**。
+画架构图前要先回答三个问题：**给谁看**（受众决定抽象层级）、**看什么**（结构 / 行为 / 部署决定视图类型）、**画多重**（4+1 全面但维护成本高，C4 轻量但覆盖略窄）。本页汇总两大主流视图体系（[4+1 视图](4+1/README.md) / [C4 模型](c4-model/README.md)），并给出按受众选视图的决策表与同一系统的两种画法对比。
 
 ## 架构视图模型
 

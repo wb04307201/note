@@ -1,6 +1,6 @@
 <!--module:
   parent: system-design
-  slug: 12.interview/04.system-design/01-foundation/system-design-basics/architecture-diagram/4+1
+  slug: system-design/4-plus-1-view
   type: article
   category: 主模块子文章
   summary: Kruchten 1995 提出的五维架构描述框架，用逻辑/开发/过程/物理四个视图加场景视图完整刻画软件系统。
@@ -39,70 +39,73 @@ graph TD
 > 从外部视角，描述系统的参与者（用户）与系统功能用例的关系。反映的是系统的最终用户需求和交互设计。  
 > 
 > **通常由用例图表示**  
-> ```mermaid
-> graph LR
->     Actor1["管理员"] --> UC1["用户管理"]
->     Actor1 --> UC2["权限配置"]
->     Actor2["普通用户"] --> UC3["查看报表"]
->     Actor2 --> UC4["提交订单"]
->     System["系统边界"]
-> ```
+
+```mermaid
+graph LR
+    Actor1["管理员"] --> UC1["用户管理"]
+    Actor1 --> UC2["权限配置"]
+    Actor2["普通用户"] --> UC3["查看报表"]
+    Actor2 --> UC4["提交订单"]
+    System["系统边界"]
+```
 
 ## 逻辑视图（也叫结构视图）
 
 > 白盒视图。  
 > 从结构化视角，描述该系统对用户提供的所需功能服务所具备的组件结构和数据结构，以及一些边界约束条件，清晰的描述给用户提供的功能需求服务是如何构建的。描述该系统内部所具备了那些组织结构，以达到实现对外功能。  
 > 
-> **通常由UML的组件图和类图来表示**  
-> ```mermaid
-> classDiagram
->     class UserService {
->         +findUser()
->         +createUser()
->     }
->     class UserRepository {
->         +findBy()
->         +save()
->     }
->     class User {
->         +id: Long
->         +name: String
->     }
->     UserService --> UserRepository
->     UserRepository --> User
-> ```
+> **通常由UML的组件图和类图来表示**（选 classDiagram：逻辑视图的核心是组件间静态依赖与数据结构，类图正是静态结构的标准表示）
+
+```mermaid
+classDiagram
+    class UserService {
+        +findUser()
+        +createUser()
+    }
+    class UserRepository {
+        +findBy()
+        +save()
+    }
+    class User {
+        +id: Long
+        +name: String
+    }
+    UserService --> UserRepository
+    UserRepository --> User
+```
 
 ## 开发视图（也叫实现视图）
 
 > 白盒视图。  
 > 从结构化视角和行为视角，去描述实现系统功能的各个组件和模块是如何实现的。  
->
-> ```mermaid
-> graph TD
->     subgraph 模块结构["开发视图 — 代码模块组织"]
->         Presentation["表示层<br/>Controller"] --> Service["业务层<br/>Service"]
->         Service --> DAO["持久层<br/>Repository"]
->         DAO --> DB["数据库"]
->         Service --> Util["工具模块"]
->     end
-> ```
+
+```mermaid
+graph TD
+    subgraph 模块结构["开发视图 — 代码模块组织"]
+        Presentation["表示层<br/>Controller"] --> Service["业务层<br/>Service"]
+        Service --> DAO["持久层<br/>Repository"]
+        DAO --> DB["数据库"]
+        Service --> Util["工具模块"]
+    end
+```
 
 ## 处理视图（也叫过程视图、行为视图）
 
 > 白盒视图。  
 > 从行为视角，描述系统各个组件和模块是如何进行通信的。  
 > 
-> **通常由时序图和流程图表示**  
-> ```mermaid
-> sequenceDiagram
->     participant C as 客户端
->     participant S as 服务端
->     participant DB as 数据库
->     C->>S: HTTP 请求
->     S->>DB: SQL 查询
->     DB-->>S: 结果集
->     S-->>C: HTTP 响应
-> ```
+> **通常由时序图和流程图表示**（选 sequenceDiagram：过程视图关注组件间运行时的消息传递顺序与并发行为，时序图能显式表达调用方向与返回）
+
+```mermaid
+sequenceDiagram
+    participant C as 客户端
+    participant S as 服务端
+    participant DB as 数据库
+    C->>S: HTTP 请求
+    S->>DB: SQL 查询
+    DB-->>S: 结果集
+    S-->>C: HTTP 响应
+```
 
 ## 物理视图（也叫部署视图）
 
@@ -110,18 +113,19 @@ graph TD
 > 从交互视角，描述系统可以部署到哪些物理环境（如服务器、PC端、移动端等）上和软件环境（如虚拟机、容器、进程等）上。  
 > 
 > **通常由部署图表示**   
-> ```mermaid
-> graph TD
->     subgraph 生产环境["物理部署"]
->         LB["负载均衡<br/>Nginx"]
->         LB --> App1["App Server #1<br/>Docker"]
->         LB --> App2["App Server #2<br/>Docker"]
->         App1 --> DB1["MySQL 主"]
->         App2 --> DB2["MySQL 从"]
->         App1 --> Cache["Redis 集群"]
->         App2 --> Cache
->     end
-> ```
+
+```mermaid
+graph TD
+    subgraph 生产环境["物理部署"]
+        LB["负载均衡<br/>Nginx"]
+        LB --> App1["App Server #1<br/>Docker"]
+        LB --> App2["App Server #2<br/>Docker"]
+        App1 --> DB1["MySQL 主"]
+        App2 --> DB2["MySQL 从"]
+        App1 --> Cache["Redis 集群"]
+        App2 --> Cache
+    end
+```
 
 ## 优势和不足
 
@@ -130,7 +134,6 @@ graph TD
 > - **多视角的全面性**：4+1视图模型通过逻辑视图、开发视图、物理视图、过程视图和场景视图五个不同的维度，全面描述了一个软件系统的各个方面。这种多视角的方法使得系统设计更为清晰、完整，便于开发团队全面理解和把握系统设计。
 > - **易于理解和沟通**：每个视图关注系统的不同方面，通过特定的抽象层次和表示工具（如UML图）来表示，使得复杂系统的设计变得更为直观和易于理解。这有助于开发团队之间的沟通和协作，提高开发效率。
 > - **实际问题的解决能力**：4+1视图模型不仅仅是理论上的创新，更是基于实际软件开发过程中的经验和需求。这使得该模型在解决实际问题时表现出色，尤其是在大型和复杂系统的设计中。
-> - **教育和指导价值**：除了模型本身，Philippe Kruchten还致力于通过讲座、研讨会和出版物等方式，将自己的知识和经验传授给下一代软件工程师。这使得4+1视图模型在软件工程教育和培训中具有重要的价值。
 
 ### 不足
 

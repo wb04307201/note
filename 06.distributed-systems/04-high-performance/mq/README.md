@@ -3,7 +3,7 @@
   slug: system-design/mq
   type: article
   category: 主模块子文章
-  summary: 消息队列看作是一个存放消息的容器，当需要使用消息的时候，直接从容器中取出消息使用。由于队列 Queue 是一种先进先出的数据结构，所以消费消息时也是按照顺序来消...
+  summary: 消息队列是存放消息的容器，按先进先出顺序消费。本文对比 ActiveMQ/RabbitMQ/RocketMQ/Kafka/Pulsar 五大 MQ 的性能与特性，并讲解应用场景与常见问题。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->
@@ -22,7 +22,6 @@
 - **Queue**：队列，PTP模式下，特定生产者向特定queue发送消息，消费者订阅特定的queue完成指定消息的接收。
 - **Message**：消息体，根据不同通信协议定义的固定格式进行编码的数据包，来封装业务数据，实现消息的传输。
 
----
 ---
 
 ## 常见消息队列对比
@@ -75,7 +74,7 @@
     - **高可靠性事务场景**：选 **RocketMQ**（电商、金融）或 **RabbitMQ**（支付、订单）。
     - **大规模日志/流处理**：选 **Kafka**（监控、用户行为日志）。
     - **传统企业级项目**：选 **ActiveMQ**（JMS 兼容）。
-    - 
+
 ---
 
 ## 使用消息队列会面临的问题
@@ -102,7 +101,7 @@ sequenceDiagram
     Note over A,B,C: A 与 B/C 解耦，A 无需等待
 ```
 
-### 消峰
+### 削峰
 
 ```mermaid
 graph LR

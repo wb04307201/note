@@ -1,5 +1,5 @@
 <!--module:
-  parent: high-performance
+  parent: system-design/sensitive-word-filter
   slug: system-design/04-high-performance/sensitive-word-filter/anti-evasion
   type: deep-dive
   category: 敏感词过滤

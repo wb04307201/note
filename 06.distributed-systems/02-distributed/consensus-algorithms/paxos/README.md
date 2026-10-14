@@ -3,7 +3,7 @@
   slug: system-design/paxos
   type: article
   category: 主模块子文章
-  summary: Paxos算法 本应该很简单，Paxos算法是一种基于消息传递的分布式一致性算法，由Leslie Lamport于1990年提出，旨在解决分布式系统中多个节点在...
+  summary: Paxos算法是一种基于消息传递的分布式一致性算法，由Leslie Lamport于1990年提出：Proposer/Acceptor/Learner三角色 + Prepare/Accept两阶段，以多数派（Quorum）保证故障与分区下的一致性决策。
   depth: ⭐⭐⭐
   status: active
 -->
@@ -209,8 +209,8 @@ Paxos 是分布式共识理论的奠基性算法，它证明了一致性是**可
 
 ## 相关章节
 
-- [JWT 自建 SSO · Token + Redis 黑名单实战](../../../05-security/sso/04-jwt-implementation.md)
-- [部署与运维篇](../../../07-deployment/README.md)
 - [共识算法](../README.md)
+- [CAP 定理](../../cap-and-base/cap/README.md) — Quorum 多数派与 CP 系统的关系
+- [分布式锁](../../distributed-lock/README.md) — 共识在互斥场景的工程应用
 
 ← [返回 共识算法](../README.md)

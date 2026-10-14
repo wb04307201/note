@@ -3,7 +3,7 @@
   slug: system-design/service-degradation
   type: article
   category: 主模块子文章
-  summary: 服务降级 本应该很简单
+  summary: 服务降级是 HA 兜底——主动放弃非核心功能保核心链路，覆盖原理、实现方式、应用场景与实践要点。
   depth: ⭐⭐
   status: active
 -->

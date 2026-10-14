@@ -1,9 +1,9 @@
 <!--module:
   parent: 06.distributed-systems
-  slug: 06.distributed-systems\01-foundation\system-design-basics\togaf\adm
+  slug: system-design/togaf/adm
   type: article
   category: 主模块子文章
-  summary: 第一章：核心思想 + ADM 详解
+  summary: TOGAF ADM 架构开发方法详解：预备阶段 + A-H 九阶段循环迭代 + 需求管理贯穿始终，传统瀑布误区 vs 现代敏捷融合实践，TOGAF 10 "应用 TOGAF 方法"的裁剪思路。
   depth: ⭐⭐⭐
   status: active
 -->

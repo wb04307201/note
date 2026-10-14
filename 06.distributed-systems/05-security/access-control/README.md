@@ -1,6 +1,6 @@
 <!--module:
-  parent: system-design
-  slug: system-design/access-control
+  parent: 06.distributed-systems
+  slug: 06.distributed-systems/05-security/access-control
   type: article
   category: 主模块子文章
   summary: 访问控制是把「谁能对什么做什么」这一决策工程化的学科。
@@ -17,18 +17,15 @@
 ## 谱系与心智模型
 访问控制模型按"决策依据"形成 3 大家族：
 
-```text
-                  访问控制（Access Control）
-                          │
-        ┌─────────────────┼─────────────────┐
-        ▼                 ▼                 ▼
-  ┌──────────┐      ┌──────────┐      ┌──────────┐
-  │ 传统族    │      │ 角色属性族│      │ 关系混合族│
-  │ 身份即权限│      │ 中介间接  │      │ 关系图+组合│
-  └────┬─────┘      └────┬─────┘      └────┬─────┘
-       │                 │                 │
-       ▼                 ▼                 ▼
-   DAC / MAC        RBAC / ABAC        ReBAC / 混合
+```mermaid
+graph TD
+    AC["访问控制（Access Control）"]
+    AC --> T["传统族<br/>身份即权限"]
+    AC --> RA["角色属性族<br/>中介间接"]
+    AC --> RH["关系混合族<br/>关系图 + 组合"]
+    T --> TM["DAC / MAC"]
+    RA --> RAM["RBAC / ABAC"]
+    RH --> RHM["ReBAC / 混合"]
 ```
 
 | 模型 | 决策依据 | 粒度 | 实现复杂度 | 典型场景 |

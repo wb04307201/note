@@ -3,7 +3,7 @@
   slug: system-design/graphql
   type: article
   category: 主模块子文章
-  summary: 近年来，GraphQL API 的设计风格已从早期探索走向成熟实践，**核心原则是平衡灵活性与约束性**，避免过度自由带来的性能、安全和维护风险。
+  summary: GraphQL API 设计实战——Schema 黄金规则、查询/变更、Relay 分页与权限治理，核心是平衡灵活性与约束性。
   depth: ⭐⭐⭐
   status: active
 -->
@@ -14,7 +14,6 @@
 
 近年来，GraphQL API 的设计风格已从早期探索走向成熟实践，**核心原则是平衡灵活性与约束性**，避免过度自由带来的性能、安全和维护风险。
 
----
 ---
 
 ## **一、核心设计哲学**

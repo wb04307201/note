@@ -3,7 +3,7 @@
   slug: system-design/base
   type: article
   category: 主模块子文章
-  summary: BASE模型是分布式系统设计中针对CAP定理局限性提出的一种**柔性事务模型**，它通过放宽对强一致性的要求，换取系统的高可用性和可扩展...
+  summary: BASE 柔性事务模型（eBay Dan Pritchett 2008）：基本可用（降级/限流保核心）、软状态（允许中间态、异步同步）、最终一致性三大原则，适用高并发弱一致场景，与 ACID 对比及落地实践。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

@@ -10,7 +10,7 @@
 
 # 密钥与凭据管理（Secrets Management）
 
-> "Secrets" 指的是系统中所有需要保密的字符串：数据库密码、API Key、加密私钥、JWT 签名密钥、云厂商 AccessKey、TLS 证书……本文介绍生产环境应如何**安全存储、动态注入、定期轮换**这些凭据。
+> 一句话定位：数据库密码、API Key、加密私钥等凭据的安全存储、动态注入与定期轮换实践。
 
 ## 目录
 
@@ -253,11 +253,14 @@ public byte[] deriveKeyFromPassword(String password, byte[] salt) {
 }
 
 // HKDF：高熵 master key → 多个子密钥
+// 依赖：org.bouncycastle:bcprov-jdk18on（HKDFBytesGenerator.generateBytes 写入调用方提供的 out 数组，返回生成字节数）
 public byte[] deriveSubKey(byte[] masterKey, String info, int len) {
     HKDFParameters params = new HKDFParameters(masterKey, /*salt*/ null, info.getBytes());
-    HKDFBytesGenerator gen = new HKDFBytesGenerator();
+    HKDFBytesGenerator gen = new HKDFBytesGenerator(new SHA256Digest());
     gen.init(params);
-    return gen.generateBytes(len);
+    byte[] out = new byte[len];
+    gen.generateBytes(out, 0, len);
+    return out;
 }
 ```
 

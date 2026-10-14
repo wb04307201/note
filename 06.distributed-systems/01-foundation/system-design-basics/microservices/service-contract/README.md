@@ -3,7 +3,7 @@
   slug: system-design/service-contract
   type: article
   category: 主模块子文章
-  summary: ⬅️ [返回微服务](../README.md) | ⬅️ [服务间通信](../service-communication/README.md) | ➡️ [...
+  summary: 服务契约设计与管理：API-First 设计流程、OpenAPI/Swagger 与 Protobuf 契约编写、Pact 消费者驱动契约测试、兼容 vs 破坏性变更判定、契约演进与治理机制。
   depth: ⭐⭐⭐⭐
   status: active
 -->

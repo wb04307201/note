@@ -1,6 +1,6 @@
 <!--module:
   parent: 06.distributed-systems
-  slug: 06.distributed-systems\05-security\access-control\03-relationship-and-hybrid\rebac
+  slug: 06.distributed-systems/05-security/access-control/03-relationship-and-hybrid/rebac
   type: article
   category: 主模块子文章
   summary: ReBAC 基于关系的权限：Google Zanzibar + SpiceDB/Casbin 工程化

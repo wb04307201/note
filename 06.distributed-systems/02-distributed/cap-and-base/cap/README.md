@@ -3,7 +3,7 @@
   slug: system-design/cap
   type: article
   category: 主模块子文章
-  summary: CAP 本应该很简单，CAP定理是分布式系统设计中的一个核心理论，由计算机科学家埃里克·布鲁尔（Eric Brewer）在2000年提出，后由麻省理工学院的赛斯...
+  summary: CAP定理是分布式系统设计中的一个核心理论，由Eric Brewer在2000年提出、Gilbert与Lynch于2002年严格证明：一致性、可用性、分区容错三者不可兼得，P必选，CP/AP二选一决定架构基因。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

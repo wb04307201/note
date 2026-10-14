@@ -1,6 +1,6 @@
 <!--module:
   parent: 06.distributed-systems
-  slug: 06.distributed-systems\05-security\access-control\01-traditional\mac
+  slug: 06.distributed-systems/05-security/access-control/01-traditional/mac
   type: article
   category: 主模块子文章
   summary: MAC 强制访问控制：密级标签 + BLP/Biba 形式化模型（含 SELinux 实战）
@@ -21,17 +21,13 @@
 **与 DAC 的关键区别**：DAC 中所有者可"自主"转让权限；MAC 中即使你是资源所有者，也不能把"绝密"文件授予"公开"级别的主体——系统会拒绝。
 
 ## 核心模型图
-```text
-            ┌───────────────────────────────┐
-            │   密级标签（Label）            │
-            │                               │
-主体 S ────▶│ Clearance: 机密                │
-            │                               │
-客体 O ────▶│ Classification: 秘密            │
-            │                               │
-            │ BLP 规则: Clearance ≥ Class    │
-            │ → 允许读                      │
-            └───────────────────────────────┘
+```mermaid
+flowchart LR
+    S["主体 S<br/>Clearance: 机密"] --> CHECK
+    O["客体 O<br/>Classification: 秘密"] --> CHECK
+    CHECK{"BLP 规则<br/>Clearance ≥ Classification?"}
+    CHECK -->|"机密 ≥ 秘密"| ALLOW["✅ 允许读"]
+    CHECK -->|"否则"| DENY["❌ 拒绝"]
 ```
 
 ### Bell-LaPadula（保密性）

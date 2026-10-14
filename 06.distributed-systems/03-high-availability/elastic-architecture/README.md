@@ -3,9 +3,10 @@
   slug: system-design/elastic-architecture
   type: article
   category: 主模块子文章
-  summary: 弹性架构
+  summary: 弹性架构通过自动扩缩容（水平/垂直）、负载均衡与无状态设计按需匹配流量波动：核心特性、典型应用场景、技术实现方式、优势与挑战、案例参考与 Kubernetes HPA 示例。
   depth: ⭐⭐⭐⭐
   status: active
+  tags: [弹性架构, 自动扩缩容, Kubernetes HPA]
 -->
 
 # 弹性架构

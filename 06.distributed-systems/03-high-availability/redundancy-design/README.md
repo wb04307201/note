@@ -3,9 +3,10 @@
   slug: system-design/redundancy-design
   type: article
   category: 主模块子文章
-  summary: 冗余设计 本应该很简单
+  summary: 冗余设计是高可用的物质基础——数据/服务/地理多副本、故障转移与一致性模型的工程实践，配合熔断限流形成完整 HA 体系。
   depth: ⭐⭐⭐⭐
   status: active
+  tags: [冗余设计, 高可用, 多副本]
 -->
 
 # 冗余设计

@@ -1,16 +1,14 @@
 <!--module:
   parent: system-design
-  slug: system-design/01-traditional
+  slug: 06.distributed-systems/05-security/access-control/01-traditional
   type: article
   category: 主模块子文章
-  summary: 传统访问控制：身份即权限 的一句话定位：传统访问控制以"主体"本身作为决策依据，不引入中间抽象
+  summary: 传统访问控制以"主体"本身作为决策依据，不引入中间抽象——DAC（所有者自主授权）与 MAC（系统按密级强制裁决）两大根本分支。
   depth: ⭐
   status: active
 -->
 
 # 传统访问控制：身份即权限
-
----
 
 > 一句话定位：传统访问控制以"主体"本身作为决策依据，不引入中间抽象。
 

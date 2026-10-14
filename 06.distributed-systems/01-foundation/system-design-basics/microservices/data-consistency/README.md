@@ -3,7 +3,7 @@
   slug: system-design/data-consistency
   type: article
   category: 主模块子文章
-  summary: ⬅️ [返回微服务](../README.md) | ⬅️ [服务契约](../service-contract/README.md) | ➡️ [演进与组织]...
+  summary: 微服务数据一致性 4 大模式——Database per Service / Saga / CQRS / Event Sourcing 的机制、选型与最终一致性实战。
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -12,7 +12,6 @@
 
 > ⬅️ [返回微服务](../README.md) | ⬅️ [服务契约](../service-contract/README.md) | ➡️ [演进与组织](../migration-and-organization/README.md)
 
----
 ---
 
 ## 🎯 一句话定位

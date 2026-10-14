@@ -3,7 +3,7 @@
   slug: system-design/retry
   type: article
   category: 主模块子文章
-  summary: 重试 本应该很简单
+  summary: 重试是容错基础——指数退避 + Jitter、幂等设计与熔断协同，从原理、场景、策略到风险控制避免放大故障。
   depth: ⭐⭐⭐
   status: active
 -->

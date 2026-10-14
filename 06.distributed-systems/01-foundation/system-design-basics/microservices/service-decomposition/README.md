@@ -3,7 +3,7 @@
   slug: system-design/service-decomposition
   type: article
   category: 主模块子文章
-  summary: ⬅️ [返回微服务](../README.md) | ➡️ [服务间通信](../service-communication/README.md)
+  summary: 微服务拆分策略：按业务能力/子域/变更频率 3 大拆分原则、粒度判断 3 维度、领域驱动拆分方法、5 大反模式（分布式单体/共享数据库等）、电商订单域三轮拆分实战与检查清单。
   depth: ⭐⭐⭐⭐
   status: active
 -->

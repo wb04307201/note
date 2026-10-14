@@ -1,6 +1,6 @@
 <!--module:
-  parent: system-design
-  slug: system-design/04-cloud-native-trends
+  parent: 06.distributed-systems/09-emerging-tech
+  slug: 06.distributed-systems/09-emerging-tech/04-cloud-native-trends
   type: article
   category: 主模块子文章
   summary: 一份按技术趋势梳理的云原生速查手册：从 Serverless 到 AI 基础设施的演进全景。
@@ -12,7 +12,6 @@
 
 > 一份按技术趋势梳理的云原生速查手册：从 Serverless 到 AI 基础设施的演进全景。
 
----
 ---
 
 ## 一、2026 云原生 4 大趋势

@@ -3,7 +3,7 @@
   slug: system-design/uuid-v7
   type: article
   category: 主模块子文章
-  summary: UUID v7 本应该很简单，UUID v7 是 **RFC 9562** 标准定义的最新版本，专为高并发数据库和分布式系统设计。其核心特性为 **时间排序性*...
+  summary: UUID v7 是 RFC 9562 标准定义的时间排序 UUID：前 48 位毫秒级 Unix 时间戳 + 随机位，专为高并发数据库与分布式系统设计，兼顾全局唯一、可排序索引友好与隐私保护。
   depth: ⭐⭐⭐
   status: active
 -->

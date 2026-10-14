@@ -3,7 +3,7 @@
   slug: system-design/05-security
   type: article
   category: 主模块子文章
-  summary: 一句话定位：**系统安全是软件的生命线——从鉴权到加密，从访问控制到 OWASP 防御，构建纵深安全体系。**
+  summary: 安全篇导航——鉴权与授权、访问控制（DAC/MAC/RBAC/ABAC）、API 防护、密码学加密四大方向，构建纵深安全体系。
   depth: ⭐⭐
   status: active
 -->

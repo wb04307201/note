@@ -3,8 +3,8 @@
   slug: system-design/multi-site-active-active
   type: article
   category: 主模块子文章
-  summary: 异地多活 本应该很简单
-  depth: ⭐⭐⭐⭐⭐
+  summary: 异地多活是 HA 最高形态——跨地域部署、数据同步与流量调度的核心目标、架构模式与工程挑战总览。
+  depth: ⭐⭐⭐
   status: active
 -->
 

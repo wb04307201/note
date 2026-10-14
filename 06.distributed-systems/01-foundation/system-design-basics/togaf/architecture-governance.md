@@ -1,6 +1,6 @@
 <!--module:
   parent: 06.distributed-systems
-  slug: 06.distributed-systems\01-foundation\system-design-basics\togaf\architecture-governance
+  slug: system-design/togaf/architecture-governance
   type: article
   category: 主模块子文章
   summary: 第四章：架构治理 + 落地实践

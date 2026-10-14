@@ -1,6 +1,6 @@
 <!--module:
   parent: system-design
-  slug: 12.interview/04.system-design/01-foundation/02-evolution/02-serverless-architecture
+  slug: system-design/serverless-architecture
   type: article
   category: 主模块子文章
   summary: 一份按形态梳理的 Serverless 速查手册：从函数即服务到边缘计算的完整实战。
@@ -17,7 +17,7 @@
 
 Serverless 架构：FaaS / BaaS / Knative 全场景实战 的关键不是'选型'——是**选完之后怎么在 5 个 trade-off 里活下来**。
 
-本篇从主流路径的取舍切入，比较几种主流路径并讲清取舍。
+本篇按「是什么 → 三大形态 → Lambda/Knative/Workers 实战 → 最佳实践 → 适用边界 → 架构模式」的顺序展开，帮你在冷启动、成本、厂商绑定之间做出正确取舍。
 
 ---
 
@@ -227,7 +227,7 @@ async function handleRequest(request) {
   return new Response('Hello from edge!', {
     headers: { 'content-type': 'text/plain' }
   });
-});
+}
 ```
 
 ### 5.3 适用场景

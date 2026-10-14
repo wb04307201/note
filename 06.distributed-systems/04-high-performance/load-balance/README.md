@@ -3,7 +3,7 @@
   slug: system-design/load-balance
   type: article
   category: 主模块子文章
-  summary: 负载均衡 本应该很简单，指的是将用户请求分摊到不同的服务器上处理，以提高系统整体的并发处理能力以及可靠性。分为服务端（硬件 F5 / 软件 Nginx、LVS）和客户端（Spring Cloud LoadBalancer）两类，涵盖轮询、加权、最少连接、一致性哈希等常见算法。
+  summary: 负载均衡将请求分摊到多台服务器以提升并发与可靠性。分为服务端（硬件 F5 / 软件 Nginx、LVS）和客户端（Spring Cloud LoadBalancer）两类，涵盖轮询、加权、最少连接、一致性哈希等常见算法。
   depth: ⭐⭐⭐⭐
   status: active
 -->

@@ -1,6 +1,6 @@
 <!--module:
   parent: 06.distributed-systems
-  slug: 06.distributed-systems\01-foundation\system-design-basics\archimate\in-practice
+  slug: system-design/archimate-in-practice
   type: article
   category: 主模块子文章
   summary: 第三章：落地：ArchiMate × TOGAF × C4 × DDD

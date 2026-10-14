@@ -3,7 +3,7 @@
   slug: system-design/service-discovery
   type: article
   category: 主模块子文章
-  summary: 服务注册与发现 本应该很简单，服务注册与发现是微服务架构的核心基础设施，负责管理服务实例的地址信息，使服务之间能够动态发现和通信
+  summary: 服务注册与发现是微服务架构的核心基础设施：管理服务实例地址信息，应对实例动态启停与扩缩容，实现服务间动态发现和通信（客户端发现 vs 服务端发现、Eureka/Consul/Nacos 对比）。
   depth: ⭐⭐⭐⭐
   status: active
 -->

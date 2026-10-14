@@ -1,5 +1,5 @@
 <!--module:
-  parent: 12.interview/04.system-design/05-security/sso
+  parent: system-design/05-security/sso
   slug: system-design/05-security/sso/05-decision-tree
   type: topic
   category: 选型决策

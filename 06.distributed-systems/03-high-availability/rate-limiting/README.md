@@ -3,9 +3,10 @@
   slug: system-design/rate-limiting
   type: article
   category: 主模块子文章
-  summary: 限流 本应该很简单
+  summary: 限流是高可用的入口闸门：通过控制请求流量防止系统过载，涵盖限流原理、常见策略（拒绝/排队/降级）、固定窗口/滑动窗口/漏桶/令牌桶算法、应用场景与实施要点。
   depth: ⭐⭐⭐⭐
   status: active
+  tags: [限流, 令牌桶, 高可用]
 -->
 
 # 限流

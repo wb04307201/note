@@ -3,9 +3,10 @@
   slug: system-design/code-quality
   type: article
   category: 主模块子文章
-  summary: Java 代码质量提升 本应该很简单
+  summary: Java 代码质量工程实践总览：命名规范、异常处理、并发安全、测试等核心方面，以及代码质量作为高可用第一道防线（防御性编程/幂等/资源管理）与限流熔断重试降级模式的配合关系。
   depth: ⭐⭐
   status: active
+  tags: [代码质量, Java, 防御性编程]
 -->
 
 # Java 代码质量提升

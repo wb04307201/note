@@ -3,7 +3,7 @@
   slug: system-design/it4it
   type: article
   category: 主模块子文章
-  summary: **IT4IT** 是 The Open Group 维护的 IT 价值流参考架构标准（Strategy/Design/Operate/Consume 视角），回答"IT 部门怎么交付服务"...
+  summary: IT4IT 3.0（The Open Group）是 IT 价值流参考架构标准：4 价值流（R2F/R2S/D2C/P2D）+ 9 功能组件 + 18 数据对象，回答"IT 部门怎么把业务请求变成运行中的服务"，与 ITIL/TOGAF/ArchiMate 互补。
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -16,9 +16,15 @@
 > 与 TOGAF（治理方法论）、ArchiMate（建模语言）并列为"数字开放标准组合"第三件套。  
 > 最新版本是 **IT4IT 3.0**（2024 年发布），相比 2.x 强化了**数字产品交付**和**云原生**适配。  
 ---
-## 引言：IT 价值流参考架构（IT4IT 3.0） 的关键决策
+## 引言：IT4IT 落地的关键决策
 
-本篇是「IT 价值流参考架构（IT4IT 3.0）」的核心章节，聚焦"该主题"在实际落地时**5 个 trade-off 的取舍与决策轴**。
+IT4IT 不是"必须全盘照做"的标准——落地时先过 5 组取舍：
+
+1. **落地粒度 ↔ 工具链成本**：全量实现 9 功能组件 + 18 数据对象需要重型 ITSM 工具链；多数团队先落 Service Backbone + R2F 一条价值流即可见效。
+2. **Service Backbone 全量贯通 ↔ 渐进接入**：服务目录数据一次性打通收益最大，但迁移成本高；可按价值流逐条接入，接受过渡期的数据孤岛。
+3. **IT4IT ↔ ITIL 边界**：ITIL 管"流程怎么执行"，IT4IT 管"数据与工具链怎么串"——已有 ITIL 流程的组织应把 IT4IT 当数据模型补充，而不是推倒重来。
+4. **标准化 ↔ 部门自治**：统一数据对象命名（如 Service、Release）降低集成成本，但会触碰各团队既有工具习惯，需要治理机制兜底。
+5. **版本选择**：3.0 强化了数字产品与云原生（Plan to Deliver / CI-CD 集成），新落地选 3.0；存量 2.x 认证体系可平滑映射。
 
 ## 🎯 一句话定位
 

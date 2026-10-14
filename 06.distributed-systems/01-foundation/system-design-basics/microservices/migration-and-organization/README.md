@@ -3,7 +3,7 @@
   slug: system-design/migration-and-organization
   type: article
   category: 主模块子文章
-  summary: ⬅️ [返回微服务](../README.md) | ⬅️ [数据一致性](../data-consistency/README.md)
+  summary: 微服务演进与组织对齐：何时不该微服务（7 信号 + Monolith First）、绞杀者/抽象分支/修缮 3 大演进模式、数据迁移双写切换流程、康威定律与团队拓扑 4 类型、DevOps 能力建设路径与迁移反模式。
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -13,9 +13,6 @@
 > ⬅️ [返回微服务](../README.md) | ⬅️ [数据一致性](../data-consistency/README.md)
 
 ---
-## 引言：演进与组织 的关键决策
-
-本篇是「演进与组织」的核心章节，聚焦"该主题"在实际落地时**5 个 trade-off 的取舍与决策轴**。
 
 ## 🎯 一句话定位
 

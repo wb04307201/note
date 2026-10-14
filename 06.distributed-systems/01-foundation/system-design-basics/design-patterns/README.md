@@ -126,6 +126,10 @@ strategies.get(type).pay(order);       // 类型缺失直接暴露，不静默�
 
 ---
 
-← [返回 系统设计基础](../README.md)
+## 相关章节
 
-**相关模块**：[`01.java-and-jvm / 设计模式`](../../../../01.java-and-jvm/04-patterns/README.md) — Java 视角的 GoF 模式实现与并发安全考量
+- [`01.java-and-jvm / 设计模式`](../../../../01.java-and-jvm/04-patterns/README.md) — Java 视角的 GoF 模式实现与并发安全考量
+- [`架构认知的演进 · OOD 阶段`](../architecture-evolution/README.md#二阶段一面向对象设计ood-认知是什么) — 设计模式是 OOD 认知的词汇表，向上衔接 DDD/TOGAF
+- [`面向对象设计 OOD`](../ood/README.md) — SOLID/GRASP 原则，模式选型的判断依据
+
+← [返回 系统设计基础](../README.md)

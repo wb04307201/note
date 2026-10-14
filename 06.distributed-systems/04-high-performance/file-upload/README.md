@@ -163,7 +163,7 @@ for (let i = 0; i < totalChunks; i++) {
 ### 5.1 整文件一次上传
 
 ```html
-// ❌ 10GB 文件一次 POST → 超时/内存溢出
+<!-- ❌ 10GB 文件一次 POST → 超时/内存溢出 -->
 <form enctype="multipart/form-data">
     <input type="file" name="file"/>
 </form>

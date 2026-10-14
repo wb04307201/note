@@ -3,7 +3,7 @@
   slug: system-design/service-communication
   type: article
   category: 主模块子文章
-  summary: ⬅️ [返回微服务](../README.md) | ⬅️ [服务拆分策略](../service-decomposition/README.md) | ➡️...
+  summary: 微服务间通信选型：同步（REST/gRPC/GraphQL）vs 异步（事件驱动）范式对比、协议选型速查、消息可靠性三段式（生产/存储/消费）、API 版本管理与弃用时间表、超时重试与幂等设计、通信反模式。
   depth: ⭐⭐⭐⭐
   status: active
 -->

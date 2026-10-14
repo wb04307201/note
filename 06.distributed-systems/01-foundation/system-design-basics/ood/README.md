@@ -3,7 +3,7 @@
   slug: system-design/ood
   type: article
   category: 主模块子文章
-  summary: 面向对象设计 本应该很简单，面向对象设计（Object-Oriented Design, OOD）是将业务世界建模为相互协作的对象的系统化方法，是软件工程中最基...
+  summary: 面向对象设计（OOD）系统化方法：封装/继承/多态三大基石、SOLID 与 GRASP 设计原则、从需求到代码的设计流程（识别对象→职责分配→关系设计）、优势与局限、实践建议。
   depth: ⭐⭐
   status: active
 -->

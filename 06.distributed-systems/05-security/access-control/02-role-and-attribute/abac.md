@@ -1,6 +1,6 @@
 <!--module:
   parent: 06.distributed-systems
-  slug: 06.distributed-systems\05-security\access-control\02-role-and-attribute\abac
+  slug: 06.distributed-systems/05-security/access-control/02-role-and-attribute/abac
   type: article
   category: 主模块子文章
   summary: ABAC 基于属性动态授权：OPA/Rego 实战（含性能开销量化）
@@ -160,7 +160,7 @@ PERMIT IF
 
 **缺点**:
 - 实现复杂度高，需要策略引擎和表达式引擎
-- 性能开销（每次访问都评估策略）
+- 性能开销（每次访问都评估策略；量级参考：OPA 以 sidecar/库方式本地决策、策略 bundle 常驻内存时单次评估通常为亚毫秒级，远程决策服务则叠加网络 RTT）
 - 策略难以直观理解（vs 角色-权限映射）
 - 策略冲突排查困难（多条策略可能同时匹配）
 - 对开发/运维要求高

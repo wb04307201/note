@@ -5,13 +5,12 @@
   category: 主模块子文章
   summary: 为什么 `localStorage` 存储 JWT 是危险的？JWT（JSON Web Token）是现代 Web 应用最常用的无状态认证方案，但其存储方式直接...
   depth: ⭐⭐⭐⭐⭐
-  depth: ⭐⭐⭐⭐⭐
   status: active
 -->
 
 # JWT 存储安全
 
-> 为什么 `localStorage` 存储 JWT 是危险的？JWT（JSON Web Token）是现代 Web 应用最常用的无状态认证方案，但其存储方式直接决定了系统的安全性。本文从 JWT 结构出发，详解常见攻击、安全存储与撤销策略。
+> 一句话定位：JWT 的存储方式直接决定安全性——为什么 `localStorage` 存 Token 危险，HttpOnly Cookie 为何是首选。
 
 ## 目录
 
@@ -23,6 +22,8 @@
 - [Token 撤销](#token-撤销)
 - [相关章节](#相关章节)
 - [参考资料](#参考资料)
+
+本文从 JWT 结构（Header / Payload / Signature）出发，依次覆盖：标准 Claims 与服务端验证流程、5 类常见攻击（`alg=none` / 算法混淆 / 弱 Secret / 不验 `aud` / 不绑定用户）与防御、5 种浏览器存储方案对比、以及 Token 撤销策略（短 TTL / 黑名单 / Rotation / tokenVersion）。
 
 ## JWT 结构
 
@@ -233,18 +234,46 @@ Set-Cookie: accessToken=eyJhbGciOi...; HttpOnly; Secure; SameSite=Lax; Path=/; M
 
 ### React + Axios 集成示例
 
+> 注意：主推方案中 accessToken 放在 **HttpOnly Cookie**，JS 无法用 `document.cookie` 读取——正确做法是 `withCredentials` 让浏览器自动携带 Cookie，而不是手动拼 `Authorization` 头。下面给出两种正确形态。
+
+**形态 1：HttpOnly Cookie 自动携带（对应方案 1）**
+
 ```javascript
-// 使用 Axios 拦截器自动添加 Cookie 中的 Token
+// 全局开启凭证携带：跨域请求也会自动带上 HttpOnly Cookie
+axios.defaults.withCredentials = true;
+
+// 服务端需配合返回：
+//   Access-Control-Allow-Credentials: true
+//   Access-Control-Allow-Origin: https://app.example.com   // 不能是 *
+
+// 登出交给服务端：Set-Cookie 过期时间即可，JS 无需（也无法）手动清除 HttpOnly Cookie
+function logout() {
+  axios.post('/auth/logout'); // 服务端吊销 Refresh Token 并使 Cookie 过期
+}
+```
+
+**形态 2：内存 accessToken + HttpOnly Refresh Cookie（对应方案 2，SPA 推荐）**
+
+```javascript
+let accessToken = null; // 闭包变量，XSS 无法枚举；页面刷新后靠 refresh 静默续期
+
 axios.interceptors.request.use(config => {
-  const token = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
+  config.withCredentials = true; // 携带 HttpOnly 的 refreshToken Cookie
   return config;
 });
 
-// 登出时清除 Cookie（需服务端配合设置过期时间）
-function logout() {
-  document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-}
+axios.interceptors.response.use(null, async error => {
+  const { config, response } = error;
+  if (response?.status === 401 && !config._retried) {
+    config._retried = true;
+    // refreshToken 在 HttpOnly Cookie 中，浏览器自动携带，JS 只负责触发续期
+    const { data } = await axios.post('/auth/refresh');
+    accessToken = data.accessToken;
+    return axios(config);
+  }
+  return Promise.reject(error);
+});
 ```
 
 ### 安全增强措施

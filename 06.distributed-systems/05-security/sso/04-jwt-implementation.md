@@ -1,5 +1,5 @@
 <!--module:
-  parent: 12.interview/04.system-design/05-security/sso
+  parent: system-design/05-security/sso
   slug: system-design/05-security/sso/04-jwt-implementation
   type: topic
   category: JWT 实战
@@ -49,6 +49,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyLTEyMyIsIm5hbWUiOiJaaGFuZ3N
 @Service
 public class JwtService {
     private static final String SECRET = "your-256-bit-secret-key-change-in-production";
+    private static final String REFRESH_SECRET = "another-256-bit-secret-for-refresh-token"; // Refresh Token 独立 secret
     private static final long ACCESS_TOKEN_TTL = 3600_000;        // 1h
     private static final long REFRESH_TOKEN_TTL = 7 * 24 * 3600_000; // 7d
     

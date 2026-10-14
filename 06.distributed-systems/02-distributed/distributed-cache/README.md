@@ -3,7 +3,7 @@
   slug: system-design/distributed-cache
   type: article
   category: 主模块子文章
-  summary: 分布式缓存 本应该很简单，分布式缓存是提升系统读写性能、减轻数据库压力的关键组件。本文涵盖 Redis Cluster 架构、缓存三大经典问题（穿透/击穿/雪崩...
+  summary: 分布式缓存是提升系统读写性能、减轻数据库压力的关键组件：Redis Cluster 架构、缓存三大经典问题（穿透/击穿/雪崩）及解决方案、缓存一致性策略与淘汰策略。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

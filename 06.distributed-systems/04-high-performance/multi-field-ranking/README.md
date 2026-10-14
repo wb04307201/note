@@ -49,7 +49,7 @@
 
 ```text
 normalized = (x - min) / (max - min)
-```text
+```
 - **适用场景**：值域已知且有界，如评分（0-5）、百分比（0-100%）
 - **优点**：结果严格落在 [0, 1]，直观可解释
 - **缺点**：对异常值极度敏感
@@ -61,12 +61,12 @@ normalized = (x - min) / (max - min)
 p5 = percentile(values, 5)
 p95 = percentile(values, 95)
 normalized = clamp((x - p5) / (p95 - p5), 0, 1)
-```text
+```
 ### 2.2 Z-Score 标准化
 
 ```text
 normalized = (x - μ) / σ
-```text
+```
 - **适用场景**：数据近似正态分布，如信用分、考试成绩
 - **优点**：考虑了数据分布的集中趋势和离散程度
 - **缺点**：
@@ -76,12 +76,12 @@ normalized = (x - μ) / σ
 
 ```text
 normalized = 1 / (1 + e^(-(x - μ) / σ))
-```text
+```
 ### 2.3 排名百分位（Percentile Rank）
 
 ```text
 percentile_rank = (rank / total_count) × 100
-```text
+```
 - **适用场景**：不需要保留原始值差异，只关心相对位置
 - **优点**：
   - 天然抗异常值（只关心排名，不关心具体值差多少）
@@ -95,7 +95,7 @@ percentile_rank = (rank / total_count) × 100
 
 ```text
 normalized = log(1 + x) / log(1 + max)
-```text
+```
 - **适用场景**：**幂律分布**数据（销量、点击数、粉丝数、搜索量）
 - **为什么重要**：这是多字段排名中**最常用的归一化方法之一**
 - **核心作用**：避免"头部通吃"
@@ -114,7 +114,7 @@ normalized = log(1 + x) / log(1 + max)
 评分 3.5-4.0 → 3分
 评分 3.0-3.5 → 2分
 评分 < 3.0  → 1分
-```text
+```
 - **适用场景**：业务规则需要离散等级、合规要求（如信用分级）
 - **优点**：
   - 业务人员易于理解和调整
@@ -130,7 +130,7 @@ normalized = log(1 + x) / log(1 + max)
 ├─ 值域已知有界 → Min-Max（异常值多则用 P5/P95 裁剪版）
 ├─ 只关心相对位置 → 排名百分位
 └─ 业务需要离散等级 → 分段映射
-```text
+```
 > **实战经验**：一个排名系统通常混合使用多种归一化方法。电商商品排序中，销量用 Log 归一化、评分用 Min-Max、价格用反向 Min-Max（越低越好）、新鲜度用指数衰减。
 
 ## 加权公式设计
@@ -141,7 +141,7 @@ normalized = log(1 + x) / log(1 + max)
 ```text
 score = w1 × normalize(f1) + w2 × normalize(f2) + ... + wn × normalize(fn)
 约束: Σ wi = 1, wi ≥ 0
-```text
+```
 - **优点**：
   - 简单、可解释、运营人员可直接调整权重
   - 计算复杂度 O(n)，适合实时计算
@@ -155,7 +155,7 @@ score = w1 × normalize(f1) + w2 × normalize(f2) + ... + wn × normalize(fn)
 
 ```text
 score = f1^w1 × f2^w2 × ... × fn^wn
-```text
+```
 - **核心特性**：某字段为 0 时整体为 0（"一票否决"）
 - **优点**：
   - 自动实现"短板效应"（木桶原理）
@@ -169,7 +169,7 @@ score = f1^w1 × f2^w2 × ... × fn^wn
 
 ```text
 先按主字段排序，主字段相同时按次字段排序
-```text
+```
 - **例**：先按评分降序，评分相同时按销量降序，销量相同时按新鲜度降序
 - **优点**：
   - 业务规则清晰，易于解释
@@ -185,7 +185,7 @@ score = f1^w1 × f2^w2 × ... × fn^wn
 score = sigmoid(Σ wi × normalize(fi))
 或
 score = softmax(Σ wi × normalize(fi)) × T
-```text
+```
 - **适用场景**：需要输出概率的推荐系统（CTR 预估、转化率预估）
 - **优点**：
   - 输出可解释为概率
@@ -224,7 +224,7 @@ score = softmax(Σ wi × normalize(fi)) × T
 │ 618大促   │ 0.50 │ 0.30 │ 0.20 │ 6.1-6.18  │
 │ 新品推广期│ 0.20 │ 0.30 │ 0.50 │ 按需       │
 └──────────┴──────┴──────┴──────┴───────────┘
-```text
+```
 ### 4.2 上下文驱动（Context-Aware）
 
 - 不同场景、不同入口使用不同权重
@@ -250,7 +250,7 @@ score = softmax(Σ wi × normalize(fi)) × T
 
 ```text
 final_score = base_score × decay_factor^(age_in_hours)
-```text
+```
 - **decay_factor** 典型值：0.95 ~ 0.99（每小时衰减 1% ~ 5%）
 - **适用场景**：
   - 新闻/资讯 Feed：衰减快（decay ≈ 0.90）
@@ -260,7 +260,7 @@ final_score = base_score × decay_factor^(age_in_hours)
 
 ```text
 final_score = base_score × 0.5^(age_in_hours / half_life)
-```text
+```
 ### 4.5 A/B 测试驱动权重优化
 
 - 多组权重配置并行运行（Control vs Variant A vs Variant B）
@@ -298,7 +298,7 @@ ZREVRANK leaderboard:products "product:1001"
 
 # 查询某商品的分数
 ZSCORE leaderboard:products "product:1001"
-```sql
+```
 - **优点**：O(log N) 排名查询，支持范围查询、分页
 - **缺点**：字段更新需重算并更新 ZSet 中的分数
 - **适用**：数据量 10 万 ~ 千万级，排名查询 QPS 高
@@ -313,7 +313,7 @@ FROM products
 WHERE category_id = 5
 ORDER BY score DESC
 LIMIT 20 OFFSET 0;
-```javascript
+```
 - **索引优化**：对常用查询条件建立复合索引
 - **缺点**：
   - 计算列无法有效利用索引（MySQL 5.7+ 支持生成列索引）
@@ -339,7 +339,7 @@ LIMIT 20 OFFSET 0;
     }
   }
 }
-```text
+```
 ### 5.4 预计算 vs 实时计算
 
 | 方案 | 延迟 | 实时性 | 适用场景 | 复杂度 |
@@ -365,7 +365,7 @@ LIMIT 20 OFFSET 0;
   3. 重新计算综合分数
   4. 更新 Redis ZSet: ZADD leaderboard:products <new_score> <product_id>
   5. （可选）广播分数变更事件，通知前端刷新
-```text
+```
 - **关键**：只重算变更条目，避免全量重算
 - **定时兜底**：每日凌晨全量重算一次，防止增量更新累积误差
 
@@ -433,19 +433,19 @@ LIMIT 20 OFFSET 0;
 
 ```text
 ❌ score = sales × 0.5 + rating × 0.5
-```text
+```
 **问题**：销量（0 ~ 100,000）和评分（0 ~ 5）量纲差 4 个数量级，销量完全主导结果，评分权重形同虚设。
 
 ```text
 ✅ 先归一化再加权
    score = 0.5 × log1p(sales)/log1p(max_sales) + 0.5 × (rating - min_rating)/(max_rating - min_rating)
-```text
+```
 ### 反模式 2：所有字段用同一种归一化
 
 ```text
 ❌ 幂律分布的销量用 Min-Max → 头部通吃
    min=0, max=100000, 销量 100 的商品得分 = 0.001（几乎为 0）
-```text
+```
 **问题**：Min-Max 在幂律分布下，绝大多数商品得分集中在 0 附近，只有头部极少数商品有显著分数。
 
 ```text
@@ -453,12 +453,12 @@ LIMIT 20 OFFSET 0;
    销量（幂律）→ Log 归一化
    评分（有界）→ Min-Max
    信用分（正态）→ Z-Score
-```text
+```
 ### 反模式 3：固定权重不调整
 
 ```text
 ❌ 上线后权重 never changes
-```text
+```
 **问题**：市场变化、用户行为变化、季节性变化都会让初始权重过时。618 期间和日常的商品排序权重应该不同。
 
 ```text
@@ -466,12 +466,12 @@ LIMIT 20 OFFSET 0;
    - 建立权重配置后台
    - 定期（月/季度）回顾排名效果指标
    - 大促前切换权重策略
-```text
+```
 ### 反模式 4：实时计算全量排名
 
 ```text
 ❌ 每次请求都计算 100 万条商品的综合分数
-```text
+```
 **问题**：假设 100 万商品 × 5 个字段 × 每次请求计算 = 500 万次运算/QPS，QPS=1000 时就是 50 亿次运算/秒。
 
 ```text
@@ -479,13 +479,13 @@ LIMIT 20 OFFSET 0;
    - 定时任务（每小时）全量计算一次
    - 字段变更时通过 MQ 增量更新
    - 查询时直接读 Redis ZSet
-```text
+```
 ### 反模式 5：忽略字段间的相关性
 
 ```text
 ❌ 价格高（归一化后低分）+ 评分高（归一化后高分）
    线性加权后中等分数，可能排在中间
-```text
+```
 **问题**：高价高质的商品可能是目标用户群的最优选择，但线性加权将其埋没。
 
 ```text
@@ -493,12 +493,12 @@ LIMIT 20 OFFSET 0;
    - 乘法混合：score = price_score^w1 × rating_score^w2
    - ML 模型：自动学习特征交互
    - 分群排序：不同价格段独立排序
-```text
+```
 ### 反模式 6：没有兜底策略
 
 ```text
 ❌ 某字段数据缺失 → 归一化后为 NaN 或 0 → 整条分数异常
-```text
+```
 **问题**：新品没有销量数据 → 销量归一化为 0 → 即使其他维度优秀也无法获得合理排名。
 
 ```text
@@ -507,7 +507,7 @@ LIMIT 20 OFFSET 0;
    - 默认最低分（无评分商品给 0 分）
    - 权重重新归一化（缺失字段权重分配给其他字段）
    - 新品保护期（新品前 7 天给予基础曝光）
-```text
+```
 ## 交叉引用
 - 搜索排序深度：[03-ranking.md](../product-search/03-ranking.md) — BM25 + 多阶段排序管道
 - 商品搜索系统：[product-search](../product-search/README.md) — 搜索系统完整方案

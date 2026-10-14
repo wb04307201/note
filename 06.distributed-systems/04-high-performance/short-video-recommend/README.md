@@ -3,7 +3,7 @@
   slug: system-design/04-high-performance/short-video-recommend
   type: article
   category: 主模块子文章
-  summary: 短视频推荐系统架构总览
+  summary: 短视频推荐系统架构——4 层漏斗（召回/粗排/精排/重排）+ 多路召回（双塔/向量/协同）+ 深度排序模型 DIN/DIEN/MMoE + 重排多样性 + 在线学习与实时化。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

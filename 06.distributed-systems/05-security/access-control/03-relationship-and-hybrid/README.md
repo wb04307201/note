@@ -1,6 +1,6 @@
 <!--module:
-  parent: system-design
-  slug: system-design/03-relationship-and-hybrid
+  parent: 06.distributed-systems
+  slug: 06.distributed-systems/05-security/access-control/03-relationship-and-hybrid
   type: article
   category: 主模块子文章
   summary: 关系与混合族导览：ReBAC 以实体间关系图作为决策依据（Zanzibar 风格），混合模型给出 RBAC+ABAC 工程实战组合

@@ -385,11 +385,12 @@ CREATE INDEX idx_catalog_item_status ON catalog_item(status) WHERE status = 'ACT
 CREATE INDEX idx_catalog_item_category ON catalog_item(category);
 
 -- 为什么加 status 过滤索引：Catalog 80% 查询是"找 ACTIVE 服务"，部分索引省空间
-```text
-```text
-# Catalog Item 持久化的"插入 + 查询"伪代码（Spring Boot 风格）
+```
 
-# 1. 服务上线时插入 Catalog Item（Transition 组件的输出 → Catalog 组件的输入）
+```kotlin
+// Catalog Item 持久化的"插入 + 查询"伪代码（Spring Boot 风格，与 §3.4 Java 实体同栈）
+
+// 1. 服务上线时插入 Catalog Item（Transition 组件的输出 → Catalog 组件的输入）
 @Transactional
 fun publishToCatalog(serviceDef: ServiceDefinition) {
     val item = CatalogItem(
@@ -407,7 +408,7 @@ fun publishToCatalog(serviceDef: ServiceDefinition) {
     // → R2S 价值流订阅该事件，更新 ServiceInstance 可消费列表
 }
 
-# 2. 用户查目录（Catalog 组件的查询接口）
+// 2. 用户查目录（Catalog 组件的查询接口）
 fun searchConsumableServices(category: String?): List<CatalogItem> {
     return catalogRepository.findByStatusAndCategory(
         status = "ACTIVE",
@@ -416,7 +417,8 @@ fun searchConsumableServices(category: String?): List<CatalogItem> {
     )
     // 100% 走索引（idx_catalog_item_status 部分索引）
 }
-```text
+```
+
 ### 3.6 Request to Fulfill（R2F）9 阶段完整流程图
 
 > 📌 **为什么用 sequenceDiagram**：R2F 是"接力赛"——9 个阶段顺序推进、责任方轮换，sequenceDiagram 比 flowchart 更直观表达"谁在何时做什么"。
