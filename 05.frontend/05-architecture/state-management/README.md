@@ -217,6 +217,7 @@ graph TB
 - [`06-performance/`](../../06-performance/) — 重渲染是性能杀手
 - [`13.story/13-frontend-renovation.md`](../../../13.story/13-frontend-renovation.md) — 阿明餐厅状态管理演进史
 - 🆕 [发布-订阅者模式](pub-sub-pattern/README.md) — 状态管理的底层模式（Pub-Sub vs Observer 5 维对比 + 30 行手写 EventEmitter + 5 反直觉点）
+- 🆕 [大型项目状态管理工程设计](large-project-design/README.md) — 7 大工程维度：store 拆分 / 分层治理 / 服务端状态协同 / 多标签页同步 / SSR 水合 / 微前端共享 / 存量迁移
 
 ---
 
