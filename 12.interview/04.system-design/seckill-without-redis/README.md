@@ -255,6 +255,7 @@ public boolean trySeckill(Long userId, Long productId) {
 - [MySQL 行锁原理](../../../01.java-and-jvm/03-concurrency/juc-locks/README.md) — 乐观锁底层实现
 
 **同栏目兄弟**：
+- [高并发库存扣减设计](../inventory-deduction-design/README.md) — 分工：该题讲**业务场景分析与方案决策**（卖什么/多少并发/超卖少卖容忍度/扣减时机 → 决策树）；本文讲**禁用 Redis/MQ 约束下**的单机实现细节
 - [限流算法面试题](../rate-limiting/README.md) — 通用限流原理面试
 - [缓存一致性面试题](../cache-consistency/README.md) — 缓存场景
 

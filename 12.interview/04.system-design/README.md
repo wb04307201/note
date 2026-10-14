@@ -9,11 +9,11 @@
 
 # 系统设计咬文嚼字
 
-> 系统设计高频面试题与难点深挖，对齐主模块 [`06.distributed-systems`](../../06.distributed-systems/README.md)。28 篇真题覆盖 19 大方向（find 校对 2026-10-14）。
+> 系统设计高频面试题与难点深挖，对齐主模块 [`06.distributed-systems`](../../06.distributed-systems/README.md)。29 篇真题覆盖 19 大方向（find 校对 2026-10-14）。
 
 ---
 
-## 文章清单（共 28 题，find 校对 2026-10-14）
+## 文章清单（共 29 题，find 校对 2026-10-14）
 
 ### 分布式
 | 主题 | 难度 | 核心问题 |
@@ -30,6 +30,7 @@
 | [缓存热点 Key 问题](cache-hot-key/) | ⭐⭐⭐ | 本地缓存 + 分布式锁 + Key 拆分 + 热点探测 |
 | [限流算法](rate-limiting/) | ⭐⭐⭐ | 计数器 / 滑动窗口 / 漏桶 / 令牌桶 |
 | [无 Redis 秒杀](seckill-without-redis/) | ⭐⭐⭐⭐ | 主流方案被禁用时的单机秒杀策略 |
+| [高并发库存扣减设计](inventory-deduction-design/) | ⭐⭐⭐⭐ | 先四问业务（卖什么/并发/超卖vs少卖/扣减时机）再定方案 / 原子 UPDATE / 热点分桶 vs Redis+MQ |
 | [商品搜索系统设计](product-search/) | ⭐⭐⭐⭐ | 倒排索引 + BM25 + 多阶段排序 + 数据同步一致性 |
 | [搜索框 typeahead 系统设计](search-typeahead/) | ⭐⭐⭐⭐ | Trie 树 + Redis ZSet + 实名商家权重 + 实时增量更新 + 5 大反模式 |
 | [多字段动态排名](multi-field-ranking/) | ⭐⭐⭐ | 归一化方法论 + 加权公式 + 动态权重 + Redis ZSet + 6 大场景 |
