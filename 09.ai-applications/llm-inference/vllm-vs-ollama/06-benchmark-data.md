@@ -54,6 +54,8 @@
 | LMDeploy | 17 | 92 | 350 | 480 |
 
 > 100 并发下 vLLM 是 Ollama 的 **6 倍**，500 并发是 **8 倍**。
+>
+> ⚠️ **口径说明**：表中 Ollama 的 100/500 并发数据为**短输入输出 + 小上下文**（类 LongBench：输出 ~50 token，KV cache 压力小）条件下的结果；一旦换成 ShareGPT 式长输出（平均 200 token）或大 ctx，Ollama 单进程在 100 并发即 OOM（见 §4.2）。
 
 ### 2.2 Qwen-72B @ 4×H100
 
@@ -117,6 +119,8 @@
 | Ollama | OOM（无法 100 并发）| 单进程限制 |
 | **vLLM** | **22 GB** | PagedAttention 充分复用 |
 | TGI | 21 GB | FlashAttention 2 + custom kernel |
+
+> ⚠️ **口径说明**：本节为 **ShareGPT 式负载**（平均输出 200 token，KV cache 随并发线性膨胀），24GB 单卡上 Ollama 单进程 KV 管理粗放直接 OOM；与 §2.1 吞吐表中 Ollama「100/500 并发可跑 52/65 req/s」**不矛盾**——那是短输出/小 ctx 条件（KV 压力小，见 §2.1 口径说明）。
 
 ---
 

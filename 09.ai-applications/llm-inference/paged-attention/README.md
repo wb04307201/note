@@ -277,6 +277,8 @@ class BlockManager:
 
 ```cuda
 // vllm/csrc/attention/paged_attention.cu（简化版）
+// ⚠️ 教学 sketch，不可直接编译：省略了层/head 维度的完整寻址与边界处理，
+// 仅示意 block_table 间接寻址 + online softmax 的核心思路。
 // 核心思路：用 block_table 间接寻址，而非连续的 KV tensor
 
 template <typename T, int BLOCK_SIZE, int HEAD_SIZE>
@@ -287,6 +289,8 @@ __global__ void paged_attention_kernel(
     const T* __restrict__ v_cache,     // 所有 block 的 V
     const int* __restrict__ block_tables, // [num_seqs, max_blocks_per_seq]
     const int* __restrict__ seq_lens,  // 每个请求的实际长度
+    const int num_seqs,                // 请求数（gridDim.x == num_seqs）
+    const int num_heads,               // 注意力 head 数（gridDim.y == num_heads）
     const int max_blocks_per_seq,
     const float scale
 ) {
@@ -308,7 +312,8 @@ __global__ void paged_attention_kernel(
     // 与 Flash Attention 思路类似：online softmax + tiling
     float m = -INFINITY;  // 当前最大值
     float l = 0.0f;       // 当前归一化分母
-    T o[HEAD_SIZE] = {0}; // 输出累加器（每个 thread 负责一个 head dim）
+    T o[HEAD_SIZE] = {0}; // 输出累加器（sketch 简化：每 thread 遍历全部 head dim；
+                          // 生产实现按 thread 切分维度并行归约）
     
     for (int blk = 0; blk < num_blocks; blk++) {
         // 2.1 通过 block_table 找到物理 block
@@ -318,7 +323,7 @@ __global__ void paged_attention_kernel(
         // 每个 block 占 K/V 空间：2 × num_layers × num_kv_heads × BLOCK_SIZE × HEAD_SIZE
         // 但此处简化：只看当前 head 的 K/V
         const int block_offset = physical_block_id * BLOCK_SIZE * HEAD_SIZE;
-        const T* K_block = k_cache + block_offset;  // 简化：单层单 head
+        const T* k_block = k_cache + block_offset;  // 简化：单层单 head
         const T* v_block = v_cache + block_offset;
         
         // 2.3 当前 block 内的有效 token 数
@@ -330,7 +335,7 @@ __global__ void paged_attention_kernel(
             float qk = 0.0f;
             #pragma unroll
             for (int d = 0; d < HEAD_SIZE; d++) {
-                qk += (float)q_smem[d] * (float)K_block[t * HEAD_SIZE + d];
+                qk += (float)q_smem[d] * (float)k_block[t * HEAD_SIZE + d];
             }
             qk *= scale;
             
@@ -698,9 +703,9 @@ prefix caching            vs    page cache (fs cache)
 
 ---
 
-## 一句话定位（拆分 80 字 + 论文）
+## 一句话定位（论文出处）
 
-> **PagedAttention = 显存换计算**——把长序列切成固定大小的 page，KV cache 按需加载；单 token 解码 12ms→800ms，24h 延迟 -98%。
+> **PagedAttention = 借鉴 OS 虚拟内存分页管理 KV Cache**——把 KV 切成固定大小 block 按需分配，显存浪费从 60-80% 降到 < 4%，同等硬件下吞吐量提升 4-24x（详见文首定位与案例 1 实测 12→278 req/s）。
 
 **论文出处**：[Kwon et al., SOSP 2023](https://dl.acm.org/doi/10.1145/3600006.3613145) "Efficient Memory Management for LLM Serving with PagedAttention"
 
@@ -725,7 +730,5 @@ prefix caching            vs    page cache (fs cache)
 | D4 追问 | 2/2 | 6+ 反直觉 + 数学公式 |
 | D5 实战 | 2/2 | 4 真实案例 + CoW 实战 |
 | **总分** | **10/10** | **L5 标准** |
-
-After: `⭐⭐⭐⭐⭐ L5 深度`
 
 ← [返回 L2 技术栈](../README.md)

@@ -1,6 +1,6 @@
 <!--module:
-  parent: ai
-  slug: ai/continuous-batching
+  parent: ai-applications/llm-inference
+  slug: ai-applications/llm-inference/continuous-batching
   type: article
   category: 主模块子文章
   summary: Continuous Batching 动态调度：吞吐量提升 23x

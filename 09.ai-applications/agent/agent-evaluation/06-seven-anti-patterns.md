@@ -1,6 +1,6 @@
 <!--module:
   parent: ai/08-llmops/agent-evaluation
-  slug: ai/08-llmops/agent-evaluation/06-anti-patterns
+  slug: ai/08-llmops/agent-evaluation/06-seven-anti-patterns
   type: topic
   category: 7 反模式
   summary: Agent 评测 7 大反模式 —— 单一指标 / 一次性 / A/B 太短 / 黄金集不更新 / 阈值 100% / 无漂移告警 / 测试集太干净
@@ -139,9 +139,10 @@
 ## 📚 参考来源
 
 1. **Judging LLM-as-a-Judge**：Zheng et al. *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*. NeurIPS 2023 Datasets and Benchmarks Track. https://arxiv.org/abs/2306.05685
-2. **Lost in the Middle**：Liu et al. *Lost in the Middle: How Language Models Use Long Contexts*. TACL 2023. https://arxiv.org/abs/2307.03172
-3. **Chatbot Arena**：Chiang et al. *Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference*. 2024. https://arxiv.org/abs/2403.04132
-4. **AgentBench**：Liu et al. *AgentBench: Evaluating LLMs as Agents*. ICLR 2024. https://arxiv.org/abs/2308.03688
+2. **GAIA**：Mialon et al. *GAIA: a benchmark for General AI Assistants*. arXiv 2023（ICLR 2024）. https://arxiv.org/abs/2311.12983
+3. **SWE-bench**：Jimenez et al. *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?*. ICLR 2024. https://arxiv.org/abs/2310.06770
+4. **Chatbot Arena**：Chiang et al. *Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference*. 2024. https://arxiv.org/abs/2403.04132
+5. **AgentBench**：Liu et al. *AgentBench: Evaluating LLMs as Agents*. ICLR 2024. https://arxiv.org/abs/2308.03688
 
 ---
 

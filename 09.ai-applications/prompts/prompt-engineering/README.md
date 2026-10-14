@@ -1,6 +1,6 @@
 <!--module:
-  parent: ai
-  slug: ai/prompt-engineering
+  parent: ai-applications/prompts
+  slug: ai-applications/prompts/prompt-engineering
   type: article
   category: 主模块子文章
   summary: Prompt 工程
@@ -712,7 +712,7 @@ parsed: WeatherReport = parser.parse(result.content)
 - **Chain Prompts**：复杂任务分多轮调用，每轮聚焦子任务
 - **Prompt Caching**：用 `cache_control: { type: "ephemeral" }` 标记长前缀节省成本（90% 价格降幅）
 
-```xml
+````xml
 <role>
 你是一位资深的 Java 架构师，专注企业级 Spring 应用。
 </role>
@@ -733,7 +733,7 @@ parsed: WeatherReport = parser.parse(result.content)
 - 代码：```java ...```
 - 陷阱：1) ... 2) ... 3) ...
 </output_format>
-```
+````
 
 ### G.3 DeepSeek R1 Prompt Engineering
 

@@ -185,9 +185,9 @@ LLaMA 系列改用 **SentencePiece + BPE 后端**，主要原因是：
 
 ---
 
-## 四、计费模型：从 per-token 到 per-million-token
+## 三、计费模型：从 per-token 到 per-million-token
 
-### 4.1 公式
+### 3.1 公式
 
 ```text
 单次请求费用：
@@ -201,7 +201,7 @@ LLaMA 系列改用 **SentencePiece + BPE 后端**，主要原因是：
              ≈ MAU × avg_tokens_per_user × avg_price_per_token
 ```
 
-### 4.2 计价单位的演进
+### 3.2 计价单位的演进
 
 | 时期 | 单位 | 代表 |
 |------|------|------|
@@ -216,7 +216,7 @@ LLaMA 系列改用 **SentencePiece + BPE 后端**，主要原因是：
 2. 价格更精细：context cache hit / miss / write 三个价格便于表达。
 3. 与企业财务对账对齐（百万 token ≈ 一本书级别的上下文）。
 
-### 4.3 三档定价（现代 LLM 标准）
+### 3.3 三档定价（现代 LLM 标准）
 
 现代 API 通常区分三档：
 
@@ -231,9 +231,9 @@ output_price         →  输出 token 价格（最高，约为 input 的 3-5×�
 
 ---
 
-## 五、真实价格对照（2024-2025 实测）
+## 四、真实价格对照（2024-2025 实测）
 
-### 5.1 主流模型价格表
+### 4.1 主流模型价格表
 
 | 模型 | 输入 ($/M) | 输出 ($/M) | Cache 命中 ($/M) | 上下文窗口 |
 |------|-----------|-----------|-----------------|-----------|
@@ -250,7 +250,7 @@ output_price         →  输出 token 价格（最高，约为 input 的 3-5×�
 | **Gemini 1.5 Pro** | $1.25 (≤128k) | $5 | - | 2M |
 | **Gemini 1.5 Flash** | $0.075 (≤128k) | $0.30 | - | 1M |
 
-### 5.2 100K 中文字成本对比
+### 4.2 100K 中文字成本对比
 
 **场景**：处理一份 100,000 汉字（约 150,000 token）的法律文档，**输入全部文档 + 输出 2,000 token 的中文摘要**。
 
@@ -279,7 +279,7 @@ output_price         →  输出 token 价格（最高，约为 input 的 3-5×�
 3. **Cache 命中可降本 50%**：DeepSeek 命中 cache 比 miss 便宜约 50%，是 LLM 应用最值得优化的开关。
 4. **国产开源 API 价格优势显著**：Qwen2.5-72B 价格仅为 GPT-4 Turbo 的 4%。
 
-### 5.3 选择策略
+### 4.3 选择策略
 
 ```text
 场景 → 推荐模型
@@ -293,9 +293,9 @@ output_price         →  输出 token 价格（最高，约为 input 的 3-5×�
 
 ---
 
-## 六、代码示例
+## 五、代码示例
 
-### 6.1 tiktoken 编码 / 解码
+### 5.1 tiktoken 编码 / 解码
 
 ```python
 import tiktoken
@@ -335,7 +335,7 @@ decoded: 'Hello, world! 你好世界'
       244 → '界'
 ```
 
-### 6.2 transformers AutoTokenizer
+### 5.2 transformers AutoTokenizer
 
 ```python
 from transformers import AutoTokenizer
@@ -359,7 +359,7 @@ print(f"词表大小: {len(tok)}")  # 151643
 print(f"BOS={tok.bos_token_id}, EOS={tok.eos_token_id}, PAD={tok.pad_token_id}")
 ```
 
-### 6.3 自定义 BPE tokenizer 训练（SentencePiece）
+### 5.3 自定义 BPE tokenizer 训练（SentencePiece）
 
 ```python
 import sentencepiece as spm
@@ -391,7 +391,7 @@ for tid in ids:
 # tokenizer.json + tokenizer_config.json
 ```
 
-### 6.4 Token 计数 + 成本计算器（生产可用）
+### 5.4 Token 计数 + 成本计算器（生产可用）
 
 ```python
 from dataclasses import dataclass
@@ -444,10 +444,18 @@ print(calc_cost("claude-3.5-sonnet", 150_000, 2_000, cached_tokens=145_000))
 # 缓存 96.7% → 总成本从 $0.48 降到 $0.0885（↓ 81.6%）
 ```
 
-### 6.5 监控 token 用量（OpenAI 风格）
+### 5.5 监控 token 用量（OpenAI 风格）
 
 ```python
 import logging
+from prometheus_client import Counter
+
+# Prometheus 计数器初始化（按模型 + 输入/输出维度打标签）
+TOKEN_COUNTER = Counter(
+    "llm_tokens_total",
+    "Total LLM tokens consumed",
+    labelnames=["model", "kind"],
+)
 
 def track_usage(response, label: str = "llm_call"):
     """从 OpenAI / Anthropic 响应中提取 usage 并打日志。"""
@@ -468,9 +476,9 @@ def track_usage(response, label: str = "llm_call"):
 
 ---
 
-## 七、Token 优化策略
+## 六、Token 优化策略
 
-### 7.1 输入端优化（5 个技巧）
+### 6.1 输入端优化（5 个技巧）
 
 | 技巧 | 节省比例 | 代价 |
 |------|---------|------|
@@ -490,7 +498,7 @@ def track_usage(response, label: str = "llm_call"):
    用 RAG 把 5000 字 → 500 字，省 90%。
 ```
 
-### 7.2 输出端优化（3 个技巧）
+### 6.2 输出端优化（3 个技巧）
 
 ```text
 1. 显式限定长度
@@ -504,7 +512,7 @@ def track_usage(response, label: str = "llm_call"):
    OpenAI / Anthropic 都支持硬上限 → 兜底防止失控
 ```
 
-### 7.3 缓存策略（降本 80%+）
+### 6.3 缓存策略（降本 80%+）
 
 | 缓存类型 | 适用场景 | 节省 | 代表 |
 |---------|---------|------|------|
@@ -517,7 +525,7 @@ def track_usage(response, label: str = "llm_call"):
 
 ---
 
-## 八、Token 常见陷阱（8 条）
+## 七、Token 常见陷阱（8 条）
 
 | # | 陷阱 | 反直觉点 |
 |---|------|---------|
@@ -530,7 +538,7 @@ def track_usage(response, label: str = "llm_call"):
 | 7 | **cache hit 价格 ≠ cache miss** | Anthropic cache miss 是 hit 的 10×，**未启用 cache 等于白扔钱** |
 | 8 | **空字符 / 换行也占 token** | `"" + "\n"` = 2 token，循环拼接易超预算 |
 
-### 8.1 实战陷阱示例
+### 7.1 实战陷阱示例
 
 ```python
 # ❌ 陷阱 1：未启用 cache 的长 system prompt
@@ -558,7 +566,7 @@ resp = anthropic.messages.create(
 
 ---
 
-## 九、跨模块互链（5+ 反向链）
+## 八、跨模块互链（5+ 反向链）
 
 | 关联主题 | 链接 | 关联方式 |
 |---------|------|---------|
@@ -573,7 +581,7 @@ resp = anthropic.messages.create(
 
 ---
 
-## 十一、面试陷阱速览（30 秒话术）
+## 九、面试陷阱速览（30 秒话术）
 
 ### Q1: "1 个中文字到底占几个 token？"
 
@@ -601,7 +609,7 @@ resp = anthropic.messages.create(
 
 ---
 
-## 十二、相关章节
+## 十、相关章节
 
 - 上游：Transformer 架构 —— Token 是 Transformer 的输入
 - 关联：RAG Pipeline —— 用 RAG 减少 Token 消耗

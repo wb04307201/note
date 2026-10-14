@@ -6,6 +6,7 @@
   summary: 生产级 Agent 系统端到端搭建指南 —— 8 步流水线串联 8 大组件
   depth: ⭐⭐⭐⭐
   status: active
+  tags: [Agent, 系统设计, 生产落地]
 -->
 
 # 生产级 Agent 系统端到端搭建指南

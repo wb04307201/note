@@ -1,11 +1,12 @@
 <!--module:
-  parent: ai
-  slug: ai/loop-engineering/builtin-loop-commands
+  parent: 09.ai-applications/agent/loop-engineering
+  slug: 09.ai-applications/agent/loop-engineering/builtin-loop-commands
   type: article
   category: 主模块子文章
   summary: 2026 年各 AI 编码工具的内置循环命令对比：Claude Code /goal + /loop、Codex /goal、Ralph Wiggum 第三方工具。
   depth: ⭐⭐
   status: active
+  tags: [循环命令, Claude Code, Codex, Ralph Wiggum]
 -->
 
 # 内置循环命令对比：/goal · /loop · Ralph Wiggum

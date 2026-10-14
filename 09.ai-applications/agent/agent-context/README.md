@@ -100,8 +100,6 @@ Q：你的 Agent 如何处理长上下文？1M token 的文档怎么让 LLM 准�
 
 ---
 
----
-
 ## L5 深化 · 原理 / 演进 / 案例 / 反链 / 反直觉 / 代码
 
 > 本节为 L5 深度补完，承接上文 6 策略速览，逐项展开数学原理、演进时间线、5 公司实战、跨模块反向链、反直觉点与可运行示例代码。
@@ -510,24 +508,6 @@ B \;=\; \frac{0.5}{3/1M} \cdot 1000 - 3000 - 500 \;\approx\; 163k \text{ tokens}
 $$
 
 > 即：单次可注入 ≈ 163k context。超过必须 RAG + Chunking 或拆子任务。
-
----
-
-⭐⭐⭐⭐⭐（生产 Agent 架构必备 + 长上下文是 2025 核心考点）
-
----
-
-## 5 维评分表（D1-D5 全 2 分满分 10/10）
-
-| 维度 | 分数 | 说明 |
-|------|------|------|
-| **D1 源码/原理** | 10 | Lost in the Middle 公式 $A(p)$ + Attention $O(n^2)$ + Chunking overlap + RAG cost utility 4 个数学模型 |
-| **D2 跨模块** | 10 | 10 个跨模块反链：12.interview / 13.story / 09.ai-applications 多层 + 04.spring-backend / 06.distributed-systems / 01.java-and-jvm 跨主模块 |
-| **D3 系统性** | 10 | 6 策略对比 + 3 类场景 + Mermaid 决策树 + 5 公司实战组合 + 11 反链矩阵 |
-| **D4 追问** | 10 | 5 个反直觉点 + 8 节点演进史时间线 + 2023.4 → 2025.6 完整脉络 |
-| **D5 实战** | 10 | 5 公司案例（Claude Code / Cursor / Devin / Operator / LangGraph）+ Python Chunking + RAG + Attention Memory 3 段可运行代码 + Mermaid 决策树 |
-
-**最终深度等级：⭐⭐⭐⭐⭐ L5**
 
 ---
 

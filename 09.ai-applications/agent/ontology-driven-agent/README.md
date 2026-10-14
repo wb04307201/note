@@ -3,7 +3,7 @@
   slug: ai/ontology-driven-agent
   type: article
   category: 主模块子文章
-  summary: 本体驱动的智能体
+  summary: 本体驱动的智能体——以 OWL/RDF 本体为认知地基，融合符号推理与 LLM 的神经-符号双引擎架构，含优势对比、工程瓶颈与落地路径。
   depth: ⭐⭐
   status: active
 -->

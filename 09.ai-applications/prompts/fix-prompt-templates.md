@@ -1,6 +1,6 @@
 <!--module:
-  parent: ai/loop-engineering
-  slug: ai/loop-engineering/fix-prompt-templates
+  parent: ai-applications/prompts
+  slug: ai-applications/prompts/fix-prompt-templates
   type: topic
   category: 修复 prompt 模板
   summary: 修复 prompt 模板 4 类（语法/类型/测试/运行时）+ 通用结构 + 实战示例

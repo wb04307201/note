@@ -1,7 +1,7 @@
 <!--module:
-  parent: ai/llmops
-  slug: ai/llmops/rag-out-of-domain-rejection
-  type: deep-dive
+  parent: ai
+  slug: ai/rag-out-of-domain-rejection
+  type: article
   category: RAG 质量治理
   summary: RAG 超范围检测与拒答策略深度 —— 6 大检测机制 + 5 大拒答模式 + 4 步阈值调优 + 监控体系 + OSS 实战。
   depth: ⭐⭐⭐
@@ -101,8 +101,8 @@ class OODClassifier:
     def __init__(self):
         self.model = load_model("ood_classifier_v1")
     
-    def predict(self, query):
-        # 特征：query + 检索结果
+    def predict(self, query, results):
+        # 特征：query + 检索结果（results 为上游检索返回的文档列表）
         features = self.extract_features(
             query, retrieved_docs=[r for r in results]
         )
@@ -283,31 +283,33 @@ if len(valid_idx) > 0:
 
 # Step 4: 监控线上漂移
 def monitor_threshold():
-    """每日检查拒答率是否在正常区间"""
+    """每日检查拒答率：健康区间 5-15%；<3% 或 >30% 为硬告警线，3-5% / 15-30% 为黄区（关注但暂不告警）"""
     today_rejection = today_rejected_queries()
     today_total = today_total_queries()
     
     rejection_rate = today_rejection / today_total
     
     if rejection_rate < 0.03:
-        alert("⚠️ 拒答率过低，可能阈值太松")
+        alert("⚠️ 拒答率低于 3% 硬告警线，可能阈值太松")
     elif rejection_rate > 0.30:
-        alert("⚠️ 拒答率过高，可能阈值太严")
+        alert("⚠️ 拒答率高于 30% 硬告警线，可能阈值太严")
+    elif not (0.05 <= rejection_rate <= 0.15):
+        log(f"🟡 拒答率 {rejection_rate:.2%} 偏离健康区间 5-15%，观察中")
     else:
-        log(f"✅ 拒答率 {rejection_rate:.2%} 健康")
+        log(f"✅ 拒答率 {rejection_rate:.2%} 健康（5-15%）")
 
 # 当拒答率变化 > 20% 时，重新跑 Step 3 调优
 ```
 
 ### 4.2 监控指标（生产级）
 
-| 指标 | 健康区间 | 异常动作 |
-|------|---------|---------|
-| 拒答率 | 5-15% | 偏离 → 重新调优 |
-| Partial 答率 | 10-20% | 太高 → 检查 top_k |
-| Deflect 率 | 1-5% | 太高 → 工单积压 |
-| NLI 拒绝率 | < 5% | 太高 → 检索质量差 |
-| 阈值漂移 | < 0.05 | 超 → 重新评估 |
+| 指标 | 健康区间 | 告警线 | 异常动作 |
+|------|---------|--------|---------|
+| 拒答率 | 5-15% | < 3% 或 > 30% | 偏离 → 重新调优 |
+| Partial 答率 | 10-20% | > 30% | 太高 → 检查 top_k |
+| Deflect 率 | 1-5% | — | 太高 → 工单积压 |
+| NLI 拒绝率 | < 5% | > 5% | 太高 → 检索质量差 |
+| 阈值漂移 | < 0.05 | ≥ 0.05 | 超 → 重新评估 |
 
 ---
 
@@ -515,7 +517,7 @@ Q3：用户对拒答接受度？
 
 ---
 
-> 📅 2026-07-13 · 11.ai/08-llmops · ⭐⭐⭐⭐⭐ · 6 检测机制 + 5 拒答模式 + 4 步阈值 + 6 OSS 实战 + 监控体系
+> 📅 2026-07-13 · 09.ai-applications/rag · ⭐⭐⭐ · 6 检测机制 + 5 拒答模式 + 4 步阈值 + 6 OSS 实战 + 监控体系
 
 ---
 

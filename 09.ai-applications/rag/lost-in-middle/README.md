@@ -3,8 +3,7 @@
   slug: ai/lost-in-middle
   type: article
   category: 主模块子文章
-  summary: Lost In the Middle 现象 + 6 大缓解方案
-  depth: ⭐⭐⭐⭐⭐
+  summary: Lost In the Middle 现象 + 7 大缓解方案
   depth: ⭐⭐⭐⭐⭐
   status: active
   tags: [Lost In the Middle]
@@ -142,7 +141,7 @@ $$
 
 ---
 
-## 🛠️ 6 大缓解方案
+## 🛠️ 7 大缓解方案
 
 ### 1. 重排序（Re-ranking）
 

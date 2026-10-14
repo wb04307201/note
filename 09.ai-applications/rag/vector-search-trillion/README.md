@@ -4,6 +4,7 @@
   type: article
   category: AI 应用子文章
   summary: 万亿级向量检索：多集群联邦 + 专用硬件 + 边缘计算 + 极限压缩
+  tags: [向量检索, 联邦架构, TPU]
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

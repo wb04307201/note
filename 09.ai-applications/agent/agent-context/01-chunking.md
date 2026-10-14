@@ -3,12 +3,12 @@
   slug: ai/agent-architecture/agent-context/01-chunking
   type: topic
   category: 文本切片
-  summary: Chunking 4 大策略对比：fixed / recursive / semantic / agentic / late chunking + chunk size 选型
+  summary: Chunking 5 大策略对比：fixed / recursive / semantic / agentic / late chunking + chunk size 选型
   depth: ⭐⭐⭐
   status: active
 -->
 
-# Chunking · 文本切片 4 大策略
+# Chunking · 文本切片 5 大策略
 
 > **一句话**：Chunking 不是"按 500 字切一刀"那么简单——选错粒度 RAG 召回准确率掉 40%。
 
@@ -28,7 +28,7 @@ RAG 召回的"最小单元"就是 chunk——切得太粗，召回噪声大；�
 
 ---
 
-## 4 大 Chunking 策略
+## 5 大 Chunking 策略
 ### 2.1 Fixed Chunking（固定切分）
 
 ```python

@@ -312,19 +312,18 @@ def select_strategy(query, corpus_size):
 
 ### 5.2 成本-性能-质量三角（Trade-off）
 
-```text
-            性能（质量）
-              /\
-             /  \
-            / H  \
-           / y b  \
-          /  i  r  \
-         /   b    i \
-        /  r  i  d   \
-       /_______________\
-   成本            延迟
-   （token $）    （TTFT 秒）
+```mermaid
+graph TD
+    Q["质量（召回完整性 / 无 Lost-in-Middle）"]
+    C["成本（token $）"]
+    L["延迟（TTFT 秒）"]
+    H(["Hybrid：三角中心的平衡点"])
+    Q --- H
+    C --- H
+    L --- H
 ```
+
+三个顶点互相牵制：想同时压低成本和延迟，质量受损（纯 RAG 召回不全）；想质量和跨文档推理拉满，成本延迟双高（纯 Long Context）。**Hybrid 落在三角中心**——用少量长上下文兜底全局推理，用 RAG 承接高频精确查询。
 
 **三种方案在三角中的位置**：
 

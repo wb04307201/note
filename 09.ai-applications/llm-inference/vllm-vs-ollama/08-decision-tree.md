@@ -84,7 +84,20 @@ Q5：团队能力？
 
 ### 4.1 硬件层
 
-- [ ] GPU 显存 ≥ 模型权重 + KV cache（公式：`显存 = 权重大小 + (2 × 4 × 并发 × ctx × 层数 × 头维 × 字节)`）
+- [ ] GPU 显存 ≥ 模型权重 + KV cache，标准公式：
+
+  ```text
+  显存 ≈ 权重大小 + KV cache
+  KV cache = 2 × num_layers × num_kv_heads × head_dim × seq_len × batch × bytes_per_elem
+
+    2               = K + V 两份 cache
+    num_layers      = transformer 层数
+    num_kv_heads    = KV head 数（MQA=1，GQA 介于 1 与 attn heads 之间）
+    head_dim        = 每个 head 的维度（如 128）
+    seq_len         = 单请求上下文长度（token 数）
+    batch           = 并发请求数
+    bytes_per_elem  = 每元素字节数（FP16=2，INT8=1）
+  ```
 - [ ] 驱动 / CUDA / cuDNN 版本匹配（vLLM 0.6 需要 CUDA 12.x）
 - [ ] 多卡间 NVLink / NVSwitch 互联（TP 必备）
 - [ ] PCIe 4.0+（避免 NVLink 缺失的性能崩塌）

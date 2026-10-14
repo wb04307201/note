@@ -75,7 +75,6 @@ Tobi Lütke 的这篇分享，为所有正在探索 AI 智能体落地的企业�
 正如 Tobi 所言，Shopify 正在通过 River，让整家公司重新变回那个充满活力的「学徒车间」。
 
 ---
----
 
 *本文基于 Shopify CEO Tobi Lütke 的原帖撰写，原帖链接：https://x.com/tobi/status/2053121182044451016?s=20*
 

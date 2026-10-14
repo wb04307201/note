@@ -4,7 +4,7 @@
   type: article
   category: Agent 执行模式
   summary: Agent 三阶段闭环：Planning（规划）→ Acting（执行）→ Monitoring（监控）的 6 大反模式 + 实战案例 + 工具链选型
-  depth: ⭐⭐⭐
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
@@ -254,8 +254,6 @@ for task in topo_sort(dag):
   - [Agent Memory](../../agent-memory/README.md) — 记忆架构（Monitoring 阶段需要）
   - Function Calling — ⚠️ 待 Phase 1+ 迁入（占位 `../../agent-spec-tools/function-calling/`）— 工具调用原理（Acting 阶段基础）
   - LLM 监控 — ⚠️ 待 Phase 1+ 迁入（占位 `../../../../llm-inference/llmops/production-stability/05-online-monitoring.md`） — 4 维监控体系
-
----
 
 ---
 
@@ -706,21 +704,6 @@ for task_result in agent_runs:
     if joint > 4.6:  # k=2, p<0.01
         alert(f"联合异常 score={joint:.2f}")
 ```
-
----
-
-## 5 维评分
-
-| 维度 | 分数 | 评分依据 |
-|------|------|---------|
-| **D1 内容深度** | 10/10 | L3 入门 + L5 数学/演进/工业案例全栈覆盖；含 4 个数学公式 + 13 个时间点 + 5 个公司案例 + 3 个反直觉点 + 3 段代码 |
-| **D2 结构清晰度** | 10/10 | 三阶段定义 → 反模式 → 工具链 → 案例 → L5 深化，层层递进；L5 内分 7 个子节，编号清晰 |
-| **D3 互链完整度** | 10/10 | 9 个反向链接（同级 + 跨模块 + 跨主模块 + 类比关系），覆盖 agent-reliability / agent-memory / agent-evaluation / 12.interview / 13.story / distributed-tracing |
-| **D4 实战可用性** | 10/10 | 含可运行的 50 行三阶段闭环代码 + 异常检测代码 + Mermaid 流程图；案例真实（Claude Code / Devin / LangGraph / Operator / Cursor） |
-| **D5 演进与前沿** | 10/10 | 演进史覆盖 2023.3 BabyAGI → 2025.6 MCP 标准化；点出 2025.1 OpenAI Operator、Anthropic Computer Use 等最新工业形态 |
-| **加权平均** | **10/10** | 5 维全满分——本篇为 Agent 执行模式系列 L5 标杆文章 |
-
-⭐⭐⭐⭐⭐（Agent 三阶段闭环 + 生产级监控必备）
 
 ---
 

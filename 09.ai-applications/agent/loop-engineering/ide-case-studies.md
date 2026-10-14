@@ -1,11 +1,12 @@
 <!--module:
-  parent: ai/loop-engineering
-  slug: ai/loop-engineering/ide-case-studies
+  parent: 09.ai-applications/agent/loop-engineering
+  slug: 09.ai-applications/agent/loop-engineering/ide-case-studies
   type: topic
   category: IDE 案例研究
   summary: 4 大 AI IDE Loop 工程实战 —— Claude Code / Cursor / Devin / Aider 各自的循环工程 + Verifier + 自动修复策略
   depth: ⭐⭐⭐
   status: active
+  tags: [AI IDE, Loop工程, Claude Code, Cursor]
 -->
 
 # 4 大 AI IDE Loop 工程实战案例

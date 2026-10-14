@@ -507,71 +507,59 @@ loss = cross_entropy(model(input_text), target_text)
 
 ## 🛠️ 进阶：自训练 Reranker
 
-### 完整训练 Pipeline
+### 完整训练 Pipeline（sentence-transformers CrossEncoder 标准范式）
+
+> 采用 `CrossEncoder.fit` 标准训练流程：梯度由框架内部管理，无需手写 `loss.backward()`（旧稿手写 BCE + `torch.tensor(scores)` 会切断梯度链，且 Hard Negative 挖掘误从 positives 取样，已修正）。
 
 ```python
-from FlagEmbedding import FlagReranker, FlagModel
+from FlagEmbedding import FlagModel                      # Bi-Encoder：做 Hard Negative 挖掘
+from sentence_transformers.cross_encoder import CrossEncoder, InputExample
 from torch.utils.data import DataLoader
-import torch.nn as nn
 
-# 1. 准备数据（query, positive, negative）
+# 1. 准备数据：每条样本含 query、正例、候选文档池（负例来源）
 train_data = [
     {
         "query": "如何重置密码",
         "positives": ["点击登录页'忘记密码'按钮..."],
-        "negatives": ["客服电话：400-xxx", "用户协议..."]
+        "candidate_pool": [                              # Bi-Encoder 可检索到的全部候选文档
+            "客服电话：400-xxx",
+            "用户协议...",
+            "如何修改昵称",
+            "密码复杂度要求：8-20 位...",
+        ],
     },
     # ...
 ]
 
-# 2. Hard Negative Mining（用 Bi-Encoder 检索）
-bi_encoder = FlagModel('BAAI/bge-m3')
-all_hard_negatives = []
+# 2. Hard Negative Mining：用 Bi-Encoder 对候选池打分，
+#    取「得分高但不是正例」的文档作为困难负例
+bi_encoder = FlagModel("BAAI/bge-m3")
 for sample in train_data:
-    # 检索 Top-100
-    candidates = bi_encoder.encode(sample["positives"])
-    query_emb = bi_encoder.encode([sample["query"]])
-    scores = (query_emb @ candidates.T).flatten()
-    
-    # 取 Top-10 排除正例后随机选 5
-    top_indices = scores.argsort()[-10:][::-1]
-    hard_negs = [sample["positives"][i] for i in top_indices 
-                  if i not in [sample["positives"].index(p) for p in sample["positives"]]][:5]
-    all_hard_negatives.extend(hard_negs)
+    query_emb = bi_encoder.encode([sample["query"]])[0]
+    pool = sample["candidate_pool"]
+    pool_embs = bi_encoder.encode(pool)
+    scores = pool_embs @ query_emb                        # 余弦相似度（bge 输出已归一化）
 
-# 3. 训练数据构造
+    pos_set = set(sample["positives"])
+    ranked = sorted(
+        ((float(s), doc) for s, doc in zip(scores, pool) if doc not in pos_set),
+        key=lambda x: x[0],
+        reverse=True,
+    )
+    sample["hard_negatives"] = [doc for _, doc in ranked[:5]]   # 取 Top-5 困难负例
+
+# 3. 构造 (query, doc, label) 训练对
 train_pairs = []
-for sample, hard_negs in zip(train_data, all_hard_negatives):
+for sample in train_data:
     for pos in sample["positives"]:
-        train_pairs.append({
-            "query": sample["query"],
-            "doc": pos,
-            "label": 1
-        })
-    for neg in hard_negs:
-        train_pairs.append({
-            "query": sample["query"],
-            "doc": neg,
-            "label": 0
-        })
+        train_pairs.append(InputExample(texts=[sample["query"], pos], label=1.0))
+    for neg in sample["hard_negatives"]:
+        train_pairs.append(InputExample(texts=[sample["query"], neg], label=0.0))
 
-# 4. 微调 Reranker
-reranker = FlagReranker('BAAI/bge-reranker-v2-m3')
-loader = DataLoader(train_pairs, batch_size=16)
-
-optimizer = torch.optim.AdamW(reranker.model.parameters(), lr=2e-5)
-for epoch in range(3):
-    for batch in loader:
-        scores = reranker.compute_score(
-            list(zip(batch["query"], batch["doc"]))
-        )
-        loss = F.binary_cross_entropy(
-            torch.tensor(scores),
-            torch.tensor(batch["label"], dtype=torch.float)
-        )
-        loss.backward()
-        optimizer.step()
-        optimizer.zero_grad()
+# 4. 微调 Reranker（CrossEncoder.fit 内部完成 loss 计算与反向传播）
+reranker = CrossEncoder("BAAI/bge-reranker-v2-m3", num_labels=1, max_length=512)
+loader = DataLoader(train_pairs, shuffle=True, batch_size=16)
+reranker.fit(train_dataloader=loader, epochs=3, optimizer_params={"lr": 2e-5})
 
 # 5. 保存
 reranker.save("./bge-reranker-finetuned")

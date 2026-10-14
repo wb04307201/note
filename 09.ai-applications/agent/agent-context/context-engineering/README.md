@@ -1,6 +1,6 @@
 <!--module:
-  parent: ai
-  slug: ai/context-engineering
+  parent: ai/agent-architecture/agent-context
+  slug: ai/agent-architecture/agent-context/context-engineering
   type: article
   category: 主模块子文章
   summary: Context Engineering：为 LLM 准备完整上下文的工程范式。
@@ -10,11 +10,10 @@
 
 # Context Engineering — 上下文工程
 
-← 返回 [技术栈](../README.md)
+← 返回 [Agent 长上下文架构](../README.md)
 
 > 2026 年 AI 工程第二阶段：从"写好一句 Prompt"演进到"为 LLM 提供恰到好处的完整上下文"。Context Engineering 不是 Prompt Engineering 的替代，而是其超集。
 
----
 ---
 
 ## 一、核心结论（TL;DR）
@@ -509,19 +508,4 @@ def estimate_tokens(messages: list[dict]) -> int:
 
 ---
 
-### 8.7 5 维评分（D1-D5 全 10 分）
-
-| 维度 | 分数 | 评估依据 |
-|------|------|----------|
-| **D1 内容深度** | 10 | L5 深度：含 4 个数学模型（成本/密度/衰减/污染）+ 7 个时间节点 + 5 个工业案例 |
-| **D2 结构清晰度** | 10 | 7 个二级章节 + Mermaid 图 + 数学公式 + 代码 + 表格，多模态表达 |
-| **D3 互链完整度** | 10 | 8+ 反向链覆盖同模块 / 跨模块 / 面试 / 故事 4 层 |
-| **D4 反直觉覆盖** | 10 | 5 个反直觉点全部命中（CE=PE/长必准/CE 替代/越多越好/缓存免费） |
-| **D5 实战可落地** | 10 | 3 段可运行 Python 代码 + Mermaid 流程图 + 工业案例决策启发 |
-| **总分** | **50 / 50** | L5 满分级：原理 + 演进 + 实战 + 类比 + 反直觉 + 代码全栈覆盖 |
-
----
-
-⭐⭐⭐⭐⭐（2026 AI 工程第二阶段核心概念 + Anthropic 战略主线）
-
-← [返回: L2 技术栈](../README.md)
+← [返回: Agent 长上下文架构](../README.md)

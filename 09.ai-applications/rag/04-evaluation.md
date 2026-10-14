@@ -46,28 +46,33 @@
 **2024 最主流 RAG 评估框架**。
 
 ```python
+# ⚠️ 适用 ragas ≥ 0.2（旧版 dict 直传写法已废弃，照抄会报 TypeError）
 from ragas import evaluate
+from ragas.dataset_schema import EvaluationDataset, SingleTurnSample
 from ragas.metrics import (
-    context_precision, context_recall,
-    faithfulness, answer_relevancy, answer_correctness
+    LLMContextPrecisionWithReference,  # 检索精确率
+    LLMContextRecall,                  # 检索召回率
+    Faithfulness,                      # 答案忠实度
+    ResponseRelevancy,                 # 答案相关度
 )
 
-# 准备数据
-dataset = {
-    "question": ["什么是 RAG？"],
-    "contexts": [["RAG 是检索增强生成..."]],
-    "answer": ["RAG 是一种结合检索和生成的技术..."],
-    "ground_truth": ["检索增强生成，结合外部知识..."],
-}
+# 准备数据：每条样本是一个 SingleTurnSample，装入 EvaluationDataset
+sample = SingleTurnSample(
+    user_input="什么是 RAG？",
+    retrieved_contexts=["RAG 是检索增强生成..."],
+    response="RAG 是一种结合检索和生成的技术...",
+    reference="检索增强生成，结合外部知识...",
+)
+dataset = EvaluationDataset(samples=[sample])
 
-# 评估
+# 评估（指标传实例，默认使用 OpenAI 作为 judge，可通过 llm/embeddings 参数替换）
 result = evaluate(
     dataset,
     metrics=[
-        context_precision,  # 检索精确率
-        context_recall,     # 检索召回率
-        faithfulness,       # 答案忠实度
-        answer_relevancy,   # 答案相关度
+        LLMContextPrecisionWithReference(),
+        LLMContextRecall(),
+        Faithfulness(),
+        ResponseRelevancy(),
     ],
 )
 
@@ -75,6 +80,8 @@ print(result)
 # {'context_precision': 0.85, 'context_recall': 0.78,
 #  'faithfulness': 0.92, 'answer_relevancy': 0.88}
 ```
+
+> 📌 字段名口径：ragas 0.2 起 `question→user_input`、`answer→response`、`ground_truth→reference`、`contexts→retrieved_contexts`；指标也从模块级小写常量（`faithfulness`）改为类（`Faithfulness()`）。若你仍在用 ragas 0.1.x，请以旧文档为准，不要混用两套写法。
 
 **优势**：
 - ✅ 5+ 主流指标开箱即用

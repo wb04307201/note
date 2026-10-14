@@ -4,15 +4,10 @@
   type: index
   category: AI 应用子 MOC
   summary: Claude Code 工程实践——Skill 设计方法学 / Skill 命中率调优 2 大主题。
-  depth: ⭐
+  depth: ⭐⭐⭐
   status: active
 -->
 
-
-
-## 📍 一句话定位
-
-> Claude Code 实战（CLI/插件/Skills 集成与生产经验）
 # Claude Code 实践（Claude Code Practices）
 
 > **定位**：Claude Code 工程实践——Skill 设计方法学与 Skill 命中率调优。

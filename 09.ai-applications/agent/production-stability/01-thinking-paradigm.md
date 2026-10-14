@@ -1,6 +1,6 @@
 <!--module:
-  parent: ai/08-llmops/production-stability
-  slug: ai/llmops/production-stability/01-thinking-paradigm
+  parent: 09.ai-applications/agent/production-stability
+  slug: 09.ai-applications/agent/production-stability/01-thinking-paradigm
   type: topic
   category: 思维范式
   summary: Prompt vs if-else —— 何时用 LLM、何时用规则的 4 维决策矩阵 + 反模式
@@ -179,8 +179,12 @@ def handle_query(query):
 ---
 
 ## 实操决策脚本
+
+> ⚠️ **前置说明**：脚本依赖 4 个业务侧辅助项，需按自身场景实现/取值——
+> `is_structured(text)`（判断输入是否结构化，如 JSON/正则可匹配）、`estimate_rules(text)`（估算枚举规则条数）、`qps_to_annual_cost(qps)`（QPS 换算 LLM 年化调用成本）、`dev_days`（规则引擎预估开发人日，建议作为参数传入或按团队经验设为常量，下例取 5）。
+
 ```python
-def should_use_llm(input_text, expected_qps, accuracy_required):
+def should_use_llm(input_text, expected_qps, accuracy_required, dev_days=5):
     # 信号 1：是否自然语言
     is_natural_language = not is_structured(input_text)
     
@@ -190,7 +194,7 @@ def should_use_llm(input_text, expected_qps, accuracy_required):
     # 信号 3：容错率
     error_tolerance = 1 - accuracy_required
     
-    # 信号 4：ROI
+    # 信号 4：ROI（dev_days = 规则引擎预估开发人日，单人日成本按 1000 元估）
     annual_llm_cost = qps_to_annual_cost(expected_qps)
     rule_dev_cost = rule_complexity * dev_days * 1000
     

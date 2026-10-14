@@ -4,7 +4,7 @@
   type: deep-dive
   category: 主模块子文章
   summary: 多 Agent 共享记忆深度原理 —— 5 大内容维度 + 3 大实现层 + 6 大模式 + 一致性协议。
-  depth: ⭐⭐⭐
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
@@ -505,7 +505,7 @@ Q：你的多 Agent 任务是什么类型？
 
 ---
 
-> 📅 2026-07-13 · 11.ai/04-architecture · ⭐⭐⭐⭐⭐ · 5 大维度 + 3 层 + 6 模式 + 5 一致性 + 6 实战框架
+> 📅 2026-07-13 · 11.ai/04-architecture · ⭐⭐⭐⭐ · 5 大维度 + 3 层 + 6 模式 + 5 一致性 + 6 实战框架
 
 ← [返回: AI 知识体系 · agent-memory](README.md)
 

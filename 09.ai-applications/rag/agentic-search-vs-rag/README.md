@@ -16,6 +16,8 @@
 
 > **面试场景**：这是反直觉的高频 AI 面试题——很多人以为 RAG 是 AI Coding 标配，但 Claude Code 官方明确否定。面试版（30/60/90 秒话术）见 [咬文嚼字·11.ai/claude-code-agentic-search](../../../12.interview/11.ai/claude-code-agentic-search/README.md)。
 
+> 📌 **与 [06-agentic-rag.md](../06-agentic-rag.md) 的分工**：本篇为独立深度版（slug `ai/agentic-search-vs-rag`，含 12.interview 面试话术入口）；06 是 RAG 系列第 6 章的专题版（slug `ai/rag-agentic-search`，随 RAG MOC 学习路径阅读）。两篇主题高度重叠，后续可考虑合并为单一来源。
+
 ---
 
 ## 一、RAG 的设计哲学（先回顾）
@@ -266,6 +268,6 @@ Agentic Search 是 AI Coding 检索范式的演进，**与 驾驭演进主线（
 
 ---
 
-> 📅 2026-07-03 · 11.ai/02-technology-stack · ⭐⭐⭐⭐⭐
+> 📅 2026-07-03 · 09.ai-applications/rag/agentic-search-vs-rag · ⭐⭐⭐⭐⭐
 
 ← [返回: L2 技术栈](../README.md)

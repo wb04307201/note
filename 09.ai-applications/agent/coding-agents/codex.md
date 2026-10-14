@@ -339,17 +339,17 @@ Codex **桌面 App** 有两个独家模式（CLI 没有）：
 
 ## 七、特色能力
 
-### 6.1 云端并行沙盒
+### 7.1 云端并行沙盒
 
 Codex 可在 OpenAI 云端**并行启动多个沙盒**（每个沙盒独立 git worktree），并发执行多个子任务，最后合并结果。**这是 Codex 独有**的能力 —— 其他 3 个 Agent 都是本地执行。
 
-### 6.2 IDE 深度集成
+### 7.2 IDE 深度集成
 
 - VS Code 扩展：实时 inline diff + 修改建议
 - JetBrains 插件：完整 IDE 集成
 - 桌面 App：独立窗口 + 系统通知
 
-### 6.3 与 ChatGPT 联动
+### 7.3 与 ChatGPT 联动
 
 Codex Pro 用户可在 ChatGPT 网页直接派发 Codex 任务，手机端也能启动 Agent。
 

@@ -6,13 +6,14 @@
   summary: 向量检索算法选型：HNSW vs IVF vs DiskANN + 4 维权衡（内存/磁盘/QPS/Recall）
   depth: ⭐⭐⭐⭐⭐
   status: active
+  tags: [向量检索, HNSW, DiskANN]
 -->
 
 # 向量检索算法选型 —— HNSW vs IVF vs DiskANN 与 4 维权衡
 
 ← 返回 [技术栈](../README.md)
 
-> 向量检索是 RAG / 推荐系统 / 语义搜索的核心组件。本文从 **HNSW / IVF / DiskANN** 3 大算法的原理、规模边界、4 维权衡（内存/磁盘/QPS/Recall）系统讲清楚向量检索选型决策。
+> 向量检索是 RAG / 推荐 / 语义搜索的核心。本文从 HNSW / IVF / DiskANN 3 大算法的原理、规模边界与 4 维权衡，讲清选型决策。
 
 > **面试场景**：这是 AI 架构师高频面试题——很多人只学 HNSW，但 10 亿级必须换算法。面试版（30/60/90 秒话术）见 [咬文嚼字·11.ai/vector-search-algorithms](../../../12.interview/11.ai/vector-search-algorithms/README.md)。
 

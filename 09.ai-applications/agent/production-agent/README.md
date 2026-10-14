@@ -3,9 +3,10 @@
   slug: ai/production-agent
   type: article
   category: 主模块子文章
-  summary: 生产级 Agent 系统
+  summary: Shopify Sidekick 生产级 Agent 工程实践——架构演进（Just-in-Time 指令对抗工具爆炸）+ LLM-as-a-Judge 评估体系 + GRPO 训练奖励作弊对策。
   depth: ⭐⭐⭐
   status: active
+  tags: [Agent, Shopify, 生产落地, LLM-as-a-Judge]
 -->
 
 # 生产级 Agent 系统：Shopify Sidekick 工程实践
@@ -21,7 +22,6 @@
 
 本文基于 Shopify 工程团队在 ICML 2025 上的分享，深度解析他们在打造 AI 助手 Sidekick 过程中的架构演进、评估体系构建以及强化学习训练中的实战经验，为开发者提供了一份详尽的工程指南。
 
----
 ---
 
 ### 一、 架构演进：从“工具堆砌”到“即时指令”

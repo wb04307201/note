@@ -230,14 +230,18 @@ OpenAI 的 fine-tuning 流程在 2024+ 引入了 **policy-based AI evaluator**�
 - 训练完成后，AI 评估器扫描模型行为，标注违规模式
 - 违规率 > 阈值时强制 RLHF 加固
 
+> ⚠️ **以下为示意性伪代码，不可直接运行**：OpenAI 官方 fine-tuning API（`client.fine_tuning.jobs.create`）**没有** `constitutional_principles` 参数（真实参数仅 `model` / `training_file` / `hyperparameters` / `suffix` / `validation_file` 等）。宪法约束在 OpenAI 生态中的实际落地方式是：训练前用模型（Evals / model-graded evals + system prompt 宪法）清洗与过滤训练数据，训练后再用 AI 评估器扫描模型行为，而非在 API 里直接传宪法。
+
 ```python
+# ⚠️ 示意性伪代码：constitutional_principles 并非 OpenAI 真实 API 字段，
+# 仅用于表达"宪法原则注入微调流程"的思想，照抄运行会抛 TypeError。
 from openai import OpenAI
 
 client = OpenAI()
 response = client.fine_tuning.jobs.create(
     model="gpt-4o-mini-2024-07-18",
     training_file="file-abc123",
-    constitutional_principles=[
+    constitutional_principles=[          # ← 伪代码字段，真实 API 不存在
         "Refuse medical diagnoses; recommend consulting a doctor.",
         "Never reveal training data personal information.",
         "Decline requests to generate harmful code (exploits, malware)."
@@ -245,7 +249,7 @@ response = client.fine_tuning.jobs.create(
 )
 ```
 
-> **特点**：OpenAI 把 CAI 工具化下沉到 fine-tuning API，让中小开发者也能用宪法微调。
+> **特点**：OpenAI 把 CAI 思想工具化下沉到 fine-tuning 工作流（数据清洗 + 训后 AI 评估器），让中小开发者也能用宪法约束微调。
 
 ---
 

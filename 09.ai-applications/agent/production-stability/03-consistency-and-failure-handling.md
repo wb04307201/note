@@ -242,7 +242,7 @@ def retry_with_backoff(fn, max_retries=3, base_delay=1):
 ---
 
 ## 一句话总结
-> **LLM 一致性 ≠ 重试——raw 重试失败，**Self-Consistency 投票 + Judge 模型**才能挑出最佳。3 次不一致不可怕，可怕的是没有 Judge / 没有重试预算。
+> **LLM 一致性 ≠ 重试——raw 重试失败时，Self-Consistency 投票 + Judge 模型才能挑出最佳**。3 次不一致不可怕，可怕的是没有 Judge / 没有重试预算。
 
 ---
 
