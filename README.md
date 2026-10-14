@@ -44,7 +44,7 @@
 | 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 62 |
 | 10 | [10.business-systems](./10.business-systems/) | 业务系统速查（电商/社交/金融等） | 38 |
 | 11 | [11.product-and-pm](./11.product-and-pm/) | 产品 + PM（Product & PM）| 11 |
-| 12 | [12.interview](./12.interview/) | 高频面试题（**233 篇**）| 245 |
+| 12 | [12.interview](./12.interview/) | 高频面试题（**234 篇**）| 245 |
 | 13 | [13.story](./13.story/) | 「阿明餐厅」技术系列（**50 篇**）| 1 |
 
 ## 三、3 大沉淀模式
