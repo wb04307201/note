@@ -402,7 +402,7 @@ RLHF（Reinforcement Learning from Human Feedback）是**SL + RL 分层架构**�
 └─────────────────────────────────────────────┘
 ```
 
-**DPO（2024，斯坦福）**：**简化版本**，直接用偏好数据优化策略，无需奖励模型：
+**DPO（2023，斯坦福）**：**简化版本**，直接用偏好数据优化策略，无需奖励模型：
 
 $$
 \mathcal{L}_{DPO} = -\mathbb{E}_{(x, y_w, y_l) \sim D} \log \sigma \left( \beta \log \frac{\pi_\theta(y_w \mid x)}{\pi_{ref}(y_w \mid x)} - \beta \log \frac{\pi_\theta(y_l \mid x)}{\pi_{ref}(y_l \mid x)} \right)
@@ -547,7 +547,7 @@ class WorldModel(nn.Module):
 **真相**：**DPO / Constitutional AI / RLAIF 是 RLHF 的演进和替代**
 
 - **RLHF**（2022）：OpenAI InstructGPT 用 PPO + 奖励模型
-- **DPO**（2024）：直接优化偏好，无需奖励模型，训练稳定 2-3x
+- **DPO**（2023）：直接优化偏好，无需奖励模型，训练稳定 2-3x
 - **Constitutional AI**（Anthropic 2023）：用规则约束代替人类标注
 - **RLAIF**（Google 2023）：用 LLM 评判替代人类标注
 

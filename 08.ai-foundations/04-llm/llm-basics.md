@@ -161,19 +161,20 @@ $$\mathcal{L}(N, D) \approx \left( \frac{N_c}{N} \right)^{\alpha_N} + \left( \fr
 
 ### 2.1 三大核心组件
 
-```text
-┌──────────────────────────────────────────────┐
-│           Transformer Block                   │
-│                                               │
-│  x → LayerNorm → Multi-Head Attention → + → │
-│  └─────────────────────────────────────────────┘
-│   ↓                                            │
-│  x → LayerNorm → Feed-Forward (FFN)    → + → │
-│  └─────────────────────────────────────────────┘
-│   ↓                                            │
-│  Output                                        │
-└──────────────────────────────────────────────┘
+```mermaid
+graph TD
+    X[输入 x] --> LN1[LayerNorm]
+    LN1 --> MHA[Multi-Head Attention]
+    MHA --> ADD1(("+ 残差"))
+    X --> ADD1
+    ADD1 --> LN2[LayerNorm]
+    LN2 --> FFN[Feed-Forward FFN]
+    FFN --> ADD2(("+ 残差"))
+    ADD1 --> ADD2
+    ADD2 --> OUT[输出 → 下一 Block]
 ```
+
+> 等价文字版：`x → LayerNorm → MHA → (+x 残差) → LayerNorm → FFN → (+ 残差) → Output`（Pre-LN 结构，GPT 系列 / LLaMA 均采用）。
 
 #### 2.1.1 Self-Attention
 

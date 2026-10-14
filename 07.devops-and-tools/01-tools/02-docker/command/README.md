@@ -25,7 +25,6 @@
 | `docker load -i <file.tar>`         | 从 tar 文件加载镜像                                    |
 
 ---
----
 
 ## 容器（Container）相关命令
 | 命令                                                     | 说明                                                                                                                                                                       |

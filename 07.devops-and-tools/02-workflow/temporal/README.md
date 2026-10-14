@@ -215,38 +215,62 @@ func LongRunningActivity(ctx context.Context) error {
 Temporal 实现 Saga 模式极为自然——Workflow 本身就是编排器，补偿逻辑直接在代码中表达。
 
 ```go
+// compensation 记录一个补偿动作：补偿 Activity + 其入参
+// 注意：补偿必须也是 Activity——Workflow 协程内不允许直接产生副作用
+// （确定性约束，见 §一；直接调 releaseInventory(order) 会破坏 replay）
+type compensation struct {
+    activity interface{}
+    args     interface{}
+}
+
+// 逆序执行补偿链（后成功的先回滚）
+func runCompensations(ctx workflow.Context, comps []compensation) error {
+    for i := len(comps) - 1; i >= 0; i-- {
+        c := comps[i]
+        // 用 DisconnectedContext：即使原 ctx 被取消/超时，补偿仍有时间窗口执行
+        dctx, _ := workflow.NewDisconnectedContext(ctx, workflow.DisconnectedContextOptions{
+            Timeout: 1 * time.Minute,
+        })
+        if err := workflow.ExecuteActivity(dctx, c.activity, c.args).Get(dctx, nil); err != nil {
+            workflow.GetLogger(ctx).Error("compensation failed", "activity", i, "error", err)
+            // 补偿失败不中断其余补偿，记录后继续（必要时人工介入）
+        }
+    }
+    return nil
+}
+
 func OrderSaga(ctx workflow.Context, order Order) error {
-    var compensations []func() error
+    var comps []compensation
 
     // 1. 扣减库存
-    err := workflow.ExecuteActivity(ctx, ReserveInventory, order).Get(ctx, nil)
-    if err != nil {
-        return runCompensations(compensations)
+    if err := workflow.ExecuteActivity(ctx, ReserveInventory, order).Get(ctx, nil); err != nil {
+        return runCompensations(ctx, comps)
     }
-    compensations = append(compensations, func() error {
-        return releaseInventory(order)
-    })
+    comps = append(comps, compensation{ReleaseInventory, order})
 
     // 2. 处理支付
     var payment PaymentResult
-    err = workflow.ExecuteActivity(ctx, ChargePayment, order).Get(ctx, &payment)
-    if err != nil {
-        return runCompensations(compensations)
+    if err := workflow.ExecuteActivity(ctx, ChargePayment, order).Get(ctx, &payment); err != nil {
+        return runCompensations(ctx, comps)
     }
-    compensations = append(compensations, func() error {
-        return refundPayment(payment.TransactionID)
-    })
+    comps = append(comps, compensation{RefundPayment, payment.TransactionID})
 
     // 3. 安排发货
-    err = workflow.ExecuteActivity(ctx, ScheduleShipping, order).Get(ctx, nil)
-    if err != nil {
-        return runCompensations(compensations)
+    if err := workflow.ExecuteActivity(ctx, ScheduleShipping, order).Get(ctx, nil); err != nil {
+        return runCompensations(ctx, comps)
     }
 
     // 全部成功
     return nil
 }
 ```
+
+**要点**：
+
+- 正向步骤与补偿步骤**都走 `workflow.ExecuteActivity`**——补偿本身也是副作用，直接在协程里调函数会违反 Workflow 确定性约束（replay 时会重复执行）
+- 补偿按**逆序**执行（LIFO），保证回滚顺序与生效顺序相反
+- 用 `NewDisconnectedContext` 包住补偿调用，避免"Workflow 已被取消导致补偿也立即失败"
+- 单个补偿失败只记日志不中断，剩余补偿继续执行（Saga 的最终一致语义）
 
 ### Saga vs 2PC vs TCC
 

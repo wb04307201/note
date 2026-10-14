@@ -1,12 +1,13 @@
 <!--module:
   parent: 08.ai-foundations
   slug: 08.ai-foundations/04-llm
-  type: index
+  type: index-only
   category: AI 基础子模块
   summary: 大语言模型基础——语言模型演进、预训练、对齐与 Agent 能力的全景速查。
   depth: ⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 04. 大语言模型
 
@@ -27,6 +28,7 @@ graph TD
 
 ## 学习目标
 
+- **本页自足目标**：读完本页知识地图 + 上方「定位」，能独立说出语言模型三阶段的差异——n-gram（离散计数、维数灾难）→ 神经语言模型 NNLM（词向量 + 前馈网络，泛化到未见 n-gram）→ GPT 生成式范式（Transformer Decoder + 自回归预训练 + 指令微调）
 - **建立概念底盘**：从 n-gram → 神经语言模型 → GPT 生成式范式的演进脉络（[llm-basics](./llm-basics.md)）
 - **理解训练细节**：预训练目标、Dropout 等正则化手段在 LLM 中的实证行为（[dropout-in-llm](./dropout-in-llm/)）
 - **衔接架构层**：先读 [03-transformer](../03-transformer/README.md) 建立注意力机制认知，再回看本章效率更高

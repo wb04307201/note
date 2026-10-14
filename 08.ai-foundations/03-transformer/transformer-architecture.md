@@ -209,9 +209,7 @@ graph LR
 - 上游：[LLM 基础](../04-llm/README.md) — 大语言模型概述
 - 关联：[Token 与计费](../../09.ai-applications/llm-inference/token-billing/) — LLM 推理成本
 - 应用：[RAG](../../09.ai-applications/rag/) — Transformer 的核心应用场景
-
-
-- single-epoch-and-config-evidence
+- 延伸：[单 epoch 时代 + config 考古实锤](../04-llm/dropout-in-llm/single-epoch-and-config-evidence.md) — 现代 Transformer 训练为何弃用 Dropout
 
 ## 📚 参考来源
 

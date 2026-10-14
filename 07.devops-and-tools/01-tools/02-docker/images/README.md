@@ -172,19 +172,6 @@ docker exec -it alist ./alist admin
 docker run -d --name chroma -p 8000:8000 ghcr.io/chroma-core/chroma:1.0.0
 ```
 
-## docker mirrors
-
-### 使用 Docker File
-```shell
-{
-  "registry-mirrors": ["https://registry.dockermirror.com"]
-}
-```
-### 命令行使用配置
-```shell
-docker pull ubuntu --registry-mirror=https://registry.dockermirror.com
-```
-
 ### Open WebUI
 <!-- -p 3000:8080: 宿主机 3000 映射容器 8080; --add-host: 允许容器访问宿主机 localhost -->
 ```shell
@@ -204,6 +191,19 @@ docker run --name nacos-standalone-derby -e MODE=standalone -e NACOS_AUTH_TOKEN=
 ### SearXNG
 ```shell
 docker run -p 6080:8080 --name searxng -d --restart=always -v "${SEARXNG_DATA_DIR:-./SearXNG}:/etc/searxng" -e "BASE_URL=http://localhost:6080/" -e "INSTANCE_NAME=${INSTANCE_NAME:-my-instance}" searxng/searxng:latest
+```
+
+## docker mirrors
+
+### 使用 Docker File（daemon.json）
+```json
+{
+  "registry-mirrors": ["https://registry.dockermirror.com"]
+}
+```
+### 命令行使用配置
+```shell
+docker pull ubuntu --registry-mirror=https://registry.dockermirror.com
 ```
 
 ## 01 [docker-compose 示例](../../../README.md)

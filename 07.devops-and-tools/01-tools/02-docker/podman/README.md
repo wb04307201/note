@@ -3,7 +3,7 @@
   slug: tools/podman
   type: article
   category: 主模块子文章
-  summary: Podman
+  summary: Podman——Red Hat 主导的无守护进程容器引擎，兼容 Docker CLI 且原生支持 Rootless，是 Docker 的安全替代方案
   depth: ⭐
   status: active
 -->

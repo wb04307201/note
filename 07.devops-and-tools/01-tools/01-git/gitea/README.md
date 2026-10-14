@@ -3,7 +3,7 @@
   slug: tools/gitea
   type: article
   category: 主模块子文章
-  summary: Gitea
+  summary: Gitea——Go 编写的轻量自托管 Git 服务，资源占用远低于 GitLab，5 分钟跑通，是小团队替代 GitHub 的首选
   depth: ⭐
   status: active
 -->

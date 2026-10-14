@@ -92,6 +92,8 @@ tokio = { version = "1", features = ["full"] }
 use async_trait::async_trait;
 use pingora::prelude::*;
 use pingora_load_balancer::prelude::*;
+use pingora_load_balancer::health_check::HttpHealthCheck;
+use pingora_load_balancer::{reselection, selection::RoundRobin};
 use std::sync::Arc;
 
 fn main() {
@@ -102,18 +104,20 @@ fn main() {
     let mut my_server = Server::new(Some(Opt::default())).unwrap();
     my_server.bootstrap();  // 初始化线程池等
 
-    // 3. 构造 upstream 池（用 round_robin）
+    // 3. 构造 upstream 池（用 round_robin）——try_from_iter 返回 Arc<LoadBalancer<RoundRobin>>
     let upstreams = LoadBalancer::try_from_iter(["127.0.0.1:8081", "127.0.0.1:8082"]).unwrap();
 
-    // 4. 构造代理服务
-    let lb = my_server.add_service(
-        MyProxy { upstream: Arc::new(upstreams) },
+    // 4. 后台 HTTP 健康检查任务（官方 example：探活 upstream，失败自动摘除）
+    let mut lb = my_server.add_background_service(
+        "health-check",
+        HttpHealthCheck::new(upstreams.clone()),
     );
+    lb.reselection = Some(reselection::ExponentialBackoff::default());
 
-    // 5. 监听 0.0.0.0:6188，反代到 upstream 池
+    // 5. 构造代理服务：http_proxy_service 包装 MyProxy，监听 0.0.0.0:6188
     let mut proxy_service = http_proxy_service(
         &my_server.configuration,
-        lb,
+        MyProxy { upstream: upstreams },
     );
     proxy_service.add_tcp("0.0.0.0:6188");
     my_server.add_service(proxy_service);
@@ -141,7 +145,8 @@ impl ProxyHttp for MyProxy {
     ) -> Result<Box<HttpPeer>> {
         // 从负载均衡器选一个上游
         let upstream = self.upstream.select(b"", 256).unwrap();
-        // 把请求转发到这个 upstream 的 80 端口，且不做 TLS
+        // HttpPeer::new(addr, tls, sni)：第二参数 true = 对上游走 TLS，SNI 用 one.example
+        // （本地上游未开 TLS 时改为 false）
         let peer = Box::new(HttpPeer::new(upstream, true, "one.example".to_string()));
         Ok(peer)
     }
@@ -245,7 +250,7 @@ cargo run --example <name>  # 跑 examples/ 里的小 demo
 
 参考 Cloudflare 官方博客（[2024-02-27 发布文](https://blog.cloudflare.com/pingora-open-source/)）：
 
-```bash
+```text
 # 生产环境大致流程
 1. 在 CI 编译 cross target（Docker 镜像里 cargo build --release）
 2. 推到内部 registry（ghcr.io / ECR）

@@ -5,7 +5,6 @@
   category: 主模块子文章
   summary: 注意力机制全家桶（Self/Cross/Multi-Head/Sparse/Linear/MQA/GQA）——数学推导 + 7 大变体 + 工业级 KV Cache 加速 + 6 家公司实战。
   depth: ⭐⭐⭐⭐⭐
-  depth: ⭐⭐⭐⭐⭐
   status: active
 -->
 

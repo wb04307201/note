@@ -13,9 +13,16 @@
 > 一份从入门到实战的 K8s 完整速查手册：从"容器化部署"到"云原生架构"。
 
 ---
-## 引言：Kubernetes 架构 的关键决策
 
-本篇是「Kubernetes 架构」的核心章节，聚焦该主题在实际落地时**5 个 trade-off 的取舍与决策轴**：抽象红利 vs 运维复杂度、CRD/Operator 自建 vs Service Mesh 托管、控制平面 vs 工作节点、Deployment vs StatefulSet vs DaemonSet、自建 vs 托管（EKS/GKE/AKS）。
+## K8s 落地的 5 个关键决策轴
+
+| # | trade-off | 决策要点 | 详见 |
+|---|-----------|---------|------|
+| 1 | 抽象红利 vs 运维复杂度 | 声明式 API 换来弹性与自愈，但代价是 etcd / 网络插件 / 证书运维 | [01-architecture](01-architecture/README.md) |
+| 2 | Deployment vs StatefulSet vs DaemonSet | 无状态用 Deployment，有状态（数据库/消息队列）用 StatefulSet，每节点守护进程用 DaemonSet | [02-pod-and-workload](02-pod-and-workload/README.md) |
+| 3 | Service 类型 vs Ingress | 集群内 ClusterIP，集群外 NodePort/LoadBalancer，7 层路由收敛到 Ingress | [03-service-and-ingress](03-service-and-ingress/README.md) |
+| 4 | CRD/Operator 自建 vs Service Mesh 托管 | 复杂有状态应用才值得写 Operator；流量治理交给 Mesh 而非自研 | [08-operator-and-gitops](08-operator-and-gitops/README.md) · [06-network-and-service-mesh](06-network-and-service-mesh/README.md) |
+| 5 | 自建 vs 托管（EKS/GKE/AKS） | 中小团队托管省控制平面运维，超大集群/合规场景才考虑自建 | §六 主流发行版 |
 
 ---
 

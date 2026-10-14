@@ -3,7 +3,7 @@
   slug: tools/pipeline-patterns
   type: article
   category: 主模块子文章
-  summary: CI/CD 流水线设计模式
+  summary: 分支策略（Git Flow/GitHub Flow/Trunk-Based）× 多环境管理 × PR/Tag 流水线 × 缓存并行加速
   depth: ⭐⭐
   status: active
 -->
@@ -13,9 +13,8 @@
 > 一份按层次梳理的流水线设计速查手册：从分支策略到多环境管理的最佳实践。
 
 ---
-## 引言：CI/CD 流水线设计模式：分支策略与多环境管理 的关键决策
 
-本篇是「CI/CD 流水线设计模式：分支策略与多环境管理」的核心章节，聚焦该主题在实际落地时**5 个 trade-off 的取舍与决策轴**。
+> **本篇覆盖 5 个关键决策轴**：① 分支策略选型（Git Flow / GitHub Flow / Trunk-Based，见 §二）② 环境分层与准入门槛（dev / staging / prod，见 §三）③ PR 流水线 vs Tag 发布流水线分离（见 §四、§五）④ 构建缓存粒度（见 §六）⑤ 并行度取舍（见 §七）。
 
 ## 一、为什么需要"流水线设计模式"？
 
@@ -38,20 +37,23 @@
 ### 2.1 Git Flow（重型）
 
 ```text
-master ────────────────────────────────────────────
-        │                  ↑                ↑
-        │                  │ Merge          │ Merge
-        │                  │                │
-release ────────  ←─────────────────────────────
-        │          ↑
-        │ Merge    │
-        ↓          │
-develop ───────────────────────────────────────
-        │                ↑
-        │ Merge          │ Feature branch
-        ↓                │
-feature/* ──────  ─────────────────────────────
+master  ──●──────────────────────●(tag)───●────────▶
+          │ \                    ↑         ↑
+          │  \ hotfix            │ Merge   │
+          │   \                  │         │
+release ──│────●────────────────●         │
+          │    ↑                            │
+          │    │ Merge（测试稳定后）          │
+develop ──●────●──────●──────●──────●──────▶
+          │         ↑ │    ↑ │
+          │  Merge  │ │    │ │  Merge
+feature/* └─────────● └────● └────────────▶
 ```
+
+- feature/* → develop（开发完成合并）
+- develop → release（拉发布分支做测试稳定）
+- release → master + tag（发布），同时回合并到 develop
+- hotfix → master + develop（生产紧急修复）
 
 | 阶段 | 操作 |
 |------|------|

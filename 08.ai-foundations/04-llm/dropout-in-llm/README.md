@@ -224,7 +224,7 @@ print(f"LLM 风格参数数量（无 Dropout）：  {sum(p.numel() for p in bloc
 
 ---
 
-> 📅 2026-09-01 · 咬文嚼字 · Dropout in LLM · ⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Dropout in LLM · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ---
 

@@ -68,19 +68,19 @@ graph TB
 ---
 
 ## 核心内容
-### 4.1 命令速查
+### 1. 命令速查
 
 覆盖镜像（pull/build/save/load）、容器（run/exec/logs/cp）、网络（create/connect/disconnect）、卷（create/inspect/mount）、系统（info/prune）五大类操作，是日常使用频率最高的参考。
 
-### 4.2 Docker Compose
+### 2. Docker Compose
 
 通过 YAML 声明式定义多容器应用。当前提供 OpenSearch 双节点 + Dashboards 完整示例，涵盖节点发现、内存锁定、Java Heap 配置等生产级要点。
 
-### 4.3 镜像构建
+### 3. 镜像构建
 
 收录 Nginx、Java、Redis、MySQL、PostgreSQL、RabbitMQ、MinIO、Nacos、Chroma、Open WebUI 等常用中间件和工具的部署命令，包含端口映射、卷挂载、环境变量等完整参数。
 
-### 4.4 Podman
+### 4. Podman
 
 Red Hat 主导的无守护进程容器引擎，支持 Rootless 模式和原生 Pod 管理。与 Docker 的核心差异在于架构（无 dockerd）、权限模型（普通用户可用）、重启机制（需 Systemd 管理）。
 

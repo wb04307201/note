@@ -184,8 +184,23 @@ main               ──●──●──●──●──●──●──�
 on:
   pull_request:
     branches: [main]
-    # 仅 feat/ fix/ perf/ refactor 前缀的 PR 部署 Preview
-    # 但 release/ hotfix/ chore/docs 不部署（用 paths 反而更稳）
+
+jobs:
+  preview:
+    # on.pull_request.branches 只能过滤「目标分支」，无法过滤 PR 源分支前缀；
+    # 前缀过滤要用 jobs.<id>.if + github.head_ref（PR 的源分支名）：
+    # 仅 feat/ fix/ perf/ refactor/ 前缀的 PR 部署 Preview，
+    # release/ hotfix/ chore/ docs/ 不部署
+    if: >
+      startsWith(github.head_ref, 'feat/') ||
+      startsWith(github.head_ref, 'fix/') ||
+      startsWith(github.head_ref, 'perf/') ||
+      startsWith(github.head_ref, 'refactor/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy Preview
+        run: echo "deploy preview for ${{ github.head_ref }}"
 ```
 
 ```yaml

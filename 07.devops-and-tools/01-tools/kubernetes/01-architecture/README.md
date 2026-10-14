@@ -3,8 +3,8 @@
   slug: tools/k8s-architecture
   type: article
   category: 主模块子文章
-  summary: K8s 架构
-  depth: ⭐
+  summary: K8s 集群架构——控制平面四大组件（API Server/etcd/Scheduler/Controller Manager）+ 工作节点三件套（kubelet/kube-proxy/运行时）+ Pod 创建流程 + HA 部署模式
+  depth: ⭐⭐⭐
   status: active
 -->
 
@@ -13,9 +13,6 @@
 > 一份按层次梳理的 K8s 架构速查手册：从控制平面到工作节点的完整组件解析。
 
 ---
-## 引言：K8s 架构：控制平面 + 工作节点深度解读 的关键决策
-
-本篇是「K8s 架构：控制平面 + 工作节点深度解读」的核心章节，聚焦该主题在实际落地时**5 个 trade-off 的取舍与决策轴**。
 
 ## 一、K8s 整体架构图
 

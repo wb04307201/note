@@ -10,8 +10,6 @@
 
 # EventMesh 云流程
 
-> Apache EventMesh 在工作流/云流程场景的架构图与可视化资料
-
 ---
 
 ## 🎯 一句话定位

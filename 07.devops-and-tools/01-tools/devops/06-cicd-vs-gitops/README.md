@@ -3,7 +3,7 @@
   slug: tools/cicd-vs-gitops
   type: article
   category: 主模块子文章
-  summary: CI/CD vs GitOps
+  summary: CI/CD（push）与 GitOps（pull）范式对比——漂移检测/Git revert 回滚/协同模式与三阶段迁移路径
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -12,7 +12,6 @@
 
 > 一份按理念梳理的 DevOps 范式速查手册：从 CI/CD 到 GitOps 的演进路径与最佳组合。
 
----
 ---
 
 ## 一、CI/CD vs GitOps 核心区别

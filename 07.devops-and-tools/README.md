@@ -13,7 +13,7 @@
 
 # 07. DevOps + Tools + Workflow
 
-> DevOps 工具链 + CI/CD + 容器编排 + 流程引擎一站式速查：从日常工具（Git/Docker/Nginx/Monorepo）到基础设施（K8s/IaC/CI-CD），再到业务流（BPMN/事件驱动/微服务编排）。
+> DevOps 工具链 + CI/CD + 容器编排 + 流程引擎一站式速查。
 > **继承规范**：[SPEC.md](./SPEC.md)
 
 
@@ -88,7 +88,7 @@ flowchart TB
 | **IaC** | Terraform | Ansible / Pulumi | [iac](./01-tools/iac/README.md) |
 | **传统流程引擎** | Camunda 7 | Flowable / Activiti | [camunda-7](./02-workflow/process-engine/camunda/camunda-7/README.md) |
 | **云原生流程引擎** | Camunda 8 / Zeebe | — | [camunda-8](./02-workflow/process-engine/camunda/camunda-8/README.md) |
-| **微服务编排** | Zeebe / Conductor / Cadence | Temporal | [workflow-and-microservice-orchestration](./02-workflow/workflow-and-microservice-orchestration/README.md) |
+| **微服务编排** | Temporal（code-first）；需 BPMN 可视化建模选 Zeebe | Conductor / Cadence | [workflow-and-microservice-orchestration](./02-workflow/workflow-and-microservice-orchestration/README.md) |
 | **Durable Execution** | Temporal.io | Camunda 8 Zeebe | [temporal](./02-workflow/temporal/README.md) |
 | **事件驱动** | Apache EventMesh + Kafka | — | [apache-eventmesh](./02-workflow/apache-eventmesh/README.md) |
 | **Serverless Workflow** | CNCF Serverless Workflow DSL | — | [apache-eventmesh](./02-workflow/apache-eventmesh/README.md) |

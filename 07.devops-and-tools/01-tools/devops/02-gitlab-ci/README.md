@@ -3,7 +3,7 @@
   slug: tools/gitlab-ci
   type: article
   category: 主模块子文章
-  summary: GitLab CI
+  summary: GitLab CI 一体化 DevOps——.gitlab-ci.yml 流水线 / Runner 执行器 / DinD 与模板复用实战
   depth: ⭐⭐⭐
   status: active
 -->

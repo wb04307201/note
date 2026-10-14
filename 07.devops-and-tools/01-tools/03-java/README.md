@@ -65,6 +65,38 @@ graph TB
 
 三大工具库各有侧重：Hutool 以场景全覆盖和中文生态取胜，适合国内快速开发；Apache Commons 模块化设计、接口稳定、兼容老版本 Java，适合传统企业系统；Guava 在集合类革新和并发工具（CacheBuilder/RateLimiter/EventBus）上领先，适合高性能场景。三者非互斥，可按需组合使用。
 
+最小 Maven 依赖（按需引入，版本以 Maven Central 最新稳定版为准）：
+
+```xml
+<dependencies>
+  <!-- Hutool 全家桶（也可按模块引入 hutool-core / hutool-http 等） -->
+  <dependency>
+    <groupId>cn.hutool</groupId>
+    <artifactId>hutool-all</artifactId>
+    <version>5.8.27</version>
+  </dependency>
+  <!-- Apache Commons Lang3 -->
+  <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.14.0</version>
+  </dependency>
+  <!-- Guava -->
+  <dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>33.2.0-jre</version>
+  </dependency>
+  <!-- Lombok（provided：仅编译期生效） -->
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.32</version>
+    <scope>provided</scope>
+  </dependency>
+</dependencies>
+```
+
 ### 4.2 Lombok 注解提效
 
 Lombok 通过编译期注解处理器（JSR 269）修改抽象语法树生成代码。覆盖基础功能（@Data/@Getter/@Setter/@ToString）、构造器（@NoArgsConstructor/@AllArgsConstructor）、高级模式（@Builder/@Slf4j/@Cleanup/@SneakyThrows）和特殊场景（@Value/@Delegate/@UtilityClass）。需注意 IDE 插件依赖和过度使用对可读性的影响。

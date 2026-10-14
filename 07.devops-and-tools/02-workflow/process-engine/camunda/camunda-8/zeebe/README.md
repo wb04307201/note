@@ -51,26 +51,36 @@
 
 ---
 
-Zeebe 是一个用于微服务编排的开源工作流引擎。它基于 BPMN 2.0 可定义图形化工作流，可使用 Docker 和 Kubernetes 进行部署，可构建来自 Apache Kafka 和其他消息传递平台的事件的工作流，可水平扩展处理非常高的吞吐量，可以导出用于监视和分析的工作流数据，具有很好容错能力，可无缝伸缩以处理不断增长的事务量。
+## 概述
 
-更简要解释和概述，Zeebe 是为在 BPMN 流程引擎基础上加入了 EDA（事件驱动架构）的特性。
+Zeebe 是 Camunda 8 的工作流引擎内核：一个面向微服务编排的开源 BPMN 2.0 引擎。它与传统嵌入式引擎（如 Camunda 7）最大的区别是**把 EDA（事件驱动架构）的思路做进了引擎本身**——流程状态以事件日志形式存储，Worker 以拉模式消费任务，从而天然支持水平扩展与背压。
+
+工程视角的能力清单：
+
+- 用 BPMN 2.0 图形化定义流程，开发与业务共用同一套模型语言
+- 无外部数据库依赖：状态直接写入节点本地文件系统，集群内分布式计算
+- 单集群可承载 10K+ 流程实例/秒的吞吐
+- 可消费来自 Kafka 等消息平台的事件驱动流程
+- 通过 Exporter 把流程数据流式导出，用于监控与分析
+- Docker / Kubernetes 部署，副本机制容错
 
 ## 一、Zeebe 核心特性
 
-Zeebe 是专为微服务编排设计的免费开源的工作流引擎，它提供了：
+核心特性可以分成两组：一组回答"引擎给你什么"，一组回答"引擎怎么扛住规模"。
 
-- **可见性（Visibility）**：Zeebe 提供能力展示出企业工作流运行状态，包括当前运行中的工作流数量、平均耗时、工作流当前的故障和错误等；
-- **工作流编排（Workflow Orchestration）**：基于工作流的当前状态，Zeebe 以事件的形式发布指令（command），这些指令可以被一个或多个微服务消费，确保工作流任务可以按预先的定义流转；
-- **监控超时与错误处理（Monitoring for Timeouts）**：提供能力配置错误处理方式，比如有状态的重试或者升级给运维团队手动处理，确保工作流总是能按计划完成。
+**引擎给你什么（编排与可观测）**：
 
-Zeebe 设计之初，就考虑了超大规模的微服务编排问题。为了应对超大规模，Zeebe 支持：
+- **运行状态可见**：随时能查到运行中的流程实例数量、平均耗时、故障与错误——这是排障和 SLA 监控的基础
+- **事件式编排**：引擎按流程当前状态以事件形式发布指令（command），由一个或多个微服务消费执行，保证任务按 BPMN 定义流转
+- **超时与错误处理**：任务超时/失败可配置有状态重试，或升级为 incident 交人工处理，流程不会"卡死无人知"
 
-- **横向扩容（Horizontal Scalability）**：Zeebe 支持横向扩容并且不依赖外部的数据库，相反的，Zeebe 直接把数据写到所部署节点的文件系统里，然后在集群内分布式的计算处理，实现高吞吐；
-- **容错（Fault Tolerance）**：通过简单配置化的副本机制，确保 Zeebe 能从软硬件故障中快速恢复，并且不会有数据丢失；
-- **消息驱动架构（Message-Driven Architecture）**：所有工作流相关事件被写到只追加写的日志（append-only log）里；
-- **发布-订阅交互模式（Publish-Subscribe Interaction Model）**：可以保证连接到 Zeebe 的微服务根据实际的处理能力，自主的消费事件执行任务，同时提供平滑流量和背压的机制；
-- **BPMN 2.0 标准**：保证开发和业务能够使用相同的语言协作设计工作流；
-- **语言无关的客户端模型（Language-Agnostic Client Model）**：可以使用任何编程语言构建 Zeebe 客户端。
+**怎么扛住规模（分布式设计）**：
+
+- **横向扩容**：按分区（partition）扩展，不依赖外部数据库，吞吐随节点数增长
+- **容错**：分区多副本 + Raft 共识，节点故障自动选主，数据不丢
+- **追加写日志**：所有流程事件写入 append-only log，状态可重放、可审计
+- **发布-订阅 + 拉模式**：Worker 按自身处理能力 `activateJobs` 主动拉取任务，自带背压，流量高峰不会压垮下游
+- **语言无关客户端**：官方 Java/Go 客户端 + 社区多语言实现，通过 gRPC/OpenAPI 生成器接入任意语言
 
 ## 二、Zeebe 架构
 
@@ -139,50 +149,45 @@ graph TB
 
 #### （一）Client 客户端
 
-客户端向 Zeebe 发送指令：
+Client 是嵌在业务微服务里的库，负责三类操作：
 
 - **发布流程**（deploy workflows）
-- **执行业务逻辑**（carry out business logic）
-  - 启动工作流实例（start workflow instances）
-  - 发布消息（publish messages）
-  - 激活作业（activate jobs）
-  - 完成作业（complete jobs）
-  - 失败作业（fail jobs）
-- **处理运维问题**（handle operational issues）
-  - 更新实例流程变量（update workflow instance variables）
-  - 解决异常（resolve incidents）
+- **执行业务逻辑**（carry out business logic）：启动流程实例、发布消息、激活/完成/失败作业（job）
+- **处理运维问题**（handle operational issues）：更新流程变量、解决 incident
 
-客户端程序可以完全独立于 Zeebe 扩缩容，Zeebe brokers 不执行任何业务逻辑。客户端是嵌入到应用程序（执行业务逻辑的微服务）的库，用于跟 Zeebe 集群连接通信。
+关键设计：**业务逻辑全部在 Client 侧，Broker 不执行任何业务代码**。这意味着客户端可以完全独立于 Zeebe 集群扩缩容——引擎只管流程状态流转，计算压力留在你自己的微服务里。
 
-客户端通过 REST 和 gRPC 的混合连接到 Zeebe 网关。虽然 REST 可以通过任何 HTTP 版本提供，但 API 的 gRPC 部分需要基于 HTTP/2 的传输。Zeebe 项目包括官方支持的 Java 和 Go 客户端。社区客户端已使用其他语言创建，包括 C#、Ruby 和 JavaScript。借助 gRPC 的代码生成器和 OpenAPI 规范，可以使用多种不同的编程语言生成客户端。
+连接方式上，Client 通过 REST + gRPC 混合协议接入 Gateway：REST 走任意 HTTP 版本，gRPC 部分要求 HTTP/2。官方客户端为 Java 和 Go，社区另有 C#、Ruby、JavaScript 等实现；借助 gRPC 代码生成器和 OpenAPI 规范，几乎任何语言都能接入。
 
-**Job Workers（作业工作者）**：一个 Zeebe 客户端，它使用客户端 API 首先激活作业，并在完成后完成或失败该作业。
+**Job Worker**：最常见的一类 Client——先 `activateJobs` 拉取一批作业，执行完业务逻辑后 complete（成功）或 fail（失败，触发重试）。拉模式让 Worker 按自身处理能力取任务，天然背压。
 
 #### （二）Gateway 网关
 
-网关作为 Zeebe 集群的单一入口点，并将请求转发给代理。网关是无状态和无会话的，并且可以根据需要添加网关以实现负载平衡和高可用性。
+Gateway 是集群的统一入口：接收 Client 请求并转发给 Broker 节点。它**无状态、无会话**，因此可以随负载任意加节点，配合负载均衡实现高可用——客户端连哪个 Gateway 都一样。
 
-#### （三）Broker 代理
+#### （三）Broker 节点
 
-Zeebe 代理是跟踪活动流程实例状态的分布式工作流引擎。Brokers 可以进行分区以实现水平扩展，并进行复制以实现容错。Zeebe 部署通常由多个代理组成。
+> 术语说明：Broker 保留英文（部分中文文档译作"代理"，易与 Gateway 混淆，本篇统一称 **Broker 节点**）。
 
-需要注意的是，代理中不存在任何应用程序业务逻辑。它的唯一职责是：
+Broker 节点才是真正的工作流引擎：跟踪活动流程实例的状态。Broker 按**分区（partition）**切分实现水平扩展，按**副本（replication）**实现容错，生产部署通常由多个 Broker 节点组成。
 
-- 处理客户端发送的命令
+Broker 节点内不运行任何业务代码，它的职责只有三件事：
+
+- 处理 Client 发来的命令（command）
 - 存储和管理活动流程实例的状态
-- 分配工作给 Job workers
+- 把作业（job）分派给 Job Worker
 
-Brokers 构成一个对等网络（peer-to-peer），这样集群不会有单点故障。集群中所有节点都承担相同的职责，所以一个节点不可用后，节点的任务会被透明的重新分配到网络中其他节点。
+所有 Broker 构成对等网络（peer-to-peer），集群没有单点：每个节点职责相同，某节点不可用时，其分区由 Raft 副本自动接管，任务透明地重新分配到其余节点。
 
 #### （四）Exporter 导出器
 
-Exporter 系统提供 Zeebe 内状态变化的事件流。这些事件流数据有很多潜在用处，包括但不限于：
+Exporter 把 Broker 内部的状态变化以事件流形式导出，典型用途：
 
-- 监控正在运行的流程实例的当前状态
-- 分析历史过程数据以供审计、BI 等使用
-- 跟踪 Zeebe 抛出的异常（incident）
+- 监控运行中流程实例的实时状态
+- 历史数据供审计、BI 分析
+- 跟踪引擎抛出的 incident
 
-Exporter 提供了简洁的 API，可以流式导出数据到任何存储系统。Zeebe 官方提供开箱即用的 Elasticsearch exporter，社区也提供了其他 Exporters。
+它提供简洁的插件式 API，可以把事件流写入任意存储。官方开箱提供 Elasticsearch Exporter（Operate UI 的数据源），社区另有 Kafka、JDBC、S3 等实现——查询侧因此与写入侧解耦，ES 可独立扩容。
 
 ---
 

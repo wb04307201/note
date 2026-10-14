@@ -15,7 +15,17 @@
 ---
 ## 引言：Docker Compose 编排实战 的关键决策
 
-本篇是「Docker Compose 编排实战」的核心章节，聚焦该主题在实际落地时**5 个 trade-off 的取舍与决策轴**。
+Compose 文件写出来容易，写好难——真正的分歧在 5 个决策轴上：
+
+| 决策轴 | 取舍 | 推荐默认 |
+|--------|------|----------|
+| **`depends_on` 策略** | 只控启动顺序 vs 等待就绪（`condition: service_healthy`） | 数据库等依赖必须配 `healthcheck` + `service_healthy`，否则应用先起会连接失败 |
+| **网络隔离** | 全部默认网络（互通）vs 前后端分网 | 生产按暴露面分 Network，DB/缓存不挂到面向公网的前端网 |
+| **volume vs bind mount** | 命名卷（Docker 托管，跨平台稳）vs 绑定宿主目录（改代码即时生效） | 开发用 bind（源码热更新），数据持久化一律命名卷 |
+| **资源限制** | 不限制（单机抢占）vs `deploy.resources.limits` | 单机多服务必配内存上限，防止一个服务 OOM 拖垮全栈 |
+| **profiles** | 全量启动 vs 按需分组（debug / monitoring） | 观测、调试类服务放 profile，默认不启动，`--profile` 显式激活 |
+
+后续章节依次展开：核心概念 → 三类完整编排示例 → 命令速查 → 最佳实践 → 常见问题。
 
 ## 一、核心概念
 

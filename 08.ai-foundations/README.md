@@ -1,5 +1,4 @@
 <!--module:
-  parent: 08.ai-foundations
   slug: ai-foundations
   type: module
   category: 主模块

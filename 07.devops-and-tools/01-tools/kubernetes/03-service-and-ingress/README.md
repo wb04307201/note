@@ -13,7 +13,6 @@
 > 一份按层次梳理的 K8s 网络速查手册：从 ClusterIP 到 Ingress 的完整路径。
 
 ---
----
 
 ## 一、为什么需要 Service？
 

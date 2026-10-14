@@ -226,6 +226,8 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
+> `stable` URL 适合快速体验；生产环境请用版本固定 URL 并纳入 GitOps 仓库管理，详见文末附录 A.4。
+
 ### 7.2 Application 定义
 
 ```yaml
@@ -323,16 +325,19 @@ spec:
 
 ---
 
-← [返回 K8s 总览](../README.md) · 📅 2026-06-28
-## 向上兄弟互链（新增 G4≥2）
+## 相关主题
+
 Operator/GitOps 不是孤岛专题，与以下内容相关：
 
 - [Kubernetes 控制器与 Helm 基础](../01-architecture/README.md) — Operator 底层是 CRD + Controller 模式
 - [CI/CD 基础](../../devops/04-pipeline-patterns/README.md) — GitOps 衔接 CI，是 CD 阶段的现代实现
 - [部署架构总览](../../README.md) — 渐进式发布 / 蓝绿 / 金丝雀 与 GitOps 的对比
 
-## Argo CD 完整安装 + 验证步骤（新增 B1 完整化）
-### 2.1 前置条件
+---
+
+## 附录：Argo CD 完整安装 + 验证步骤
+
+### A.1 前置条件
 
 ```bash
 # 1. K8s 集群（≥ 1.24，cert-manager 可选但推荐）
@@ -345,17 +350,17 @@ kubectl config current-context
 kubectl auth can-i create clusterrolebinding
 ```
 
-### 2.2 安装 Argo CD
+### A.2 安装 Argo CD
 
 ```bash
 # 创建 namespace
 kubectl create namespace argocd
 
-# 安装 stable manifest（v2.10 是当前 stable）
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.0/manifests/install.yaml
+# 生产推荐：版本固定 manifest（示例为 v3.5.5，实际取当前最新 patch 版）
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.5.5/manifests/install.yaml
 ```
 
-### 2.3 验证安装
+### A.3 验证安装
 
 ```bash
 # 1. 检查 pod 都 Running
@@ -371,6 +376,17 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 # 4. 浏览器访问 https://localhost:8080，用户名 admin
 ```
 
-### 2.4 ⚠️ stable URL 警告
+### A.4 ⚠️ 版本固定 vs stable URL
 
-**重要**：`https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.0/manifests/install.yaml` 是**版本固定**的资源，但 `https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml` 是**总是指向最新 stable**（推荐生产用，但需要主动监控升级）。
+两种安装 URL 的区别与统一建议：
+
+| URL 形式 | 行为 | 适用 |
+|---------|------|------|
+| `.../argo-cd/v3.5.5/manifests/install.yaml` | **版本固定**，集群行为可复现 | **生产推荐**——升级由你主动改版本号触发，配合 Git 审核 |
+| `.../argo-cd/stable/manifests/install.yaml` | **总是指向最新 stable 分支**，不同时间 apply 结果不同 | 测试/尝鲜环境——避免在"稳定版悄悄漂移"的 manifest 上跑生产 |
+
+**统一口径**：生产环境用版本固定 URL 并把版本号纳入 GitOps 仓库管理；`stable` URL 仅用于临时验证。注意 v2.10 早已过时（2026-10 时点 Argo CD 已进入 3.x），照抄旧教程的版本号会缺失新 CRD 与安全修复。
+
+---
+
+← [返回 K8s 总览](../README.md) · 📅 2026-06-28
