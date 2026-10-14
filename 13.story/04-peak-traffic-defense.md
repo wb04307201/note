@@ -483,6 +483,6 @@ graph TD
 ## 🔗 业务拓展（风控与营销）
 
 - 业务风控引擎：[risk-control-engine](../06.distributed-systems/03-high-availability/risk-control-engine/README.md) — 当阿明餐厅也想做"老带新砍价"营销活动时，怎么防薅羊毛、防黑产、防自动化脚本？5 层架构 + 7 类对抗完整方案。
-- 风控业务建模面试：[砍一刀算法面试深挖](../12.interview/04.system-design/砍一刀算法/README.md) — 4 道风控面试题（K-Factor / 业务建模 / 风控架构 / 黑产对抗）
+- 风控业务建模面试：[砍一刀算法面试深挖](../12.interview/04.system-design/bargain-algorithm/README.md) — 4 道风控面试题（K-Factor / 业务建模 / 风控架构 / 黑产对抗）
 
 ← [返回系列导读](./index.md)

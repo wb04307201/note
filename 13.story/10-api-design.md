@@ -326,14 +326,10 @@ graph TD
 - [阿明的二次创业](./26-ai-native-startup.md) —— AI 原生创业的 API 设计，AI 工具链的 API 是创业的基础设施
 - [会自我进化的厨房](./27-self-evolving-company.md) —— Agent Loop 的工具层 API，Agent 通过确定性 API 与世界交互
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— AI 幻觉对 API 响应的影响，API 设计需要预留 AI 错误的处理空间
+- [代码库的认知债](./29-codebase-cognitive-debt.md) —— API 是控制认知债的边界：接口即抽象，好的 API 让调用方不必理解实现
+- [Agent 的缰绳](./30-agent-harness.md) —— Harness 依赖确定性 API 约束 Agent 行为，工具层 API 是 Agent 的"手"
+- [AI 的致命三角](./31-ai-fatal-trio.md) —— API 是 AI 系统的确定性防线：三角失衡时用严格的接口契约兜底
 
-
-- [29-codebase-cognitive-debt](29-codebase-cognitive-debt.md)
-- [30-agent-harness](30-agent-harness.md)
-- [31-ai-fatal-trio](31-ai-fatal-trio.md)
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
-- [13.story](README.md)
 ## 跨章节衔接
 
 - [08-qa-testing-strategy.md](./08-qa-testing-strategy.md) —— 正传 4，API 契约测试是测试策略的接口层落地：契约即文档，文档即测试

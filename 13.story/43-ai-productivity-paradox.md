@@ -62,12 +62,6 @@
 
 ### 三、第二幕：老张用数据复盘
 
-老张拿出了 Waydev、GitClear、Faros AI、Jellyfish 等 4 大研究的最新数据，开始逐项拆解。**他把每个数据都翻译成厨房场景**，让阿明秒懂。
-
----
-
-### 三、第二幕：老张用数据复盘
-
 老张拿出了 Waydev、GitClear、Faros AI、Jellyfish 等 4 大研究的最新数据，开始逐项拆解。
 
 #### 数据 1：Waydev——"采纳率 ≠ 有效率"

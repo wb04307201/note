@@ -326,11 +326,9 @@ graph TD
 - [阿明的二次创业](./26-ai-native-startup.md) —— AI 原生创业的数据基础，从第一天就建立数据驱动的决策文化
 - [会自我进化的厨房](./27-self-evolving-company.md) —— Agent Loop 的传感器层依赖数据架构，数据质量决定 Agent 质量
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— AI 幻觉与数据质量的关系，GIGO 原则在 AI 幻觉中同样适用
+- [全系列速查表](./cheatsheet.md) —— 阿明餐厅 50 章的架构速查卡，数据治理六步法一表收录
+- [全系列术语表](./glossary.md) —— 数据仓库 / 数据建模 / 数据质量等术语的统一解释
 
-
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
-- [13.story](README.md)
 ## 跨章节衔接
 
 - [10-api-design.md](./10-api-design.md) —— 正传 6，数据架构通过 API 对外提供服务：内聚数据模型与解耦 API 是良好架构的基础

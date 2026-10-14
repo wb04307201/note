@@ -14,7 +14,7 @@
 
 > **系列定位**：本篇是「阿明餐厅」系列的**续集十二（上）**。在[番外二 · 《阿明的省钱经》](./14-cloud-finops.md)中，我们讲了云资源成本（CPU/内存/存储/带宽）的 FinOps。但 AI 时代出现了一种**全新的成本形态** —— **Token 成本**：按"字数"计费、按"调用次数"计费、按"上下文长度"计费。它的成本结构、增长曲线、优化策略**与传统云资源完全不同**。本篇不谈云资源（详见 14），专门谈**AI 时代的新成本经济学**。**上篇讲成本结构（"看见成本"）**，下篇[34b](./34b-ai-token-cost-optimization.md)讲优化与 ROI（"优化成本"）。
 
-> **兄弟篇**：36b · AI 成本优化（[← 点击阅读](./34b-ai-token-cost-optimization.md)）
+> **兄弟篇**：34b · AI 成本优化（[← 点击阅读](./34b-ai-token-cost-optimization.md)）
 
 ---
 
@@ -601,7 +601,7 @@ graph TB
 - [AI 致命三件套](./31-ai-fatal-trio.md) —— 续集九，攻击者也会利用 Token 成本（拒绝服务 / 资源耗尽）
 - [MCP 协议](./33a-mcp-protocol.md) / [A2A 协议](./33b-a2a-protocol.md) —— 续集十一，协议层是成本监控的颗粒度
 - [35 · AI 可观测性](./35-ai-observability.md) —— AI 时代可观测性专题（与 4.2 工具栈配套）
-- [37 · 向量数据库与 Embedding 实战](./37-vector-database-and-embedding.md) —— 39 续集十五，2.2/2.3 组件详解
+- [37 · 向量数据库与 Embedding 实战](./37-vector-database-and-embedding.md) —— 续集十五，2.2/2.3 组件详解
 
 ---
 
@@ -622,4 +622,4 @@ graph TB
 
 > 好的成本管理，不是"少调用几次 API 就行"，而是"**看懂 Token 账单的每一行，像管餐厅食材一样精细化管理每一次 AI 调用**"。
 
-← [返回系列导读](./index.md) | [下篇：36b 成本优化 →](./34b-ai-token-cost-optimization.md)
+← [返回系列导读](./index.md) | [下篇：34b 成本优化 →](./34b-ai-token-cost-optimization.md)

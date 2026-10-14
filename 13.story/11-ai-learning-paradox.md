@@ -329,22 +329,14 @@ graph TD
 - [会自我进化的厨房](./27-self-evolving-company.md) —— 自进化组织中的持续学习，组织也在像个人一样不断成长
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— AI 幻觉对学习者的挑战，学会辨别 AI 错误是新的学习能力
 
-
-- [note](../README.md)
-- [vibe-coding](../05.frontend/09-frontend-and-ai/vibe-coding/README.md)
-- [30-agent-harness](30-agent-harness.md)
-- [32b-ai-evaluation-pipeline](32b-ai-evaluation-pipeline.md)
-- [33a-mcp-protocol](33a-mcp-protocol.md)
-- [33b-a2a-protocol](33b-a2a-protocol.md)
-- [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
-- [13.story](README.md)
 ## 跨章节衔接
 
 - [25-ai-org-transformation.md](./25-ai-org-transformation.md) —— 续集三，学徒困境在组织层面的映射：组织学习比个人学习更复杂
 - [26-ai-native-startup.md](./26-ai-native-startup.md) —— 续集四，AI 原生创业中的学习悖论：创业者不能全靠 AI
 - [27-self-evolving-company.md](./27-self-evolving-company.md) —— 续集五，自进化组织的学习闭环：组织是更大的"学徒"
+- [16-performance-optimization.md](./16-performance-optimization.md) —— 正传 10，系统级性能 vs 模型级性能：性能优化能力本身也是"基本功"的一部分
+- [19-realtime-eventdriven.md](./19-realtime-eventdriven.md) —— 正传 11，事件驱动 AI 训练管线：异步事件驱动是 AI 学习闭环的基础设施
+- [17-distributed-puzzles.md](./17-distributed-puzzles.md) —— 正传 12，分布式 AI 训练：分布式难题是学习者进阶绕不开的深水区
 
 ---
 
@@ -366,13 +358,3 @@ graph TD
 > 好的 AI 协作，不是"让 AI 替你思考"，而是"让 AI 放大你的思考"。
 
 ← [返回系列导读](./index.md)
-
-## 系列内前序回链
-
-补充前序文章回链（series 5/6/9 是 13.story 正传章节，与 AI 时代系列有方法论关联）：
-
-- [§ 5 性能优化](16-performance-optimization.md) — 系统级性能 vs 模型级性能
-- [§ 6 异步事件驱动](19-realtime-eventdriven.md) — 事件驱动 AI 训练管线
-- [§ 9 分布式难题](17-distributed-puzzles.md) — 分布式 AI 训练
-
-**回链合理性**：本篇"AI 学习悖论"是从人脑学习机制角度分析 AI 应如何学，与上述性能/事件/分布式专题互补（人 vs AI 学习机制对比）。

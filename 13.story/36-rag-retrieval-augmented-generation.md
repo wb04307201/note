@@ -712,9 +712,9 @@ GraphRAG：实体关系
 - [厨房质检员](./08-qa-testing-strategy.md) —— 正传 4，RAG 忠实性维度
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— 续集六，RAG 是抑制幻觉的主要手段
 - [AI 评测工程 32a/32b](./32a-ai-evaluation-fundamentals.md) / [32b](./32b-ai-evaluation-pipeline.md) —— 续集十，RAG 评测的 4 大指标详解
-- [AI 可观测性 37](./35-ai-observability.md) —— 续集十三，RAG 的可观测性
-- [AI 成本结构 36a](./34a-ai-token-cost-structure.md) / [34b](./34b-ai-token-cost-optimization.md) —— 续集十二，RAG 的成本与优化
-- [向量数据库与 Embedding 39](./37-vector-database-and-embedding.md) —— 39 续集十五，RAG 的向量库与 Embedding 详解
+- [AI 可观测性 35](./35-ai-observability.md) —— 续集十三，RAG 的可观测性
+- [AI 成本结构 34a](./34a-ai-token-cost-structure.md) / [34b](./34b-ai-token-cost-optimization.md) —— 续集十二，RAG 的成本与优化
+- [向量数据库与 Embedding 37](./37-vector-database-and-embedding.md) —— 续集十五，RAG 的向量库与 Embedding 详解
 
 ---
 

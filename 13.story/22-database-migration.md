@@ -145,7 +145,7 @@ graph LR
 数据一致性校验是关键。老陈写了一个校验脚本，在双写期间持续比对新旧两张表的数据：
 
 ```python
-# 双写数据一致性校验（简化版）
+# 双写数据一致性校验（示意代码：find_by_id / hash_row / log 等辅助函数省略，不能直接运行）
 import hashlib
 import time
 

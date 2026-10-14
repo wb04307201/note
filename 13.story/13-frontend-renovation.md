@@ -265,9 +265,10 @@ Google 的 Core Web Vitals 是前端体验的"健康体检"：
 | 指标 | 含义 | 餐厅类比 | 优秀阈值 | 优化手段 |
 |------|------|----------|---------|---------|
 | LCP（Largest Contentful Paint） | 最大内容绘制时间 | 主菜上桌时间 | < 2.5 秒 | CDN、预加载、图片优化 |
-| FID（First Input Delay） | 首次输入延迟 | 服务员响应时间 | < 100 毫秒 | 代码分割、长任务拆分 |
-| CLS（Cumulative Layout Shift） | 累积布局偏移 | 菜单跳来跳去 | < 0.1 | 固定尺寸、骨架屏 |
 | INP（Interaction to Next Paint） | 交互到下次绘制 | 点完菜到反应时间 | < 200 毫秒 | 事件委托、Web Worker |
+| CLS（Cumulative Layout Shift） | 累积布局偏移 | 菜单跳来跳去 | < 0.1 | 固定尺寸、骨架屏 |
+
+> 注：早期指标 FID（First Input Delay，首次输入延迟）已于 2024 年 3 月被 Google 正式以 INP 取代，不再属于 Core Web Vitals。
 
 **阿明的 3 阶段优化**：
 
@@ -371,10 +372,9 @@ Google 的 Core Web Vitals 是前端体验的"健康体检"：
 - [阿明的省钱经](./14-cloud-finops.md) —— 云成本优化与 FinOps，120 万月账单如何降到 68 万
 - [差评危机](./15-incident-response.md) —— 故障复盘与应急响应，从手忙脚乱到 10 分钟止血的方法论
 - [外卖大战](./16-performance-optimization.md) —— 系统性能优化，3 秒生死线下的全链路优化实战
-- [传菜窗口的智慧](./19-realtime-eventdriven.md) —— 消息队列的异步模式在前端的应用，EventSource 和 WebSocket 是前端的"传菜窗口"
+- [传菜窗口的智慧](./19-realtime-eventdriven.md) —— 消息队列的异步模式在前端的应用，WebSocket 和 SSE 是前端实时更新的"传菜窗口"
 - [十家店的烦恼](./17-distributed-puzzles.md) —— 前端如何处理分布式系统的一致性问题，最终一致性的 UI 展示策略
 - [阿明的加盟帝国](./18-saas-multitenant.md) —— 多租户前端定制，不同租户的界面风格、主题、组件差异化
-- [厨房实况直播](./19-realtime-eventdriven.md) —— WebSocket 和 SSE 是前端实时更新的两种实现方式
 - [一个厨房，四个门面](./20-multiplatform-architecture.md) —— 多端架构是前端工程的延伸，跨平台方案的选型与适配
 - [懂你的菜单](./21-search-recommendation.md) —— 搜索推荐的前端交互设计，搜索框、推荐列表、筛选器的 UX 优化
 - [菜谱标准化之路](./07-from-chef-to-ceo.md) —— 前端技术文档和组件 Storybook，前端知识的沉淀与共享
@@ -388,10 +388,9 @@ Google 的 Core Web Vitals 是前端体验的"健康体检"：
 - [09.front-end / 04 工程化](../05.frontend/04-engineering/README.md) —— Vite / pnpm / Monorepo / 测试体系：前端工程化工具链选型
 - [09.front-end / 06 性能](../05.frontend/06-performance/README.md) —— Core Web Vitals（LCP/INP/CLS）与性能监控体系
 - [09.front-end / 05 架构](../05.frontend/05-architecture/README.md) —— 渲染模式 / 状态管理 / 微前端 / BFF
+- [全系列速查表](./cheatsheet.md) —— 阿明餐厅 50 章的架构速查卡，前端工程化要点一表收录
+- [全系列术语表](./glossary.md) —— Core Web Vitals / 微前端 / BFF 等术语的统一解释
 
-
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
 ## 跨章节衔接
 
 - [10-api-design.md](./10-api-design.md) —— 正传 6，前端工程化与 API 设计的协同：BFF、契约类型生成、Mock 数据

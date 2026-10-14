@@ -306,13 +306,11 @@ graph TD
 - [阿明的二次创业](./26-ai-native-startup.md) —— AI 原生创业的成本意识，AI 工具成本与人力成本的平衡
 - [会自我进化的厨房](./27-self-evolving-company.md) —— Burn Tokens 的成本控制，Agent Loop 的 Token 消耗需要 FinOps 思维
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— AI 幻觉修复的隐性成本，错误输出的修复成本应纳入成本核算
+- [AI Token 成本结构](./34a-ai-token-cost-structure.md) —— FinOps 在 AI 时代的延伸：Token 计费模型是云成本之外的第二大 AI 开销
+- [AI Token 成本优化](./34b-ai-token-cost-optimization.md) —— 本篇"省钱经"方法论在 Token 维度的落地：路由分级、缓存、压缩
+- [全系列速查表](./cheatsheet.md) —— 阿明餐厅 50 章的架构速查卡，FinOps 要点一表收录
+- [全系列术语表](./glossary.md) —— FinOps / 弹性伸缩 / 预留实例等术语的统一解释
 
-
-- [34a-ai-token-cost-structure](34a-ai-token-cost-structure.md)
-- [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
-- [13.story](README.md)
 ## 跨章节衔接
 
 - [18-saas-multitenant.md](./18-saas-multitenant.md) —— 番外三，SaaS 多租户的成本分摊与 FinOps：每租户的成本可视化、计费基础

@@ -1,5 +1,5 @@
 <!--module:
-  parent: story
+  parent: 13.story
   number: 13
   slug: story
   topic: 「阿明餐厅」技术系列

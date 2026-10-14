@@ -14,7 +14,7 @@
 
 > **系列定位**：本篇是「阿明餐厅」系列的**续集十一（上）**。在[续集一 · 《当餐厅长出大脑》](./01-ai-agent-architecture.md)第五章，我们讲了多智能体协同（Orchestrator + 消息总线）。在[续集八 · 《Agent Harness》](./30-agent-harness.md)第三章，我们讲了 Tool 设计。但都还是"自己设计、自己实现"。2024-2026 年，业界出现了**两个重量级协议标准** —— **MCP（Model Context Protocol，Anthropic 主导）** 和 **A2A（Agent-to-Agent，Google 主导）** —— 它们正在成为 AI 时代的"TCP/IP"，让 Agent 与 Agent、Agent 与工具之间有了**统一的"语言"**。本篇（上）专门讲 **MCP —— Agent ↔ 工具的"USB-C"**；下篇[33b](./33b-a2a-protocol.md)专门讲 **A2A + 协议治理**。
 
-> **兄弟篇**：35b · A2A 协议 + 协议治理（[← 点击阅读](./33b-a2a-protocol.md)）
+> **兄弟篇**：33b · A2A 协议 + 协议治理（[← 点击阅读](./33b-a2a-protocol.md)）
 
 ---
 
@@ -696,4 +696,4 @@ graph TB
 
 > 好的工具集成，不是"给 AI 装一堆插件"，而是"**用一套标准协议，让 AI 像人一样自然地使用工具**"。
 
-← [返回系列导读](./index.md) | [下篇：35b A2A + 治理 →](./33b-a2a-protocol.md)
+← [返回系列导读](./index.md) | [下篇：33b A2A + 治理 →](./33b-a2a-protocol.md)

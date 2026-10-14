@@ -14,13 +14,13 @@
 
 > **系列定位**：本篇是「阿明餐厅」系列的**续集十一（下）**。本篇接续[33a · MCP 协议（上）](./33a-mcp-protocol.md)。上篇讲 MCP —— Agent 调用工具的"USB-C"；本篇讲 **A2A —— Agent 协同的"邮件协议"**，以及**协议层的治理**（安全 / 可观测 / 趋势）。本篇与上篇是一对孪生篇 —— 上篇讲"工具层"，下篇讲"协同层 + 治理层"。
 
-> **兄弟篇**：35a · MCP 协议（[← 点击阅读](./33a-mcp-protocol.md)）
+> **兄弟篇**：33a · MCP 协议（[← 点击阅读](./33a-mcp-protocol.md)）
 
 ---
 
 ## 引言：从 MCP 到 A2A + 治理
 
-> **阿明的厨房类比（开篇场景）**：上篇（35a）讲了"USB-C 统一插口"（MCP）—— 解决了 AI 调用工具的复杂度。但阿明还有第二个问题：80 家分店的 20 个 AI 智能设备（智能灶/清洁机器人/点餐机/收银机），**设备之间怎么协作**？智能灶做完菜，要通知清洁机器人来收碗 —— 这就需要"对讲机协议"（A2A）。本章阿明装"厨房对讲机系统"。
+> **阿明的厨房类比（开篇场景）**：上篇（33a）讲了"USB-C 统一插口"（MCP）—— 解决了 AI 调用工具的复杂度。但阿明还有第二个问题：80 家分店的 20 个 AI 智能设备（智能灶/清洁机器人/点餐机/收银机），**设备之间怎么协作**？智能灶做完菜，要通知清洁机器人来收碗 —— 这就需要"对讲机协议"（A2A）。本章阿明装"厨房对讲机系统"。
 
 ---
 
@@ -634,14 +634,6 @@ graph TB
 
 ---
 
-
-- [34a-ai-token-cost-structure](34a-ai-token-cost-structure.md)
-- [34b-ai-token-cost-optimization](34b-ai-token-cost-optimization.md)
-- [35-ai-observability](35-ai-observability.md)
-- [38-ai-compliance-and-regulation](38-ai-compliance-and-regulation.md)
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
-- [13.story/SPEC §4](SPEC.md#四强骨架格式规范)
 ## 跨章节衔接
 
 - 09.ai-applications/agent/ai-platforms/README.md —— Dify/Coze/LangGraph 平台实现 —— MCP/A2A 协议在主流平台中的落地
@@ -687,4 +679,4 @@ graph TB
 
 > 好的多 Agent 协作，不是"让 AI 自己开会"，而是"**每个 Agent 各司其职，通过协议高效交接，像一个训练有素的厨房团队**"。
 
-← [返回系列导读](./index.md) | [上篇：35a MCP →](./33a-mcp-protocol.md)
+← [返回系列导读](./index.md) | [上篇：33a MCP →](./33a-mcp-protocol.md)

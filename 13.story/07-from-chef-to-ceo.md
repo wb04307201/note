@@ -665,7 +665,7 @@ graph TD
 - **5 大策略选对，80% bug 修复在 5 轮以内**
 - 超 max_iterations 立即转人工——**不能让 AI 死循环**
 
-这是 80 家分店的标准答案 —— 你不需要"无限信任 AI"，你需要"**目标驱动 + 自动判定 + 自动修复 + 人工兜底**"的工程能力。
+和长菜单挑战一样，50 家分店的 bug 修复也没有银弹——差别只在组合方式：这次的答案是"**目标驱动 + 自动判定 + 自动修复 + 人工兜底**"，让 AI 在 Verifier 的客观裁判下闭环，而不是无限信任它。
 
 > 🆕 **Loop Engineering 实战深度**：09.ai-applications/agent/loop-engineering/auto-fix-strategy.md 4 子节点（修复策略 + Verifier 设计 + IDE 案例 + prompt 模板）共 1398 行深度 —— 包括 Claude Code / Cursor / Devin / Aider 4 大主流 AI IDE 的 Loop 工程实战。面试精选 5 道 Q&A 见 [12.interview/11.ai/loop-engineering](../12.interview/11.ai/loop-engineering/README.md)。
 

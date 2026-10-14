@@ -12,9 +12,9 @@
 
 > 从阿明的"AI 上线 3 个月才被发现漏了 20% 的问题"，看 AI 时代的质量保障基础设施 —— Eval **基础**
 
-> **系列定位**：本篇是「阿明餐厅」系列的**续集十（上）**。在[正传 4 · 《厨房质检员》](./08-qa-testing-strategy.md)第八章，我们讲了 AI 时代测试的"四大维度 + 黄金集 + LLM-as-Judge"。在[续集八 · 32 · 《Agent Harness》](./30-agent-harness.md)第六章，我们提到了 Harness 内的 Eval 流水线。本篇是**独立的 AI 评测工程专题**—— 当 AI 系统从"一个 Agent"长到"几十个 Agent、上百个 Prompt、数千个用例"时，**评测本身需要一套工程化体系**。**上篇讲评测基础**（挑战、维度、黄金集、LLM-as-Judge），**下篇[32b](./32b-ai-evaluation-pipeline.md)讲流水线与生产化**（架构、RAG、红队、A/B、平台工程化）。
+> **系列定位**：本篇是「阿明餐厅」系列的**续集十（上）**。在[正传 4 · 《厨房质检员》](./08-qa-testing-strategy.md)第八章，我们讲了 AI 时代测试的"四大维度 + 黄金集 + LLM-as-Judge"。在[续集八 · 30 · 《Agent Harness》](./30-agent-harness.md)第六章，我们提到了 Harness 内的 Eval 流水线。本篇是**独立的 AI 评测工程专题**—— 当 AI 系统从"一个 Agent"长到"几十个 Agent、上百个 Prompt、数千个用例"时，**评测本身需要一套工程化体系**。**上篇讲评测基础**（挑战、维度、黄金集、LLM-as-Judge），**下篇[32b](./32b-ai-evaluation-pipeline.md)讲流水线与生产化**（架构、RAG、红队、A/B、平台工程化）。
 
-> **兄弟篇**：34b · AI 评测流水线与生产化（[← 点击阅读](./32b-ai-evaluation-pipeline.md)）
+> **兄弟篇**：32b · AI 评测流水线与生产化（[← 点击阅读](./32b-ai-evaluation-pipeline.md)）
 
 ---
 
@@ -588,7 +588,7 @@ graph TB
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— 续集六，AI 幻觉与本篇"忠实性"维度
 - [AI 致命三件套](./31-ai-fatal-trio.md) —— 续集九，安全性评测与红队的"攻击面"重叠
 - [Agent Harness](./30-agent-harness.md) —— 续集八，Harness 内的 Eval 流水线与本篇"评测平台"是嵌套关系
-- [36 · RAG 检索增强生成专题](./36-rag-retrieval-augmented-generation.md) —— 38 续集十四，本篇 2.2/2.4 维度的 RAG 化详解
+- [36 · RAG 检索增强生成专题](./36-rag-retrieval-augmented-generation.md) —— 续集十四，本篇 2.2/2.4 维度的 RAG 化详解
 
 ---
 
@@ -612,4 +612,4 @@ graph TB
 
 > 好的 AI 评测，不是"跑几个 benchmark 就下结论"，而是"**用业务场景定义通过率，用人类判断兜底机器判断**"。
 
-← [返回系列导读](./index.md) | [下篇：34b 评测流水线 →](./32b-ai-evaluation-pipeline.md)
+← [返回系列导读](./index.md) | [下篇：32b 评测流水线 →](./32b-ai-evaluation-pipeline.md)

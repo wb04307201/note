@@ -1,6 +1,6 @@
 <!--module:
   parent: 13.story
-  slug: 13.story\cheatsheet
+  slug: 13.story/cheatsheet
   type: article
   category: 主模块子文章
   summary: 一页纸速查

@@ -462,17 +462,15 @@ graph TD
 - [阿明的二次创业](./26-ai-native-startup.md) —— AI 原生创业的故障准备，AI 系统也可能出错需要应急
 - [会自我进化的厨房](./27-self-evolving-company.md) —— Agent Loop 的质量门防止故障扩散，监控 Agent 自动修复日常故障
 - [AI 的"黑暗料理"](./28-ai-hallucination-safety.md) —— AI 幻觉引发的故障应急，AI 错误输出是一种需要应急处理的故障类型
+- [代码库的认知债](./29-codebase-cognitive-debt.md) —— 认知债高的代码库故障定位更慢，还债就是缩短 MTTR
+- [AI 的致命三角](./31-ai-fatal-trio.md) —— 幻觉 × 自动化 × 无监督是 AI 故障的放大器，应急响应要为三角失衡兜底
+- [AI 评估流水线](./32b-ai-evaluation-pipeline.md) —— 评估流水线是 AI 系统的"体检预警"，上线前拦截劣化就是事前应急
+- [MCP 协议](./33a-mcp-protocol.md) —— Agent ↔ 工具的标准协议，工具调用故障的隔离与降级依托协议层设计
+- [A2A 协议](./33b-a2a-protocol.md) —— Agent ↔ Agent 的协作协议，多 Agent 故障传播的边界控制在协议层
+- [AI 可观测性](./35-ai-observability.md) —— AI 系统的监控与 Trace：没有可观测性，AI 故障应急就是猜
+- [全系列速查表](./cheatsheet.md) —— 阿明餐厅 50 章的架构速查卡，应急响应流程一表收录
+- [全系列术语表](./glossary.md) —— MTTR / 复盘 / Runbook 等术语的统一解释
 
-
-- [29-codebase-cognitive-debt](29-codebase-cognitive-debt.md)
-- [31-ai-fatal-trio](31-ai-fatal-trio.md)
-- [32b-ai-evaluation-pipeline](32b-ai-evaluation-pipeline.md)
-- [33a-mcp-protocol](33a-mcp-protocol.md)
-- [33b-a2a-protocol](33b-a2a-protocol.md)
-- [35-ai-observability](35-ai-observability.md)
-- [cheatsheet](cheatsheet.md)
-- [glossary](glossary.md)
-- [13.story](README.md)
 ## 跨章节衔接
 
 - [04-peak-traffic-defense.md](./04-peak-traffic-defense.md) —— 正传 1，故障应急与流量治理的"事前-事后"配合：限流是事前防御，应急是事后止血
