@@ -1,8 +1,8 @@
 <!--module:
-  parent: java/kotlin
-  slug: java/kotlin/coroutines
+  parent: 01.java
+  slug: 01.java/kotlin/05-coroutines
   type: article
-  category: Kotlin 协程
+  category: 主模块子文章
   summary: Kotlin 协程的挂起恢复机制、调度器实现、结构化并发、Flow 与 Channel。
   depth: ⭐⭐
   status: active
@@ -47,6 +47,43 @@ val deferred = async { computeResult() }
 // 做其他事...
 val result = deferred.await()    // 等待结果
 ```
+
+### 挂起原理：Continuation 与状态机
+
+`suspend` 函数在编译期被转换为 **CPS（Continuation-Passing Style）**形式：编译器为函数追加一个 `Continuation<T>` 参数，并把函数体改写为**标签驱动的状态机**——每个挂起点（`delay`、`await` 等）对应一个 `label` 分支。
+
+```kotlin
+// 源码
+suspend fun loadUser(): User {
+    val token = fetchToken()     // 挂起点 1
+    val user = fetchUser(token)  // 挂起点 2
+    return user
+}
+
+// 编译后的等价形态（简化示意）
+fun loadUser(continuation: Continuation<User>): Any? {
+    when (continuation.label) {
+        0 -> {
+            continuation.label = 1
+            val r = fetchToken(continuation)      // 传入自身作为回调
+            if (r == COROUTINE_SUSPENDED) return COROUTINE_SUSPENDED
+            // 未真正挂起则继续落入下一分支
+        }
+        1 -> {
+            continuation.label = 2
+            val r = fetchUser(continuation.token, continuation)
+            if (r == COROUTINE_SUSPENDED) return COROUTINE_SUSPENDED
+        }
+        2 -> return continuation.result
+    }
+}
+```
+
+关键机制：
+
+- **挂起 = 返回 `COROUTINE_SUSPENDED` 并释放线程**：局部变量被提升为 Continuation 对象的字段保存在堆上，因此挂起不阻塞线程——这就是单线程可跑百万协程的原因。
+- **恢复 = `continuation.resumeWith(result)`**：异步回调完成后调用，状态机按 `label` 跳回对应分支继续执行。
+- **恢复线程由 Dispatcher 决定**：`Continuation` 被包装为 `DispatchedContinuation`，`resume` 时按拦截器链（`ContinuationInterceptor`，即 `CoroutineDispatcher`）把后续计算投递到目标线程池——`Dispatchers.IO` 共享 `Default` 的线程池但上限更宽（默认 64），`Unconfined` 则在调用者线程直接执行。
 
 ## 二、结构化并发
 

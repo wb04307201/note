@@ -10,6 +10,8 @@
 
 # Optional
 
+> **定位**：Java 8 引入的容器类，用类型系统显式表达"值可能不存在"，优雅处理 null 与函数式链式调用，避免 NullPointerException。
+
 ## 引言：变更说明
 
 Optional 是 Java 8 引入的容器类，用于优雅处理 null 与函数式链式调用。

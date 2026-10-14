@@ -4,7 +4,7 @@
   type: article
   category: 主模块子文章
   summary: Java 16+ Vector API（孵化）：SIMD 加速数值计算。
-  depth: ⭐⭐⭐⭐⭐
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
@@ -47,16 +47,18 @@ public static int[] vectorMultiply(int[] array, int factor) {
     return result;
 }
 
-// 2. 向量加法
+// 2. 向量加法（用 mask 处理尾部，避免 bound 之后的元素漏算）
 public static float[] vectorAdd(float[] a, float[] b) {
-    float[] result = new float[a.length];
+    int len = Math.min(a.length, b.length);
+    float[] result = new float[len];
     VectorSpecies<Float> species = FloatVector.SPECIES_PREFERRED;
-    int bound = Math.min(a.length, b.length) - (Math.min(a.length, b.length) % species.length());
     int i = 0;
-    for (; i < bound; i += species.length()) {
-        FloatVector va = FloatVector.fromArray(species, a, i);
-        FloatVector vb = FloatVector.fromArray(species, b, i);
-        va.add(vb).intoArray(result, i);
+    for (; i < len; i += species.length()) {
+        // 最后一轮若不足一个向量宽度，mask 只选中剩余 lane
+        VectorMask<Float> mask = species.indexInRange(i, len);
+        FloatVector va = FloatVector.fromArray(species, a, i, mask);
+        FloatVector vb = FloatVector.fromArray(species, b, i, mask);
+        va.add(vb).intoArray(result, i, mask);
     }
     return result;
 }

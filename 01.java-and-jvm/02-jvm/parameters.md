@@ -1,6 +1,6 @@
 <!--module:
   parent: 01.java-and-jvm
-  slug: 01.java-and-jvm\02-jvm\parameters
+  slug: java/jvm/parameters
   type: article
   category: 主模块子文章
   summary: JVM 常用参数速查手册

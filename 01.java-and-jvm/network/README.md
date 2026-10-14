@@ -98,7 +98,6 @@ public class SimpleClient {
 | `setSoLinger(boolean on, int sec)` | 关闭时等待发送完成 | 禁用 |
 
 ---
----
 
 ## 二、多线程服务器模型（BIO）
 

@@ -706,12 +706,6 @@ public Set<Map.Entry<K,V>> entrySet()   // 返回 Entry 视图
 
 ---
 
-*本笔记基于 JDK 8+ 的 `java.util.WeakHashMap` 源码编写*
-
----
-
-← [返回 Java 集合框架](../README.md)
-
 ## JDK 8 → 17 Reference 处理演进
 
 | JDK 版本 | Reference 关键变化 | 对 WeakHashMap 的影响 |
@@ -727,4 +721,12 @@ public Set<Map.Entry<K,V>> entrySet()   // 返回 Entry 视图
 - 8 → 17 中**WeakHashMap API 未变**——这是设计良好的接口稳定性
 - 内部清理性能提升 10x（NUMA 感知 + ZGC）
 - 业务代码无需修改即可享受 GC 改进红利
+
+---
+
+*本笔记基于 JDK 8+ 的 `java.util.WeakHashMap` 源码编写*
+
+---
+
+← [返回 Java 集合框架](../README.md)
 

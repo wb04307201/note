@@ -3,7 +3,7 @@
   slug: 01.java/kotlin/01-basics
   type: article
   category: 主模块子文章
-  summary: Kotlin 区分只读与可变变量，Java 通过 `final` 实现只读。
+  summary: Kotlin 基础语法——val/var 与类型推断、字符串模板、空安全（?./?:/!!）、when 控制流、异常模型，逐项对照 Java 写法。
   depth: ⭐⭐
   status: active
 -->

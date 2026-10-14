@@ -3,7 +3,7 @@
   slug: java/jmm
   type: article
   category: 主模块子文章
-  summary: JMM (Java Memory Model) 学习笔记
+  summary: JMM 内存模型——主内存/工作内存抽象、happens-before 八大规则、volatile 可见性与有序性、内存屏障插入策略，及 JSR-133 对 Java 5 并发语义的修正。
   depth: ⭐⭐⭐
   status: active
 -->
@@ -43,7 +43,6 @@ JMM 的核心目标是：
 
 > JMM 是一种**抽象概念**，并不真实存在。它描述的是一组规则或规范，与 CPU 缓存、寄存器有相似之处，但本质上是 JVM 层面的抽象模型。
 
----
 ---
 
 ## 二、主内存 vs 工作内存

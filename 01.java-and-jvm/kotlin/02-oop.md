@@ -1,9 +1,9 @@
 <!--module:
   parent: 01.java-and-jvm
-  slug: 01.java-and-jvm\kotlin\02-oop
+  slug: 01.java/kotlin/02-oop
   type: article
   category: 主模块子文章
-  summary: Kotlin 面向对象
+  summary: Kotlin OOP——主/次构造器与 init 块、data class、sealed class、object 单例、声明处型变与 reified 泛型，对照 Java 消灭样板代码。
   depth: ⭐⭐
   status: active
 -->

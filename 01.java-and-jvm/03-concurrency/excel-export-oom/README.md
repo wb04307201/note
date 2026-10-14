@@ -734,20 +734,24 @@ public void exportUsers(String filePath) {
 public void exportUsers(String filePath) {
     RateLimiter rateLimiter = RateLimiter.create(10.0);  // 每秒 10 个请求
 
-    int batchSize = 10000;
-    int offset = 0;
+    try (ExcelWriter writer = EasyExcel.write(filePath, User.class).build()) {
+        WriteSheet sheet = EasyExcel.writerSheet("用户列表").build();
 
-    while (true) {
-        rateLimiter.acquire();  // 获取许可
+        int batchSize = 10000;
+        int offset = 0;
 
-        List<User> batch = userMapper.selectPage(offset, batchSize);
+        while (true) {
+            rateLimiter.acquire();  // 获取许可
 
-        if (batch.isEmpty()) break;
+            List<User> batch = userMapper.selectPage(offset, batchSize);
 
-        writer.write(batch, sheet);
-        batch.clear();
+            if (batch.isEmpty()) break;
 
-        offset += batchSize;
+            writer.write(batch, sheet);
+            batch.clear();
+
+            offset += batchSize;
+        }
     }
 }
 ```
@@ -760,22 +764,26 @@ public void exportUsers(String filePath, Consumer<Integer> progressCallback) {
     int totalRows = userMapper.selectCount();
     int processedRows = 0;
 
-    int batchSize = 10000;
-    int offset = 0;
+    try (ExcelWriter writer = EasyExcel.write(filePath, User.class).build()) {
+        WriteSheet sheet = EasyExcel.writerSheet("用户列表").build();
 
-    while (true) {
-        List<User> batch = userMapper.selectPage(offset, batchSize);
+        int batchSize = 10000;
+        int offset = 0;
 
-        if (batch.isEmpty()) break;
+        while (true) {
+            List<User> batch = userMapper.selectPage(offset, batchSize);
 
-        writer.write(batch, sheet);
+            if (batch.isEmpty()) break;
 
-        processedRows += batch.size();
-        int progress = (processedRows * 100) / totalRows;
-        progressCallback.accept(progress);  // 回调进度
+            writer.write(batch, sheet);
 
-        batch.clear();
-        offset += batchSize;
+            processedRows += batch.size();
+            int progress = (processedRows * 100) / totalRows;
+            progressCallback.accept(progress);  // 回调进度
+
+            batch.clear();
+            offset += batchSize;
+        }
     }
 }
 ```

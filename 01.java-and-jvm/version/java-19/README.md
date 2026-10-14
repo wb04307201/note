@@ -53,26 +53,26 @@ if (p instanceof Point(int x, int y)) {
 外部函数与内存 API 提供了一种更安全、更高效的方式来调用本地代码（如 C/C++ 编写的函数）和操作本地内存。它引入了新的类和接口，允许开发者以类型安全的方式访问本地库函数和内存区域，避免了传统 JNI（Java Native Interface）的一些复杂性和潜在的安全问题。
 
 ```java
-// 示例代码：调用本地库函数
+// 示例代码：调用 C 标准库的 strlen（C 标准库中没有 add，自定义函数需自行加载对应动态库）
 import java.lang.foreign.*;
 import java.lang.invoke.*;
 
-try (Arena arena = Arena.ofAuto()) {
-    // 分配本地内存
-    MemorySegment segment = arena.allocate(100);
-    
+try (Arena arena = Arena.ofConfined()) {
     // 查找本地库函数
     Linker linker = Linker.nativeLinker();
     SymbolLookup stdlib = linker.defaultLookup();
-    MemorySegment funcAddr = stdlib.find("add").get();
-    
-    // 创建方法句柄
-    FunctionDescriptor addDesc = FunctionDescriptor.of(ValueLayout.JAVA_INT, ValueLayout.JAVA_INT, ValueLayout.JAVA_INT);
-    MethodHandle addHandle = linker.downcallHandle(funcAddr, addDesc);
-    
-    // 调用函数
-    int result = (int) addHandle.invoke(10, 20);
-    System.out.println("Result: " + result);
+    MemorySegment funcAddr = stdlib.find("strlen").orElseThrow();
+
+    // 创建方法句柄：long strlen(const char*)
+    FunctionDescriptor strlenDesc = FunctionDescriptor.of(ValueLayout.JAVA_LONG, ValueLayout.ADDRESS);
+    MethodHandle strlenHandle = linker.downcallHandle(funcAddr, strlenDesc);
+
+    // 分配以 \0 结尾的 C 字符串并调用函数
+    MemorySegment cString = arena.allocateUtf8String("Hello, Panama!");  // Java 19 预览 API；Java 22 起改为 allocateFrom
+    long result = (long) strlenHandle.invokeExact(cString);
+    System.out.println("Result: " + result);  // 14
+} catch (Throwable t) {
+    t.printStackTrace();
 }
 ```
 
@@ -129,13 +129,14 @@ System.out.println(result);
 
 ```java
 try (var scope = new StructuredTaskScope<Object>()) {
-    Future<Integer> future1 = scope.fork(() -> doTask1());
-    Future<String> future2 = scope.fork(() -> doTask2());
+    // fork() 返回 Subtask<T>（而非 Future<T>），join 后可用 resultNow() 取结果
+    StructuredTaskScope.Subtask<Integer> subtask1 = scope.fork(() -> doTask1());
+    StructuredTaskScope.Subtask<String> subtask2 = scope.fork(() -> doTask2());
     scope.join();
     scope.throwIfFailed();
 
-    Integer result1 = future1.resultNow();
-    String result2 = future2.resultNow();
+    Integer result1 = subtask1.resultNow();
+    String result2 = subtask2.resultNow();
     // 处理结果
 } catch (Exception e) {
     // 处理异常

@@ -4,7 +4,7 @@
   type: article
   category: 主模块子文章
   summary: volatile 关键字深度解析
-  depth: ⭐⭐
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
@@ -69,7 +69,6 @@ int c = 4;      // 语句4 ↓ 可以排到 volatile 后
 
 简单记忆：volatile 写 = "上面不准下来"，volatile 读 = "下面不准上去"。
 
----
 ---
 
 ## 二、happens-before 规则

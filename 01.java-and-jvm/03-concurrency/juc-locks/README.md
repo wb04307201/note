@@ -3,8 +3,8 @@
   slug: java/juc-locks
   type: article
   category: 主模块子文章
-  summary: JUC Locks 学习笔记
-  depth: ⭐⭐
+  summary: JUC 锁族源码级笔记——AQS（state + CLH 队列）框架、ReentrantLock 公平/非公平加锁源码、ReentrantReadWriteLock、StampedLock、Condition 与 wait/notify 对比、自旋锁。
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 

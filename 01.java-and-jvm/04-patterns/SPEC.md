@@ -1,3 +1,4 @@
+<!-- frontmatter-exempt: SPEC 索引页按仓库根 SPEC.md §4 豁免 frontmatter -->
 
 # SPEC for 01.java-and-jvm/04-patterns/
 

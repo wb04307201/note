@@ -3,7 +3,7 @@
   slug: java/thread-basics
   type: article
   category: 主模块子文章
-  summary: Java 线程基础
+  summary: Java 线程基础——4 种创建方式（Thread/Runnable/Callable/线程池）、6 状态生命周期与转换、start 与 run 区别、常用 API 与守护线程。
   depth: ⭐⭐
   status: active
 -->

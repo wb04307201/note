@@ -48,7 +48,6 @@ ArrayList 的核心是一个动态数组, 通过 `transient Object[] elementData
 **序列化机制:** `elementData` 被 `transient` 修饰, ArrayList 自定义了 `writeObject` / `readObject`, 只序列化实际元素 (`size` 个), 不序列化空槽位, 节省空间。
 
 ---
----
 
 ## 二、构造方法
 

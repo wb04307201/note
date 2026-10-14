@@ -228,19 +228,24 @@ val user: String? = javaService.findUser(id)
 val name = user ?: "unknown"
 ```
 
-**陷阱 2：扩展函数与成员函数同名冲突**
+**陷阱 2：扩展函数被同名成员函数静默遮蔽**
 
-Kotlin 中成员函数优先级高于扩展函数，迁移时可能意外覆盖行为：
+Kotlin 中成员函数**永远优先**于同签名扩展函数——扩展不会报"冲突错误"，而是根本不被调用：
 
 ```kotlin
-// Java 工具类
-// StringUtils.isEmpty(str) → 迁移为扩展函数
+// Java 工具类 StringUtils.isEmpty(str) → 迁移为扩展函数
 
-fun String.isEmpty(): Boolean = this.length == 0  // ❌ 与 kotlin.String 内置冲突
+fun String.isEmpty(): Boolean = this.length > 0  // ❌ 逻辑写反了，但编译不报错！
 
-// ✅ 使用不同名称或限定作用域
-fun String.isBlank(): Boolean = this.trim().isEmpty()
+// kotlin.String 已有成员 isEmpty()，成员永远优先，上面的扩展被静默遮蔽
+println("hello".isEmpty())  // false — 调用的是 stdlib 成员，扩展从未执行
+
+// ✅ 迁移时给扩展函数换一个 stdlib 中不存在的名字
+fun String.isEmptyStr(): Boolean = this.isEmpty()
+// 或保留原名但注意导入遮蔽规则：同文件内的扩展仍会被成员压制，改名是唯一可靠方案
 ```
+
+> 注意：不要改成 `fun String.isBlank()` —— `isBlank` 同样是 stdlib 已有成员，一样会被遮蔽（这与 §八陷阱 4 "扩展是静态分派"是两个独立的坑）。
 
 **陷阱 3：SAM 转换差异**
 

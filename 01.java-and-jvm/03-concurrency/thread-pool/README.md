@@ -3,21 +3,14 @@
   slug: java/thread-pool
   type: article
   category: 主模块子文章
-  summary: Java 线程池（ThreadPoolExecutor）学习笔记
-  depth: ⭐⭐⭐
+  summary: Java 线程池源码级笔记——ThreadPoolExecutor 七参数与执行流程、Worker/AQS、getTask 回收机制、4 种拒绝策略、队列选型、动态线程池（美团实践）与参数调优公式。
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
 # Java 线程池（ThreadPoolExecutor）学习笔记
 
 > **定位**：Java 线程池（ThreadPoolExecutor）七参数模型 + 4 种拒绝策略 + 工作队列选型 + 监控告警。
-
----
-## 引言：变更说明
-
-全面梳理线程池原理、参数调优、拒绝策略与生产实践。
-
-本篇按主题归类，给出每个条目的一句话定位 + 适用版本/场景，**先扫一遍再决定读哪节**。
 
 ---
 
@@ -882,7 +875,7 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
 
 ```java
 private Runnable getTask() {
-    boolean timed = false;   // 本轮循环是否需要限时等待
+    boolean timedOut = false;   // 上一轮 poll 是否超时（用于二次校验回收）
 
     for (;;) {
         int c = ctl.get();
@@ -1223,7 +1216,7 @@ public class UnorderedThreadPoolExecutor extends ThreadPoolExecutor {
 
 ### 13.1 背景
 
-美团 2018 年开源的「线程池参数动态化」方案，已在生产环境大规模落地。核心问题：
+美团技术团队在 2020 年文章《Java 线程池实现原理及其在美团业务中的实践》中分享的「线程池参数动态化」方案，已在生产环境大规模落地（方案本身未整体开源，社区据此实现了 hippo4j / dynamic-tp 等开源项目）。核心问题：
 
 - 业务高峰时线程池参数（corePoolSize / maximumPoolSize / queueSize）无法实时调整
 - 修改需要重启应用，QPS 一过峰值又得改回来
@@ -1264,7 +1257,7 @@ public class DynamicThreadPoolExecutor extends ThreadPoolExecutor {
 
 - **标题**：美团技术团队「Java 线程池实现原理及其在美团业务中的实践」
 - **作者**：美团技术团队
-- **发表年份**：2018 年
+- **发表年份**：2020 年（与文章 URL 日期一致）
 - **文章地址**：tech.meituan.com/2020/04/02/java-pooling-pratice.html
 - **核心论点**：线程池参数应当支持运行时动态调整，而不是停机 + 重启
 
@@ -1329,7 +1322,7 @@ int Nthreads = (int) (Ncpu / cpuPerThread);  // = Ncpu × 2
 | 2006 | JDK 5（Java 5.0） | 引入 `java.util.concurrent` + `ThreadPoolExecutor` |
 | 2011 | JDK 7 | 引入 `ForkJoinPool`（Doug Lea 设计，工作窃取） |
 | 2014 | JDK 8 | 引入 `CompletableFuture`（组合式异步） |
-| 2018 | 美团开源 DynamicThreadPoolExecutor | 线程池参数动态化（生产落地） |
+| 2020 | 美团分享动态线程池参数化实践 | 线程池参数动态化（生产落地，社区衍生 hippo4j / dynamic-tp 开源实现） |
 | 2020 | JDK 14 | Virtual Threads（Loom 项目）Preview |
 | 2023 | JDK 21 | Virtual Threads GA（**JEP 444**） |
 
@@ -1551,10 +1544,6 @@ Web 容器
 
 - `12.interview/01.java/thread-pool/` — 面试题简版反向链回本文
 - `04.spring-backend/02-boot/async-task-executor/` — Spring @Async 章节引用本文做底层原理说明
-
----
-
-⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ---
 

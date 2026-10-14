@@ -25,7 +25,7 @@
 
 **反直觉 1**：**同步代码也能扩展**——虚拟线程让 `synchronized` 不再是性能瓶颈（vs 异步回调）。
 
-## 三、5 大核心特性
+## 二、5 大核心特性
 
 | 特性 | 说明 |
 |------|------|
@@ -35,7 +35,7 @@
 | **语法兼容** | 现有 Thread API 完全兼容 |
 | **JFR 监控** | JDK Flight Recorder 内置支持 |
 
-## 四、5 种使用方式
+## 三、5 种使用方式
 
 ### 1. 直接创建（最简单）
 ```java
@@ -78,7 +78,7 @@ for (int i = 0; i < 1_000_000; i++) {
 }
 ```
 
-## 五、3 个不适合的场景
+## 四、3 个不适合的场景
 
 | 场景 | 原因 |
 |------|------|
@@ -86,7 +86,7 @@ for (int i = 0; i < 1_000_000; i++) {
 | **synchronized 块内阻塞** | JEP 491 修复（JDK 24+）；JDK 21-23 仍 pin carrier thread |
 | **JNI native 代码** | native 线程与虚拟线程桥接复杂 |
 
-## 六、生产踩坑（4 大常见）
+## 五、生产踩坑（4 大常见）
 
 | 坑 | 现象 | 修复 |
 |----|------|------|
@@ -95,7 +95,7 @@ for (int i = 0; i < 1_000_000; i++) {
 | **JFR 未开** | 无法监控虚拟线程 | `-XX:+EnableJFR` |
 | **线程池大小错误** | 用了 `Executors.newFixedThreadPool` | 改用 `newVirtualThreadPerTaskExecutor` |
 
-## 七、面试高频 Q&A
+## 六、面试高频 Q&A
 
 **Q: 虚拟线程 vs 协程（Kotlin）vs goroutine（Go）？**
 
@@ -111,7 +111,7 @@ A：
 
 A：**大部分场景能**（CRUD/REST/DB），但 **WebSocket / SSE 长连接**仍推荐响应式框架（虚拟线程对长连接无优势）。
 
-## 八、性能对比（Spring Boot 3.2 实测）
+## 七、性能对比（Spring Boot 3.2 实测）
 
 | 场景 | 平台线程 | 虚拟线程 | 提升 |
 |------|---------|---------|------|
@@ -119,12 +119,12 @@ A：**大部分场景能**（CRUD/REST/DB），但 **WebSocket / SSE 长连接**
 | DB 查询 5000 并发 | 内存 8GB OOM | 内存 1.2GB | 6.7x |
 | 微服务调用链 500 并发 | 延迟 800ms | 延迟 200ms | 4x |
 
-## 九、相关章节
+## 八、相关章节
 
 - [Java 21 主章节](./README.md) — 整体新特性
 - [Java 17 新特性](../java-17/README.md) — 前期基础
 
-## 十、参考链接
+## 九、参考链接
 
 - [JEP 444: Virtual Threads](https://openjdk.org/jeps/444)
 - [Spring Boot 3.2 虚拟线程](https://spring.io/blog/2023/11/28/spring-boot-3-2-0-available-now)

@@ -4,7 +4,7 @@
   type: article
   category: 主模块子文章
   summary: Java 18：9 个 JEP，含 UTF-8 默认编码、简单 Web 服务器、Code Snippets API 孵化
-  depth: ⭐
+  depth: ⭐⭐
   status: active
 -->
 
@@ -241,43 +241,40 @@ public class CustomInetAddressResolverProvider extends InetAddressResolverProvid
 
 外部函数和内存 API 允许 Java 代码直接调用本地函数，而无需通过 JNI 的复杂桥接。它还提供了对本地内存的精细控制，使得开发者可以更高效地处理本地数据。
 
-例如，以下是一个使用外部函数和内存 API 调用本地 `strlen` 函数的示例：
+例如，以下是一个使用外部函数和内存 API 调用本地 `strlen` 函数的示例（JDK 18 孵化 API，位于 `jdk.incubator.foreign` 包，内存会话类为 `MemorySession`；Java 19 起 `MemorySession` 更名为 `Arena` 并迁入 `java.lang.foreign` 预览）：
 
 ```java
-import jdk.incubator.foreign.*;
+import jdk.incubator.foreign.FunctionDescriptor;
+import jdk.incubator.foreign.Linker;
+import jdk.incubator.foreign.MemorySegment;
+import jdk.incubator.foreign.MemorySession;
+import jdk.incubator.foreign.SymbolLookup;
+import jdk.incubator.foreign.ValueLayout;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodType;
 
 public class ForeignFunctionAndMemoryExample {
     public static void main(String[] args) throws Throwable {
-        // 加载本地库
-        LibraryLookup<CLinker> lib = LibraryLookup.ofDefault();
-        MemorySegment libCSegment = lib.lookup("c").get();
+        // 获取本机链接器与默认符号查找器（JDK 18 API，替代 17 孵化期的 CLinker.systemCLinker()）
+        Linker linker = Linker.nativeLinker();
+        SymbolLookup stdlib = linker.defaultLookup();
 
-        // 获取 strlen 函数的符号
-        MemoryAddress strlenSymbol = CLinker.systemCLinker().lookup("strlen").get();
+        // 查找 strlen 函数符号
+        MemorySegment strlenAddr = stdlib.lookup("strlen").orElseThrow();
 
-        // 定义 strlen 函数的类型
-        MethodType strlenType = MethodType.methodType(long.class, MemoryAddress.class);
+        // 创建调用 strlen 的方法句柄：long strlen(const char*)
+        MethodHandle strlenHandle = linker.downcallHandle(
+                strlenAddr,
+                MethodType.methodType(long.class, MemorySegment.class),
+                FunctionDescriptor.of(ValueLayout.JAVA_LONG, ValueLayout.ADDRESS));
 
-        // 创建调用 strlen 函数的方法句柄
-        MethodHandle strlenHandle = CLinker.systemCLinker().downcallHandle(
-                strlenSymbol,
-                strlenType,
-                FunctionDescriptor.of(CLinker.C_LONG, CLinker.C_POINTER)
-        );
-
-        // 创建一个包含字符串的本地内存段
+        // 分配本地内存并写入以 \0 结尾的 C 字符串
         String str = "Hello, Foreign Function and Memory!";
-        MemorySegment strSegment = MemorySegment.allocateNative(str.length() + 1, MemoryLayout.ofSequence(CLinker.C_CHAR));
-        strSegment.copyFrom(MemorySegment.ofArray(str.getBytes()));
-
-        // 调用 strlen 函数
-        long length = (long) strlenHandle.invokeExact(strSegment.address());
-        System.out.println("字符串长度: " + length);
-
-        // 释放本地内存（如果需要手动管理内存）
-        // strSegment.close();
+        try (MemorySession session = MemorySession.openConfined()) {
+            MemorySegment cString = session.allocateUtf8String(str);
+            long length = (long) strlenHandle.invokeExact(cString);
+            System.out.println("字符串长度: " + length);  // 35
+        } // session 关闭时自动释放内存
     }
 }
 ```

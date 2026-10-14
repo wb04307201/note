@@ -3,7 +3,7 @@
   slug: java/version/class-file-api
   type: article
   category: 主模块子文章
-  summary: Java Class-File API（Java 22 预览）：运行时解析 class 文件结构。
+  summary: Java Class-File API（Java 22 首次预览 → Java 24 转正，JEP 484）：标准化解析、生成与转换 class 文件。
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -12,7 +12,7 @@
 
 ## 引言：变更说明
 
-Class-File API 是 Java 22 预览特性，提供运行时解析 class 文件结构的能力。
+Class-File API 于 Java 22 首次预览（JEP 457）、Java 24 转正（JEP 484），提供标准化的 class 文件解析、生成与转换能力。
 
 本篇按主题归类，给出每个条目的一句话定位 + 适用版本/场景，**先扫一遍再决定读哪节**。
 
@@ -27,7 +27,9 @@ Class-File API 是 Java 24 转正的标准化类文件处理 API，提供对 Jav
 ```java
 import java.lang.classfile.*;
 import java.lang.classfile.attribute.*;
-import java.lang.classfile.instruction.*;
+import java.lang.constant.ClassDesc;
+import java.lang.constant.MethodTypeDesc;
+import java.nio.file.*;
 import static java.lang.classfile.ClassFile.*;
 
 // 1. 解析类文件
@@ -50,25 +52,27 @@ byte[] newBytes = cf.build(classModel.thisClass().asSymbol(),
         }
     });
 
-// 3. 从零构建类文件
+// 3. 从零构建类文件（等价于 public class Hello { public static void main(String[] args) { System.out.println("Hello"); } }）
 byte[] helloBytes = ClassFile.of().build(
-    "com.example.Hello",
-    cb -> cb.with(
-        MethodBuilder.of("greet", MethodFlags.PUBLIC_STATIC,
-            "(Ljava/lang/String;)V",
-            mb -> mb.with(
-                CodeBuilder.of(mb,
-                    code -> {
-                        code.getstatic(System.out)
-                            .ldc("Hello, ")
-                            .aload(0)
-                            .invokevirtual(String.concat)
-                            .invokevirtual(System.out.getClass().getMethod("println", String.class))
-                            .return_();
-                    })
-            )
+    ClassDesc.of("com.example.Hello"),
+    clb -> clb
+        .withFlags(ClassFile.ACC_PUBLIC)
+        .withVersion(ClassFile.JAVA_24_VERSION, 0)
+        .withMethodBody(
+            // withMethodBody(String 方法名, MethodTypeDesc 描述符, int 访问标志, Consumer<CodeBuilder> 方法体)
+            "main",
+            MethodTypeDesc.ofDescriptor("([Ljava/lang/String;)V"),
+            ClassFile.ACC_PUBLIC | ClassFile.ACC_STATIC,
+            cob -> cob
+                // getstatic(ClassDesc 属主, String 字段名, ClassDesc 字段类型)
+                .getstatic(ClassDesc.of("java.lang.System"), "out",
+                           ClassDesc.of("java.io.PrintStream"))
+                .ldc("Hello")
+                // invokevirtual(ClassDesc 属主, String 方法名, MethodTypeDesc 方法类型)
+                .invokevirtual(ClassDesc.of("java.io.PrintStream"),
+                    "println", MethodTypeDesc.ofDescriptor("(Ljava/lang/String;)V"))
+                .return_()
         )
-    )
 );
 
 // 4. 转换类文件 - 添加注解

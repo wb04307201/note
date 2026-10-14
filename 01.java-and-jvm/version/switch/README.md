@@ -1,6 +1,6 @@
 <!--module:
   parent: java
-  slug: 01.java/version/switch
+  slug: java/version/switch
   type: article
   category: 主模块子文章
   summary: Switch 表达式（Java 14+）：箭头标签、返回值、模式匹配。

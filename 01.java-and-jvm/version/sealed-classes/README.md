@@ -1,6 +1,6 @@
 <!--module:
   parent: java
-  slug: 01.java/version/sealed-classes
+  slug: java/version/sealed-classes
   type: article
   category: 主模块子文章
   summary: Sealed Classes（Java 17）：密封类，限制哪些类可以继承。

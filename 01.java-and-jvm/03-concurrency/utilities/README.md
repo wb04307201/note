@@ -3,7 +3,7 @@
   slug: java/concurrency-utilities
   type: article
   category: 主模块子文章
-  summary: Java 并发工具类
+  summary: JUC 五大同步工具——CountDownLatch（一次性等待）、CyclicBarrier（循环集合）、Semaphore（限流许可）、Phaser（多阶段）、Exchanger（线程间交换），含 AQS 实现原理与场景选型对比。
   depth: ⭐⭐⭐
   status: active
 -->
@@ -13,7 +13,6 @@
 > `java.util.concurrent` 包提供了一组高级并发构建块，用于简化多线程程序的开发。
 > 本文档系统介绍 `CountDownLatch`、`CyclicBarrier`、`Semaphore`、`Phaser`、`Exchanger` 五大同步工具。
 
----
 ---
 
 ## 目录

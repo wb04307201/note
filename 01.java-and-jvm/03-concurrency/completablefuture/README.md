@@ -1,9 +1,9 @@
 <!--module:
   parent: java
-  slug: 01.java/concurrency/completablefuture
+  slug: java/completablefuture
   type: article
   category: 主模块子文章
-  summary: 在 Java 8 引入 `CompletableFuture` 之前，异步编程主要依赖 `java.util.concurrent.Future` 接口。...
+  summary: CompletableFuture 异步编排完整笔记——Future 的四大局限、创建/组合/异常处理 API、线程池选择与实战陷阱。
   depth: ⭐⭐
   status: active
 -->
@@ -58,7 +58,6 @@ int sum = a.get() + b.get(); // 繁琐且容易出错
 
 `Future` 的结果只能由提交的任务本身产生，外部无法主动设置结果或取消后续流程。
 
----
 ---
 
 ## 二、CompletableFuture 基本用法

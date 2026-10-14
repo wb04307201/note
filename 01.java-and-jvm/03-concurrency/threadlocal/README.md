@@ -264,22 +264,31 @@ get 流程图:
                              ▼
                     ┌── map != null? ───┐
                     │ Yes        No     │
-                    ▼                    ▼
-           ┌──────────────┐    ┌─────────────┐
-           │ map.getEntry │    │ setInitial  │
-           │ (线性探测查找)│    │ Value()     │
-           └──────┬───────┘    └──────┬──────┘
-                  ▼                   ▼
-         ┌── entry != null? ──┐ ┌──────────┐
-         │ Yes         No     │ │ 返回初始 │
-         ▼                    ▼ │ 值       │
-    ┌──────────┐ ┌────────────┐└──────────┘
-    │ 返回     │ │ 返回 null  │
-    │ entry.value│ │(实际走    │
-    └──────────┘ │ getEntry  │
-                 │ 中的逻辑) │
-                 └───────────┘
+                    ▼                  │
+           ┌──────────────┐            │
+           │ map.getEntry │            │
+           │ (线性探测查找)│            │
+           └──────┬───────┘            │
+                  ▼                    │
+         ┌── entry != null? ──┐        │
+         │ Yes         No     │        │
+         ▼                    │        │
+    ┌────────────┐            │        │
+    │ 返回       │            │        │
+    │ entry.value│            │        │
+    └────────────┘            ▼        ▼
+                     ┌──────────────────────┐
+                     │ setInitialValue():   │
+                     │ 调用 initialValue()   │
+                     │ 写入 map（map 为 null │
+                     │ 时先 createMap）      │
+                     │ 后返回初始值           │
+                     └──────────────────────┘
 ```
+
+> 注意：get() 只有在「map 为 null」或「getEntry 未命中」时才走 `setInitialValue()`，
+> 并不会直接返回 null —— `setInitialValue()` 会把 `initialValue()` 的结果写入
+> ThreadLocalMap（map 为 null 时先 `createMap`）再返回，因此首次 get 总能拿到值。
 
 **get 关键步骤：**
 

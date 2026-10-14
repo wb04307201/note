@@ -10,6 +10,8 @@
 
 # VarHandle
 
+> **定位**：Java 9 VarHandle（JEP 193）：`sun.misc.Unsafe` 的标准化替代，提供字段/数组的安全原子访问与四种内存序控制。
+
 ## 引言：变更说明
 
 VarHandle 是 Java 9 引入的轻量级字段/数组访问机制，替代反射。
@@ -186,7 +188,8 @@ VarHandle 从 Java 9 引入以来，为 Java 提供了安全的高性能变量�
 
 ## 相关章节
 
-- [Sealed Classes](../sealed-classes/README.md)
+- [原子类 AtomicInteger/LongAdder](../../03-concurrency/atomic/README.md) — VarHandle 常替代的上层原子工具
+- [Java 内存模型 JMM](../../03-concurrency/jmm/README.md) — 四种内存序（plain/opaque/acquire-release/volatile）的理论基础
 - [Java 线程基础](../../03-concurrency/thread-basics/README.md)
 - [Java 版本特性](../README.md)
 

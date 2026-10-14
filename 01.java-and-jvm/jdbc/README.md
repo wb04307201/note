@@ -230,13 +230,15 @@ try (CallableStatement cstmt = conn.prepareCall(sql)) {
 ```java
 String sql = "INSERT INTO users(name, email) VALUES (?, ?)";
 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    int count = 0;   // 批处理计数器
+
     for (User user : users) {
         pstmt.setString(1, user.getName());
         pstmt.setString(2, user.getEmail());
         pstmt.addBatch();
 
         // 每 500 条执行一次，避免单次批处理过大
-        if (count % 500 == 0) {
+        if (++count % 500 == 0) {
             pstmt.executeBatch();
             pstmt.clearBatch();
         }

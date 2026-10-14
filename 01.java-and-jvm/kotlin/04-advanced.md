@@ -3,7 +3,7 @@
   slug: 01.java/kotlin/04-advanced
   type: article
   category: 主模块子文章
-  summary: 扩展函数为现有类添加方法，无需继承或工具类。
+  summary: Kotlin 高级特性六讲——扩展函数、类/属性委托、操作符重载、inline 与 reified、值类、DSL 构建。
   depth: ⭐⭐
   status: active
 -->

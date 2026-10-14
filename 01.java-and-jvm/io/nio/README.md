@@ -3,7 +3,7 @@
   slug: java/nio
   type: article
   category: 主模块子文章
-  summary: Java NIO 全面学习笔记
+  summary: Java NIO 全景——Buffer/Channel/Selector 三大组件、非阻塞多路复用模型、Reactor 线程模型、AIO 异步 IO 对比，及在 Netty 中的底层应用。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

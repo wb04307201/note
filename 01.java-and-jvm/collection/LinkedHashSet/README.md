@@ -10,9 +10,7 @@
 
 # LinkedHashSet 学习笔记
 
-> 底层基于 LinkedHashMap 的有序 Set 实现，保证插入顺序的同时提供 O(1) 查找性能。
-
-> **定位**：LinkedHashSet 底层基于 LinkedHashMap 的有序 Set 实现，插入序遍历 + 性能权衡。
+> **定位**：底层基于 LinkedHashMap 的有序 Set 实现，保证插入顺序的同时提供 O(1) 查找性能，含性能权衡与并发配置选型。
 
 ## 一、底层 LinkedHashMap 实现
 
@@ -71,7 +69,6 @@ public boolean remove(Object o) {
 
 **核心结论：** `LinkedHashSet` 本质上是一个 `LinkedHashMap` 的 "key 视图"，value 全部为无意义的 `PRESENT` 占位符。
 
----
 ---
 
 ## 二、保持插入顺序的原理（双向链表）
@@ -330,8 +327,6 @@ Set<String> set = new LinkedHashSet<>((int) (1000 / 0.75f) + 1);
 
 ---
 
-← [返回 Java 集合框架](../README.md)
-
 ## 并发配置表
 
 | 实现 | 读性能 | 写性能 | 迭代顺序 | 适用场景 |
@@ -341,3 +336,7 @@ Set<String> set = new LinkedHashSet<>((int) (1000 / 0.75f) + 1);
 | `LinkedHashSet`（裸用） | 极快 | 极快 | 按插入顺序 | **单线程或读多写少**；如配置加载、缓存 |
 
 **注意**：`LinkedHashSet` 本身**不是线程安全**的。多线程下必须用 `Collections.synchronizedSet` 或迁移到 `ConcurrentSkipListSet`。
+
+---
+
+← [返回 Java 集合框架](../README.md)

@@ -4,7 +4,7 @@
   type: article
   category: 主模块子文章
   summary: Java 16 instanceof 模式匹配：免去强制类型转换。
-  depth: ⭐⭐
+  depth: ⭐⭐⭐
   status: active
 -->
 

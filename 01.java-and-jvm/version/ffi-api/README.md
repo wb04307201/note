@@ -3,7 +3,7 @@
   slug: java/version/ffi-api
   type: article
   category: 主模块子文章
-  summary: Java FFM API（Java 22 预览）：替代 JNI 调用 native 库。
+  summary: Java FFM API（Java 22 转正，JEP 454）：替代 JNI 调用 native 库、操作堆外内存。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->
@@ -12,7 +12,7 @@
 
 ## 引言：变更说明
 
-Foreign Function & Memory API (FFM) 是 Java 22 预览特性，替代 JNI 调用 native 库。
+Foreign Function & Memory API (FFM) 于 Java 22 转正（JEP 454），替代 JNI 调用 native 库。
 
 本篇按主题归类，给出每个条目的一句话定位 + 适用版本/场景，**先扫一遍再决定读哪节**。
 
@@ -27,6 +27,7 @@ Foreign Function & Memory API (FFM) 允许 Java 程序安全地调用原生代�
 ```java
 import java.lang.foreign.*;
 import java.lang.invoke.*;
+import static java.lang.foreign.ValueLayout.*;
 
 // 1. 调用 C 标准库函数
 public static void callCLibrary() throws Throwable {
@@ -38,9 +39,9 @@ public static void callCLibrary() throws Throwable {
         FunctionDescriptor.of(JAVA_INT, ADDRESS, JAVA_INT)
     );
 
-    // 分配原生内存并调用
+    // 分配原生内存并调用（allocateUtf8String 已于 Java 22 移除，改用 allocateFrom）
     try (Arena arena = Arena.ofConfined()) {
-        MemorySegment msg = arena.allocateUtf8String("Hello from Java! Value: %d\n");
+        MemorySegment msg = arena.allocateFrom("Hello from Java! Value: %d\n");
         int result = (int) printf.invoke(msg, 42);
     }
 }
@@ -51,51 +52,54 @@ public static void manipulateMemory() {
         // 分配 100 字节的原生内存
         MemorySegment segment = arena.allocate(100);
 
-        // 写入数据
-        MemoryLayout.OfInt intLayout = MemoryLayout.ValueLayout.JAVA_INT;
-        segment.setAtIndex(intLayout, 0, 42);
-        segment.setAtIndex(intLayout, 1, 100);
+        // 写入数据（set/get + 字节偏移；setAtIndex/getAtIndex 已于 Java 22 移除）
+        segment.set(ValueLayout.JAVA_INT, 0, 42);
+        segment.set(ValueLayout.JAVA_INT, 4, 100);
 
         // 读取数据
-        int val = segment.getAtIndex(intLayout, 0);  // 42
+        int val = segment.get(ValueLayout.JAVA_INT, 0);  // 42
     }
 }
 
 // 3. 使用 C 结构体（通过 GroupLayout）
-public static void structExample() {
+public static void structExample() throws Throwable {
     // 定义 C 结构体布局：struct Point { int x; int y; double z; }
     GroupLayout pointLayout = MemoryLayout.structLayout(
-        MemoryLayout.ValueLayout.JAVA_INT.withName("x"),
-        MemoryLayout.ValueLayout.JAVA_INT.withName("y"),
-        MemoryLayout.ValueLayout.JAVA_DOUBLE.withName("z")
+        ValueLayout.JAVA_INT.withName("x"),
+        ValueLayout.JAVA_INT.withName("y"),
+        ValueLayout.JAVA_DOUBLE.withName("z")
     );
 
     try (Arena arena = Arena.ofConfined()) {
         MemorySegment point = arena.allocate(pointLayout);
 
-        // 通过名称访问字段
-        VarHandle xHandle = pointLayout.varHandle(MemoryLayout.PathElement.groupElement("x"));
-        xHandle.set(point, 10);
+        // 通过名称访问字段（Java 22 起 varHandle(...) 返回 MethodHandle，坐标参数为 long 偏移）
+        MethodHandle xHandle = pointLayout.varHandle(MemoryLayout.PathElement.groupElement("x"));
+        xHandle.invoke(point, 0L, 10);          // point.x = 10
 
-        VarHandle yHandle = pointLayout.varHandle(MemoryLayout.PathElement.groupElement("y"));
-        yHandle.set(point, 20);
+        MethodHandle yHandle = pointLayout.varHandle(MemoryLayout.PathElement.groupElement("y"));
+        yHandle.invoke(point, 0L, 20);          // point.y = 20
     }
 }
 
-// 4. 回调函数（Java 函数传递给原生代码）
+// 4. 回调函数（把 Java 方法包装成 C 函数指针传给原生代码）
 public static void callbackExample() throws Throwable {
     Linker linker = Linker.nativeLinker();
 
-    // 创建 C 函数指针，指向 Java lambda
-    FunctionDescriptor desc = FunctionDescriptor.of(JAVA_INT, JAVA_INT, JAVA_INT);
-    SegmentAllocator allocator = SegmentAllocator.nativeAllocator(Arena.ofAuto());
+    // 目标 Java 方法：int cmp(int a, int b)
+    MethodHandle cmp = MethodHandles.lookup().findVirtual(
+        Comparator.class, "compare",
+        MethodType.methodType(int.class, int.class, int.class));
 
-    MemorySegment cmpFunc = linker.upcallStub(
-        linker.downcallHandle(desc),
-        (a, b) -> ((int) a) - ((int) b),  // Java lambda
-        Arena.ofAuto(),
-        desc
-    );
+    // upcallStub(MethodHandle target, FunctionDescriptor 原生签名, Arena 生命周期)
+    // 返回一个可传给 C 代码的函数指针
+    try (Arena arena = Arena.ofConfined()) {
+        MemorySegment cmpFunc = linker.upcallStub(
+            cmp,
+            FunctionDescriptor.of(JAVA_INT, JAVA_INT, JAVA_INT),
+            arena);
+        // cmpFunc 可写入 C 结构体字段或作为参数传给期望回调的 native 函数
+    }
 }
 
 // 5. 内存段视图（通过 MemorySegment 的 asSlice 操作）

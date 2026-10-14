@@ -3,18 +3,18 @@
   slug: java/version/record
   type: article
   category: 主模块子文章
-  summary: Java 14+ Record：不可变数据载体类的语法糖。
+  summary: Record（14/15 预览、16 正式）：不可变数据载体类的语法糖。
   depth: ⭐
   status: active
 -->
 
 # Record
 
-> **定位**：Java 14+ Record：不可变数据载体类的语法糖（15 预览 / 16 正式）。
+> **定位**：Java Record：不可变数据载体类的语法糖（14/15 预览、16 正式）。
 
 ## 引言：变更说明
 
-Record 是 Java 14+ 引入的不可变数据载体类语法糖。
+Record 是 Java 14 引入预览、16 转正的不可变数据载体类语法糖。
 
 本篇按主题归类，给出每个条目的一句话定位 + 适用版本/场景，**先扫一遍再决定读哪节**。
 

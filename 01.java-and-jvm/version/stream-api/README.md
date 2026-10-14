@@ -90,16 +90,27 @@ List<String> result = names.stream()
     .collect(Collectors.toList());
 ```
 
-自定义 Collector：
+自定义 Collector（以"去重并保持插入顺序的拼接"为例，内置 Collectors 无此组合语义）：
 ```java
-Collector<T, ?, String> joining(CharSequence delimiter) {
+/**
+ * 按元素自然序去重后以 delimiter 拼接：Collector.of(supplier, accumulator, combiner, finisher)
+ * 累加器把元素放入 LinkedHashSet 去重，合并器并行归并两个集合，终结器拼接为字符串
+ */
+static <T> Collector<T, ?, String> distinctJoining(CharSequence delimiter) {
     return Collector.of(
-        () -> new StringJoiner(delimiter),
-        (joiner, element) -> joiner.add(element.toString()),
-        (joiner1, joiner2) -> joiner1.merge(joiner2),
-        StringJoiner::toString
+        LinkedHashSet<T>::new,                          // supplier：容器
+        LinkedHashSet::add,                             // accumulator：元素入容器（Set 自动去重）
+        (left, right) -> { left.addAll(right); return left; },  // combiner：并行分区归并
+        set -> {                                        // finisher：拼接为最终结果
+            StringJoiner joiner = new StringJoiner(delimiter);
+            set.forEach(e -> joiner.add(String.valueOf(e)));
+            return joiner.toString();
+        }
     );
 }
+
+Stream.of("b", "a", "b", "c")
+    .collect(distinctJoining("-"));  // "b-a-c"
 ```
 
 ### 2. Java 9 - Stream API 增强
@@ -176,6 +187,63 @@ Stream.of("foo", "bar", "baz", "quux")
     .gather(deduplicate)
     .toList(); // ["foo", "quux"]
 ```
+
+### 6. 并行流的性能陷阱
+
+`parallelStream()` 看似免费加速，实际有 4 类常见陷阱：
+
+**陷阱 1：公共 ForkJoinPool 争用**
+
+所有 `parallelStream()` 默认共享一个 `ForkJoinPool.commonPool()`（并行度 = CPU 核数 - 1）。任何一处提交慢任务（如阻塞 I/O），会拖垮**同一 JVM 内所有其他并行流**：
+
+```java
+// ❌ 在公共池中执行阻塞 I/O —— 占满 worker，其他并行流全部排队
+list.parallelStream().map(this::queryDatabase).toList();
+
+// ✅ 并行流只做 CPU 密集计算；阻塞操作用显式 ForkJoinPool 隔离或改回串行
+ForkJoinPool pool = new ForkJoinPool(4);
+List<String> results = pool.submit(() ->
+    list.parallelStream().map(this::compute).toList()
+).get();
+```
+
+**陷阱 2：有状态 lambda 破坏并行语义**
+
+```java
+// ❌ ArrayList 非线程安全，并行 add 导致丢数据甚至 ArrayIndexOutOfBoundsException
+List<Integer> out = new ArrayList<>();
+ints.parallelStream().forEach(out::add);
+
+// ✅ 用无状态收集器，框架负责线程安全的分区与归并
+List<Integer> out = ints.parallelStream().collect(Collectors.toList());
+```
+
+**陷阱 3：自动装箱**
+
+`Stream<Integer>` 每个元素都要装箱/拆箱；并行时装箱开销被放大：
+
+```java
+// ❌ Stream<Integer>：元素全程为装箱对象，parallelStream 放大装箱/拆箱开销
+long total = IntStream.range(0, 1_000_000)
+    .boxed()                       // int → Integer 装箱
+    .parallel()
+    .mapToLong(Integer::longValue) // 又拆箱
+    .sum();
+
+// ✅ 基本类型专用流（IntStream / LongStream / DoubleStream），全程无装箱
+long sum = LongStream.range(0, 1_000_000).parallel().sum();
+```
+
+**陷阱 4：小数据量并行反而更慢**
+
+并行需要任务拆分（split）、线程调度、结果归并（combine）的固定开销。经验判据：**元素数 × 单元素处理耗时 < 约 100 微秒级别时不要并行**；`N×Q` 模型（N 为元素数、Q 为每元素操作数）中，N×Q 需达到十万~百万量级并行才有收益。
+
+| 判据 | 串行更优 | 并行可能更优 |
+|------|---------|-------------|
+| 数据规模 | 千级以下 | 十万级以上 |
+| 单元素操作 | 轻量（比较/取值） | 重量（复杂计算） |
+| 数据源 | Iterator / BufferedReader（难拆分） | ArrayList / 数组 / range（易拆分） |
+| 操作类型 | 有状态、顺序敏感（sorted 全序） | 无状态、可归并（map/reduce） |
 
 ## 总结
 

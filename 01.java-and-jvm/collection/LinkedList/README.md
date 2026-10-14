@@ -55,7 +55,6 @@ transient int modCount = 0;    // 结构性修改次数 (用于 fail-fast)
 > **关键点**：`size` 是显式维护的，因此 `size()` 是 **O(1)** 操作。
 
 ---
----
 
 ## 二、构造方法
 

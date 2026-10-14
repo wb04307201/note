@@ -4,7 +4,7 @@
   type: article
   category: 主模块子文章
   summary: Java 12：8 个 JEP，含 switch 表达式预览、G1 改进、微基准套件
-  depth: ⭐
+  depth: ⭐⭐
   status: active
 -->
 
