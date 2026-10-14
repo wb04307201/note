@@ -3,7 +3,7 @@
   slug: application-systems/04-sales-service/crm
   type: article
   category: 主模块子文章
-  summary: CRM（Customer Relationship Management 客户关系管理） 本应该很简单，一句话定位：以客户全生命周期为主线的管理与运营平台，覆盖...
+  summary: 以客户全生命周期为主线的管理与运营平台，覆盖营销获客、销售转化、客户成功、续费/流失完整链路，是企业对外经营的主入口。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

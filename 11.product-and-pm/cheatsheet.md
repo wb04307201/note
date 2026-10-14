@@ -273,7 +273,7 @@ RICE Score = (R × I × C × E) / Effort
 
 ## 3. ICE —— RICE 的轻量版（PM 个人拍板用，30 秒打分）
 
-**公式**（GrowthHackers 社区，Avinash Kaushik）：
+**公式**（GrowthHackers 社区，Sean Ellis 推广）：
 
 ```text
 ICE Score = Impact × Confidence × Ease（每个 1-10 分）

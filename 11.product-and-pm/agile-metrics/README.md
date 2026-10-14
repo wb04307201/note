@@ -48,10 +48,6 @@ timeline
 
 ---
 
-
-
----
-
 ## 一、一句话定位
 
 **敏捷度量（Agile Metrics）**：用数据而非直觉来回答"团队做得怎么样"——从 Velocity 到 Cycle Time 到累积流图，构建多维度的团队效能画像。**但记住：度量是手段不是目的，被滥用的度量比不度量更危险。**
@@ -509,16 +505,6 @@ Cycle Time = 从"开始开发"到"交付上线"的时间
 - [面试题：研发效能度量](../../12.interview/04.system-design/README.md) — 面试高频"度量反模式"题
 - [分布式链路追踪](../../06.distributed-systems/08-observability/README.md) — Jaeger / Zipkin → Cycle Time 落地的可观测性
 
----
-
-## 相关章节
-
-- [AI 项目管理账本：DORA + SPACE + ROI 三件套](../ai-pm-dora-space/README.md)
-- [外包项目避坑：5 大隐性成本 + 合同 8 条必看](../outsourcing-pitfalls/README.md)
-- [项目管理与成本控制](../README.md)
-
-← [返回: 项目管理与成本控制](../README.md)
-
 ## 📊 本节统计
 
 - **战略层指标**：2 套（DORA 4 / SPACE 5）
@@ -534,4 +520,4 @@ Cycle Time = 从"开始开发"到"交付上线"的时间
 
 ---
 
-> **本文档深度**：**L5（⭐⭐⭐⭐⭐）** —— 5 维度全满分：方法深度（D1=2）+ 跨模块（D2=2）+ 系统性（D3=2）+ 追问（D4=2）+ 实战（D5=2），总计 10/10。
+← [返回: 项目管理与成本控制](../README.md)

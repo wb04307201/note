@@ -1,5 +1,5 @@
 <!--module:
-  parent: project-management
+  parent: 11.product-and-pm
   slug: pm/team-sizing-3x-buffer
   type: article
   category: 决策实战
@@ -113,7 +113,7 @@ P6 是最关键的"主力 + 跳板"。
     - 编码（含 review + 测试）：2 周
     - 测试 + 修复：1 周
     - 部署 + 监控：0.5 周
-    总计 5 周 = 1 周（清晰需求后）× 5 倍 buffer
+    总计 5 周 = 乐观估算 2 周 × 2.5 倍 buffer（拆解到各阶段，buffer 可见）
 
   开发 buffer（不要写死）：
     - 风险预警：开个"风险登记册"，每发现一个风险 +0.5 周

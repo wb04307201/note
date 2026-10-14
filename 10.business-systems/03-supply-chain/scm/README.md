@@ -1,6 +1,6 @@
 <!--module:
   parent: application-systems
-  slug: 08.application-systems/03-supply-chain/scm
+  slug: application-systems/03-supply-chain/scm
   type: article
   category: 主模块子文章
   summary: 一份按业务场景梳理的 SCM 速查手册：从供应商到客户的"端到端"链条管理。
@@ -11,8 +11,6 @@
 # SCM · 供应链管理系统
 
 > **定位**：一份按业务场景梳理的 SCM 速查手册：从供应商到客户的"端到端"链条管理。
-
-> 一份按业务场景梳理的 SCM 速查手册：从供应商到客户的"端到端"链条管理。
 
 ---
 

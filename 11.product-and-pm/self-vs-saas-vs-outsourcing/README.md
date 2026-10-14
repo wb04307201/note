@@ -1,5 +1,5 @@
 <!--module:
-  parent: product-and-pm
+  parent: 11.product-and-pm
   slug: pm/self-vs-saas-vs-outsourcing
   type: article
   category: 主模块子文章
@@ -11,7 +11,7 @@
 
 # 技术选型 ROI：自研 vs SaaS vs 外包 决策树
 
-> CTO / 技术总监最常拍板的一类决策：花 50 万买 SaaS / 花 30 万外包 / 花 200 万自研，到底哪个 ROI 最高？考察的是 **全生命周期 TCO 计算 + 决策树判断 + AI 时代的额外变量**。
+> CTO / 技术总监最常拍板的一类决策：自研、SaaS、外包到底哪个 ROI 最高？核心是 **全生命周期 TCO 计算 + 决策树判断**。
 
 > **前置知识**：[app-quote-breakdown](../app-quote-breakdown/README.md)（项目成本拆解）、[outsourcing-pitfalls](../outsourcing-pitfalls/README.md)（外包隐性成本）、[mobile-tech-stack](../../05.frontend/08-cross-platform/mobile-tech-stack/README.md)（前端跨端选型）。
 

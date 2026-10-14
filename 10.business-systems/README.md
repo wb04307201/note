@@ -13,7 +13,7 @@
 
 # 10. 业务系统（Business Systems）
 
-> 一份按业务价值链梳理的业务系统速查手册：从研发创新 → 生产制造 → 供应链 → 销售服务 → 运营管理 → 专项支持，覆盖 **31 个常见业务系统**：MES · ERP · SCM · WMS · APS · SCADA · PLM · PDM · QMS · CRM · EAM · SRM · OMS · SCRM · OA · MOM · TMS · LIMS · CMS · BI · PMS · **HR · BPM · RPA · ITSM · MDM · 数据中台 · 电子签 · KM · 客服系统 · 低代码**
+> 一份按业务价值链梳理的业务系统速查手册：从研发创新 → 生产制造 → 供应链 → 销售服务 → 运营管理 → 专项支持，覆盖 **31 个常见业务系统**（完整清单见下方目录导航表）。
 >
 > **继承规范**：[SPEC.md](./SPEC.md)
 

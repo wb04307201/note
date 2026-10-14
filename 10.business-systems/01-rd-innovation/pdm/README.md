@@ -3,7 +3,8 @@
   slug: application-systems/01-rd-innovation/pdm
   type: article
   category: 主模块子文章
-  summary: PDM（Product Data Management 产品数据管理） 本应该很简单，一句话定位：PLM 的核心子集，专注于产品数据本身（文档、图纸、零部件）的...
+  summary: PLM 的核心子集，专注产品数据本身（文档、图纸、零部件）的管理与组织，是研发数字化的数据底座。
+  tags: [PDM, 产品数据, CAD 集成]
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

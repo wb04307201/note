@@ -1,6 +1,6 @@
 <!--module:
-  parent: project-management
-  slug: project-management/risk-register
+  parent: 11.product-and-pm
+  slug: 11.product-and-pm/risk-register
   type: article
   category: 主模块子文章
   summary: 项目风险登记册实战手册：从风险识别到应对策略，结合 MoSCoW 优先级与 RICE 评分的量化决策指南。
@@ -121,9 +121,9 @@ RICE 分数 = (Reach × Impact × Confidence) / Effort
 
 | 风险 | Reach | Impact | Confidence | Effort | RICE | 优先级 |
 |------|-------|--------|-----------|--------|------|--------|
-| R-001 核心人员离职 | 200 | 3 | 80% | 4 人周 | 120 | 1 |
+| R-001 核心人员离职 | 200 | 3 | 80% | 4 人周 | 120 | 3 |
 | R-002 接口审批延迟 | 500 | 2 | 60% | 2 人周 | 300 | 2 |
-| R-003 需求变更 | 1000 | 1 | 90% | 1 人周 | 900 | 3 |
+| R-003 需求变更 | 1000 | 1 | 90% | 1 人周 | 900 | 1 |
 
 > **解读**：RICE 分数越高，性价比越高——R-003 虽然影响小但应对成本极低，值得优先处理。
 
@@ -449,4 +449,4 @@ timeline
 
 ---
 
-> **本文档深度**：**L5（⭐⭐⭐⭐⭐）** —— 5 维度全满分：方法深度（D1=2）+ 跨模块（D2=2）+ 系统性（D3=2）+ 追问（D4=2）+ 实战（D5=2），总计 10/10。
+← [返回: 项目管理与成本控制](../README.md)

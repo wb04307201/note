@@ -7,6 +7,7 @@
   depth: ⭐⭐⭐⭐
   status: active
 -->
+<!-- index-only -->
 
 # 04 销售服务
 

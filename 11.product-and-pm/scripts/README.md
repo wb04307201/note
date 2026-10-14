@@ -673,4 +673,4 @@ python 11.product-and-pm/scripts/validate.py
 
 ← [返回: 项目管理](../README.md)
 
-> 📅 2026-09-01 · 咬文嚼字 · PM 实战脚本 + 维护工具 · ⭐⭐⭐⭐（实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · PM 实战脚本 + 维护工具

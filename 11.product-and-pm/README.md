@@ -182,7 +182,12 @@ graph LR
 ## 九、相关章节
 
 - 一页速查：[`cheatsheet.md`](./cheatsheet.md) —— 6 大场景决策矩阵 + 速算公式
-- 维护脚本：[`scripts/README.md`](./scripts/README.md) —— `insert-frontmatter.py` / `validate.py`，用于批量补 frontmatter 和合规性校验
+- 维护脚本：[`scripts/README.md`](./scripts/README.md) —— `insert-frontmatter.py` / `validate.py`，用于批量补 frontmatter 和合规性校验。在仓库根运行（需 Python 3.8+，仅标准库无外部依赖）：
+
+  ```bash
+  python 11.product-and-pm/scripts/validate.py          # 合规性校验
+  python 11.product-and-pm/scripts/insert-frontmatter.py --dry-run   # 预演补 frontmatter
+  ```
 - 主模块：[`04.system-design`](../06.distributed-systems/README.md) — 技术选型的底层支撑
 - 主模块：[`05.frontend`](../05.frontend/README.md) — 移动端跨端架构决策
 - 故事：[`13.story/07-from-chef-to-ceo`](../13.story/07-from-chef-to-ceo.md) — 团队管理叙事版

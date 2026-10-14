@@ -1,9 +1,9 @@
 <!--module:
   parent: application-systems
-  slug: 08.application-systems/02-production/mes
+  slug: application-systems/02-production/mes
   type: article
   category: 主模块子文章
-  summary: MES（Manufacturing Execution System 制造执行系统） 本应该很简单，一句话定位：把 ERP 的生产计划落地为车间工单并实时跟踪执...
+  summary: 把 ERP 的生产计划落地为车间工单并实时跟踪执行的系统，是连接计划层与控制层的"执行中枢"。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

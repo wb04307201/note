@@ -3,7 +3,8 @@
   slug: application-systems/01-rd-innovation/plm
   type: article
   category: 主模块子文章
-  summary: PLM（Product Lifecycle Management 产品生命周期管理） 本应该很简单，一句话定位：管理产品从概念、设计、工艺、生产、销售到退役的全...
+  summary: 管理产品从概念、设计、工艺、生产、销售到退役的全生命周期数据与流程的系统，是企业研发数字化的主干。
+  tags: [PLM, BOM, 工程变更]
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->

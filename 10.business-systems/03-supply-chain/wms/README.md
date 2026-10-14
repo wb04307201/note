@@ -3,7 +3,7 @@
   slug: application-systems/03-supply-chain/wms
   type: article
   category: 主模块子文章
-  summary: WMS（Warehouse Management System 仓储管理系统） 本应该很简单，一句话定位：管理仓库**作业全流程**的精细化系统，覆盖入库 →...
+  summary: 管理仓库作业全流程的精细化系统，覆盖入库、上架、存储、拣选、出库、盘点、退库完整作业链，是仓储数字化的"调度中枢"。
   depth: ⭐⭐⭐⭐⭐
   status: active
 -->
