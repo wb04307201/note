@@ -312,10 +312,18 @@ graph TB
 5. 失败 → 向所有节点释放锁
 6. 有效锁时间 = 总过期时间 - 获取耗时
 
-**争议**：
-- Redis 作者 antirez 提出
-- 分布式系统专家 Martin Kleppma 批评（时钟跳跃问题）
-- 实际工程中**争议较大**，很多团队不用 RedLock
+**争议（Martin Kleppmann vs antirez）**：
+
+- Redis 作者 antirez 提出 Redlock；分布式系统专家 **Martin Kleppmann** 在《How to do distributed locking》中批评其不安全
+- **Kleppmann 的两层论证**：
+  1. **先问加锁目的**：为了**效率**（防重复发邮件）→ 单 Redis 足够，Redlock 过度设计；为了**正确性**（防超卖）→ 任何带 TTL 的锁都不够，因为**进程停顿**（GC/VM 挂起/CPU 抢占）会让客户端在锁已过期后"醒来继续写"——这个反例与 Redlock 的集群设计无关，打的是 TTL 锁的前提本身
+  2. **Redlock 自身依赖客户端时钟**：`有效期 = 过期时间 - (T2-T1)`，NTP 阶跃/VM 时钟跳变会让锁"自以为有效实则已过期"
+- **正解是 fencing token**（单调递增令牌）：锁服务发号，存储层拒绝旧 token 的写入——把裁决权从"客户端自觉"移到存储侧。ZK 的 zxid/顺序节点序号、etcd 的 revision 天然可当 token；**Redis 没有内建单调计数**，需自己 INCR 造号
+- **antirez 的反驳**：进程停顿是**所有** TTL 锁（包括 ZK session 过期）的通病，不是 Redlock 独有；时钟漂移可用 slew 模式 + 监控压低；真要正确性就叠加 fencing——他承认 fencing 必要，只认为可叠加在 Redlock 之上
+- **双方共识大于分歧**：光有锁保不了正确性，最终防线必须在存储侧（DB 唯一约束/乐观锁 version）
+- **工程结论**：绝大多数团队不用 Redlock——效率场景单 Redis + Redisson，正确性场景锁 + DB 约束兜底，需要 fencing 就直接上 ZK/etcd
+
+> 📖 完整论证（停顿击穿 TTL 的时序图 / fencing token Java 校验代码 / 效率 vs 正确性对照表）见主模块 [分布式锁 §4.1-4.5](../../../06.distributed-systems/02-distributed/distributed-lock/README.md#41-争议的第一层你加锁到底是为了什么)。
 
 ---
 

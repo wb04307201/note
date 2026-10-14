@@ -144,7 +144,104 @@ VALUES ('order_lock', UUID(), NOW() + INTERVAL 30 SECOND);
 5. 锁的有效期 = 过期时间 - (T2 - T1)
 ```
 
-**争议**：Martin Kleppmann《How to do distributed locking》指出 Redlock **不安全**（依赖时钟同步，GC 停顿可能误判）。**实战结论**：99% 场景用单 Redis + Redisson 即可，不建议上 Redlock。
+### 4.1 争议的第一层：你加锁到底是为了什么？
+
+Martin Kleppmann《How to do distributed locking》开篇就把问题劈成两半——**这是整场争论的分水岭**：
+
+| 目的 | 例子 | 锁偶尔失效的后果 | 需要多强的锁 |
+|------|------|----------------|------------|
+| **效率**（Efficiency） | 避免重复发邮件、避免重复计算、限流去重 | 多做一次工，浪费但无害 | 弱锁够用（单 Redis + TTL） |
+| **正确性**（Correctness） | 防止并发写坏文件/记录、防止超卖、防止重复扣款 | 数据永久损坏，不可回滚 | **锁本身不够**，必须有额外防护 |
+
+> 🔑 **关键洞察**：Redlock 争论的大部分火力都打错了靶子——**如果你的目的是正确性，那么任何带过期时间的锁（包括 ZooKeeper）都不够**；如果目的是效率，那么单 Redis 就够了，Redlock 属于过度设计。Redlock 卡在中间，两头不讨好。
+
+### 4.2 争议的第二层：进程停顿击穿一切 TTL 锁
+
+Kleppmann 给出的致命反例与 Redlock 的集群设计**无关**，它打的是「锁有过期时间」这个前提本身：
+
+```text
+时刻    客户端 A                          客户端 B                锁服务
+─────────────────────────────────────────────────────────────────────────
+t0     SETNX 成功，拿到锁（TTL 30s）                              持有者=A
+t1     开始写存储
+t2     ⏸ 进程停顿（GC / VM 挂起 /
+       CPU 抢占 / 缺页 / 网络阻塞）
+t3                                        SETNX 成功，拿到锁       持有者=B
+t4                                        写入存储 ✅
+t5     ⏵ 停顿结束，A 不知道自己
+       已超时，继续写入 ❌                  （B 也在写）          ← 数据损坏
+```
+
+**A 和 B 都认为自己持有锁**。A 无法通过「检查自己有没有超时」来自救——因为检查本身也可能发生在停顿之前、写入之前的一瞬间，而停顿恰好插在检查与写入之间。
+
+**Redlock 为什么解决不了**：Redlock 的多节点投票只处理「Redis 服务端单点故障/脑裂」，对「客户端进程停顿」完全无能为力。而且它引入了**新的时间依赖**：
+
+```
+锁的有效期 = 过期时间 - (T2 - T1)     ← 依赖客户端本地时钟的两次读数
+```
+
+一旦客户端时钟被 NTP 阶跃校正、VM 挂起恢复后时钟跳变、或运维手动改时间，`(T2 - T1)` 就算错了——**锁可能在自己还以为有效的时候就已经过期**。antirez 的算法假设「时钟不会大幅跳变」，而这个假设在生产环境（尤其容器/虚拟化）里不成立。
+
+### 4.3 fencing token：唯一能兜住停顿的机制
+
+既然客户端无法自我判断，那就**把裁决权交给存储层**。fencing token（栅栏令牌）是一个**单调递增的整数**：
+
+```text
+1. 锁服务每次成功授予锁时，返回一个单调递增的 token
+2. 客户端把 token 连同写请求一起发给存储
+3. 存储记录「已见过的最大 token」，拒绝任何 token 更小的写入
+```
+
+回到上面的时序，A 拿到 token=33，B 拿到 token=34：
+
+```java
+// 存储侧的写入校验（伪代码，任何支持 CAS 的存储都能实现）
+public boolean write(long fencingToken, Data data) {
+    if (fencingToken <= maxSeenToken) {
+        // A 停顿后带着旧 token 33 回来，此时 maxSeenToken 已是 34
+        throw new StaleLockException(
+            "stale fencing token: " + fencingToken + " <= " + maxSeenToken);
+    }
+    maxSeenToken = fencingToken;
+    return doWrite(data);
+}
+```
+
+**A 醒来写入时 token=33 < 34 → 被存储拒绝**，数据损坏被挡住。这才是「正确性」场景的真正防线。
+
+**谁来发 token**：
+- **ZooKeeper**：`zxid`（事务 ID）或临时顺序节点的序号天然单调递增，可直接当 token 用 ✅
+- **etcd**：revision 字段同理 ✅
+- **Redis / Redlock**：**没有内建的单调计数设施**，得自己用 `INCR` 造一个——而这恰恰削弱了 Redlock「多节点无需共识即可安全」的卖点 ❌
+
+### 4.4 antirez 的反驳：这不是 Redlock 独有的病
+
+Redis 作者 antirez 在《Is Redlock safe?》中的核心反驳很有力，值得单独记住：
+
+1. **进程停顿是所有带超时锁的通病，不是 Redlock 的锅**。ZooKeeper 同样脆弱——客户端停顿超过 session timeout，ZK 删除临时节点、放行下一个客户端，停顿的客户端醒来时照样以为自己持锁。**ZK 的 CP 只保证服务端不脑裂（多数派），不保证客户端不停顿。**
+2. **时钟漂移的影响被夸大了**。破坏 Redlock 安全性需要的是各节点时钟漂移之和超过锁有效期；实践中可通过禁用时钟阶跃（用 slew 模式）、监控 NTP 偏移来把风险压到很低。
+3. **真要正确性，就自己加 fencing**——这与用哪种锁无关。antirez 明确承认 fencing token 是必要的，只是认为它可以叠加在 Redlock 之上（如用 Redis `INCR` 发号）。
+
+> 💡 **双方的共识其实大于分歧**：Kleppmann 和 antirez 都同意「**光有锁不足以保证正确性，最终防线必须在存储侧**」。分歧只在于「Redlock 相比单 Redis 是否带来了值得其复杂度的额外安全性」。
+
+### 4.5 实战结论
+
+| 场景 | 推荐方案 | 理由 |
+|------|---------|------|
+| 防重复执行、限流、任务去重（**效率**） | 单 Redis + Redisson 看门狗 | 偶尔失效可接受，Redlock 是过度设计 |
+| 库存/资金/唯一资源分配（**正确性**） | 锁 + **数据库唯一约束或乐观锁 version 兜底** | 锁做性能优化，DB 约束做正确性保证 |
+| 强一致 + 需要 fencing token | ZooKeeper / etcd | zxid / revision 天然可当 token |
+| Redlock | **绝大多数团队不建议用** | 复杂度高于单 Redis，安全性又不如 ZK/etcd 自带 token；两头不讨好 |
+
+**「锁 + DB 兜底」的正确写法**：不要指望锁保证不超卖，而是让锁降低冲突概率、让约束保证绝对正确：
+
+```sql
+-- 锁失效时，这一行 SQL 才是真正的防线
+UPDATE stock SET count = count - 1
+WHERE sku_id = 1001 AND count >= 1;   -- 影响行数 = 0 即失败，天然幂等
+```
+
+详见 [乐观锁](../../06-idempotency/optimistic-lock/README.md) 与 [幂等性设计](../../06-idempotency/README.md)。
 
 ## 五、生产踩坑案例（5 大常见事故）
 
@@ -261,12 +358,16 @@ A：
 - [服务注册与发现](../service-discovery/README.md) — Etcd/ZK 同时支持锁与发现
 - [分布式 ID 总览](../distributed-id/README.md) — 唯一标识生成方案
 - [缓存一致性](../../04-high-performance/cache-patterns/README.md) — 锁+缓存双写策略
+- 面试深挖：[分布式锁设计](../../../12.interview/04.system-design/distributed-lock/README.md)（8 坑 + Redisson 释放机制剖析）· [Redis 分布式锁 3 大坑](../../../12.interview/03.database/redis-distributed-lock/README.md)（看门狗 + Lua + 可重入）
 
 ## 十、参考链接
 
 - [Redisson 官方文档](https://redisson.org/docs/)
-- [Redlock 算法原文（Antirez）](https://redis.io/docs/manual/patterns/distributed-locks/)
-- [How to do distributed locking（Martin Kleppmann）](https://martinfowler.com/articles/patterns-of-distributed-systems/distributed-lock.html)
+- [Is Redlock safe?（antirez 的反驳，2016-02）](http://antirez.com/news/101) — ✅ 已在线核实（HTTP 200，正文含 fencing token / GC 停顿 / NTP 时钟跳变三段论述）
+- [How to do distributed locking（Martin Kleppmann, 2016-02-08）](http://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html) — URL 由上述 antirez 原文正文直接引用（二手核实）；本站 TLS 握手受阻未能直连
+- [Distributed locks with Redis（Redlock 算法原文）](http://redis.io/topics/distlock) — 同上，antirez 原文引用的规范地址；redis.io 域名本环境不可达
 - [Apache Curator（ZooKeeper 客户端）](https://curator.apache.org/)
+
+> ⚠️ **来源核实说明（2026-10-14）**：本次写作环境的网络是**按域名选择性可达**——`antirez.com` / `api.github.com` 可正常访问，`martin.kleppmann.com` / `redis.io` 在 TLS 握手阶段失败（curl exit 35）。因此 Kleppmann 与 Redis 官方两篇的 URL 采用「antirez 原文正文所引用的地址」这一二手依据；`martinfowler.com/articles/patterns-of-distributed-systems/distributed-lock.html` 已实测返回 **404**（原库内该链接错误，本次修正）。fencing token 机制、双方立场与工程结论均为分布式系统公认知识，非依赖单次抓取。
 
 ← [返回分布式系统](../README.md)
