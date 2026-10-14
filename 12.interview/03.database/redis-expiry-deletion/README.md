@@ -113,6 +113,7 @@ redis-cli --scan --pattern "session:*" | xargs redis-cli UNLINK
 > - [Redis 内存淘汰策略](../redis-eviction/README.md) — maxmemory 触发的 8 种策略
 > - [Redis 大 Key 问题](../redis-big-key/README.md) — 大 Key 发现与治理
 > - [Redis 持久化](../redis-persistence/README.md) — RDB / AOF 机制
+> - [Redis 单线程为什么快](../redis-single-thread/README.md) — DEL/UNLINK 底层 bio 线程（BIO_LAZY_FREE）异步释放机制（见其 §2.4）
 
 ---
 

@@ -295,6 +295,7 @@ groups:
 
 - 主模块：[`03.database`](../../../03.data-stack/01-database/README.md) — 数据库知识体系
 - [Redis](../../../03.data-stack/01-database/07-redis/README.md) — Redis 详解
+- [Redis 单线程为什么快](../redis-single-thread/README.md) — 大 Key 阻塞主线程的根因（见其 §2.4 bio 线程异步 UNLINK 释放）
 - [分布式锁](../../../06.distributed-systems/02-distributed/distributed-lock/README.md) — 分布式锁实现
 
 ## 相关章节
