@@ -491,5 +491,6 @@ package "组合分表示例：用户系统" {
 ## 专题导航
 
 - [ShardingSphere](sharding-sphere/README.md) — Apache ShardingSphere 分库分表与分布式事务实战
+- [数据倾斜与热点治理](data-skew-and-hotspot/README.md) — 数据量 vs 访问量倾斜辨析 + 热点分层治理 + 基因法
 
 ← [返回 数据库优化](../README.md)

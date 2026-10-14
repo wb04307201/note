@@ -83,14 +83,14 @@ graph TD
 
 ## 📊 本节统计
 
-> 2026-10-14 实数校对（`find` 口径）：本目录共 **21 个 README**（本文 + 15 个一级子目录 + database-optimization 下 5 个二级子目录）、**32 个 .md**。
+> 2026-10-14 实数校对（`find` 口径）：本目录共 **22 个 README**（本文 + 15 个一级子目录 + database-optimization 下 6 个二级/三级子目录）、**33 个 .md**。
 
 | 子目录 | .md 数 | 备注 |
 |:-------|:------:|:-----|
 | `04-high-performance/`（本文） | 1 | 模块导航页 |
 | ├─ `load-balance/` | 1 | L4/L7 · 轮询/哈希/最少连接 |
 | ├─ `cdn/` | 1 | 静态资源分发 · 边缘计算 |
-| ├─ `database-optimization/` | 6 | 顶层 + SQL · 读写分离 · 分库分表（含 sharding-sphere）· 冷热分离 |
+| ├─ `database-optimization/` | 7 | 顶层 + SQL · 读写分离 · 分库分表（含 sharding-sphere · 🆕 data-skew-and-hotspot）· 冷热分离 |
 | ├─ `cache-patterns/` | 1 | Cache-Aside / Read-Through / Write-Behind |
 | ├─ 🆕 `cache-layers/` | 1 | 全链路缓存分层：九层缓存全景 + 命中语义/失效机制/一致性代价 + 反模式清单 |
 | ├─ `mq/` | 1 | Kafka / RocketMQ / Pulsar |
@@ -103,7 +103,7 @@ graph TD
 | ├─ 🆕 `short-video-recommend/` | 1 | 4 层漏斗（召回/粗排/精排/重排）+ 多路召回 + DIN/DIEN/MMoE + 2024-2026 多模态/大模型融合 |
 | ├─ 🆕 `file-upload/` | 4 | 分片上传 + 断点续传 + 秒传 + 对象存储 + 引用计数 |
 | └─ 🆕 `media-upload-storage/` | 1 | 图片 WebP/AVIF 转码 + 视频 HLS/DASH 切片 + 冷热分层 + 防盗链 DRM |
-| **合计** | **32 个 .md**（21 个 README） | 模块导航 18 行 = 15 个一级主题目录 + database-optimization 下 4 个子主题入口 |
+| **合计** | **33 个 .md**（22 个 README） | 模块导航 18 行 = 15 个一级主题目录 + database-optimization 下 4 个子主题入口 |
 
 > 数字基线：以 .md 数 / README 数 + 模块导航行数双口径统计（2026-10-14 `find` 实测）
 

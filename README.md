@@ -38,7 +38,7 @@
 | 03 | [03.data-stack](./03.data-stack/) | 数据库 + 缓存 + 大数据 | 32 |
 | 04 | [04.spring-backend](./04.spring-backend/) | Spring 生态 + 后端框架 | 32 |
 | 05 | [05.frontend](./05.frontend/) | 前端工程 | 54 |
-| 06 | [06.distributed-systems](./06.distributed-systems/) | 分布式 + 微服务 + 云原生 | 126 |
+| 06 | [06.distributed-systems](./06.distributed-systems/) | 分布式 + 微服务 + 云原生 | 127 |
 | 07 | [07.devops-and-tools](./07.devops-and-tools/) | DevOps + CI/CD + 工具链 | 47 |
 | 08 | [08.ai-foundations](./08.ai-foundations/) | ML + DL + Transformer + LLM 基础 | 7 |
 | 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 62 |

@@ -67,7 +67,7 @@
 **适用场景**: 读多写少 (如电商商品浏览、新闻阅读)。
 
 ## 分库分表
-[→ 数据库分库分表](db-sharding/README.md) | [→ ShardingSphere 实战](db-sharding/sharding-sphere/README.md)
+[→ 数据库分库分表](db-sharding/README.md) | [→ ShardingSphere 实战](db-sharding/sharding-sphere/README.md) | [→ 数据倾斜与热点治理](db-sharding/data-skew-and-hotspot/README.md)
 
 **核心要点**:
 - 垂直分库:按业务拆分(用户库、订单库、商品库)
