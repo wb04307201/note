@@ -59,9 +59,9 @@ flowchart TD
 - **Platform View**：在 Flutter 中嵌入原生 View（如地图）
 
 ## 实战案例
-- **某电商 App**：Flutter 3.x，5 万行代码，iOS + Android 包大小 30MB
-- **某金融 App**：Flutter + 加密原生插件，安全合规通过
-- **某 IoT App**：Flutter 控制智能家居，跨 iOS/Android/Web
+- **闲鱼（阿里）**：Flutter 在国内规模最大的落地案例之一，混合栈方案见其开源的 FlutterBoost，公开分享收录于 [Flutter 官方案例页](https://flutter.dev/showcase)
+- **Google Pay / Now in Android**：Google 官方 showcase 与开源示例（[Now in Android](https://github.com/android/nowinandroid) 为 Compose，Google Pay 为 Flutter 案例），代表一手工程实践
+- **典型收益口径**：一套代码覆盖 iOS + Android，团队规模与维护成本显著低于双原生；包体积增量与代码行数因 App 结构差异大，以自身项目实测为准（本文不引用匿名化的无出处数字）
 
 ## 学习资源
 - 官方文档：https://flutter.dev/

@@ -56,14 +56,16 @@ flowchart TD
 ---
 
 ## 核心框架
-| 框架 | 范式 | 渲染策略 | 状态管理 | 学习曲线 | 适用场景 |
-|------|------|---------|---------|---------|---------|
-| React 19 | 声明式/函数式 | 客户端 + RSC | 外部库 | 中 | 大型应用 / 生态丰富 |
-| Vue 3.4 | 声明式/响应式 | 客户端 + SSR | Pinia | 低-中 | 中小型 / 团队上手快 |
-| Svelte 5 | 编译时 | 客户端 | 内置 store | 低 | 高性能小应用 |
-| Solid | 细粒度响应 | 客户端 | 内置 signal | 中 | 高性能 / 类 React 语法 |
-| Astro | 多框架 + Islands | 静态 + 局部注水 | 框架自带 | 低 | 内容型站点 |
-| htmx | HTML over the wire | 服务端 | 弱 | 低 | 服务端渲染增强 |
+| 框架 | 范式 | 渲染策略 | 状态管理 | 学习曲线 | 运行时体积量级* | 适用场景 |
+|------|------|---------|---------|---------|---------|---------|
+| React 19 | 声明式/函数式 | 客户端 + RSC | 外部库 | 中 | ~45 KB (react+react-dom min) | 大型应用 / 生态丰富 |
+| Vue 3.4 | 声明式/响应式 | 客户端 + SSR | Pinia | 低-中 | ~35 KB (vue min) | 中小型 / 团队上手快 |
+| Svelte 5 | 编译时 | 客户端 | 内置 store | 低 | ~2-10 KB（编译产物按用量 tree-shake） | 高性能小应用 |
+| Solid | 细粒度响应 | 客户端 | 内置 signal | 中 | ~7 KB (solid-js min) | 高性能 / 类 React 语法 |
+| Astro | 多框架 + Islands | 静态 + 局部注水 | 框架自带 | 低 | ~0 KB 运行时（静态优先） | 内容型站点 |
+| htmx | HTML over the wire | 服务端 | 弱 | 低 | ~10 KB (htmx min) | 服务端渲染增强 |
+
+> \* 体积为各框架官方 npm 包 min 版的量级参考（随版本浮动，精确值查 [bundlephobia](https://bundlephobia.com/)）；交互性能横向对比见 [js-framework-benchmark](https://github.com/krausest/js-framework-benchmark)（React/Vue/Solid/Svelte 均在榜，各版本排名有波动）。
 
 ---
 

@@ -256,9 +256,11 @@ curl http://localhost:8000/v1/chat/completions \
 - OpenAI 兼容：迁移成本低
 - 动态批处理：高并发友好
 
-**实测性能（A100 80G ×4）：**
+**实测性能（A100 80G ×4）**：
 - Qwen 2.5-72B：约 50 tokens/秒/用户
 - 并发 100 用户：吞吐 5000 tokens/秒
+
+> ⚠️ 口径：以上为**故事设定的示意数字**（量级参考社区常见部署经验：单用户 decode 速度数十 tokens/秒、批量吞吐随并发近似线性增长），实际随 batch 大小、输入/输出序列长度、量化方式与 vLLM 版本差异很大，非标准 benchmark。
 
 ### 3.3 TensorRT-LLM（性能最强）
 

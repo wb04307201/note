@@ -30,6 +30,8 @@ public class AtomicCounter {
 // 10 个线程各执行 100 万次
 // synchronized: ~800ms
 // Atomic:       ~80ms  ← 快了 10 倍！
+// ⚠️ 高竞争单计数器场景的量级示意（社区 JMH 微基准的常见结果，非标准 benchmark）；
+//    CAS 在极高竞争下会大量自旋失败，倍率随线程数/计数器分散度/JVM 版本波动很大
 ```
 
 为什么 Atomic 比 synchronized 快这么多？
@@ -107,6 +109,8 @@ static class AtomicCounter {
 
 // 性能测试（8线程，1000万次递增）
 // synchronized: 50 ns/op; AtomicInteger: 20 ns/op → Atomic快2.5倍
+// ⚠️ 与引子的"10 倍"口径不同：两处竞争强度与测试配置不一致，倍率对竞争强度极敏感——
+//    线程越多、争用越集中，synchronized 阻塞排队与 CAS 自旋的相对劣势都会放大；引用时务必标注测试条件（量级示意，非标准 benchmark）
 ```
 
 **2. ABA问题及解决**

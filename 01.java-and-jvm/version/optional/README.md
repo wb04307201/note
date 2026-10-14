@@ -185,7 +185,7 @@ public Optional<String> processUser(User user) {
 2. **不要在集合中使用 Optional**：应直接使用空集合而不是包含 Optional 的集合
 3. **合理使用 orElse 和 orElseGet**：对于计算成本高的默认值，使用 orElseGet
 4. **避免直接调用 get()**：应优先使用其他安全的方法
-5. **考虑性能影响**：Optional 会带来轻微的性能开销，在性能敏感的场景中需要权衡
+5. **考虑性能影响**：Optional 会带来轻微的性能开销（多一层对象包装/拆包），但 HotSpot 的 JIT 逃逸分析 + 标量替换通常能把未逃逸的 Optional 分配在栈上消除，热路径稳态开销一般可忽略；真正要避免的是在极高频循环中创建大量逃逸的 Optional 实例，性能敏感场景建议先用 JMH 实测再权衡
 
 ## 总结
 

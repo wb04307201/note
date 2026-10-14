@@ -252,7 +252,7 @@ flowchart LR
     B -->|否| C[Virtual DOM<br/>运行时 diff]
     B -->|是| D[直接 DOM 操作<br/>编译时优化]
     C --> E[运行时开销]
-    D --> F[性能提升 2-3x]
+    D --> F[跳过 diff 开销<br/>更新性能更优]
 ```
 
 - **传统模式**：模板编译为 render 函数 → 虚拟 DOM diff → 真实 DOM 更新

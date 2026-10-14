@@ -256,11 +256,10 @@ GPT-4 128K / Claude 200K 对中间位置信息的 recall 率只有 ~40%。
 
 ## 📚 参考来源
 
-1. [CSDN — 从 8K 到 1M 上下文的通用化：Qwen-Agent 创新实践](https://blog.csdn.net/) — Qwen 长上下文演进路线与 1M context 工程实践
-2. [CSDN — llama 模型 long context 源码分析（DeepSeek 前线）](https://blog.csdn.net/) — Llama LongRoPE / YaRN 源码与训练细节
-3. [NeedleInAHaystack GitHub](https://github.com/gkamradt/LLMTest_NeedleInAHaystack) — 长上下文 Lost-in-Middle 测试基准
-4. [IBM Docling GitHub](https://github.com/DS4SD/docling) — PDF 文档结构化解析开源库
-5. [LongLLMLingua / RECOMP 论文（Microsoft 2023）](https://arxiv.org/abs/2310.04836) — Prompt 压缩 20x / RAG 检索压缩代表方法
+1. [NeedleInAHaystack GitHub](https://github.com/gkamradt/LLMTest_NeedleInAHaystack) — 长上下文 Lost-in-Middle 测试基准
+2. [IBM Docling GitHub](https://github.com/DS4SD/docling) — PDF 文档结构化解析开源库
+3. [LongLLMLingua / RECOMP 论文（Microsoft 2023）](https://arxiv.org/abs/2310.04836) — Prompt 压缩 20x / RAG 检索压缩代表方法
+4. [Qwen-Agent GitHub](https://github.com/QwenLM/Qwen-Agent) — Qwen 长上下文（8K → 1M）工程实践官方仓库
 
 ← 返回 [AI 咬文嚼字](../README.md)
 

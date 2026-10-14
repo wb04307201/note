@@ -154,7 +154,7 @@ LinkedList 只在以下场景有优势：
 2. 需要在迭代过程中高效地插入/删除元素（iterator.remove() 是 O(1)）
 ```
 
-> **实测数据**：在 10000 个元素的列表中随机访问，ArrayList 约 0.01ms，LinkedList 约 3ms — 差 300 倍。CPU 缓存命中率是关键因素。
+> **量级感受**：在万级元素列表中随机访问，ArrayList 因连续内存 + CPU 缓存友好，通常比 LinkedList 快百倍以上（具体倍数随 JDK 版本、数据规模与访问模式变化，非固定 benchmark）。CPU 缓存命中率是关键因素。
 
 ### ArrayList 扩容机制
 

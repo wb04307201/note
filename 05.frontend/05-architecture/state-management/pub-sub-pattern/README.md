@@ -557,11 +557,13 @@ onUnmounted(() => bus.off('user-update', handleUpdate)) // ✅ 必须
 
 **真相**：在高频 emit（如 1000 次/秒的鼠标移动）场景下：
 
-| 实现 | 10000 次 emit 耗时 | 原因 |
+| 实现 | 万次 emit 相对耗时 | 原因 |
 |------|--------------------|------|
-| **原生 EventTarget** | ~50ms | 每次创建 Event 对象、dispatchEvent 走完整 DOM 事件流 |
-| **mitt** | ~10ms | 直接遍历 Set 调用 callback，无 Event 对象 |
-| **EventEmitter3** | ~8ms | 内部用 Map<event, Array>，遍历优化（数组比 Set 在 V8 上更快） |
+| **原生 EventTarget** | 基准（最慢档） | 每次创建 Event 对象、dispatchEvent 走完整 DOM 事件流 |
+| **mitt** | 约为基准的 1/3-1/5 | 直接遍历 Set 调用 callback，无 Event 对象 |
+| **EventEmitter3** | 与 mitt 同档或更快 | 内部用 Map<event, Array>，遍历优化（数组比 Set 在 V8 上更快） |
+
+> 注：倍数来自社区 micro-benchmark 的常见量级（如 mitt 仓库 issue 区的讨论），随浏览器版本与 CPU 差异较大，仅用于建立「库比原生 dispatchEvent 快」的直觉，选型前请以目标浏览器实测为准。
 
 > **反直觉 4**：事件名用 **Symbol** 比 String 安全（避免第三方库冲突）。
 >

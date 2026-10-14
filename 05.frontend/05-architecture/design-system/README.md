@@ -123,7 +123,7 @@ graph LR
 
 | 方案 | 实现 | 优缺点 |
 |------|------|--------|
-| **CSS Variables** | `:root` / `[data-theme]` + `prefers-color-scheme` | ✅ 无 JS 切换，性能最佳 |
+| **CSS Variables** | `:root` / `[data-theme]` + `prefers-color-scheme` | ✅ 无 JS 切换；仅触发一次样式重计算，不引发框架 re-render，切换开销在三者中最低 |
 | **Styled Components** | `ThemeProvider` + props | ⚠️ 仅 styled-components 生态 |
 | **Tailwind CSS** | `dark:` 前缀 + `darkMode: 'class'` | ✅ Tailwind 项目首选 |
 

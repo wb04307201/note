@@ -28,6 +28,8 @@
 
 这套系统，阿明叫它"夜班管家"。它不是一个人，而是一个监控 Agent（Monitoring Agent），每天深夜自动运行，分析白天所有运营数据，找出问题模式，生成修复方案，并在沙箱中验证后部署上线。阿明终于体会到了 YC 合伙人 Tom Blomfield 说的那个"震撼时刻"——**公司可以在创始人睡觉时变得更好**。
 
+> **来源说明**：本篇引用的核心论据——"罗马军团"信息传递模型、监控 Agent 的 "Holy Shit Moment"、2000 小时 Office Hour 音频合成 150 页手册、"烧 Token 不烧人头（Burn Tokens, Not Headcount）"——均出自 YC 合伙人 Tom Blomfield 在 Y Combinator 的公开分享（可在 YouTube / YC 官网检索 "Tom Blomfield AI-native company" 找到视频原文），细节数字为分享中口径的转述。
+
 ---
 
 ## 第一章：从"罗马军团"到 Agent Loop —— 打破层级思维

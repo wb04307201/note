@@ -62,6 +62,8 @@ graph TB
 | **Valtio** | Proxy 响应式 | ⭐⭐⭐⭐ | ~2KB | ⭐⭐⭐ | 响应式爱好者 |
 | **Nano Stores** | 原子化 / 框架无关 | ⭐⭐⭐⭐⭐ | ~0.5KB | ⭐⭐⭐⭐ 上升 | 多框架 monorepo |
 
+> 包体积列为 gzip 量级参考（可用 [bundlephobia](https://bundlephobia.com/) 按当前版本核实）。**重渲染性能**维度各库差异同样是量级关系而非固定数字：高频原子更新场景下，带 selector 订阅的方案（Zustand `useStore(sel)` / Jotai atom 粒度 / Valtio Proxy 依赖追踪）只重渲染受影响组件，朴素 Redux（无 RTK/Reselect）整树订阅会放大 re-render 范围——实际差距依订阅粒度与组件树形态而定，选型时按自己的更新模式实测（如 React Profiler 观察 1k 原子更新的 commit 次数），不要直接套用他人 benchmark 数字。
+
 ### 3.2 Vue 生态
 
 | 库 | 状态 | 2026 推荐度 |

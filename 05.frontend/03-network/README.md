@@ -26,7 +26,7 @@
 **速读概述（免跳转）**：
 
 - **HTTP 缓存**：两级策略——强缓存（`Cache-Control: max-age`，不发请求）+ 协商缓存（`ETag` / `Last-Modified`，304 省 body）。典型配置：HTML 走 `no-cache`（每次协商），带 hash 的 JS/CSS 走 `max-age=31536000, immutable`
-- **HTTPS 握手**：TLS 1.2 = 2-RTT（RSA/ECDHE + 证书校验）；TLS 1.3 = 1-RTT + 0-RTT 恢复。前端可见收益：HSTS 防降级、证书错误页排查（域名/有效期/链不全三类）
+- **HTTPS 握手**：TLS 1.2 = 2-RTT（RSA/ECDHE + 证书校验）；TLS 1.3 = 1-RTT，会话恢复时支持 0-RTT 直接带数据（RTT 数定义见 [RFC 8446](https://www.rfc-editor.org/rfc/rfc8446)，1 RTT 在典型公网链路上约对应几十至一二百毫秒的握手等待；0-RTT 有重放风险，仅用于幂等请求）。前端可见收益：HSTS 防降级、证书错误页排查（域名/有效期/链不全三类）
 - **CORS**：浏览器同源策略放行机制。简单请求直接带 `Origin`；非简单（自定义头 / `PUT` / `application/json`）先发 `OPTIONS` 预检。凭证请求需 `Access-Control-Allow-Credentials` + 服务端精确回显 `Origin`（不能 `*`）
 
 ### 学习路径

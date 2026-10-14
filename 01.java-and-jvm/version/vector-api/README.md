@@ -142,9 +142,9 @@ public static int[] vectorAddWithMask(int[] a, int[] b) {
 
 ## 性能对比
 
-在 AVX-512 支持的 CPU 上，使用 `SPECIES_512` 处理 100 万元素数组：
+在 AVX-512 支持的 CPU 上，使用 `SPECIES_512` 处理大数组（100 万元素级）：
 - **标量循环**：基准时间 1.0x
-- **Vector API**：约 4-8x 加速（取决于操作类型）
+- **Vector API**：实测通常有**数倍加速**，具体倍数依 CPU 指令集宽度、操作类型（ADD/FMA vs 带分支逻辑）与 JDK 版本而定（经验量级，非固定 benchmark 值）
 
 ## 注意事项
 

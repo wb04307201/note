@@ -131,7 +131,7 @@ public StringBuilder append(String str) {
 }
 ```
 
-**性能对比**：在单线程环境下，StringBuilder 比 StringBuffer 快 **10x~15x**。原因是 `synchronized` 会触发锁竞争、内存屏障等开销。
+**性能对比**：在单线程环境下，StringBuilder 通常比 StringBuffer 快**约一个数量级**（差距来自 `synchronized` 的锁获取/释放与内存屏障开销；具体倍数依 JDK 版本与操作形态而异，无固定 benchmark 值，面试中说"明显更快、量级差距"即可）。
 
 ### 3.2 扩容机制
 

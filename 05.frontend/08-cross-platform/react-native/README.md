@@ -114,7 +114,7 @@ export default function Card() {
 ## 性能优化
 | 优化项 | 说明 |
 |--------|------|
-| **FlashList** | 替代 FlatList，性能提升 5-10x |
+| **FlashList** | 替代 FlatList，长列表滚动性能显著提升（[官方文档](https://shopify.github.io/flash-list/)称可达约 5 倍，视列表项复杂度与机型而异） |
 | **Hermes 引擎** | 默认启用，启动快 + 内存小 |
 | **Reanimated** | GPU 动画，主线程不阻塞 |
 | **图片缓存** | expo-image（比 Image 快） |

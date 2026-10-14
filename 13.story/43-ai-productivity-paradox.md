@@ -64,6 +64,8 @@
 
 老张拿出了 Waydev、GitClear、Faros AI、Jellyfish 等 4 大研究的最新数据，开始逐项拆解。
 
+> **来源说明**：本节 4 组数字分别转述自——① Waydev 的 AI 代码采纳率 / Code Churn 分析（waydev.co 博客）；② GitClear《AI Copilot Code Quality》年度研究（gitclear.com，"2024-2025 报告"口径）；③ Faros AI 的 AI 工程效能研究（faros.ai 博客）；④ Jellyfish 的工程数据分析报告（jellyfish.co）。DORA 结论出自 Google Cloud《Accelerate State of AI 2025》报告（dora.dev）。数字为叙事需要做了口径简化，精确数值与统计方法以各报告原文为准。
+
 #### 数据 1：Waydev——"采纳率 ≠ 有效率"
 
 ```text

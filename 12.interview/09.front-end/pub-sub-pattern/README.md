@@ -384,6 +384,8 @@ onUnmounted(() => bus.off('user-update', handleUpdate)) // ✅ 必须
 
 **真相**：在高频 emit（如 1000 次/秒的鼠标移动）场景下：
 
+> ⚠️ 下表耗时为**自测参考值**（量级示意，未固定浏览器版本/CPU/是否 JIT 预热，非严谨 benchmark），相对排序的根因是 Event 对象创建与 DOM 事件流开销，可在 [jsbench.me](https://jsbench.me/) 自行复测。
+
 | 实现 | 10000 次 emit 耗时 | 原因 |
 |------|--------------------|------|
 | **原生 EventTarget** | ~50ms | 每次创建 Event 对象、dispatchEvent 走完整 DOM 事件流 |

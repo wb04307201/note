@@ -19,7 +19,7 @@
 ---
 ## 引言：Transformer 架构核心 的关键决策
 
-本篇是「Transformer 架构核心」的核心章节，聚焦该主题在实际落地时**5 个 trade-off 的取舍与决策轴**。
+本篇是「Transformer 架构核心」的核心章节，沿正文脉络拆解几个真实取舍：为什么放弃 RNN 的顺序处理换取并行训练（§一）、Self-Attention 的 QKV 抽象如何换来置换不变性但引入 O(n²) 复杂度（§三）、Multi-Head 用多组投影换取表征多样性但增加参数量（§四）、位置编码方案的选择（Sinusoidal / Learned / RoPE / ALiBi，§五）、以及 Encoder-only / Decoder-only / Encoder-Decoder 三种架构的适用场景（§六）。
 
 ## 一、Transformer 解决了什么问题
 

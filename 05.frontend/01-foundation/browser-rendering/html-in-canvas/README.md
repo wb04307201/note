@@ -337,7 +337,9 @@ Option C 要求：**进入 paint 事件后，DOM 内容（除 canvas 自己的�
 | WebGL / WebGPU 输出 | 不可（仅 2D canvas） | 不可 | 原生（`texElementImage2D` / `copyElementImageToTexture`） |
 | Worker 渲染 | 否 | 否 | 是（`captureElementImage`） |
 | 命中测试同步 | 需手算 | 需手算 | **自动**（`drawElementImage` 返回 transform） |
-| 性能 | 主线程长任务 | 浏览器原生（但仅 SVG） | 浏览器原生 + Worker |
+| 性能 | 主线程长任务（JS 逐节点重绘） | 浏览器原生（但仅 SVG） | 浏览器原生 + Worker（可移出主线程） |
+
+> ⚠️ HTML-in-Canvas 仍处实验阶段，暂无公开的量化 benchmark（html2canvas vs `drawElementImage` 的耗时对比待标准落地后补充）；上表性能行为定性对比，依据是渲染路径差异（JS 模拟排版 vs 浏览器原生栅格化 + Worker 并行）。
 
 > **`foreignObject` 是"老前辈"**：SVG 1.1 早就允许内嵌 HTML，但应用面太窄（仅 SVG 子文档、不支持 WebGL 输出、不支持跨上下文）。HTML-in-Canvas 把这套能力"下放"到原生 Canvas。
 

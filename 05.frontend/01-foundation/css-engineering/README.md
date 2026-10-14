@@ -188,7 +188,7 @@ import styles from './Button.module.css'
 
 ### Tailwind v4（2025-2026）
 
-- ✅ 基于 Rust 重写（`@tailwindcss/postcss`），性能提升 10x+
+- ✅ 基于 Rust 重写（`@tailwindcss/postcss`），官方 benchmark：全量构建最高约 5x 提速，增量构建（无新 CSS）超 100x（来源：[Tailwind v4 官方发布博客](https://tailwindcss.com/blog/tailwindcss-v4)）
 - ✅ 零配置，自动内容检测
 - ✅ CSS-first 配置（无需 `tailwind.config.js`）
 

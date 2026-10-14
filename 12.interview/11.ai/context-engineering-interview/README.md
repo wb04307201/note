@@ -67,7 +67,7 @@ Context = System Prompt + 历史消息 + Tools Schema + RAG 文档 + 长期记�
 
 ## 三、反直觉点
 
-- **"结构化 XML 标签"效果显著**：用 `<system>...</system>` 等标签切分，比纯文本段落召回率提升 20%+。
+- **"结构化 XML 标签"效果显著**：用 `<system>...</system>` 等标签切分，比纯文本段落显著提升模型对指令边界的识别与信息召回（Anthropic 官方 Prompt Engineering 文档推荐 XML 标签，定性结论，具体提升幅度因任务而异）。
 - **历史消息要"重置"而非"累积"**：长对话 Context 会爆炸，应定期压缩或滑动窗口。
 - **Embedding 检索过滤历史消息**：而非保留所有历史。
 

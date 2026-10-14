@@ -35,7 +35,7 @@
 | 外部依赖 | 必须 Mock/Stub 掉 | 使用真实依赖（数据库、网络等） |
 | 执行速度 | 极快（毫秒级） | 较慢（秒级甚至分钟级） |
 | 维护成本 | 低 | 较高 |
-| 典型注解 | `@Test` | `@SpringBootTest`, `@IntegrationTest` |
+| 典型注解 | `@Test` | `@SpringBootTest`（集成测试类常以 `*IT` 命名，由 Failsafe 插件执行；旧 `@IntegrationTest` 为 Spring 4 时代注解，已废弃） |
 
 ### 1.2 测试金字塔
 

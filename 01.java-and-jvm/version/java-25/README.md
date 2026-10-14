@@ -250,15 +250,32 @@ class Child extends Parent {
 
 ## JEP 514: 提前命令行优化
 
-提前命令行优化是 AOT（Ahead-of-Time）编译的一部分，允许通过 `-XX:AOTCache` 参数在应用程序启动前对类进行加载和链接优化。通过预先生成 AOT 缓存并在运行时复用，可以显著减少应用程序的启动时间。
+提前命令行优化是 AOT（Ahead-of-Time）工作流的一部分（承接 [JEP 483](https://openjdk.org/jeps/483) 的 AOT 类加载与链接），核心是新增 `-XX:AOTCacheOutput` 参数，把 JDK 24 时代「record → create」两步命令合并为一步训练 + 建缓存。通过预先生成 AOT 缓存并在生产运行时复用，类无需在启动时发现、加载、链接，可显著减少应用程序的启动时间（提速幅度随应用类加载规模与训练运行代表性而异，JEP 未给出统一数字）。
+
+**AOT 相关参数取值表**（依据 [JEP 514](https://openjdk.org/jeps/514) 官方文本）：
+
+| 参数 | 取值 | 含义 |
+|------|------|------|
+| `-XX:AOTMode` | `record` | 训练运行：观察应用动态行为并记录到 AOT 配置文件（`.aotconf`） |
+| `-XX:AOTMode` | `create` | 依据训练记录创建 AOT 缓存（`.aot`） |
+| `-XX:AOTCacheOutput` | 文件路径 | **JEP 514 新增**：一步完成 record + create（JVM 自动创建并删除临时配置文件） |
+| `-XX:AOTCache` | 文件路径 | 生产运行时加载已创建的 AOT 缓存 |
+| `-XX:AOTConfiguration` | 文件路径 | 显式指定 `.aotconf` 配置文件（两步工作流用） |
+| 环境变量 `JDK_AOT_VM_OPTIONS` | JVM 选项 | 仅作用于「创建缓存」子调用的额外参数（语法同 `JAVA_TOOL_OPTIONS`） |
 
 ```bash
-# 生成 AOT 缓存
-java -XX:AOTCache=cache.aot -XX:AOTMode=record -cp myapp.jar MyMainClass
+# 方式一（JEP 514 推荐）：一步完成训练 + 创建 AOT 缓存
+java -XX:AOTCacheOutput=app.aot -cp app.jar com.example.App
 
-# 使用 AOT 缓存运行应用
-java -XX:AOTCache=cache.aot -XX:AOTMode=on -cp myapp.jar MyMainClass
+# 方式二：显式两步（适合训练与建缓存分开在不同规格实例上执行）
+java -XX:AOTMode=record -XX:AOTConfiguration=app.aotconf -cp app.jar com.example.App
+java -XX:AOTMode=create -XX:AOTConfiguration=app.aotconf -XX:AOTCache=app.aot
+
+# 生产运行：使用 AOT 缓存启动
+java -XX:AOTCache=app.aot -cp app.jar com.example.App
 ```
+
+> ⚠️ 一步工作流的内存代价：创建缓存的子调用使用与训练运行同大小的堆，因此 `-Xmx4g` 时环境需约 8GB 内存；资源受限环境应改用两步工作流（JEP 514 官方说明）。
 
 ## JEP 515: 提前方法分析
 

@@ -137,6 +137,8 @@ function update(id: number, newVal: any) {
 
 ## 量化性能基准（必背）
 
+> 数字口径：转引自主模块深度文 [`05.frontend/03-frameworks/vue/large-list-perf`](../../../05.frontend/03-frameworks/vue/large-list-perf/README.md) 的 benchmark（万行级列表、单浏览器单机环境），绝对值随机器/浏览器/Vue 版本浮动，重点是方案间的相对量级差。
+
 | 方案 | 修改耗时 | 全组件 re-render | 首屏 |
 |------|---------|-----------------|------|
 | 默认 `ref` + `:key=index` | ~1800ms | **10000 / 次** | 2500ms |

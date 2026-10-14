@@ -562,7 +562,7 @@ distances, indices = index.search(query_emb, k=5)  # top-5
 
 **Claude 3 / 3.5（2024）**：未单独发布 Embedding API，但 Claude 自身有强大的语义表征能力。
 
-**Voyage AI（Anthropic 投资）**：发布 voyage-3 Embedding 模型，MTEB 排名第一（2024 年）。
+**Voyage AI（据公开报道与 Anthropic 生态关系密切）**：发布 voyage-3 系列 Embedding 模型，据其官方发布口径曾在 MTEB 检索等子榜单排名领先（2024 年；榜单随时间滚动更新，具体名次以 [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) 当期为准）。
 
 ### 8.4 DeepSeek — DeepSeek-V2 / V3
 

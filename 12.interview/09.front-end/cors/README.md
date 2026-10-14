@@ -169,7 +169,7 @@ sequenceDiagram
 
 - 控制预检结果的缓存时长，避免每次请求都发送 OPTIONS
 - 过短会导致频繁预检，过长可能导致策略更新不及时
-- Chrome 上限为 2 小时（7200 秒），Firefox 上限为 24 小时
+- 浏览器会截断过长的缓存：Chrome 上限 2 小时（7200 秒），Firefox 上限 24 小时（MDN `Access-Control-Max-Age` 文档口径；Firefox 默认值仅 5 分钟，Chrome 默认 5 秒）
 
 ---
 

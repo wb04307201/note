@@ -201,12 +201,14 @@ public class UserService$$EnhancerByCGLIB extends UserService {
 | **方法限制** | 只能代理接口方法 | 可代理类的所有非 final 方法 |
 | **Spring 默认** | 有接口 | 无接口 或 强制 |
 
-### 性能对比（JMH 测试）
+### 性能对比（定性）
 
 | 场景 | JDK | CGLIB |
 |------|-----|-------|
 | 创建代理 | ⭐⭐⭐⭐ 快 | ⭐⭐ 慢（生成字节码） |
 | 方法调用 | ⭐⭐ 慢（反射） | ⭐⭐⭐⭐ 快（直接调用） |
+
+> 星级为**定性排序**（创建期：JDK 无需生成子类字节码；调用期：CGLIB 走 FastClass 直接调用、JDK 走 `Method.invoke` 反射），非 JMH 实测数字——现代 JVM 反射已大幅优化（inflation 后生成字节码访问器），差距随调用次数与 JIT 预热收敛。
 
 **结论**：JDK 创建快、调用慢；CGLIB 创建慢、调用快。**长生命周期 Bean 选 CGLIB**。
 

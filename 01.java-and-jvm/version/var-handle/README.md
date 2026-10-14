@@ -133,10 +133,9 @@ public class VarHandleCounter {
 
 | Java版本  | 新特性/增强内容                                              |
 |---------|-------------------------------------------------------|
-| Java 21 | VarHandle 在虚拟线程环境下进一步优化，支持更细粒度的内存序控制          |
-| Java 17 | 改进 VarHandle 在值类型（Valhalla 项目）中的支持                 |
-| Java 16 | 增强 `MethodHandles.arrayElementVarHandle()` 支持更多数组类型 |
-| Java 9  | JEP 193: 引入 VarHandle API                               |
+| Java 21 | 无 VarHandle 独立 JEP；随虚拟线程（JEP 444）落地，VarHandle 原子操作在虚拟线程环境下可直接使用（详见下文） |
+| Java 16-17 | 无 VarHandle 独立 JEP；随 JDK 例行演进（Valhalla 值类型预览版尚未在正式版 JDK 落地，VarHandle 相关支持仍属孵化阶段） |
+| Java 9  | [JEP 193](https://openjdk.org/jeps/193): 引入 VarHandle API |
 
 ## 功能详细介绍
 
@@ -152,12 +151,12 @@ public class VarHandleCounter {
   - `setVolatile/getVolatile`：volatile 语义，最强保证
 - **原子操作**：`compareAndSet`、`getAndSet`、`getAndAdd` 等
 
-### 2. Java 16-17 - 增强支持
+### 2. Java 16-21 - 随 JDK 演进
 
-- 支持更多数组类型的 `arrayElementVarHandle`
-- 为 Project Valhalla 的值类型做准备
+- 无独立 JEP；API 表面基本稳定，性能随 JIT 与 `MethodHandles.Lookup` 实现改进
+- Project Valhalla 值类型对 VarHandle 的扩展仍处于预览/孵化阶段，未进入正式版 JDK
 
-### 3. Java 21+ - 虚拟线程优化
+### 3. Java 21+ - 虚拟线程协同
 
 VarHandle 的原子操作在虚拟线程环境中自动适配，无需修改代码。
 
@@ -170,7 +169,40 @@ VarHandle 的原子操作在虚拟线程环境中自动适配，无需修改代�
 | `VarHandle`     | 高   | 最高*  | 最高   | 框架开发、高性能场景  |
 | `Unsafe`        | 最低  | 最高   | 最高   | 遗留代码，不推荐使用   |
 
-*VarHandle 性能接近 Unsafe，且可被 JIT 优化
+*性能为定性排序：VarHandle 与 `AtomicInteger` 底层同为 CAS 指令，低竞争下吞吐量级相当；VarHandle 的优势在于可显式选择更弱的内存序（opaque / acquire-release）以省去 volatile 级屏障，竞争密集场景收益更明显。精确差异依赖硬件、JDK 版本与竞争强度，需以 JMH 实测为准（本文不引用无出处的具体倍数）。
+
+**AtomicInteger → VarHandle 迁移对比**：
+
+```java
+// ❌ 迁移前：AtomicInteger（只能 volatile 语义，字段必须 public/包可见或加 getter）
+public class Counter {
+    private final AtomicInteger count = new AtomicInteger();
+    public void incr() { count.incrementAndGet(); }
+}
+
+// ✅ 迁移后：VarHandle（可选内存序 + 直接操作字段，适合框架/高性能库）
+public class Counter {
+    private volatile int count;
+    private static final VarHandle COUNT;
+    static {
+        try {
+            COUNT = MethodHandles.lookup()
+                    .findVarHandle(Counter.class, "count", int.class);
+        } catch (ReflectiveOperationException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
+    // 与 incrementAndGet 等价的 volatile 语义
+    public void incr() { COUNT.getAndAdd(this, 1); }
+    // 或降级为 release/acquire，减少屏障开销（AtomicInteger 做不到）
+    public void incrRelaxed() {
+        int cur = (int) COUNT.getAcquire(this);
+        while (!COUNT.compareAndSet(this, cur, cur + 1)) {
+            cur = (int) COUNT.getAcquire(this);
+        }
+    }
+}
+```
 
 ## 适用场景
 

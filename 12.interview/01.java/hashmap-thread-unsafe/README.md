@@ -148,6 +148,8 @@ JDK 8 改用**尾插法**+高位迁移，不再反转链表，但**多线程并�
 | Hashtable | ⭐ | 强安全 | 遗留系统 | 所有方法 synchronized，**已过时** |
 | 外部加锁 | ⭐⭐⭐ | 取决于锁粒度 | 特殊业务逻辑 | `ReentrantLock` + HashMap，灵活但易出错 |
 
+> 表中「性能」为**定性星级排序**（依据锁粒度：桶级细粒度锁 > 全局大锁 > 全方法 synchronized），非 JMH 实测数字——实际吞吐随竞争强度与 JDK 版本浮动，需以自身场景基准测试为准。
+
 ```java
 // ✅ 推荐：ConcurrentHashMap
 Map<String, Integer> safeMap = new ConcurrentHashMap<>();

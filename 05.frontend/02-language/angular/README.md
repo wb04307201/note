@@ -327,6 +327,8 @@ bootstrapApplication(AppComponent, {
 | **企业采用** | Google / 银行 / 大型企业 | Meta / 广泛 | 阿里 / 中小到大型 |
 | **适合规模** | 大型团队 / 长期项目 | 灵活，各种规模 | 中小型到大型 |
 
+> 包体积一行是**量级示意**（full runtime 口径），随框架版本变化较大——引用前用 [bundlephobia](https://bundlephobia.com/) / [bundles.dev](https://bundles.dev/) 按当前版本实测为准。相对关系稳定：Angular > Vue > React core。
+
 ---
 
 ## 八、企业级应用场景分析

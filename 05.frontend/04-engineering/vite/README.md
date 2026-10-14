@@ -12,7 +12,7 @@
 
 > 一句话定位：**Vite —— 2026 年前端构建的事实标准，ESM 原生的极速体验**
 
-Vite（法语"快"）由 Vue.js 作者尤雨溪于 2020 年发布，到 2026 年已经占据 **78%+** 新项目构建工具市场份额，满意度比 Webpack 高 78 分。
+Vite（法语"快"）由 Vue.js 作者尤雨溪于 2020 年发布，到 2026 年已是新项目构建工具的主流选择（State of JS 调查中 Vite 的 retention/使用率长期领先 Webpack，具体分值随年度调查浮动，见 [State of JS](https://stateofjs.com/)）。
 
 ---
 

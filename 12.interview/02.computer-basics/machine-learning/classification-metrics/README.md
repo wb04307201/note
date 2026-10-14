@@ -144,7 +144,7 @@ print(f"LogLoss  : {log_loss(y_test, y_proba):.4f}")        # ← 概率校准
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
 ```
 
-**典型输出（不均衡数据）**：
+**典型输出（示意输出：随机/合成数据，非 benchmark，数值仅用于演示指标间的关系）**：
 ```text
 Accuracy : 0.9520  ← 看起来很美，但……
 Precision: 0.7800

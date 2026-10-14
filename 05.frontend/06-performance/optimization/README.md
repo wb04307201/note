@@ -115,7 +115,7 @@ const throttled = throttle(fn, 300)
 ### 5.1 HTTP/3 + QUIC
 
 - HTTP/3 基于 QUIC（UDP），0-RTT 握手
-- 移动弱网性能提升 30%+
+- 移动弱网（高丢包/高 RTT）下加载性能明显改善（幅度因网络环境而异，无统一 benchmark）
 
 ### 5.2 边缘缓存（CDN）
 
@@ -174,7 +174,7 @@ flowchart LR
 
 - Vue 3.5+ 编译时优化模式
 - 跳过虚拟 DOM，直接操作真实 DOM
-- 性能提升 2-3x
+- 更新性能显著提升（消除虚拟 DOM 开销；具体倍数随组件更新模式差异很大，暂无统一可复现基准，以 Vue 官方后续发布为准）
 
 ### 9.3 Solid Fine-Grained Reactivity
 

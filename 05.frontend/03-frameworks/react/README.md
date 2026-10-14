@@ -250,7 +250,7 @@ flowchart LR
     D --> E[订单确认<br/>RSC]
 ```
 
-- 商品列表/详情用 RSC 减少 JS 体积 60%+
+- 商品列表/详情用 RSC 显著减少客户端 JS 体积（服务端组件代码不进 bundle，具体降幅视页面结构而定）
 - 购物车交互用 Client Component（高频更新）
 - 结算用 Server Action 减少 API 层
 
