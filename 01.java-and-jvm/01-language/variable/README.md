@@ -265,5 +265,6 @@ var reader = new BufferedReader(new FileReader("data.txt"));
 - [string](../string/README.md#字符串常量池) — 字符串常量的深度展开：本文"字符型常量和字符串常量的区别"中字符串常量池指向的 String 专题
 - [oop](../oop/README.md#继承) — 面向对象基础：静态成员与继承的交互（子类继承静态成员的规则）、封装与访问修饰符
 - [data-types](../data-types/README.md) — 基本数据类型：本文表格中默认值（如 `int` 为 0）的类型系统基础
+- 面试深挖：[final / finally / finalize](../../../12.interview/01.java/final-finally-finalize/README.md#16-追问必考那怎样才能做到真正不可变) — final 只锁引用不锁对象内容；「怎样才真不可变」的五条件与防御性拷贝
 
 ← [返回 Java 核心概念](../README.md)

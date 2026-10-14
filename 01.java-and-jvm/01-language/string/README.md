@@ -308,5 +308,6 @@ String json = """
 - [语法糖](../syntactic-sugar/README.md#14-文本块-text-blocksjava-15) — 文本块（`"""` 三引号）作为语法糖的脱糖对照（本文"文本块"章节的语言特性视角）
 - [variable](../variable/README.md#字符型常量和字符串常量的区别) — 字符常量与字符串常量的区别（`char` vs 常量池中的 String 引用）
 - [syntax](../syntax/README.md#运算符) — `+` 运算符优先级与字符串拼接的语法层视角
+- 面试深挖：[final / finally / finalize](../../../12.interview/01.java/final-finally-finalize/README.md#16-追问必考那怎样才能做到真正不可变) — String 是「真不可变类」的标准样板（`private final byte[]` + 不提供任何修改方法）
 
 ← [返回 Java 核心概念](../README.md)

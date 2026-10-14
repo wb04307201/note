@@ -135,6 +135,71 @@ public class EscapeExample {
 
 > 细节：JMM 中 final 字段写入后有 freeze 动作（`freeze(f, v)`），逸出场景下 freeze 的"正常路径"假设失效——这属于 JLS 17.5 final field semantics 的规范盲区，实践中一律按"构造器不逸出 this"处理。
 
+### 1.6 追问必考：那怎样才能做到「真正不可变」？
+
+面试官问完「final 修饰的对象真的不可变吗」，**下一句几乎一定是这个**。光答"不是"只拿到及格分，能给出设计清单才是加分。
+
+**不可变类的五个必要条件**（Effective Java Item 17 口径）：
+
+| # | 条件 | 漏掉的后果 |
+|---|------|-----------|
+| 1 | 类声明为 `final`（或用私有构造器 + 静态工厂） | 子类可以重写 getter 返回被篡改的值，或新增 setter |
+| 2 | 所有字段 `private final` | 字段可被同包/子类直接改写；失去 JMM 冻结保证 |
+| 3 | **不提供任何修改状态的方法** | 有 setter / `add` / `clear` 就等于可变 |
+| 4 | **防御性拷贝**：构造器入参 + getter 出参都拷贝可变对象 | 调用方持有原始引用，绕过所有 final 直接改内部状态 |
+| 5 | 字段类型本身也不可变 | 只是**浅不可变**——见下方陷阱 |
+
+**❌ 浅不可变 vs ✅ 深不可变**（条件 4 + 5 是最容易漏的两条）：
+
+```java
+// ❌ 看着不可变，实际可被外部篡改
+record Point(List<Integer> xs) {}
+
+Point p = new Point(new ArrayList<>(List.of(1)));
+p.xs().add(99);
+System.out.println(p.xs());   // [1, 99]  ← record 组件是 final 引用，不是 final 内容！
+
+// ✅ 构造器防御性拷贝（紧凑构造器写法）
+record SafePoint(List<Integer> xs) {
+    SafePoint { xs = List.copyOf(xs); }   // 入参拷贝 → 字段本身已不可变
+}
+
+List<Integer> src = new ArrayList<>(List.of(1));
+SafePoint s = new SafePoint(src);
+src.add(2);                               // 事后改源 list
+System.out.println(s.xs());               // [1] ← 不受影响
+s.xs().add(7);                            // UnsupportedOperationException
+```
+
+> 若字段在构造后**已经是不可变类型**（如上例 `List.copyOf` 的结果），accessor 直接返回即可，无需二次拷贝；只有当 getter 需要返回可变类型的拷贝时才写出参拷贝。
+
+> 🔬 以上两段行为在本机 **JDK 25 实测验证**：`record Point(List<Integer> xs)` 的 `p.xs().add(99)` 确实生效，输出 `[1, 99]`。
+
+**❌ unmodifiableList ≠ 不可变**（高频追问点）：
+
+```java
+List<String> src = new ArrayList<>(List.of("x"));
+List<String> view = Collections.unmodifiableList(src);  // 只是「视图」
+List<String> copy = List.copyOf(src);                   // 才是「拷贝」(Java 10+)
+
+src.add("y");                    // 改原始 list
+System.out.println(view);        // [x, y]  ← 视图跟着变！持有 src 的人仍能改
+System.out.println(copy);        // [x]     ← 拷贝不受影响
+copy.add("z");                   // UnsupportedOperationException
+```
+
+> 🔬 JDK 25 实测输出如上：`view = [x, y]`、`copy = [x]`、`copy.add` 抛 `UnsupportedOperationException`。
+> **一句话记忆**：`unmodifiableXxx` 是「**只读视图**」（read-only view），`List.copyOf` / `Map.copyOf` 是「**不可变副本**」（immutable copy）。前者防的是"拿到返回值的人改"，后者连"原始引用持有者"一起防住。
+
+**⚠️ 反射是 final 的后门**：`final` 是**编译期约束**，不是运行时铁墙。`Field.setAccessible(true)` 仍可改 final 字段（Java 12+ 通过 `Field.modifiers` 移除 final 修饰符会抛 `NoSuchFieldException`，但配合 `--add-opens` 或 `Unsafe` 仍能绕过）。详见 [反射专题](../../../01.java-and-jvm/01-language/reflection/README.md) 的「final 字段修改注意事项」。所以**不可变性是"约定 + 编译期检查"，不是安全边界**——安全敏感场景不能靠 final 防篡改。
+
+**为什么还要用 final**（把「不保证不可变」和「有真实价值」说清楚，是这题的高分落点）：
+
+- ✅ **编译期防重新赋值**：捕获"手滑改引用"这类 bug
+- ✅ **JMM 安全发布**：正确构造（this 不逸出）的 final 字段无需同步即对其他线程可见（§1.5）
+- ✅ **可读性契约**：声明"这个字段的设计意图是不变"
+- ❌ 但**不等于**对象不可变 —— 需要上面五个条件配合
+
 ---
 
 ## 二、finally
@@ -277,6 +342,8 @@ public static int trap1() {
 }
 ```
 
+- **真相**：`finally` 中的 `return` 会**丢弃** try 块的返回值和正在传播的异常（编译器给 WARN，但不是错误）。资源清理交给 try-with-resources，`finally` 里永远不要写 `return` / `throw`。
+
 ### 陷阱 2：final 变量未在构造器中初始化
 
 ```java
@@ -289,6 +356,8 @@ class BadExample {
 }
 ```
 
+- **真相**：空白 final 必须在**声明处 / 实例代码块 / 构造器**三者之一完成赋值，且所有构造器路径都要覆盖。多个构造器时容易漏——把初始化收敛到一个私有构造器 + 委托调用（`this(...)`）最安全。
+
 ### 陷阱 3：误以为 final 引用指向的对象不可变
 
 ```java
@@ -296,6 +365,8 @@ final StringBuilder sb = new StringBuilder("hello");
 sb.append(" world");  // 合法！对象内容可以修改
 System.out.println(sb);  // "hello world"
 ```
+
+- **真相**：`final` 只锁**引用**（不能重新赋值指向别的对象），不锁**对象内部状态**。要真正不可变需要五个条件同时成立（类 final + 字段 private final + 无修改方法 + 构造器/getter 双向防御性拷贝 + 字段类型本身不可变），详见 [§1.6](#16-追问必考那怎样才能做到真正不可变)。两个高频二阶坑：`record` 组件是**浅不可变**（`p.xs().add()` 照样生效）、`Collections.unmodifiableList` 是**只读视图**而非拷贝（原始引用持有者仍能改，用 `List.copyOf` 才是真副本）。
 
 ### 陷阱 4：finally 中抛出异常覆盖原有异常
 
@@ -308,6 +379,8 @@ public static void trap4() throws Exception {
     }
 }
 ```
+
+- **真相**：原始异常被静默吞掉，排查时只看到 `SQLException`，根因永久丢失（try-with-resources 用 Suppressed 机制专门解决了这个问题）。`finally` 里若必须处理资源异常，应 catch 后记日志而非往外抛。
 
 ---
 
@@ -374,19 +447,17 @@ public class DirectMemoryBuffer implements AutoCloseable {
 
 **30 秒版**：
 
-> "一句话总结：`final` 管不可变，`finally` 管清理，`finalize` 已经淘汰。`final` 修饰类不可继承、方法不可重写、变量不可重新赋值（引用类型内容仍可改）；`finally` 保证必定执行，但千万别在里面写 return；`finalize` 因执行时机不确定 + 性能差在 Java 9 废弃，资源清理用 try-with-resources，原生资源用 Cleaner。"
+> "一句话总结：`final` 锁引用不锁对象，`finally` 管清理，`finalize` 已经淘汰。`final` 修饰类不可继承、方法不可重写、变量不可重新赋值——但**引用类型只是引用不可变，对象内容照样能改**（要真不可变还得防御性拷贝 + 字段类型本身不可变）；`finally` 保证必定执行，但千万别在里面写 return；`finalize` 因执行时机不确定 + 性能差在 Java 9 废弃，资源清理用 try-with-resources，原生资源用 Cleaner。"
 
 **90 秒版**：
 
-> "`final`、`finally`、`finalize` 三个关键字名字相似但用途完全不同，我逐个展开并带一个深挖点。
->
-> `final` 是修饰符，修饰类表示不可继承（如 String），修饰方法表示不可重写且编译期绑定，修饰变量表示不可重新赋值——注意引用类型只是引用不可变，对象内容仍可修改。深挖一层：final 字段在 JMM 中有冻结语义——构造器内写 final 域与 this 引用逸出之间禁止重排序，所以正确构造的不可变对象无需同步就能安全发布；反过来，构造器中逸出 this 会破坏冻结语义，别的线程可能读到默认值。
+> "`final` 是修饰符，修饰类表示不可继承（如 String），修饰方法表示不可重写且编译期绑定，修饰变量表示不可重新赋值——注意引用类型只是引用不可变，对象内容仍可修改。**追问「那怎样才真不可变」时的答法**：需要五个条件同时成立——类 final、字段 private final、不提供任何修改方法、构造器入参与 getter 出参都做防御性拷贝、字段类型本身也不可变；两个高频二阶坑是 record 组件属浅不可变（`p.xs().add()` 照样生效）、`Collections.unmodifiableList` 是只读视图而非拷贝（要用 `List.copyOf`）。**高分落点**：final 不保证不可变，但保证**安全发布**——JMM 的冻结语义让正确构造的对象无需同步即对其他线程可见。深挖一层：构造器内写 final 域与 this 引用逸出之间禁止重排序，所以构造器中逸出 this 会破坏冻结语义，别的线程可能读到默认值。
 >
 > `finally` 是异常处理的一部分，保证无论是否异常都会执行，常用于资源清理。两个陷阱：**永远不要在 finally 中写 return**（会覆盖 try 的返回值甚至吞掉异常）；finally 中抛异常同样会覆盖原始异常。Java 7 之后资源清理直接用 try-with-resources，它自动生成 null 检查 + 按相反顺序关闭 + 抑制异常（Suppressed）。
 >
 > `finalize` 是 Object 类的 GC 前清理钩子，废弃原因有三个：① 执行时机不确定，JVM 退出也不保证运行；② 性能差——带 finalize 的对象要经过两次 GC 才能回收（第一次 GC 发现不可达后放入 F-Queue，由低优先级的 Finalizer 守护线程执行 finalize()，对象被重新标记，第二次 GC 才真正回收）；③ 可在 finalize 中把 this 赋给静态引用让对象"复活"（只能复活一次），造成泄漏。替代品是 Java 9+ 的 `Cleaner`：内部用 PhantomReference + 引用队列，清理逻辑跑在独立的 Cleaner 守护线程上（线程工厂由创建者控制），且注册的是 Runnable 而非对象本身，避免了 this 逃逸。
 >
-> 总结：`final` 管不可变，`finally` 管清理，`finalize` 已淘汰。"
+> 总结：`final` 管引用不变与安全发布，`finally` 管清理，`finalize` 已淘汰。"
 
 ---
 
@@ -394,6 +465,10 @@ public class DirectMemoryBuffer implements AutoCloseable {
 
 - 主模块：[`01.java`](../../../01.java-and-jvm/) — Java 知识体系
 - [JVM 调优](../../../01.java-and-jvm/02-jvm/tuning.md) — GC 算法与内存管理
+- [变量与 final 关键字](../../../01.java-and-jvm/01-language/variable/README.md) — final / static final / effectively final 主模块版（含编译期内联陷阱）
+- [Record 类型](../../../01.java-and-jvm/01-language/record/README.md) — 不可变数据载体：浅不可变陷阱与防御性拷贝 accessor 写法
+- [反射](../../../01.java-and-jvm/01-language/reflection/README.md) — 反射修改 final 字段的边界（Java 12+ modifiers 过滤 / --add-opens）
+- [String 不可变性](../../../01.java-and-jvm/01-language/string/README.md) — 真不可变类的标准样板（byte[] 私有 + 无修改方法）
 
 ## 相关章节
 

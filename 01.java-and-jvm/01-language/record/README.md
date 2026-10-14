@@ -417,5 +417,6 @@ public class UserController {
 - [语法糖](../syntactic-sugar/README.md#13-recordjava-14-预览java-16-正式发布) — Record 作为 Java 14+ 语法糖的脱糖视角（编译器自动生成规范构造器 / 访问器 / equals / hashCode / toString）
 - [序列化和反序列化](../serialization-and-deserialization/README.md) — Record 序列化差异：由 JVM 运行时基于组件与规范构造方法处理，`writeObject`/`readObject` 会被忽略
 - [面向对象基础](../oop/README.md#record-类型java-14-预览java-16-正式发布) — Record 在 OOP 类型体系中的定位（不可变数据载体）
+- 面试深挖：[final / finally / finalize](../../../12.interview/01.java/final-finally-finalize/README.md#16-追问必考那怎样才能做到真正不可变) — Record 组件的**浅不可变**陷阱（`p.xs().add()` 仍生效）与防御性拷贝 accessor 写法
 
 ← [返回 Java 核心概念](../README.md)

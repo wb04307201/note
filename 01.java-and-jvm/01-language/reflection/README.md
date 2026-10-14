@@ -311,5 +311,6 @@ privateMethod.invoke(hero);  // 输出: 我是私有方法
 - [枚举（Enum）](../enum/README.md)
 - [I/O](../../io/README.md)
 - [语法糖](../syntactic-sugar/README.md)
+- 面试深挖：[final / finally / finalize](../../../12.interview/01.java/final-finally-finalize/README.md#16-追问必考那怎样才能做到真正不可变) — 反射是 final 的后门（不可变性是约定 + 编译期检查，非安全边界）
 
 ← [返回 Java 核心概念](../README.md)
