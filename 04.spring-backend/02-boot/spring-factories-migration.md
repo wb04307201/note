@@ -84,20 +84,15 @@ public class DatabaseAutoConfiguration { ... }
 
 > ⚠️ **注意**：不存在 `@ConditionalOnAll` 这样的官方注解。若需要"组合条件 + 自定义逻辑"，应实现自定义 `Condition` 类（见 [auto-configuration.md 自定义 Condition 章节](auto-configuration.md#十一自定义-condition-类)）。
 
-### 4. 性能测试与验证
+### 4. 迁移验证
 
-使用 JMH 基准测试对比新旧机制的加载性能：
+两种加载机制（`spring.factories` vs `AutoConfiguration.imports`）的差异主要体现在启动期的配置类扫描与解析方式上，官方未发布权威性能对比数据；对绝大多数应用而言收益不构成迁移动机，**迁移的核心动机是版本兼容**（Spring Boot 3.0 起 `spring.factories` 不再支持自动配置注册）。
 
-```java
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-public class AutoConfigurationBenchmark {
-    @Benchmark
-    public void loadWithSpringFactories() { /* 模拟旧机制加载 */ }
-    @Benchmark
-    public void loadWithAutoConfigurationImports() { /* 模拟新机制加载 */ }
-}
-```
+迁移后的验证方式（无需 benchmark）：
+
+1. 启动应用，打开 `--debug` 查看 Condition Evaluation Report，确认自动配置类照常生效
+2. 用集成测试覆盖关键 Bean 的装配（如 `DataSource`、`WebMvcConfigurer`）
+3. 确认 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` 每行一个全限定类名、无遗漏
 
 ---
 

@@ -46,6 +46,8 @@ Jenkins 是开源 CI/CD 工具的"鼻祖"，由 Hudson 分支而来，插件生�
 | **K8s 集成** | ✅ 深度（K8s Plugin + 动态 Agent Pod） | ⭐⭐⭐ 一般（需自托管 Runner） | ⭐⭐⭐ 一般（需 GitLab Runner） | ⭐⭐⭐ 一般 |
 | **适用团队规模** | 大型（100+ 人 / 复杂定制） | 中小型（GitHub 用户 / 快速上手） | 中小型（GitLab 用户 / 一体化） | 中小型（快速交付 / 简单流水线） |
 
+> ⚠️ **价格行口径**：上表免费额度与单价为**约 2024 年公开定价页快照**（各平台 SaaS 定价调整频繁，且区分公有/私有仓库、并发数、计算类型），仅供量级参考；正式选型请以各厂商最新官方定价页为准（GitHub Actions / GitLab CI / CircleCI Pricing）。
+
 **选型建议**：
 - 大型企业 + 复杂定制 → **Jenkins**（插件最丰富、Master-Agent 分布式）
 - GitHub 用户 + 快速上手 → **GitHub Actions**（零配置、Marketplace 丰富）

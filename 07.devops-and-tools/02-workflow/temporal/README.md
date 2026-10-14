@@ -133,7 +133,7 @@ client.SignalWorkflow(ctx, workflowID, "", "approval", true)
 | **编程模型** | Code-first（Go/Java/TS/Python） | BPMN 2.0 + Job Worker | BPMN 2.0 嵌入式 |
 | **流程定义** | 代码即流程 | XML（BPMN 图） | XML（BPMN 图） |
 | **状态存储** | Event Sourcing（Cassandra/MySQL/PG） | 内置分布式日志（Raft） | RDBMS |
-| **吞吐量** | 高（数万 WF/秒） | 极高（10K+ 实例/秒） | 中（千级/秒） |
+| **吞吐量** | 高（官方宣称数万级 WF/秒，视持久化后端与硬件而异） | 极高（10K+ 实例/秒） | 中（千级/秒） |
 | **学习曲线** | 中（需理解确定性约束） | 高（BPMN + Zeebe 概念） | 中（BPMN + Spring） |
 | **可视化** | Temporal Web UI（执行视图） | Modeler + Operate（建模+监控） | Cockpit（监控） |
 | **版本管理** | 代码级 Git | BPMN 版本部署 | BPMN 版本部署 |

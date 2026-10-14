@@ -98,7 +98,8 @@ flowchart TD
 
 ### 4.3 Hive 执行引擎演进
 
-- MR（MapReduce，慢）→ Tez（DAG，快 5-10x）→ Spark（RDD，最快）
+- MR（MapReduce，慢）→ Tez（DAG，显著更快）→ Spark（RDD，通常最快）
+- 各代引擎相对 MR 的提升幅度因查询形态（JOIN 数量 / 数据倾斜 / 落盘次数）差异极大，社区口径从数倍到一个数量级不等，无统一 benchmark
 - `SET hive.execution.engine=spark` 切换 Spark 引擎
 - ORC + 矢量化 + Cost-Based Optimization（CBO）联合使用
 
@@ -125,7 +126,7 @@ WHERE o.dt = '2026-06-25' AND o.amount > 1000;
 | HDFS 副本策略 | `dfs.replication=3` + 异地机房副本。为什么 3？HDFS 默认值，兼顾可靠性（任意2节点故障不丢数据）与存储成本（3倍冗余），可通过机架感知策略分散到不同机架 |
 | NameNode 内存 | 单 NameNode 内存堆 32 GB（避免千万级文件块 OOM）。为什么 32GB？经验值：每百万文件块约需 300MB 堆内存，千万级文件需 3GB+，留足余量防 GC 压力 |
 | YARN 队列隔离 | ETL 队列 60% + 即席查询 20% + 默认 20%。为什么 60/20/20？ETL 是批处理主力需稳定资源，即席查询轻量但不可控，默认队列兜底 |
-| Hive 执行引擎 | 默认 Spark + `hive.merge.mapfiles=true` 小文件合并。为什么 Spark 而非 Tez？Spark 内存计算快 3-10 倍，Tez 适合 MapReduce 生态 |
+| Hive 执行引擎 | 默认 Spark + `hive.merge.mapfiles=true` 小文件合并。为什么 Spark 而非 Tez？Spark 内存计算在多阶段迭代查询下明显快于 MR（幅度视查询形态而异，与 Tez 各有胜负场景），Tez 适合 MapReduce 生态 |
 | Presto 调优 | `query.max-memory=50 GB` + `task.writer-count=8`。为什么 50GB？按集群总内存 20% 估算，避免单查询占满集群；writer-count=8 匹配 CPU 核数 |
 
 ---

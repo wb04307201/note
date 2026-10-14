@@ -14,7 +14,7 @@
 
 ## 🎯 一句话定位
 
-**Camunda 8 = Zeebe 分布式流处理引擎 + 云原生 K8s 部署 + 8.5+ 原生 AI Agent 集成**——把 BPMN 引擎从「数据库中心」重构为「追加日志 + Raft + Elasticsearch」，10,000+ 实例/秒，2026 年企业级 BPMN + AI 的事实标准。
+**Camunda 8 = Zeebe 分布式流处理引擎 + 云原生 K8s 部署 + 8.5+ 原生 AI Agent 集成**——把 BPMN 引擎从「数据库中心」重构为「追加日志 + Raft + Elasticsearch」，官方标称万级实例/秒量级的吞吐（具体数值取决于硬件、分区数与流程复杂度，见 [Camunda 官方文档](https://docs.camunda.io/docs/components/zeebe/zeebe-overview/)），2026 年企业级 BPMN + AI 的主流选择之一。
 
 ---
 
@@ -291,6 +291,8 @@ public void handle(final JobClient client, final ActivatedJob job) {
 
 ## 六、2025-2026 进展
 
+> ⚠️ 口径说明：下表版本号与特性整理自社区资料，未经逐条与官方 release notes 核对；请以 [Camunda 官方 Release Notes](https://docs.camunda.io/docs/components/release-notes/) 为准。
+
 | 版本 / 时间 | 关键特性 | 实战影响 |
 |------|------|------|
 | **8.5（2024-10）** | **AI Agent Sub-process** + `fromAi()` FEEL + Connector 模板市场 | 流程可原生调用 LLM，BPMN 与 AI 一等公民融合 |
@@ -298,10 +300,10 @@ public void handle(final JobClient client, final ActivatedJob job) {
 | **8.7（2025-10）** | Tasklist 表单生成器（无需 Zeebe 表单）+ Outbound Connector 2.0 | 业务人员可自助配置人工待办 |
 | **8.8（2026-Q2）** | Web Modeler 协同编辑（多人并发）+ Process Optimization 自动化 | 业务 + IT 协同设计流程 |
 
-**路线图（官方公开）**：
+**路线图（未发布版本，以下为传闻/推测口径，一切以官方 roadmap 为准）**：
 
-- **2026-H2**：原生小模型集成（Phi-3 / Qwen2.5-7B），降低 AI 节点成本
-- **2027+**：**AI-native BPMN** —— 流程定义可用自然语言生成，AI 实时优化流程
+- **2026-H2**：原生小模型集成（Phi-3 / Qwen2.5-7B），降低 AI 节点成本（路线图，以官方为准）
+- **2027+**：**AI-native BPMN** —— 流程定义可用自然语言生成，AI 实时优化流程（路线图，以官方为准）
 
 **对比 AI 平台**（与 [11.ai 编排平台](../../../../../09.ai-applications/agent/ai-platforms/README.md) 互补）：
 

@@ -83,7 +83,7 @@
     3. **请求头/元数据**：`api-version: v1`（避免 URL 路径污染）
 
 ### 5. **性能与效率**
-- **二进制序列化**：优先选择 Protobuf/Thrift 而非 JSON（体积小 3-5 倍，解析快 10 倍）。
+- **二进制序列化**：优先选择 Protobuf/Thrift 而非 JSON（体积更小、解析更快，倍数视 schema 与字段类型而定——数值/枚举类字段收益大，长文本字段收益小；经验量级，非固定 benchmark）。
 - **流式传输**：
     - 大数据集：服务端流（`stream Orders`）
     - 高频上报：客户端流（`stream SensorData`）

@@ -99,7 +99,7 @@ public Executor newExecutor(Transaction tx, ExecutorType execType) {
 | REUSE | 同一 SqlSession 内重复执行相同 SQL | Statement 缓存按 SQL 文本匹配，参数不同也复用 |
 | BATCH | 批量 INSERT/UPDATE（如数据迁移） | 必须手动 `flushStatements()` 才真正执行，注意内存占用 |
 
-> 💡 性能实测建议：批量插入 1000 条时，BATCH 比 SIMPLE 快 5-10 倍（减少网络往返）。
+> 💡 性能实测建议：批量插入千条级数据时，BATCH 通常比 SIMPLE 快数倍（核心收益是把多条 SQL 攒成一次网络往返，必要时配合驱动的批量参数重写生效；具体倍数取决于网络延迟、数据库与驱动配置，建议以自己的数据实测为准）。
 
 ### 4. 执行器核心方法
 ```java

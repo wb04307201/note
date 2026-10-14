@@ -174,11 +174,13 @@ states:
 
 ### 2.4 Serverless Workflow 2025-2026 进展
 
+> ⚠️ 下表时间点（1.0 GA / CNCF 孵化 / BPMN 4.0）为撰写时的**前瞻预估**，未逐项核对官方公告——版本状态一律以 [serverlessworkflow.io](https://serverlessworkflow.io/) 与 [CNCF Landscape/TOC](https://www.cncf.io/projects/) 官方口径为准。
+
 | 版本 | 时间 | 关键特性 | 生态落地 |
 |:-----|:-----|:---------|:---------|
 | **0.8** | 2023 | 基础 states + 事件触发 | Synapse / Serverless Devs 早期集成 |
 | **0.9** | 2024-Q4 | **错误处理 + 补偿**（Saga 模式）+ 认证授权 | EventMesh Runtime 原生支持 |
-| **1.0 GA** | 2025-Q3 | **API 稳定** + 跨语言 SDK（Java/Go/TS/Python）+ 测试规范 | **CNCF Incubating 项目**（2026-Q1）|
+| **1.0 GA** | 以官方公告为准 | **API 稳定** + 跨语言 SDK（Java/Go/TS/Python）+ 测试规范 | CNCF 孵化进度以官方公告为准 |
 
 **与 BPMN 的融合方向**：
 

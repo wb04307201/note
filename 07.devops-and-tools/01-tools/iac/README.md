@@ -159,7 +159,7 @@ terraform import aws_instance.web i-0123456789abcdef0
 
 ### Provider 生态
 
-| Provider | 云平台/服务 | 资源数 |
+| Provider | 云平台/服务 | 资源数（约数） |
 |----------|-----------|--------|
 | AWS | Amazon Web Services | 1000+ |
 | AzureRM | Microsoft Azure | 800+ |
@@ -167,6 +167,8 @@ terraform import aws_instance.web i-0123456789abcdef0
 | Kubernetes | K8s 资源 | 50+ |
 | Helm | Helm Charts | 2 |
 | Alibaba Cloud | 阿里云 | 300+ |
+
+> ⚠️ 资源数为量级约数（统计口径：各 Provider 主版本发布时的资源类型总数），随版本持续增长，精确值以 [Terraform Registry](https://registry.terraform.io/) 各 Provider 文档页为准。
 
 ### 模块化
 

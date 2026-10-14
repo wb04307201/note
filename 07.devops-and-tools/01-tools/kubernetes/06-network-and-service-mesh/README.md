@@ -45,11 +45,17 @@ Pod 启动 → kubelet → CRI 创建容器 → CNI 插件配置网络
 | **Calico VXLAN** | ⭐⭐⭐⭐ | ⭐⭐⭐ | 中 | 跨子网 |
 | **Weave** | ⭐⭐⭐ | ⭐⭐⭐ | 低 | 老项目 |
 
-### 2.3 Cilium 配置示例
+### 2.3 Cilium 安装示例
 
-```yaml
-# Cilium 使用 eBPF（Linux 内核技术），性能比 iptables 高 10x
+```bash
+# 官方推荐方式：Helm 安装（Kubernetes ≥ 1.21，Linux 内核建议 ≥ 4.19）
+helm repo add cilium https://helm.cilium.io/
+helm install cilium cilium/cilium --version 1.16.0 \
+  --namespace kube-system \
+  --set kubeProxyReplacement=true   # 启用 eBPF 替代 kube-proxy
 ```
+
+> Cilium 基于 eBPF（Linux 内核技术）在内核态直接完成转发与负载均衡，绕开 iptables 的线性规则匹配——集群 Service 规模越大（数千级规则）优势越明显；具体倍数随内核版本 / 负载形态浮动，见 [Cilium 官方 kube-proxy replacement 文档](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/)，本文不引用无出处的固定倍数。
 
 ---
 

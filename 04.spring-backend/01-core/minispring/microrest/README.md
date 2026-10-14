@@ -10,7 +10,7 @@
 
 # MicroRest - 轻量级 Spring MVC 框架实现
 
-> **一句话定位**：教学型 mini 框架，200 行 Servlet 模拟 Spring IoC + MVC 的 Bean 扫描、字段注入与 GET 分发底层机制。
+> **一句话定位**：教学型 mini 框架，用 200 行级核心 Servlet（`StartServlet.java` 实测约 217 行）模拟 Spring IoC + MVC 的 Bean 扫描、字段注入与 GET 分发底层机制。
 
 ---
 

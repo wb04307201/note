@@ -143,7 +143,7 @@ Writer        Reader 1     Reader 2
 
 #### 价格
 
-Aurora 价格约为 RDS 的 **1.5-2 倍**,但提供更优性能与可用性。
+Aurora 价格高于同规格 RDS（常见口径约为其 **1.5-2 倍**，经验值，随实例规格与区域变化，以 [AWS 官方定价页](https://aws.amazon.com/rds/aurora/pricing/) 实时核对为准），但提供更优性能与可用性。
 
 ---
 
@@ -238,7 +238,7 @@ Writer Node    Reader Node 1   Reader Node 2
 - 水平扩展到数 PB
 - 99.999% SLA
 - 适合全球部署的金融、游戏、零售场景
-- 价格:~$9/小时起,适合预算充裕的大型企业
+- 价格:入门配置即为每小时数美元量级（价格随配置浮动大，以 [GCP Spanner 官方定价页](https://cloud.google.com/spanner/pricing) 实时核对为准），适合预算充裕的大型企业
 
 ---
 

@@ -243,9 +243,9 @@ spring:
     url: jdbc:mysql://localhost:3306/test?rewriteBatchedStatements=true
 ```
 
-**性能对比**（1000 条 INSERT）：
-- ❌ 循环 insert：约 12 秒
-- ✅ `saveBatch` + `rewriteBatchedStatements=true`：约 200ms
+**性能对比**（1000 条 INSERT，相对量级示意，经验值因 MySQL 版本 / 网络延迟 / 机器配置而异，非标准 benchmark）：
+- ❌ 循环 insert：秒级（逐条往返，网络 RTT × 1000 次）
+- ✅ `saveBatch` + `rewriteBatchedStatements=true`：毫秒级（重写为 multi-values 单语句），常见提速约 50 倍量级
 
 **注意**：
 - 事务中调用才生效（`saveBatch` 非自动事务）

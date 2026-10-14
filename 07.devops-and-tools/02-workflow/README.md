@@ -204,7 +204,7 @@ graph TB
   - 30+ 审批节点（客户经理 → 风控 → 主管 → 终审 → 合规）
   - 强治理：流程实例 100% 留痕（中国银保监要求）
   - Service Task 调征信接口、房产估值、税务核查等 8 个外部系统
-- **效果**：审批时效从 5 天压缩到 1.5 天，违规率 ↓ 80%
+- **效果**：审批时效从 5 天压缩到 1.5 天，违规率 ↓ 80%（**脱敏示意数据**，用于说明流程引擎治理收益的方向与量级，非可引用的实测报告）
 - **参考**：[Camunda 7 实战](process-engine/camunda/camunda-7/README.md) | [流程引擎](process-engine/README.md) §四 选型决策树
 
 ### 案例 2：跨境电商订单履约（Camunda 8 + Zeebe）
@@ -218,15 +218,17 @@ graph TB
 - **效果**：单集群承载 10K+ 并发，吞吐 8 倍于上一代 Camunda 7
 - **参考**：[Camunda 8 / 云原生](process-engine/camunda/camunda-8/README.md) | [Zeebe 内核](process-engine/camunda/camunda-8/zeebe/README.md)
 
-### 案例 3：12306 铁路票务（事件驱动 + 微服务编排）
+### 案例 3：铁路票务（事件驱动 + 微服务编排）——示意性场景
 
-- **业务**：春运日均 1500 万张票（峰值 2 亿/天）
-- **技术栈**：Pivotal Cloud Foundry + Apache EventMesh + RocketMQ + 微服务
+> ⚠️ 本案例为**示意性场景**（以 12306 量级的票务系统为原型构造），用于演示"超大流量票务 + 事件驱动编排"的架构形态；技术栈与效果数字**并非 12306 官方公开架构**（其公开资料以内存计算 / 排队削峰 / Kafka 类消息队列为主，且 Apache EventMesh 2020 年才开源）。
+
+- **业务**：春运日均千万级出票（峰值亿级请求/天，量级示意）
+- **技术栈**：PaaS 平台（如 Cloud Foundry / K8s）+ 事件网格（EventMesh 类中间层）+ RocketMQ + 微服务
 - **关键设计**：
   - 余票查询 / 订单 / 支付 / 出票全链路事件驱动
-  - EventMesh 统一事件入口，连接 RocketMQ + Kafka
+  - 事件网格统一事件入口，连接 RocketMQ + Kafka
   - 编舞 + 编排混合：核心交易用编排（强一致），查询/通知用编舞（高吞吐）
-- **效果**：日均处理 1500 万订单，可用性 99.99%
+- **效果**：高可用（99.9%+ 目标口径）+ 查询/交易链路削峰解耦
 - **参考**：[事件驱动与 Serverless Workflow](apache-eventmesh/README.md) | [微服务编排](workflow-and-microservice-orchestration/README.md)
 
 > 💡 三个案例分别代表 **传统企业 / 互联网云原生 / 国家基础设施** 三种典型场景，覆盖本章全部主线。

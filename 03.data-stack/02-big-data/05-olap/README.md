@@ -105,7 +105,7 @@ SET enable_cbo = true;
 ```
 
 - CBO 自动选择 JOIN 顺序（避免笛卡尔积）
-- 20 张表 JOIN：RBO 5 分钟 → CBO 12 秒
+- 多表（数十张）JOIN 场景下，RBO 因 JOIN 顺序劣化可能比 CBO 慢一个数量级以上（具体差距随表数量与数据分布浮动，非固定 benchmark）
 
 ### 4.4 Trino 联邦查询
 

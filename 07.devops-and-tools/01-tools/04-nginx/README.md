@@ -40,7 +40,7 @@ graph TB
 
     Nginx --> Pingora["Pingora 替代"]
     Pingora --> P1["Rust 内存安全"]
-    Pingora --> P2["单线程 4000 万 QPS"]
+    Pingora --> P2["集群峰值 4000 万 req/s"]
     Pingora --> P3["零停机升级"]
 ```
 
@@ -76,7 +76,7 @@ graph TB
 | **proxy_pass** | 配置反向代理目标地址 | 反向代理 |
 | **proxy_set_header** | 修改/添加发往后端的 HTTP 请求头 | 透传 Host / X-Real-IP |
 | **server_name** | 虚拟主机域名匹配 | 多域名同 IP |
-| **Pingora** | Cloudflare 开源 Rust 代理框架，单线程 4000 万 QPS | 高并发 & Rust 生态 |
+| **Pingora** | Cloudflare 开源 Rust 代理框架，生产集群峰值超 4000 万 req/s（[官方博客口径](https://blog.cloudflare.com/how-we-built-pingora/)，非单线程数字） | 高并发 & Rust 生态 |
 | **优雅重启** | 零停机时间升级 | 生产持续运行 |
 | **FIPS 合规** | 支持 OpenSSL & BoringSSL | 政府/金融合规 |
 
@@ -169,7 +169,7 @@ http {
 
 ### 4.3 Pingora 替代 Nginx
 
-Cloudflare 基于 Rust 开源的下一代代理框架。核心优势：单线程 4000 万 QPS、Rust 内存安全、零停机升级、gRPC/WebSocket/HTTP/1·2 全协议支持。提供可编程 API 与过滤器，支持自定义负载均衡策略。详见 [pingora 子目录](pingora/README.md)。
+Cloudflare 基于 Rust 开源的下一代代理框架。核心优势：生产环境每天处理超万亿请求、峰值超 4000 万 req/s（Cloudflare 官方博客口径，是整个集群而非单线程的数字）、Rust 内存安全、零停机升级、gRPC/WebSocket/HTTP/1·2 全协议支持。提供可编程 API 与过滤器，支持自定义负载均衡策略。详见 [pingora 子目录](pingora/README.md)。
 
 ---
 

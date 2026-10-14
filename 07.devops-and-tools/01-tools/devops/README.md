@@ -195,7 +195,7 @@ jobs:
 
 ## 七、关键指标（DevOps 4 大指标）
 
-DORA 4 大指标（来自 Google DORA 报告）：
+DORA 4 大指标（出处：[DORA — Accelerate State of DevOps Report](https://dora.dev/research/)，Elite/Low 阈值随年度报告版本略有调整，下表为近年常见口径）：
 
 | 指标 | Elite 团队 | Low 团队 |
 |------|----------|---------|

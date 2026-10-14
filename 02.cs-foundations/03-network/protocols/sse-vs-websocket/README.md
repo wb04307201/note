@@ -195,7 +195,7 @@ data: {"text":"你好"} ← 数据（必填，可多行）
 
 | 场景 | 选型 | 理由 |
 |------|------|------|
-| AI 对话（含 Function Calling / Agent / MCP） | **SSE + HTTP POST** | ChatGPT/Claude/MCP 都是这个模式，覆盖几乎所有 AI 交互 |
+| AI 对话（含 Function Calling / Agent / MCP） | **SSE + HTTP POST** | ChatGPT/Claude/MCP 都是这个模式（见 [OpenAI Streaming 文档](https://platform.openai.com/docs/api-reference/streaming)、[MCP 规范 Streamable HTTP 传输](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports)），覆盖绝大多数 AI 交互 |
 | 纯文本流式输出（通知/行情/日志） | **SSE** | 简单、轻量、够用 |
 | 社交聊天室 / 协作编辑 / 在线游戏 | **WebSocket** | 真正的高频双向通信 |
 | 涉及音视频流 | **WebRTC** | P2P + 低延迟媒体传输 |

@@ -338,7 +338,7 @@ INSERT INTO orders (user_id, user_name, total_amount)
 SELECT id, name, 100 FROM users WHERE id = 100;
 ```
 
-**收益**:省去 1 次 JOIN,查询从 ~20ms 降至 ~3ms。
+**收益**:省去 1 次 JOIN,查询延迟显著降低(量级上通常从多次网络往返 + JOIN 开销降为单表点查;具体毫秒数取决于数据规模与索引命中情况)。
 **代价**:`users.name` 变更时需同步更新 `orders.user_name`,通过**事务 + 异步消息**保证最终一致。
 
 > **核心原则**:**先按 3NF 设计,出现性能瓶颈时再针对性反规范化,不做全盘反规范化**。

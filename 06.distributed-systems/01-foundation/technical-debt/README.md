@@ -62,9 +62,9 @@ graph TD
 
 ## 技术债量化指标
 
-- **行业基准**：每个迭代分配 **20%** 工作量用于偿还技术债（Martin Fowler 推荐）
-- **SonarQube 阈值**：单个模块技术债 ≤ 30 min 为健康；超过 2 h 需列入还债计划
-- **代码质量门禁**：新增代码技术债 ≤ 5 min/PR，超出则 CI 阻断合并
+- **行业常见实践**：每个迭代预留一定比例（社区常见口径约 **20%**，经验值，无权威统一标准）的工作量用于偿还技术债；Martin Fowler 的技术债文章见 [TechnicalDebt（martinfowler.com）](https://martinfowler.com/bliki/TechnicalDebt.html)，但他并未给出固定比例
+- **SonarQube 阈值**：单个模块技术债 ≤ 30 min 为健康；超过 2 h 需列入还债计划（团队自定义门禁口径，可按项目基线调整）
+- **代码质量门禁**：新增代码技术债 ≤ 5 min/PR，超出则 CI 阻断合并（经验值，非官方标准）
 
 ## 管理流程典型产出物
 

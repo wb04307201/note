@@ -10,7 +10,7 @@
 
 # gRPC（Google RPC）
 
-> **一句话定位**：gRPC = HTTP/2 + Protocol Buffers + 4 种通信模式，**微服务内部通信首选**（比 REST 快 5-10 倍，强类型契约）。
+> **一句话定位**：gRPC = HTTP/2 + Protocol Buffers + 4 种通信模式，**微服务内部通信首选**（二进制协议 + 多路复用，通常显著快于 JSON/REST，具体倍数随消息大小与序列化复杂度浮动；强类型契约）。
 
 ---
 

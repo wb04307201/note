@@ -70,10 +70,10 @@ LIMIT 20 OFFSET 0;
 | **数据同步** | MySQL → ES 实时同步 | Canal + RocketMQ / Kafka |
 | **API 层** | 搜索接口 + query 改写 + 日志 | Spring Boot + ES High Level Client |
 
-**性能指标**：
-- 搜索延迟：P99 < 100ms（单节点，10 万 SKU）
-- QPS：3000-5000（单节点）
-- 数据新鲜度：< 5 秒
+**性能指标**（设计目标值，非实测 benchmark；假设条件：单 ES 节点、8C16G SSD 量级、索引 10 万 SKU、query 以 term/match 为主）：
+- 搜索延迟：P99 < 100ms
+- QPS：3000-5000
+- 数据新鲜度：< 5 秒（Canal + MQ 链路端到端）
 
 **ES 索引设计**：
 

@@ -59,7 +59,7 @@
 
 - 响应式流规范（Reactive Streams）的核心是**消费者驱动的流量控制**：消费者用 `request(n)` 告诉上游"我这次只要 n 条"。
 - Spring MVC 没有背压——一旦数据库返回 100 万行，内存直接爆。
-- WebFlux 默认 `onBackpressureBuffer` 缓冲到 64k，需要时显式换 `drop` / `latest` / `error`。
+- WebFlux 无参 `onBackpressureBuffer()` 使用 Reactor 默认缓冲上限（`reactor.util.concurrent.Queues.SMALL_BUFFER_SIZE`，默认 256K 个元素，可用系统属性覆盖），需要时显式换 `drop` / `latest` / `error`。
 
 ---
 

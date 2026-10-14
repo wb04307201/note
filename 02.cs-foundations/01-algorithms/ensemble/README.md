@@ -105,7 +105,7 @@ params = {
 model = lgb.train(params, train_data, num_boost_round=1000)
 ```
 
-**优势**：比 XGBoost 快 5-10x，大数据集首选。
+**优势**：训练速度显著快于 XGBoost（[LightGBM 论文](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree)基准报告中训练时间可达数倍到十倍量级，具体倍数随数据规模与参数而异），大数据集首选。
 
 ---
 

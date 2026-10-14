@@ -564,7 +564,7 @@ TOGAF 10 的最大创新是**模块化**——核心内容（Fundamental Content
 | **敏捷支持** | 偏瀑布，敏捷是"补丁" | **内置敏捷/数字化转型支持** + Open Agile Architecture Series | 拥抱 DevOps / Agile 主流 |
 | **数字化能力** | 几乎不涉及 | **新增数字开放标准组合**（IT4IT、ArchiMate 3.2、Open Agile Architecture） | 从"传统 EA"到"数字化 EA" |
 | **认证** | TOGAF 9 Certified | **TOGAF Enterprise Architecture Foundation / Practitioner** | 认证分层，适配不同角色 |
-| **总认证数** | 150,000+（171 个国家） | 持续增长（2025 已超 16,000+ 10.x 认证） | 用户群扩张 |
+| **总认证数** | 9.x 时代累计逾十万级认证 | 持续增长（据公开报道 10.x 认证已达万级规模；官方统计以 [The Open Group](https://www.opengroup.org/togaf) 发布为准） | 用户群扩张 |
 
 ### 8.5 数字化能力扩展：TOGAF 10 的"标准组合"
 

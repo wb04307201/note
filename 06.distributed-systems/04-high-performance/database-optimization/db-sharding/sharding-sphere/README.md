@@ -85,7 +85,7 @@ public class CustomShardingAlgorithm implements StandardShardingAlgorithm<Long> 
 | 配置方式 | `.properties` 文件 | YAML（结构化） |
 | 分布式事务 | XA / BASE | XA / BASE / Saga |
 | 数据迁移 | 手动 | Schema + Data 自动迁移 |
-| SQL 解析 | ANTLR 4.7 | ANTLR 4.10（性能提升 30%） |
+| SQL 解析 | ANTLR 4.7 | ANTLR 4.10（解析性能优化，具体提升幅度依 SQL 复杂度而异） |
 | 可观测性 | 无 | Prometheus + OpenTracing |
 
 ## 五、常见陷阱与反模式

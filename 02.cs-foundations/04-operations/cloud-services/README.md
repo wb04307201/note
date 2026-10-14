@@ -73,6 +73,24 @@
 - **优势**：成本极低（空闲不收费）、天然弹性、聚焦业务代码。
 - **挑战**：冷启动延迟（数百 ms ~ 秒级）、执行时长上限（通常 15 分钟）、调试链路复杂。
 
+**最小代码示例（AWS Lambda Python handler）**：
+
+```python
+import json
+
+def lambda_handler(event, context):
+    # event: 触发源载荷（HTTP / SQS / 定时器等）
+    return {
+        "statusCode": 200,
+        "body": json.dumps({"message": "hello from FaaS"}),
+    }
+```
+
+**冷启动量级口径**（社区实测的经验区间，随 runtime / 包体积 / VPC 配置差异很大，非官方 benchmark）：
+- 解释型 runtime（Python / Node.js）：常见约 **100~500 ms**，包越大越慢
+- JVM runtime（Java）：类加载 + JIT 预热，冷启动可到 **秒级**；AWS 提供 SnapStart（快照恢复）与 Provisioned Concurrency（预热实例）来消除大部分冷启动
+- 降低冷启动的通用手段：减小部署包、开启预热并发、避免 VPC 内冷路径（改用 Hyperplane ENI 挂载）
+
 ## ❌ / ✅ 选型对比
 
 | 场景 | ❌ 反例 | ✅ 正例 |

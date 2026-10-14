@@ -44,7 +44,7 @@ graph TB
 
     C --> C1[Zeebe 分布式内核]
     C --> C2[Raft 共识 + ES]
-    C --> C3[10K+ 实例/秒]
+    C --> C3[水平扩展（分区+Raft）]
     C --> C4[8.5+ AI Agent Sub-process]
     C --> C5[Zeebe Client / Gateway / Broker]
 
@@ -65,7 +65,7 @@ graph TB
 | **架构** | PVM 单体（嵌入式）| Zeebe 分布式（K8s）|
 | **存储** | 关系型 DB（MySQL/Oracle）| 追加日志 + Elasticsearch |
 | **扩展** | 垂直扩展 | 水平扩展（分区 + Raft）|
-| **吞吐** | ~数百实例/秒 | 10K+ 实例/秒 |
+| **吞吐** | 数百实例/秒量级（单节点，受 DB 写入瓶颈限制）| 高一个数量级以上（水平扩展，分区并行；具体值以 Camunda 官方 benchmark 文档为准，随硬件与流程复杂度浮动）|
 | **AI 集成** | 需自研 | 8.5+ AI Agent Sub-process |
 | **部署** | jar 嵌入 / 独立部署 | Docker / K8s |
 | **适用** | 银行/政务/国产化/存量 | 新项目/云原生/高吞吐 |

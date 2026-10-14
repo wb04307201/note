@@ -197,6 +197,8 @@ public Order createOrder(OrderDTO dto) {
 
 ## 七、切点表达式对比
 
+> ⚠️ **性能列口径说明**：下表"快/中/慢"为**定性排序**（社区经验，非官方 benchmark），无统一量化数据。差异主要来自匹配发生的时机与方式：Spring 在 Bean 创建阶段就用切点做一次"类/方法是否可能被拦截"的筛选并缓存结果（见 Spring Framework 参考文档 AOP 章节的 Advisor/MethodMatcher 缓存机制，以及 `AbstractAutoProxyCreator` 对已评估方法的缓存），运行期每次调用只做少量 MethodMatcher 复检。`execution`/`@annotation` 等签名级匹配筛选成本略高，`within`/`bean` 等粗粒度匹配筛选成本低；但真正影响性能的大头通常是**代理调用链本身**（多层 Advice 叠加），而非表达式种类。调优时优先减少不必要的切面数量，再用 profiler 实测，不要仅凭本表选择表达式。
+
 | 表达式 | 维度 | 性能 | 典型场景 |
 |--------|------|------|----------|
 | `execution` | 方法签名 | 较慢（需解析方法签名） | 精确控制方法粒度 |

@@ -41,8 +41,10 @@ Spring Cloud 用「**火车发布**」(Train) 管理版本——每代有代号�
 | **2021.0.x** (Jubilee) | 2.7.x / 3.0.x 过渡 | 2021.0.1.x → 2021.0.5.x | 维护 |
 | **2022.0.x** (Kilburn) | 3.0.x / 3.1.x / 3.2.x | 2022.0.0.x | 活跃 |
 | **2023.0.x** (Leyton) | 3.2.x / 3.3.x | 2023.0.1.x | 活跃 |
-| **2024.0.x** (Moorgate) | 3.3.x / 3.4.x | 2023.0.3.x | 活跃 |
-| **2025.0.x** (Northfields) | 3.4.x / 3.5.x | 2023.0.3.x | 活跃 |
+| **2024.0.x** (Moorgate) | 3.3.x / 3.4.x | 2023.0.3.x（社区反馈口径，以官方 Wiki 为准） | 活跃 |
+| **2025.0.x** (Northfields) | 3.4.x / 3.5.x | 2023.0.3.x（社区反馈口径，以官方 Wiki 为准） | 活跃 |
+
+> ⚠️ spring-cloud-alibaba 版本迭代滞后于 Spring Cloud release train，上表 SCA 列请在使用前核对 [SCA 官方版本说明 Wiki](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)（该页维护 SCA ↔ Spring Cloud ↔ Spring Boot ↔ Nacos/Sentinel/Seata 的适配矩阵）。
 
 > 2024.0.x / 2025.0.x 是**长期维护分支**，2026 年新项目首选。
 
