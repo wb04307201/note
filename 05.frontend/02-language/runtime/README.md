@@ -15,7 +15,6 @@
 JavaScript 不再只是"浏览器的语言"。2026 年，Node.js / Deno / Bun 三大运行时让 JS 成为服务端、CLI、工具链、Edge 函数的通用语言。
 
 ---
----
 
 ## 三大运行时概览
 | 维度 | Node.js | Deno | Bun |

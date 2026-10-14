@@ -12,10 +12,7 @@
 
 ---
 
-> 一句话定位：**PWA — 渐进式 Web 应用，离线优先 + 安装到桌面/主屏**
-
-## 一句话定位
-PWA 是 Google 2015 年提出的 Web 应用形态，通过 Service Worker / Web App Manifest / Push API 等浏览器能力，让 Web 应用具备类似原生应用的体验：离线访问、桌面图标、推送通知。
+> 一句话定位：**PWA — 渐进式 Web 应用，离线优先 + 安装到桌面/主屏**——Google 2015 年提出的 Web 应用形态，通过 Service Worker / Web App Manifest / Push API 等浏览器能力，让 Web 应用具备离线访问、桌面图标、推送通知等类原生体验。
 
 ## 核心能力
 - **Service Worker**：浏览器后台脚本，拦截网络请求实现离线缓存
@@ -84,7 +81,7 @@ flowchart TD
 | Background Sync | 后台同步 API |
 
 ## Service Worker 代码示例
-### 10.1 Workbox 配置
+### Workbox 配置
 
 ```javascript
 // vite.config.js
@@ -123,7 +120,7 @@ export default {
 }
 ```
 
-### 10.2 自定义缓存策略实现
+### 自定义缓存策略实现
 
 ```javascript
 // sw.js
@@ -178,7 +175,7 @@ async function staleWhileRevalidate(request) {
 ```
 
 ## Push API + FCM 集成
-### 12.1 Service Worker 接收推送
+### Service Worker 接收推送
 
 ```javascript
 // sw.js
@@ -206,7 +203,7 @@ self.addEventListener('notificationclick', (event) => {
 })
 ```
 
-### 12.2 订阅推送
+### 订阅推送
 
 ```javascript
 // main.js
@@ -248,31 +245,31 @@ const byTag = await db.notes.where('tags').equals('pwa').toArray()
 ```
 
 ## 真实案例
-### 14.1 新闻 App
+### 新闻 App
 
 - Service Worker 缓存已读文章
 - Background Sync 离线提交评论
 - Push 推送热点新闻
 
-### 14.2 电商 App
+### 电商 App
 
 - 离线浏览商品
 - 安装到主屏转化率提升
 - Push 推送降价提醒
 
-### 14.3 SaaS 工具
+### SaaS 工具
 
 - 离线编辑 + 联网同步
 - 安装到桌面（类原生体验）
 - 文件附件离线缓存
 
-### 14.4 离线工具
+### 离线工具
 
 - JSON 格式化 / 文本对比
 - 完全本地运行（无后端依赖）
 - Workbox 预缓存全部资源
 
-### 14.5 游戏
+### 游戏
 
 - Canvas 游戏（OffscreenCanvas 支持 — 主线程外渲染避免卡顿）
 - IndexedDB 存游戏进度

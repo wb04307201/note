@@ -58,11 +58,11 @@ WCAG（Web Content Accessibility Guidelines）2.1 定义了 4 大原则、13 条
 - **2.4.3 焦点顺序**（Level A）：焦点顺序保持逻辑顺序
 - **2.4.7 焦点可见**（Level AA）：键盘焦点必须可见
 
-```javascript
-// ❌ 错误：只支持鼠标点击
+```html
+<!-- ❌ 错误：只支持鼠标点击 -->
 <div onclick="submit()">提交</div>
 
-// ✅ 正确：支持键盘（Enter/Space）
+<!-- ✅ 正确：支持键盘（Enter/Space） -->
 <button 
   type="button"
   onclick="submit()"
@@ -71,7 +71,7 @@ WCAG（Web Content Accessibility Guidelines）2.1 定义了 4 大原则、13 条
   提交
 </button>
 
-// 或者使用原生 <button>，自动支持键盘
+<!-- 或者使用原生 <button>，自动支持键盘 -->
 ```
 
 ### U - Understandable（可理解）
@@ -301,6 +301,15 @@ pa11y https://example.com --reporter json
 - [ ] UI 组件对比度 ≥ 3:1
 
 ```javascript
+// 计算相对亮度（WCAG 2.x 定义：sRGB 分量线性化后加权求和）
+function getRelativeLuminance(hex) {
+  // 解析 #rrggbb → [r, g, b]（0-1）
+  const rgb = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255);
+  // sRGB 逆伽马校正：≤0.03928 线性，否则 ((c+0.055)/1.055)^2.4
+  const lin = rgb.map(c => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
+  return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2];
+}
+
 // 计算对比度
 function getContrastRatio(color1, color2) {
   const luminance1 = getRelativeLuminance(color1);
@@ -402,14 +411,7 @@ async function auditAccessibility(url) {
 ## 🔗 相关章节
 
 - [WCAG 无障碍指南](wcag/README.md) — POUR 四大原则详解 + 12+ 条成功标准
-- 语义化 HTML — 语义化标签与文档结构
-- 表单设计 — 表单可访问性最佳实践
-
----
-
-
-## 相关章节
-
+- [01-foundation](../01-foundation/README.md) — 语义化 HTML 与文档结构是 a11y 的地基
 - [Vite 构建工具](../04-engineering/vite/README.md)
 - [06 性能](../06-performance/README.md)
 - [03 框架](../03-frameworks/README.md)

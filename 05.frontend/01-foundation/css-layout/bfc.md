@@ -145,7 +145,27 @@
 </style>
 </head>
 <body>
-  <!-- 各示例 HTML 结构见上文场景 -->
+  <!-- 示例1：margin 重叠修复——.bfc 触发独立 BFC，30px 与 20px 外边距不再合并 -->
+  <div class="demo1">
+    <div class="top">top（margin-bottom: 30px）</div>
+    <div class="bfc">
+      <div class="bottom">bottom（margin-top: 20px，被 BFC 隔离）</div>
+    </div>
+  </div>
+
+  <!-- 示例2：清除浮动——不加 parent--bfc 时父级高度塌陷为 0 -->
+  <div class="demo2">
+    <div class="parent parent--bfc">
+      <div class="child">float 1</div>
+      <div class="child">float 2</div>
+    </div>
+  </div>
+
+  <!-- 示例3：两栏布局——.main 触发 BFC 后自动让出浮动区域，不再被覆盖 -->
+  <div class="demo3">
+    <div class="float">左栏 float: 200px</div>
+    <div class="main">右栏自适应（BFC 不与浮动重叠）</div>
+  </div>
 </body>
 </html>
 ```

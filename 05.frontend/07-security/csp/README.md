@@ -68,7 +68,7 @@ graph TB
 Content-Security-Policy: 
   default-src 'self';
   script-src 'self' https://cdn.example.com;
-  style-src 'self' 'unsafe-inline';  <!-- Tailwind / styled-components 需要 -->
+  style-src 'self' 'unsafe-inline';
   img-src 'self' data: https:;
   font-src 'self' https://fonts.gstatic.com;
   connect-src 'self' https://api.example.com;
@@ -78,6 +78,8 @@ Content-Security-Policy:
   form-action 'self';
   upgrade-insecure-requests;
 ```
+
+> 📌 `style-src` 保留 `'unsafe-inline'` 是因为 Tailwind（JIT 注入 `<style>`）与 styled-components（运行时内联样式）都需要内联样式许可；若框架支持 nonce/hash 注入样式，应移除该项。HTTP 头本身不支持注释语法，真实响应必须是**单行**（此处为可读性折行展示）。
 
 ### 使用 nonce 支持内联脚本（Next.js / CRA 常用）
 

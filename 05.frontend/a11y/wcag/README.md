@@ -94,6 +94,10 @@ body { transform: rotate(90deg); }
     - 自动化：axe DevTools、WAVE、Lighthouse。
     - 手动测试：NVDA（屏幕阅读器）、VoiceOver（iOS）。
 - **法律与政策**：各国无障碍法规数据库（如ADA、EN 301 549）。
+- **站内互链**：
+    - [a11y 总览 · ARIA 属性实战](../README.md#aria-属性实战) / [键盘导航实现](../README.md#键盘导航实现)
+    - [01-foundation](../../01-foundation/README.md) — 语义化 HTML 是 WCAG POUR 的落地基础
+    - [07-security](../../07-security/README.md) — Cookie 同意横幅 / 隐私弹窗同样需满足 a11y 合规
 
 ### 工具调用示例
 

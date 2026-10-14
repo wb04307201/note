@@ -6,6 +6,7 @@
   summary: K-means 聚类算法 + K-means++ 改进
   depth: ⭐⭐⭐
   status: active
+  tags: [聚类, 无监督学习, K-means]
 -->
 
 # K-means 聚类算法

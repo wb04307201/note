@@ -6,6 +6,7 @@
   summary: PCA 主成分分析 + 与 SVD 关系
   depth: ⭐⭐⭐⭐
   status: active
+  tags: [PCA, 降维, SVD, 特征分解]
 -->
 
 # PCA 主成分分析

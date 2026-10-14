@@ -3,7 +3,7 @@
   slug: front-end/language
   type: article
   category: 主模块子文章
-  summary: 前端 02 语言
+  summary: JS/TS 语言层基础——TypeScript 5 类型体操与工程配置 / V8 与事件循环 / Node.js·Deno·Bun 三大运行时 / Angular 框架
   depth: ⭐⭐
   status: active
 -->

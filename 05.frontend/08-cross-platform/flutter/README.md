@@ -3,7 +3,7 @@
   slug: front-end/flutter
   type: article
   category: 主模块子文章
-  summary: Flutter 3.x
+  summary: Flutter 3.x 工程实践——Dart + Skia/Impeller 自绘引擎实现 iOS/Android/Web/Desktop 一码多端，覆盖 Widget 体系、Platform Channels、Isolate、动画与选型对比
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -12,10 +12,7 @@
 
 ---
 
-> 一句话定位：**Flutter — 一码三端的跨端 UI 框架（iOS / Android / Web / Desktop）**
-
-## 一句话定位
-Flutter 是 Google 2018 年开源的跨端 UI 框架，使用 Dart 语言 + Skia 自绘引擎，实现 iOS / Android / Web / Desktop 一码多端。本文档聚焦 Flutter 3.x 工程实践。
+> 一句话定位：**Flutter — 一码多端的跨端 UI 框架（iOS / Android / Web / Desktop）**——Google 2018 年开源，使用 Dart 语言 + Skia/Impeller 自绘引擎，不依赖平台原生控件。本文档聚焦 Flutter 3.x 工程实践。
 
 ## 核心能力
 - **Widget 体系**：万物皆 Widget（StatefulWidget / StatelessWidget）
@@ -84,7 +81,7 @@ flowchart TD
 | AOT | Ahead-of-Time 编译 |
 
 ## Platform Channels 代码示例
-### 10.1 MethodChannel 双向通信
+### MethodChannel 双向通信
 
 ```dart
 // Dart 端
@@ -150,7 +147,7 @@ import Flutter
 ```
 
 ## Isolate 多线程
-### 11.1 compute() 简单场景
+### compute() 简单场景
 
 ```dart
 // 简单并行计算
@@ -165,7 +162,7 @@ List<int> _parseInBackground(List<int> input) {
 }
 ```
 
-### 11.2 Isolate.run() 复杂场景
+### Isolate.run() 复杂场景
 
 ```dart
 import 'dart:isolate';
@@ -179,7 +176,7 @@ Future<String> parseBigJson(String jsonString) async {
 ```
 
 ## 动画深入
-### 12.1 AnimationController 基础
+### AnimationController 基础
 
 ```dart
 class FadeInWidget extends StatefulWidget {
@@ -215,7 +212,7 @@ class _FadeInWidgetState extends State<FadeInWidget>
 }
 ```
 
-### 12.2 Hero 跨页面动画
+### Hero 跨页面动画
 
 ```dart
 // 列表页
@@ -225,7 +222,7 @@ Hero(tag: 'avatar-${user.id}', child: Image.network(user.avatar));
 Hero(tag: 'avatar-${user.id}', child: Image.network(user.avatar, width: 200));
 ```
 
-### 12.3 CustomPainter 自定义绘制
+### CustomPainter 自定义绘制
 
 ```dart
 class CircleChartPainter extends CustomPainter {
@@ -260,31 +257,31 @@ class CircleChartPainter extends CustomPainter {
 | 内存占用 | 较高 | 更低 |
 
 ## 真实案例
-### 14.1 IoT 智能家居
+### IoT 智能家居
 
 - 单一 Flutter 端控制 iOS/Android/Web 设备
 - MQTT 协议 + WebSocket 双链路
 - Platform Channels 调用蓝牙 SDK
 
-### 14.2 金融 App
+### 金融 App
 
 - 安全键盘（自绘组件）
 - 加密插件（Platform Channels 调原生）
 - 生物识别认证
 
-### 14.3 电商 App
+### 电商 App
 
 - 复杂动画（Hero + CustomPainter）
 - 图片懒加载 + 缓存
 - 多端复用业务逻辑
 
-### 14.4 教育 App
+### 教育 App
 
 - 音视频播放 + 字幕同步
 - 富文本笔记（Quill 编辑器）
 - 离线下载课程
 
-### 14.5 社交 App
+### 社交 App
 
 - 即时通讯（WebSocket + 消息队列）
 - 动态发布（图片/视频/位置）

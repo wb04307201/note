@@ -3,7 +3,7 @@
   slug: front-end/web-components
   type: article
   category: 主模块子文章
-  summary: Web Components
+  summary: 浏览器原生组件标准——Custom Elements + Shadow DOM + HTML Templates 三件套，跨框架复用组件，常用于微前端与设计系统场景
   depth: ⭐⭐
   status: active
 -->

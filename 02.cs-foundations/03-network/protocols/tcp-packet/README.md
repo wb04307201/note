@@ -3,7 +3,7 @@
   slug: computer-basics/tcp-packet
   type: article
   category: 主模块子文章
-  summary: TCP 数据包（报文段） 本应该很简单，TCP（Transmission Control Protocol，传输控制协议）是面向连接的、可靠的、基于字节流的传输...
+  summary: TCP 报文段头部结构详解：固定 20 字节头部字段（序号/确认号/窗口/标志位）+ 可选项，是理解三次握手、流量控制与拥塞控制的基础。
   depth: ⭐⭐⭐⭐
   status: active
 -->

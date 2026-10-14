@@ -22,7 +22,7 @@
 | AI SDK | ✓ 已有 | [ai-sdk/](ai-sdk/) — Vercel AI SDK / Anthropic SDK / 流式响应 |
 | Vibe Coding | ✓ 已有 | [vibe-coding/](vibe-coding/) — Cursor / Claude Code / Windsurf 实践 |
 
-### 1.1 学习路径
+## 学习路径
 
 - **入门**:必读 [ai-sdk](ai-sdk/) 理解 SDK 范式(`streamText` / `useChat` / `generateObject`)
 - **实践**:必读 [vibe-coding](vibe-coding/) 提升日常开发效率

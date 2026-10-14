@@ -10,7 +10,7 @@
 
 # 数据库监控告警
 
-> 数据库监控告警是生产环境稳定性的基石,核心目标是实时掌握 QPS、延迟、连接、复制延迟等关键指标,结合 Prometheus + Grafana + AlertManager 实现可视化与告警闭环。
+> 数据库监控告警实时掌握 QPS、延迟、连接、复制延迟等关键指标，用 Prometheus + Grafana + AlertManager 实现可视化与告警闭环。
 
 
 ---

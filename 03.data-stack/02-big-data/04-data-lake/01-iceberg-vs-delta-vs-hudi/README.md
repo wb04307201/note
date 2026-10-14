@@ -10,9 +10,7 @@
 
 # Iceberg vs Delta Lake vs Apache Hudi：数据湖三剑客深度对比
 
-> **定位**：Iceberg vs Delta Lake vs Hudi——数据湖三剑客深度对比与场景化选型。
-
-> 一份按场景梳理的数据湖格式速查手册：从架构原理到生产选型的完整对比。
+> **定位**：Iceberg vs Delta Lake vs Hudi 数据湖三剑客深度对比——按场景梳理格式选型，从架构原理到生产实践的完整对比。
 
 ---
 

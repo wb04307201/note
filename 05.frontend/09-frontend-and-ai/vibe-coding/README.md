@@ -15,9 +15,8 @@
 Vibe Coding（"氛围编程"）由 Andrej Karpathy（OpenAI 联合创始人）于 2025 年提出，定义了一种"不写代码，只描述意图"的编程方式：让 AI 根据自然语言需求直接生成可运行的代码。
 
 ---
----
 
-## Vibe Coding 是什么
+## 1. Vibe Coding 是什么
 ```text
 传统编程：
   需求 → 详细设计 → 编码 → 调试 → 上线
@@ -34,7 +33,7 @@ Vibe Coding：
 
 ---
 
-## Vibe Coding 工具栈
+## 2. Vibe Coding 工具栈
 | 工具 | 形态 | 适用 |
 |------|------|------|
 | **Cursor Composer** | IDE 内多文件协作 | 复杂重构 |
@@ -46,7 +45,7 @@ Vibe Coding：
 
 ---
 
-## 实战案例
+## 3. 实战案例
 ### 案例 1：用 Cursor Composer 生成页面
 
 ```text
@@ -78,7 +77,7 @@ Bolt 在 5 分钟内：
 
 ---
 
-## Vibe Coding 的边界
+## 4. Vibe Coding 的边界
 ### 适合 Vibe Coding 的场景
 
 | 场景 | 理由 |
@@ -101,7 +100,7 @@ Bolt 在 5 分钟内：
 
 ---
 
-## Vibe Coding 的心法
+## 5. Vibe Coding 的心法
 ### 5.1 Prompt Engineering for Code
 
 ```text
@@ -135,7 +134,7 @@ Bolt 在 5 分钟内：
 
 ---
 
-## AI IDE 工作流对比
+## 6. AI IDE 工作流对比
 | 工具 | 上下文能力 | 适用 | 2026 趋势 |
 |------|----------|------|----------|
 | **Cursor** | ⭐⭐⭐⭐⭐ 全代码库 | 复杂项目 | 主流 |
@@ -146,7 +145,7 @@ Bolt 在 5 分钟内：
 
 ---
 
-## 团队实践
+## 7. 团队实践
 ### 7.1 AI 友好代码库
 
 **让 AI 更好理解你的代码**：
@@ -180,7 +179,7 @@ graph LR
 
 ---
 
-## Vibe Coding 与前端工程指标
+## 8. Vibe Coding 与前端工程指标
 AI 生成的"能跑"的代码，距离"能上 Core Web Vitals 良好阈值"还有三道关。下表把前端工程视角的关键指标映射到 Vibe Coding 常见产物。
 
 | 指标 | AI 默认产物 | 风险点 | 必须人工补 |
@@ -208,7 +207,7 @@ AI 生成的"能跑"的代码，距离"能上 Core Web Vitals 良好阈值"还�
 
 ---
 
-## Vibe Coding 的行业影响
+## 9. Vibe Coding 的行业影响
 ### 9.1 对开发者的影响
 
 | 影响 | 说明 |
@@ -221,7 +220,7 @@ AI 生成的"能跑"的代码，距离"能上 Core Web Vitals 良好阈值"还�
 
 ### 9.2 2026 行业趋势
 
-1. **Vibe Coding 成为默认**：50%+ 新代码由 AI 生成
+1. **Vibe Coding 成为默认**：预计 50%+ 新代码由 AI 生成（行业预测，尚无权威统计口径）
 2. **AI IDE 成主流开发工具**：Cursor / Claude Code / Windsurf
 3. **自然语言成"新编程语言"**：需求描述能力 = 编程能力
 4. **评审 > 实现**：代码审查能力比写代码更重要

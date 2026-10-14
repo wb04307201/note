@@ -3,7 +3,7 @@
   slug: big-data
   type: index
   category: 大数据
-  summary: 一句话定位：从数仓架构到 OLAP、数据湖、治理——大数据技术栈的完整地图
+  summary: 从数仓架构到 OLAP、数据湖、治理——大数据技术栈的完整地图
   depth: ⭐⭐⭐⭐
   status: active
 -->

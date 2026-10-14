@@ -3,7 +3,7 @@
   slug: front-end/xss
   type: article
   category: 主模块子文章
-  summary: XSS（Cross-Site Scripting，为避免与 CSS 混淆缩写为 XSS）是 OWASP Top 10 常年位居前列的攻击方式。核心思路只有...
+  summary: XSS 三类形态（反射 / 存储 / DOM）攻击原理 + 五层防御体系（输出转义 / 框架内置防御 / CSP / HttpOnly / 富文本净化）+ React/Vue 框架转义陷阱
   depth: ⭐⭐⭐⭐
   status: active
 -->

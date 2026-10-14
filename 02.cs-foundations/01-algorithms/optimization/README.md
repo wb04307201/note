@@ -1,18 +1,17 @@
 <!--module:
   parent: computer-basics
   slug: algorithms/optimization
-  type: index
+  type: moc
   category: 主模块子文章
   summary: 优化算法——求解目标函数最优解的迭代方法
   depth: ⭐⭐⭐
   status: active
+  tags: [优化算法, 梯度下降, Adam, 学习率]
 -->
 
 # 优化算法
 
 > **一句话定位**：优化算法用梯度下降、牛顿法、启发式等迭代方法求目标函数最优解，是机器学习训练的核心。
-
-> 求解目标函数最优解（最小值/最大值）的迭代方法，是机器学习的核心引擎。
 
 ## 目录
 

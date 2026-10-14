@@ -32,6 +32,8 @@ flowchart TD
 ```
 
 > 🎯 **核心矛盾**：Vue 3 Proxy 是**懒代理**（首次访问才递归），但深层属性写入 `obj.a.b.c = x` **会强制同步代理整条路径**——1 万条数据 + 嵌套对象，单次更新可能触发出乎意料的层级代理构建。
+>
+> 📎 **源码行为脚注**：懒代理的触发点在 `@vue/reactivity` 的 `baseHandlers.get`——只有当某一层属性被**读取**时，`get` 才会对该层原始对象调用 `reactive()` 并缓存代理。写入 `obj.a.b.c = x` 前必须先依次读 `obj.a`、`a.b`，每读一层就同步构建一层代理，最后在最内层代理的 `set` 中触发依赖更新。即：代理构建仍是逐层惰性的，但"写入路径上的读取"使它变成事实上的同步整路径代理（参见 [vuejs/core packages/reactivity/src/baseHandlers.ts](https://github.com/vuejs/core/blob/main/packages/reactivity/src/baseHandlers.ts)）。
 
 ---
 

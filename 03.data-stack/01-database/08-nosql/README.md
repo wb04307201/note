@@ -4,13 +4,13 @@
   type: index
   category: 主模块子文章
   summary: NoSQL 涵盖键值、文档、列存储、图、搜索 5 大类型,天生支持分布式扩展,以最终一致性换取扩展性;NewSQL 融合 SQL + NoSQL 优势。
-  depth: ⭐⭐⭐⭐
+  depth: ⭐⭐⭐
   status: active
 -->
 
 # NoSQL 数据库
 
-> NoSQL（Not Only SQL）泛指非关系型数据库，涵盖键值、文档、列存储、图、搜索 5 大类型，天生支持分布式扩展，适用于大规模数据存储和高并发场景；但普遍以最终一致性换取扩展性。
+> NoSQL（Not Only SQL）泛指非关系型数据库，键值/文档/列存储/图/搜索 5 大类型天生支持分布式扩展，普遍以最终一致性换取扩展性。
 
 ---
 
@@ -101,10 +101,11 @@ MySQL    → 核心业务数据（订单、用户）
 Redis    → 缓存 + 计数器 + 分布式锁
 MongoDB  → 日志 + 用户行为数据
 ES       → 搜索 + 日志分析
-```text
+```
+
 ---
 
-## 📚 子专题
+## 五、子专题导航
 
 | 数据库 | 核心内容 | 入口 |
 |--------|---------|------|
@@ -115,7 +116,7 @@ ES       → 搜索 + 日志分析
 
 ---
 
-## 八、HBase 架构
+## 六、HBase 架构
 
 ### 1. 整体架构
 
@@ -142,7 +143,8 @@ ES       → 搜索 + 日志分析
    └─────┼─────────┼─────────┼─────────────────┘
          ↓         ↓         ↓
          HDFS (3 副本存储)
-```text
+```
+
 ### 2. 关键组件
 
 | 组件 | 职责 |
@@ -169,7 +171,7 @@ ES       → 搜索 + 日志分析
 
 ---
 
-## 十一、NewSQL（融合 SQL + NoSQL）
+## 七、NewSQL（融合 SQL + NoSQL）
 
 NewSQL 兼具关系型数据库的 ACID 与 NoSQL 的水平扩展能力。
 
@@ -190,7 +192,7 @@ NewSQL 兼具关系型数据库的 ACID 与 NoSQL 的水平扩展能力。
 
 ---
 
-## 十二、CAP 定理与 NoSQL 选型
+## 八、CAP 定理与 NoSQL 选型
 
 CAP 定理由 Eric Brewer（2000 年）提出，分布式系统**最多同时满足**以下 3 个中的 **2 个**：
 
@@ -227,7 +229,7 @@ CAP 定理由 Eric Brewer（2000 年）提出，分布式系统**最多同时满
 ## 📊 本节统计
 
 - **leaf README 数**：5（本索引页 + mongodb/ + cassandra/ + elasticsearch/ + neo4j/）
-- **本节主题数**：12（4 大优势、5 种类型、SQL vs NoSQL、选型指南、MongoDB、Cassandra、HBase、ES、Neo4j、NewSQL、CAP、子专题导航）
+- **本节主题数**：8（4 大优势、5 种类型、SQL vs NoSQL、选型指南、子专题导航、HBase、NewSQL、CAP；MongoDB/Cassandra/ES/Neo4j 各有独立子 README）
 - **frontmatter 状态**：✅ 已对齐 CONTRIBUTING §12 标准（summary ≤ 80 字 / type=index）
 
 ---

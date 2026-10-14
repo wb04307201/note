@@ -15,7 +15,6 @@
 设计系统（Design System）不是"一套 UI 组件"。它是**设计语言 + Token + 组件库 + 文档 + 治理流程**的总和，是品牌在数字产品中的"唯一真相源"（Single Source of Truth）。
 
 ---
----
 
 ## 设计系统的层次
 ```mermaid

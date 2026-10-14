@@ -3,7 +3,7 @@
   slug: front-end/routing
   type: article
   category: 主模块子文章
-  summary: 路由
+  summary: 前端路由体系——React Router / Vue Router / TanStack Router 三大方案对比、数据路由（loader/action）范式与类型安全路由演进
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -14,7 +14,6 @@
 
 前端路由的本质是：**URL ↔ UI 的映射**。没有路由，SPA 就只是一堆组件；有了路由，URL 才成为"可分享、可刷新、可书签"的真实应用入口。
 
----
 ---
 
 ## 路由的三层职责

@@ -2,8 +2,8 @@
   parent: front-end
   slug: front-end/cross-platform
   type: article
-  category: 主模块子文章
-  summary: 前端 08 跨端
+  category: 主模块子 MOC
+  summary: 跨端方案索引——React Native / Flutter / Tauri / PWA / 小程序 5 大方案，对比性能、包大小、平台覆盖与适用场景
   depth: ⭐⭐
   status: active
 -->

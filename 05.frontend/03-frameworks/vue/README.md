@@ -12,17 +12,14 @@
 
 ---
 
-> 一句话定位：**Vue 3.4 — Composition API + Pinia + Vapor 的现代 Vue 全景**
-
-## 一句话定位
-Vue 是尤雨溪 2014 年开源的渐进式 UI 框架，2023 年发布 Vue 3.4 稳定版，2024 年推出 Vapor 编译时优化。本文档聚焦 Vue 3.4+ 生态。
+> 一句话定位：**Vue 3.4 — Composition API + Pinia + Vapor 的现代 Vue 全景**——尤雨溪 2014 年开源的渐进式 UI 框架，2023 年底发布 Vue 3.4 稳定版，Vapor 编译时优化自 2023-12 起开发中（见 [官方 Vapor 公告](https://blog.vuejs.org/posts/vapor)）。本文档聚焦 Vue 3.4+ 生态。
 
 ## 核心能力
 - **Composition API**：setup() / ref / reactive / computed / watch
 - **响应式系统**：Proxy-based，比 Vue 2 的 Object.defineProperty 更强大
 - **Teleport / Suspense**：传送门 + 异步占位
 - **Pinia**：Vue 官方状态管理（替代 Vuex）
-- **Vapor 模式**（2024）：编译时优化，无虚拟 DOM
+- **Vapor 模式**（开发中，[官方公告 2023-12](https://blog.vuejs.org/posts/vapor)）：编译时优化，无虚拟 DOM
 - **单文件组件 SFC**：`<template> <script> <style>`
 
 ## 生态速查
@@ -52,7 +49,7 @@ flowchart TD
 - **markRaw**：标记永远不需要响应的对象（如第三方库实例）
 - **v-once / v-memo**：静态内容 / 条件缓存
 - **defineAsyncComponent**：异步组件
-- **Vapor 模式**：Vue 3.5+ 编译时优化（无虚拟 DOM）
+- **Vapor 模式**：编译时优化（无虚拟 DOM），2023-12 官宣、持续开发中，尚未随正式版发布（[官方公告](https://blog.vuejs.org/posts/vapor)）
 
 ## 反模式
 - **Options API + Composition API 混用**：项目内统一
@@ -159,7 +156,7 @@ const openDialog = async () => {
 | Suspense | 异步加载占位 |
 
 ## 代码示例
-### 9.1 Composition API setup()
+### Composition API setup()
 
 ```vue
 <!-- UserCard.vue -->
@@ -187,7 +184,7 @@ const updateName = (name) => {
 </template>
 ```
 
-### 9.2 Pinia Store
+### Pinia Store
 
 ```javascript
 // stores/cart.js
@@ -207,7 +204,7 @@ const cart = useCartStore()
 cart.addItem({ id: 1, price: 99 })
 ```
 
-### 9.3 自定义指令
+### 自定义指令
 
 ```javascript
 // v-focus 自动聚焦
@@ -227,7 +224,7 @@ app.directive('permission', {
 <button v-permission="'admin'">删除</button>
 ```
 
-### 9.4 VueUse 工具集
+### VueUse 工具集
 
 ```javascript
 import { useMouse, useDark, useLocalStorage, useDebounceFn } from '@vueuse/core'
@@ -247,7 +244,7 @@ const debouncedSearch = useDebounceFn((q) => fetch(`/api/search?q=${q}`), 300)
 ```
 
 ## Vapor 模式详解
-### 10.1 编译时优化对比
+### 编译时优化对比
 
 ```mermaid
 flowchart LR
@@ -261,20 +258,20 @@ flowchart LR
 - **传统模式**：模板编译为 render 函数 → 虚拟 DOM diff → 真实 DOM 更新
 - **Vapor 模式**：模板编译为高效的 DOM 操作指令 → 跳过虚拟 DOM
 
-### 10.2 何时使用
+### 何时使用
 
 - 性能敏感的页面（大数据列表、复杂动画）
 - 纯展示组件（无复杂状态）
 - 对比 Solid.js 思路，更激进的编译时优化
 
-### 10.3 限制
+### 限制
 
 - 部分高级特性暂不支持（如 Transition 的某些模式）
 - 生态适配进度（部分库未兼容）
 - 学习曲线（响应式心智模型略有不同）
 
 ## 迁移指南
-### 11.1 Vue 2 → Vue 3 Breaking Changes
+### Vue 2 → Vue 3 Breaking Changes
 
 | 变更 | Vue 2 | Vue 3 |
 |------|-------|-------|
@@ -286,7 +283,7 @@ flowchart LR
 | 响应式 | Object.defineProperty | Proxy |
 | 生命周期 | beforeDestroy | beforeUnmount |
 
-### 11.2 Options → Composition
+### Options → Composition
 
 ```javascript
 // Options API（Vue 2 风格）
@@ -311,7 +308,7 @@ export default {
 ```
 
 ## Vue 3.5+ 新特性
-### 12.1 useTemplateRef
+### useTemplateRef
 
 ```vue
 <script setup>
@@ -324,7 +321,7 @@ onMounted(() => inputRef.value?.focus())
 </template>
 ```
 
-### 12.2 defineModel 简化 v-model
+### defineModel 简化 v-model
 
 ```vue
 <!-- 子组件 -->
@@ -338,7 +335,7 @@ const title = defineModel('title')
 <UserForm v-model="username" v-model:title="userTitle" />
 ```
 
-### 12.3 useId 生成 SSR 安全 ID
+### useId 生成 SSR 安全 ID
 
 ```vue
 <script setup>
@@ -352,30 +349,30 @@ const id = useId()
 ```
 
 ## 实战案例
-### 13.1 中后台管理系统
+### 中后台管理系统
 
 - Element Plus / Naive UI + Pinia + Vue Router 4
 - 动态路由 + 权限控制（路由守卫）
 - 表格虚拟滚动（万级数据）
 
-### 13.2 移动端 H5 / 小程序
+### 移动端 H5 / 小程序
 
 - Vant 4 + Vite
 - PostCSS 自动 px → rem
 - vConsole 移动调试
 
-### 13.3 内容站 / 博客
+### 内容站 / 博客
 
 - Nuxt 3 + Content 模块
 - SSR/SSG 自动生成
 - SEO 友好
 
-### 13.4 实时协作工具
+### 实时协作工具
 
 - Yjs + WebSocket 实时同步
 - IndexedDB 离线编辑
 
-### 13.5 数据可视化大屏
+### 数据可视化大屏
 
 - ECharts / D3.js + VueUse + WebSocket 实时刷新
 

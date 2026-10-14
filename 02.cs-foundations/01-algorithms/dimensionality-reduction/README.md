@@ -1,18 +1,17 @@
 <!--module:
   parent: computer-basics
   slug: algorithms/dimensionality-reduction
-  type: index
+  type: moc
   category: 主模块子文章
   summary: 降维算法——在保留关键信息的同时减少特征维度
   depth: ⭐⭐
   status: active
+  tags: [降维, PCA, 流形学习]
 -->
 
 # 降维算法
 
 > **一句话定位**：降维算法在保留关键信息的同时把高维数据映射到低维空间，缓解维度灾难与可视化难题。
-
-> 在保留关键信息的同时减少特征维度，缓解维度灾难、降低计算成本、便于可视化。
 
 ## 目录
 

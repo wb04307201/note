@@ -4,13 +4,13 @@
   type: article
   category: 主模块子文章
   summary: Neo4j 图数据库：节点/关系/属性模型、Cypher 查询语言、N 度关系毫秒级查询
-  depth: ⭐⭐⭐⭐⭐
+  depth: ⭐⭐⭐⭐
   status: active
 -->
 
 # Neo4j 图数据库
 
-> Neo4j 是最流行的原生图数据库，采用属性图（Property Graph）模型，节点和关系均可携带属性，使用声明式 Cypher 查询语言。在关系密集型数据（社交网络、知识图谱、欺诈检测、推荐系统）上，N 度关联查询始终保持毫秒级响应，远超关系型数据库的 N 次 JOIN。
+> Neo4j 是最流行的原生属性图数据库，节点和关系均可携带属性，声明式 Cypher 查询；关系密集型数据上 N 度关联查询毫秒级，远超关系型数据库的 N 次 JOIN。
 
 ---
 

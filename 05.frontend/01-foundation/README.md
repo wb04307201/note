@@ -22,7 +22,7 @@
 | 浏览器渲染原理 | ✓ 已有 | [browser-rendering/](browser-rendering/) — 进程模型 / 渲染流水线 / 事件循环 / V8 引擎 |
 | CSS 工程化 | ✓ 已有 | [css-engineering/](css-engineering/) — 盒模型 / Flex / Grid / Tailwind / CSS Modules |
 | CSS 布局 | ✓ 已有 | [css-layout/](css-layout/) — BFC 触发条件 / 三大应用场景 / IFC/FFC/GFC 对比 |
-| HTML 语义化 | 📝 速查 | 顶层覆盖，详见顶层模块 |
+| HTML 语义化 | 📝 速查 | 语义化标签是 a11y 的第一道防线（`<nav>`/`<main>`/`<button>` 自带 role，屏幕阅读器可直接导航）；ARIA 属性与键盘导航要点见 [a11y/](../a11y/README.md) |
 | Web 标准 | 📝 速查 | W3C / TC39 / WHATWG 流程，详见顶层模块 |
 
 ### 1.1 学习路径

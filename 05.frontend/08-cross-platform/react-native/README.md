@@ -15,7 +15,6 @@
 React Native（RN）是 Meta 开源的跨平台移动框架，让 Web 开发者用 React 语法构建原生移动应用。2026 年 RN 新架构（Fabric / TurboModules / Bridgeless）全面落地，性能显著提升。
 
 ---
----
 
 ## RN 的核心价值
 | 价值 | 说明 |

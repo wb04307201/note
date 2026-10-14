@@ -3,7 +3,7 @@
   slug: front-end/performance
   type: article
   category: 主模块子文章
-  summary: 前端 06 性能
+  summary: 前端性能完整体系——Core Web Vitals 核心指标（LCP/INP/CLS）+ RUM/Lighthouse 监控工具 + 加载/运行时/资源/网络 4 大类优化手段
   depth: ⭐⭐
   status: active
 -->

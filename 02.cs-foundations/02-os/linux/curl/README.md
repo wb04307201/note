@@ -3,7 +3,7 @@
   slug: computer-basics/curl
   type: article
   category: 主模块子文章
-  summary: `curl` 是通过 HTTP/HTTPS/FTP 等协议传输数据的命令行工具，常用于 API 测试、文件下载、请求调试。
+  summary: `curl` 是通过 HTTP/HTTPS/FTP 等协议传输数据的命令行工具，常用于 API 测试、文件下载（含断点续传/代理/限速）、请求调试。
   depth: ⭐
   status: active
 -->
@@ -14,7 +14,6 @@
 
 ← [返回 Linux 常用命令](../)
 
----
 ---
 
 ## 基础语法

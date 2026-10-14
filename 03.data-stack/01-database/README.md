@@ -4,7 +4,7 @@
   topic: 数据库
   audience: 后端工程师 / DBA / 求职面试者
   category: 主模块
-  summary: 数据库从关系型基础到 NoSQL、缓存、迁移与云原生,涵盖 SQL、事务、索引、MySQL 内部机制、Redis、NoSQL 与监控告警全链路核心知识。
+  summary: 数据库从关系型基础到 NoSQL、缓存、迁移与云原生,涵盖 SQL、事务、索引、MySQL/PostgreSQL 内部机制、Redis、NoSQL 与监控告警全链路核心知识。
   depth: ⭐⭐⭐⭐
   status: active
 -->
@@ -89,6 +89,7 @@ flowchart TD
     B --> E["4. 索引（B+ 树）<br/>性能优化基础"]
     E --> F["3. 事务与并发控制<br/>隔离级别 + 锁 + MVCC"]
     F --> G["5. MySQL 深入<br/>InnoDB 引擎、复制、参数"]
+    G --> M["13. PostgreSQL<br/>MVCC + pgvector"]
     G --> H["6. 缓存<br/>三大问题"]
     G --> I["7. Redis<br/>深入"]
     H --> J["10. 数据迁移<br/>Canal 等"]
@@ -150,11 +151,11 @@ flowchart TD
 ## 📊 本节统计
 
 - **顶层 README 维护状态**：✅ 已对齐 CONTRIBUTING §12（2026-07-01 复检）
-- **子分类总数**：12 个（01-fundamentals / 02-sql / 03-transaction / 04-index / 05-mysql / 06-cache / 07-redis / 08-nosql / 09-connection-pool / 10-data-migration / 11-monitoring / 12-cloud-database）
-- **子 README 数**：12 个（每个分类 1 个独立 README，无嵌套子目录）
+- **子分类总数**：13 个（01-fundamentals / 02-sql / 03-transaction / 04-index / 05-mysql / 06-cache / 07-redis / 08-nosql / 09-connection-pool / 10-data-migration / 11-monitoring / 12-cloud-database / 13-postgresql）
+- **子 README 数**：13 个（每个分类 1 个独立 README）
 - **frontmatter 覆盖率**：13/13 = 100%
 - **配套面试题**：见 `12.interview/03.database/` 子模块
-- **统计口径**：子分类按一级目录统计；leaf README 数 = 12（一级子目录 README）
+- **统计口径**：子分类按一级目录统计；leaf README 数 = 13（一级子目录 README）
 
 ---
 

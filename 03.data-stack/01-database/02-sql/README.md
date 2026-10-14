@@ -12,8 +12,6 @@
 
 > **定位**：SQL 涵盖分类、语法、执行顺序、慢查询分析与 EXPLAIN，并补充 CTE 与窗口函数等 MySQL 8.0+ 高级特性。
 
-> SQL(Structured Query Language)是用于管理关系型数据库的标准语言,本文涵盖 SQL 分类、核心语法、执行顺序与慢查询分析与优化。
-
 
 ---
 
@@ -471,22 +469,10 @@ SELECT * FROM users WHERE age > 20 ORDER BY create_time DESC LIMIT 10;
 - **frontmatter 状态**：✅ 已对齐 CONTRIBUTING §12 标准（summary ≤ 80 字 / type=index）
 - **统计口径**：本目录无嵌套子目录，所有内容聚合在本 README
 
----
-
-## 📖 参考资料
-
-- [MySQL 8.0 SQL Statement Syntax](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html)
-- [PostgreSQL Documentation - SQL Commands](https://www.postgresql.org/docs/current/sql-commands.html)
-- [Use The Index, Luke! - SQL Performance eBook](https://use-the-index-luke.com/)
-- [SQL Window Functions Tutorial](https://www.postgresql.org/docs/current/tutorial-window.html)
 
 ---
 
-← [返回 01-database 主模块](../README.md)
-
----
-
-## 五、SQL 性能优化（兄弟章节）
+## SQL 性能优化（兄弟章节引导）
 
 本文讲 **SQL 语法基础**（JOIN / 子查询 / 执行顺序）；SQL **性能优化**（10 表 JOIN 实战拆分 + 大厂严禁 5 大理由）在独立章节：
 
@@ -496,3 +482,17 @@ SELECT * FROM users WHERE age > 20 ORDER BY create_time DESC LIMIT 10;
 - 语法层（JOIN 关键字）→ 本文 § 5 JOIN（连接查询）
 - 性能层（多表 JOIN 优化）→ 兄弟章节 § 三-四（避免多表 JOIN + 10 表实战拆分）
 - 算法层（NLJ / BNL / Hash Join）→ [12.interview/03.database/mysql-join](../../../12.interview/03.database/mysql-join/README.md)（面试题）
+
+---
+
+## 📖 参考资料
+
+- [MySQL 8.0 SQL Statement Syntax](https://dev.mysql.com/doc/refman/8.0/en/sql-statements.html)
+- [PostgreSQL Documentation - SQL Commands](https://www.postgresql.org/docs/current/sql-commands.html)
+- [Use The Index, Luke! - SQL Performance eBook](https://use-the-index-luke.com/)
+- [SQL Window Functions Tutorial](https://www.postgresql.org/docs/current/tutorial-window.html)
+
+
+---
+
+← [返回 01-database 主模块](../README.md)

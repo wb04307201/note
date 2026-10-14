@@ -55,11 +55,13 @@ graph LR
 | 延迟 | 毫秒级 | 秒级（batch 间隔） | 毫秒级 |
 | 吞吐 | 百万 events/s | 百万 events/s | 十万 events/s |
 | 状态管理 | 原生强大（RocksDB / HashMap） | 有限（RDD 无状态） | 无状态（需外部存储） |
-| 容错 | Checkpoint（Chandy-Lamport） | Spark 线路图重算 | ACK 机制（易丢数据） |
-| 语义保证 | Exactly-Once | At-Least-Once（可模拟 Exactly） | At-Most-Once / At-Least-Once |
-| 时间语义 | Event Time + Watermark | 仅 Processing Time | 仅 Processing Time |
+| 容错 | Checkpoint（Chandy-Lamport） | 微批 lineage 重算（RDD/WriteAheadLog） | ACK 机制 + Tuple 树追踪（未确认的 Tuple 重放，默认 At-Least-Once；不启用 ACK 则可能丢数据） |
+| 语义保证 | Exactly-Once（端到端两阶段提交） | At-Least-Once，配合幂等/事务 Sink 可达 Exactly-Once | 默认 At-Most-Once；开启 ACK 重放后 At-Least-Once |
+| 时间语义 | Event Time + Watermark（完整乱序处理） | DStream 仅 Processing Time；Structured Streaming（Spark 2.1+）支持 Event Time + Watermark，但乱序处理能力弱于 Flink | 仅 Processing Time |
 | SQL 支持 | Flink SQL（流批统一） | Spark SQL（批为主） | 无 |
 | 状态 | ✅ 事实标准 | ⚠️ 遗留项目 | ❌ 已淘汰 |
+
+> **版本演进**：上表 Spark 列指经典 DStream（Spark Streaming）；Spark 2.1+ 的 Structured Streaming 已支持 Event Time / Watermark 与 Continuous Processing（实验性），能力向 Flink 靠拢，但生态重心仍偏批处理。Storm 的 ACK 机制本身不丢数据（未确认 Tuple 会重放），"易丢数据"仅指未启用 ACK 的场景。
 
 ---
 

@@ -10,7 +10,7 @@
 
 # 云数据库
 
-> 云数据库(Cloud Database)是云厂商提供的关系型、NoSQL、NewSQL 等托管服务,具备自动备份、容灾、监控、扩缩容等开箱即用能力;主流产品包括 AWS RDS/Aurora、阿里云 RDS/PolarDB、Azure Database、Google Cloud SQL、TiDB Cloud 等。
+> 云数据库(Cloud Database)是云厂商提供的托管数据库服务（关系型 / NoSQL / NewSQL），自动备份、容灾、监控、扩缩容开箱即用；主流产品对比见正文各节。
 
 
 ---

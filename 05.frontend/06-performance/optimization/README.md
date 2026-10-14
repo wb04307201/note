@@ -44,11 +44,13 @@ const routes = [
 
 ### 2.4 Lazy Load
 
-```javascript
-// 图片懒加载
+```html
+<!-- 图片懒加载：原生属性，进入视口才加载 -->
 <img loading="lazy" src="..." />
+```
 
-// 组件懒加载
+```javascript
+// 组件懒加载：按需代码分割
 const Heavy = lazy(() => import('./Heavy'))
 ```
 

@@ -1,3 +1,4 @@
+<!-- index-only -->
 
 # SPEC for 05.frontend/
 

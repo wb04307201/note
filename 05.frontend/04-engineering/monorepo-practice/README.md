@@ -15,7 +15,6 @@
 Monorepo 是把多个包（apps / packages）放在一个 Git 仓库中统一管理的工程模式。2026 年，几乎所有大型前端项目（React、Vue、Babel、Next.js）都采用 Monorepo。
 
 ---
----
 
 ## Monorepo 的核心价值
 | 价值 | 说明 |

@@ -3,7 +3,7 @@
   slug: computer-basics/osi-model
   type: article
   category: 主模块子文章
-  summary: OSI（Open Systems Interconnection）是由 ISO 提出的**理论参考模型**，采用七层结构，从物理传输到应用服务逐层抽象，每层各司...
+  summary: OSI 是 ISO 提出的理论参考模型，七层结构从物理层到应用层逐层抽象，每层各司其职、依赖下层、服务上层。
   depth: ⭐
   status: active
 -->
@@ -12,7 +12,6 @@
 
 > OSI（Open Systems Interconnection）是由 ISO 提出的**理论参考模型**，采用七层结构，从物理传输到应用服务逐层抽象，每层各司其职、依赖下层、服务上层。
 
----
 ---
 
 ## 七层结构总览

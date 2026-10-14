@@ -10,7 +10,7 @@
 
 # Cassandra 列存储数据库
 
-> Apache Cassandra 是高度可扩展的分布式列存储数据库，源自 Facebook Inbox Search 论文，采用无中心节点（Ring 架构）设计，以最终一致性换取极高的写入吞吐和可用性。Apple、Netflix、Instagram 等大厂均有大规模部署。
+> Apache Cassandra 是高度可扩展的分布式列存储数据库，采用无中心节点（Ring 架构）设计，以最终一致性换取极高的写入吞吐和可用性。
 
 ---
 
@@ -42,7 +42,7 @@
 
 ## 二、架构概览
 
-Cassandra 采用 **Ring 架构**（无 Master 节点），所有节点对等：
+Cassandra 采用 **Ring 架构**（无 Master 节点），所有节点对等。源自 Facebook Inbox Search 论文（Dynamo + Bigtable 融合），Apple（iCloud）、Netflix、Instagram 等大厂均有大规模部署：
 
 ```text
         ┌──────────┐
@@ -187,7 +187,7 @@ CREATE TABLE sensor_data (
 ## 🔗 相关章节
 
 - [NoSQL 总览](../README.md) — NoSQL 类型对比与选型指南
-- [HBase 架构](../README.md#八hbase-架构) — HBase 基于 HDFS，强一致列存储
+- [HBase 架构](../README.md#六hbase-架构) — HBase 基于 HDFS，强一致列存储
 - [系统设计 · 分布式存储](../../../../06.distributed-systems/02-distributed/README.md) — 一致性哈希、Gossip 协议深入
 
 ---

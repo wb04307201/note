@@ -3,7 +3,7 @@
   slug: front-end/perf-monitoring
   type: article
   category: 主模块子文章
-  summary: 性能监控体系
+  summary: 性能监控体系——真实用户监控(RUM)与合成监控(Lighthouse/拨测)双轨，把"快"变成可量化、可回归、可问责的工程目标
   depth: ⭐⭐⭐⭐
   status: active
 -->

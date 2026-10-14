@@ -3,7 +3,7 @@
   slug: front-end/core-web-vitals
   type: article
   category: 主模块子文章
-  summary: Core Web Vitals 优化
+  summary: Google 三大核心指标 LCP/INP/CLS 详解与优化——2024-03 起 INP 正式取代 FID，交互响应成为新基线，直接影响 SEO 排名与用户体验
   depth: ⭐⭐⭐
   status: active
 -->

@@ -12,10 +12,7 @@
 
 ---
 
-> 一句话定位：**React 19 — Hooks + RSC + Compiler 的现代 React 全景**
-
-## 一句话定位
-React 是 Facebook 2013 年开源的 UI 库，2024 年发布 React 19，带来 Server Components、Actions、Compiler 等新特性。本文档聚焦 React 19 生态与工程实践。
+> 一句话定位：**React 19 — Hooks + RSC + Compiler 的现代 React 全景**——Facebook 2013 年开源的 UI 库，React 19 带来 Server Components、Actions、Compiler 等新特性，本文档聚焦其生态与工程实践。
 
 ## 核心能力
 - **Hooks 体系**：useState / useEffect / useMemo / useCallback / useRef / useContext

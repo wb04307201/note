@@ -10,7 +10,7 @@
 
 # Elasticsearch 搜索引擎
 
-> Elasticsearch（ES）是基于 Apache Lucene 构建的分布式搜索与分析引擎，核心数据结构为**倒排索引**，支持全文搜索、结构化搜索、聚合分析和向量检索。广泛应用于站内搜索、ELK 日志平台、RAG 向量数据库等场景。
+> Elasticsearch（ES）是基于 Apache Lucene 的分布式搜索引擎，核心是**倒排索引**，支撑全文搜索、ELK 日志分析与 RAG 向量检索。
 
 ---
 
@@ -145,6 +145,25 @@ Term:   ["elasticsearch", "running", "port", "9200"]
 - `ik_smart`：最粗粒度切分（"北京大学" → ["北京大学"]）
 - `ik_max_word`：最细粒度切分（"北京大学" → ["北京大学", "北京", "大学"]）
 
+### IK 分词插件安装（中文环境必备）
+
+```bash
+# 1. 下载 IK 插件（需与 ES 版本一致）
+./bin/elasticsearch-plugin install \
+  https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v8.11.0/elasticsearch-analysis-ik-8.11.0.zip
+
+# 2. 重启 ES
+systemctl restart elasticsearch
+
+# 3. 测试 IK 分词
+curl -X POST "localhost:9200/_analyze?pretty" -H 'Content-Type: application/json' -d '{
+  "analyzer": "ik_max_word",
+  "text": "中华人民共和国国歌"
+}'
+
+# 预期返回：中华、人民、共和国、国歌 等
+```
+
 ```json
 // 索引映射示例
 {
@@ -260,47 +279,3 @@ ES 8.0 引入 `dense_vector` 字段和 **kNN（k 最近邻）** 查询，支持 
 ---
 
 ← [返回 NoSQL 数据库](../README.md)
-
-## IK 分词插件安装（中文环境必备）
-
-```bash
-# 1. 下载 IK 插件（需与 ES 版本一致）
-./bin/elasticsearch-plugin install \
-  https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v8.11.0/elasticsearch-analysis-ik-8.11.0.zip
-
-# 2. 重启 ES
-systemctl restart elasticsearch
-
-# 3. 测试 IK 分词
-curl -X POST "localhost:9200/_analyze?pretty" -H 'Content-Type: application/json' -d '{
-  "analyzer": "ik_max_word",
-  "text": "中华人民共和国国歌"
-}'
-
-# 预期返回：中华、人民、共和国、国歌 等
-```
-
-**ik_max_word vs ik_smart**：
-- `ik_max_word`：细粒度分词（召回高，索引大）
-- `ik_smart`：粗粒度分词（精确率高，索引小）
-- 生产建议：索引用 `ik_max_word`，查询用 `ik_smart`
-
-## 集群架构图（ASCII → Mermaid 对比）
-
-**原 ASCII 图**（80-95 行）已被替换为以下 Mermaid 形式，更易维护与版本控制：
-
-```mermaid
-graph TB
-    Client[Client App] -->|HTTP| LB[Load Balancer]
-    LB --> N1[ES Master 1]
-    LB --> N2[ES Master 2]
-    LB --> N3[ES Master 3]
-    N1 --> D1[Data Node 1<br/>主分片 0/1/2]
-    N1 --> D2[Data Node 2<br/>副本分片 0/1/2]
-    N1 --> D3[Data Node 3<br/>主分片 0/1/2]
-    D1 <-->|副本同步| D2
-    D2 <-->|副本同步| D3
-    D3 <-->|副本同步| D1
-```
-
-**3 节点 = 1 副本 / 写入 1 主 2 副本 / 读任意**。
