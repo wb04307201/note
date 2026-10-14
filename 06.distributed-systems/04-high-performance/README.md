@@ -60,6 +60,7 @@ graph TD
 | 15 | 🆕 媒体上传 | [media-upload-storage](media-upload-storage/README.md) | 媒体上传存储系统：图片 **WebP/AVIF 转码** + 视频 HLS/DASH 转码切片 + 冷热分层 + 高可用 4 层防线 + 防盗链 DRM |
 | 16 | 🆕 排名系统 | [多字段动态排名](multi-field-ranking/README.md) | 归一化方法论 + 加权公式 + 动态权重 + Redis ZSet + 6 大场景 |
 | 17 | 🆕 推荐系统 | [短视频推荐](short-video-recommend/README.md) | 4 层漏斗（召回/粗排/精排/重排）+ 多路召回 + DIN/DIEN/MMoE |
+| 18 | 🆕 缓存消息 | [全链路缓存分层](cache-layers/README.md) | 九层缓存全景（DNS/浏览器/CDN/Nginx/L1/L2/ORM/Buffer Pool/page cache）+ 失效链路 + 反模式 |
 
 ## 学习路径
 
@@ -82,7 +83,7 @@ graph TD
 
 ## 📊 本节统计
 
-> 2026-10-13 实数校对（`find` 口径）：本目录共 **20 个 README**（本文 + 14 个一级子目录 + database-optimization 下 5 个二级子目录）、**31 个 .md**。
+> 2026-10-14 实数校对（`find` 口径）：本目录共 **21 个 README**（本文 + 15 个一级子目录 + database-optimization 下 5 个二级子目录）、**32 个 .md**。
 
 | 子目录 | .md 数 | 备注 |
 |:-------|:------:|:-----|
@@ -91,6 +92,7 @@ graph TD
 | ├─ `cdn/` | 1 | 静态资源分发 · 边缘计算 |
 | ├─ `database-optimization/` | 6 | 顶层 + SQL · 读写分离 · 分库分表（含 sharding-sphere）· 冷热分离 |
 | ├─ `cache-patterns/` | 1 | Cache-Aside / Read-Through / Write-Behind |
+| ├─ 🆕 `cache-layers/` | 1 | 全链路缓存分层：九层缓存全景 + 命中语义/失效机制/一致性代价 + 反模式清单 |
 | ├─ `mq/` | 1 | Kafka / RocketMQ / Pulsar |
 | ├─ `java/` | 1 | JVM 调优 · 代码级优化 |
 | ├─ `connection-pool/` | 1 | HikariCP 参数调优 |
@@ -101,9 +103,9 @@ graph TD
 | ├─ 🆕 `short-video-recommend/` | 1 | 4 层漏斗（召回/粗排/精排/重排）+ 多路召回 + DIN/DIEN/MMoE + 2024-2026 多模态/大模型融合 |
 | ├─ 🆕 `file-upload/` | 4 | 分片上传 + 断点续传 + 秒传 + 对象存储 + 引用计数 |
 | └─ 🆕 `media-upload-storage/` | 1 | 图片 WebP/AVIF 转码 + 视频 HLS/DASH 切片 + 冷热分层 + 防盗链 DRM |
-| **合计** | **31 个 .md**（20 个 README） | 模块导航 17 行 = 14 个一级主题目录 + database-optimization 下 4 个子主题入口 |
+| **合计** | **32 个 .md**（21 个 README） | 模块导航 18 行 = 15 个一级主题目录 + database-optimization 下 4 个子主题入口 |
 
-> 数字基线：以 .md 数 / README 数 + 模块导航行数双口径统计（2026-10-13 `find` 实测）
+> 数字基线：以 .md 数 / README 数 + 模块导航行数双口径统计（2026-10-14 `find` 实测）
 
 ---
 
