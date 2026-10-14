@@ -3,7 +3,7 @@
   topic: 01.java
   difficulty: ⭐⭐
   frequency: 中频
-  scenario_type: 生产 Bug
+  scenario_type: 性能对比
   tags: [01.java, sort, map]
   status: active
 -->

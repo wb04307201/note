@@ -185,7 +185,27 @@ export default defineConfig({
 });
 ```
 
-## 三、迁移检查清单
+## 三、Rspack 迁移差异（Rust 版 webpack 兼容层，坑更少）
+
+如果不想承担 Vite 迁移的 ESM 规范成本，**Rspack**（字节跳动开源，Rust 实现的 webpack 兼容构建器）是更平滑的选择：
+
+| 维度 | Webpack → Vite | Webpack → Rspack |
+|------|----------------|------------------|
+| **配置迁移** | 重写 `vite.config.js`，心智模型全换 | `webpack.config.js` 改名为 `rspack.config.js`，绝大多数字段原样可用 |
+| **模块系统** | 强制原生 ESM，CJS 需预构建 | CJS / ESM 双支持，`require()` 不用改 |
+| **环境变量** | `process.env` → `import.meta.env` | `process.env` 写法保留（内置 DefinePlugin 注入） |
+| **Loader/插件** | 生态全换（rollup 插件） | 常用 loader（babel/ts/css）内置 Rust 实现（SWC），webpack 插件多数兼容 |
+| **Tree-Shaking** | Rollup 严格模式，易误删 | 与 webpack 同款语义 + Rust 加速，行为一致 |
+| **速度收益** | Dev 毫秒级启动 | 构建/启动普遍 5-10 倍于 webpack，HMR 亚秒级 |
+
+**迁移要点**：
+1. `npm i -D @rspack/cli @rspack/core`，配置里 `entry/output/module/loaders` 结构基本照搬；
+2. 检查是否用到依赖 webpack 内部 API 的自研 loader/插件——这是最常见的不兼容点；
+3. 追求"开箱即用"可直接上 **Rsbuild**（基于 Rspack 的上层封装，类似 Vite 之于 Rollup）。
+
+**选型口诀**：新项目 / 纯 ESM 技术栈 → Vite；存量 webpack 项目想低成本提速 → Rspack。
+
+## 四、迁移检查清单
 
 | 检查项 | 通过？ |
 |--------|-------|
@@ -197,13 +217,13 @@ export default defineConfig({
 | 插件配置正确（React/Vue）？ | ☐ |
 | 生产构建已验证 Tree-Shaking？ | ☐ |
 
-## 四、面试话术（30 秒版）
+## 五、面试话术（30 秒版）
 
 > "Webpack 迁移 Vite 主要有 5 个坑：**CJS 依赖加载失败**——Vite Dev 阶段用原生 ESM，CJS 模块需要 esbuild 预构建（`optimizeDeps.include`）；**Tree-Shaking 误删代码**——Rollup 比 Webpack 更严格，需要正确标记 `sideEffects`；**环境变量丢失**——Vite 用 `import.meta.env` 替代 `process.env`，自定义变量必须以 `VITE_` 开头；**CommonJS 动态导入失败**——`require()` 要替换为 `import`；**HMR 失效**——组件必须有命名导出，插件配置要正确。
 >
 > 核心差异是构建模型：Webpack 把所有模块打包成 CJS，Vite Dev 阶段用原生 ESM（不打包），Prod 阶段用 Rollup。迁移关键是理解 ESM 规范，确保代码符合 ES Module 标准。"
 
-## 五、交叉引用
+## 六、交叉引用
 
 - [Vite 构建工具](../../../05.frontend/04-engineering/vite/README.md) — Vite 核心原理
 - 主模块：[`05.frontend`](../../../05.frontend/README.md) — 前端知识体系

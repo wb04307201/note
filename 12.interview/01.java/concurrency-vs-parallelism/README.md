@@ -176,11 +176,15 @@ List<Integer> result = hugeList.parallelStream()
 
 ---
 
-## 五、面试话术（90 秒版本）
+## 五、面试话术（30 秒 + 90 秒版本）
 
 ### 题目：并发和并行的区别？
 
-**高分答案（4 层递进，60-90 秒）**：
+**30 秒版**：
+
+> "Concurrency 是结构——同一时间段处理多个任务；Parallelism 是执行——同一时刻多个任务真在跑（Rob Pike 名言）。选型上：IO 密集选并发（async / NIO），CPU 密集选并行（ForkJoinPool / multiprocessing）；单核只能并发，多核才谈并行。"
+
+**高分答案（90 秒版 · 4 层递进，60-90 秒）**：
 
 ```text
 1. 一句话（10 秒）：

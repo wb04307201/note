@@ -265,7 +265,11 @@ grep -rn "\.close()" src/ --include="*.java"
 5. **SYN Cookie 开启**：`net.ipv4.tcp_syncookies = 1`（默认开启），防御 SYN Flood
 6. **不要使用 tcp_tw_recycle**：Linux 4.12+ 已移除，NAT 环境下有严重问题
 
-## 七、面试话术（90 秒版本）
+## 七、面试话术（30 秒版 + 90 秒版）
+
+> **30 秒版**：三次握手 SYN → SYN+ACK → ACK，两次不行是因为无法确认客户端接收能力、过期 SYN 会让服务端白建连接；四次挥手 FIN → ACK → FIN → ACK，因为 TCP 全双工、被动方收 FIN 后可能还有数据要发，ACK 与 FIN 不能合并（无数据时可合并为三次）。主动关闭方进 TIME_WAIT 等 2MSL，保证最后 ACK 到达并防旧包串扰；被动方大量 CLOSE_WAIT 必是代码没 close()。
+
+**90 秒版**：
 
 > "TCP 三次握手和四次挥手是连接管理的核心机制。
 >

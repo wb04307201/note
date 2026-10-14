@@ -1,5 +1,5 @@
 <!--question:
-  id: sharding-strategy
+  id: 04.system-design-sharding-strategy
   topic: 04.system-design
   difficulty: ⭐⭐⭐
   frequency: 高频

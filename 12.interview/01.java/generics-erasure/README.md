@@ -240,7 +240,7 @@ class UserDao extends GenericDao<User> {}
 
 ### 30 秒版
 
-"Java 泛型采用类型擦除实现，编译后所有类型参数都被替换为上界或 Object，JVM 运行时不感知泛型。这导致不能 new T()、不能用 instanceof 检查泛型类型、不能创建泛型数组。当子类覆盖父类泛型方法时，编译器会生成桥方法维持多态性。PECS 原则指导我们：生产者用 extends 保证只读，消费者用 super 保证只写。虽然泛型被擦除，但通过反射的 ParameterizedType 可以在子类继承具体化类型时恢复泛型信息。"
+> "Java 泛型采用类型擦除实现，编译后所有类型参数都被替换为上界或 Object，JVM 运行时不感知泛型。这导致不能 new T()、不能用 instanceof 检查泛型类型、不能创建泛型数组。当子类覆盖父类泛型方法时，编译器会生成桥方法维持多态性。PECS 原则指导我们：生产者用 extends 保证只读，消费者用 super 保证只写。虽然泛型被擦除，但通过反射的 ParameterizedType 可以在子类继承具体化类型时恢复泛型信息。"
 
 ### 90 秒版
 

@@ -150,7 +150,31 @@ public class OrderService {
 
 ---
 
-> Spring 完整注解速查（包含 @Lazy / @Primary / @DependsOn 等）见 [Bean 与 IoC](../../../04.spring-backend/08-annotations/bean-and-ioc.md)。## 相关章节
+## 面试话术（30 秒版 / 90 秒版）
+
+**30 秒版**：
+
+> "@Autowired 字段注入不推荐，有 4 大坑：破坏封装暴露依赖、单元测试必须启 Spring 容器（要靠反射注入 Mock）、字段无法声明为 final 导致依赖可被运行时替换、循环依赖被隐藏到运行时才爆。正解是构造器注入：依赖显式、可 final 不可变、循环依赖编译期就暴露。而且 Spring 4.3+ 单构造函数可以省略 @Autowired，代码更干净，这也是 Spring 官方推荐的首选方式。"
+
+**90 秒版**：
+
+> "我会逐坑展开讲为什么字段注入不推荐：
+>
+> 第一，破坏封装性——依赖关系暴露在类外部，内部状态可能被意外修改；构造器注入把依赖收敛在类内部。
+>
+> 第二，单元测试困难——字段注入测试时要依赖 Spring 容器或反射注入，慢且与框架耦合；构造器注入测试时直接 `new MyService(mockDependency)` 传 Mock 对象，不用启动容器。
+>
+> 第三，不可变性缺失——字段注入的字段通常非 final，依赖可能在运行时被意外替换；构造器注入可以强制 final，对象创建后状态不可变。
+>
+> 第四，隐藏循环依赖——A 依赖 B、B 依赖 A，字段 / Setter 注入下 Spring 靠代理对象兜着，调试困难；构造器注入会在启动 / 编译期直接暴露，促使重构。
+>
+> 补充两点：Setter 注入并非一无是处，适用于可选依赖或需要动态替换的场景（如策略模式切换）；构造器注入在 Spring 4.3+ 单构造函数时可省略 @Autowired 注解，Spring 自动处理。所以我的结论是：绝大多数场景用构造器注入，必要时才用 Setter，字段注入只留给快速原型。"
+
+---
+
+> Spring 完整注解速查（包含 @Lazy / @Primary / @DependsOn 等）见 [Bean 与 IoC](../../../04.spring-backend/08-annotations/bean-and-ioc.md)。
+
+## 相关章节
 
 - 深度阅读：[`06.spring/01-core`](../../../04.spring-backend/01-core/README.md) — IoC 容器、依赖注入方式
 - 相关：[`12.interview/bean-lifecycle`](../bean-lifecycle/README.md) — Bean 生命周期 12 步

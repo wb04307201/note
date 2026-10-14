@@ -205,7 +205,13 @@ OLAP 引擎选型决策树：
 
 ---
 
-## 五、面试话术（90 秒版本）
+## 五、面试话术
+
+**30 秒版**：
+
+> "架构基因不同：ClickHouse 是 MergeTree 单机暴力美学——向量化 + SIMD + 稀疏索引，单表查询极快但 Join 弱；Doris 是 MPP 分布式全能选手——Colocate Join + Runtime Filter，多表关联强且自动扩缩容。选型口诀：**单表聚合选 CH、多表 Join 选 Doris、高并发选 Doris、小运维团队选 Doris**。"
+
+**90 秒版**：
 
 > "ClickHouse 和 Doris 的架构基因不同。ClickHouse 基于 **MergeTree 引擎**，通过向量化执行 + SIMD + 稀疏索引实现单表查询的极致性能，但 Join 是短板——Hash Join 把 Build 表全量放内存，大表 Join 大表容易 OOM。Doris 基于 **MPP 架构**（FE + BE），通过 Colocate Join（同桶本地 Join）和 Runtime Filter（Bloom Filter 下推）实现强 Join 能力。"
 >

@@ -327,7 +327,7 @@ public Result register(@Valid @RequestBody UserRegisterRequest req,
 
 ### 陷阱二：乐观锁 ABA 问题
 
-线程 B 将 version 从 1→2→1，线程 A 误判未修改。**解决**：使用数据库自增 version；或用时间戳替代版本号。
+若 CAS 比较的是**业务值本身**（如库存 10→9→10、状态 PAID→REFUND→PAID），线程 A 只对比当前值，会把"改过又改回来"误判为"未修改"。**解决**：引入单调递增的 version 字段（只增不回退，任何修改都会留下痕迹）；或用时间戳替代业务值参与比较。
 
 ### 陷阱三：分布式锁超时导致重复执行
 

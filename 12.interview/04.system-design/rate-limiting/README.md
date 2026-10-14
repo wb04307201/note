@@ -4,7 +4,7 @@
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
-  tags: [04.system-design, rate, limiting]
+  tags: [限流, 令牌桶, 漏桶, 滑动窗口, Sentinel]
   status: active
 -->
 

@@ -12,8 +12,6 @@
 
 > 一句话：JavaScript 通过 `__proto__` 将对象串联成链，属性查找沿链向上追溯，构成 JS 独有的委托式继承模型。
 
-⭐⭐⭐⭐ 深度级别
-
 ---
 
 ## 引子：arr.toString 怎么没打印 "[object Array]"？

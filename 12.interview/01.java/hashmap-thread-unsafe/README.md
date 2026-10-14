@@ -188,11 +188,23 @@ put 流程：
 
 ---
 
-## 五、面试话术（30 秒版）
+## 五、面试话术（30 秒版 + 90 秒版）
+
+**30 秒版**：
 
 > "HashMap 线程不安全有 3 个层面：**数据丢失**——put 是 check-then-act 非原子，多线程同时写到同一空桶会覆盖；**死循环**——JDK 7 头插法扩容反转链表，并发下指针成环导致 CPU 100%，JDK 8 改为尾插法修复了死循环但仍不安全；**size 不准**——++size 不是原子操作，read-modify-write 会丢失计数。
 >
 > 解决方案首推 **ConcurrentHashMap**：JDK 7 用分段锁（Segment），JDK 8 用 CAS + synchronized 细化到桶级，读操作无锁，写操作只锁头节点，size 用 CounterCell 分散竞争。Hashtable 和 synchronizedMap 都是全局大锁，性能差，不推荐。"
+
+**90 秒版**：
+
+> "我从源码三个不安全点 + 演进修复讲。
+>
+> 第一点数据丢失，看 JDK 8 的 `putVal` 源码：`if ((p = tab[i = (n - 1) & hash]) == null)` 判空和随后的 `tab[i] = newNode(...)` 之间没有任何同步——两个线程同时判定同一个桶为空，各自 new 节点写入，后写的直接覆盖前一个，数据静默丢失。这是典型的 check-then-act 复合操作非原子问题。同理 `++size` 是 read-modify-write，非原子，计数会偏小。
+>
+> 第二点 JDK 7 扩容死循环，`transfer()` 里三行经典代码：`Entry next = e.next; e.next = newTable[i]; newTable[i] = e;`——头插法会反转链表顺序。两个线程同时扩容，线程 A 被挂起时记住了 e 和 next，恢复后按旧的 next 指针继续头插，就把链表接成了环。之后任何落到该桶的 get，若 key 不存在就会沿环无限遍历，CPU 100%。JDK 8 改用尾插法 + 高低位双链（loHead/hiHead），保持原有顺序不成环，但这只是消除了死循环，**数据丢失和 size 不准依然存在**——HashMap 仍然不是线程安全的。
+>
+> 第三点看正确做法的对照：ConcurrentHashMap JDK 8 在桶为空时用 CAS 无锁插入（`casTabAt`），桶非空时 `synchronized (f)` 只锁头节点，锁粒度到桶级；size 统计用 `baseCount + CounterCell[]` 分散竞争——无竞争时 CAS 更新 baseCount，竞争激烈时退化到 CounterCell 数组各线程更新各自的槽位，最后 sumCells 汇总，思路和 LongAdder 完全一致。这就是为什么高并发下 CHM 性能远好于 `Collections.synchronizedMap` 的全局大锁。"
 
 ---
 

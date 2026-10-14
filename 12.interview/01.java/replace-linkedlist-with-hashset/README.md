@@ -12,21 +12,29 @@
 
 > **一句话定位**：从 O(n) 到 O(1) 的查找跃迁 —— 含黑名单、权限校验、去重等场景，速度提升数千到数万倍。
 
-## 引子：从 30 秒到 1 毫秒
+## 引子：从 5 秒到 0.1 毫秒
 
 ```java
-// 场景：在 10 万条数据中判断某个值是否存在
+// 场景：在 10 万条数据中，对 1 万个目标值逐一判断是否存在
 LinkedList<String> list = new LinkedList<>();
 // ... 添加 10 万条数据
 
-boolean exists = list.contains("target");  // 平均遍历 5 万次，耗时约 30 秒
+// 单次 contains 平均遍历 5 万个节点，约 500 us（见 §一 表格）
+// 1 万次查询总耗时 ≈ 10000 × 500us ≈ 5 秒
+for (String target : targets) {
+    boolean exists = list.contains(target);
+}
 
 // 换成 HashSet
 HashSet<String> set = new HashSet<>(list);
-boolean exists = set.contains("target");   // 直接定位，耗时约 1 毫秒
+// 单次 contains 直接哈希定位，约 0.01 us
+// 1 万次查询总耗时 ≈ 0.1 毫秒（不含构建 set 的一次性 O(n)）
+for (String target : targets) {
+    boolean exists = set.contains(target);
+}
 ```
 
-同样的"是否存在"查询，LinkedList 要 30 秒，HashSet 只要 1 毫秒——**30000 倍的差距**！
+同样的批量"是否存在"查询，LinkedList 要 5 秒，HashSet 只要 0.1 毫秒——**约 5 万倍的差距**（与 §一 表格 100,000 规模 50000x 一致；单次查询也是 500 us vs 0.01 us 的量级差）。
 
 这就是 O(n) 和 O(1) 的区别。
 
@@ -277,12 +285,23 @@ boolean mightExist = bloom.mightContain("user_123"); // true（可能误判）
 
 ---
 
-## 五、面试话术
+## 五、面试话术（30 秒版 + 90 秒版）
 
 **面试官：** "为什么用 HashSet 替代 LinkedList 做查找？"
 
-**参考回答：**
-"核心原因是**查找复杂度的本质差异**。LinkedList 的 contains 操作需要线性遍历，时间复杂度是 O(n)；而 HashSet 基于哈希表，平均时间复杂度是 O(1)。在实际项目中，如黑名单过滤、权限校验、去重判断等场景，一旦超过几千条，HashSet 的优势就体现出来了。我之前做过一个用户标签系统，原来用 ArrayList 存几万条用户 ID，每次校验都要 5-10 毫秒，改成 HashSet 后降到 0.01 毫秒，提升了三个数量级。当然，HashSet 也有代价：一是内存占用更高；二是需要正确实现 hashCode 和 equals。如果业务需要保持插入顺序或排序，我会选择 LinkedHashSet 或 TreeSet。"
+**30 秒版**：
+
+> "核心是查找复杂度差异：LinkedList.contains 线性遍历 O(n)，HashSet 哈希定位平均 O(1)。10 万条规模单次查询约 500 us vs 0.01 us，批量查询差距可达数万倍。适用场景是黑名单过滤、权限校验、去重——超过几千条就该换。代价是内存多占 30%-50% + 必须正确实现 hashCode/equals；要保持插入顺序或排序则用 LinkedHashSet / TreeSet。"
+
+**90 秒版**：
+
+> "核心原因是**查找复杂度的本质差异**。LinkedList 的 contains 操作需要线性遍历，时间复杂度是 O(n)；而 HashSet 基于哈希表，平均时间复杂度是 O(1)。
+>
+> 底层机制上：LinkedList 节点在堆中分散分配，遍历是跳跃式访存，CPU 缓存命中率低，还有每节点两个指针的额外开销；HashSet 通过 hashCode 算桶索引 + equals 确认，Java 8 起桶内冲突链表超过 8（TREEIFY_THRESHOLD=8）转红黑树，最坏也是 O(log n) 而非 O(n)。
+>
+> 在实际项目中，如黑名单过滤、权限校验、去重判断等场景，一旦超过几千条，HashSet 的优势就体现出来了。我之前做过一个用户标签系统，原来用 ArrayList 存几万条用户 ID，每次校验都要 5-10 毫秒，改成 HashSet 后降到 0.01 毫秒，提升了三个数量级。
+>
+> 当然，HashSet 也有代价：一是内存占用更高（约多 30%-50%）；二是需要正确实现 hashCode 和 equals——equals 相等的对象 hashCode 必须一致，否则 contains 会漏判。如果业务需要保持插入顺序或排序，我会选择 LinkedHashSet 或 TreeSet；海量整数集合还可以考虑 Roaring Bitmap，允许误判的预过滤场景用 Bloom Filter。"
 
 **加分项：** 提及 Java 8 中 HashMap 链表转红黑树的阈值（TREEIFY_THRESHOLD=8）。
 

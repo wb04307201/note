@@ -195,7 +195,13 @@
 
 > "implement once, work everywhere"——ACP 的核心价值。
 
-## 五、面试话术（90 秒版本）
+## 五、面试话术
+
+**30 秒版**：
+
+> "Agent 协议族三层互补：**ACP = 编辑器 ↔ Coding Agent**（Zed 出品，类比 LSP）、**MCP = Agent ↔ 工具/数据源**（Anthropic 出品）、**A2A = Agent ↔ Agent**（Google 出品）。它们不是竞争关系，而是架构栈不同层的协议——生产级 Agent 常常三个都用：编辑器用 ACP 接入，工具用 MCP 调用，跨 Agent 协作用 A2A 派发。ACP 选 JSON-RPC 2.0 + WebSocket，为的是流式输出和服务端主动推送。"
+
+**90 秒版**（4 个模板）：
 
 ### 5.1 模板 1："ACP 和 MCP 的区别"
 

@@ -256,9 +256,36 @@ CREATE TABLE click_log (
 | **同步写点击日志** | 拖慢跳转响应 | MQ 异步收集 |
 | **不过期清理** | 存储无限增长 | 设 TTL + 定时清理过期数据 |
 
+### 反模式 → 标准陷阱对照
+
+| ❌ 反模式 | ✅ 标准陷阱 | 真相 |
+|---------|------------|------|
+| ❌ 直接 MD5 截前 8 位 | ✅ 陷阱 1：哈希冲突 | 不同输入可能产生相同短码（生日悖论：8 位 16^8 = 43 亿，100 万 ID 冲突率 ~1.2%） |
+| ❌ 数据库自增 ID | ✅ 陷阱 2：枚举爬取 | 顺序 ID 易被遍历爬取所有短链（Twitter 2010 危机） |
+| ❌ 无跳转日志 | ✅ 陷阱 3：合规风险 | GDPR / 数据安全要求记录跳转，无法追溯 = 罚款 |
+| ❌ 单库无分库 | ✅ 陷阱 4：高可用缺失 | 单库宕机 = 短链全失效；必须多库 + 缓存双层 |
+| ❌ 无防刷 | ✅ 陷阱 5：恶意爆破 | 高频短码生成可耗尽 ID；必须限流 + 验证码 |
+
+**修复代码示例（陷阱 1 哈希冲突）**：
+
+```java
+// ❌ 反例：MD5 截前 8 位
+String shortCode = DigestUtils.md5Hex(id.toString()).substring(0, 8);
+
+// ✅ 正例：base62 编码 + 重试
+String hash = DigestUtils.sha256Hex(id + salt).substring(0, 8);
+int attempts = 0;
+while (urlRepository.existsByCode(hash) && attempts < 5) {
+    hash = DigestUtils.sha256Hex(id + salt + attempts).substring(0, 8);
+    attempts++;
+}
+```
+
 ---
 
-## 五、面试话术（30 秒版）
+## 五、面试话术（30 秒版 / 90 秒版）
+
+**30 秒版**：
 
 > "短链系统核心是 3 个环节：短码生成 + 存储 + 跳转。
 >
@@ -269,6 +296,17 @@ CREATE TABLE click_log (
 > 跳转用 302 重定向（非 301），因为 302 不缓存可以统计每次点击。10 万 QPS 靠 CDN 边缘缓存 + Redis + 本地 Caffeine 三层缓存，99% 请求不命中 DB。
 >
 > 点击统计异步化——302 跳转同步返回，点击事件发 MQ 异步消费写分析表。防滥用靠黑名单 + AI 审核 + 频率限制 + TTL 过期。"
+
+**90 秒版**：
+
+> Q: 短链系统 1 万 QPS 怎么设计？
+> A: **3 层架构**：
+> 1. **接入层**：nginx + LVS 负载均衡
+> 2. **缓存层**：Redis 集群（短码→长链映射），命中率 95%
+> 3. **存储层**：MySQL 分库分表（按 hash 拆分）+ 布隆过滤器（防穿透）
+>
+> 写流程：发号器（Snowflake）→ 写 MySQL → 写 Redis → 返回短码
+> 读流程：查 Redis（命中返回）→ 未命中查 MySQL → 回写 Redis
 
 ---
 
@@ -286,40 +324,4 @@ CREATE TABLE click_log (
 
 > 📅 2026-09-01 · 咬文嚼字 · 短链 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
-← [返回: 咬文嚼字 · url-shortener](../README.md)
-
-## 标准陷阱格式（5 大反模式 → 5 标准陷阱）
-
-| ❌ 反模式 | ✅ 标准陷阱 | 真相 |
-|---------|------------|------|
-| ❌ 直接 MD5 截前 8 位 | ✅ 陷阱 1：哈希冲突 | 不同输入可能产生相同短码（生日悖论：8 位 16^8 = 43 亿，100 万 ID 冲突率 ~1.2%） |
-| ❌ 数据库自增 ID | ✅ 陷阱 2：枚举爬取 | 顺序 ID 易被遍历爬取所有短链（Twitter 2010 危机） |
-| ❌ 单库无分库 | ✅ 陷阱 4：高可用缺失 | 单库宕机 = 短链全失效；必须多库 + 缓存双层 |
-| ❌ 无防刷 | ✅ 陷阱 5：恶意爆破 | 高频短码生成可耗尽 ID；必须限流 + 验证码 |
-| ❌ 无跳转日志 | ✅ 陷阱 3：合规风险 | GDPR / 数据安全要求记录跳转，无法追溯 = 罚款 |
-
-**修复代码示例（陷阱 1 哈希冲突）**：
-
-```java
-// ❌ 反例：MD5 截前 8 位
-String shortCode = DigestUtils.md5Hex(id.toString()).substring(0, 8);
-
-// ✅ 正例：base62 编码 + 重试
-String hash = DigestUtils.sha256Hex(id + salt).substring(0, 8);
-int attempts = 0;
-while (urlRepository.existsByCode(hash) && attempts < 5) {
-    hash = DigestUtils.sha256Hex(id + salt + attempts).substring(0, 8);
-    attempts++;
-}
-```
-
-## 90 秒面试话术模板
-
-> Q: 短链系统 1 万 QPS 怎么设计？
-> A: **3 层架构**：
-> 1. **接入层**：nginx + LVS 负载均衡
-> 2. **缓存层**：Redis 集群（短码→长链映射），命中率 95%
-> 3. **存储层**：MySQL 分库分表（按 hash 拆分）+ 布隆过滤器（防穿透）
-> 
-> 写流程：发号器（Snowflake）→ 写 MySQL → 写 Redis → 返回短码
-> 读流程：查 Redis（命中返回）→ 未命中查 MySQL → 回写 Redis
+← [返回: 系统设计咬文嚼字](../README.md)

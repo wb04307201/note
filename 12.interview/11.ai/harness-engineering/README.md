@@ -5,7 +5,7 @@
   frequency: 中频
   scenario_type: 性能对比
   summary: Harness Engineering 面试题深挖——4 大类型（规范/流程/工具/反馈）+ Claude Code Hook 配置实例 + Eval Loop 最小实现 + CI 集成 + 与 Guardrails/Loop/Context 的边界分工 + 3 条追问链
-  tags: [11.ai, Harness, harness, Guardrails, Hooks, Eval Loop]
+  tags: [11.ai, harness, Guardrails, Hooks, Eval Loop]
   status: active
 -->
 

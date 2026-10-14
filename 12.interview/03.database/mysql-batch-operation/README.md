@@ -1,5 +1,5 @@
 <!--question:
-  id: 03.database-batch-operation
+  id: 03.database-mysql-batch-operation
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
@@ -10,7 +10,7 @@
 
 # 批量插入：JDBC batch vs rewriteBatchedStatements 性能对比
 
-> 同样是"插入 100 万行"，写法不同性能差 100 倍。考察点不是"怎么用 batch"，而是 **MySQL JDBC 的 `rewriteBatchedStatements` 参数如何把 batch 编译成 multi-value INSERT**。
+> **一句话定位**：插入 100 万行，写法不同性能差 100 倍 —— 关键在 `rewriteBatchedStatements=true` 把 batch 重写成 multi-value INSERT。
 
 ## 引子：30 分钟同步 100 万订单，跑了一晚上没完
 
@@ -199,9 +199,11 @@ conn.commit();   // 大事务
 
 ---
 
-## 六、面试话术（90 秒版本）
+## 六、面试话术（30 秒版 + 90 秒版）
 
-> 单条 INSERT 慢是因为每次都要走"客户端发送 → 服务端解析 → 服务端写入 → 返回"的完整流程，100 万行就是 100 万次 RTT。
+> **30 秒版**：单条 INSERT 是 100 万次 RTT；JDBC batch 只是打包发送、服务端仍逐条解析；加 `rewriteBatchedStatements=true` 驱动才会重写成 multi-value INSERT，性能提升一个数量级；超大批量直接 LOAD DATA INFILE 绕过 SQL 解析。事务上每 1000-5000 行提交一次，防大事务。
+
+> **90 秒版**：单条 INSERT 慢是因为每次都要走"客户端发送 → 服务端解析 → 服务端写入 → 返回"的完整流程，100 万行就是 100 万次 RTT。
 >
 > JDBC batch 默认是把多个 INSERT 打包发送，但**还是多个独立的 INSERT**，服务端仍然要解析多次。
 >

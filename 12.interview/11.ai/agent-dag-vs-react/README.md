@@ -4,7 +4,7 @@
   difficulty: ⭐⭐
   frequency: 中频
   scenario_type: 架构困境
-  tags: [11.ai, Agent, agent]
+  tags: [11.ai, Agent, DAG, ReAct, LangGraph]
   status: active
 -->
 

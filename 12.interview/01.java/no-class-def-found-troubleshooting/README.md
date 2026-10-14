@@ -396,7 +396,13 @@ curl -X POST http://localhost:8080/api/order/create \
 
 ---
 
-## 六、面试话术（90 秒版本）
+## 六、面试话术（30 秒 + 90 秒版本）
+
+**30 秒版**：
+
+> "核心认知一句话：**类在 jar 里 ≠ 能初始化**。`Could not initialize class X` 是 `<clinit>` 静态初始化失败（首次失败抛 ExceptionInInitializerError，之后同类的加载全部报 NoClassDefFoundError）；而纯类缺失型 NoClassDefFoundError 多是部署产物差异——本地正常 ≠ 生产正常。排查两步走：先对照 `BOOT-INF/lib/` + `mvn dependency:tree` 确认 jar 真的在制品里，再看静态初始化依赖（配置 / 连接 / 环境变量）在目标环境是否可用。修复靠显式声明依赖 + dependencyManagement 钉版本 + 放根 pom 三招叠加。"
+
+**90 秒版**：
 
 > "线上 `NoClassDefFoundError: Could not initialize class com.alibaba.fastjson2.JSON` 这类故障，根因往往不在业务代码，而在 **Maven 部署确定性**。
 >

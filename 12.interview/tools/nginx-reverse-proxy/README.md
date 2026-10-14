@@ -112,7 +112,13 @@ upstream backend {
 
 ---
 
-## 五、面试话术（90 秒版本）
+## 五、面试话术
+
+**30 秒版**：
+
+> "Nginx upstream 4 种负载均衡策略：Round-Robin（默认）、Weighted（按权重）、ip_hash（IP 粘滞）、least_conn（最少连接）。选型看两点：服务是否无状态、请求是否长连接——无状态用 Round-Robin/Weighted，长连接用 least_conn。需要会话保持时**优先 Redis 集中 session 而非 ip_hash**（NAT 会流量倾斜），生产必配健康检查 + upstream keepalive。"
+
+**90 秒版**：
 
 > "Nginx upstream 提供 4 种负载均衡策略：Round-Robin（默认轮流）、Weighted（按权重）、ip_hash（按 IP 粘滞）、least_conn（最少连接）。
 >

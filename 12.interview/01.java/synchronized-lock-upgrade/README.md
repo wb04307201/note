@@ -2,7 +2,7 @@
   id: 01.java-synchronized-lock-upgrade
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 反直觉代码
   tags: [01.java, synchronized, lock]
   status: active
@@ -208,7 +208,7 @@ public void good() {
 
 JIT 编译器在逃逸分析后也可能自动进行锁粗化。
 
-### 4.2 锁消除（Lock Elimination
+### 4.2 锁消除（Lock Elimination）
 
 通过逃逸分析（Escape Analysis），JIT 可以证明某个对象不会逃逸出当前方法或线程，从而完全移除 synchronized：
 

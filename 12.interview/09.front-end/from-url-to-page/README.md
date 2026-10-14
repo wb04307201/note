@@ -12,26 +12,28 @@
 
 > **一句话定位**：URL 到页面 10 步：DNS 解析 → TCP → TLS → HTTP → HTML 解析 → DOM/CSSOM → Render → Layout → Paint → Composite。
 
-## 引子：一道题考遍所有知识
+## 引子：HTML 都下载完了，页面为什么还白屏 300ms？
 
 ```text
-你在浏览器输入：https://www.google.com
-按下回车
+抓包显示：HTML 文档 50ms 就全部下载完成（200 OK，60KB）
+但 Performance 面板里，First Contentful Paint 在 350ms 才出现
+
+中间这 300ms 浏览器在干什么？
 ```
 
-接下来 300 毫秒内发生了什么？
+反直觉的是：**HTML 下载完成 ≠ 页面可以渲染**。这 300ms 里藏着 DNS 解析、TCP/TLS 握手之外的另一半故事——CSSOM 构建阻塞渲染、同步 JS 阻塞解析、Render Tree 合成、Layout / Paint / Composite 流水线，任何一环慢都会让用户继续盯着白屏。
 
-这道题是前端面试的"终极综合题"，一道题考遍：
+这道题是前端面试的"终极综合题"，从输入 URL 到页面展示，一道题考遍：
 
 1. **DNS 解析**：域名 → IP 地址
 2. **TCP 连接**：三次握手
 3. **TLS 握手**（HTTPS）：加密协商
 4. **HTTP 请求**：发送请求报文
 5. **服务器处理**：路由、数据库、渲染 HTML
-6. **浏览器解析**：HTML → DOM → CSSOM → 渲染树
+6. **浏览器解析**：HTML → DOM → CSSOM → 渲染树（CSS 阻塞渲染、JS 阻塞解析就发生在这一步）
 7. **页面绘制**：Layout → Paint → Composite
 
-一道题，把前端的知识体系全部串起来。
+一道题，把前端的知识体系全部串起来——而"白屏 300ms"的答案，就藏在第 6、7 步里。
 
 ---
 

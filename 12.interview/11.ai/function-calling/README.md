@@ -348,7 +348,7 @@ log_tool_call(tool_name, args, result, user_id)
 # 5. 错误隔离
 try:
     result = execute(tool_call)
-except Exception:
+except Exception as e:
     result = {"error": str(e)}  # 不暴露 stack 给 LLM
 ```
 

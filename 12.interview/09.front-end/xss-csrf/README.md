@@ -4,7 +4,7 @@
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
-  tags: [09.front-end, XSS, xss]
+  tags: [09.front-end, xss, csrf, csp, security]
   status: active
 -->
 
@@ -264,17 +264,13 @@ res.cookie('sessionId', 'abc123', {
 
 > 📅 2026-09-01 · 咬文嚼字 · xss-csrf · ⭐⭐⭐（中频面试 + 实战必会）
 
-← [返回: 咬文嚼字 · xss-csrf](../README.md)
-
 ## 90 秒面试话术（补充版）
 
-> Q: 反射型 XSS 和存储型 XSS 区别？
-> A: 反射型在 URL/请求参数中（一次性，需诱导点击），存储型在数据库中（持久化，所有访问者都受影响）。
-> 
-> Q: CSP 怎么防 XSS？
-> A: **3 层防护**：
-> 1. `default-src 'self'` 禁止跨源脚本加载
-> 2. `script-src 'nonce-xxx' 'strict-dynamic'` 仅允许带正确 nonce 的脚本
-> 3. `object-src 'none'`、`base-uri 'none'` 防 object/base 注入
-> 
-> 现代 SPA 推荐 CSP Level 3 + Trusted Types 组合（自动转义危险 DOM API）。
+> "XSS 和 CSRF 方向相反：XSS 是攻击者**利用网站**去攻击用户——把恶意脚本注入页面，在其他用户浏览器里执行、窃取数据；CSRF 是攻击者**利用用户**去攻击网站——借浏览器自动携带 Cookie 的机制，以用户已登录的身份伪造请求。
+>
+> XSS 按脚本存活位置分三类：**反射型**藏在 URL 参数里，一次性、需诱导点击；**存储型**写进了数据库，持久化、所有访问者中招，危害最大；**DOM 型**完全在客户端发生，`innerHTML`/`document.write` 直接吃用户输入，服务器无感知。防御要分层：输入转义 + 按上下文输出编码是第一层，`HttpOnly + Secure + SameSite` Cookie 保住会话凭证是第二层，CSP 从资源加载源头掐断脚本执行是第三层——`default-src 'self'` 禁跨源、`script-src 'nonce-xxx' 'strict-dynamic'` 只放行带正确 nonce 的脚本、`object-src 'none'`/`base-uri 'none'` 堵住注入面。现代 SPA 推荐 CSP Level 3 配合 Trusted Types，让危险 DOM API 自动转义。
+>
+> CSRF 的核心防线则是 CSRF Token（一次性、服务端校验）+ SameSite Cookie（`lax` 默认推荐、`strict` 高安全场景），Referer/Origin 检查只作辅助。一句话收尾：**XSS 防内容，CSRF 防请求**，生产环境两套必须同时部署。"
+
+← [返回: 咬文嚼字 · xss-csrf](../README.md)
+

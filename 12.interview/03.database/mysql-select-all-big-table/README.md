@@ -90,7 +90,7 @@ ResultSet（你看到的「游标」）
 | 配置项 | 默认值 | 后果 |
 |--------|--------|------|
 | `useCursorFetch` | `false` | 走「一次性 fetch all」路径 |
-| `fetchSize` | `0` | 表示「由驱动决定」，驱动选 Integer.MIN_VALUE 的非流式行为 |
+| `fetchSize` | `0` | 表示「由驱动决定」，MySQL 驱动默认一次性 fetch all、把全量结果集缓存进内存（只有显式设 `Integer.MIN_VALUE` 才走逐行流式） |
 | `resultSetType` | `TYPE_FORWARD_ONLY` | 驱动内部用 `RowDataStatic`（全量缓存）而非 `RowDataDynamic` |
 
 ---
@@ -222,9 +222,11 @@ stmt.setFetchSize(100);  // 在非游标模式下，这个值被驱动「软忽�
 
 ---
 
-## 六、面试话术模板（90 秒版本）
+## 六、面试话术模板（30 秒版 + 90 秒版）
 
-> **答**：一定会炸。MySQL JDBC 驱动默认 `useCursorFetch=false` + `fetchSize=0`，走的是一次性 fetch all 路径，2000 万行结果集会被全部加载到 JVM 堆内存里。即使我用 `while(rs.next())` 一行一行处理，驱动内部早就把所有行解码成 `RowDataStatic` 缓存了，「游标」只是个在内存里挪动的指针。
+> **30 秒版**：会炸。MySQL JDBC 默认一次性 fetch all——2000 万行全部加载进 JVM 堆，`rs.next()` 只是在内存里挪指针。解法三层：JDBC 层 `setFetchSize(Integer.MIN_VALUE)` 流式或 `useCursorFetch=true` 服务端游标；SQL 层用 `WHERE id > ? LIMIT n` 游标分页；架构层批量导出走 mysqldump / DataX 专用工具。
+
+> **90 秒版**：**答**：一定会炸。MySQL JDBC 驱动默认 `useCursorFetch=false` + `fetchSize=0`，走的是一次性 fetch all 路径，2000 万行结果集会被全部加载到 JVM 堆内存里。即使我用 `while(rs.next())` 一行一行处理，驱动内部早就把所有行解码成 `RowDataStatic` 缓存了，「游标」只是个在内存里挪动的指针。
 >
 > 真正的解法分三个层级：
 >
@@ -244,6 +246,6 @@ stmt.setFetchSize(100);  // 在非游标模式下，这个值被驱动「软忽�
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · MySQL · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · MySQL · ⭐⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)

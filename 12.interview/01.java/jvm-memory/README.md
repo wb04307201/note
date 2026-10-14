@@ -4,7 +4,7 @@
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 架构困境
-  tags: [01.java, JVM, jvm]
+  tags: [01.java, JVM]
   status: active
 -->
 

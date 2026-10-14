@@ -34,8 +34,8 @@
 
 **情况 1：常量池中不存在 `"123"`（首次执行）**
 - **步骤 1**：JVM 处理字面量 `"123"`，在字符串常量池中创建一个 String 对象（若池中已存在则跳过此步）。
-- **步骤 2**：`new` 关键字在堆中创建一个新的 String 对象，其内部的 `byte[] value` 数组引用指向常量池中 `"123"` 的字符数据（Java 9+ 之前是共享 `char[]`，之后是独立 `byte[]`）。
-- **结果**：共创建 **2 个对象**（常量池 1 个 + 堆中 1 个）。
+- **步骤 2**：`new` 关键字在堆中创建一个新的 String 对象。注意：拷贝构造器 `String(String original)` 的源码是 `this.value = original.value`——新对象与常量池 `"123"` **共享同一个底层字符数组**（Java 8 及以前共享 `char[]`，Java 9+ 共享 `byte[]`），并不会复制数组。
+- **结果**：共创建 **2 个对象**（常量池 1 个 + 堆中 1 个），但只有 1 份字符数组。
 
 **情况 2：常量池中已存在 `"123"`（重复执行）**
 - **步骤 1**：字面量 `"123"` 已在常量池中，无需新建。
@@ -45,7 +45,7 @@
 ### JVM 内存布局关键点
 - **字符串常量池的位置**：Java 6 及以前位于方法区（永久代），Java 7 移至堆内，Java 8 以后永久代被元空间取代，字符串常量池完全驻留在堆中。因此，"常量池中的对象"也属于堆内存对象。
 - **`new String()` 的强制新建**：与直接赋值 `String s = "123"` 不同（直接从常量池返回引用），`new String("123")` 无论内容是否相同，都会在堆中创建新对象，地址必然不同。
-- **Java 9+ 的 Compact Strings**：从 Java 9 开始，String 内部从 `char[]` 改为 `byte[]` + `coder`，`new String()` 创建的对象拥有独立的 `byte[]` 副本，不再与常量池共享数组。
+- **Java 9+ 的 Compact Strings**：从 Java 9 开始，String 内部从 `char[]` 改为 `byte[]` + `coder`（LATIN1/UTF16）。但拷贝构造 `new String(original)` 依然是 `this.value = original.value` **直接共享底层数组**（String 不可变，共享是安全的），并不做数组复制——Java 8 和 Java 9+ 在这一点上行为一致。
 
 ---
 
@@ -71,8 +71,11 @@ public class StringPoolTest {
 
         System.out.println(s4 == s5);   // true（都指向常量池）
 
-        // ==================== 实验3：Java 9+ 的 byte[] 独立性 ====================
-        // 通过反射验证 new String() 创建独立的 value 数组
+        // ==================== 实验3：底层 value 数组共享验证 ====================
+        // 通过反射验证 new String() 与常量池字符串共享同一个 value 数组
+        // （拷贝构造器源码：this.value = original.value，不复制数组）
+        // 注意：Java 9+ 模块化后反射访问 String.value 需加启动参数：
+        //   --add-opens java.base/java.lang=ALL-UNNAMED
         String s6 = "789";
         String s7 = new String("789");
 
@@ -83,7 +86,8 @@ public class StringPoolTest {
             byte[] value6 = (byte[]) valueField.get(s6);
             byte[] value7 = (byte[]) valueField.get(s7);
 
-            System.out.println(value6 == value7); // false（Java 9+ 独立数组）
+            System.out.println(value6 == value7); // true（共享同一个底层数组）
+            System.out.println(s6 == s7);         // false（但 String 对象本身不同）
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,13 +110,14 @@ public class StringPoolTest {
 }
 ```
 
-**典型输出**（Java 11 环境）：
+**典型输出**（Java 11 环境，需加 `--add-opens java.base/java.lang=ALL-UNNAMED`）：
 ```text
 false
 false
 true
 true
-false
+true     ← value6 == value7：共享底层数组
+false    ← s6 == s7：String 对象不同
 new String: 45 ms
 literal: 2 ms
 ```
@@ -196,9 +201,9 @@ for (int i = 0; i < 1000; i++) {
 ```
 
 ### 4. 利用 Compact Strings 特性
-Java 9+ 的 Compact Strings 自动选择 `byte[]` 或 `char[]` 存储：
-- 纯 ASCII 字符串：使用 `byte[]`，节省 50% 空间。
-- 包含非 ASCII 字符：使用 `byte[]` + UTF-16 编码。
+Java 9+ 的 Compact Strings 内部统一用 `byte[]` + `coder` 标记编码：
+- 纯 LATIN1 字符串：coder=LATIN1，每字符 1 字节，节省 50% 空间。
+- 包含非 LATIN1 字符：coder=UTF16，每字符 2 字节（与旧 `char[]` 等价）。
 无需手动优化，JVM 自动处理。
 
 ### 5. 字符串比较的统一规范
@@ -226,7 +231,7 @@ if (actual.equals("expected")) { ... }
 >
 > 这里的关键点是：字面量 `"123"` 会触发常量池的操作，而 `new` 关键字强制在堆中创建新对象，两者的地址一定不同。所以 `new String("123") == "123"` 永远返回 false。
 >
-> 另外需要注意的是，从 Java 9 开始，String 内部从 `char[]` 改成了 `byte[]`，`new String()` 创建的对象拥有独立的字节数组副本，不再与常量池共享底层数据。这也是为什么在实际开发中，我们应该优先使用字面量赋值，避免用 `new String()` 制造垃圾对象。"
+> 另外需要注意的是，从 Java 9 开始，String 内部从 `char[]` 改成了 `byte[]` + coder（Compact Strings）。但拷贝构造 `new String("123")` 的源码是 `this.value = original.value`——新对象与常量池字符串**共享同一个底层数组**，只新建 String 壳对象、不复制数组（String 不可变，共享安全）。所以"创建 2 个对象"指 2 个 String 实例，字符数据始终只有一份。这也是为什么实际开发中应优先使用字面量赋值——`new String()` 制造的是冗余壳对象。"
 
 **追问**："如何验证创建了几个对象？"
 > "可以通过 `jstat -gcutil` 观察 GC 前后的对象数量变化，或者使用 JOL（Java Object Layout）工具分析对象布局。更简单的方式是通过代码验证：比较 `==` 的结果，如果两次 `new String("123")` 的地址不同，说明堆中创建了独立对象。"

@@ -273,15 +273,17 @@ Cluster 中 `MULTI/EXEC` 只能操作**同槽内的 Key**。
 
 ---
 
-## 七、面试话术（30 秒版）
+## 七、面试话术（30 秒版 + 90 秒版）
 
-> "Redis Sentinel 和 Cluster 的核心区别在于：Sentinel 解决高可用，Cluster 解决水平扩展。
+> **30 秒版**："Redis Sentinel 和 Cluster 的核心区别在于：Sentinel 解决高可用，Cluster 解决水平扩展。
 >
 > Sentinel 基于主从复制，通过哨兵集群监控 Master 状态，故障时自动选举新 Master。优点：配置简单；缺点：数据未分片，受限于单机内存。
 >
 > Cluster 采用 16384 个虚拟槽的分片机制，每 Master 负责一部分槽，数据通过 CRC16 哈希分布。节点间用 Gossip 协议同步状态。但 Cluster 只支持 db0，批量操作要求 Key 在同槽（可用 Hash Tag 解决）。
 >
 > 选型：数据量不大、追求简单用 Sentinel；数据量大、需水平扩展用 Cluster。"
+
+> **90 秒版**："选型上先看容量再看复杂度：单实例内存能装下（一般 < 16GB 热数据）且核心诉求是不宕机，用 Sentinel——它就是主从复制 + 自动故障转移，架构简单、客户端改造少；数据量超单机、需要水平扩展写入吞吐，才上 Cluster。Cluster 的关键机制是 16384 个虚拟槽：Key 经 CRC16(key) mod 16384 定位槽，槽分配到各 Master，扩缩容只迁移槽而非全量 rehash，节点间用 Gossip 协议传播槽映射和健康状态。生产要接受三个约束：只支持 db0、跨槽的 MSET / 事务 / Lua 不可用（要用 Hash Tag `{}` 把关联 Key 钉到同一槽）、客户端必须用支持槽路由的智能客户端（Lettuce / Redisson cluster 模式）。如果被追问迁移期间客户端行为：槽已永久迁走后原节点返回 `MOVED <slot> <ip>:<port>`，客户端要更新本地槽映射表再重发；槽正在迁移中且 Key 还没搬走时返回 `ASK`，客户端要先向目标节点发 `ASKING` 再发原请求、但**不更新**本地映射——MOVED 是'改路由表'，ASK 是'这次临时问一下'。最后补充运维红线：集群规模控制在 1000 节点内，否则 Gossip 消息量和元数据传播延迟会明显上升；每个 Master 至少配 1 个 Slave，防止槽在故障转移期间不可服务。"
 
 ---
 
@@ -298,6 +300,6 @@ Cluster 中 `MULTI/EXEC` 只能操作**同槽内的 Key**。
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · Redis · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Redis · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · redis-cluster](../README.md)

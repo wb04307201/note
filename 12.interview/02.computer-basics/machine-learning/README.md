@@ -169,24 +169,23 @@ Q4: 训练资源？
 | PCA 重建 | [pca-math](./pca-math/README.md) | 压缩率 + 重建误差 |
 | LightGBM 调参 | [boosting-comparison](./boosting-comparison/README.md) | 5 大超参 + Optuna 自动调参 |
 
-## 九、面试话术模板（90 秒版）
+## 九、面试话术模板（30 秒版 + 90 秒版）
 
-```
-机器学习是深度学习的基础。
+**30 秒版**：
 
-面试时我会先讲算法本质（数学），再讲代码实现（sklearn），
-最后讲业务应用（哪个场景用哪个）。
+> "机器学习是深度学习的基础，我答题的顺序是：先讲算法本质（数学），再讲代码实现（sklearn），最后讲业务应用（场景选型）。比如 K-means 本质是 WCSS 最小化、代码 5 行、业务做客户分群；LR 简单可解释，加 L1/L2 正则就是 ElasticNet，金融风控首选；结构化数据 SOTA 是 XGBoost/LightGBM。"
 
-比如 K-means，本质是 WCSS 最小化（迭代更新簇中心），
-代码 5 行（sklearn.cluster.KMeans），
-业务用客户分群（先 elbow 法选 K）。
+**90 秒版**：
 
-LR 是最被低估的——简单但可解释，
-加上 L1/L2 正则化就是 ElasticNet，金融风控首选。
-
-XGBoost 是结构化数据 SOTA（Kaggle 验证），
-关键是理解二阶泰勒 + 直方图加速 + leaf-wise 生长。
-```
+> "机器学习是深度学习的基础。
+>
+> 面试时我会先讲算法本质（数学），再讲代码实现（sklearn），最后讲业务应用（哪个场景用哪个）。
+>
+> 比如 K-means，本质是 WCSS 最小化（迭代更新簇中心），代码 5 行（sklearn.cluster.KMeans），业务用客户分群（先 elbow 法选 K）。
+>
+> LR 是最被低估的——简单但可解释，加上 L1/L2 正则化就是 ElasticNet，金融风控首选。
+>
+> XGBoost 是结构化数据 SOTA（Kaggle 验证），关键是理解二阶泰勒 + 直方图加速 + leaf-wise 生长。"
 
 ## 十、6 篇 deep-dive 入口
 

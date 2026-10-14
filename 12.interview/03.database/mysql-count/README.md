@@ -321,7 +321,13 @@ SELECT TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES
 WHERE TABLE_SCHEMA = 'mydb' AND TABLE_NAME = 'users';
 ```
 
-## 五、面试话术
+## 五、面试话术（30 秒版 + 90 秒版）
+
+> **30 秒版**：`COUNT(*)` 与 `COUNT(1)` 统计所有行且在 MySQL 中性能完全相同（优化器视为等价），`COUNT(字段)` 只数非 NULL 行、字段有索引时可覆盖扫描；推荐默认写 `COUNT(*)`。InnoDB 比 MyISAM 慢是因为 MVCC 下不同事务可见行数不同，必须实时扫索引树，而 MyISAM 把行数存在元数据里 O(1) 返回。大表优化走五条路：小索引扫描、Redis 缓存、计数器表、近似值（`SHOW TABLE STATUS`）、OLAP 引擎。
+
+> **90 秒版**：这题分三层答。第一层语义与性能：`COUNT(*)` 和 `COUNT(1)` 都统计所有行（含 NULL 行也计入），MySQL 优化器把两者视为等价、性能完全相同，官方推荐写 `COUNT(*)` 因为符合 SQL 标准；`COUNT(字段)` 语义不同——只统计该字段非 NULL 的行，如果字段上有二级索引，InnoDB 可以只扫这棵更小的索引树完成覆盖扫描。第二层为什么 InnoDB 的 `COUNT(*)` 慢：MyISAM 在存储引擎元数据里直接维护总行数，无 WHERE 时 O(1) 返回；InnoDB 因为 MVCC，每个事务的 Read View 看到的"有效行数"都可能不同，没法缓存一个全局数字，只能沿最小的二级索引实时扫描，复杂度 O(n)。第三层大表怎么优化：① 保证查询条件有合适的二级索引，让优化器选最小索引树扫描；② Redis 缓存 COUNT 结果并设置合理 TTL；③ 用触发器或应用层维护计数器表拿实时值；④ 能接受误差就用 `SHOW TABLE STATUS` / `INFORMATION_SCHEMA.TABLES` 的统计近似值；⑤ 架构层面读写分离、分库分表，分析型计数交给 ClickHouse 等 OLAP 引擎。
+
+**高频追问要点备查**：
 
 **面试官：COUNT(*)、COUNT(1)、COUNT(字段) 有什么区别？**
 

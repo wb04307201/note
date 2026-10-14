@@ -2,7 +2,7 @@
   id: 02.computer-basics-port-reuse-so-reuseport
   topic: 02.computer-basics
   difficulty: ⭐⭐⭐⭐
-  frequency: 高频
+  frequency: 中高频（后端 3 年+ 深挖题）
   scenario_type: 网络系统设计
   tags: [02.computer-basics, port, SO_REUSEPORT, SO_REUSEADDR, listen, multi-process, Nginx]
   status: active
@@ -144,9 +144,11 @@ listen(server_fd, ...);
 
 ---
 
-## 四、面试话术（90 秒版本）
+## 四、面试话术（30 秒版 + 90 秒版）
 
 ### 题目：两个程序能同时监听一个端口吗？
+
+> **30 秒版**：默认不能——第二次 `bind()` 返回 `EADDRINUSE`。但 Linux 3.9+ 的 `SO_REUSEPORT` 允许多进程同时 listen 同一端口，内核按 4-tuple hash 分发新连接、各自独立 accept 队列，Nginx worker / Envoy / kube-proxy 都靠它做高并发负载均衡。注意 `SO_REUSEADDR` 语义完全不同：只解决 TIME_WAIT 端口快速复用，不能让两进程同时 listen。
 
 **高分答案（4 层递进，60-90 秒）**：
 

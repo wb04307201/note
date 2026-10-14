@@ -207,7 +207,8 @@ GPT-4 128K / Claude 200K 对中间位置信息的 recall 率只有 ~40%。
 >     '\n'.join([r['text'] for r in reranked]),
 >     target_token=2000
 > )
-> answer = llm.invoke(f'合同：{compressed['compressed_prompt']}\n问题：{query}\n要求：引用条款编号 + 页码')
+> cp = compressed['compressed_prompt']
+> answer = llm.invoke(f'合同：{cp}\n问题：{query}\n要求：引用条款编号 + 页码')
 > ```
 >
 > **关键工程细节**：① **Page metadata 必带**（合同审查法律要求溯源）② **条款编号写入 chunk**（检索关键词）③ **压缩率控制在 70%** ④ **输出引用规则**：必须返回条款编号 + 页码。"

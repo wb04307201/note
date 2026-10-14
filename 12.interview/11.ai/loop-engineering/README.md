@@ -113,7 +113,13 @@ Task → Agent → 检查结果
 
 ---
 
-## 六、30 秒面试话术
+## 六、面试话术
+
+**30 秒版**：
+
+> "Loop Engineering 是 AI 工程第四阶段（Prompt → Context → Harness → Loop），核心是'循环调用 Agent 直到任务完成'，3 大组件：**可验证的任务定义 + 自动化验证函数 + 具体可操作的反馈**。4 大失败模式（无限循环 / 上下文爆炸 / 幻觉放大 / 资源耗尽）靠 Max attempts + 超时 + Context 重置 + Verifier 兜底。代表实现 Ralph Wiggum Loop 的关键是 Fresh Context——每轮全新上下文，状态存文件系统。"
+
+**90 秒版**：
 
 > Loop Engineering 是 2026 年 AI 工程第四阶段，演进路径是 Prompt → Context → Harness → Loop。
 >

@@ -235,7 +235,13 @@ public class MyMegaThrowable extends Throwable { }    // 更不要这样做
 
 ---
 
-## 五、面试话术（90 秒版本）
+## 五、面试话术（30 秒 + 90 秒版本）
+
+**30 秒版**：
+
+> "一句话记忆：Error 归 JVM，Exception 归应用。三点核心区别：设计意图——Error 是 JVM 故障，Exception 是应用故障；产生方——Error 由 JVM 抛出，Exception 由代码抛出；可恢复性——Error 通常不可恢复、不该 catch，Exception 可以重试或降级。实战原则：只 catch 你能处理的 Exception，Error 靠 JVM 调优预防。"
+
+**90 秒版**：
 
 > "Error 和 Exception 都是 Throwable 的子类，但设计意图完全不同。
 >

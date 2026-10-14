@@ -262,10 +262,17 @@ Q: explorer → coder → reviewer 三段流水线 —— 怎么实现？
 ├─ OMP → /handoff code-reviewer（agent → agent 显式移交，独家）
 ├─ OpenCode → ultrawork 关键词（Sisyphus 主 Agent + Oracle / Librarian / Frontend / Explore 子 Agent）
 └─ 其他 Agent → 拆 3 个独立会话，手动复制上下文（低效）
+```
 
 ---
 
-## 五、面试话术（90 秒版本）
+## 五、面试话术
+
+**30 秒速记版**：
+
+> "4 个 Coding Agent 按场景混搭，不互斥：**Claude Code** 锁 Anthropic 但生态最深（CLAUDE.md/Skills/Plugins + Shift+Tab 三档权限）；**Codex** 绑 OpenAI 生态、云端并行 + CI full-auto 最成熟；**OpenCode** 多模型最简双模式（默认 Plan Mode + ultrawork 多 Agent）；**OMP** 模式最全（Build/Plan/Goal/Handoff/Session tree 五件套 + per-role 模型）。选型三步：看模型锁定 → 看模式需求 → 看生态成熟度。注意 MCP 配置四家 schema 不同，不能直接迁移。"
+
+**90 秒版**（5 个模板）：
 
 ### 5.1 模板 1："4 个 Agent 怎么选"
 

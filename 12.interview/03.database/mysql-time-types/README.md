@@ -262,11 +262,22 @@ DELIMITER ;
 **面试官：DATETIME 和 TIMESTAMP 有什么区别？**
 
 回答要点：
-1. **存储空间**：TIMESTAMP 4 字节，DATETIME 8 字节
+1. **存储空间**：TIMESTAMP 基础 4 字节，DATETIME 8 字节（5.6.4+ 内部格式 5 字节；两者均可加小数秒精度，额外占 0-3 字节：1-2 位小数秒 +1 字节，3-4 位 +2 字节，5-6 位 +3 字节）
 2. **时区处理**：TIMESTAMP 会自动进行 UTC 转换，DATETIME 原样存储
 3. **时间范围**：TIMESTAMP 到 2038 年，DATETIME 到 9999 年
-4. **自动更新**：TIMESTAMP 支持 `ON UPDATE CURRENT_TIMESTAMP`，DATETIME 需要触发器
+4. **自动更新**：TIMESTAMP 支持 `ON UPDATE CURRENT_TIMESTAMP`，DATETIME 需要触发器（5.6.5+ 起 DATETIME 也支持 DEFAULT CURRENT_TIMESTAMP / ON UPDATE）
 5. **选型建议**：跨时区用 TIMESTAMP，长期历史数据用 DATETIME
+
+**90 秒话术（DATETIME vs TIMESTAMP 怎么选）**：
+
+> Q: DATETIME vs TIMESTAMP 怎么选？
+> A: 4 维度对比：
+> 1. **范围**：TIMESTAMP 1970-2038，DATETIME 1000-9999
+> 2. **时区**：TIMESTAMP UTC 存储 + 会话时区转换，DATETIME 无时区
+> 3. **存储**：TIMESTAMP 基础 4 字节；DATETIME 在 5.6.4 前占 8 字节、5.6.4+ 内部格式改为 5 字节（文档口径仍常写 8 字节）；5.6.4+ 起两者都可声明小数秒（如 `DATETIME(3)`），按精度额外占 0-3 字节
+> 4. **自动更新**：TIMESTAMP 可设 DEFAULT CURRENT_TIMESTAMP，DATETIME 需手动（5.6.5+ 起 DATETIME 也支持）
+> 
+> **推荐**：业务时间用 DATETIME（时区无关、未来时间）；日志时间用 TIMESTAMP（自动 UTC）。
 
 **面试官：如何处理跨时区的时间存储？**
 
@@ -294,17 +305,7 @@ DELIMITER ;
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)
 
-## 90 秒面试话术（补充版）
-
-> Q: DATETIME vs TIMESTAMP 怎么选？
-> A: 4 维度对比：
-> 1. **范围**：TIMESTAMP 1970-2038，DATETIME 1000-9999
-> 2. **时区**：TIMESTAMP UTC 存储 + 会话时区转换，DATETIME 无时区
-> 3. **存储**：TIMESTAMP 4 字节，DATETIME 8 字节（5.6+ 后 TIMESTAMP 也 8 字节）
-> 4. **自动更新**：TIMESTAMP 可设 DEFAULT CURRENT_TIMESTAMP，DATETIME 需手动
-> 
-> **推荐**：业务时间用 DATETIME（时区无关、未来时间）；日志时间用 TIMESTAMP（自动 UTC）。

@@ -13,63 +13,63 @@
 
 ---
 
-## 文章清单（共 32 题，find 校对 2026-09-03）
+## 文章清单（共 32 题，find 校对 2026-09-03；频率列与各篇 frontmatter `frequency` 对齐）
 
 ### MySQL 基础
-| 主题 | 难度 | 核心问题 |
-|------|------|---------|
-| [COUNT(*) vs COUNT(1) vs COUNT(字段)](mysql-count/) | ⭐⭐ | 性能差异？最佳实践？ |
-| [INT(4) 的含义](mysql-int-define/) | ⭐⭐⭐ | 括号里的数字是长度还是显示宽度？ |
-| [时间类型选择](mysql-time-types/) | ⭐⭐ | DATETIME / TIMESTAMP / DATE 选型 |
-| [快速加索引](mysql-quickly-add-index/) | ⭐⭐⭐ | 大表在线加索引的方案 |
+| 主题 | 难度 | 频率 | 核心问题 |
+|------|------|------|---------|
+| [COUNT(*) vs COUNT(1) vs COUNT(字段)](mysql-count/) | ⭐⭐ | 中频 | 性能差异？最佳实践？ |
+| [INT(4) 的含义](mysql-int-define/) | ⭐⭐⭐ | 高频 | 括号里的数字是长度还是显示宽度？ |
+| [时间类型选择](mysql-time-types/) | ⭐⭐ | 中频 | DATETIME / TIMESTAMP / DATE 选型 |
+| [快速加索引](mysql-quickly-add-index/) | ⭐⭐⭐ | 中频 | 大表在线加索引的方案 |
 
 ### MySQL 进阶
-| 主题 | 难度 | 核心问题 |
-|------|------|---------|
-| [事务隔离级别](mysql-isolation/) | ⭐⭐⭐⭐ | RU / RC / RR / Serializable 详解 |
-| [SQL 调优](mysql-tuning/) | ⭐⭐⭐⭐ | Explain 分析 + 索引优化 |
-| [什么情况下会锁表](mysql-what-lock/) | ⭐⭐⭐⭐ | 行锁 / 表锁 / 间隙锁 |
-| [SELECT * 查 2000 万行会炸内存吗](mysql-select-all-big-table/) | ⭐⭐⭐⭐ | JDBC 默认一次性 fetch all + 流式读取姿势 |
-| [深分页 LIMIT 10000000,10 为什么慢](mysql-deep-pagination/) | ⭐⭐⭐ | OFFSET 工作机制 + 主键范围分页 + 延迟关联 |
-| [批量插入 batch 性能对比](mysql-batch-operation/) | ⭐⭐⭐⭐ | JDBC batch + rewriteBatchedStatements + LOAD DATA |
-| [大事务的危害与拆分](mysql-large-transaction/) | ⭐⭐⭐⭐ | 5 大危害（锁/Undo/binlog/连接池/MVCC） + 拆分策略 |
-| [索引失效的 10 种场景](mysql-index-failure/) | ⭐⭐⭐⭐⭐ | LIKE 左通配 / 函数 / 类型转换 / OR / 最左前缀 |
-| **🆕 [联合索引 + filesort](composite-index-filesort/)** | ⭐⭐⭐⭐ | 5 大原因 + EXPLAIN 排查 + 修复方案 |
+| 主题 | 难度 | 频率 | 核心问题 |
+|------|------|------|---------|
+| [事务隔离级别](mysql-isolation/) | ⭐⭐⭐⭐ | 中频 | RU / RC / RR / Serializable 详解 |
+| [SQL 调优](mysql-tuning/) | ⭐⭐⭐⭐ | 中频 | Explain 分析 + 索引优化 |
+| [什么情况下会锁表](mysql-what-lock/) | ⭐⭐⭐⭐ | 中频 | 行锁 / 表锁 / 间隙锁 |
+| [SELECT * 查 2000 万行会炸内存吗](mysql-select-all-big-table/) | ⭐⭐⭐⭐ | 中频 | JDBC 默认一次性 fetch all + 流式读取姿势 |
+| [深分页 LIMIT 10000000,10 为什么慢](mysql-deep-pagination/) | ⭐⭐⭐ | 中频 | OFFSET 工作机制 + 主键范围分页 + 延迟关联 |
+| [批量插入 batch 性能对比](mysql-batch-operation/) | ⭐⭐⭐⭐ | 中频 | JDBC batch + rewriteBatchedStatements + LOAD DATA |
+| [大事务的危害与拆分](mysql-large-transaction/) | ⭐⭐⭐⭐ | 中频 | 5 大危害（锁/Undo/binlog/连接池/MVCC） + 拆分策略 |
+| [索引失效的 10 种场景](mysql-index-failure/) | ⭐⭐⭐⭐⭐ | 中频 | LIKE 左通配 / 函数 / 类型转换 / OR / 最左前缀 |
+| **🆕 [联合索引 + filesort](composite-index-filesort/)** | ⭐⭐⭐⭐ | 高频 | 5 大原因 + EXPLAIN 排查 + 修复方案 |
 
 ### MySQL 深入
-| 主题 | 难度 | 核心问题 |
-|------|------|---------|
-| [MVCC 实现原理](mvcc/) | ⭐⭐⭐⭐ | Read View + Undo Log |
-| **🆕 [死锁排查](deadlock/)** | ⭐⭐⭐⭐ | 等待图检测 + SHOW ENGINE INNODB STATUS + 间隙锁死锁 + 5 大预防策略 |
-| [B+ Tree 为什么适合数据库索引](bplus-tree/) | ⭐⭐⭐⭐⭐ | vs B-Tree / Hash |
-| [MySQL 主从复制延迟](replication-lag/) | ⭐⭐⭐ | 延迟原因与解决方案 |
-| [MySQL JOIN 算法](mysql-join/) | ⭐⭐⭐⭐ | NLJ / BNL / Hash Join |
+| 主题 | 难度 | 频率 | 核心问题 |
+|------|------|------|---------|
+| [MVCC 实现原理](mvcc/) | ⭐⭐⭐⭐ | 高频 | Read View + Undo Log |
+| **🆕 [死锁排查](deadlock/)** | ⭐⭐⭐⭐ | 高频 | 等待图检测 + SHOW ENGINE INNODB STATUS + 间隙锁死锁 + 5 大预防策略 |
+| [B+ Tree 为什么适合数据库索引](bplus-tree/) | ⭐⭐⭐⭐⭐ | 中频 | vs B-Tree / Hash |
+| [MySQL 主从复制延迟](replication-lag/) | ⭐⭐⭐ | 中频 | 延迟原因与解决方案 |
+| [MySQL JOIN 算法](mysql-join/) | ⭐⭐⭐⭐ | 中频 | NLJ / BNL / Hash Join |
 
 ### 分库分表与高可用
-| 主题 | 难度 | 核心问题 |
-|------|------|---------|
-| [分表扩容策略](sharding-resize/) | ⭐⭐⭐ | 翻倍扩容 + 双写过渡 + 灰度切换 + 回滚方案 |
-| **🆕 [分库分表分布式事务](sharding-distributed-tx/)** | ⭐⭐⭐ | 分库后跨库事务 4 大方案 + Seata + 本地消息表 |
-| **🆕 [分库分表分页查询](sharding-pagination/)** | ⭐⭐⭐ | 全局视野法 / ES / 冗余汇总 + 4 大陷阱 |
-| [垂直分表判定规范](vertical-table-split/) | ⭐⭐⭐⭐ | 30 字段拆不拆 + 5 指标判定 + Buffer Pool 原理 + 反模式 |
+| 主题 | 难度 | 频率 | 核心问题 |
+|------|------|------|---------|
+| [分表扩容策略](sharding-resize/) | ⭐⭐⭐ | 高频 | 翻倍扩容 + 双写过渡 + 灰度切换 + 回滚方案 |
+| **🆕 [分库分表分布式事务](sharding-distributed-tx/)** | ⭐⭐⭐ | 高频 | 分库后跨库事务 4 大方案 + Seata + 本地消息表 |
+| **🆕 [分库分表分页查询](sharding-pagination/)** | ⭐⭐⭐ | 高频 | 全局视野法 / ES / 冗余汇总 + 4 大陷阱 |
+| [垂直分表判定规范](vertical-table-split/) | ⭐⭐⭐⭐ | 高频 | 30 字段拆不拆 + 5 指标判定 + Buffer Pool 原理 + 反模式 |
 
 ### PostgreSQL / 人大金仓
-| 主题 | 难度 | 核心问题 |
-|------|------|---------|
-| 🆕 [PG-VACUUM 大量删除后查询变慢排查](pg-vacuum-troubleshooting/) | ⭐⭐⭐⭐ | dead tuples + autovacuum 滞后 + 表/索引膨胀 + 人大金仓 sys_stat_user_tables 特化 |
+| 主题 | 难度 | 频率 | 核心问题 |
+|------|------|------|---------|
+| 🆕 [PG-VACUUM 大量删除后查询变慢排查](pg-vacuum-troubleshooting/) | ⭐⭐⭐⭐ | 中频 | dead tuples + autovacuum 滞后 + 表/索引膨胀 + 人大金仓 sys_stat_user_tables 特化 |
 
 ### Redis
-| 主题 | 难度 | 核心问题 |
-|------|------|---------|
-| [缓存穿透 / 击穿 / 雪崩](cache-penetration-breakdown-avalanche/) | ⭐⭐⭐⭐⭐ | 面试必考三件套 |
-| **🆕 [单线程为什么快](redis-single-thread/)** | ⭐⭐⭐⭐ | epoll/Reactor + Redis 6.0 多线程 + vs MySQL 对比 |
-| [Redis 搜索能力](redis-search/) | ⭐⭐⭐ | Redis 如何做全文搜索？ |
-| [Redis 持久化](redis-persistence/) | ⭐⭐⭐⭐ | RDB / AOF / 混合持久化 |
-| [Redis 内存淘汰策略](redis-eviction/) | ⭐⭐⭐⭐ | 8 种淘汰策略详解 |
-| [Redis 过期 Key 实时释放内存吗](redis-expiry-deletion/) | ⭐⭐⭐ | 惰性删除 + 定期删除 + UNLINK |
-| [Redis 集群](redis-cluster/) | ⭐⭐⭐⭐ | Sentinel vs Cluster |
-| [Redis 大 Key 问题](redis-big-key/) | ⭐⭐⭐⭐ | 发现与治理方案 |
-| **🆕 [Redis 分布式锁 3 大坑](redis-distributed-lock/)** | ⭐⭐⭐ | 锁提前过期 / 误删他人锁 / 不可重入 + Redisson 看门狗 |
+| 主题 | 难度 | 频率 | 核心问题 |
+|------|------|------|---------|
+| [缓存穿透 / 击穿 / 雪崩](cache-penetration-breakdown-avalanche/) | ⭐⭐⭐⭐⭐ | 中频 | 面试必考三件套 |
+| **🆕 [单线程为什么快](redis-single-thread/)** | ⭐⭐⭐⭐ | 高频 | epoll/Reactor + Redis 6.0 多线程 + vs MySQL 对比 |
+| [Redis 搜索能力](redis-search/) | ⭐⭐⭐ | 中频 | Redis 如何做全文搜索？ |
+| [Redis 持久化](redis-persistence/) | ⭐⭐⭐⭐ | 中频 | RDB / AOF / 混合持久化 |
+| [Redis 内存淘汰策略](redis-eviction/) | ⭐⭐⭐⭐ | 高频 | 8 种淘汰策略详解 |
+| [Redis 过期 Key 实时释放内存吗](redis-expiry-deletion/) | ⭐⭐⭐ | 中频 | 惰性删除 + 定期删除 + UNLINK |
+| [Redis 集群](redis-cluster/) | ⭐⭐⭐⭐ | 中频 | Sentinel vs Cluster |
+| [Redis 大 Key 问题](redis-big-key/) | ⭐⭐⭐⭐ | 中频 | 发现与治理方案 |
+| **🆕 [Redis 分布式锁 3 大坑](redis-distributed-lock/)** | ⭐⭐⭐ | 高频 | 锁提前过期 / 误删他人锁 / 不可重入 + Redisson 看门狗 |
 
 ---
 

@@ -4,7 +4,7 @@
   difficulty: ⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
-  tags: [11.ai, Context, context]
+  tags: [11.ai, context-engineering, lost-in-the-middle]
   status: active
 -->
 

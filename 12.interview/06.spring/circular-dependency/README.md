@@ -2,7 +2,7 @@
   id: 06.spring-circular-dependency
   topic: 06.spring
   difficulty: ⭐⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 反直觉代码
   tags: [06.spring, circular, dependency]
   status: active
@@ -265,6 +265,6 @@ public class B {
 
 - 深度阅读：[`06.spring`](../../../04.spring-backend/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · Spring · 循环依赖 · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · Spring · 循环依赖 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · circular-dependency](../README.md)

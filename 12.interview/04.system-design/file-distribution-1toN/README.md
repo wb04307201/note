@@ -14,7 +14,6 @@
 
 > **系列定位**：高频系统设计题（社招必考 / 抖音/B 站面试原题）。配套兄弟题：[大文件上传系统](../file-upload/README.md)（用户上传视角互补）、[消息已读未读](../message-read-status/README.md)、[媒体上传](../media-upload/README.md)。
 
-⭐⭐⭐⭐⭐ 深度级别（架构师级）
 📚 前置知识：HTTP Range / CDN / P2P / 带宽成本 / 断点续传
 
 ---
@@ -319,6 +318,24 @@ Content-Length: 1048576
 
 ---
 
+## 九、面试话术（30 秒版 / 90 秒版）
+
+**30 秒版**：
+
+> "这道题的核心不是'用 CDN'，而是成本估算和方案选型。1 万用户 × 200M = 2TB 出流量，要在 5 分钟内下完需要约 54 Gbps 带宽，单源直传必崩；按 CDN 0.18 元/GB 计约 360 元/次。标准方案是 OSS 源站 + CDN 边缘加速；百万级规模再上 CDN + P2P 混合，可降本 50-70%。同时用 HTTP Range 做断点续传，防盗链叠加签名 URL 短期过期、一次性 Token、单 IP 限速、Referer 白名单四要素，防恶意刷量。"
+
+**90 秒版**：
+
+> "我先算成本：总数据量 1 万 × 200M = 2TB，300 秒内完成需要 6.8 GB/s ≈ 54 Gbps 带宽，自建专线月费数万不现实；按 CDN 0.18 元/GB 计约 360 元/次。
+>
+> 再讲选型：通用分发用 CDN（OSS 冷源 + 边缘缓存 + 大促前热点文件预热），简单可靠；百万级 / TB 级视频分发用 CDN + P2P 混合（BitTorrent 分片 + Tracker 协调多源下载），CDN 流量被 P2P 分流可降本 50-70%，代价是实现复杂、有隐私合规风险。
+>
+> 断点续传走 HTTP Range 协议：客户端在 localStorage 记录已下载字节数，中断后重连携带 `Range: bytes=start-end` 请求头，服务器返回 206 Partial Content 只传分片；OSS / CDN 天然支持，自建服务要加 `Accept-Ranges: bytes`。
+>
+> 安全侧防盗链四要素叠加：签名 URL 短期过期（5 分钟）、Token 一次性（使用即失效）、单 IP 限速（50 Mbps 防刷量）、Referer 白名单（防直链）。敏感文件（合同 / 财报）再加用户 ID 水印和下载日志审计做合规追溯。"
+
+---
+
 ## 相关章节
 
 - [大文件上传系统](../file-upload/README.md) — 用户上传视角（与本文互补）
@@ -334,6 +351,6 @@ Content-Length: 1048576
 4. [BitTorrent 协议规范](https://www.bittorrent.org/beps/bep_0003.html)
 5. [签名 URL 防泄漏方案 - AWS S3 官方](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html)
 
-> 📅 2026-09-01 · 咬文嚼字 · 大文件分发 · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 大文件分发 · ⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 系统设计咬文嚼字](../README.md)

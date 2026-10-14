@@ -3,8 +3,8 @@
   topic: 01.java
   difficulty: ⭐⭐⭐
   frequency: 高频
-  scenario_type: 反直觉代码
-  tags: [01.java, questions]
+  scenario_type: 方法论综述
+  tags: [01.java, questions, 面试方法论, STAR]
   status: active
 -->
 
@@ -235,6 +235,24 @@ public class LifecycleDemo implements BeanNameAware, ApplicationContextAware, In
 | Redis应用场景 | ⭐⭐⭐⭐ | 实战经验 |
 
 ## 五、面试话术
+
+**示范：技术题的双版本话术（HashMap vs ConcurrentHashMap）**
+
+30 秒版：
+
+> "HashMap 线程不安全——put 是 check-then-act 非原子，并发会数据覆盖，JDK 7 头插法扩容还会成环导致 CPU 100%。ConcurrentHashMap 是并发安全的：JDK 7 分段锁（Segment，默认 16 路并发），JDK 8 改为 CAS + synchronized 锁到桶头节点，读无锁、写细粒度，size 用 baseCount + CounterCell 分散竞争。选型上单线程用 HashMap，并发场景一律 ConcurrentHashMap，不要用 Hashtable / synchronizedMap 的全局大锁。"
+
+90 秒版：
+
+> "我从三个层次展开：不安全的根因、CHM 的演进、选型边界。
+>
+> 第一层，HashMap 为什么不安全：`putVal` 里判空桶和写入之间没有同步，两个线程同时看到空桶各自写入，后者覆盖前者；`++size` 是 read-modify-write，计数偏小；JDK 7 `transfer()` 头插法反转链表，并发扩容可能成环，get 落到该桶就死循环。JDK 8 改尾插法消除了成环，但覆盖和计数问题仍在。
+>
+> 第二层，CHM 演进：JDK 7 是 Segment 数组 + HashEntry，每个 Segment 一把 ReentrantLock，并发度被 Segment 数量锁死；JDK 8 抛弃 Segment，Node 数组 + 链表/红黑树，空桶 CAS 插入、非空桶 synchronized 锁头节点，并发度等于桶数；扩容支持多线程 helpTransfer 协助迁移（ForwardingNode 标记）；size 统计用 baseCount + CounterCell[]，思路同 LongAdder。
+>
+> 第三层，边界与追问：CHM 不允许 null key/value（避免并发下 `get(k)==null` 的二义性），迭代器是弱一致性而非 fail-fast；复合操作要用 `computeIfAbsent` / `merge` 这类原子方法，而不是先 get 再 put。另外弱一致意味着 size() 只是估算值，强一致场景要自己加锁或换 ConcurrentSkipListMap（有序）。"
+
+**行为题话术模板**
 
 **面试官：请介绍你自己。**
 

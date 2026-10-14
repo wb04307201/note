@@ -499,7 +499,9 @@ EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders_log WHERE user_id = 12345 ORDER 
 
 ---
 
-## 六、面试话术（90 秒版本）
+## 六、面试话术（30 秒版 + 90 秒版）
+
+> **30 秒版**：删数据后变慢的根因是 dead tuple 堆积 + autovacuum 滞后——PG 的 MVCC 把旧版本留在堆表里，删除只是打标记，空间不回收还会拖慢扫描和统计信息失真。排查四步：`pg_stat_user_tables` 看 `n_dead_tup` / `last_autovacuum` 定位，`pgstattuple` 量化膨胀比例，轻中度 `VACUUM ANALYZE` 止血、中重度 `pg_repack` 在线重建、重度维护窗口 `VACUUM FULL`，最后调小 `autovacuum_vacuum_scale_factor` 并监控长事务防复发。
 
 > **面试官**："生产环境删了张大表的数据后，查询反而变慢，你如何排查？"
 >

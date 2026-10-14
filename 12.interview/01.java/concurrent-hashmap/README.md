@@ -2,7 +2,7 @@
   id: 01.java-concurrent-hashmap
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 性能对比
   tags: [01.java, HashMap, concurrent]
   status: active
@@ -335,13 +335,17 @@ map.merge(key, 1, Integer::sum);
 
 ---
 
-## 五、面试话术（30 秒版）
+## 五、面试话术（30 秒版 + 90 秒版）
+
+**30 秒版**：
 
 > "ConcurrentHashMap 在 JDK 7 中使用分段锁（Segment）实现并发控制，每个 Segment 是一把 ReentrantLock，默认 16 路并发。JDK 8 重构为 CAS + synchronized 细粒度锁，锁粒度从 Segment 降到桶级别，理论并发度等于桶数量。
 >
 > JDK 8 核心优化：1）桶为空时 CAS 直接插入，无锁路径性能极高；2）链表超 8 且数组超 64 时转红黑树，查找 O(log n)；3）扩容支持多线程协助迁移，通过 ForwardingNode 标记已迁移桶；4）size() 用 CounterCell 数组分散竞争，类似 LongAdder。
 >
 > 与 HashMap 关键差异：CHM 不允许 null key/value，迭代器弱一致性而非 fail-fast，提供 putIfAbsent、computeIfAbsent 等原子复合操作。高并发场景下，CHM 是唯一正确选择。"
+
+**90 秒版**：
 
 > "ConcurrentHashMap 是 Java 并发编程中最核心的数据结构之一，我从 JDK 演进角度来讲。
 >

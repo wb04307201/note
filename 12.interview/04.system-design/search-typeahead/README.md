@@ -16,7 +16,6 @@
 
 ---
 
-⭐⭐⭐⭐⭐ 深度级别（架构师级）
 📚 前置知识：Trie 树 / Redis ZSet / Kafka / 前缀索引 / 防抖 debounce
 
 ---
@@ -650,6 +649,26 @@ void rebuildAffected(merchantId) {
 
 ---
 
+## 八、面试话术（30 秒版 / 90 秒版）
+
+**30 秒版**：
+
+> "typeahead 的核心是前缀索引 + 实时增量更新 + 抗高 QPS。索引结构用 Trie 树或 Redis ZSet，每个前缀节点预存 Top 10。查询走三级缓存：本地 Caffeine 扛 80% 流量、Redis 扛 19%、剩下 1% 冷门前缀实时计算。更新走 Kafka 事件驱动增量重建——商家实名变化只重建受影响的 N 个前缀，延迟 <5s。排序上实名商家 +20 分，叠加销量、时令、个性化权重。"
+
+**90 秒版**：
+
+> "我会按方案演进 + 关键机制来回答。
+>
+> 方案演进分 4 步：① 数据库 LIKE 前缀匹配，实现最简单但不走索引，10 万 QPS 必死，只适合 Demo；② ES completion suggester，内置 FST 前缀索引，适合 1-100 万商品的中型电商，但权重调整不灵活；③ Redis ZSet + Trie 树预加载，每个节点存 Top 10，查询 O(prefix_length) <5ms，适合 10-100 万商品的主流电商，是推荐方案；④ ES + Flink 实时索引，支持个性化，适合百万级以上超大平台。
+>
+> 排序权重公式：score = 基础质量分 + 实名商家 +20 + log10(销量)×2 + 时令商品 +10 + 个性化偏好 +5 − 违规商品 100，系数走配置 + A/B 测试调优。
+>
+> 实时更新：商家实名通过 → Kafka 事件 → 计算受影响的 N 个前缀 → 增量重建 Top 10 → Pipeline 批量写 Redis → 失效本地缓存，全程 <5s；相比全量重建（10 万商品 5 分钟），增量重建只需约 200ms。
+>
+> 抗 10 万 QPS 靠分层：L1 Caffeine 命中 80%、L2 Redis 命中 19%、L3 实时计算 1%；前端 debounce 300ms 降请求频次，后端令牌桶每用户 10 QPS 兜底恶意流量，Redis 挂时降级 ES / 本地缓存。"
+
+---
+
 ## 相关章节
 
 - [商品搜索系统设计](../product-search/README.md) — 全文搜索（与 typeahead 互补）
@@ -665,6 +684,6 @@ void rebuildAffected(merchantId) {
 4. [Flink 实时计算搜索权重 — 阿里云](https://developer.aliyun.com/article/798656)
 5. [Trie 树序列化方案对比 — GitHub awesome-tries](https://github.com/yyyguiqing/Awesome-Tries)
 
-> 📅 2026-09-01 · 咬文嚼字 · 搜索typeahead · ⭐⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · 搜索typeahead · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 系统设计咬文嚼字](../../README.md)

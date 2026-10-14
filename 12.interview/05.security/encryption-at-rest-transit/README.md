@@ -46,22 +46,30 @@
 ## 二、代码示例
 
 ```java
-// 应用层字段加密（AES-256-GCM）
+// 应用层字段加密（AES-256-GCM，信封加密：KEK 在 KMS，应用只持有加密后的 DEK）
 @Component
 public class FieldEncryptor {
-    @Value("${encryption.key}") // 从 KMS 获取，不硬编码
-    private SecretKey key;
+    private final KmsClient kmsClient;          // 阿里云 KMS / AWS KMS SDK
+    private final SecretKey dek;                // 数据加密密钥（DEK）
+
+    public FieldEncryptor(KmsClient kmsClient,
+                          @Value("${encryption.encrypted-dek}") String encryptedDek) {
+        this.kmsClient = kmsClient;
+        // 启动时调 KMS Decrypt 解出 DEK——KEK 永不出 KMS，配置文件里只存密文 DEK
+        byte[] dekBytes = kmsClient.decrypt(Base64.getDecoder().decode(encryptedDek));
+        this.dek = new SecretKeySpec(dekBytes, "AES");
+    }
 
     public String encrypt(String plaintext) {
         byte[] iv = SecureRandom.getInstanceStrong().generateSeed(12);
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(Cipher.ENCRYPT_MODE, key, new GCMParameterSpec(128, iv));
+        cipher.init(Cipher.ENCRYPT_MODE, dek, new GCMParameterSpec(128, iv));
         byte[] ct = cipher.doFinal(plaintext.getBytes());
         return Base64.getEncoder().encodeToString(iv) + ":" +
                Base64.getEncoder().encodeToString(ct);
     }
 }
-// DB 存储密文，DBA 无法直接读取
+// DB 存储密文，DBA 无法直接读取；密钥轮换只需 KMS 重加密 DEK（KEK 换、数据不动）
 ```
 
 ---

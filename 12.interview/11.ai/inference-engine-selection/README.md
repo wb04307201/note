@@ -350,7 +350,11 @@ python -m vllm.entrypoints.openai.api_server \
 ```bash
 # Ollama 一行命令
 ollama run qwen2.5:7b
-# 或 Python 调用
+```
+
+或 Python 调用：
+
+```python
 import ollama
 client = ollama.Client()
 resp = client.chat(model='qwen2.5:7b', messages=[...])

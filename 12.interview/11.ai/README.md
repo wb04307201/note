@@ -75,7 +75,7 @@
 | 🆕 [Agent A/B Test 系统设计](agent-ab-testing/) | ⭐⭐⭐⭐ | 5 大组件（流量/配置/指标/统计/决策）+ 4 流量分配（hash/sticky/分层/Holdout）+ 显著性检验（t-test/Bonferroni/Sequential）+ 5 反模式 + 90 秒话术 | [agent-evaluation/02 专章](../../09.ai-applications/agent/agent-evaluation/02-ab-testing-design/README.md) |
 | **🆕 [Agent 跑偏/死循环](agent-reliability/)** | ⭐⭐⭐ | 5 大陷阱 + 4 层防护（Prompt 约束 / Verifier 检测 / 状态回滚 / 成本熔断） | [03-engineering/agent-reliability](../../09.ai-applications/agent/agent-reliability/README.md) |
 | **🆕 [KV Cache + MQA/GQA/MLA](kv-cache-mqa-gqa-mla/)** | ⭐⭐⭐⭐ | O(n³)→O(n²) 复杂度 + 3 种 KV 共享方案对比（显存/精度/训练 trade-off） | [02-technology-stack/kv-cache](../../09.ai-applications/llm-inference/kv-cache/README.md) |
-| [Agent DAG vs ReAct](agent-dag-vs-react/) | ⭐⭐⭐⭐⭐ | 复杂 Agent 为什么采用 DAG Workflow | [04-architecture/agent-architecture](../../09.ai-applications/agent/agent-architecture/README.md) |
+| [Agent DAG vs ReAct](agent-dag-vs-react/) | ⭐⭐ | 复杂 Agent 为什么采用 DAG Workflow | [04-architecture/agent-architecture](../../09.ai-applications/agent/agent-architecture/README.md) |
 | **🆕 [手搓 Agent vs 框架](handcraft-vs-framework/)** | ⭐⭐⭐⭐ | 三问检验（重在哪/代价/权衡） + 抽象税 4 层拆解 + 决策树（何时手搓何时框架） + 5 大开源项目 | [04-architecture/agent-architecture §手搓 vs 框架](../../09.ai-applications/agent/agent-architecture/README.md) |
 | **🆕 [ReAct vs Plan-and-Execute](react-vs-plan-execute/)** | ⭐⭐⭐⭐ | 4 模式 6 维打分 + RePlan 3 机制 + 80% 是混合架构 + 7 道 Q&A | [04-architecture/agent-execution-patterns](../../09.ai-applications/agent/agent-execution-patterns/README.md) |
 | [10亿级向量检索](vector-search-algorithms/) | ⭐⭐⭐⭐ | HNSW vs IVF vs DiskANN 4 维选型 + 内存/磁盘/QPS/Recall 权衡 | 02-technology-stack/vector-search-algorithms |

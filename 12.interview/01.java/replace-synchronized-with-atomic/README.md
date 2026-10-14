@@ -122,9 +122,11 @@ int[] stamp = new int[1];
 Integer expected = ref.get(stamp);
 ref.compareAndSet(expected, 50, stamp[0], stamp[0]+1);  // 同时匹配值和版本
 
-// 解决2：AtomicMarkableReference（带标记位）
+// 解决2：AtomicMarkableReference（带标记位，只关心"是否被动过"而非改了几次）
 AtomicMarkableReference<String> state = new AtomicMarkableReference<>("ACTIVE", false);
-state.compareAndSet(expected, expected, false, true);  // 标记为删除
+// compareAndSet(expectedRef, newRef, expectedMark, newMark)
+String current = state.getReference();          // 读当前引用
+state.compareAndSet(current, current, false, true);  // 值不变，把标记位翻为 true（标记为删除）
 ```
 
 **3. 无锁数据结构：栈**
@@ -260,16 +262,27 @@ public class ConcurrencyMetrics {
 }
 ```
 
-## 五、面试话术
+## 五、面试话术（30 秒 + 90 秒版本）
 
 **面试官：synchronized和Atomic类的区别？**
 
-回答要点：
-1. **机制**：synchronized是悲观锁（阻塞），Atomic是乐观锁（CAS自旋）
-2. **粒度**：synchronized保护代码块/方法；Atomic仅单变量
-3. **性能**：低竞争时Atomic更快（无上下文切换）；高竞争时synchronized可能更好
-4. **功能**：synchronized支持复合操作和条件等待；Atomic仅保证单操作原子性
-5. **选择**：单变量用Atomic；复合操作用synchronized/ReentrantLock；高竞争累加用LongAdder
+**30 秒版**：
+
+> "机制上：synchronized 是悲观锁——假设一定冲突，先加锁再操作，竞争时线程阻塞挂起；Atomic 是乐观锁——假设不冲突，用 CAS 硬件指令（cmpxchg）自旋重试。粒度上：synchronized 保护任意代码块，Atomic 只保证单变量单操作原子性。选型上：单变量计数用 Atomic，复合操作用 synchronized/ReentrantLock，高竞争累加用 LongAdder。"
+
+**90 秒版**：
+
+> "我从机制、性能、功能边界三层展开。
+>
+> 第一层机制：synchronized 是 JVM 内置的悲观锁，经过偏向锁→轻量级锁→重量级锁的升级过程，竞争加剧后线程会阻塞挂起，涉及用户态/内核态切换；Atomic 类基于 `Unsafe.compareAndSwap*`（x86 上是带 lock 前缀的 cmpxchg 指令）做乐观并发，失败就自旋重试，不阻塞线程。
+>
+> 第二层性能：低竞争时 Atomic 明显更快——没有锁获取/释放和上下文切换开销，示意数据 8 线程千万次递增 CAS 比 synchronized 快 2.5 倍左右。但高竞争时自旋会空烧 CPU，成功率骤降，这时 synchronized 的阻塞策略反而更稳；如果是纯累加场景，LongAdder 用 Cell 数组分散竞争，比 AtomicLong 高出一个量级。
+>
+> 第三层功能边界：Atomic 只保证单变量原子性，`check-then-act` 复合逻辑（比如先 get 判断再 set）仍需 CAS 循环或锁；synchronized 还支持条件等待（wait/notify）和可重入。另外 CAS 有 ABA 问题，值敏感场景用 AtomicStampedReference 加版本号解决。
+>
+> 我的实践原则：单变量用 Atomic，复合操作用锁，高竞争累加用 LongAdder，且任何选型都以压测数据为准，不背'无锁一定快'的教条。"
+
+**其余高频追问（回答要点）**：
 
 **面试官：什么是ABA问题？如何解决？**
 

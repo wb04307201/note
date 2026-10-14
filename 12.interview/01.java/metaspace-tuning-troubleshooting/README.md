@@ -180,9 +180,15 @@ top -Hp <pid>
 
 ### 2.4 用 jcmd 看 Metaspace 实际使用
 
+> ⚠️ **前置条件**：`VM.native_memory`（NMT）必须在**启动时**加参数 `-XX:NativeMemoryTracking=summary`（或 `detail`）开启，且需重启 JVM 生效。对未开启 NMT 的进程直接执行会报：
+> `Native memory tracking is not enabled`。运行时无法动态打开（`jcmd <pid> VM.native_memory baseline` 也只能对已开启的进程用）。NMT 自身有 5%-10% 的性能开销，生产环境排查完建议关闭。
+
 ```bash
+# 启动时开启 NMT（前置条件）
+java -XX:NativeMemoryTracking=summary -jar app.jar
+
 # 查看 native memory 详细分布
-jcmd <pid> VM.native_memory
+jcmd <pid> VM.native_memory summary
 
 # 输出：
 # Total: reserved=2GB, committed=1.7GB
@@ -376,7 +382,13 @@ top -bn1 | head -10
 
 ---
 
-## 六、面试话术（90 秒版本）
+## 六、面试话术（30 秒 + 90 秒版本）
+
+**30 秒版**：
+
+> "一句话讲透：`MetaspaceSize` 是初始预分配大小，`MaxMetaspaceSize` 是上限——只设上限不设初始值，Metaspace 会从默认 ~20MB 动态扩容，每次扩容触发 Full GC。再叠一个容器陷阱：JDK 10+ 容器感知默认 `MaxRAMPercentage=25%`，2G 容器下 Xmx 只有 512m。所以生产必须显式设 `-Xms=-Xmx` + `MetaspaceSize=MaxMetaspaceSize`。"
+
+**90 秒版**：
 
 > "线上 JVM 调优有个反直觉点：**默认 JVM 在 2G 容器下 `Xmx` 只有 512m**。这是因为 JDK 10+ 容器感知默认 `MaxRAMPercentage=25%`，2G × 25% = 512m。即便是物理 2G 内存，JVM 也不会自动给你 2G 堆。
 >

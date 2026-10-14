@@ -2,7 +2,7 @@
   id: 09.front-end-cross-platform-framework-design
   topic: 09.front-end
   difficulty: ⭐⭐⭐⭐
-  frequency: 高频
+  frequency: 中高频（架构师 / 大厂基础架构岗高频，普通业务前端低频）
   scenario_type: 架构决策困境
   tags: [09.front-end, cross-platform, ast, bridge, runtime]
   status: active
@@ -429,10 +429,11 @@ function callBridge(method, data) {
   }
   
   return new Promise((resolve, reject) => {
+    const callbackId = Date.now() + '_' + Math.random()
     window.webkit.messageHandlers.bridge.postMessage({
       method,
       data,
-      callbackId: Date.now() + '_' + Math.random()
+      callbackId
     })
     // 监听回调
     window.addEventListener('bridgeCallback_' + callbackId, (e) => {

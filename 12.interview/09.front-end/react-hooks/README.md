@@ -278,20 +278,22 @@ function handleClick() {
 ```jsx
 function SearchResults() {
   const [query, setQuery] = useState('')
+  const [results, setResults] = useState([])
   const [isPending, startTransition] = useTransition()
   
   const handleChange = (e) => {
-    setQuery(e.target.value)  // 紧急更新
+    setQuery(e.target.value)  // 紧急更新：输入框立即响应
     
     startTransition(() => {
-      setSearchResults(e.target.value)  // 非紧急更新
+      // 非紧急更新：搜索结果的计算/请求可被更高优先级更新打断
+      setResults(search(e.target.value))
     })
   }
   
   return (
     <>
       <input value={query} onChange={handleChange} />
-      {isPending ? 'Loading...' : <Results />}
+      {isPending ? 'Loading...' : <Results data={results} />}
     </>
   )
 }

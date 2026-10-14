@@ -129,8 +129,8 @@ p.sayHello();  // 输出什么？
 > 「**钻石继承问题**（Diamond Problem）：
 >
 > ```java
-> interface A { default void hello() { System.out.println(\"A\"); } }
-> interface B { default void hello() { System.out.println(\"B\"); } }
+> interface A { default void hello() { System.out.println("A"); } }
+> interface B { default void hello() { System.out.println("B"); } }
 > class C implements A, B {
 >     // 编译错误: ambiguous inherited from A and B, must override
 > }

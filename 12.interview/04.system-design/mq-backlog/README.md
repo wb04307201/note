@@ -174,6 +174,6 @@
 - 相关：[`12.interview/still-need-rocketmq`](../still-need-rocketmq/README.md) — Kafka vs RocketMQ 选型
 - 排查实战：[`支付消息丢失排查`](../payment-message-lost/README.md) — 消息丢失的全链路排查框架
 
-> 📅 2026-09-01 · 咬文嚼字 · MQ积压 · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MQ积压 · ⭐⭐（中频面试 + 实战必会）
 
 ← [返回系统设计咬文嚼字](../README.md)

@@ -4,7 +4,7 @@
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 性能对比
-  tags: [09.front-end, Vue, vue]
+  tags: [09.front-end, vue, reactivity]
   status: active
 -->
 

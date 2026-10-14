@@ -179,11 +179,6 @@ RENAME TABLE large_table TO large_table_old,
 3. **调整参数**：增加`innodb_buffer_pool_size`，临时调整`innodb_io_capacity`
 4. **测试环境验证**：先在测试环境模拟操作
 
-1. **选择低峰期操作**：减少对生产环境的影响
-2. **监控资源使用**：特别是I/O和CPU使用率
-3. **调整参数**：增加`innodb_buffer_pool_size`，临时调整`innodb_io_capacity`
-4. **测试环境验证**：先在测试环境模拟操作
-
 | 方法     | 停机时间 | 资源消耗 | 复杂度 | 适用场景       | 1亿行预估耗时 |
 |--------|------|------|-----|------------|----------|
 | 在线DDL  | 秒级  | 中    | 低   | MySQL 5.6+ | 2-4小时   |
@@ -191,23 +186,24 @@ RENAME TABLE large_table TO large_table_old,
 | gh-ost | 秒级  | 低    | 中   | 云环境        | 3-6小时   |
 | 分批处理   | 分钟级 | 可控   | 高   | 离线环境       | 1-2小时   |
 
-| 方法     | 停机时间 | 资源消耗 | 适用场景       | 1亿行预估耗时 |
-|--------|------|------|------------|----------|
-| 在线DDL  | 秒级  | 中    | MySQL 5.6+ | 2-4小时   |
-| pt-osc | 毫秒级 | 高    | 复杂环境       | 4-8小时   |
-| gh-ost | 秒级  | 低    | 云环境        | 3-6小时   |
-| 分批处理   | 分钟级 | 可控   | 离线环境       | 1-2小时   |
+对于1亿条数据，推荐优先考虑pt-online-schema-change或gh-ost工具。如果是在MySQL 5.6+且业务可以接受秒级元数据锁（MDL）等待，直接使用在线DDL也是不错的选择。
 
-对于1亿条数据，推荐优先考虑pt-online-schema-change或gh-ost工具。如果是在MySQL 8.0+且业务可以接受短暂锁表，直接使用在线DDL也是不错的选择。
+## 六、面试话术（30 秒版 + 90 秒版）
 
-**面试要点：**
+> **30 秒版**：1 亿行大表加索引有三条路：① MySQL 5.6+ 在线 DDL（`ALTER TABLE ... ADD INDEX, ALGORITHM=INPLACE, LOCK=NONE`），不锁 DML 但会拖慢主从；② pt-osc / gh-ost 影子表方案——pt-osc 用触发器同步增量，gh-ost 用 binlog 订阅、对原表侵入更小；③ 离线新表分批导入 + `RENAME TABLE` 原子切换。生产首选 gh-ost / pt-osc，并用 `--max-lag` 控制复制延迟。
+
+> **90 秒版**："先说原理：在线 DDL 的 `ALGORITHM=INPLACE, LOCK=NONE` 允许加索引期间并发 DML，增量变更先记录在 online alter log、最后追放到新索引，但开始和结束各要拿一次短暂的 MDL 排他锁——如果此时有长事务占着 MDL，DDL 会被阻塞并连带阻塞后续所有查询，这是最常见的翻车点，动手前先查 `information_schema.INNODB_TRX` 清掉长事务。再说工具选型：pt-osc 建影子表 + 在原表上挂三个触发器同步增量，触发器与业务 DML 同事务执行，高写入场景有额外开销；gh-ost 不建触发器，伪装成一个从库订阅 binlog 回放增量，对原表零侵入、可随时限流暂停，云环境首选。两者都要用 `--max-lag` / `--throttle-control-replicas` 盯住主从延迟，否则从库会落后数小时。最后说兜底方案：离线环境可以新表建好索引后按主键区间分批 `INSERT ... SELECT`（每 10-50 万行提交一次，配合 `innodb_flush_log_at_trx_commit=2` 提速），`RENAME TABLE` 原子切换。评估影响别只看主库——磁盘要预留 1-2 倍表空间，DDL 期间 I/O 上升，以及从库回放延迟，这三项都要提前压测。"
+
+**面试追问要点：**
 1. 在线DDL的原理和LOCK参数选择
 2. pt-osc vs gh-ost（触发器 vs binlog同步）
-3. 如何评估DDL对主从复制的影响## 相关章节
+3. 如何评估DDL对主从复制的影响
+
+## 相关章节
 
 - 深度阅读：[`03.database/04-index`](../../../03.data-stack/01-database/04-index/README.md) — B+ 树、索引原理
 - 相关：[`12.interview/mysql-index-failure`](../mysql-index-failure/README.md) — 索引失效 10 种场景
 
-> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐（中频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)

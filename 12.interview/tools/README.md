@@ -1,6 +1,6 @@
 <!--module:
-  parent: split-hairs
-  slug: split-hairs/tools
+  parent: interview
+  slug: interview/tools
   type: index
   category: 高频面试题
   summary: 开发工具面试题 — Git / Docker / Nginx / Kubernetes

@@ -2,7 +2,7 @@
   id: 01.java-if-before-switch
   topic: 01.java
   difficulty: ⭐⭐⭐⭐
-  frequency: 高频
+  frequency: 中频（Dubbo 源码系特色题，特定公司高频）
   scenario_type: 反直觉代码
   tags: [01.java, before, switch]
   status: active
@@ -292,11 +292,16 @@ if (state == ChannelState.RECEIVED) {
 
 ---
 
-## 五、面试话术
+## 五、面试话术（30 秒版 + 90 秒版）
 
 **面试官**："为什么 Dubbo 源码中 switch 前面要加一个 if？"
 
-**参考回答**：
+**30 秒版**：
+
+> "这是针对高频热点状态的分支优化：用 if 提前拦截占比最高的状态（如 Dubbo 的 RECEIVED 占 95%+），命中时绕过 switch 的查表跳转直接执行。CPU 对单一 if 的分支预测准确率远高于 switch 多路跳转，预测失败要付出 10-20 个时钟周期的流水线冲刷惩罚。前提是先用 Profiling 确认分支分布，某分支占比超 80% 才值得做。"
+
+**90 秒版**：
+
 > "这是一种针对高频热点状态的 CPU 级优化。核心思路是用 if 提前判断占比最高的状态（比如 Dubbo 中的 RECEIVED 状态占 95% 以上），让它绕过 switch 的查表流程直接执行。
 >
 > 从硬件层面讲，现代 CPU 有分支预测机制，单一 if 条件的预测准确率远高于 switch 的多路跳转。预测命中时可以充分利用指令流水线，避免预测失败带来的 10-20 个时钟周期惩罚。从软件层面讲，switch 无论用 tableswitch 还是 lookupswitch 都需要一次内存读取来获取跳转目标，而 if 直通完全省去了这个开销。
@@ -318,6 +323,6 @@ if (state == ChannelState.RECEIVED) {
 
 - 深度阅读：[`01.java-and-jvm`](../../../01.java-and-jvm/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · if 优化 switch · ⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · if 优化 switch · ⭐⭐⭐⭐（中频面试 · Dubbo 源码系特色题 + 实战必会）
 
 ← [返回: 咬文嚼字 · if-before-switch](../README.md)

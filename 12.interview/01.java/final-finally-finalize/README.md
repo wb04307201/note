@@ -107,6 +107,34 @@ class Example {
 
 构造器中赋值时要特别注意：如果有多个构造器，每个路径都必须给 `final` 变量赋值。
 
+### 1.5 深挖：final 字段的 JMM 冻结语义（加分项）
+
+`final` 不只是编译期检查，在 Java 内存模型（JMM）层面还有**重排序规则 + 冻结（freeze）语义**：
+
+- **写规则**：构造器内对 `final` 域的写入，与随后把被构造对象的引用赋值给其他引用变量这两个操作之间**不能重排序**——保证别的线程拿到引用时，final 字段已初始化完成。
+- **读规则**：首次读包含 final 域的对象引用，与随后读该 final 域之间不能重排序。
+- 因此**正确构造**（`this` 未在构造器中逸出）的对象，其他线程**无需同步**就能看到 final 字段的正确值——这是 `String` 等不可变类线程安全的根基。
+
+**反例：构造函数逸出导致 final 失效**
+
+```java
+public class EscapeExample {
+    private final int value;
+
+    public EscapeExample() {
+        this.value = 42;
+        // ❌ this 在构造器中逸出：注册监听器把未构造完的对象暴露出去
+        ListenerRegistry.register(this);
+    }
+
+    public int getValue() { return value; }
+}
+```
+
+其他线程可能在构造器结束前通过注册表读到该对象，此时 final 字段的冻结语义被破坏，**可能读到默认值 0 而非 42**。修法：把注册动作移出构造器（工厂方法中完成），或用内部类事件源延迟逸出（《Java Concurrency in Practice》§3.2.1）。
+
+> 细节：JMM 中 final 字段写入后有 freeze 动作（`freeze(f, v)`），逸出场景下 freeze 的"正常路径"假设失效——这属于 JLS 17.5 final field semantics 的规范盲区，实践中一律按"构造器不逸出 this"处理。
+
 ---
 
 ## 二、finally
@@ -342,17 +370,23 @@ public class DirectMemoryBuffer implements AutoCloseable {
 
 ---
 
-## 六、面试话术（30 秒版）
+## 六、面试话术（30 秒版 + 90 秒版）
 
-> "`final`、`finally`、`finalize` 三个关键字名字相似但用途完全不同。
+**30 秒版**：
+
+> "一句话总结：`final` 管不可变，`finally` 管清理，`finalize` 已经淘汰。`final` 修饰类不可继承、方法不可重写、变量不可重新赋值（引用类型内容仍可改）；`finally` 保证必定执行，但千万别在里面写 return；`finalize` 因执行时机不确定 + 性能差在 Java 9 废弃，资源清理用 try-with-resources，原生资源用 Cleaner。"
+
+**90 秒版**：
+
+> "`final`、`finally`、`finalize` 三个关键字名字相似但用途完全不同，我逐个展开并带一个深挖点。
 >
-> `final` 是修饰符，修饰类表示不可继承（如 String），修饰方法表示不可重写且编译期绑定，修饰变量表示不可重新赋值——注意引用类型只是引用不可变，对象内容仍可修改。
+> `final` 是修饰符，修饰类表示不可继承（如 String），修饰方法表示不可重写且编译期绑定，修饰变量表示不可重新赋值——注意引用类型只是引用不可变，对象内容仍可修改。深挖一层：final 字段在 JMM 中有冻结语义——构造器内写 final 域与 this 引用逸出之间禁止重排序，所以正确构造的不可变对象无需同步就能安全发布；反过来，构造器中逸出 this 会破坏冻结语义，别的线程可能读到默认值。
 >
-> `finally` 是异常处理的一部分，保证无论是否异常都会执行，常用于资源清理。但要特别注意，**永远不要在 finally 中写 return**，否则会覆盖 try 中的返回值，甚至吞掉异常。
+> `finally` 是异常处理的一部分，保证无论是否异常都会执行，常用于资源清理。两个陷阱：**永远不要在 finally 中写 return**（会覆盖 try 的返回值甚至吞掉异常）；finally 中抛异常同样会覆盖原始异常。Java 7 之后资源清理直接用 try-with-resources，它自动生成 null 检查 + 按相反顺序关闭 + 抑制异常（Suppressed）。
 >
-> `finalize` 是 Object 类的方法，原本是垃圾回收前的清理钩子，但因为执行时机不确定、性能差、可能导致对象复活等问题，在 Java 9 被废弃。现在关闭资源应该用 **try-with-resources**，原生资源清理由 **Cleaner** 负责。
+> `finalize` 是 Object 类的 GC 前清理钩子，废弃原因有三个：① 执行时机不确定，JVM 退出也不保证运行；② 性能差——带 finalize 的对象要经过两次 GC 才能回收（第一次 GC 发现不可达后放入 F-Queue，由低优先级的 Finalizer 守护线程执行 finalize()，对象被重新标记，第二次 GC 才真正回收）；③ 可在 finalize 中把 this 赋给静态引用让对象"复活"（只能复活一次），造成泄漏。替代品是 Java 9+ 的 `Cleaner`：内部用 PhantomReference + 引用队列，清理逻辑跑在独立的 Cleaner 守护线程上（线程工厂由创建者控制），且注册的是 Runnable 而非对象本身，避免了 this 逃逸。
 >
-> 总结一句话：`final` 管不可变，`finally` 管清理，`finalize` 已经淘汰。"
+> 总结：`final` 管不可变，`finally` 管清理，`finalize` 已淘汰。"
 
 ---
 
@@ -365,6 +399,6 @@ public class DirectMemoryBuffer implements AutoCloseable {
 
 - 深度阅读：[`01.java-and-jvm`](../../../01.java-and-jvm/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · final/finally/finalize · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · final/finally/finalize · ⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · final-finally-finalize](../README.md)

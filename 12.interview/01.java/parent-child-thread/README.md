@@ -270,7 +270,13 @@ public void auditLog(String action) {
 
 ---
 
-## 八、面试话术（90 秒版本）
+## 八、面试话术（30 秒 + 90 秒版本）
+
+**30 秒版**：
+
+> "父子线程数据传递三句话：InheritableThreadLocal 只在 `new Thread()` 创建时复制一次，线程池复用 worker 线程就失效——这是线上最常见 bug 根因；工业级方案是阿里 TransmittableThreadLocal，靠 capture + replay + restore 三步在任务提交/执行时透传；配合 `-javaagent:` 启动参数可以做到零侵入，常见场景是 TraceId、登录态、分布式 Session 透传。"
+
+**90 秒版**：
 
 > 父子线程数据传递有 3 种方案：
 >
@@ -284,6 +290,17 @@ public void auditLog(String action) {
 >
 > 反直觉点：很多人以为 ThreadLocal 能解决异步问题，实际上 ThreadLocal 在跨线程时（new Thread/线程池/CompletableFuture）全部失效，必须用 Inheritable 或 Transmittable。
 
+**追问补充（90 秒延伸）**：
+
+> Q: InheritableThreadLocal 的局限性？
+> A: 仅在父线程创建子线程时复制（构造时一次性），**线程池复用线程时不触发**——这是线上最常见 bug 根因。
+>
+> Q: 如何在线程池场景下传递上下文？
+> A: 3 方案：
+> 1. **TransmittableThreadLocal（TTL）**：阿里开源，自动 capture + replay
+> 2. **Transmitter 包**：任务提交时 capture，execute 前 replay
+> 3. **Spring RequestContextHolder**：基于 ThreadLocal + Spring 拦截器自动管理
+
 ---
 
 ## 九、相关章节
@@ -294,17 +311,6 @@ public void auditLog(String action) {
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · Java 基础陷阱 · ⭐⭐⭐⭐（高频面试 + 实战必会）
+> 📅 2026-06-28 · 咬文嚼字 · 父子线程数据传递 · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · parent-child-thread](../README.md)
-
-## 90 秒面试话术（补充版）
-
-> Q: InheritableThreadLocal 的局限性？
-> A: 仅在父线程创建子线程时复制（构造时一次性），**线程池复用线程时不触发**——这是线上最常见 bug 根因。
-> 
-> Q: 如何在线程池场景下传递上下文？
-> A: 3 方案：
-> 1. **TransmittableThreadLocal（TTL）**：阿里开源，自动 capture + replay
-> 2. **Transmitter 包**：任务提交时 capture，execute 前 replay
-> 3. **Spring RequestContextHolder**：基于 ThreadLocal + Spring 拦截器自动管理

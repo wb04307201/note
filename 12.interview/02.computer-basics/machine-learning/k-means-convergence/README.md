@@ -209,4 +209,4 @@ P(x 被选为下一个质心) = D(x)² / Σ_{x'} D(x')²
 
 ---
 
-> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐ · K-means 收敛 + K-means++
+> 📅 2026-08-10 · 咬文嚼字 · 02.computer-basics · ⭐⭐⭐⭐ · K-means 收敛 + K-means++

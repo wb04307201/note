@@ -1,5 +1,5 @@
 <!--question:
-  id: 03.database-int(4)-define
+  id: 03.database-int-define
   topic: 03.database
   difficulty: ⭐⭐⭐
   frequency: 高频
@@ -218,11 +218,13 @@ ALTER TABLE users MODIFY id BIGINT UNSIGNED AUTO_INCREMENT;
 
 ---
 
-## 五、面试话术
+## 五、面试话术（30 秒版 + 90 秒版）
 
 **面试官**："MySQL 中 `INT(4)` 的含义是什么？"
 
-**参考回答**：
+> **30 秒版**："`INT(4)` 的 `4` 只是显示宽度，不限制存储和取值范围——INT 固定 4 字节、有符号范围 ±21 亿。显示宽度只在配合 `ZEROFILL` 时生效（存 5 显示 0005），且该特性 MySQL 8.0.17 已废弃，格式化应放应用层。选类型看业务范围：小范围 TINYINT/SMALLINT，大范围 INT/BIGINT，限取值用 CHECK 约束。"
+
+**90 秒版参考回答**：
 > "`INT(4)` 中的 `4` 是显示宽度，不是存储长度或数值范围限制。所有 INT 类型都固定占用 4 字节，有符号范围是 ±21 亿左右。
 >
 > 显示宽度只有在配合 `ZEROFILL` 属性时才生效，作用是查询时用前导零填充到指定位数。比如 `INT(4) ZEROFILL` 存 5 会显示为 0005。但这个特性在 MySQL 8.0.17 已经被废弃了，官方建议格式化工作在应用层完成。

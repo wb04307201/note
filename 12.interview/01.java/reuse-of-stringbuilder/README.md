@@ -221,14 +221,25 @@ public final class SBUtils {
 }
 ```
 
-## 五、面试话术
+## 五、面试话术（30 秒 + 90 秒版本）
 
 **面试官：为什么StringBuilder比String拼接快？**
 
-回答要点：
-1. String每次拼接创建新对象，产生大量垃圾；StringBuilder用可变数组
-2. 编译器虽优化简单拼接，但循环内仍重复创建
-3. 10000次拼接：String约100ms，StringBuilder约1ms，差100倍
+**30 秒版**：
+
+> "String 不可变，每次 `+` 拼接都创建一个新 String 对象并复制全部已有字符，n 次拼接是 O(n²) 的复制总量 + n 个垃圾对象；StringBuilder 内部是可变 `byte[]`（Java 8 是 `char[]`），append 只在原数组上追加，扩容均摊 O(1)，整体 O(n)。1 万次循环拼接实测差距约 100 倍（String ~100ms vs StringBuilder ~1ms，量级示意）。"
+
+**90 秒版**：
+
+> "我从不可变性根因、编译器优化的边界、循环场景三层讲。
+>
+> 第一层根因：String 的 value 数组是 final 且不提供修改入口，任何'拼接'实际是新建对象 + `Arrays.copyOf` 全量复制。循环 n 次拼接，字符串长度线性增长，复制总量是 1+2+...+n = O(n²)，同时产生 n 个短命对象加重年轻代 GC 压力。StringBuilder 的 append 是往可变数组尾部写，容量不够才 `newCapacity = (old << 1) + 2` 翻倍扩容，均摊下来整体 O(n)。
+>
+> 第二层编译器边界：单表达式内的简单拼接（`"a" + b + "c"`）编译器会直接优化——Java 8 编译成 StringBuilder 链，Java 9+ 用 `invokedynamic` 调 `StringConcatFactory`，只分配一次结果空间，性能甚至优于手写 StringBuilder。但这个优化**不跨语句**——循环里每轮 `s += x` 仍会每轮新建一个拼接器和新 String，O(n²) 问题原样存在。
+>
+> 第三层工程实践：已知规模时用 `new StringBuilder(expectedSize)` 预分配；跨方法/请求复用实例时循环外创建 + `setLength(0)` 清空（只改 count 不释放数组，比 `delete(0, len)` 快），Web 场景可挂 ThreadLocal 复用并在 finally 里 remove 防泄漏。多线程共享同一实例时才需要 StringBuffer 或外部同步——局部变量场景两者无差别，永远选 StringBuilder。"
+
+**其余高频追问（回答要点）**：
 
 **面试官：如何重用StringBuilder？**
 
@@ -247,7 +258,7 @@ public final class SBUtils {
 
 - **底层原理**：[String/Builder/Buffer 深度对比](../string-builder-buffer/README.md) - 扩容机制 + 源码拆解 + JIT intrinsic
 - **相关主题**：[new String对象创建](../new-string/README.md) - 字符串常量池
-- **并发编程**：[ThreadLocal](../thread-pool/README.md) - 内存泄漏防范
+- **并发编程**：[ThreadLocal](../threadlocal/README.md) - 内存泄漏防范
 - **性能调优**：[JVM调优](../../../01.java-and-jvm/02-jvm/tuning.md)
 - **关联知识**：[HashMap扩容](../hashmap-resizing/README.md) - 预分配容量
 

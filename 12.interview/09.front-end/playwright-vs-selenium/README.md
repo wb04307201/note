@@ -309,7 +309,17 @@ with sync_playwright() as p:
 
 ---
 
-## 八、面试话术模板
+## 八、面试话术模板（30 秒版 / 90 秒版）
+
+**30 秒版**：
+
+> 选 Playwright 还是 Selenium 看**测试场景**而非**工具流行度**：
+> - 跨浏览器/跨域（IE11 + Edge + Safari）选 **Selenium 4 + W3C**（生态最广）
+> - 现代 SPA + 自动等待 + 跨域 iframe + 移动模拟选 **Playwright**（默认快 2-5 倍、API 更现代）
+>
+> 关键差异：Playwright 默认 **auto-wait**（消除 90% 显式 wait），Selenium 需要 **WebDriverWait**（编写更繁琐）。新项目建议直接选 Playwright，老项目可逐步迁移。
+
+**90 秒版**：
 
 > Playwright 是 2026 年 Web 自动化测试的事实标准，主要优势：
 >
@@ -319,9 +329,11 @@ with sync_playwright() as p:
 > 4. **Trace Viewer**：内置录制回放工具，可查看截图、DOM、网络请求
 > 5. **Codegen**：内置录制工具，录制操作自动生成测试代码
 >
-> Selenium 仍有价值：遗留项目维护、团队技能栈、企业级应用。
+> auto-wait 追问：每次操作前检查 **5 个可操作性信号**（visible / enabled / stable / receives events / attached to DOM），全部通过才执行；任意信号未通过则**自动重试 + 智能等待**。
 >
-> 新项目建议直接选 Playwright，老项目可逐步迁移。
+> 性能实测：同一 SPA 套件 Playwright ~12s/case、Selenium ~28s/case，差距主要来自 auto-wait vs 显式 wait + 单浏览器进程 vs 多上下文；口径统一为架构差异快 2-5 倍，测试速度更多取决于用例设计。
+>
+> 何时选 Selenium 而非 Playwright：**企业内 IE11/Edge Legacy 兼容需求** + **已有 WebDriver 生态集成** + **Sauce Labs 兼容性需求**（遗留项目维护、团队技能栈、企业级应用）。
 
 ---
 
@@ -332,27 +344,6 @@ with sync_playwright() as p:
 
 ---
 
-> 📅 2026-06-28 · 咬文嚼字 · 前端工具 · ⭐⭐⭐（工程必知 + 选型决策）
+> 📅 2026-06-28 · 咬文嚼字 · 前端工具 · ⭐⭐（工程必知 + 选型决策）
 
 ← [返回: 咬文嚼字 · playwright-vs-selenium](../README.md)
-
-## 30 秒/90 秒话术模板（双版本补充）
-
-### 30 秒版（面试首问）
-
-> 选 Playwright 还是 Selenium 看**测试场景**而非**工具流行度**：
-> - 跨浏览器/跨域（IE11 + Edge + Safari）选 **Selenium 4 + W3C W3C**（生态最广）
-> - 现代 SPA + 自动等待 + 跨域 iframe + 移动模拟选 **Playwright**（默认快 2-3x、API 更现代）
-> 
-> 关键差异：Playwright 默认 **auto-wait**（消除 90% 显式 wait），Selenium 需要 **WebDriverWait**（编写更繁琐）。
-
-### 90 秒版（追问深入）
-
-> Q: Playwright 怎么实现 auto-wait？
-> A: 在每次操作前检查 **5 个可操作性信号**（visible / enabled / stable / receives events / attached to DOM），全部通过才执行；任意信号未通过则**自动重试 + 智能等待**。
-> 
-> Q: Selenium 4 vs Playwright 性能差异？
-> A: 实测同一 SPA 套件：Playwright ~12s/case、Selenium ~28s/case（**2-3x 差距**）。差距主要来自 auto-wait vs 显式 wait + 单浏览器进程 vs 多上下文。
-> 
-> Q: 何时选 Selenium 而非 Playwright？
-> A: **企业内 IE11/Edge Legacy 兼容需求** + **已有 WebDriver 生态集成** + **Sauce Labs 兼容性需求**。

@@ -159,9 +159,9 @@ while (true) {
     // 写入当前批次
     writeBatchToExcel(batch, sheet);
 
-    // 及时释放
-    batch.clear();
-    System.gc();  // 提示 GC（可选）
+    // 及时释放：batch 是循环内局部变量，下一轮重新赋值后
+    // 上一批对象即失去引用，可被 GC 自然回收——
+    // ❌ 不要调用 System.gc()（见下方反模式说明）
 
     offset += batchSize;
 }
@@ -225,12 +225,12 @@ tempFiles.forEach(File::delete);
 executor.shutdown();
 ```
 
-### 方案 4：内存优化（对象复用 + 及时 GC）
+### 方案 4：内存优化（对象复用 + 作用域释放）
 
 **技巧**：
-1. **对象复用**：避免重复创建大对象
-2. **及时 GC**：批次处理完后调用 `System.gc()`
-3. **弱引用**：大对象使用 `WeakReference`
+1. **对象复用**：避免重复创建大对象（如复用 Workbook / 写入器）
+2. **作用域释放**：批次数据用循环内局部变量持有，失去引用后 JVM 自然回收——**不要**手动调 `System.gc()`
+3. **弱引用**：大对象缓存使用 `WeakReference`
 
 ```java
 // ✅ 内存优化示例
@@ -250,19 +250,21 @@ public void exportExcel() {
 
             writer.write(batch, sheet);
 
-            // 3. 及时释放
-            batch.clear();
-
-            // 4. 每 10 批次提示 GC
-            if (offset % (batchSize * 10) == 0) {
-                System.gc();
-            }
+            // 3. 及时释放：batch 是局部变量，下一轮循环重新赋值后
+            //    上一批对象即不可达，等待 GC 自然回收即可
 
             offset += batchSize;
         }
     }
 }
 ```
+
+> ⚠️ **反模式：批次间调用 `System.gc()`**
+>
+> - 显式 `System.gc()` 在多数收集器（Serial / Parallel）下触发 **Full GC + STW**，百万行导出场景每次停顿可达秒级，吞吐反而下降；
+> - G1 / ZGC 下要么被忽略（G1 默认 `-XX:+ExplicitGCInvokesConcurrent` 才转并发），要么毫无必要；
+> - 批次局部变量出作用域后本就不可达，JVM 的分代回收会在年轻代满时自动清理——"提示 GC" 是伪需求；
+> - 若线上确实要禁用误用，可加 `-XX:+DisableExplicitGC`。
 
 ---
 
@@ -319,7 +321,7 @@ public void exportExcel() {
 >
 > **第三**：多线程分片。把 100 万条分成 10 个分片，每个线程处理 10 万条，写入独立的 Sheet 或文件，最后合并。
 >
-> **第四**：内存优化。对象复用 + 及时 GC，批次处理完后调用 `System.gc()`。
+> **第四**：内存优化。复用 Workbook 对象 + 批次数据用局部变量持有，出作用域后 JVM 自然回收（不要手动 `System.gc()`——那会触发 Full GC/STW，是反模式）。
 >
 > **多线程改善内存的原理**：分治 + 隔离。每个线程只查询自己的分片（10 万条），写入独立的 Sheet，线程结束后内存可被 GC 回收。这样内存峰值从 1 GB 降到 500 MB，避免 OOM。"
 

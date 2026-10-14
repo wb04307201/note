@@ -19,7 +19,7 @@
 | 主题 | 难度 | 核心问题 |
 |------|------|---------|
 | [分布式 ID 生成方案](distributed-id/) | ⭐⭐⭐⭐ | UUID / 数据库 / 雪花算法 / Leaf |
-| [分布式事务](distributed-transaction/) | ⭐⭐⭐⭐⭐ | 2PC / TCC / Saga / 本地消息表 |
+| [分布式事务](distributed-transaction/) | ⭐⭐⭐ | 2PC / TCC / Saga / 本地消息表 |
 | [分布式锁](distributed-lock/) | ⭐⭐⭐⭐⭐ | Redis SETNX / Redisson / ZooKeeper |
 
 ### 高性能
@@ -30,10 +30,10 @@
 | [限流算法](rate-limiting/) | ⭐⭐⭐ | 计数器 / 滑动窗口 / 漏桶 / 令牌桶 |
 | [无 Redis 秒杀](seckill-without-redis/) | ⭐⭐⭐⭐ | 主流方案被禁用时的单机秒杀策略 |
 | [商品搜索系统设计](product-search/) | ⭐⭐⭐⭐ | 倒排索引 + BM25 + 多阶段排序 + 数据同步一致性 |
-| [搜索框 typeahead 系统设计](search-typeahead/) | ⭐⭐⭐⭐⭐ | Trie 树 + Redis ZSet + 实名商家权重 + 实时增量更新 + 5 大反模式 |
+| [搜索框 typeahead 系统设计](search-typeahead/) | ⭐⭐⭐⭐ | Trie 树 + Redis ZSet + 实名商家权重 + 实时增量更新 + 5 大反模式 |
 | [多字段动态排名](multi-field-ranking/) | ⭐⭐⭐ | 归一化方法论 + 加权公式 + 动态权重 + Redis ZSet + 6 大场景 |
 | [大文件上传系统](file-upload/) | ⭐⭐⭐⭐ | 分片 + 断点续传 + 秒传 + 对象存储 |
-| [1→N 大文件分发系统设计](file-distribution-1toN/) | ⭐⭐⭐⭐⭐ | 带宽成本估算 + CDN/P2P/分片签名选型 + 断点续传 + 防盗链 + 5 大反模式 |
+| [1→N 大文件分发系统设计](file-distribution-1toN/) | ⭐⭐⭐ | 带宽成本估算 + CDN/P2P/分片签名选型 + 断点续传 + 防盗链 + 5 大反模式 |
 
 ### 消息队列
 | 主题 | 难度 | 核心问题 |
@@ -67,7 +67,7 @@
 |------|------|---------|
 | [消息已读未读功能设计](message-read-status/) | ⭐⭐⭐ | 数据库 + 缓存 + 推送 + 性能优化 |
 | [媒体上传系统设计](media-upload/) | ⭐⭐⭐ | 分片 + 断点续传 + 秒传 + 对象存储 |
-| [砍一刀算法](砍一刀算法/) | ⭐⭐⭐ | 助力活动系统设计 |
+| [砍一刀算法](bargain-algorithm/) | ⭐⭐⭐ | 助力活动系统设计 |
 
 ### 项目管理（已全部迁走，split-hairs 不再收此分类）
 

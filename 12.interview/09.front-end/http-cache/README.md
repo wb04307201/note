@@ -175,6 +175,26 @@ flowchart TD
 
 不同类型的资源应采用不同的缓存策略，核心原则是：**高频变化的资源用协商缓存，低频变化的资源用强缓存**。
 
+**最典型的配置事故对比**：
+
+```nginx
+# ❌ 反例：HTML 也设长强缓存 —— 发版后用户一周内看到的还是旧页面
+location ~* \.(html|js|css)$ {
+    add_header Cache-Control "public, max-age=31536000";
+}
+# 后果：HTML 被强缓存 1 年，index.html 引用的还是旧 hash 的 JS/CSS，
+# 新版本永远不生效，只能靠用户手动清缓存
+
+# ✅ 正例：HTML no-cache（每次协商）+ hash 资源长强缓存
+location ~* \.html$ {
+    add_header Cache-Control "no-cache";       # 可缓存但每次协商（304 极快）
+}
+location ~* \.(js|css)$ {                      # 文件名带 content hash（app.a1b2c3.js）
+    add_header Cache-Control "public, max-age=31536000, immutable";
+}
+# HTML 每次协商拿到最新引用 → 新 hash 资源 URL 变化自动失效 → 秒级发版生效
+```
+
 ### 5.1 HTML 文档：no-cache（每次协商）
 
 HTML 是页面的入口，变化频率高且无法通过文件名 hash 区分版本，应采用 `no-cache` 策略：

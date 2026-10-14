@@ -18,7 +18,6 @@
 
 ---
 
-⭐⭐⭐⭐⭐ 深度级别（架构师级）
 📚 前置知识：FFmpeg / HLS / WebP/AVIF / CDN 基础 / 对象存储生命周期
 
 ---
@@ -48,27 +47,30 @@
 
 **30s 话术**：「**预生成 + 懒加载双轨** = 原图 + 5 尺寸（small/medium/large/xl/web）+ WebP/AVIF 双格式，**懒加载尺寸用 on-the-fly serverless 转码**（首次访问时生成 + CDN 缓存），**EXIF 隐私三件套去除**（GPS/设备/拍摄时间）。」
 
-**90s 话术**：「**4 大设计原则**：
+**90s 话术**：
 
-- **① 双轨制**：1-3 热门尺寸（small/medium/large）预生成 + 4-5 冷门尺寸（xl/web）懒加载
-- **② 双格式输出**：现代浏览器 WebP+AVIF 双格式，老 Safari 回退 JPEG（Accept header 路由）
-- **③ EXIF 三件套去除**：GPS（隐私）/ 设备型号（设备指纹风险）/ 拍摄时间（关联分析），但保留版权 Orientation（影响显示）
-- **④ on-the-fly 转码**：用 Go `webp.sh` 或 Node `sharp` 库服务端实时转换 + CDN edge cache（如阿里云 DCDN 边缘）
+> **4 大设计原则**：
+>
+> - **① 双轨制**：1-3 热门尺寸（small/medium/large）预生成 + 4-5 冷门尺寸（xl/web）懒加载
+> - **② 双格式输出**：现代浏览器 WebP+AVIF 双格式，老 Safari 回退 JPEG（Accept header 路由）
+> - **③ EXIF 三件套去除**：GPS（隐私）/ 设备型号（设备指纹风险）/ 拍摄时间（关联分析），但保留版权 Orientation（影响显示）
+> - **④ on-the-fly 转码**：用 Go `webp.sh` 或 Node `sharp` 库服务端实时转换 + CDN edge cache（如阿里云 DCDN 边缘）
 
 **实战代码示例**：
 
 ```typescript
-// sharp 转码示例（Node.js）
-const sharp = require('sharp');
+// sharp 转码示例（Node.js + TypeScript）
+import sharp from 'sharp';
+
 async function generateVariants(buffer: Buffer) {
-  const variants = {};
+  const variants: Record<string, Buffer> = {};
   for (const size of [320, 640, 1024, 1920, 3840]) {
-    for (const format of ['webp', 'avif', 'jpeg']) {
+    for (const format of ['webp', 'avif', 'jpeg'] as const) {
       variants[`${size}.${format}`] = await sharp(buffer)
+        .rotate()                                       // 按 EXIF Orientation 自动转正
         .resize({ width: size, withoutEnlargement: true })
-        format
-        .withMetadata({ exif: { IFD0: { remove: true } } })  // 去除 EXIF
-        .toBuffer();
+        .toFormat(format)                               // 指定输出格式（sharp 用 toFormat，非 format）
+        .toBuffer();                                    // 默认剥离 EXIF/GPS 等元数据（不调 withMetadata 即去除）
     }
   }
   return variants;  // 15 个变体
@@ -97,7 +99,11 @@ async function generateVariants(buffer: Buffer) {
 
 **30s 话术**：「**5 步链路**：① ffmpeg 转码 4-6 档（360p/480p/720p/1080p/4K + audio 128k）② HLS 切片（每段 6 秒 + .m3u8 索引）③ AES-128 加密（key + keyinfo 文件）④ 签名 URL（5-30 分钟短期 expire）⑤ DRM（Widevine/FairPlay/PlayReady）保护。」
 
-**90s 话术**：「**完整 5 步链路详解**：
+**90s 话术**：
+
+> **完整 5 步链路详解**：① ffmpeg 转码 4-6 档 ABR ladder ② HLS 切片（6 秒/段 + .m3u8 索引）③ AES-128 加密 ④ 签名 URL 短期过期 ⑤ DRM 三件套保护。
+
+转码 + 切片命令：
 
 ```bash
 # 1. ffmpeg 转码多档 + HLS 切片（4 档 ABR ladder）
@@ -140,12 +146,14 @@ ffmpeg -i source.mp4 \
 
 **30s 话术**：「**3 大边缘优化**：① **智能压缩**：CDN edge 自动转 WebP/AVIF（Accept 路由）+ Brotli 文本压缩 ② **HTTP/3 + QUIC**：解决队头阻塞，弱网首屏提升 30%+ ③ **边缘程序**：Edge Functions / Lambda@edge 处理动态 + A/B testing。**阿里云 DCDN / AWS CloudFront + Lambda@edge 是 SOTA**。」
 
-**90s 话术**：「**CDN 边缘优化 4 层**：
+**90s 话术**：
 
-- **L1 协议层**：HTTP/3 + QUIC（UDP-based）—— 解决 TCP 队头阻塞，移动弱网首屏提升 30-50%
-- **L2 压缩层**：Brotli 文本 + WebP/AVIF 图片 + AV1/H.265 视频
-- **L3 边缘程序**：Cloudflare Workers / AWS Lambda@Edge / 阿里云边缘函数（10ms 内响应）
-- **L4 智能选路**：实时探测回源链路质量，自动选最快节点
+> **CDN 边缘优化 4 层**：
+>
+> - **L1 协议层**：HTTP/3 + QUIC（UDP-based）—— 解决 TCP 队头阻塞，移动弱网首屏提升 30-50%
+> - **L2 压缩层**：Brotli 文本 + WebP/AVIF 图片 + AV1/H.265 视频
+> - **L3 边缘程序**：Cloudflare Workers / AWS Lambda@Edge / 阿里云边缘函数（10ms 内响应）
+> - **L4 智能选路**：实时探测回源链路质量，自动选最快节点
 
 **视频额外 3 招**：
 - **HTTP/3 server push**：CDN 主动 push .m3u8 主清单 + 前 3 段 .ts（首屏 0 延迟）
@@ -175,28 +183,30 @@ ffmpeg -i source.mp4 \
 
 **30s 话术**：「**4 层防线**：**L1 客户端断点续传 + 重试 → L2 服务端多机房 + 限流熔断 → L3 CDN 多厂商 + 智能选路 → L4 跨区域 OSS 多写异步复制**。**跨区域容灾**：异地多活 + 双写 OSS + S3 Cross-Region Replication（异步）。」
 
-**90s 话术**：「
+**90s 话术**：
 
-**L1 客户端**：
-- ① 3 次重试 + 指数退避（1s/3s/9s）
-- ② 断点续传（uploadId + offset）
-- ③ 客户端本地缓存已上传 chunks
-
-**L2 服务端**：
-- ① 接入层 LB（Nginx SLB / ALB）
-- ② 业务服务 K8s 多 Pod + HPA 弹性
-- ③ Sentinel/Resilience4j 限流熔断
-
-**L3 CDN 边缘**：
-- ① 多 CDN 厂商（阿里云 + 腾讯云）容灾切换
-- ② 智能 DNS（GSLB）
-- ③ HTTP/3 + QUIC
-- ④ Origin Shield 回源配额
-
-**L4 跨区域复制**：
-- **同区域多写**：同城双 OSS bucket 同步（RPO=0）
-- **跨区域异步**：CRR（Cross-Region Replication）异步复制（RPO 几秒-分钟级）
-- **异地多活**：双 region 接收上传（双写），DNS 切换流量
+> **高可用 4 层防线 + 跨区域容灾**：
+>
+> **L1 客户端**：
+> - ① 3 次重试 + 指数退避（1s/3s/9s）
+> - ② 断点续传（uploadId + offset）
+> - ③ 客户端本地缓存已上传 chunks
+>
+> **L2 服务端**：
+> - ① 接入层 LB（Nginx SLB / ALB）
+> - ② 业务服务 K8s 多 Pod + HPA 弹性
+> - ③ Sentinel/Resilience4j 限流熔断
+>
+> **L3 CDN 边缘**：
+> - ① 多 CDN 厂商（阿里云 + 腾讯云）容灾切换
+> - ② 智能 DNS（GSLB）
+> - ③ HTTP/3 + QUIC
+> - ④ Origin Shield 回源配额
+>
+> **L4 跨区域复制**：
+> - **同区域多写**：同城双 OSS bucket 同步（RPO=0）
+> - **跨区域异步**：CRR（Cross-Region Replication）异步复制（RPO 几秒-分钟级）
+> - **异地多活**：双 region 接收上传（双写），DNS 切换流量
 
 **实战数字**：
 - L1 客户端重试成功率 +25%

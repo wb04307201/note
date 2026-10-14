@@ -251,13 +251,27 @@ public int hashCode() {
 
 ---
 
-## 六、面试话术（30 秒版）
+## 六、面试话术（30 秒版 + 90 秒版）
 
-"`==` 比较的是引用地址，而 `equals` 用于比较对象的逻辑内容。`hashCode` 是为了配合 `HashMap` 等哈希容器提高效率的。
+**30 秒版**：
 
-Java 规定：如果两个对象 `equals` 相等，它们的 `hashCode` 必须相同。否则在 `HashMap` 中会出现 put 进去却 get 不到的情况。
+> "`==` 比较的是引用地址，而 `equals` 用于比较对象的逻辑内容。`hashCode` 是为了配合 `HashMap` 等哈希容器提高效率的。
+>
+> Java 规定：如果两个对象 `equals` 相等，它们的 `hashCode` 必须相同。否则在 `HashMap` 中会出现 put 进去却 get 不到的情况。
+>
+> 在实际开发中，我通常使用 `Objects.equals` 处理 null 安全，或者直接用 Lombok 的 `@Data` 注解自动生成符合契约的代码。另外要注意，String 和 Integer 包装类在使用 `==` 时有常量池和缓存的陷阱，比较包装类型一定要用 `equals`。"
 
-在实际开发中，我通常使用 `Objects.equals` 处理 null 安全，或者直接用 Lombok 的 `@Data` 注解自动生成符合契约的代码。另外要注意，String 和 Integer 包装类在使用 `==` 时有常量池和缓存的陷阱，比较包装类型一定要用 `equals`。"
+**90 秒版**：
+
+> "这道题我会从契约、实现细节、继承陷阱三层展开。
+>
+> 第一层契约：`equals` 相等则 `hashCode` 必须相等（反之不要求）。`HashMap` 先用 `hashCode` 定位桶，再用 `equals` 在桶内比对——违反契约就会出现『put 进去 get 不到』。
+>
+> 第二层实现细节：`Objects.hash` 底层是数组装箱 + `Arrays.hashCode`，热路径有开销；手写时用 31 作乘数（奇素数，位运算 `31*x == (x<<5)-x` 可被 JIT 优化），并像 `HashMap.hash()` 那样做高低位异或扰动，减少哈希碰撞。字段选择上只参与 equals 的字段才进 hashCode。
+>
+> 第三层继承陷阱：子类无法在新增值字段的同时保持 equals 对称性——`Point` 与 `CounterPoint` 互比会出现 `a.equals(b) == true` 而 `b.equals(a) == false`。解法要么用 `getClass()` 判定（牺牲里氏替换），要么遵循《Effective Java》Item 10 的复合模式：把值字段抽成不可变的 `getColor()` 组件，equals/hashCode 只基于该组件。
+>
+> 工程上我优先用 record / Lombok `@EqualsAndHashCode`（注意 `callSuper` 显式声明），避免手写漏字段。"
 
 ---
 
@@ -271,6 +285,6 @@ Java 规定：如果两个对象 `equals` 相等，它们的 `hashCode` 必须�
 
 - 深度阅读：[`01.java-and-jvm`](../../../01.java-and-jvm/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · equals-hashCode · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · equals-hashCode · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · equals-hashcode](../README.md)

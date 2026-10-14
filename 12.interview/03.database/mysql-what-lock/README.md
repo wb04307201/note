@@ -267,11 +267,13 @@ JOIN performance_schema.threads t ON w.blocking_thread_id = t.thread_id;
 
 ---
 
-## 五、面试话术
+## 五、面试话术（30 秒版 + 90 秒版）
 
 **面试官**："MySQL 什么情况下会锁表？"
 
-**参考回答**：
+> **30 秒版**：InnoDB 名义上是行锁，但四种情况会"锁表"：① UPDATE/DELETE 的 WHERE 列无索引 → 全表逐行加锁等同锁表；② 显式 `LOCK TABLES`；③ DDL 持有 MDL 元数据锁阻塞全部 DML；④ RR 下间隙锁范围过大（`id > 100 FOR UPDATE` 锁住 (100, +∞)）。避免手段：WHERE 列必有索引 + 事务尽早提交 + 无强可重复读需求就用 RC 消除 gap lock。
+
+**90 秒参考回答**：
 > "锁表通常发生在以下几种场景：
 >
 > 第一，**无索引的全表扫描**。当 UPDATE、DELETE 或 SELECT FOR UPDATE 的 WHERE 条件没有用到索引时，InnoDB 无法定位具体要锁定的行，只能对全表所有行加锁，这本质上等同于锁表。比如 `UPDATE users SET name='x' WHERE age=30`，如果 age 列没有索引，就会锁住整张表。
@@ -285,6 +287,20 @@ JOIN performance_schema.threads t ON w.blocking_thread_id = t.thread_id;
 > 在实际开发中，我主要通过三个手段避免意外锁表：一是确保 WHERE 条件中的列都有索引；二是控制事务范围，尽早提交；三是使用 READ COMMITTED 隔离级别消除间隙锁，除非业务强依赖可重复读语义。"
 
 **加分项**：提及 Next-Key Lock 的数学定义 `(prev_key, current_key]`，或讨论 Online DDL 的 ALGORITHM 参数（INPLACE vs COPY）。
+
+**90 秒追问话术（UPDATE 为什么会锁住整个表）**：
+
+> Q: UPDATE 为什么会锁住整个表？
+> A: 3 个隐藏机制：
+> 1. **间隙锁（Gap Lock）**：RR 隔离级别下，索引范围扫描时会锁住索引区间，防止幻读
+> 2. **临键锁（Next-Key Lock）**：gap + record lock，锁住"已存在记录 + 记录之间的间隙"
+> 3. **插入意向锁（Insert Intention Lock）**：插入新行前需等待 gap lock
+> 
+> **修复**：
+> 1. 改用 RC 隔离级别（无 gap lock）
+> 2. 索引设计让 UPDATE 走精确点（避免范围扫描）
+> 3. 拆分大事务为小事务
+> 4. 使用 `SELECT ... FOR UPDATE SKIP LOCKED` 跳过锁
 
 ---
 
@@ -301,17 +317,3 @@ JOIN performance_schema.threads t ON w.blocking_thread_id = t.thread_id;
 > 📅 2026-09-01 · 咬文嚼字 · MySQL · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回数据库咬文嚼字](../README.md)
-
-## 90 秒面试话术（补充版）
-
-> Q: UPDATE 为什么会锁住整个表？
-> A: 3 个隐藏机制：
-> 1. **间隙锁（Gap Lock）**：RR 隔离级别下，索引范围扫描时会锁住索引区间，防止幻读
-> 2. **临键锁（Next-Key Lock）**：gap + record lock，锁住"已存在记录 + 记录之间的间隙"
-> 3. **插入意向锁（Insert Intention Lock）**：插入新行前需等待 gap lock
-> 
-> **修复**：
-> 1. 改用 RC 隔离级别（无 gap lock）
-> 2. 索引设计让 UPDATE 走精确点（避免范围扫描）
-> 3. 拆分大事务为小事务
-> 4. 使用 `SELECT ... FOR UPDATE SKIP LOCKED` 跳过锁

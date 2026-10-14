@@ -4,7 +4,7 @@
   difficulty: ⭐⭐⭐⭐
   frequency: 中频
   scenario_type: 反直觉代码
-  tags: [04.system-design, still, need]
+  tags: [RocketMQ, Kafka, 事务消息, 延时消息, MQ 选型]
   status: active
 -->
 
@@ -310,6 +310,10 @@ sh mqadmin resetOffsetByTime \
 
 ## 五、面试话术
 
+**30 秒版**：
+
+> "本质是场景驱动选型：Kafka 拼吞吐（百万 TPS，日志采集 / 实时计算，异步刷盘可能丢消息），RocketMQ 拼金融级可靠（事务消息 / 延时消息 / 同步刷盘三大护城河，交易链路刚需）。两者是互补不是替代——实际架构中混合部署：日志走 Kafka，订单交易走 RocketMQ。如果只维护一套且业务以交易为主，选 RocketMQ 更安全；大数据平台则选 Kafka（Flink / Spark / Hadoop 生态整合好）。"
+
 **面试官**："既然 Kafka 吞吐量这么高，为什么阿里还要搞 RocketMQ？"
 
 **参考回答**：
@@ -337,6 +341,6 @@ sh mqadmin resetOffsetByTime \
 
 - 排查实战：[`支付消息丢失排查`](../payment-message-lost/README.md) — MQ 可靠性在支付场景的实战排查
 
-> 📅 2026-09-01 · 咬文嚼字 · RocketMQ · ⭐⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · RocketMQ · ⭐⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回系统设计咬文嚼字](../README.md)

@@ -128,15 +128,19 @@ def multi_turn_agent(user_query, tools, max_turns=5):
 ### 实战：5 类 Fallback
 
 ```python
+# 伪代码：parse / retry / try_alternate_tools 等为示意函数，落地时按框架 API 实现
 def fallback_chain(query, attempt=0):
     results = []
 
-    # 1. 重试参数（仅改参数）
+    # 1. 重试参数（仅改参数）—— 重试成功要回收进 results
     for tool_call in parse(query):
         try:
             results.append(execute(tool_call))
         except (TimeoutError, RateLimitError):
-            retry(tool_call, backoff=2**attempt)
+            try:
+                results.append(retry(tool_call, backoff=2**attempt))
+            except Exception:
+                pass  # 重试也失败，留给第 2 级 fallback
 
     # 2. 换工具
     if not all_success(results):
@@ -153,6 +157,8 @@ def fallback_chain(query, attempt=0):
     # 5. 人工接管（关键决策）
     if needs_human_review(results):
         return escalate_to_human(results)
+
+    return results
 ```
 
 ---

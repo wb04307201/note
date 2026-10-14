@@ -262,7 +262,13 @@ JOIN information_schema.INNODB_TRX b ON w.blocking_trx_id=b.trx_id;
 SHOW ENGINE INNODB STATUS\G  -- 查看"LATEST DETECTED DEADLOCK"
 ```
 
-## 五、面试话术
+## 五、面试话术（30 秒版 + 90 秒版）
+
+> **30 秒版**：四种隔离级别从低到高是 RU / RC / RR / Serializable，分别解决脏读、不可重复读、幻读。MySQL 默认 RR，InnoDB 靠 MVCC 快照读 + 间隙锁（Next-Key Lock）在 RR 下基本消灭幻读；RC 与 RR 的实现差异只在 Read View 生成时机——RC 每次 SELECT 重建，RR 只在第一次 SELECT 创建后复用。生产还要防长事务：Undo Log 膨胀 + 锁持有过久，用 `information_schema.INNODB_TRX` 排查。
+
+> **90 秒版**："先答四级模型：READ UNCOMMITTED 能读到别人未提交的数据（脏读），基本没人用；READ COMMITTED 解决脏读但同一事务内两次读结果可能不同（不可重复读），是 Oracle / PostgreSQL 的默认级别；REPEATABLE READ 是 MySQL 默认，保证同一事务内快照一致，标准 RR 仍有幻读，但 InnoDB 用 MVCC + 间隙锁把它也基本解决了——快照读靠 MVCC 读历史版本，当前读（`FOR UPDATE` / DML）靠 Next-Key Lock（记录锁 + 间隙锁）阻止范围内插入；SERIALIZABLE 强制串行、全加锁，性能最低，只在极端一致性场景用。再答 MVCC 实现三件套：每行的隐藏列 `DB_TRX_ID` / `DB_ROLL_PTR`，Undo Log 把历史版本串成版本链，事务读时用 Read View 做可见性判断；RC 与 RR 的全部区别就是 Read View 每次重建还是复用第一次的。最后落到工程：长事务会阻止 Purge 清理 Undo Log 导致膨胀、延长锁持有时间增加死锁概率，排查用 `SELECT * FROM information_schema.INNODB_TRX ORDER BY trx_started`，处理靠拆小事务、避免事务里做 RPC 等耗时操作、设置超时并定期 kill。"
+
+**高频追问要点备查**：
 
 **面试官：解释MySQL四种隔离级别。**
 

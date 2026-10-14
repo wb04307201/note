@@ -2,7 +2,7 @@
   id: 03.database-mvcc
   topic: 03.database
   difficulty: ⭐⭐⭐⭐
-  frequency: 中频
+  frequency: 高频
   scenario_type: 反直觉代码
   tags: [03.database, MVCC, mvcc]
   status: active
@@ -204,15 +204,17 @@ MVCC 的可见性判断仅适用于**快照读**（Snapshot Read），即普通�
 
 ---
 
-## 六、面试话术（30 秒版）
+## 六、面试话术（30 秒版 + 90 秒版）
 
-> "MVCC 是多版本并发控制，InnoDB 通过**隐藏列 + Undo Log 版本链 + Read View** 实现非锁定快照读。
+> **30 秒版**："MVCC 是多版本并发控制，InnoDB 通过**隐藏列 + Undo Log 版本链 + Read View** 实现非锁定快照读。
 >
 > 每行记录有 `trx_id` 和 `roll_ptr` 两个隐藏列，`roll_ptr` 把历史版本串成链表。事务读取时，用 Read View 做可见性判断：先查是不是自己改的，再查修改事务是否在快照前已提交，通过四步规则找到第一个可见版本。
 >
 > RC 和 RR 的核心区别是 Read View 创建时机：RC **每次 SELECT 重建**，所以能看到别人刚提交的修改；RR **只在第一次 SELECT 创建**，之后复用，保证可重复读。
 >
 > 注意 MVCC 只管快照读，`SELECT FOR UPDATE` 这种当前读还是要加锁的。另外 RR 下防止幻读靠的是 **MVCC + Gap Lock** 组合，不是 MVCC 单独完成的。"
+
+> **90 秒版**："MVCC 的三大件是隐藏列、Undo Log 版本链和 Read View。用一个具体例子走一遍可见性判断：假设行 R 当前 `trx_id = 300`，事务 300 未提交前它沿 `roll_ptr` 挂着历史版本 `trx_id = 200`（已提交）和 `trx_id = 100`（已提交）。事务 250 在 RR 下第一次 SELECT 时生成 Read View，其中 `m_ids = [300]`（活跃事务列表）、`min_trx_id = 300`、`max_trx_id = 301`、`creator_trx_id = 250`。判断从最新版本开始：① `trx_id = 300` 等于 Read View 里的活跃事务 → 不可见；② 顺着版本链找 `trx_id = 200`——200 < min_trx_id 说明它在快照创建前已提交 → 可见，返回这个旧版本。四步规则总结：等于自己（creator_trx_id）→ 可见；小于 min_trx_id → 已提交，可见；大于等于 max_trx_id → 快照后才开启的事务，不可见；落在 [min, max) 之间则看是否在 m_ids 活跃列表里，在就不可见、不在就可见。RC 与 RR 的全部区别就是这套判断用的 Read View 何时生成：RC 每条 SELECT 重建，所以能读到别人刚提交的数据（不可重复读）；RR 全程复用第一条 SELECT 的快照，所以可重复读。最后强调边界：MVCC 只覆盖快照读，`SELECT ... FOR UPDATE / LOCK IN SHARE MODE` 和 DML 都是当前读、走加锁路径；RR 防幻读是快照读靠 MVCC、当前读靠 Gap Lock（临键锁）的组合拳。"
 
 **高频追问应对**：
 
@@ -235,6 +237,6 @@ MVCC 的可见性判断仅适用于**快照读**（Snapshot Read），即普通�
 
 - 深度阅读：[`03.database`](../../../03.data-stack/01-database/README.md) — 主模块详细内容
 
-> 📅 2026-09-01 · 咬文嚼字 · MySQL MVCC · ⭐⭐⭐⭐（中频面试 + 实战必会）
+> 📅 2026-09-01 · 咬文嚼字 · MySQL MVCC · ⭐⭐⭐⭐（高频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · mvcc](../README.md)

@@ -92,8 +92,10 @@ BITCOUNT msg:read:1001    → 返回 1
 # 查询用户是否已读
 GETBIT msg:read:1001 3    → 返回 1（已读）
 
-# 查询谁已读（返回所有已读 user_id 偏移量）
-BITFIELD msg:read:1001 GET u32 0
+# 查询谁已读：BITPOS 迭代定位已读偏移量（从指定字节起找下一个为 1 的 bit）
+BITPOS msg:read:1001 1 0    → 返回首个已读偏移（如 3）
+BITPOS msg:read:1001 1 1    → 从下一字节继续找，循环迭代直到返回 -1
+# 注意：BITFIELD GET u32 一次只能取 32 bit，不能用于返回全部已读 user_id
 ```
 
 **优势**：

@@ -348,9 +348,8 @@ public class OrderService {
 ## 相关章节
 
 - 深度阅读：[`06.spring`](../../../04.spring-backend/README.md) — 主模块详细内容
+- 事务边界：[`03-transaction-boundary`](../../../04.spring-backend/04-data/mybatis/03-spring-integration/03-transaction-boundary.md) — Spring 集成 MyBatis 时的事务边界控制
 
-
-- [03-transaction-boundary](../../../04.spring-backend/04-data/mybatis/03-spring-integration/03-transaction-boundary.md)
 > 📅 2026-09-01 · 咬文嚼字 · Spring · @Transactional 失效 · ⭐⭐⭐（中频面试 + 实战必会）
 
 ← [返回: 咬文嚼字 · transactional-pitfalls](../README.md)
