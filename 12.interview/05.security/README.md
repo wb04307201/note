@@ -9,11 +9,11 @@
 
 # 安全咬文嚼字
 
-> 安全设计高频面试题与难点深挖（**认证 / 加密 / Web 安全 / 限流 / OWASP**），对齐主模块 [`12.interview/04.system-design/05-security`](../../06.distributed-systems/05-security/README.md)。**11** 篇真题（find 校对 2026-09-21）覆盖**权限系统设计** + **单点登录 6 方案** + **JWT vs Session** + **OAuth2 四种模式** + **XSS/CSRF/CSP** + **HTTPS 握手优化** + **HTTPS 防抓包边界与 MITM 防御** + **传输 vs 存储加密** + **CORS 预检优化** + **限流算法选型** + **OWASP Top 10** 11 大方向。
+> 安全设计高频面试题与难点深挖（**认证 / 加密 / Web 安全 / 限流 / OWASP**），对齐主模块 [`12.interview/04.system-design/05-security`](../../06.distributed-systems/05-security/README.md)。**12** 篇真题（find 校对 2026-10-16）覆盖**权限系统设计** + **单点登录 6 方案** + **JWT vs Session** + **OAuth2 四种模式** + **XSS/CSRF/CSP** + **HTTPS 握手优化** + **HTTPS 防抓包边界与 MITM 防御** + **传输 vs 存储加密** + **可搜索加密（PII 模糊搜索）** + **CORS 预检优化** + **限流算法选型** + **OWASP Top 10** 12 大方向。
 
 ---
 
-## 文章清单（共 11 题，2026-09-21 更新）
+## 文章清单（共 12 题，2026-10-16 更新）
 
 ### 认证与授权
 
@@ -32,6 +32,7 @@
 | [HTTPS 握手性能优化](https-handshake/README.md) | TLS 1.2 vs 1.3 + 0-RTT + OCSP Stapling |
 | 🆕 [HTTPS 防抓包边界 / MITM 防御](https-mitm-and-pinning/README.md) | Charles 抓包原理（中间人代理）+ SSL Pinning 5 方案（证书 / 公钥 / mTLS / iOS ATS / Android NSC）+ 6 反直觉点（含 30s/90s 话术 + 5 追问模板） |
 | [传输加密 vs 存储加密](encryption-at-rest-transit/README.md) | 信封加密 + KMS/HSM + 全链路策略 |
+| 🆕 [加密字段还能模糊搜索吗](encrypted-field-search/README.md) | 6 大方案 × 5 查询类型矩阵（HMAC 末 N 位 / OPE / FHE）+ 5 大反模式 + 5 大决策树 |
 | [CORS 预检请求性能陷阱](cors-preflight/README.md) | Simple Request 条件 + Preflight 缓存 + 消除策略 |
 
 ### 限流与 OWASP
