@@ -394,6 +394,7 @@ Seata 4 种模式对比：
 - [../04.spring-backend/05-spring-cloud/](../../../04.spring-backend/03-cloud/README.md) —— Spring Cloud 全套实战
 - [../04.spring-backend/05-spring-cloud/seata-integration](../../../04.spring-backend/03-cloud/seata-integration.md) —— Seata 分布式事务
 - [../04.spring-backend/05-spring-cloud/service-registry](../../../04.spring-backend/03-cloud/service-registry/README.md) —— 注册中心 Nacos
+- [04.spring-backend/03-cloud § 整条调用链路 + 治理矩阵](../../../04.spring-backend/03-cloud/README.md#整条调用链路--治理矩阵深度剖析) —— 横向 7 跳调用链 + 纵向 4 类治理矩阵（深度剖析，面试追问必看）
 
 ### 实战姐妹（13.story）
 
