@@ -9,7 +9,7 @@
 
 # AI 咬文嚼字
 
-> AI 高频面试题与新概念深挖：56 题（find 校对 2026-10-13），每篇陷阱 + 反直觉 + 30 秒话术，完整概念见主模块 [`09.ai-applications`](../../09.ai-applications/README.md)。
+> AI 高频面试题与新概念深挖：57 题（find 校对 2026-10-16），每篇陷阱 + 反直觉 + 30 秒话术，完整概念见主模块 [`09.ai-applications`](../../09.ai-applications/README.md)。
 
 > ⚠️ **定位说明**：本目录所有文章都是**面试深挖版**。完整概念文档见主模块对应位置（README 末尾"深度阅读"区有链接）。
 
@@ -17,7 +17,7 @@
 
 ## 🎯 读者角色速查（按身份挑题）
 
-> **56 题**按难度与场景覆盖 6 类读者角色（find 校对 2026-10-13），按身份挑题效率最高。
+> **57 题**按难度与场景覆盖 6 类读者角色（find 校对 2026-10-16），按身份挑题效率最高。
 
 | 读者角色 | 推荐题号 | 推荐阅读顺序 | 关键场景 |
 |---------|---------|------------|---------|
@@ -30,7 +30,7 @@
 
 ---
 
-## 文章清单（共 **56 题**，find 校对 2026-10-13）
+## 文章清单（共 **57 题**，find 校对 2026-10-16）
 
 ### 🎯 真正的面试题（一题一文）
 
@@ -45,6 +45,7 @@
 | [Agent Memory 分类](agent-memory-classification/) | ⭐⭐⭐ | 时间×认知×工程三维分类法 + 5 大框架 + 30/60/90 秒话术 |
 | [如何量化 Agent 性能](agent-performance-evaluation/) | ⭐⭐⭐⭐ | 6 大指标维度（任务完成率/步骤效率/工具使用/成本/满意度/稳定性）+ 5 种评估方法 |
 | [RAG 权限隔离设计](rag-permission-isolation/) | ⭐⭐⭐⭐ | 4 种隔离方案 + pre/post-filtering + ACL 同步 + 多租户 |
+| 🆕 [RAG 评测 6 维矩阵](rag-evaluation/) | ⭐⭐⭐⭐ | 6 维评测矩阵（检索/生成/系统/Agentic/LLM-as-Judge/业务）+ 5 反模式 + 4 步上线流程 + 黄金集构建 + 90 秒话术 |
 | [AI 编程 Token 经济学](ai-coding-token-economics/) | ⭐⭐⭐ | 9.6 万 Token 中位数 + 杠杆率 + Token 悖论 + 企业案例 |
 | [LLM Benchmark 深度剖析](llm-benchmark/) | ⭐⭐⭐⭐ | MMLU/HumanEval/Arena ELO + 数据污染 + 5 大问题 |
 | 🆕 [ACP 协议](acp-protocol/) | ⭐⭐⭐ | 4 大 Agent 通信协议辨析（MCP/ACP/A2A/ANP）+ Zed 集成 |
