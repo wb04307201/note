@@ -285,6 +285,135 @@ public String blindIndex(String plain, byte[] key) {
 - **优点**：零应用改造成本
 - **缺点**：DBA / 备份仍可读明文；不防应用层 SQL 注入
 
+### 模式 4：可搜索加密（Searchable Encryption）
+
+应用层加密后，**直接对密文做 `LIKE` 查询是无效的**（密文是随机二进制）。需要按查询类型选方案：
+
+| 查询类型 | 推荐方案 | 原理 |
+|---------|---------|------|
+| **等值**（`phone = ?`） | HMAC 完整索引 | 同一明文 → 同一 HMAC，建 B+ 树索引 |
+| **模糊匹配**（`phone LIKE '%1234'`） | HMAC 末 N 位索引 | 截取 HMAC 末 4 字节，建 B+ 树索引 |
+| **前缀**（`phone LIKE '138%'`） | HMAC + Trie 索引 | 分段索引 |
+| **范围**（`age BETWEEN 20 AND 30`） | OPE 保序加密 / 全表解密 | 保留明文顺序 |
+| **聚合**（`GROUP BY city`） | HMAC 索引 / 不加密 | 密文聚合无意义 |
+| **任意查询** | FHE 同态加密 | 密文上计算（极慢 10⁵-10⁶ 倍） |
+
+#### 4.1 HMAC 末 N 位索引（手机号后四位）
+
+```java
+// 1. AES 加密存储（AES-256-GCM）
+public String encryptPhone(String phone, SecretKey dek) {
+    byte[] iv = SecureRandom.getInstanceStrong().generateSeed(12);
+    Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+    cipher.init(Cipher.ENCRYPT_MODE, dek, new GCMParameterSpec(128, iv));
+    byte[] ct = cipher.doFinal(phone.getBytes(StandardCharsets.UTF_8));
+    return Base64.getEncoder().encodeToString(iv) + ":" +
+           Base64.getEncoder().encodeToString(ct);
+}
+
+// 2. HMAC 末 4 位索引（模糊搜索用）
+public String phoneLast4Index(String phone, byte[] hmacKey) {
+    Mac mac = Mac.getInstance("HmacSHA256");
+    mac.init(new SecretKeySpec(hmacKey, "HmacSHA256"));
+    byte[] hash = mac.doFinal(phone.getBytes(StandardCharsets.UTF_8));
+    // 取末 4 字节 = 8 个 hex 字符 ≈ 4 位数字搜索空间（65536 种可能）
+    String hex = HexFormat.of().formatHex(hash);
+    return hex.substring(hex.length() - 8);
+}
+
+// 3. 搜索流程（用户输入手机号后 4 位）
+public List<User> searchByLast4(String userInputLast4, byte[] hmacKey) {
+    // 关键：用户只知道后 4 位，必须「补全成完整手机号 → HMAC → 取末 4 位」
+    String fullPhone = "138****" + userInputLast4;
+    String hashed = phoneLast4Index(fullPhone, hmacKey);
+    return userRepo.findByPhoneLast4Index(hashed);  // SELECT * WHERE phone_last4_idx = ?
+}
+
+// 4. SQL 表设计
+// CREATE TABLE users (
+//   id BIGINT PRIMARY KEY,
+//   phone_enc TEXT,           -- AES 加密的手机号密文（防 DBA）
+//   phone_last4_idx CHAR(8),  -- HMAC 末 4 位索引（建 B+ 树索引，防字典攻击）
+//   phone_full_idx CHAR(32)   -- HMAC 完整手机号索引（等值查询用，加 per-user 盐）
+// );
+```
+
+#### 4.2 保序加密 OPE（年龄范围查询）
+
+```java
+// OPE 库：mCrypt / AWS Cryptography / Google Cloud DPE
+public BigInteger opeEncrypt(int plaintext, byte[] key) {
+    Ope ope = new Ope(key);
+    return ope.encrypt(BigInteger.valueOf(plaintext));
+}
+
+// 范围查询（OPE 密文范围 = 明文范围）
+// SELECT * FROM users WHERE age_ope BETWEEN opeEncrypt(20) AND opeEncrypt(30)
+
+// 注意：OPE 暴露顺序 → 不能用 SELECT DISTINCT 看分布（暴露频率）
+// 不能用 SELECT MIN/MAX 看极值（暴露明文范围）
+```
+
+#### 4.3 同态加密 FHE（任意查询，极慢）
+
+```java
+// FHE 库：Microsoft SEAL / Google FHE Transpiler / Lattigo
+public EncryptedNumber fheEncrypt(int value, PublicKey pk) {
+    return FHE.encrypt(value, pk);
+}
+
+// 密文计算（不解密！）
+public EncryptedNumber fheAdd(EncryptedNumber a, EncryptedNumber b) {
+    return FHE.add(a, b);
+}
+
+// 性能对比（vs 明文）：
+// 加法：FHE ~1ms vs 明文 ~1μs（慢 1000 倍）
+// 乘法：FHE ~100ms vs 明文 ~1μs（慢 10 万倍）
+// 实测：100 万行范围查询，FHE 方案需要 CPU 烧数小时 → 生产不可用
+```
+
+#### 4.4 实战选型决策树
+
+```text
+业务查询类型？
+├─ 等值 → HMAC 完整索引
+├─ 模糊匹配（后 N 位）→ HMAC 末 N 位索引
+├─ 前缀 → HMAC + Trie
+├─ 范围 → OPE（低敏感）或 全表解密（高敏感）
+├─ 聚合 → HMAC 索引 / 不加密
+└─ 任意 → FHE（极慢，仅极端合规）
+
+数据敏感度？
+├─ 极高（身份证 / 银行卡）→ AES + HMAC + KMS（最小索引）
+├─ 中（手机号 / 邮箱）→ AES + HMAC 末位索引
+└─ 低（年龄 / 城市）→ OPE 或不解密
+
+性能预算？
+├─ > 10万 QPS → HMAC + B+ 树
+├─ < 1万 QPS → 全表解密 + 内存过滤
+└─ < 100 QPS → FHE 可接受
+```
+
+#### 4.5 5 大反模式
+
+| ❌ 反模式 | 错在哪 | 正确做法 |
+|----------|--------|---------|
+| **对密文做 LIKE 查询** | 密文是二进制乱码，LIKE 无意义 | HMAC 截断索引 / OPE / 全表解密 |
+| **用 MD5 当「加密」** | 哈希不可逆，连自己都解不开 | AES-GCM + HMAC 索引 |
+| **HMAC 索引不加盐** | 同一 master key → 字典攻击常见值 | per-user salt 或 per-record salt |
+| **OPE 用在高敏感数据** | 保留顺序 → 频率分析可破解 | OPE 仅用于低敏感聚合 |
+| **盲目上 FHE** | 慢 10⁵ 倍 / CPU 烧穿 | 99% 业务用「HMAC + 全表解密」 |
+
+#### 4.6 一句话总结
+
+> **应用层加密不是「不可搜索」，而是「按查询类型选方案」** —— 等值用 HMAC 完整索引、模糊匹配用 HMAC 末 N 位、范围用 OPE、任意查询用 FHE（极慢）。
+
+#### 4.7 反直觉点
+
+- ❓ 有人问：「加密字段 LIKE 查询会不会泄露明文？」 → LIKE 查询本身只查索引（HMAC 末 N 位），不接触密文，**无泄露**。
+- ❓ 有人问：「HMAC 索引被脱库怎么办？」 → 加 per-user 盐 + 长截断（≥ 16 字节），字典攻击代价 = 2¹²⁸，**不可破解**。
+
 ---
 
 ## 密钥管理 KMS / HSM
