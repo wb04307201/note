@@ -30,6 +30,7 @@
 | **AOP 总览** | [aop/README.md](aop/README.md) | 什么是面向切面编程？Spring AOP 的核心概念 | 25 min |
 | **切入点表达式** | [aop/pointcut-expression.md](aop/pointcut-expression.md) | Pointcut 表达式语法与匹配规则？ | 10 min |
 | **Event 机制** | [event.md](event.md) | Spring Event 发布订阅？@TransactionalEventListener？ | 10 min |
+| **扩展点全景** | [extension-points.md](extension-points.md) | Spring 留了哪些扩展点？BFPP vs BPP？Boot 4 变化？ | 15 min |
 | **异常处理** | [exception-handling.md](exception-handling.md) | 4 大异常处理层级？@ControllerAdvice？ | 12 min |
 | **工具类** | [tools-reference.md](tools-reference.md) | Spring 自带 24 个工具类速查 | 速查 |
 | **手写 mini Spring** | [minispring/microrest/README.md](minispring/microrest/README.md) | 200 行实现 IoC + MVC 的教学 demo | 教学 |
@@ -95,6 +96,7 @@ graph LR
 - ➡️ [02 Web 层](../02-web/README.md) — Spring MVC 大量依赖 IoC 容器
 - ➡️ [04 Spring Boot](../02-boot/README.md) — 基于核心容器的"约定优于配置"
 - [08 注解速查](../08-annotations/README.md) — IoC/AOP 相关注解
+- [扩展点全景](extension-points.md) — 各阶段扩展点插槽清单（面试版见 [12.interview](../../12.interview/06.spring/extension-points/README.md)）
 
 ---
 
@@ -106,11 +108,11 @@ graph LR
 
 | 子目录 | 篇数 |
 |:------|:----:|
-| `01-core/`（本目录直接） | 6 |
+| `01-core/`（本目录直接） | 7 |
 | ├─ `ioc/` | 5 |
 | ├─ `aop/` | 2 |
 | └─ `minispring/` | 0 |
-| **合计** | **13** |
+| **合计** | **14** |
 
 > 数字基线：以 leaf MD 数（含子目录与子子目录的 .md，不含任何 README 索引页）为统计口径。统计时间 2026-07-01。
 

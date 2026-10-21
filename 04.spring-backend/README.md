@@ -35,11 +35,11 @@
 ## 🗺️ 目录导航
 
 > 数字基线：以"分类下 leaf MD 数（含所有子目录与子子目录）"为统计口径。
-> 实际结构 = 31 个 README + 110 个非 README 子文章 = 142 个 .md 文件（2026-08-25 find 校对，另含 1 个 SPEC.md）。
+> 实际结构 = 32 个 README + 111 个非 README 子文章 = 143 个 .md 文件（2026-10-21 find 校对，另含 2 个 SPEC.md）。
 
 | 序号 | 分类 | 核心内容 | Leaf 数 | 入口 |
 |:----:|:----|:---------|:-------:|:----:|
-| 01 | **核心容器** | IoC/AOP 原理、Bean 生命周期与循环依赖、FactoryBean、依赖注入（构造器/Setter/字段）、@Configuration Lite/Full、外部化配置、Event 机制、模块依赖、手写 mini Spring | **13** | [01-core/README.md](01-core/README.md) |
+| 01 | **核心容器** | IoC/AOP 原理、Bean 生命周期与循环依赖、FactoryBean、依赖注入（构造器/Setter/字段）、@Configuration Lite/Full、外部化配置、Event 机制、**扩展点全景**、模块依赖、手写 mini Spring | **14** | [01-core/README.md](01-core/README.md) |
 | 02 | **Web 层** | Spring MVC 流程、Filter/Interceptor/AOP 顺序、异常/视图/上传/CORS/i18n/异步、WebFlux 响应式（WebClient/R2DBC/Router Functions/测试）、SSE 实时推送 | **13** | [02-web/README.md](02-web/README.md) |
 | 03 | **数据层** | 声明式/编程式事务、多数据源/JTA、JPA 事务、传播/隔离/失效、Spring Cache（4 大模式 + 多级缓存 + 序列化）、[**MyBatis 全栈 4 主题**](04-data/mybatis/README.md)（架构原理 / 扩展能力 / Spring 整合 / MyBatis-Plus） | **40** | [04-data/README.md](04-data/README.md) |
 | 04 | **Spring Boot** | 自动配置原理、自定义 Condition 扩展、Starter 机制、spring.factories 迁移、启动流程、启动后钩子、外部化配置、内嵌服务器切换、GraalVM Native Image | **9** | [02-boot/README.md](02-boot/README.md) |
@@ -49,7 +49,7 @@
 | 08 | **注解速查** | 事务/缓存/调度/校验/重试/AOP/Web/JPA/测试/配置/异常 等按场景分类的索引 | **12** | [08-annotations/README.md](08-annotations/README.md) |
 | 09 | **Spring Security** | SecurityFilterChain 架构、认证（密码/JWT/OAuth2）、授权（@PreAuthorize/ACL）、OAuth2 四种授权模式、CORS/CSRF/Session/安全 Header | **6** | [09-security/README.md](09-security/README.md) |
 
-**合计**：9 大分类 · **31 个 README · 110 个非 README 子文章**（共 142 个 .md 文件，另含 1 个 SPEC.md）。
+**合计**：9 大分类 · **32 个 README · 111 个非 README 子文章**（共 143 个 .md 文件，另含 2 个 SPEC.md）。
 
 ### 3.1 MyBatis 全栈专项（4 主题 · 27 篇）
 
@@ -199,6 +199,7 @@ class OrderService {
 |------|:----:|:---------|
 | [@Transactional 失效 8 种场景](../12.interview/06.spring/transactional-pitfalls/README.md) | ⭐⭐⭐⭐⭐ | 同类调用 / 异常类型 / 多线程 / 传播行为 |
 | [Bean 生命周期详解](../12.interview/06.spring/bean-lifecycle/README.md) | ⭐⭐⭐⭐ | 实例化 → 注入 → 初始化 → 销毁 12 步 |
+| [Spring 扩展点全景](../12.interview/06.spring/extension-points/README.md) | ⭐⭐⭐⭐ | BFPP vs BPP / Runner vs ReadyEvent / Boot 4 变化 |
 | [为什么不推荐 @Autowired](../12.interview/06.spring/not-use-@autowired/README.md) | ⭐⭐⭐ | 字段注入 vs 构造器注入 |
 
 ---

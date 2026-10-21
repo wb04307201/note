@@ -613,3 +613,4 @@ public void onWelcomeBonus(WelcomeBonusEvent e) {
 - [IoC 总览](ioc/README.md) — Bean 管理是事件机制的基础
 - [AOP 总览](aop/README.md) — @EventListener 本质是 AOP 切面
 - [08 注解/异常注解](../08-annotations/exception.md) — 事件可携带异常信息
+- [扩展点全景](extension-points.md) — `ApplicationListener` / `@EventListener` 在扩展点时间线中的位置

@@ -397,6 +397,7 @@ public class SharedService { /* 抽取公共逻辑 */ }
 - [循环依赖](circular-dependency.md)
 - [FactoryBean](FactoryBean.md)
 - [08 注解/Bean 注解](../../08-annotations/bean-and-ioc.md)
+- [扩展点全景](../extension-points.md) — 各阶段扩展点插槽清单
 
 
 - [configuration-lite-vs-full](../configuration-lite-vs-full.md)

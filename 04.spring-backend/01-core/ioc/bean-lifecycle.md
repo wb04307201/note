@@ -277,3 +277,4 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 
 - [core-externalized-configuration](../core-externalized-configuration.md)
 - [circular-dependency](circular-dependency.md)
+- [扩展点全景](../extension-points.md) — 扩展点在生命周期 4 阶段中的精确落点
