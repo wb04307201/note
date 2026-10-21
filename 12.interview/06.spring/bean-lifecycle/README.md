@@ -182,6 +182,7 @@ public class MyBean implements InitializingBean, DisposableBean,
 - 主模块：[`04.spring-backend`](../../../04.spring-backend/README.md) — Spring 知识体系
 - 相关：[`12.interview/06.spring/not-use-@autowired/`](../not-use-@autowired/) — @Autowired 推荐用法
 - 相关：[`12.interview/06.spring/circular-dependency/`](../circular-dependency/) — 循环依赖解决
+- 相关：[`12.interview/06.spring/extension-points/`](../extension-points/) — 扩展点在生命周期各阶段的落点
 
 ## 相关章节
 

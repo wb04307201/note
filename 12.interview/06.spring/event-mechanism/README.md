@@ -332,6 +332,7 @@ public void handle(OrderCreatedEvent event) {
 - [Spring 事务](../../../04.spring-backend/04-data/transaction/README.md) — Spring 事务管理机制
 - [Spring 事件](../../../04.spring-backend/01-core/event.md) — Spring 异步编程模型
 - [设计模式](../../../01.java-and-jvm/04-patterns/README.md) — 观察者模式详解
+- 相关：[`12.interview/06.spring/extension-points/`](../extension-points/) — `ApplicationListener` / `@EventListener` 扩展点全景
 
 ## 相关章节
 

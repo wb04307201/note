@@ -317,6 +317,7 @@ application.yml > 自动配置类的默认值
 ## 八、交叉引用
 
 - 主模块：[`06.spring`](../../../04.spring-backend/) — Spring 知识体系
+- 相关：[`12.interview/06.spring/extension-points/`](../extension-points/) — `ImportSelector` / `ImportBeanDefinitionRegistrar` 装配扩展点
 
 ## 相关章节
 
