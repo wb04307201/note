@@ -18,7 +18,7 @@
 
 ## 🎯 一句话定位
 
-**`SpringApplication.run()` = 6 阶段流水线**：`SpringApplication` 实例化 → `Environment` 准备 → `ApplicationContext` 创建 → `refresh` 阶段 → `afterRefresh` 回调 → `ApplicationStartedEvent` 广播——每个阶段都有官方扩展点。
+**`SpringApplication.run()` = 6 阶段流水线**：`SpringApplication` 实例化 → `Environment` 准备 → `ApplicationContext` 创建 → `refresh` 阶段 → `ApplicationStartedEvent` 广播 → `callRunners()` 执行——每个阶段都有官方扩展点。
 
 ---
 
@@ -52,11 +52,11 @@ sequenceDiagram
     Ctx->>BF: refresh()<br/>加载 BeanDefinition / 实例化 Bean / 启动内嵌服务器
     Ctx-->>SA: ContextRefreshedEvent
 
-    Note over SA: 阶段 5：afterRefresh 回调
+    Note over SA: 阶段 5：ApplicationStartedEvent 广播
+    SA->>Listener: started() → ApplicationStartedEvent
     SA->>User: callRunners()（CommandLineRunner / ApplicationRunner）
 
-    Note over SA: 阶段 6：事件广播 + 就绪
-    SA->>Listener: started() → ApplicationStartedEvent
+    Note over SA: 阶段 6：就绪事件
     Note over SA: ...应用运行中...
     Listener->>User: ready() → ApplicationReadyEvent
 ```
@@ -181,7 +181,7 @@ private void prepareContext(ConfigurableApplicationContext context, Configurable
 
 ---
 
-## 六、阶段 5：`afterRefresh` 回调
+## 六、阶段 5：`callRunners()` 回调
 
 ```java
 private void callRunners(ApplicationContext context, ApplicationArguments args) {
@@ -209,12 +209,12 @@ private void callRunners(ApplicationContext context, ApplicationArguments args) 
 
 ---
 
-## 七、阶段 6：`ApplicationStartedEvent` 广播
+## 七、阶段 6：`ApplicationReadyEvent` 广播
 
 ```java
 private void started(ConfigurableApplicationContext context, Duration timeTaken) {
     listeners.started(context, timeTaken);  // 广播 ApplicationStartedEvent
-    // 注意：此时 context 已 refresh 完成，Runner 已执行，但 ApplicationReadyEvent 尚未触发
+    // 注意：此时 context 已 refresh 完成，但 Runner 尚未执行，ApplicationReadyEvent 也尚未触发
 }
 ```
 
@@ -227,7 +227,7 @@ private void started(ConfigurableApplicationContext context, Duration timeTaken)
 | `ApplicationContextInitializedEvent` | 阶段 3 后 | Context 已创建但未 refresh |
 | `ApplicationPreparedEvent` | 阶段 3 末 | BeanDefinition 已加载，未实例化 |
 | `ContextRefreshedEvent` | 阶段 4 末（refresh 内部） | Bean 已全部实例化 |
-| `ApplicationStartedEvent` | 阶段 5 后 | Runner 已执行 |
+| `ApplicationStartedEvent` | 阶段 5 前（refresh 后） | **Runner 尚未执行**（`listeners.started()` → `callRunners()`） |
 | `ApplicationReadyEvent` | 阶段 6 后（应用就绪） | **应用完全可用，可对外服务** |
 | `ApplicationFailedEvent` | 任何阶段失败 | 启动失败 |
 
@@ -339,6 +339,7 @@ public class ReadyListener implements ApplicationListener<ApplicationReadyEvent>
 - [外部化配置](boot-externalized-configuration.md) — Environment 在阶段 2 被构建
 - [内嵌服务器](embedded-server.md) — 阶段 4 的 `onRefresh()` 启动 Tomcat
 - [自动配置原理](auto-configuration.md) — 阶段 4 解析 `@SpringBootApplication`
+- [扩展点全景](../01-core/extension-points.md) — 各阶段扩展点插槽清单（含 Boot 4.x 变化）
 
 ---
 

@@ -100,7 +100,7 @@ graph TB
 | **Starter** | 依赖 + 自动配置的聚合包（如 spring-boot-starter-web） | [自定义](custom-starter.md) |
 | **@ConditionalOnMissingBean** | Spring Boot "约定优于配置"：用户没配就用默认的 | [自动配置](auto-configuration.md) |
 | **`Condition` 接口** | `@ConditionalOn*` 11 个内置注解之外的扩展点（实现 `matches()`） | [自定义 Condition](custom-condition.md) |
-| **SpringApplication.run()** | 启动入口，6 个阶段：实例化 → Environment → Context → refresh → afterRefresh → 事件 | [启动流程](startup-flow.md) |
+| **SpringApplication.run()** | 启动入口，6 个阶段：实例化 → Environment → Context → refresh → 事件广播 → Runner | [启动流程](startup-flow.md) |
 | **@PostConstruct** | Bean 初始化时执行的方法 | [启动后钩子](application-bootstrap.md) |
 | **ApplicationRunner** | 启动完成后执行的回调（可访问命令行参数） | [启动后钩子](application-bootstrap.md) |
 | **ApplicationReadyEvent** | 应用完全就绪事件（内嵌服务器已启动） | [启动后钩子](application-bootstrap.md) |
@@ -130,6 +130,7 @@ graph TB
 - ⬅️ [02 Web 层](../02-web/README.md) — spring-boot-starter-web 集成 MVC
 - ➡️ [05 Spring Cloud](../03-cloud/README.md) — Spring Cloud 基于 Spring Boot
 - ➡️ [07 可观测性](../07-observability/README.md) — Actuator 是 Boot 的核心生产特性
+- [扩展点全景](../01-core/extension-points.md) — Boot 启动扩展点（Initializer / Runner / 事件）全景
 
 ---
 

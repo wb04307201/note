@@ -12,7 +12,7 @@
 
 > ⬅️ [返回 04 Spring Boot](README.md) | [启动流程](startup-flow.md) | [外部化配置](boot-externalized-configuration.md)
 
-本文聚焦 **应用上下文就绪后** 的 5 种钩子 / 回调 / 事件扩展方式（`@PostConstruct`、`ApplicationRunner`、`CommandLineRunner`、`ApplicationReadyEvent`、`InitializingBean`、`SmartInitializingSingleton`）。如果你想了解 `SpringApplication.run()` 启动流程本身的 6 个阶段（实例化 → Environment 准备 → Context 创建 → refresh → afterRefresh → 事件广播），请参阅 [startup-flow.md](startup-flow.md)。
+本文聚焦 **应用上下文就绪后** 的 5 种钩子 / 回调 / 事件扩展方式（`@PostConstruct`、`ApplicationRunner`、`CommandLineRunner`、`ApplicationReadyEvent`、`InitializingBean`、`SmartInitializingSingleton`）。如果你想了解 `SpringApplication.run()` 启动流程本身的 6 个阶段（实例化 → Environment 准备 → Context 创建 → refresh → 事件广播 → Runner 执行），请参阅 [startup-flow.md](startup-flow.md)。
 
 ---
 
@@ -124,7 +124,7 @@ public class InitBean implements InitializingBean {
 ## 通过 `SmartInitializingSingleton` 接口（所有单例 Bean 初始化完成后执行）
 
 ```java
-import org.springframework.context.SmartInitializingSingleton;
+import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -167,3 +167,4 @@ public class AsyncInitializer implements ApplicationRunner {
 
 - [auto-configuration](auto-configuration.md)
 - [config-center](../03-cloud/config-center.md)
+- [扩展点全景](../01-core/extension-points.md) — 各阶段扩展点插槽清单
