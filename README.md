@@ -23,7 +23,7 @@
 |------|------|------|
 | **总 .md** | **1132** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
 | **总 README** | **802** | 1 根目录 + 13 模块 + 子目录 |
-| **frontmatter 覆盖** | **97.8%**（1107/1132）| module 819 + question 238 + story 50 = 1107（剩余 25 个为 SPEC.md ×22 + CLAUDE.md / ORCHESTRATION.md / STARTUP-NEW-KB.md，按规范豁免）|
+| **frontmatter 覆盖** | **98.0%**（1111/1134）| module 820 + question 241 + story 50 = 1111（剩余 23 个为 SPEC.md ×22 + CLAUDE.md，按规范豁免）|
 | **结构断链** | **0** | Session 6 修复 230 处断链后闭环 |
 | **orphan 目录** | **0** | 父 README 100% 回链 |
 | **实质弱关联** | **0** | 235 处合规模板导航保留（G4 合规）|
@@ -44,7 +44,7 @@
 | 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 62 |
 | 10 | [10.business-systems](./10.business-systems/) | 业务系统速查（电商/社交/金融等） | 38 |
 | 11 | [11.product-and-pm](./11.product-and-pm/) | 产品 + PM（Product & PM）| 11 |
-| 12 | [12.interview](./12.interview/) | 高频面试题（**238 篇**）| 250 |
+| 12 | [12.interview](./12.interview/) | 高频面试题（**241 篇**）| 253 |
 | 13 | [13.story](./13.story/) | 「阿明餐厅」技术系列（**50 篇**）| 1 |
 
 ## 三、3 大沉淀模式

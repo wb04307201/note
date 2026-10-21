@@ -9,11 +9,11 @@
 
 # Spring 咬文嚼字
 
-> Spring 高频面试题与细节深挖，对齐主模块 [`04.spring-backend`](../../04.spring-backend/README.md)。15 篇真题覆盖 IoC / Bean 生命周期 / AOP / @Transactional / 循环依赖 / 自动配置 / Spring MVC / 事件 / **Spring Security** / **Spring Cloud** 10 大方向（find 校对 2026-08-25）。
+> Spring 高频面试题与细节深挖，对齐主模块 [`04.spring-backend`](../../04.spring-backend/README.md)。16 篇真题覆盖 IoC / Bean 生命周期 / AOP / @Transactional / 循环依赖 / 自动配置 / Spring MVC / 事件 / **扩展点全景** / **Spring Security** / **Spring Cloud** 11 大方向（find 校对 2026-10-21）。
 
 ---
 
-## 文章清单（共 15 题，find 校对 2026-08-25）
+## 文章清单（共 16 题，find 校对 2026-10-21）
 
 ### 基础
 | 主题 | 难度 | 核心问题 |
@@ -28,6 +28,7 @@
 | [@Bean vs @Component](bean-vs-component/) | ⭐⭐⭐ | 两种 Bean 注册方式的区别与选择 |
 | [Spring Boot 自动配置原理](auto-configuration/) | ⭐⭐⭐⭐ | @EnableAutoConfiguration + spring.factories + 条件注解 |
 | [循环依赖三级缓存](circular-dependency/) | ⭐⭐⭐⭐ | DefaultSingletonBeanRegistry 如何解决循环依赖 |
+| [Spring 扩展点全景](extension-points/) | ⭐⭐⭐⭐ | BeanPostProcessor / ApplicationRunner / 事件机制｜按启动时间线 |
 
 ### AOP 与事务
 | 主题 | 难度 | 核心问题 |
@@ -74,8 +75,8 @@
 ## 学习路径
 
 1. **入门**（3 天）：@Autowired 推荐用法 + POJO/VO/DTO 区别
-2. **进阶**（2 周）：Bean 生命周期 + @Transactional 失效场景 + AOP 原理 + 循环依赖
-3. **冲刺面试**：重点看"自动配置原理"、"传播行为"、"JDK 代理 vs CGLIB"、"@Async 失效"
+2. **进阶**（2 周）：Bean 生命周期 + @Transactional 失效场景 + AOP 原理 + 循环依赖 + 扩展点全景
+3. **冲刺面试**：重点看"自动配置原理"、"传播行为"、"JDK 代理 vs CGLIB"、"@Async 失效"、"扩展点全景"
 
 ## 相关章节
 
