@@ -232,7 +232,7 @@ docs: 文档
 
 #### 8.3 note KB 词条（2026-10-12 重构抽取 · 原 50+ 新词映射表精简）
 
-> 原 50+ 词表写于 2026-07-14，经历多次目录重构（`02-technology-stack/*` → `llm-inference/*`，`07-research/alignment` → `fine-tuning/0N-*.md`）。本节为 2026-10-12 重构时**精简版**（移除已失效词 + 聚合条目；保留 active 词 ~35 条）。
+> 原 50+ 词表写于 2026-07-14，经历多次目录重构（`02-technology-stack/*` → `llm-inference/*`，`07-research/alignment` → `fine-tuning/0N-*.md`）。本节为 2026-10-12 重构时**精简版**（移除已失效词 + 聚合条目；保留 active 词 ~35 条），2026-10-21 新增 §8.3.6 Java/后端框架域 12 词后合计 ~47 条。
 
 ##### 8.3.1 LLM 架构层（1 词）
 
@@ -296,6 +296,25 @@ docs: 文档
 | 集成学习 | `02.cs-foundations/01-algorithms/ensemble` | - | - |
 | ML 面试（含评估指标 F1/AUC） | - | `12.interview/02.computer-basics/machine-learning` | - |
 
+##### 8.3.6 Java / 后端框架（12 词 · Spring 6 + Java 核心 3 + 数据库 3）
+
+> 2026-10-21 新增。§8.3 原 5 个分区全是 LLM/ML 域，而 KB 的 Java / Spring / DB 内容体量最大（`01.java-and-jvm` + `04.spring-backend` + `03.data-stack` + `12.interview/01.java`/`03.database`/`06.spring` 共 250+ 篇）却无前置索引。本节补齐该域，使 `note-knowledge-qa` Phase 2 能命中 Java 类问句。
+
+| 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
+|--------|-----------|-------------------|------|
+| Spring 扩展点 | `04.spring-backend/01-core/extension-points.md` | `12.interview/06.spring/extension-points` | - |
+| Bean 生命周期 | `04.spring-backend/01-core/ioc/bean-lifecycle.md` | `12.interview/06.spring/bean-lifecycle` | - |
+| Spring 循环依赖 | `04.spring-backend/01-core/ioc/circular-dependency.md` | `12.interview/06.spring/circular-dependency` | - |
+| Spring AOP | `04.spring-backend/01-core/aop/README.md` | `12.interview/06.spring/aop-principle` | - |
+| @Transactional（事务失效/传播） | `04.spring-backend/04-data/transaction/README.md` | `12.interview/06.spring/transactional-pitfalls` | - |
+| Spring Boot 自动配置 | `04.spring-backend/02-boot/auto-configuration.md` | `12.interview/06.spring/auto-configuration` | - |
+| HashMap / ConcurrentHashMap | `01.java-and-jvm/01-language/README.md` | `12.interview/01.java/hashmap-resizing` | - |
+| JVM 内存与 GC | `01.java-and-jvm/02-jvm/README.md` | `12.interview/01.java/jvm-memory` | - |
+| 线程池 | `01.java-and-jvm/03-concurrency/README.md` | `12.interview/01.java/thread-pool` | - |
+| MySQL 索引 | `03.data-stack/01-database/04-index/README.md` | `12.interview/03.database/mysql-index-failure` | - |
+| 事务隔离级别 | `03.data-stack/01-database/03-transaction/README.md` | `12.interview/03.database/mysql-isolation` | - |
+| Redis | `03.data-stack/01-database/07-redis/README.md` | `12.interview/03.database/redis-persistence` | - |
+
 #### 8.4 自动维护协议（3 skill 协同）
 
 | 角色 | Skill | 时机 | 动作 |
@@ -319,7 +338,7 @@ docs: 文档
 | `note-precipitation-planning` | **Phase 0** 主题识别 | `$KB_DIR/SPEC.md §8` | 关键词分析前置 |
 | `note-precipitation-planning` | **Phase 3** 位置决策 | `$KB_DIR/SPEC.md §1`（主模块列表） | 见 `<module>/README.md` 运行时读取 |
 | `note-precipitation-planning` | **Phase 4** 决策树 | `<module>/SPEC.md`（准入判定） | 仅 12.interview 注入 §准入判定 |
-| `note-precipitation-planning` | **Phase 5.5** 领域 query | `$KB_DIR/SPEC.md §8.3` | 5 大领域 + 词条组 |
+| `note-precipitation-planning` | **Phase 5.5** 领域 query | `$KB_DIR/SPEC.md §8.3` | 6 大领域 + 词条组 |
 | `note-precipitation-planning` | **Phase 6** 实施 | `$KB_DIR/SPEC.md §2`（commit 格式） | 见 `.claude/ORCHESTRATION.md` |
 | `note-precipitation-planning` | **Phase 6.9** 沉淀后维护 | `$KB_DIR/SPEC.md §8` | （阶段 5 待实施） |
 | `note-precipitation-planning` | subagent silent failure | `.claude/ORCHESTRATION.md §1` | 4 项验证 + author |
