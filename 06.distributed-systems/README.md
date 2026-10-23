@@ -124,9 +124,9 @@ flowchart TD
 ## 📊 本节统计
 
 - **顶层分类**：9 个（01 基础 / 02 分布式 / 03 高可用 / 04 高性能 / 05 安全 / 06 幂等 / 07 部署 / 08 可观测性 / 09 新兴技术）
-- **README 覆盖**：128 个（2026-10-14 实测 `find 06.distributed-systems -name README.md`）
-- **Markdown 总数**：166 个（2026-10-14 实测 `find -name "*.md"`）
-- **frontmatter 覆盖**：164/166（余 2 个为 `SPEC.md` ×2，按规范豁免）
+- **README 覆盖**：128 个（2026-10-23 实测 `find 06.distributed-systems -name README.md`）
+- **Markdown 总数**：167 个（2026-10-23 实测 `find -name "*.md"`）
+- **frontmatter 覆盖**：165/167（余 2 个为 `SPEC.md` ×2，按规范豁免）
 - **本版本 → 上一版本**：
   - 从 `04.system-design` 迁移到 `06.distributed-systems`
   - 模块定位升级：系统设计 → 分布式系统 + 微服务 + 云原生
