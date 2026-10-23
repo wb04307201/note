@@ -333,6 +333,7 @@ graph TB
 - ⬅️ [上一篇：康威定律 + 团队拓扑](conway-and-team-topology.md)
 - ⬅️ [上第一章：核心思想 + ADM 详解](adm.md)
 - ⬅️ [上第二章：BCAT + 业务能力 + 价值流](business-capability.md)
+- [第五章：情景判据表（ADM 阶段选择 + 常见误判）](scenario-judgment.md) — 治理动作在 ADM 各阶段的落点与常见误判
 - [架构认知的演进](../architecture-evolution/README.md) — OOD → DDD → TOGAF 的认知升级
 - [领域驱动设计 DDD](../ddd/README.md) — TOGAF 业务能力 → DDD 限界上下文
 - [面向对象设计 OOD](../ood/README.md) — SOLID 原则、GRASP
