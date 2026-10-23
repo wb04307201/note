@@ -17,13 +17,13 @@
 
 ---
 
-## 一、仓库健康度（2026-10-14 实测 · find 口径）
+## 一、仓库健康度（2026-10-23 实测 · find 口径）
 
 | 维度 | 数值 | 备注 |
 |------|------|------|
-| **总 .md** | **1132** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
-| **总 README** | **802** | 1 根目录 + 13 模块 + 子目录 |
-| **frontmatter 覆盖** | **98.0%**（1111/1134）| module 820 + question 241 + story 50 = 1111（剩余 23 个为 SPEC.md ×22 + CLAUDE.md，按规范豁免）|
+| **总 .md** | **1135** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
+| **总 README** | **805** | 1 根目录 + 13 模块 + 子目录 |
+| **frontmatter 覆盖** | **98.0%**（1112/1135）| module 821 + question 241 + story 50 = 1112（剩余 23 个为 SPEC.md ×22 + CLAUDE.md，按规范豁免）|
 | **结构断链** | **0** | Session 6 修复 230 处断链后闭环 |
 | **orphan 目录** | **0** | 父 README 100% 回链 |
 | **实质弱关联** | **0** | 235 处合规模板导航保留（G4 合规）|
@@ -37,8 +37,8 @@
 | 02 | [02.cs-foundations](./02.cs-foundations/) | 算法 + OS + 网络 + 数学 | 40 |
 | 03 | [03.data-stack](./03.data-stack/) | 数据库 + 缓存 + 大数据 | 32 |
 | 04 | [04.spring-backend](./04.spring-backend/) | Spring 生态 + 后端框架 | 32 |
-| 05 | [05.frontend](./05.frontend/) | 前端工程 | 54 |
-| 06 | [06.distributed-systems](./06.distributed-systems/) | 分布式 + 微服务 + 云原生 | 127 |
+| 05 | [05.frontend](./05.frontend/) | 前端工程 | 55 |
+| 06 | [06.distributed-systems](./06.distributed-systems/) | 分布式 + 微服务 + 云原生 | 128 |
 | 07 | [07.devops-and-tools](./07.devops-and-tools/) | DevOps + CI/CD + 工具链 | 47 |
 | 08 | [08.ai-foundations](./08.ai-foundations/) | ML + DL + Transformer + LLM 基础 | 7 |
 | 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 62 |
@@ -46,6 +46,9 @@
 | 11 | [11.product-and-pm](./11.product-and-pm/) | 产品 + PM（Product & PM）| 11 |
 | 12 | [12.interview](./12.interview/) | 高频面试题（**241 篇**）| 253 |
 | 13 | [13.story](./13.story/) | 「阿明餐厅」技术系列（**50 篇**）| 1 |
+
+> **「子 README」列口径**：`find <module> -name README.md`（含模块根 README），2026-10-23 全库校准。
+> **新增目录后需同步此列**——本列自 `727e260` 迁移后曾多次漏改（双层沉淀新增子目录时最易漏记）。
 
 ## 三、3 大沉淀模式
 
