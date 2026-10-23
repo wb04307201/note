@@ -158,7 +158,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 | 1.10 PNG / 脚本残留 | SPEC §6.8 | structural-checks.md |
 | 1.11 H1/H2 标题规范 | SPEC §6.2 | structural-checks.md |
 | 1.12 命名一致性 | SPEC §6.7 | structural-checks.md |
-| **1.13 弱关联扫描（v2 正文内链）** | Mistake 20 | `scripts/weak-link-scan.py` |
+| **1.13 弱关联扫描（v4 正文内链）** | Mistake 20 | `scripts/weak-link-scan.py` |
 | **1.14 准入判定扫描** | [`SPEC.md §1.5`](../../../SPEC.md)（`type=interview`）+ 该模块 `<module>/SPEC.md §准入判定` | 本节下方 + structural-checks.md §9 |
 | **1.15 关键词映射表稽核** | `SPEC.md §8` | 本节下方 |
 | **1.16 status_inventory（v3.x 新增）** | `SPEC.md §4` | 本节下方 + references/structural-checks.md §10 |
@@ -221,7 +221,7 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 
 **关联强度扫描脚本**（Phase 1.13 v2 正文内链版，外置同目录 `scripts/weak-link-scan.py`）：
 
-> 完整四步降噪（切代码块 / 排除表格 / 页脚截断 / 排除祖先回链）+ H1 关键词检查详见 [`scripts/weak-link-scan.py`](scripts/weak-link-scan.py) docstring。风格基线 `scripts/check-broken-links.py`。
+> 完整四步降噪（切代码块 / 排除表格 / 页脚截断 / 排除祖先回链）+ 关键词检查详见 [`scripts/weak-link-scan.py`](scripts/weak-link-scan.py) docstring。风格基线 `scripts/check-broken-links.py`。
 >
 > 用法：
 >
@@ -230,6 +230,35 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 > ```
 >
 > 输出：弱关联列表 → 报告 P2 项 + 推荐「删除或补语义描述」；不输出"强关联"（避免噪音）；**页脚/表格内的导航互链永不判弱关联**——它们是 G4 互链要求的合规载体，语义关联由正文承载。
+>
+> **两个口径勿混淆**（v4 · 2026-10-23）：
+> - **实质弱关联 = leaf↔leaf**（正文互链但主题不相关）——这是需要修的 P2 项，KB 当前为 **0**
+> - **合规模板导航 = README↔README**（导航表/互链表载体）——G4 合规，**保留不修**
+>
+> 脚本末行会同时输出三分类计数（`实质 / 合规模板 / 混合`），与根 README §1「实质弱关联」一栏口径一致。
+>
+> **v4 判定模型**（2026-10-23 重写，修复 4 处算法缺陷）：
+>
+> | 层级 | 规则 | 作用 |
+> |------|------|------|
+> | 降噪 | ① 去代码块 ② 去表格行 ③ 截断页脚导航段（`相关章节/交叉引用/系列导航/反向链/延伸阅读`，容忍编号前缀与 emoji）| 模板导航不参与判定 |
+> | 排除 | 祖先回链**仅在目标是严格祖先目录时**排除；同目录兄弟必须参与匹配 | 修复「整目录互链被漏检」 |
+> | 关键词池 | 目标 H1 + H2 + frontmatter(`title`/`summary`) + 文件名 slug 词元（README 取目录名）| 补齐前几版遗漏的主题描述源 |
+> | 正文比对 | 链接标记 `[anchor](url)` 还原为 `anchor` | 保留作者对目标的**显式指称**，去掉 URL 路径的自我满足 |
+> | 命中 | 中文：整词 / 核心词（剥离通用修饰）/ 头词（长词前 2 字，需独立出现）/ ≥3 字前缀 / 正文含 ≥3 字连续片段；英文：大小写不敏感整词；2 字中文需独立成词 | 覆盖同义表述与文件名指称 |
+> | anchor 兜底 | leaf↔leaf：anchor 必须与目标主题**相关**（含/被包含/子序列），否则判弱（"挂错主题"是真问题）；README 类：描述性 anchor 直接放行（目录索引用别名指向章节属合规导航）| 保住灵敏度，避免指标空转 |
+>
+> **基线变化**：旧算法 491 处（其中 leaf↔leaf 10 处经逐条审计**全部为假阳性**）→ v4 为 **0 处**。
+> 改动后必须重跑 smoke test 验证三项行为：无提及 → 检出；提及主题 → 不报；描述性 anchor 但主题不符 → 检出。
+>
+> ```bash
+> # smoke test（临时夹具必须放在 .health-tmp 之外, 该目录在默认排除列表里）
+> mkdir -p smoketest && printf '# 标题\n\n正文只提到了链路追踪的指标采集。\n\n见 [目标](tgt.md)。\n' > smoketest/weak-src.md
+> printf '# 标题\n\n正文讨论了从厨师到 CEO 的组织演进。\n\n见 [目标](tgt.md)。\n' > smoketest/strong-src.md
+> printf '# 07 · 从厨师到 CEO\n\n叙事章节。\n' > smoketest/tgt.md
+> python scripts/weak-link-scan.py --dir smoketest   # 期望: weak-src 报出, strong-src 不报
+> rm -rf smoketest
+> ```
 
 ### Phase 2 — Leaf 质量 fan-out
 
