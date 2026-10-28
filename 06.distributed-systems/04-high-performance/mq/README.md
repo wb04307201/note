@@ -77,6 +77,8 @@
     - **大规模日志/流处理**：选 **Kafka**（监控、用户行为日志）。
     - **传统企业级项目**：选 **ActiveMQ**（JMS 兼容）。
 
+> 🔗 **轻量级替代**：已在用 Redis、流量不大的场景，可用 **Redis Stream** 做轻量 MQ（Consumer Group + 至少一次投递），能力边界与"消息不丢失"口径见 [07-redis · Stream 与消息队列](../../../03.data-stack/01-database/07-redis/README.md)。
+
 ---
 
 ## 使用消息队列会面临的问题

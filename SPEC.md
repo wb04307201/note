@@ -297,7 +297,7 @@ docs: 文档
 | 集成学习 | `02.cs-foundations/01-algorithms/ensemble` | - | - |
 | ML 面试（含评估指标 F1/AUC） | - | `12.interview/02.computer-basics/machine-learning` | - |
 
-##### 8.3.6 Java / 后端框架（12 词 · Spring 6 + Java 核心 3 + 数据库 3）
+##### 8.3.6 Java / 后端框架（13 词 · Spring 6 + Java 核心 3 + 数据库 4）
 
 > 2026-10-21 新增。§8.3 原 5 个分区全是 LLM/ML 域，而 KB 的 Java / Spring / DB 内容体量最大（`01.java-and-jvm` + `04.spring-backend` + `03.data-stack` + `12.interview/01.java`/`03.database`/`06.spring` 共 250+ 篇）却无前置索引。本节补齐该域，使 `note-knowledge-qa` Phase 2 能命中 Java 类问句。
 
@@ -315,6 +315,7 @@ docs: 文档
 | MySQL 索引 | `03.data-stack/01-database/04-index/README.md` | `12.interview/03.database/mysql-index-failure` | - |
 | 事务隔离级别 | `03.data-stack/01-database/03-transaction/README.md` | `12.interview/03.database/mysql-isolation` | - |
 | Redis | `03.data-stack/01-database/07-redis/README.md` | `12.interview/03.database/redis-persistence` | - |
+| Redis Stream（消息队列） | `03.data-stack/01-database/07-redis/README.md` | `12.interview/03.database/redis-stream` | - |
 
 #### 8.4 自动维护协议（3 skill 协同）
 
