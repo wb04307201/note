@@ -123,6 +123,7 @@ RAG 问答上线后用户投诉："搜『雷霆 5 Pro 回收价』，知识库�
 - 同栏目：[10 亿级向量检索](../vector-search-algorithms/README.md) — HNSW/IVF/DiskANN 单路索引选型
 - 同栏目：[RAG 架构设计](../rag/README.md) — 混合检索在 RAG 链路中的位置
 - 同栏目：[相似文档消歧](../similar-doc-disambiguation/README.md) — 字面兜底救不了的场景（相对时间/属性歧义）怎么解
+- 同栏目：[Milvus 架构](../milvus-architecture/README.md) — 内核机制（存算分离 / Segment / 一致性 / Partition Key）
 - 主模块：[Hybrid Search §Milvus Hybrid Search](../../../09.ai-applications/rag/hybrid-search/README.md) — 双路召回机制 + 正确 API 完整代码 + RRF/Weighted 对比 + 参考来源（完整版）
 
 ---

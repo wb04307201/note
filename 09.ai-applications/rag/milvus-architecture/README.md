@@ -163,6 +163,7 @@ insert → growing segment(内存/Streaming Node 查询)
 
 - **机制深读**：[Hybrid Search](../hybrid-search/README.md)（§Milvus 库内融合 API）/ [向量检索算法](../vector-search-algorithms/README.md)（sealed 段索引选型）/ [相似文档消歧](../similar-doc-disambiguation/README.md)（expr 下推实战）
 - **叙事对照**：[13.story/37 味道仓库](../../../13.story/37-vector-database-and-embedding.md) —— 向量库 6 库全景（本篇是"巨型中央仓库"的内核深读）
+- **面试版**（30s/90s 话术 + 4 陷阱 + 追问）：[Milvus 架构 面试题](../../../12.interview/11.ai/milvus-architecture/README.md)
 - **规范互链**：[../../prompts/](../../prompts/)（生成阶段基础）/ [../../eval/](../../eval/)（评估方法论）/ [../../agent/](../../agent/)（Agentic RAG 延伸）
 
 ---
