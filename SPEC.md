@@ -268,7 +268,7 @@ docs: 文档
 | Constitutional AI | `09.ai-applications/fine-tuning/04-constitutional-ai.md` | 聚合 | - |
 | KTO / IPO / SimPO（含 ORPO/RFT） | `09.ai-applications/fine-tuning/05-newer-methods.md` | 聚合 | - |
 
-##### 8.3.4 LLM 应用层（10 主词）
+##### 8.3.4 LLM 应用层（11 主词）
 
 | 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
 |--------|-----------|-------------------|------|
@@ -282,6 +282,7 @@ docs: 文档
 | RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - | - |
 | RAG 评估（含 RAGAS/TruLens） | `09.ai-applications/rag/04-evaluation.md` | - | - |
 | 手搓 Agent vs 框架（抽象税） | `09.ai-applications/agent/agent-architecture/framework-source-comparison.md#三手搓-vs-框架抽象税与决策权-2026-10` | `12.interview/11.ai/handcraft-vs-framework` | - |
+| 相似文档消歧（多版本/时序） | `09.ai-applications/rag/similar-doc-disambiguation` | `12.interview/11.ai/similar-doc-disambiguation` | - |
 
 ##### 8.3.5 传统 ML 算法（8 主词 · 含 1 纯面试版）
 
