@@ -637,6 +637,8 @@ WORKDIR /app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
+> **服务化运行时选型**：自建 FastAPI + sentence-transformers（本节）vs TEI 专用推理服务 vs vLLM Pooling Models——生成式与向量化推理的分工见 [vllm-vs-tei 分工专题](../../llm-inference/vllm-vs-tei/README.md)。
+
 ### Embedding 服务 API
 
 ```python

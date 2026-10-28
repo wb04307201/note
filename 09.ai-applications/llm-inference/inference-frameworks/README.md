@@ -334,6 +334,7 @@ results = multi_turn_qa.run_batch([
 - **故事版**：[阿明餐厅之 LLM 推理](../../../13.story/46-llm-inference.md)（46-llm-inference）
 - **部署工具链**：07.devops-and-tools — Kubernetes Operator、Helm Chart、Docker 镜像、GPU device plugin
 - **横向对比**：[vLLM vs Ollama](../vllm-vs-ollama/README.md) — 本地开发场景的轻量对比
+- **生成 vs 向量化**：[vLLM vs TEI](../vllm-vs-tei/README.md) — Encoder 推理服务（Embedding / Reranker）与生成式推理的分工
 - **计费**：[Token 计费](../token-billing/README.md) — 推理成本测算（tokens/s × $/M tokens）
 
 ---

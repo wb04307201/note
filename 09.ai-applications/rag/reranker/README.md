@@ -398,6 +398,8 @@ Output format: JSON list of scores in order."""
 | ❌ Reranker 训练无需数据 | ✅ 需 (q, d+, d-) 三元组 + Hard Negative Mining |
 | ❌ Reranker 分数可直接比较 | ✅ 不同 Reranker 分数尺度不同（如 BGE 0-1，Cohere -1~1），不可跨模型对比 |
 
+> **Reranker 服务化**：TEI 提供 `/rerank` 端点、vLLM 提供 `/v1/rerank`（Cohere 兼容）——生成式与向量化推理的服务化分工见 [vllm-vs-tei 分工专题](../../llm-inference/vllm-vs-tei/README.md)。
+
 ---
 
 ## 🔗 兄弟章节

@@ -79,6 +79,7 @@ Q：工业级大模型部署，你为什么优先选 vLLM，而不是极简的 O
 ## 速查 · 关联资源
 - **餐厅叙事**：[39 · AI 私有化部署](../../../13.story/39-ai-private-deployment.md) —— 阿明餐厅从 Ollama 本地试跑到 vLLM 上生产的演进
 - **面试题**：[inference-engine-selection](../../../12.interview/11.ai/inference-engine-selection/README.md) —— 5-7 道精选题
+- **生成 vs 向量化**：[vllm-vs-tei](../vllm-vs-tei/README.md) —— TEI 与 vLLM 的推理分工（Embedding / Reranker 服务化）
 - **同类平台**：[coze](../../agent/ai-platforms/coze.md) · [dify](../../agent/ai-platforms/dify.md) · [langgraph](../../agent/ai-platforms/langgraph.md) · [spring-ai-vs-platforms](../../agent/ai-platforms/spring-ai-vs-platforms.md) · [spring-ai-vs-dify](../../agent/ai-platforms/spring-ai-vs-dify.md)
 
 ← [返回: AI 平台对比](../README.md)

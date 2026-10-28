@@ -383,6 +383,7 @@ resp = client.chat(model='qwen2.5:7b', messages=[...])
 ### 主模块深度专题
 
 - [11.ai vllm-vs-ollama 总目录](../../../09.ai-applications/llm-inference/vllm-vs-ollama/README.md)
+- [vllm-vs-tei 分工专题](../../../09.ai-applications/llm-inference/vllm-vs-tei/README.md) —— 姊妹篇：生成式 vs 向量化推理分工（TEI / Embedding 服务化）
 - [01-paged-attention](../../../09.ai-applications/llm-inference/vllm-vs-ollama/01-paged-attention.md) —— vLLM 核心创新原理
 - [02-kv-cache-management](../../../09.ai-applications/llm-inference/vllm-vs-ollama/02-kv-cache-management.md) —— KV cache 显存管理
 - [03-batching-strategies](../../../09.ai-applications/llm-inference/vllm-vs-ollama/03-batching-strategies.md) —— 连续批处理

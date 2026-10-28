@@ -3,14 +3,14 @@
   slug: ai-applications/llm-inference
   type: index
   category: AI 应用子 MOC
-  summary: LLM 推理工程——KV Cache / Flash Attention / Paged Attention / 推测解码 / 连续批处理 / 权重量化 12 大主题。
+  summary: LLM 推理工程——KV Cache / Flash Attention / Paged Attention / 推测解码 / 连续批处理 / 权重量化 13 大主题。
   depth: ⭐⭐⭐
   status: active
 -->
 
 # LLM Inference（LLM 推理工程）
 
-> **定位**：MOC——LLM 推理工程主题索引，覆盖 KV Cache / Flash Attention / 推理框架 / 推理指标 / 推理优化 / vLLM vs Ollama / MoE 推理 / Paged Attention / 推测解码 / 连续批处理 / 权重量化 / Token 计费。
+> **定位**：MOC——LLM 推理工程主题索引，覆盖 KV Cache / Flash Attention / 推理框架 / 推理指标 / 推理优化 / vLLM vs Ollama / vLLM vs TEI / MoE 推理 / Paged Attention / 推测解码 / 连续批处理 / 权重量化 / Token 计费。
 > **继承规范**：[../SPEC.md](../SPEC.md)
 
 ## 主题清单
@@ -29,6 +29,7 @@
 | 10 | MoE 推理 | [moe-inference/](moe-inference/README.md) | Mixture of Experts 推理特性 |
 | 11 | vLLM vs Ollama | [vllm-vs-ollama/](vllm-vs-ollama/README.md) | 8 章 vLLM 与 Ollama 横评 + 决策树 |
 | 12 | Token 与计费 | [token-billing/](token-billing/README.md) | BPE/WordPiece 分词 + 上下文窗口 + 计费公式 |
+| 13 | vLLM vs TEI | [vllm-vs-tei/](vllm-vs-tei/README.md) | 生成式推理 vs 向量化推理分工 + RAG 三阶段互补架构 |
 
 ## 阅读路径
 
@@ -39,7 +40,7 @@
     ↓
 加速策略             continuous-batching（吞吐）+ speculative-decoding（延迟）+ weight-quantization（显存）
     ↓
-框架选型             inference-frameworks（框架对比）+ vllm-vs-ollama（生产 vs 本地）
+框架选型             inference-frameworks（框架对比）+ vllm-vs-ollama（生产 vs 本地）+ vllm-vs-tei（生成 vs 向量化）
     ↓
 特殊架构             moe-inference（MoE 推理特性）
 ```

@@ -786,5 +786,6 @@ API 方案（GPT-4o）：
 - 续集十二：[`34b-ai-token-cost-optimization`](./34b-ai-token-cost-optimization.md) —— **私有化的成本优化**：5 层路由 + 3 级缓存 + 4 策略压缩
 
 > 🆕 **阿明餐厅工业部署选型实战**：当连锁开到 30 家（从私部署 Ollama 升级到 vLLM），怎么选推理引擎？→ 详见 [vLLM vs Ollama 工业级选型深度专题](../09.ai-applications/llm-inference/vllm-vs-ollama/README.md)（PagedAttention 原理 + 4 引擎对比 + 场景化决策树）。
+> 🆕 **向量化推理分工**：知识库切片向量化为什么不跟着上 vLLM？→ 详见 [vLLM vs TEI 分工专题](../09.ai-applications/llm-inference/vllm-vs-tei/README.md)（生成式 vs 向量化推理 + RAG 三阶段互补架构）。
 
 ← [返回系列导读](./index.md)
