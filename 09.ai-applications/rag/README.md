@@ -54,7 +54,7 @@
 
 以下检索链路子章节占位路径已映射（`./<topic>/`），待 Phase 1+ 迁入本 MOC：
 
-⚠️ [Query Rewrite](./query-rewrite/README.md) · ⚠️ [Hybrid Search](./hybrid-search/README.md) · ⚠️ [Reranker](./reranker/README.md) · ⚠️ [Chunking](./chunking-strategies/README.md) · ⚠️ [Embedding Models](./embedding-models/README.md) · ⚠️ [Lost in Middle](./lost-in-middle/README.md) · ⚠️ [知识入库流水线](./knowledge-ingestion-pipeline/README.md) · ⚠️ [长文档处理](./long-document-processing/README.md) · ⚠️ [相似文档消歧](./similar-doc-disambiguation/README.md)（多版本/时序相似文档 → Rerank 盲区 + 语义/属性解耦）
+⚠️ [Query Rewrite](./query-rewrite/README.md) · ⚠️ [Hybrid Search](./hybrid-search/README.md) · ⚠️ [Reranker](./reranker/README.md) · ⚠️ [Chunking](./chunking-strategies/README.md) · ⚠️ [Embedding Models](./embedding-models/README.md) · ⚠️ [Lost in Middle](./lost-in-middle/README.md) · ⚠️ [知识入库流水线](./knowledge-ingestion-pipeline/README.md) · ⚠️ [长文档处理](./long-document-processing/README.md) · ⚠️ [相似文档消歧](./similar-doc-disambiguation/README.md)（多版本/时序相似文档 → Rerank 盲区 + 语义/属性解耦）· ⚠️ [Milvus 架构](./milvus-architecture/README.md)（存算分离 / Segment 生命周期 / 一致性级别 / Partition Key）
 
 ---
 

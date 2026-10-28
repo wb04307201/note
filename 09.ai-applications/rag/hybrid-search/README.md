@@ -701,6 +701,12 @@ for alpha in alpha_grid:
 
 ---
 
+## 🔗 相关章节
+
+- [Milvus 架构与核心机制](../milvus-architecture/README.md) — 存算分离 / Segment 生命周期 / 一致性级别 / Partition Key（本篇 §Milvus 库内融合的内核背景）
+
+---
+
 ## 📚 参考来源（§Milvus 小节 · 2026-10-28 核实）
 
 - [pymilvus（官方 SDK）](https://github.com/milvus-io/pymilvus) — `hybrid_search` / `AnnSearchRequest` / `WeightedRanker` 签名一手依据（API 口径修正以此为准）

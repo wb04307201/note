@@ -790,6 +790,7 @@ async def monitor_retrieval_quality(query, results):
 
 - 09.ai-applications/README.md —— AI 技术栈 —— 向量数据库在 AI 技术栈中的位置
 - 09.ai-applications/agent/ai-platforms/README.md —— AI 平台 —— 主流平台的向量库集成
+- 09.ai-applications/rag/milvus-architecture/README.md —— Milvus 架构与核心机制 —— 本章"巨型中央仓库"的内核深读（存算分离 / Segment / 一致性）
 
 ---
 

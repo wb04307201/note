@@ -365,6 +365,9 @@ QPS：10K
 **13.story 实战**：
 - [13.story/37-vector-database-and-embedding（味道仓库 4 大调优）](../../../13.story/37-vector-database-and-embedding.md)
 
+**向量库内核**：
+- [Milvus 架构与核心机制](../milvus-architecture/README.md) — 存算分离 / Segment 生命周期 / 一致性级别 / Partition Key（本篇索引算法的落地内核）
+
 **同主模块**：
 - Context Engineering（Context 三件套）
 - Function Calling
