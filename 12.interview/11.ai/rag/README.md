@@ -217,5 +217,6 @@ RAG 的权限必须与源系统（Google Drive / Slack / Confluence）保持一�
 
 - [36-rag-retrieval-augmented-generation](../../../13.story/36-rag-retrieval-augmented-generation.md)
 - 🆕 [Milvus Hybrid Search](../milvus-hybrid-search/README.md) — 检索阶段的库内混合召回机制（Advanced RAG "更精准"的落地细节）
+- 🆕 [相似文档消歧](../similar-doc-disambiguation/README.md) — 多版本/时序相似文档的属性歧义消解（Rerank 盲区 + 语义/属性解耦）
 
 ← [返回: 咬文嚼字 · rag](../README.md)

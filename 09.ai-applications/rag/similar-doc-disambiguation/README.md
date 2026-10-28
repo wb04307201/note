@@ -139,6 +139,7 @@
 - **方案深读**：[Hybrid Search](../hybrid-search/README.md)（方案 2 + expr 下推）/ [Query Rewrite](../query-rewrite/README.md)（方案 3）/ [Chunking Strategies](../chunking-strategies/README.md)（方案 4）/ [Knowledge Ingestion Pipeline](../knowledge-ingestion-pipeline/README.md)（方案 1 入库侧）
 - **上游工具**：[Reranker](../reranker/README.md) — Rerank 原理与选型（本专题讲它的盲区）
 - **规范互链**：[../../prompts/](../../prompts/)（生成阶段基础）/ [../../eval/](../../eval/)（评估方法论）/ [../../agent/](../../agent/)（Agentic RAG 延伸）
+- **面试版**（30s/90s 话术 + 4 陷阱 + 追问）：[相似文档消歧 面试题](../../../12.interview/11.ai/similar-doc-disambiguation/README.md)
 
 ---
 
