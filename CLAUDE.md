@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **纯知识库仓库**(2026-09-12 从 `wb04307201` 主页仓库拆分独立):
 - **13 主模块**体系化技术知识库(基于 Obsidian 维护),内容**平铺在仓库根**(不再有 `note/` 前缀)
 - **README.md** — 总目录 + 13 模块导航
-- **787 个 README、1111 个 .md**(2026-09-12 实测校对,排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts`)
+- **813 个 README、1145 个 .md**(2026-10-28 实测校对,排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts`)
 - 个人主页 + 开源项目展示在外部仓库 `wb04307201`(grs.yml README 卡片 workflow 也留在那里)
 
 主体是文档(Markdown),不是源代码。
@@ -29,7 +29,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ├── 09.ai-applications/            # RAG + Agent + Prompt + LLM 推理
 ├── 10.business-systems/           # 电商 + 社交 + 金融
 ├── 11.product-and-pm/             # 产品 + PM + 流程(含原 11.product-and-pm 内容)
-├── 12.interview/                  # 高频面试题(233 题,9 个主题子目录 + tools)
+├── 12.interview/                  # 高频面试题(246 题,9 个主题子目录 + tools)
 │   ├── 01.java/ 02.computer-basics/ 03.database/ 04.system-design/
 │   ├── 05.security/ 06.spring/ 09.front-end/ 10.big-data/ 11.ai/ tools/
 │   └── SPEC.md                      # 模块规范(§4 强骨架 + 准入判定 + 反直觉 / 陷阱 / 30 秒话术)
@@ -59,11 +59,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 模块写作模板(强骨架模块按需存在;v2.0 起全部合并入 `<module>/SPEC.md`,无独立 `*-FORMAT-SPEC.md` 文件) | `13.story/SPEC.md#四强骨架格式规范` / `12.interview/SPEC.md#§4 强骨架格式规范` |
 
 **知识文章 frontmatter 类型**(按 `slug` 字段分 3 类,HTML 注释格式 `<!--type: ... -->` 起首 + 多行字段 + `-->` 收尾;详见 `SPEC.md` §4):
-- `module:`(主模块 README + 子文章,跨所有 13 模块,现状 814 篇)
-- `question:`(`12.interview` 高频面试题,现状 **233 篇**,纯题口径 9 主题 228 + tools 5)
+- `module:`(主模块 README + 子文章,跨所有 13 模块,现状 824 篇)
+- `question:`(`12.interview` 高频面试题,现状 **246 篇**,纯题口径 9 主题 241 + tools 5)
 - `story:`(`13.story` 阿明餐厅,现状 **50 章** + 强骨架格式见 `13.story/SPEC.md` §4)
 
-> `SPEC.md` / `index.md` 等索引页豁免 frontmatter(约 20 个)。
+> `SPEC.md` / `index.md` 等索引页豁免 frontmatter(23 个,2026-10-28)。
 
 ## 常用命令
 
@@ -225,11 +225,11 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 
 ## 关键统计
 
-### 知识库(2026-09-12 实测,排除 .claude/skills / .github/workflows/scripts / .health-tmp / .obsidian / .git)
+### 知识库(2026-10-28 实测,首行锚定 + find 校对,排除 .claude/skills / .github/workflows/scripts / .health-tmp / .obsidian / .git)
 
-- **13 主模块** / **787 README** / **1111 .md**
-- frontmatter 覆盖 **98.3%**(1096 / 1115:module 814 + question 233 + story 51,去重后 1096;剩余约 19 为 SPEC.md / index.md 等索引页,按规范可豁免)
-- 总 leaves:**约 930 篇**
+- **13 主模块** / **813 README** / **1145 .md**
+- frontmatter 覆盖 **98.0%**(1122 / 1145:module 824 + question 246 + story 50 = 1120,另 2 为 SPEC 豁免标记;剩余 23 为 SPEC.md / CLAUDE.md 等索引元规范页,按规范可豁免)
+- 总 leaves:**约 1013 篇**(leaf README 681 + 非 README .md 332)
 
 ### 健康度(原仓库 Session 6-9 闭环)
 
@@ -238,7 +238,7 @@ commit-msg  →  pre-commit  →  §7.2 自检  →  push/PR  →  monthly cron
 | **结构断链** | **0** |
 | **orphan 目录** | **0** |
 | **实质弱关联** | **0** |
-| **frontmatter 覆盖** | **98.3%** |
+| **frontmatter 覆盖** | **98.0%** |
 | **5 维深度准确度** | **100%**(v17/v18/v19 连续 3 轮)|
 | **CI / Hook 层数** | **5 层** |
 
