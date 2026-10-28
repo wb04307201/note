@@ -473,6 +473,7 @@ results = client.query_points(
 - **进阶**：ColBERT 多向量检索 — Token 级细粒度检索
 - **面试题**：[hybrid-search-面试](../../../12.interview/11.ai/vector-search-algorithms/README.md) — 5 道高频追问
 - **面试题**：[Milvus Hybrid Search 面试题](../../../12.interview/11.ai/milvus-hybrid-search/README.md) — 库内融合机制 + API 陷阱
+- **盲区与解耦**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 多版本/时序相似文档的字面兜底边界（相对时间 BM25 无效）
 - **故事化**：[13.story 阿明餐厅 RAG 篇](../../../13.story/) — 混合检索类比"老顾客点单 + 新顾客推荐"
 
 ---

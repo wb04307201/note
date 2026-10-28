@@ -657,4 +657,10 @@ llm = LLM(model="your-reranker-model")
 
 ---
 
+## 🔗 相关章节
+
+- **Rerank 盲区**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 同实体多版本/时序相似数据 Rerank 排不掉（精度增强 ≠ 事实仲裁），须语义/属性解耦
+
+---
+
 ← [返回 L2 技术栈](../README.md)
