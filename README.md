@@ -5,7 +5,7 @@
   type: index
   audience: 所有读者
   category: 主入口
-  summary: 13 个主模块的知识库总目录（L0 导航），1132 个 .md 文档，frontmatter 覆盖 97.8%（含 module/question/story 三类），含全局 SPEC 规范与 13 模块导航。
+  summary: 13 个主模块的知识库总目录（L0 导航），1140 个 .md 文档，frontmatter 覆盖 97.8%（含 module/question/story 三类），含全局 SPEC 规范与 13 模块导航。
   status: active
 -->
 
@@ -17,13 +17,13 @@
 
 ---
 
-## 一、仓库健康度（2026-10-23 实测 · find 口径）
+## 一、仓库健康度（2026-10-28 实测 · find 口径）
 
 | 维度 | 数值 | 备注 |
 |------|------|------|
-| **总 .md** | **1135** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
-| **总 README** | **805** | 1 根目录 + 13 模块 + 子目录 |
-| **frontmatter 覆盖** | **98.0%**（1112/1135）| module 821 + question 241 + story 50 = 1112（剩余 23 个为 SPEC.md ×22 + CLAUDE.md，按规范豁免）|
+| **总 .md** | **1140** | 排除 `.health-tmp` / `.obsidian` / `.claude/skills` / `.github/workflows/scripts` |
+| **总 README** | **808** | 1 根目录 + 13 模块 + 子目录 |
+| **frontmatter 覆盖** | **97.8%**（1115/1140）| module 822 + question 243 + story 50 = 1115（剩余 25 个为 SPEC.md ×22 + CLAUDE.md + .claude/ 操作文档 ×2，按规范豁免）|
 | **结构断链** | **0** | Session 6 修复 230 处断链后闭环 |
 | **orphan 目录** | **0** | 父 README 100% 回链 |
 | **实质弱关联** | **0** | 口径 = leaf↔leaf（正文互链主题匹配）；README↔README 合规模板导航不计入。扫描器 `weak-link-scan.py` v4 实测 0 处（旧算法 491 处，其中 leaf↔leaf 10 处经审计全为假阳性）|
@@ -44,10 +44,10 @@
 | 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 63 |
 | 10 | [10.business-systems](./10.business-systems/) | 业务系统速查（电商/社交/金融等） | 38 |
 | 11 | [11.product-and-pm](./11.product-and-pm/) | 产品 + PM（Product & PM）| 11 |
-| 12 | [12.interview](./12.interview/) | 高频面试题（**243 篇**）| 254 |
+| 12 | [12.interview](./12.interview/) | 高频面试题（**243 篇**）| 255 |
 | 13 | [13.story](./13.story/) | 「阿明餐厅」技术系列（**50 篇**）| 1 |
 
-> **「子 README」列口径**：`find <module> -name README.md`（含模块根 README），2026-10-28 校准（09/12 两行 find 实测）。
+> **「子 README」列口径**：`find <module> -name README.md`（含模块根 README），2026-10-28 全量 find 校准（13 行实测）。
 > **新增目录后需同步此列**——本列自 `727e260` 迁移后曾多次漏改（双层沉淀新增子目录时最易漏记）。
 
 ## 三、3 大沉淀模式
