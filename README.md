@@ -41,13 +41,13 @@
 | 06 | [06.distributed-systems](./06.distributed-systems/) | 分布式 + 微服务 + 云原生 | 128 |
 | 07 | [07.devops-and-tools](./07.devops-and-tools/) | DevOps + CI/CD + 工具链 | 47 |
 | 08 | [08.ai-foundations](./08.ai-foundations/) | ML + DL + Transformer + LLM 基础 | 7 |
-| 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 62 |
+| 09 | [09.ai-applications](./09.ai-applications/) | RAG + Agent + Prompt + LLM 推理 | 63 |
 | 10 | [10.business-systems](./10.business-systems/) | 业务系统速查（电商/社交/金融等） | 38 |
 | 11 | [11.product-and-pm](./11.product-and-pm/) | 产品 + PM（Product & PM）| 11 |
-| 12 | [12.interview](./12.interview/) | 高频面试题（**241 篇**）| 253 |
+| 12 | [12.interview](./12.interview/) | 高频面试题（**243 篇**）| 254 |
 | 13 | [13.story](./13.story/) | 「阿明餐厅」技术系列（**50 篇**）| 1 |
 
-> **「子 README」列口径**：`find <module> -name README.md`（含模块根 README），2026-10-23 全库校准。
+> **「子 README」列口径**：`find <module> -name README.md`（含模块根 README），2026-10-28 校准（09/12 两行 find 实测）。
 > **新增目录后需同步此列**——本列自 `727e260` 迁移后曾多次漏改（双层沉淀新增子目录时最易漏记）。
 
 ## 三、3 大沉淀模式

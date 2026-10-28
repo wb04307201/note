@@ -30,6 +30,8 @@ Q：RAG 系统里 embedding 服务和生成服务都用 vLLM 统一托管，还�
 3. **RAG 分工**：入库 / 检索用 TEI，生成用 vLLM——"专用工具做专用事"
 4. **反模式**：为"统一技术栈"让 500 万文档切片向量化也走 vLLM 的 KV Cache 调度栈
 
+> 📌 **面试深挖版**（30s/90s 话术 + 3 大陷阱 + 延伸追问）：[12.interview/11.ai/vllm-vs-tei](../../../12.interview/11.ai/vllm-vs-tei/README.md)。
+
 ---
 
 ## 一、vLLM 是什么：生成式推理引擎
@@ -120,6 +122,7 @@ flowchart LR
 - **同类对比**：[vllm-vs-ollama](../vllm-vs-ollama/README.md) — 生成式引擎内战（生产 vs 本地）· [inference-frameworks](../inference-frameworks/README.md) — 六大生成式推理框架横评
 - **RAG 侧**：[embedding-models](../../rag/embedding-models/README.md) — Embedding 模型选型 · [reranker](../../rag/reranker/README.md) — 重排序原理与 vLLM 加速
 - **餐厅叙事**：[39 · AI 私有化部署](../../../13.story/39-ai-private-deployment.md) — 阿明餐厅从 Ollama 本地试跑到 vLLM 上生产的演进
+- **面试题**：[vllm-vs-tei](../../../12.interview/11.ai/vllm-vs-tei/README.md) — 面试深挖版（3 大陷阱 + 30s/90s 话术 + 追问）
 
 ---
 
