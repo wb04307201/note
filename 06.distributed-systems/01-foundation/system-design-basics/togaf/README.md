@@ -73,6 +73,7 @@ graph TB
 | **第三章** | [康威定律 + 团队拓扑](conway-and-team-topology.md) | 组织结构如何决定系统架构？ | 35 min |
 | **第四章** | [架构治理 + 落地实践](architecture-governance.md) | 架构设计完如何保证执行不走样？ | 40 min |
 | **第五章** | [情景判据表（ADM 阶段选择 + 常见误判）](scenario-judgment.md) | 给定一个场景，如何定位阶段、选定动作、避开误判？ | 30 min |
+| **第六章** | [OGEA-102 情景题速答法](exam-method.md) | 考场上如何 11 分钟内选对 5 分选项？（五步流水线 + 死法黑名单 + 题族绑定） | 40 min |
 
 ### 推荐阅读顺序
 
@@ -129,6 +130,7 @@ README（你在这里）  →  第一章（ADM 全貌）
 - [第三章：康威定律 + 团队拓扑](conway-and-team-topology.md) — 组织结构与系统架构的对齐
 - [第四章：架构治理 + 落地实践](architecture-governance.md) — 6 维治理 + 不同规模裁剪
 - [第五章：情景判据表（ADM 阶段选择 + 常见误判）](scenario-judgment.md) — 场景信号 → 判定阶段 → 应做动作 → 常见误判
+- [第六章：OGEA-102 情景题速答法](exam-method.md) — 应考流水线：钥匙句 → 定阶段 → 信号映射 → 选 5 分 → 3vs5 决胜
 - [架构认知的演进](../architecture-evolution/README.md) — OOD → DDD → TOGAF 的认知升级之路
 - [架构描述语言 ArchiMate 3.2](../archimate/README.md) — TOGAF 的"标准搭档"，30+ 视点给不同人看不同的图
 - [IT 价值流参考架构 IT4IT 3.0](../it4it/README.md) — Open Group 标准组合第三件套，4 价值流 + 9 功能组件
