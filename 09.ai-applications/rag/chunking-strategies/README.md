@@ -558,4 +558,10 @@ embeddings = embedder.embed_documents(contextual_chunks)
 | **Contextual Retrieval (Anthropic)** | [anthropic.com/news/contextual-retrieval](https://www.anthropic.com/news/contextual-retrieval) — 上下文增强 retrieval |
 | **LlamaIndex NodeParser** | 官方文档：NodeParser 系列 | [docs.llamaindex.ai](https://docs.llamaindex.ai/en/stable/module_guides/loading/node_parsers/) |
 
+---
+
+## 🔗 相关章节
+
+- **自包含事实**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 多版本参数混在同一 Chunk 会让 Rerank 失效（方案 4 深读入口）
+
 ← [返回 L2 技术栈](../README.md)

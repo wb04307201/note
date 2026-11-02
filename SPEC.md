@@ -268,7 +268,7 @@ docs: 文档
 | Constitutional AI | `09.ai-applications/fine-tuning/04-constitutional-ai.md` | 聚合 | - |
 | KTO / IPO / SimPO（含 ORPO/RFT） | `09.ai-applications/fine-tuning/05-newer-methods.md` | 聚合 | - |
 
-##### 8.3.4 LLM 应用层（9 主词）
+##### 8.3.4 LLM 应用层（12 主词）
 
 | 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
 |--------|-----------|-------------------|------|
@@ -277,10 +277,13 @@ docs: 文档
 | Embedding 模型 | `09.ai-applications/rag/embedding-models` | 聚合 | - |
 | Hybrid Search | `09.ai-applications/rag/hybrid-search` | 聚合 | - |
 | Reranker | `09.ai-applications/rag/reranker` | 聚合 | - |
+| TEI / Embedding 推理服务 | `09.ai-applications/llm-inference/vllm-vs-tei` | `12.interview/11.ai/vllm-vs-tei` | - |
 | Query Rewrite | `09.ai-applications/rag/query-rewrite` | - | - |
 | RAG Pipeline | `09.ai-applications/rag/01-pipeline.md` | - | - |
 | RAG 评估（含 RAGAS/TruLens） | `09.ai-applications/rag/04-evaluation.md` | - | - |
 | 手搓 Agent vs 框架（抽象税） | `09.ai-applications/agent/agent-architecture/framework-source-comparison.md#三手搓-vs-框架抽象税与决策权-2026-10` | `12.interview/11.ai/handcraft-vs-framework` | - |
+| 相似文档消歧（多版本/时序） | `09.ai-applications/rag/similar-doc-disambiguation` | `12.interview/11.ai/similar-doc-disambiguation` | - |
+| Milvus 架构（存算分离/一致性） | `09.ai-applications/rag/milvus-architecture` | `12.interview/11.ai/milvus-architecture` | - |
 
 ##### 8.3.5 传统 ML 算法（8 主词 · 含 1 纯面试版）
 
@@ -296,7 +299,7 @@ docs: 文档
 | 集成学习 | `02.cs-foundations/01-algorithms/ensemble` | - | - |
 | ML 面试（含评估指标 F1/AUC） | - | `12.interview/02.computer-basics/machine-learning` | - |
 
-##### 8.3.6 Java / 后端框架（12 词 · Spring 6 + Java 核心 3 + 数据库 3）
+##### 8.3.6 Java / 后端框架（13 词 · Spring 6 + Java 核心 3 + 数据库 4）
 
 > 2026-10-21 新增。§8.3 原 5 个分区全是 LLM/ML 域，而 KB 的 Java / Spring / DB 内容体量最大（`01.java-and-jvm` + `04.spring-backend` + `03.data-stack` + `12.interview/01.java`/`03.database`/`06.spring` 共 250+ 篇）却无前置索引。本节补齐该域，使 `note-knowledge-qa` Phase 2 能命中 Java 类问句。
 
@@ -314,6 +317,7 @@ docs: 文档
 | MySQL 索引 | `03.data-stack/01-database/04-index/README.md` | `12.interview/03.database/mysql-index-failure` | - |
 | 事务隔离级别 | `03.data-stack/01-database/03-transaction/README.md` | `12.interview/03.database/mysql-isolation` | - |
 | Redis | `03.data-stack/01-database/07-redis/README.md` | `12.interview/03.database/redis-persistence` | - |
+| Redis Stream（消息队列） | `03.data-stack/01-database/07-redis/README.md` | `12.interview/03.database/redis-stream` | - |
 
 #### 8.4 自动维护协议（3 skill 协同）
 

@@ -9,11 +9,11 @@
 
 # 数据库咬文嚼字
 
-> 数据库高频面试题与细节深挖，对齐主模块 [`03.database`](../../03.data-stack/01-database/README.md)。32 篇真题聚焦 MySQL（索引 / 锁 / 事务 / MVCC / 死锁 / JOIN）、Redis（单线程原理 / 持久化 / 淘汰 / 集群 / 大 Key）、PostgreSQL / 人大金仓（VACUUM 排查）三大方向的高频陷阱（find 校对 2026-09-03）。
+> 数据库高频面试题与细节深挖，对齐主模块 [`03.database`](../../03.data-stack/01-database/README.md)。33 篇真题聚焦 MySQL（索引 / 锁 / 事务 / MVCC / 死锁 / JOIN）、Redis（单线程原理 / 持久化 / 淘汰 / 集群 / 大 Key / Stream）、PostgreSQL / 人大金仓（VACUUM 排查）三大方向的高频陷阱（find 校对 2026-10-28）。
 
 ---
 
-## 文章清单（共 32 题，find 校对 2026-09-03；频率列与各篇 frontmatter `frequency` 对齐）
+## 文章清单（共 33 题，find 校对 2026-10-28；频率列与各篇 frontmatter `frequency` 对齐）
 
 ### MySQL 基础
 | 主题 | 难度 | 频率 | 核心问题 |
@@ -70,6 +70,7 @@
 | [Redis 集群](redis-cluster/) | ⭐⭐⭐⭐ | 中频 | Sentinel vs Cluster |
 | [Redis 大 Key 问题](redis-big-key/) | ⭐⭐⭐⭐ | 中频 | 发现与治理方案 |
 | **🆕 [Redis 分布式锁 3 大坑](redis-distributed-lock/)** | ⭐⭐⭐ | 高频 | 锁提前过期 / 误删他人锁 / 不可重入 + Redisson 看门狗 |
+| **🆕 [Redis Stream 消息队列](redis-stream/)** | ⭐⭐⭐ | 中频 | pub/sub 三短板 → Stream 消费组 / PEL + "消息不丢失"三层边界 |
 
 ---
 

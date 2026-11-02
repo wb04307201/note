@@ -394,6 +394,7 @@ graph TD
 - **AI 平台**：ai-platforms
 - **餐厅叙事**：[13.story/36-rag-retrieval-augmented-generation](../../../13.story/36-rag-retrieval-augmented-generation.md)
 - **咬文嚼字**：[knowledge-ingestion-pipeline 面试](../../../12.interview/11.ai/knowledge-ingestion-pipeline/README.md)（commit 2 创建）
+- **元数据检索用途**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 入库的结构化元数据是检索侧 pre-filtering 的主武器
 
 ---
 

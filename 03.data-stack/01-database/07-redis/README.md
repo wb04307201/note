@@ -33,6 +33,7 @@
 | 十一、Redis 客户端对比 | Jedis / Lettuce / Redisson | Spring Boot 2.x+ 默认 Lettuce |
 | 十二、Redis 监控指标 | INFO / 慢查询 / 内存碎片率 / Prometheus | 命中率 > 0.9 健康基线 |
 | 十三、Redis 7.0 新特性 | Function / Sharded Pub/Sub / Multi-Part AOF / ACL v2 | 集群模式增强 |
+| 十四、Stream 与消息队列 | 5.0+ Stream / Consumer Group / 命令族 | pub/sub 不持久化 → Stream 补位 + "消息不丢失"边界 |
 
 ---
 
@@ -66,7 +67,7 @@
 | **Bitmap** | String 的位操作 | 签到、在线状态、A/B 测试 |
 | **HyperLogLog** | HyperLogLog 算法 | UV 统计、基数估计（误差 0.81%） |
 | **Geospatial** | Sorted Set + GeoHash | 附近搜索、距离计算、地理围栏 |
-| **Stream** | Stream 结构 | 消息队列、日志收集、事件溯源 |
+| **Stream** | Stream 结构（→ [十四](#十四stream-与消息队列)）| 消息队列、日志收集、事件溯源 |
 
 ### 各类型关键操作
 
@@ -621,6 +622,78 @@ Grafana 官方提供 Redis 仪表盘,关键告警指标:
 
 ---
 
+## 十四、Stream 与消息队列
+
+> **Stream** 是 Redis 5.0 引入的数据结构（官方称为"自 HyperLogLog（2.8.9）以来第一个全新数据结构"），定位**内存优先的轻量消息队列**：弥补 pub/sub「不持久化、不回放、无 ACK」的短板，提供消息 ID、Consumer Group、消费位置记录与至少一次投递。
+
+### 1. 为什么需要 Stream：pub/sub 的 3 个短板
+
+| 维度 | pub/sub | Stream |
+|------|---------|--------|
+| 持久化 | 发完即忘，订阅者不在线消息直接丢 | 消息留存流中（随 RDB/AOF 持久化），可续读 |
+| 历史回放 | 不支持 | 按消息 ID / 时间范围回读（XRANGE）|
+| 消费语义 | 广播、无 ACK | Consumer Group + PEL + XACK，至少一次 |
+| 消费位置 | 无状态 | 组级游标（last-delivered-id）+ 消费者级 PEL |
+
+### 2. 消息模型与命令族
+
+- **消息 ID**：`<毫秒时间戳>-<序号>`，`XADD ... *` 自动生成，支持按 ID / 时间范围读取
+- **写入**：`XADD key MAXLEN ~ 10000 * field value ...`（`MAXLEN ~` 近似裁剪控制保留量）
+- **独立读**：`XREAD`（任意游标回放）/ `XREAD BLOCK`（阻塞等新消息）
+- **消费组**：`XGROUP CREATE` → `XREADGROUP` → `XACK`；积压看 `XPENDING`，超时消息用 `XCLAIM` / `XAUTOCLAIM` 转移重试
+- **裁剪**：`XTRIM key MAXLEN 10000`（回放窗口受保留策略限制）
+
+```bash
+# 生产者：写入并限制保留量
+XADD orders:events MAXLEN ~ 10000 * type paid order_id 1001
+
+# 消费组：创建组 → 消费 → 确认
+XGROUP CREATE orders:events g1 $
+XREADGROUP GROUP g1 c1 COUNT 10 BLOCK 5000 STREAMS orders:events >
+XACK orders:events g1 1730000000000-0
+```
+
+### 3. Consumer Group + PEL：至少一次投递
+
+```text
+Stream key
+└── Consumer Group g1（组级游标 last-delivered-id）
+    ├── c1 的 PEL：[msg-5, msg-7]   ← 已投递未 ACK
+    └── c2 的 PEL：[msg-6]
+```
+
+- `XREADGROUP` 投递消息时记入消费者 **PEL（pending entries list）**，处理完 `XACK` 才移除
+- 未 ACK 的消息留在 PEL，消费者宕机可 `XCLAIM` / `XAUTOCLAIM` 转移重试
+- 语义 = **at-least-once**：故障场景重复投递，**消费端必须幂等**
+
+### 4. ⚠️「消息不丢失」的语义边界
+
+常见口径"Stream 确保网络断开 / Redis 宕机消息也不丢"把**相对优势说成了绝对保证**，实际分三层：
+
+| 场景 | 真实行为 |
+|------|---------|
+| 客户端断线 / 消费者离线 | ✅ 消息在流中，重连按游标续读（pub/sub 做不到——"不丢"的正确含义）|
+| Redis 进程宕机 | ⚠️ 取决于持久化：`AOF always` 不丢 / `everysec` 最多丢约 1 秒（见[三、持久化机制](#三持久化机制)）/ 仅 RDB 丢快照间隔 |
+| 主从故障转移 | ⚠️ 复制异步，可能丢最后几条写入（`WAIT` 可缓解）|
+| 超出保留窗口 | ⚠️ `XTRIM` / `MAXLEN` 裁剪 = 物理删除，窗口外不可回放 |
+
+> **准确口径**：Stream 提供「持久化 + 可回放 + 至少一次投递」；端到端不丢 = AOF 策略 + 主从同步（`WAIT` / `min-replicas-to-write`）+ 消费幂等三件套。
+
+### 5. Stream vs List vs pub/sub vs 独立 MQ
+
+| 方案 | 持久化 | 回放 | 消费语义 | 适用 |
+|------|:---:|:---:|---------|------|
+| pub/sub | ❌ | ❌ | 广播即弃 | 实时通知、丢了无所谓 |
+| List（LPUSH/BRPOP）| 随 RDB/AOF | ❌（取出即删）| 一次性 FIFO | 简单任务队列 |
+| **Stream** | ✅ | ✅ | 至少一次 + 消费组 | 中小流量 MQ、事件溯源 |
+| Kafka / RocketMQ | ✅ 多副本 | ✅ 长期 | 精确一次 / 事务消息 | 高吞吐、大规模、事务场景 |
+
+> 🔗 独立 MQ 横评（Kafka / RocketMQ / RabbitMQ / Pulsar / ActiveMQ）见 [消息队列](../../../06.distributed-systems/04-high-performance/mq/README.md)。
+
+> 🔗 **面试深挖版**：[`Redis Stream`](../../../12.interview/03.database/redis-stream/README.md) — pub/sub 演进 + PEL 至少一次语义 + "消息不丢失"三层边界 + 30s/90s 话术
+
+---
+
 ## 🔗 相关章节
 
 - [数据库基础知识](../01-fundamentals/README.md) — 数据库核心概念
@@ -633,8 +706,8 @@ Grafana 官方提供 Redis 仪表盘,关键告警指标:
 
 ## 📊 本节统计
 
-- **leaf README 数**：1（本文即为分类 leaf，单 README 长文聚合 13 主题）
-- **本节主题数**：14（为什么快、数据类型、持久化、集群、内存管理、过期 Key 删除机制、vs Memcached、缓存选型、底层数据结构、分布式锁、Pipeline/事务/Lua、客户端对比、监控、7.0 新特性）
+- **leaf README 数**：1（本文即为分类 leaf，单 README 长文聚合 15 主题）
+- **本节主题数**：15（为什么快、数据类型、持久化、集群、内存管理、过期 Key 删除机制、vs Memcached、缓存选型、底层数据结构、分布式锁、Pipeline/事务/Lua、客户端对比、监控、7.0 新特性、Stream 与消息队列）
 - **frontmatter 状态**：✅ 已对齐 CONTRIBUTING §12 标准（summary ≤ 80 字 / type=index）
 - **统计口径**：本目录无嵌套子目录，所有内容聚合在本 README
 
@@ -644,6 +717,7 @@ Grafana 官方提供 Redis 仪表盘,关键告警指标:
 
 - [Redis Official Documentation](https://redis.io/docs/)
 - [Redis 7.0 Release Notes](https://github.com/redis/redis/releases/tag/7.0.0)
+- [Redis 5.0 发布公告](https://redis.io/blog/redis-5-0-is-here/) — Stream 引入版本的一手依据（2026-10-28 联网核实）
 - [《Redis 设计与实现》黄健宏](http://redisbook.com/) — 国内最经典 Redis 源码解析
 - [Redis 6.0 Multi-Thread I/O](https://redis.io/docs/manual/client-side-caching/) — 官方 I/O 多线程说明
 - [Antirez (Salvatore Sanfilippo) Blog](http://antirez.com/) — Redis 作者博客

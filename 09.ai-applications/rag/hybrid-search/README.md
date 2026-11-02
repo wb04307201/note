@@ -6,7 +6,7 @@
   summary: 向量 + BM25 混合检索
   depth: ⭐⭐⭐⭐⭐
   status: active
-  tags: [Hybrid Search]
+  tags: [Hybrid Search, Milvus, 混合检索]
 -->
 
 # Hybrid Search（混合检索）
@@ -241,33 +241,110 @@ response = es.search(
 
 ## 🛠️ Milvus Hybrid Search
 
+> **一句话**：Milvus Hybrid Search = **多向量字段 + `AnnSearchRequest` 多路召回 + ranker 融合排序**——把本页 §主流融合算法做进向量库内核，两路 ANN 与融合都在**库内**完成，应用层只发一次请求。
+
+### 机制：字段 → 多路请求 → 融合
+
+```text
+字段层   dense_vec(FLOAT_VECTOR)+ sparse_vec(SPARSE_FLOAT_VECTOR)双字段
+查询层   AnnSearchRequest × N —— 每路独立:data / anns_field / param / limit / expr
+融合层   ranker = RRFRanker(k=60) 或 WeightedRanker(0.7, 0.3)
+```
+
+过滤（expr）、每路 Top-K、融合全在服务端下推，一次 RPC 拿结果——即本页 §Weighted Sum / §RRF 的**库内实现**。**跨引擎异构融合**（如 ES + 另一向量库两个数据源）才需要应用层自己 RRF。
+
+### 两条 sparse 实现路径
+
+| 路径 | 稀疏向量来源 | index metric | 查询形态 | 适用 |
+|------|------------|-------------|---------|------|
+| 自建稀疏 | 应用侧生成（BGE-M3 sparse / SPLADE）写入 | `IP` | 传稀疏向量 | 已有稀疏模型、学习型稀疏 |
+| **内置 BM25 Function**（2.5+） | `FunctionType.BM25` 自动：文本 → sparse（VARCHAR 须 `enable_analyzer=True`） | `metric_type="BM25"`（params `bm25_k1` / `bm25_b`） | **传原文文本** | 全文检索即开即用 |
+
+> Milvus 2.5.0（2024-12）引入 Full Text Search（Sparse-BM25 内置化，Tantivy 分词器支撑）；此前稀疏向量必须库外生成。当前主线 v3.0.x / v2.6.x 均支持（2026-10 GitHub Releases 核实）。
+
+### 正确 API（pymilvus）
+
 ```python
-from pymilvus import MilvusClient, DataType
+from pymilvus import (
+    MilvusClient, DataType, Function, FunctionType,
+    AnnSearchRequest, RRFRanker, WeightedRanker,
+)
 
 client = MilvusClient(uri="http://localhost:19530")
 
-# 1. Schema 含 dense + sparse 两字段
+# 1. Schema:dense + BM25 自动稀疏（文本 → sparse 由库内 Function 完成）
 schema = client.create_schema()
 schema.add_field("id", DataType.INT64, is_primary=True)
-schema.add_field("text", DataType.VARCHAR, max_length=512)
+schema.add_field("text", DataType.VARCHAR, max_length=512, enable_analyzer=True)
 schema.add_field("dense_vec", DataType.FLOAT_VECTOR, dim=1024)
 schema.add_field("sparse_vec", DataType.SPARSE_FLOAT_VECTOR)
+schema.add_function(Function(
+    name="bm25_fn",
+    input_field_names=["text"],
+    output_field_names="sparse_vec",   # Function 自动填充的输出字段
+    function_type=FunctionType.BM25,
+))
 
-# 2. 索引：dense 用 HNSW，sparse 用倒排
+# 2. 索引:dense HNSW + sparse 倒排(BM25 metric + k1/b,即本页 BM25 公式参数)
 index_params = client.prepare_index_params()
 index_params.add_index("dense_vec", index_type="HNSW", metric_type="COSINE")
-index_params.add_index("sparse_vec", index_type="SPARSE_INVERTED_INDEX", metric_type="IP")
+index_params.add_index(
+    "sparse_vec",
+    index_type="SPARSE_INVERTED_INDEX",
+    metric_type="BM25",
+    params={"bm25_k1": 1.2, "bm25_b": 0.75},
+)
 
-# 3. Hybrid Search（dense + sparse 同时召回，RRF 融合）
+# 3. 双路召回:每路一个 AnnSearchRequest(独立 data / metric / limit)
+req_dense = AnnSearchRequest(
+    data=[query_dense], anns_field="dense_vec",
+    param={"metric_type": "COSINE"}, limit=50,
+)
+req_sparse = AnnSearchRequest(
+    data=["雷霆 5 Pro 回收价"], anns_field="sparse_vec",
+    param={"metric_type": "BM25"}, limit=50,   # BM25 路传原文文本
+)
+
+# 4. 融合:RRF(排名融合,免归一化)
 results = client.hybrid_search(
     collection_name="hybrid_coll",
-    data=[query_dense, query_sparse],
-    anns_field=["dense_vec", "sparse_vec"],
+    reqs=[req_dense, req_sparse],
+    ranker=RRFRanker(k=60),
     limit=10,
-    ranker_type="rrf",  # 或 weighted
-    ranker_params={"k": 60},
+    output_fields=["text"],
 )
 ```
+
+### RRFRanker vs WeightedRanker
+
+| | RRFRanker(k=60) | WeightedRanker(0.7, 0.3, norm_score=True) |
+|---|---|---|
+| 融合对象 | 排名（rank） | 分数（score） |
+| 归一化 | **不需要**（尺度无关） | 需要（`norm_score=True` 自动归一化，见 §深度：分数归一化） |
+| 可调参数 | k（见 §k 选择经验） | 每路权重（按序对应 reqs） |
+| 适用 | 通用起步 | 业务明确偏好（专有名词域 → BM25 权重高，对照案例 3） |
+
+### ⚠️ API 口径修正（常见错误）
+
+- ❌ `client.hybrid_search(data=[...], anns_field=[...], ranker_type="rrf", ranker_params={"k": 60})` —— **不存在该签名**（本页旧版示例曾误用，2026-10-28 校正）
+- ✅ `MilvusClient.hybrid_search(collection_name, reqs, ranker, limit)` —— 客户端口径参数名 **`ranker`**
+- ✅ ORM `Collection.hybrid_search(reqs, rerank, limit)` —— ORM 口径参数名 **`rerank`**（同一能力两个入口命名不同，面试高频陷阱）
+
+### 与 ES / Qdrant 实现对照（对照本页上面两节）
+
+| | Milvus | Elasticsearch 8.13+ | Qdrant |
+|---|---|---|---|
+| 稀疏来源 | 自建 / 内置 BM25 Function | 全文倒排（或 ELSER 学习稀疏） | 自建稀疏 |
+| 融合位置 | 库内 ranker（RRF / Weighted） | `rank.rrf` | 库内 FusionQuery |
+| 查询形态 | N 个 AnnSearchRequest + ranker | query + knn 一次提交 | Prefetch × N + FusionQuery |
+
+### 生产要点
+
+- **每路 `limit` > 最终 `limit`**：双路各召回 50-100 融合后取 10——单路 limit=10 会让 RRF 候选集过小（对照 §调优）
+- **expr 下推**：过滤写进 `AnnSearchRequest(expr=...)`，库内先过滤再融合，别拉回应用层过滤
+- **BM25 参数**：`bm25_k1` / `bm25_b` 即本页 BM25 公式的 $k_1$ / $b$（默认 1.2 / 0.75）
+
+**面试版**（30s / 90s 话术 + 4 陷阱 + 追问）：[Milvus Hybrid Search 面试题](../../../12.interview/11.ai/milvus-hybrid-search/README.md)
 
 ---
 
@@ -395,6 +472,8 @@ results = client.query_points(
 - **L1 数据库**：[Elasticsearch 检索原理](../../../03.data-stack/02-big-data/03-realtime-compute/README.md) — BM25 + 倒排索引
 - **进阶**：ColBERT 多向量检索 — Token 级细粒度检索
 - **面试题**：[hybrid-search-面试](../../../12.interview/11.ai/vector-search-algorithms/README.md) — 5 道高频追问
+- **面试题**：[Milvus Hybrid Search 面试题](../../../12.interview/11.ai/milvus-hybrid-search/README.md) — 库内融合机制 + API 陷阱
+- **盲区与解耦**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 多版本/时序相似文档的字面兜底边界（相对时间 BM25 无效）
 - **故事化**：[13.story 阿明餐厅 RAG 篇](../../../13.story/) — 混合检索类比"老顾客点单 + 新顾客推荐"
 
 ---
@@ -619,6 +698,21 @@ for alpha in alpha_grid:
 | 长文档 (8K) | ✅ | ⚠️ 截断 |
 | 延迟 (100 docs) | 120ms | 80ms (API) |
 | 成本 | 免费（自托管） | $0.13/1M tokens |
+
+---
+
+## 🔗 相关章节
+
+- [Milvus 架构与核心机制](../milvus-architecture/README.md) — 存算分离 / Segment 生命周期 / 一致性级别 / Partition Key（本篇 §Milvus 库内融合的内核背景）
+
+---
+
+## 📚 参考来源（§Milvus 小节 · 2026-10-28 核实）
+
+- [pymilvus（官方 SDK）](https://github.com/milvus-io/pymilvus) — `hybrid_search` / `AnnSearchRequest` / `WeightedRanker` 签名一手依据（API 口径修正以此为准）
+- [pymilvus examples/full_text_search/bm25.py](https://github.com/milvus-io/pymilvus/blob/master/examples/full_text_search/bm25.py) — 内置 BM25 Function 官方示例（`enable_analyzer` + `FunctionType.BM25` + `SPARSE_INVERTED_INDEX`）
+- [Milvus v2.5.0 Release Notes](https://github.com/milvus-io/milvus/releases/tag/v2.5.0) — Full Text Search / Sparse-BM25 内置化引入版本（2024-12）
+- [Milvus GitHub Releases](https://github.com/milvus-io/milvus/releases) — 版本口径：v3.0.4 / v2.6.26（2026-10-26）为当前主线
 
 ---
 

@@ -684,4 +684,10 @@ results = rewriter.retrieve(
 
 ---
 
+## 🔗 相关章节
+
+- **意图澄清**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 用户没指定版本时的多路改写 / 反问决策（方案 3 深读入口）
+
+---
+
 ← [返回 L2 技术栈](../README.md)

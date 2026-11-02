@@ -294,6 +294,7 @@ results = collection.search(
 - [千亿级向量检索](../vector-search-at-scale/README.md) — 5 关键架构转变
 - [万亿级向量检索](../vector-search-trillion/README.md) — 多集群 + 联邦 + TPU
 - 🆕 [Incremental Embedding 增量向量化](../incremental-embedding/README.md) — 5 大策略 + 4 版本方案
+- 🆕 [Milvus Hybrid Search](../milvus-hybrid-search/README.md) — dense + sparse 双路召回 + 库内融合（单路搜完怎么"融"）
 
 **相关 RAG 章节**：
 - [11.ai/02-technology-stack/agentic-search-vs-rag（为什么大代码库不用 RAG）](../../../09.ai-applications/rag/06-agentic-rag.md)
