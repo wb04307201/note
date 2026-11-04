@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="950" viewBox="0 0 960 950" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif">
+<rect width="960" height="950" fill="#ffffff"/>
+<defs>
+<marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1976d2"/></marker>
+<marker id="arwFb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e64a19"/></marker>
+</defs>
+<text x="480" y="46" text-anchor="middle" font-size="24" font-weight="bold" fill="#263238">TOGAF 10 · ADM 全景图</text>
+<text x="480" y="72" text-anchor="middle" font-size="13" fill="#78909c">Architecture Development Method（架构开发方法）</text>
+<line x1="480.0" y1="431.0" x2="480.0" y2="220.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="537.2" y1="451.8" x2="672.8" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="567.6" y1="504.5" x2="775.4" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="557.1" y1="564.5" x2="739.8" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="510.4" y1="603.6" x2="582.6" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="449.6" y1="603.6" x2="377.4" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="402.9" y1="564.5" x2="220.2" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="392.4" y1="504.5" x2="184.6" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<line x1="422.8" y1="451.8" x2="287.2" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<path d="M558.9,228.7 Q597.1,198.2 603.1,244.8" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M703.8,306.2 Q776.5,348.8 775.1,429.6" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M789.5,496.4 Q817.2,579.5 763.5,644.1" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M721.1,710.2 Q700.1,782.3 628.5,787.9" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M509.4,820.7 Q480.0,862.4 454.6,820.7" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M334.5,790.5 Q259.9,782.3 241.9,712.8" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M197.2,648.1 Q142.8,579.5 171.2,500.3" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M182.9,433.1 Q183.5,348.8 254.2,309.7" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
+<path d="M353.2,246.2 Q362.9,198.2 397.4,230.1" fill="none" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arwFb)"/>
+<text x="351" y="165" text-anchor="middle" font-size="12" fill="#e64a19">变更请求 · 新一轮循环</text>
+<rect x="405.0" y="173.0" width="150" height="54" rx="10" fill="#ede7f6" stroke="#5e35b1" stroke-width="2"/>
+<text x="480.0" y="197.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#311b92">预备阶段</text>
+<text x="480.0" y="217.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Preliminary Phase</text>
+<rect x="610.7" y="247.9" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="685.7" y="271.9" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">A 架构愿景</text>
+<text x="685.7" y="291.9" text-anchor="middle" font-size="10.5" fill="#546e7a">Architecture Vision</text>
+<rect x="720.1" y="437.4" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="795.1" y="461.4" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">B 业务架构</text>
+<text x="795.1" y="481.4" text-anchor="middle" font-size="10.5" fill="#546e7a">Business Architecture</text>
+<rect x="682.1" y="653.0" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="757.1" y="677.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">C 信息系统架构</text>
+<text x="757.1" y="697.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Information Systems Arch.</text>
+<rect x="514.4" y="793.7" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="589.4" y="817.7" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">D 技术架构</text>
+<text x="589.4" y="837.7" text-anchor="middle" font-size="10.5" fill="#546e7a">Technology Architecture</text>
+<rect x="295.6" y="793.7" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="370.6" y="817.7" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">E 机会与解决方案</text>
+<text x="370.6" y="837.7" text-anchor="middle" font-size="10.5" fill="#546e7a">Opportunities & Solutions</text>
+<rect x="127.9" y="653.0" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="202.9" y="677.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">F 迁移规划</text>
+<text x="202.9" y="697.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Migration Planning</text>
+<rect x="89.9" y="437.4" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="164.9" y="461.4" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">G 实施治理</text>
+<text x="164.9" y="481.4" text-anchor="middle" font-size="10.5" fill="#546e7a">Implementation Governance</text>
+<rect x="199.3" y="247.9" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+<text x="274.3" y="271.9" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">H 架构变更管理</text>
+<text x="274.3" y="291.9" text-anchor="middle" font-size="10.5" fill="#546e7a">Arch. Change Management</text>
+<circle cx="480" cy="520" r="85" fill="#fff3e0" stroke="#f57c00" stroke-width="2.5"/>
+<text x="480" y="506" text-anchor="middle" font-size="20" font-weight="bold" fill="#e65100">需求管理</text>
+<text x="480" y="528" text-anchor="middle" font-size="11" fill="#8d6e63">Requirements</text>
+<text x="480" y="544" text-anchor="middle" font-size="11" fill="#8d6e63">Management</text>
+<text x="480" y="896" text-anchor="middle" font-size="13" fill="#455a64">顺时针：预备阶段 → A → B → C → D → E → F → G → H ｜ H 评估变更后触发新一轮循环（橙色虚线）</text>
+<text x="480" y="920" text-anchor="middle" font-size="13" fill="#455a64">需求管理（环心）与所有阶段双向交互 ｜ B/C/D 可多次迭代 ｜ TOGAF 10 支持从任意阶段切入并按需裁剪</text>
+</svg>
