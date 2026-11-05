@@ -1,78 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="980" viewBox="0 0 960 980" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif">
-<rect width="960" height="980" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1030" viewBox="0 0 960 1030" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif">
+<rect width="960" height="1030" fill="#ffffff"/>
 <defs>
-<marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1976d2"/></marker>
-<marker id="arwFb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e64a19"/></marker>
-<marker id="arwIt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/></marker>
-<marker id="arwG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#90a4ae"/></marker>
+<marker id="mGov" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1976d2"/></marker>
+<marker id="mCap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#795548"/></marker>
+<marker id="mDef" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f9a825"/></marker>
+<marker id="mTrans" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#689f38"/></marker>
+<marker id="mCross" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#546e7a"/></marker>
+<marker id="mFb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e64a19"/></marker>
+<marker id="mRm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#90a4ae"/></marker>
 </defs>
-<text x="480" y="46" text-anchor="middle" font-size="24" font-weight="bold" fill="#263238">TOGAF 10 · ADM 全景图</text>
-<text x="480" y="72" text-anchor="middle" font-size="13" fill="#78909c">Architecture Development Method（架构开发方法）· 含三层迭代</text>
-<line x1="480.0" y1="429.0" x2="480.0" y2="220.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="538.5" y1="450.3" x2="672.8" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="569.6" y1="504.2" x2="775.4" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="558.8" y1="565.5" x2="739.8" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="511.1" y1="605.5" x2="582.6" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="448.9" y1="605.5" x2="377.4" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="401.2" y1="565.5" x2="220.2" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="390.4" y1="504.2" x2="184.6" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<line x1="421.5" y1="450.3" x2="287.2" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<path d="M558.9,228.7 Q597.1,198.2 603.1,244.8" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M703.8,306.2 Q776.5,348.8 775.1,429.6" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M789.5,496.4 Q817.2,579.5 763.5,644.1" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M721.1,710.2 Q700.1,782.3 628.5,787.9" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M509.4,820.7 Q480.0,862.4 454.6,820.7" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M334.5,790.5 Q259.9,782.3 241.9,712.8" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M197.2,648.1 Q142.8,579.5 171.2,500.3" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M182.9,433.1 Q183.5,348.8 254.2,309.7" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
-<path d="M353.2,246.2 Q362.9,198.2 397.4,230.1" fill="none" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arwFb)"/>
-<text x="351" y="165" text-anchor="middle" font-size="12" fill="#e64a19">跨周期迭代 · 新一轮循环</text>
-<path d="M717.4,536.6 A238 238 0 0 1 613.1,717.3" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arwIt)" marker-end="url(#arwIt)"/>
-<text x="646" y="616" text-anchor="middle" font-size="11.5" fill="#2e7d32" stroke="#ffffff" stroke-width="4" paint-order="stroke">B/C/D 架构定义迭代</text>
-<path d="M353.9,721.8 A238 238 0 0 1 303.1,679.3" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arwIt)" marker-end="url(#arwIt)"/>
-<text x="357" y="667" text-anchor="middle" font-size="11.5" fill="#2e7d32" stroke="#ffffff" stroke-width="4" paint-order="stroke">E/F 过渡规划迭代</text>
-<rect x="405.0" y="173.0" width="150" height="54" rx="10" fill="#ede7f6" stroke="#5e35b1" stroke-width="2"/>
-<text x="480.0" y="197.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#311b92">预备阶段</text>
-<text x="480.0" y="217.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Preliminary Phase</text>
-<rect x="610.7" y="247.9" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="685.7" y="271.9" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">A 架构愿景</text>
-<text x="685.7" y="291.9" text-anchor="middle" font-size="10.5" fill="#546e7a">Architecture Vision</text>
-<rect x="720.1" y="437.4" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="795.1" y="461.4" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">B 业务架构</text>
-<text x="795.1" y="481.4" text-anchor="middle" font-size="10.5" fill="#546e7a">Business Architecture</text>
-<rect x="682.1" y="653.0" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="757.1" y="677.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">C 信息系统架构</text>
-<text x="757.1" y="697.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Information Systems Arch.</text>
-<rect x="514.4" y="793.7" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="589.4" y="817.7" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">D 技术架构</text>
-<text x="589.4" y="837.7" text-anchor="middle" font-size="10.5" fill="#546e7a">Technology Architecture</text>
-<rect x="295.6" y="793.7" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="370.6" y="817.7" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">E 机会与解决方案</text>
-<text x="370.6" y="837.7" text-anchor="middle" font-size="10.5" fill="#546e7a">Opportunities &amp; Solutions</text>
-<rect x="127.9" y="653.0" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="202.9" y="677.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">F 迁移规划</text>
-<text x="202.9" y="697.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Migration Planning</text>
-<rect x="89.9" y="437.4" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="164.9" y="461.4" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">G 实施治理</text>
-<text x="164.9" y="481.4" text-anchor="middle" font-size="10.5" fill="#546e7a">Implementation Governance</text>
-<rect x="199.3" y="247.9" width="150" height="54" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
-<text x="274.3" y="271.9" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">H 架构变更管理</text>
-<text x="274.3" y="291.9" text-anchor="middle" font-size="10.5" fill="#546e7a">Arch. Change Management</text>
-<circle cx="480" cy="520" r="85" fill="#fff3e0" stroke="#f57c00" stroke-width="2.5"/>
-<text x="480" y="506" text-anchor="middle" font-size="20" font-weight="bold" fill="#e65100">需求管理</text>
-<text x="480" y="528" text-anchor="middle" font-size="11" fill="#8d6e63">Requirements</text>
-<text x="480" y="544" text-anchor="middle" font-size="11" fill="#8d6e63">Management</text>
-<rect x="700" y="92" width="248" height="118" rx="8" fill="#fafafa" stroke="#e0e0e0"/>
-<text x="712" y="112" font-size="12" font-weight="bold" fill="#37474f">图例 · 三类箭头 + 双向交互</text>
-<line x1="712" y1="130" x2="746" y2="130" stroke="#1976d2" stroke-width="2.2" marker-end="url(#arw)"/>
-<text x="756" y="134" font-size="11.5" fill="#455a64">ADM 主链（顺时针一轮）</text>
-<line x1="712" y1="152" x2="746" y2="152" stroke="#2e7d32" stroke-width="2.2" stroke-dasharray="6 4" marker-start="url(#arwIt)" marker-end="url(#arwIt)"/>
-<text x="756" y="156" font-size="11.5" fill="#455a64">阶段间迭代（同周期内互回）</text>
-<line x1="712" y1="174" x2="746" y2="174" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arwFb)"/>
-<text x="756" y="178" font-size="11.5" fill="#455a64">跨周期迭代（H 触发新一轮）</text>
-<line x1="712" y1="196" x2="746" y2="196" stroke="#90a4ae" stroke-width="2.2" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
-<text x="756" y="200" font-size="11.5" fill="#455a64">需求管理 ↔ 各阶段（双向）</text>
-<text x="480" y="906" text-anchor="middle" font-size="13" fill="#455a64">顺时针：预备阶段 → A → B → C → D → E → F → G → H ｜ H 评估变更后触发新一轮循环（橙色虚线）</text>
-<text x="480" y="930" text-anchor="middle" font-size="13" fill="#455a64">三层迭代：阶段内（基线 ⇄ 目标两遍扫）｜ 阶段间（绿色虚线互回）｜ 跨周期（H → 新一轮）</text>
-<text x="480" y="954" text-anchor="middle" font-size="13" fill="#455a64">需求管理（环心）与所有阶段双向交互 ｜ TOGAF 10 支持从任意阶段切入并按需裁剪</text>
+<text x="30" y="52" font-size="24" font-weight="bold" fill="#263238">TOGAF 10 · ADM 全景图</text>
+<text x="30" y="78" font-size="13" fill="#78909c">Architecture Development Method</text>
+<text x="30" y="98" font-size="13" fill="#78909c">官方四迭代分组着色 + 三层迭代箭头</text>
+<rect x="640" y="30" width="300" height="250" rx="8" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="654" y="52" font-size="13" font-weight="bold" fill="#37474f">迭代循环分组（同色 = 互可迭代）</text>
+<rect x="654" y="66" width="24" height="15" rx="3" fill="#efebe9" stroke="#795548" stroke-width="1.5"/>
+<text x="686" y="78" font-size="12" fill="#455a64">架构能力迭代（预备 ⇄ A）</text>
+<rect x="654" y="92" width="24" height="15" rx="3" fill="#fff8e1" stroke="#f9a825" stroke-width="1.5"/>
+<text x="686" y="104" font-size="12" fill="#455a64">架构定义迭代（B ⇄ C ⇄ D）</text>
+<rect x="654" y="118" width="24" height="15" rx="3" fill="#f1f8e9" stroke="#689f38" stroke-width="1.5"/>
+<text x="686" y="130" font-size="12" fill="#455a64">过渡规划迭代（E ⇄ F）</text>
+<rect x="654" y="144" width="24" height="15" rx="3" fill="#e3f2fd" stroke="#1976d2" stroke-width="1.5"/>
+<text x="686" y="156" font-size="12" fill="#455a64">架构治理迭代（G ⇄ H）</text>
+<text x="654" y="190" font-size="13" font-weight="bold" fill="#37474f">图例 2 · 箭头语义</text>
+<line x1="654" y1="212" x2="690" y2="212" stroke="#546e7a" stroke-width="2.2" marker-end="url(#mCross)"/>
+<text x="700" y="216" font-size="12" fill="#455a64">跨组主链（顺时针推进）</text>
+<line x1="654" y1="238" x2="690" y2="238" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#mFb)"/>
+<text x="700" y="242" font-size="12" fill="#455a64">变更请求 → 新一轮循环</text>
+<line x1="654" y1="264" x2="690" y2="264" stroke="#90a4ae" stroke-width="2.2" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<text x="700" y="268" font-size="12" fill="#455a64">需求管理 ↔ 各阶段（双向）</text>
+<rect x="404" y="162" width="152" height="56" rx="10" fill="#efebe9" stroke="#795548" stroke-width="2.5"/>
+<text x="480" y="187" text-anchor="middle" font-size="16" font-weight="bold" fill="#4e342e">预备阶段</text>
+<text x="480" y="207" text-anchor="middle" font-size="10.5" fill="#546e7a">Preliminary Phase</text>
+<line x1="544.3" y1="515.7" x2="678.0" y2="382.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="571.0" y1="580.0" x2="760.0" y2="580.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="544.3" y1="644.3" x2="678.0" y2="778.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="480.0" y1="671.0" x2="480.0" y2="860.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="415.7" y1="644.3" x2="282.0" y2="778.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="389.0" y1="580.0" x2="200.0" y2="580.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="415.7" y1="515.7" x2="282.0" y2="382.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<line x1="480.0" y1="489.0" x2="480.0" y2="300.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#mRm)" marker-end="url(#mRm)"/>
+<path d="M552.2,309.9 Q601.7,286.2 616.2,336.4" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#mGov)"/>
+<path d="M705.6,400.5 Q773.8,458.3 765.0,543.7" fill="none" stroke="#546e7a" stroke-width="2.6" marker-end="url(#mCross)"/>
+<path d="M765.0,616.3 Q773.8,701.7 707.2,755.8" fill="none" stroke="#f9a825" stroke-width="2.6" marker-start="url(#mDef)" marker-end="url(#mDef)"/>
+<path d="M616.2,823.6 Q601.7,873.8 555.9,848.6" fill="none" stroke="#f9a825" stroke-width="2.6" marker-start="url(#mDef)" marker-end="url(#mDef)"/>
+<path d="M407.8,850.1 Q358.3,873.8 343.8,823.6" fill="none" stroke="#546e7a" stroke-width="2.6" marker-end="url(#mCross)"/>
+<path d="M252.8,755.8 Q186.2,701.7 195.0,616.3" fill="none" stroke="#689f38" stroke-width="2.6" marker-start="url(#mTrans)" marker-end="url(#mTrans)"/>
+<path d="M193.5,547.4 Q186.2,458.3 252.8,404.2" fill="none" stroke="#546e7a" stroke-width="2.6" marker-end="url(#mCross)"/>
+<path d="M343.8,336.4 Q358.3,286.2 404.1,311.4" fill="none" stroke="#1976d2" stroke-width="2.6" marker-start="url(#mGov)" marker-end="url(#mGov)"/>
+<line x1="507.6" y1="213.1" x2="650.3" y2="332.8" stroke="#795548" stroke-width="2.6" marker-start="url(#mCap)" marker-end="url(#mCap)"/>
+<text x="446" y="240" text-anchor="middle" font-size="11.5" fill="#4e342e" stroke="#ffffff" stroke-width="4" paint-order="stroke">能力迭代（双向）</text>
+<path d="M398.0,274.0 Q240.0,235.0 393.0,198.0" fill="none" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#mFb)"/>
+<text x="228" y="229" text-anchor="middle" font-size="11.5" fill="#e64a19">变更请求 → 新一轮循环</text>
+<text x="228" y="247" text-anchor="middle" font-size="10.5" fill="#e64a19">（跨周期迭代）</text>
+<rect x="616.1" y="339.9" width="152" height="56" rx="10" fill="#efebe9" stroke="#795548" stroke-width="2.5"/>
+<text x="692.1" y="364.9" text-anchor="middle" font-size="16" font-weight="bold" fill="#4e342e">A 架构愿景</text>
+<text x="692.1" y="384.9" text-anchor="middle" font-size="10.5" fill="#546e7a">Architecture Vision</text>
+<rect x="704.0" y="552.0" width="152" height="56" rx="10" fill="#fff8e1" stroke="#f9a825" stroke-width="2.5"/>
+<text x="780.0" y="577.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#8d6e00">B 业务架构</text>
+<text x="780.0" y="597.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Business Architecture</text>
+<rect x="616.1" y="764.1" width="152" height="56" rx="10" fill="#fff8e1" stroke="#f9a825" stroke-width="2.5"/>
+<text x="692.1" y="789.1" text-anchor="middle" font-size="16" font-weight="bold" fill="#8d6e00">C 信息系统架构</text>
+<text x="692.1" y="809.1" text-anchor="middle" font-size="10.5" fill="#546e7a">Information Systems Arch.</text>
+<rect x="404.0" y="852.0" width="152" height="56" rx="10" fill="#fff8e1" stroke="#f9a825" stroke-width="2.5"/>
+<text x="480.0" y="877.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#8d6e00">D 技术架构</text>
+<text x="480.0" y="897.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Technology Architecture</text>
+<rect x="191.9" y="764.1" width="152" height="56" rx="10" fill="#f1f8e9" stroke="#689f38" stroke-width="2.5"/>
+<text x="267.9" y="789.1" text-anchor="middle" font-size="16" font-weight="bold" fill="#33691e">E 机会与解决方案</text>
+<text x="267.9" y="809.1" text-anchor="middle" font-size="10.5" fill="#546e7a">Opportunities &amp; Solutions</text>
+<rect x="104.0" y="552.0" width="152" height="56" rx="10" fill="#f1f8e9" stroke="#689f38" stroke-width="2.5"/>
+<text x="180.0" y="577.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#33691e">F 迁移规划</text>
+<text x="180.0" y="597.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Migration Planning</text>
+<rect x="191.9" y="339.9" width="152" height="56" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2.5"/>
+<text x="267.9" y="364.9" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">G 实施治理</text>
+<text x="267.9" y="384.9" text-anchor="middle" font-size="10.5" fill="#546e7a">Implementation Governance</text>
+<rect x="404.0" y="252.0" width="152" height="56" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="2.5"/>
+<text x="480.0" y="277.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#0d47a1">H 架构变更管理</text>
+<text x="480.0" y="297.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Arch. Change Management</text>
+<circle cx="480" cy="580" r="85" fill="#fff3e0" stroke="#f57c00" stroke-width="2.5"/>
+<text x="480" y="566" text-anchor="middle" font-size="20" font-weight="bold" fill="#e65100">需求管理</text>
+<text x="480" y="588" text-anchor="middle" font-size="11" fill="#8d6e63">Requirements</text>
+<text x="480" y="604" text-anchor="middle" font-size="11" fill="#8d6e63">Management</text>
+<text x="480" y="948" text-anchor="middle" font-size="13" fill="#455a64">顺时针：A → B → C → D → E → F → G → H → A 闭环 ｜ H 评估变更后触发新一轮循环（橙色虚线经预备阶段）</text>
+<text x="480" y="972" text-anchor="middle" font-size="13" fill="#455a64">三层迭代：阶段内（基线 ⇄ 目标两遍扫）｜ 阶段间（同色分组互回：能力 / 定义 / 过渡规划 / 治理）｜ 跨周期（H → 新一轮）</text>
+<text x="480" y="996" text-anchor="middle" font-size="13" fill="#455a64">需求管理（环心）与所有阶段双向交互 ｜ TOGAF 10 支持从任意阶段切入并按需裁剪</text>
 </svg>
