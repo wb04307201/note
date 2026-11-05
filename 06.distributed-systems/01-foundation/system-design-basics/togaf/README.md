@@ -43,9 +43,9 @@ graph TB
 
     Fund --> F1["概念与核心原则"]
     Fund --> F2["ADM 架构开发方法"]
-    Fund --> F3["架构内容框架"]
-    Fund --> F4["架构治理"]
-    Fund --> F5["架构能力框架"]
+    Fund --> F3["架构内容"]
+    Fund --> F4["ADM 指南与技术"]
+    Fund --> F5["企业架构能力与治理"]
 
     Series --> S1["Business Capability Planning (2023)"]
     Series --> S2["Value Stream"]

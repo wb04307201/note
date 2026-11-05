@@ -206,7 +206,7 @@ TOGAF 10 通过 **Open Agile Architecture™** 标准（2025 年发布 2.0）与
 | **角色** | ADM 中加入 "Architecture Owner"（类似 Team Topologies） |
 | **节奏** | ADM 季度循环 + Team Topologies 团队感知 |
 | **组织** | 业务能力 → 流式团队；基础设施 → 平台团队 |
-| **文档** | TOGAF 内容元模型 + Team Topologies 团队 API 文档 |
+| **文档** | TOGAF 架构内容（内容元模型 Series Guide）+ Team Topologies 团队 API 文档 |
 
 ---
 
