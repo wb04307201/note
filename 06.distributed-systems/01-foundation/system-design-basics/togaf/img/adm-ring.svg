@@ -1,20 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="950" viewBox="0 0 960 950" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif">
-<rect width="960" height="950" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="980" viewBox="0 0 960 980" font-family="Microsoft YaHei, PingFang SC, Noto Sans SC, sans-serif">
+<rect width="960" height="980" fill="#ffffff"/>
 <defs>
 <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1976d2"/></marker>
 <marker id="arwFb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e64a19"/></marker>
+<marker id="arwIt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/></marker>
+<marker id="arwG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#90a4ae"/></marker>
 </defs>
 <text x="480" y="46" text-anchor="middle" font-size="24" font-weight="bold" fill="#263238">TOGAF 10 · ADM 全景图</text>
-<text x="480" y="72" text-anchor="middle" font-size="13" fill="#78909c">Architecture Development Method（架构开发方法）</text>
-<line x1="480.0" y1="431.0" x2="480.0" y2="220.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="537.2" y1="451.8" x2="672.8" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="567.6" y1="504.5" x2="775.4" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="557.1" y1="564.5" x2="739.8" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="510.4" y1="603.6" x2="582.6" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="449.6" y1="603.6" x2="377.4" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="402.9" y1="564.5" x2="220.2" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="392.4" y1="504.5" x2="184.6" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
-<line x1="422.8" y1="451.8" x2="287.2" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4"/>
+<text x="480" y="72" text-anchor="middle" font-size="13" fill="#78909c">Architecture Development Method（架构开发方法）· 含三层迭代</text>
+<line x1="480.0" y1="429.0" x2="480.0" y2="220.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="538.5" y1="450.3" x2="672.8" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="569.6" y1="504.2" x2="775.4" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="558.8" y1="565.5" x2="739.8" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="511.1" y1="605.5" x2="582.6" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="448.9" y1="605.5" x2="377.4" y2="801.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="401.2" y1="565.5" x2="220.2" y2="670.0" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="390.4" y1="504.2" x2="184.6" y2="467.9" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<line x1="421.5" y1="450.3" x2="287.2" y2="290.2" stroke="#b0bec5" stroke-width="1.3" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
 <path d="M558.9,228.7 Q597.1,198.2 603.1,244.8" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
 <path d="M703.8,306.2 Q776.5,348.8 775.1,429.6" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
 <path d="M789.5,496.4 Q817.2,579.5 763.5,644.1" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
@@ -24,7 +26,11 @@
 <path d="M197.2,648.1 Q142.8,579.5 171.2,500.3" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
 <path d="M182.9,433.1 Q183.5,348.8 254.2,309.7" fill="none" stroke="#1976d2" stroke-width="2.6" marker-end="url(#arw)"/>
 <path d="M353.2,246.2 Q362.9,198.2 397.4,230.1" fill="none" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arwFb)"/>
-<text x="351" y="165" text-anchor="middle" font-size="12" fill="#e64a19">变更请求 · 新一轮循环</text>
+<text x="351" y="165" text-anchor="middle" font-size="12" fill="#e64a19">跨周期迭代 · 新一轮循环</text>
+<path d="M717.4,536.6 A238 238 0 0 1 613.1,717.3" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arwIt)" marker-end="url(#arwIt)"/>
+<text x="646" y="616" text-anchor="middle" font-size="11.5" fill="#2e7d32" stroke="#ffffff" stroke-width="4" paint-order="stroke">B/C/D 架构定义迭代</text>
+<path d="M353.9,721.8 A238 238 0 0 1 303.1,679.3" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#arwIt)" marker-end="url(#arwIt)"/>
+<text x="357" y="667" text-anchor="middle" font-size="11.5" fill="#2e7d32" stroke="#ffffff" stroke-width="4" paint-order="stroke">E/F 过渡规划迭代</text>
 <rect x="405.0" y="173.0" width="150" height="54" rx="10" fill="#ede7f6" stroke="#5e35b1" stroke-width="2"/>
 <text x="480.0" y="197.0" text-anchor="middle" font-size="16" font-weight="bold" fill="#311b92">预备阶段</text>
 <text x="480.0" y="217.0" text-anchor="middle" font-size="10.5" fill="#546e7a">Preliminary Phase</text>
@@ -56,6 +62,17 @@
 <text x="480" y="506" text-anchor="middle" font-size="20" font-weight="bold" fill="#e65100">需求管理</text>
 <text x="480" y="528" text-anchor="middle" font-size="11" fill="#8d6e63">Requirements</text>
 <text x="480" y="544" text-anchor="middle" font-size="11" fill="#8d6e63">Management</text>
-<text x="480" y="896" text-anchor="middle" font-size="13" fill="#455a64">顺时针：预备阶段 → A → B → C → D → E → F → G → H ｜ H 评估变更后触发新一轮循环（橙色虚线）</text>
-<text x="480" y="920" text-anchor="middle" font-size="13" fill="#455a64">需求管理（环心）与所有阶段双向交互 ｜ B/C/D 可多次迭代 ｜ TOGAF 10 支持从任意阶段切入并按需裁剪</text>
+<rect x="700" y="92" width="248" height="118" rx="8" fill="#fafafa" stroke="#e0e0e0"/>
+<text x="712" y="112" font-size="12" font-weight="bold" fill="#37474f">图例 · 三类箭头 + 双向交互</text>
+<line x1="712" y1="130" x2="746" y2="130" stroke="#1976d2" stroke-width="2.2" marker-end="url(#arw)"/>
+<text x="756" y="134" font-size="11.5" fill="#455a64">ADM 主链（顺时针一轮）</text>
+<line x1="712" y1="152" x2="746" y2="152" stroke="#2e7d32" stroke-width="2.2" stroke-dasharray="6 4" marker-start="url(#arwIt)" marker-end="url(#arwIt)"/>
+<text x="756" y="156" font-size="11.5" fill="#455a64">阶段间迭代（同周期内互回）</text>
+<line x1="712" y1="174" x2="746" y2="174" stroke="#e64a19" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arwFb)"/>
+<text x="756" y="178" font-size="11.5" fill="#455a64">跨周期迭代（H 触发新一轮）</text>
+<line x1="712" y1="196" x2="746" y2="196" stroke="#90a4ae" stroke-width="2.2" stroke-dasharray="3 4" marker-start="url(#arwG)" marker-end="url(#arwG)"/>
+<text x="756" y="200" font-size="11.5" fill="#455a64">需求管理 ↔ 各阶段（双向）</text>
+<text x="480" y="906" text-anchor="middle" font-size="13" fill="#455a64">顺时针：预备阶段 → A → B → C → D → E → F → G → H ｜ H 评估变更后触发新一轮循环（橙色虚线）</text>
+<text x="480" y="930" text-anchor="middle" font-size="13" fill="#455a64">三层迭代：阶段内（基线 ⇄ 目标两遍扫）｜ 阶段间（绿色虚线互回）｜ 跨周期（H → 新一轮）</text>
+<text x="480" y="954" text-anchor="middle" font-size="13" fill="#455a64">需求管理（环心）与所有阶段双向交互 ｜ TOGAF 10 支持从任意阶段切入并按需裁剪</text>
 </svg>
