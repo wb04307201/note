@@ -98,6 +98,7 @@ README（你在这里）  →  第一章（ADM 全貌）
 | **TOGAF** | The Open Group Architecture Framework，企业架构框架 | 全部 |
 | **ADM** | Architecture Development Method，9 阶段循环迭代方法 | [第一章](adm.md) |
 | **ADM 三层迭代** | 架构开发（周期内）/ 过渡规划 / 架构治理迭代 | [第一章](adm.md) |
+| **业务场景** | 阶段 A 制定架构愿景的推荐技术：具体上下文识别需求/期望/挑战 | [第一章](adm.md) |
 | **4 大核心交付物** | Request / Statement of Architecture Work + Principles + Requirements Specification 辨析 | [第一章](adm.md) |
 | **内容元模型** | 定义架构信息结构和关系的 schema（框架管过程/存储库管存放/元模型管结构）| [第一章](adm.md) |
 | **架构路线图** | 工作包 + 时间安排的可视化跟踪视图（E 草案 → F 定稿）| [第一章](adm.md) |
