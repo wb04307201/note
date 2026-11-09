@@ -98,6 +98,7 @@ README（你在这里）  →  第一章（ADM 全貌）
 | **TOGAF** | The Open Group Architecture Framework，企业架构框架 | 全部 |
 | **ADM** | Architecture Development Method，9 阶段循环迭代方法 | [第一章](adm.md) |
 | **4 大核心交付物** | Request / Statement of Architecture Work + Principles + Requirements Specification 辨析 | [第一章](adm.md) |
+| **内容元模型** | 定义架构信息结构和关系的 schema（框架管过程/存储库管存放/元模型管结构）| [第一章](adm.md) |
 | **BCAT** | Business / Information Systems(数据+应用) / Technology 四层 | [第二章](business-capability.md) |
 | **业务能力** | 组织"做什么"（而非"怎么做"）的能力单元 | [第二章](business-capability.md) |
 | **价值流** | 端到端为客户创造价值的活动序列 | [第二章](business-capability.md) |
