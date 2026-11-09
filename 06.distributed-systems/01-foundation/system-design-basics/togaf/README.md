@@ -73,7 +73,7 @@ graph TB
 | **第三章** | [康威定律 + 团队拓扑](conway-and-team-topology.md) | 组织结构如何决定系统架构？ | 35 min |
 | **第四章** | [架构治理 + 落地实践](architecture-governance.md) | 架构设计完如何保证执行不走样？ | 40 min |
 | **第五章** | [TOGAF 10 情景题答题方法（OGEA-102）](scenario-exam-method.md) | 考场上如何从四个"都合理"的选项里选出 5 分的那个？（三步答题法 + 反模式清单 + 阶段定位速查表） | 40 min |
-| **第六章** | [架构原则模板（Name/Statement/Rationale/Implications）](architecture-principles.md) | 一条能裁决争议的架构原则怎么写？（4 字段模板 + 坏词清单 + 示例原则集） | 30 min |
+| **第六章** | [架构原则模板（Name/Statement/Rationale/Implications）](architecture-principles.md) | 一条能裁决争议的架构原则怎么写？（4 大目的 + 4 字段模板 + 坏词清单 + 示例原则集） | 30 min |
 
 ### 推荐阅读顺序
 
@@ -131,7 +131,7 @@ README（你在这里）  →  第一章（ADM 全貌）
 - [第三章：康威定律 + 团队拓扑](conway-and-team-topology.md) — 组织结构与系统架构的对齐
 - [第四章：架构治理 + 落地实践](architecture-governance.md) — 6 维治理 + 不同规模裁剪
 - [第五章：TOGAF 10 情景题答题方法（OGEA-102）](scenario-exam-method.md) — 梯度评分数学 + 答问题不答场景 + 三步答题法
-- [第六章：架构原则模板（Name/Statement/Rationale/Implications）](architecture-principles.md) — 预备阶段核心交付物的写作标尺 + 坏词清单 + 示例原则集
+- [第六章：架构原则模板（Name/Statement/Rationale/Implications）](architecture-principles.md) — EA 原则 4 大目的 + 预备阶段核心交付物的写作标尺 + 坏词清单 + 示例原则集
 - [架构认知的演进](../architecture-evolution/README.md) — OOD → DDD → TOGAF 的认知升级之路
 - [架构描述语言 ArchiMate 3.2](../archimate/README.md) — TOGAF 的"标准搭档"，30+ 视点给不同人看不同的图
 - [IT 价值流参考架构 IT4IT 3.0](../it4it/README.md) — Open Group 标准组合第三件套，4 价值流 + 9 功能组件
