@@ -113,6 +113,7 @@ README（你在这里）  →  第一章（ADM 全貌）
 | **合规性评估** | 阶段 G 定期审核：进度/设计概述 + 8 类架构检查单 + 五级评级 | [第四章](architecture-governance.md) |
 | **ADR** | Architecture Decision Record，轻量级架构决策记录 | [第四章](architecture-governance.md) |
 | **架构原则** | 4 字段模板（Name/Statement/Rationale/Implications）定义的长期裁决标尺 | [第六章](architecture-principles.md) |
+| **利益相关者冲突解决** | 促进沟通 / 代理 / 单人内部找本人 / 多人之间上级架构或妥协 | [第五章](scenario-exam-method.md) |
 
 ---
 
