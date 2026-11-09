@@ -103,6 +103,7 @@ README（你在这里）  →  第一章（ADM 全貌）
 | **康威定律** | 系统结构 = 组织的沟通结构 | [第三章](conway-and-team-topology.md) |
 | **团队拓扑** | 4 种团队类型（流式/赋能/复杂子系统/平台） | [第三章](conway-and-team-topology.md) |
 | **架构治理** | 6 维度（合规/合同/决策/沟通/能力/控制） | [第四章](architecture-governance.md) |
+| **实施治理模型** | 阶段 F 输出：实施阶段角色/责任/流程/标准框架（F 立法、G 执法）| [第四章](architecture-governance.md) |
 | **合规性评估** | 阶段 G 定期审核：进度/设计概述 + 8 类架构检查单 + 五级评级 | [第四章](architecture-governance.md) |
 | **ADR** | Architecture Decision Record，轻量级架构决策记录 | [第四章](architecture-governance.md) |
 | **架构原则** | 4 字段模板（Name/Statement/Rationale/Implications）定义的长期裁决标尺 | [第六章](architecture-principles.md) |
