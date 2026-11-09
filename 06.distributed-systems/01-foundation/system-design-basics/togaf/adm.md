@@ -140,7 +140,7 @@
 | **关键活动** | 1. 架构合规性评审 2. 偏差影响评估 3. 变更请求管理 4. 项目复盘 |
 | **输入** | 架构契约（Architecture Contract） |
 | **输出** | 合规报告、变更授权、偏差纠正 |
-| **关键机制** | **架构评审委员会（ARB）**——详见[第四章](architecture-governance.md) |
+| **关键机制** | **架构评审委员会（ARB）**——详见[第四章](architecture-governance.md)；**合规性评估**（3 部分内容 + 8 类架构检查单 + 五级合规评级）详见[第四章 §1.3](architecture-governance.md) |
 
 #### H. 架构变更管理（Architecture Change Management）
 
