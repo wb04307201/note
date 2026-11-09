@@ -79,8 +79,8 @@
 |------|------|
 | **目标** | 获得高管对架构项目的支持，定义范围与约束 |
 | **关键活动** | 1. 业务场景（Business Scenarios）分析 2. 识别利益相关方关切 3. 草拟架构愿景声明 4. 评估业务能力差距 5. 风险与约束识别 |
-| **输入** | 架构原则、业务战略、IT 战略 |
-| **输出** | 架构愿景文档、Stakeholder Map、范围声明 |
+| **输入** | Request for Architecture Work（发起人触发）、架构原则、业务战略、IT 战略 |
+| **输出** | 架构愿景文档、**Statement of Architecture Work**（架构工作说明书）、Stakeholder Map、范围声明（4 大交付物辨析见 §2.4）|
 | **工具提示** | Business Scenarios 是 TOGAF 10 推荐的开场方法 |
 
 #### B. 业务架构（Business Architecture）
@@ -120,7 +120,7 @@
 | **目标** | 评估实现方案、识别项目组合、形成候选工作包 |
 | **关键活动** | 1. 解决方案构建块（ABB/SBB）识别 2. 工作包（Work Package）定义 3. 项目依赖分析 4. 成本/收益初评 |
 | **输入** | BCAT 四层架构、约束条件 |
-| **输出** | 工作包清单、项目组合、依赖图 |
+| **输出** | 工作包清单、项目组合、依赖图、**Architecture Requirements Specification**（架构需求规格，汇总 B~D 需求定稿，见 §2.4）|
 | **关键概念** | **ABB（Architecture Building Block）** vs **SBB（Solution Building Block）**——前者是架构层抽象，后者是具体产品/技术 |
 
 #### F. 迁移规划（Migration Planning）
@@ -156,6 +156,37 @@
 ### 2.3 需求管理（贯穿始终）
 
 > **需求管理不是单独阶段，而是与所有阶段并行的横向活动**。它确保业务需求在 ADM 每个阶段都被持续追溯与验证。
+
+### 2.4 ADM 核心交付物辨析（4 个高频混淆项）
+
+TOGAF 的交付物（Deliverables）是**受控的、经评审批准的正式文档**，存入架构存储库（Architecture Repository）。以下 4 个是 OGEA 匹配题的最高频考点——名字都带 "Architecture Work"，但**方向、创建者、稳定性完全不同**：
+
+| 交付物 | 谁创建 | 干什么用 | 所属阶段 | 一句话特征 |
+|--------|:------:|---------|:--------:|-----------|
+| **Request for Architecture Work**<br/>架构工作请求 | **发起人**（sponsor）→ 发给架构组织 | 触发架构开发周期的开始；定义具体架构项目的**范围、预算、时间表和交付物** | **A**（H 阶段可触发新一轮）| **从发起组织发到架构组织**的触发文件 |
+| **Statement of Architecture Work**<br/>架构工作说明书（也译"架构工作声明"）| **架构师** | 定义完成架构项目所需的**方法和资源**；是**发起人与架构组织之间的契约基础** | **A** 的输出 | 架构开发周期的**范围和方法** |
+| **Architecture Principles**<br/>架构原则 | **架构师**（预备阶段）| 定义架构工作的**通用规则和指南**，反映业务原则、目标和驱动因素 | **预备阶段**（A~G 全程裁决）| **持久且很少修改**的规则（详见[第六章](architecture-principles.md)）|
+| **Architecture Requirements Specification**<br/>架构需求规格 | **架构师** | 定义支配架构工作的**功能性和非功能性需求**，以及约束和假设 | **E**（汇总 B~D 需求）| 一组**定量陈述**：实施项目必须做什么才符合架构 |
+
+**两大易混陷阱**：
+
+1. **Request vs Statement：方向相反**
+   ```text
+   Request   for Architecture Work：发起人 → 架构组织（"我要你启动这件事"）
+   Statement of Architecture Work：架构组织 → 发起人（"好，我这样做，签字吧"）
+   ```
+   考题给"从发起组织发送到架构组织的文件" → 选 **Request**；给"契约基础 / 范围和方法" → 选 **Statement**。
+
+2. **Principles vs Requirements Specification：粒度与稳定性相反**
+   ```text
+   Principles：通用规则、持久、很少改（以年计）——"数据即资产"
+   Requirements Spec：具体定量陈述、随项目变（以项目计）——"P99 延迟 < 200ms"
+   ```
+   考题给"持久且很少修改" → 选 **Principles**；给"一组定量陈述" → 选 **Requirements Specification**。
+
+**匹配题速记口诀**：**请求触发（A）· 说明立约（A）· 原则长效（预备）· 规格定量（E）**
+
+> **交付物 vs 其他制品**：TOGAF 内容框架里，Deliverable（交付物）= 需经正式评审与批准的受控文档；Artifact（制品，如目录/矩阵/图）= 交付物的组成部分；Building Block（ABB/SBB，见 §2.2 阶段 E）= 可复用的架构/解决方案单元。考题问"发布到存储库的受控制品"时，三者都是候选——按颗粒度选（详见[第五章](scenario-exam-method.md) Step 3 全面性比较）。
 
 ---
 
@@ -218,6 +249,7 @@ TOGAF 10 引入了 **"Applying the TOGAF Approach"**（应用 TOGAF 方法）这
 2. **MVP 架构愿景**：如果只做 ADM 的 A+B 两阶段，能产出什么价值？哪些"看起来重要但其实可后置"的环节被你忽略了？
 3. **需求管理的难点**：需求从哪来？如何避免"需求池"变成无人维护的垃圾场？
 4. **架构师与 Sprint 的关系**：你的架构师在 Sprint Review 中的角色是什么？是被动响应还是主动塑造？
+5. **交付物辨析自测**（§2.4）：不看表回答——"从发起组织发送到架构组织、用于触发架构开发周期的文件"是哪个？"一组定量陈述，概述实现项目必须做什么才符合架构"是哪个？两个都答对才算过。
 
 ---
 

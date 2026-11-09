@@ -46,7 +46,7 @@
 
 ### 1.2 预备阶段的核心交付物
 
-架构原则是 [第一章](adm.md) 预备阶段（Preliminary Phase）的关键活动 2「定义架构原则」的产出：
+架构原则是 [第一章](adm.md) 预备阶段（Preliminary Phase）的关键活动 2「定义架构原则」的产出（它也是 ADM 4 大核心交付物之一，与 Request/Statement of Architecture Work、Requirements Specification 的辨析见[第一章 §2.4](adm.md)）：
 
 | 维度 | 说明 |
 |------|------|
