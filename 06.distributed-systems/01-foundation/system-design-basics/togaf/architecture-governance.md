@@ -334,6 +334,7 @@ graph TB
 - ⬅️ [上第一章：核心思想 + ADM 详解](adm.md)
 - ⬅️ [上第二章：BCAT + 业务能力 + 价值流](business-capability.md)
 - [第五章：TOGAF 10 情景题答题方法（OGEA-102）](scenario-exam-method.md) — 阶段 G 合同/合规/委员会类考点的阶段定位与排除法
+- [第六章：架构原则模板](architecture-principles.md) — 原则 vs ADR（宪法 vs 判例）：阶段 G 合规评估与豁免申请的裁决依据
 - [架构认知的演进](../architecture-evolution/README.md) — OOD → DDD → TOGAF 的认知升级
 - [领域驱动设计 DDD](../ddd/README.md) — TOGAF 业务能力 → DDD 限界上下文
 - [面向对象设计 OOD](../ood/README.md) — SOLID 原则、GRASP

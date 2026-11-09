@@ -225,6 +225,7 @@ TOGAF 10 通过 **Open Agile Architecture™** 标准（2025 年发布 2.0）与
 - ⬅️ [上一篇：BCAT + 业务能力 + 价值流](business-capability.md)
 - ➡️ [下一篇：架构治理 + 落地实践](architecture-governance.md)
 - [第五章：TOGAF 10 情景题答题方法（OGEA-102）](scenario-exam-method.md) — 利益相关者类考题的组织视角背景
+- [第六章：架构原则模板](architecture-principles.md) — 「Information Management is Everybody's Business」原则的组织落地视角
 - [微服务架构](../microservices/README.md) — 康威定律与微服务边界
 - [Team Topologies 官网](https://teamtopologies.com/) — 团队拓扑原始资料
 

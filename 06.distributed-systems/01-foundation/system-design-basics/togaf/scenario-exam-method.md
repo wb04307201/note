@@ -247,6 +247,7 @@ graph LR
 - ⬅️ [第二章：BCAT + 业务能力 + 价值流](business-capability.md) — 阶段 B 类考题（价值流映射/客户细分）的原理层
 - ⬅️ [第三章：康威定律 + 团队拓扑](conway-and-team-topology.md) — 利益相关者类考题的组织视角背景
 - ⬅️ [第四章：架构治理 + 落地实践](architecture-governance.md) — 阶段 G 合同/合规/委员会类考点的原理层
+- ⬅️ [第六章：架构原则模板](architecture-principles.md) — 预备阶段类考题（原则定义/字段辨析）的原理层；REFERENCE 开卷查证原文出处
 
 ## 📚 参考来源
 

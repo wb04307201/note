@@ -616,6 +616,7 @@ graph TB
 - ⬅️ [上一篇：核心思想 + ADM 详解](adm.md)
 - ➡️ [下一篇：康威定律 + 团队拓扑](conway-and-team-topology.md)
 - [第五章：TOGAF 10 情景题答题方法（OGEA-102）](scenario-exam-method.md) — 阶段 B 类考题（价值流映射/客户细分）的阶段定位与原理回链
+- [第六章：架构原则模板](architecture-principles.md) — 业务类示例原则（Primacy of Principles / Maximize Benefit）是能力优先级排序的价值标尺
 - [领域驱动设计 DDD](../ddd/README.md) — 业务能力 → 限界上下文的落地
 - [微服务架构](../microservices/README.md) — 能力拆分的服务化映射
 - [IT4IT 功能组件](../it4it/functional-components.md) — IT 能力的 9 大组件建模（与业务能力并列）

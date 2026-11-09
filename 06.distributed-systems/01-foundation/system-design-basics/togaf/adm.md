@@ -70,7 +70,7 @@
 | **目标** | 建立组织的架构能力、定义架构原则、选择工具 |
 | **关键活动** | 1. 识别利益相关方 2. 定义架构原则 3. 选择 ADM 裁剪方案 4. 建立架构治理结构 5. 选型工具 |
 | **输入** | 业务战略、IT 现状、约束条件 |
-| **输出** | 架构原则清单、治理框架、ADM 裁剪计划 |
+| **输出** | 架构原则清单（4 字段模板详见[第六章](architecture-principles.md)）、治理框架、ADM 裁剪计划 |
 | **常见错误** | 跳过此阶段直接进入 A；不定义原则导致后续争议 |
 
 #### A. 架构愿景（Architecture Vision）
@@ -224,6 +224,7 @@ TOGAF 10 引入了 **"Applying the TOGAF Approach"**（应用 TOGAF 方法）这
 - ⬅️ [返回目录](README.md)
 - ➡️ [第二章：BCAT + 业务能力 + 价值流](business-capability.md)
 - [第五章：TOGAF 10 情景题答题方法（OGEA-102）](scenario-exam-method.md) — 9 阶段职责与产出物是答题法 Step 1「定阶段排除」的知识底座
+- [第六章：架构原则模板](architecture-principles.md) — 预备阶段关键活动「定义架构原则」的 4 字段模板（Name/Statement/Rationale/Implications）写作细则
 - 🏛️ [ADM 与需求管理（TOGAF 10 官方）](https://pubs.opengroup.org/togaf-standard/)
 
 ← [返回: 企业架构（TOGAF 10）](README.md)
