@@ -193,6 +193,7 @@ description: 诊断（排查/修复）API 调用报错、超时与非预期响�
 
 **主模块**：
 - [Skill 命中率深度章节](../../../09.ai-applications/agent/coding-agents/claude-code-practices/skill-hit-rate.md) — 四层模型 + 五大反模式 + 实战案例
+- [Skill 分层路由](../../../09.ai-applications/agent/coding-agents/claude-code-practices/skill-hierarchical-routing.md) — Q3"规则路由 vs LLM 自由选择"的架构深潜：候选 >30 时两者都不够，要级联分层（规则粗筛 → 域收敛 → LLM 精排 → 拒识）
 - [Skill 设计方法论深度章节](../../../09.ai-applications/agent/coding-agents/claude-code-practices/skill-design.md) — 「写」的姐妹篇：决策树 + 6 字段 + YAML 模板
 - [Claude Code 大型代码库实践](../../../09.ai-applications/agent/coding-agents/claude-code-practices/README.md) — Skill 的"渐进式披露"基础
 - [Harness Engineering 概念辨析](../harness-engineering/README.md) — 上下文工程总论

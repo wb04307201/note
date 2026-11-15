@@ -258,6 +258,8 @@ class CostCircuitBreaker:
 ## 一句话总结
 > **LLM 成本 = 5 层路由（cache → cheap → big → SaaS → human）+ 3 道 quota（请求 + 用户 + 租户）+ 实时监控告警。忽视任何一项，一定爆。**
 
+> 🔀 **同构姊妹**：[Skill 分层路由](../coding-agents/claude-code-practices/skill-hierarchical-routing.md) — 同样是"级联 + 逐级兜底"，但收敛的是 **Skill 候选集**（选对能力），本文收敛的是**模型成本**（选对算力）。
+
 ---
 
 ← [返回: 大模型思维工程](../README.md) · 上一章：[01-thinking-paradigm](01-thinking-paradigm.md) · 下一章：[03-consistency](03-consistency-and-failure-handling.md)

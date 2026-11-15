@@ -580,6 +580,7 @@ def test_lost_in_middle(model="gpt-3.5-turbo"):
 - **LongRoPE**：arXiv:2402.10739
 - **Anthropic Prompt Engineering**：[docs.anthropic.com](https://docs.anthropic.com)
 - **位置偏差的应用面**：[知识冲突解决](../knowledge-conflict-resolution/README.md) — 矛盾文档裸拼进 Prompt 时，位置偏差会让模型偏向首尾证据而非真相
+- **位置偏差的应用面 2**：[Skill 分层路由](../../agent/coding-agents/claude-code-practices/skill-hierarchical-routing.md) — Skill 描述长列表中部条目被忽略，是单层路由崩溃的机理之一
 
 ---
 

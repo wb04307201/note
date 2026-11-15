@@ -254,6 +254,7 @@ Skill frontmatter + 关键词规则路由 + 分层加载 + 离线评测集
 
 **深度原理（11.ai 主模块）**：
 - Skill 命中率深度章节 — 四层模型 + 五大反模式 + 工程实战
+- [Skill 分层路由](../09.ai-applications/agent/coding-agents/claude-code-practices/skill-hierarchical-routing.md) — 前厅手册（规则粗筛）→ 菜系分区（域收敛）→ 资深厨师定夺（LLM 精排）→ "做不了就说做不了"（拒识）的架构版
 
 **面试题（12.interview）**：
 - [Skill 数量一多，Agent 命中率怎么保证？](../12.interview/11.ai/skill-hit-rate/README.md) — 5 题配套面试

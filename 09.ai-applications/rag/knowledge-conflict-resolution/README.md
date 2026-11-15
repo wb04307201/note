@@ -150,6 +150,7 @@ Top-K 检出互相矛盾 →
 - **拒答侧**：[RAG 超范围拒答](../05-out-of-domain-rejection.md) — Self-Consistency 检测（L2 共用）+ Deflect/Escalate 模式（L4 高风险出口）
 - **生成侧背景**：[Lost in Middle](../lost-in-middle/README.md) — 位置偏差的机制根源
 - **工具边界**：[Reranker](../reranker/README.md) — Rerank 是精度增强不是事实仲裁，同样裁不了冲突
+- **同哲学场景**：[Skill 分层路由](../../agent/coding-agents/claude-code-practices/skill-hierarchical-routing.md) — "规则优先、LLM 兜底"级联架构在 Agent 能力调度侧的同构应用
 - **模型侧**：[LLM 幻觉 面试题](../../../12.interview/11.ai/hallucination/README.md) — Intrinsic 幻觉（输出与源文档矛盾）是冲突处理失败的另一面
 - **面试版**（30s/90s 话术 + 4 陷阱 + 追问）：[知识冲突解决 面试题](../../../12.interview/11.ai/knowledge-conflict-resolution/README.md)
 
