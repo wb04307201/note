@@ -232,7 +232,7 @@ docs: 文档
 
 #### 8.3 note KB 词条（2026-10-12 重构抽取 · 原 50+ 新词映射表精简）
 
-> 原 50+ 词表写于 2026-07-14，经历多次目录重构（`02-technology-stack/*` → `llm-inference/*`，`07-research/alignment` → `fine-tuning/0N-*.md`）。本节为 2026-10-12 重构时**精简版**（移除已失效词 + 聚合条目；保留 active 词 ~35 条），2026-10-21 新增 §8.3.6 Java/后端框架域 12 词后合计 ~47 条，2026-11-15 新增知识冲突 + Skill 分层路由词条后合计 ~49 条。
+> 原 50+ 词表写于 2026-07-14，经历多次目录重构（`02-technology-stack/*` → `llm-inference/*`，`07-research/alignment` → `fine-tuning/0N-*.md`）。本节为 2026-10-12 重构时**精简版**（移除已失效词 + 聚合条目；保留 active 词 ~35 条），2026-10-21 新增 §8.3.6 Java/后端框架域 12 词后合计 ~47 条，2026-11-15 新增知识冲突 + Skill 分层路由 + AI 代码验收词条后合计 ~50 条。
 
 ##### 8.3.1 LLM 架构层（1 词）
 
@@ -268,7 +268,7 @@ docs: 文档
 | Constitutional AI | `09.ai-applications/fine-tuning/04-constitutional-ai.md` | 聚合 | - |
 | KTO / IPO / SimPO（含 ORPO/RFT） | `09.ai-applications/fine-tuning/05-newer-methods.md` | 聚合 | - |
 
-##### 8.3.4 LLM 应用层（14 主词）
+##### 8.3.4 LLM 应用层（15 主词）
 
 | 主题词 | 主模块路径 | 12.interview 路径 | 频次 |
 |--------|-----------|-------------------|------|
@@ -285,6 +285,7 @@ docs: 文档
 | 相似文档消歧（多版本/时序） | `09.ai-applications/rag/similar-doc-disambiguation` | `12.interview/11.ai/similar-doc-disambiguation` | - |
 | 知识冲突（矛盾文档仲裁） | `09.ai-applications/rag/knowledge-conflict-resolution` | `12.interview/11.ai/knowledge-conflict-resolution` | - |
 | Skill 分层路由（Agent 能力调度） | `09.ai-applications/agent/coding-agents/claude-code-practices/skill-hierarchical-routing.md` | 聚合（`12.interview/11.ai/skill-hit-rate` Q3） | - |
+| AI 代码验收（审核门禁/变异测试） | `09.ai-applications/agent/coding-agents/ai-code-review.md` | `12.interview/11.ai/ai-code-review` | - |
 | Milvus 架构（存算分离/一致性） | `09.ai-applications/rag/milvus-architecture` | `12.interview/11.ai/milvus-architecture` | - |
 
 ##### 8.3.5 传统 ML 算法（8 主词 · 含 1 纯面试版）

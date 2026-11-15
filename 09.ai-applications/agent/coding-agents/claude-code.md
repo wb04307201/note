@@ -356,7 +356,7 @@ $ claude --dangerously-skip-permissions
 - **横向对比**：[Coding Agents README](README.md)
 - **规范工具**：[Agent Spec Tools](../agent-spec-tools/README.md) — Superpowers / Spec-Kit / OpenSpec（Claude Code 是这 3 工具的主要载体）
 - **Harness 概念**：[Harness Engineering](../../../12.interview/11.ai/harness-engineering/README.md) — Claude Code 5 扩展点都是 Harness 实现
-- **代码审核**：[AI Code Review](../../../12.interview/11.ai/ai-code-review/README.md) — Claude Code 生成的代码怎么审核
+- **代码审核**：[AI 后端代码验收体系](ai-code-review.md) — 6 层清单 + 门禁矩阵 + 变异测试（深度版）/ [面试题](../../../12.interview/11.ai/ai-code-review/README.md) — Claude Code 生成的代码怎么审核
 
 ← [返回: Coding Agents 对比](README.md)
 
