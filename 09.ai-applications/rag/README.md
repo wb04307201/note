@@ -27,6 +27,7 @@
 | 8 | 千亿级向量检索 | [vector-search-at-scale/](./vector-search-at-scale/README.md) | 5 关键架构转变 + 业界真实案例 + 5 阶段时延/召回/成本三元权衡 |
 | 9 | 万亿级向量检索 | [vector-search-trillion/](./vector-search-trillion/README.md) | 万亿级多集群 + 联邦 + TPU + 极限压缩 |
 | 10 | Agentic Search vs RAG | [agentic-search-vs-rag/](./agentic-search-vs-rag/README.md) | Agentic Search 取代 RAG：实时 + 跟随引用 + Harness > 索引 |
+| 11 | 知识冲突解决 | [knowledge-conflict-resolution/](./knowledge-conflict-resolution/README.md) | 矛盾文档不能丢给模型自行判断：冲突三分类 + 多数从众/位置偏差 + 入库/检测/仲裁/生成四层防线 |
 
 ## 阅读路径
 
@@ -54,7 +55,7 @@
 
 以下检索链路子章节占位路径已映射（`./<topic>/`），待 Phase 1+ 迁入本 MOC：
 
-⚠️ [Query Rewrite](./query-rewrite/README.md) · ⚠️ [Hybrid Search](./hybrid-search/README.md) · ⚠️ [Reranker](./reranker/README.md) · ⚠️ [Chunking](./chunking-strategies/README.md) · ⚠️ [Embedding Models](./embedding-models/README.md) · ⚠️ [Lost in Middle](./lost-in-middle/README.md) · ⚠️ [知识入库流水线](./knowledge-ingestion-pipeline/README.md) · ⚠️ [长文档处理](./long-document-processing/README.md) · ⚠️ [相似文档消歧](./similar-doc-disambiguation/README.md)（多版本/时序相似文档 → Rerank 盲区 + 语义/属性解耦）· ⚠️ [Milvus 架构](./milvus-architecture/README.md)（存算分离 / Segment 生命周期 / 一致性级别 / Partition Key）
+⚠️ [Query Rewrite](./query-rewrite/README.md) · ⚠️ [Hybrid Search](./hybrid-search/README.md) · ⚠️ [Reranker](./reranker/README.md) · ⚠️ [Chunking](./chunking-strategies/README.md) · ⚠️ [Embedding Models](./embedding-models/README.md) · ⚠️ [Lost in Middle](./lost-in-middle/README.md) · ⚠️ [知识入库流水线](./knowledge-ingestion-pipeline/README.md) · ⚠️ [长文档处理](./long-document-processing/README.md) · ⚠️ [相似文档消歧](./similar-doc-disambiguation/README.md)（多版本/时序相似文档 → Rerank 盲区 + 语义/属性解耦）· ⚠️ [Milvus 架构](./milvus-architecture/README.md)（存算分离 / Segment 生命周期 / 一致性级别 / Partition Key）· ⚠️ [知识冲突解决](./knowledge-conflict-resolution/README.md)（矛盾文档归因 + 四层防线 + 仲裁规则 + LLM-as-Judge 边界）
 
 ---
 

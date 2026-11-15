@@ -579,6 +579,7 @@ def test_lost_in_middle(model="gpt-3.5-turbo"):
 - **YaRN**：arXiv:2309.00071
 - **LongRoPE**：arXiv:2402.10739
 - **Anthropic Prompt Engineering**：[docs.anthropic.com](https://docs.anthropic.com)
+- **位置偏差的应用面**：[知识冲突解决](../knowledge-conflict-resolution/README.md) — 矛盾文档裸拼进 Prompt 时，位置偏差会让模型偏向首尾证据而非真相
 
 ---
 

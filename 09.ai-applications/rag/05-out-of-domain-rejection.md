@@ -532,7 +532,7 @@ Q3：用户对拒答接受度？
 | 5 | RAG 超范围拒答（本篇） | 6 大检测机制 + 5 大拒答模式 + 4 步调优 |
 | 6 | [Agentic RAG](./06-agentic-rag.md) | Agentic Search 取代 RAG 索引的极端形态 |
 
-**兄弟章节**：[LLM 安全](../agent/agent-reliability/llm-security/README.md)（Prompt 注入 / 数据泄露攻防） / [LLM 评测](../eval/README.md)
+**兄弟章节**：[LLM 安全](../agent/agent-reliability/llm-security/README.md)（Prompt 注入 / 数据泄露攻防） / [LLM 评测](../eval/README.md) / [知识冲突解决](./knowledge-conflict-resolution/README.md)（拒答的另一触发面：矛盾无法裁决时升级人工，共用 Self-Consistency 检测）
 
 ← [返回 RAG MOC](./README.md)
 

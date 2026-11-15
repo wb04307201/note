@@ -660,6 +660,7 @@ llm = LLM(model="your-reranker-model")
 ## 🔗 相关章节
 
 - **Rerank 盲区**：[相似文档消歧](../similar-doc-disambiguation/README.md) — 同实体多版本/时序相似数据 Rerank 排不掉（精度增强 ≠ 事实仲裁），须语义/属性解耦
+- **Rerank 盲区 2**：[知识冲突解决](../knowledge-conflict-resolution/README.md) — 矛盾文档 Rerank 同样裁不了（相似度 ≠ 可信度），须显式检测 + 规则仲裁
 
 ---
 
