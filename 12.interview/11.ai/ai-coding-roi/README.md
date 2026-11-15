@@ -302,6 +302,7 @@ Review 拒绝率 = 被拒绝合并的 AI 代码 / 总 AI 代码
 - 同栏目：[`ai-code-churn`](../ai-code-churn/README.md) — 代码流失率专题
 - 同栏目：[`harness-engineering`](../harness-engineering/README.md) — Harness Engineering
 - 同栏目：[`ai-code-review`](../ai-code-review/README.md) — 验收成本要计入 AI 编程真实 ROI
+- 主模块：[AI 后端代码验收体系](../../../09.ai-applications/agent/coding-agents/ai-code-review.md) — 验证瓶颈与验收成本的组织流程深度版
 - 主模块：[`11.ai/05-applications`](../../../09.ai-applications/agent/case-studies/README.md) — AI 行业应用
 - 故事：[`13.story/43-ai-productivity-paradox`](../../../13.story/43-ai-productivity-paradox.md) — 阿明餐厅复盘
 
