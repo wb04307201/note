@@ -283,5 +283,6 @@ jobs:
 
 - [42-ai-engineer-responsibility](../../../13.story/42-ai-engineer-responsibility.md)
 - [llm-control-evolution（主模块）](../../../09.ai-applications/agent/agent-architecture/llm-control-evolution/README.md)
+- 🆕 [AI 代码质量全流程](../../../09.ai-applications/agent/coding-agents/ai-code-quality-lifecycle.md) — Harness（CLAUDE.md/Hooks/Skills）是其 S2 受控生成阶段的工程约束
 
 ← [返回: 咬文嚼字 · harness-engineering](../README.md)

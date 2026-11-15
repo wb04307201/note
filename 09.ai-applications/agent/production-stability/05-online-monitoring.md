@@ -247,6 +247,8 @@ groups:
 ## 一句话总结
 > **LLM 线上监控 = Trace（5 分钟定位）+ 黄金集回归（每月）+ 漂移检测（实时）+ 4 维指标（延迟 / 成本 / 质量 / 一致性）。监控盲区就是事故温床。**
 
+> 🆕 **全流程视角**：[AI 代码质量全流程](../coding-agents/ai-code-quality-lifecycle.md) — 本文是其 S6 运行反馈阶段的深潜；逃逸缺陷归因反哺 S1-S5 才能形成闭环。
+
 ---
 
 ← [返回: 大模型思维工程](../README.md) · 上一章：[04-circuit-breaker](04-timeout-and-circuit-breaker.md) · 下一章：[06-decision-tree](06-decision-tree.md)

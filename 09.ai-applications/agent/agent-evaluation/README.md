@@ -183,6 +183,7 @@ Agent Evaluation 公式：
 
 ## 速查 · 关联资源
 - **LLM 评估**：[LLM 单次调用评估](../../eval/README.md) —— 331 行深度
+- **AI 代码质量**：[AI 代码质量全流程](../coding-agents/ai-code-quality-lifecycle.md) —— 本目录的评测体系是其 S6 运行反馈阶段（逃逸缺陷归因 + 反哺闭环）的深潜
 - **RAG 评估**：../../rag/04-evaluation.md —— RAGAS / TruLens / DeepEval 3 大工具横评
 - **面试题**：[12.interview/11.ai/agent-performance-evaluation](../../../12.interview/11.ai/agent-performance-evaluation/README.md) —— 7 道精选 Q&A
 - **真实案例**：[Salesforce Agentforce 评测实践](../case-studies/salesforce-agentforce/README.md)

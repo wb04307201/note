@@ -756,5 +756,6 @@ tools = [
 - [codex](../coding-agents/codex.md)
 - [omp](../coding-agents/omp.md)
 - [opencode](../coding-agents/opencode.md)
+- 🆕 [AI 代码质量全流程](../coding-agents/ai-code-quality-lifecycle.md) — SDD 三件套在全流程中的位置：S1 规格对齐阶段（质量左移第一站）的工具选型
 
 ← [返回 Agent MOC](../README.md)

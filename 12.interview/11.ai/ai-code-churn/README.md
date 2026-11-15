@@ -290,6 +290,7 @@ def get_user_orders(user_id):
 - 同栏目：[`harness-engineering`](../harness-engineering/README.md) — Harness Engineering
 - 同栏目：[`ai-code-review`](../ai-code-review/README.md) — AI 后端代码审核验收 6 层体系（降低流失率的前置门禁）
 - 主模块：[AI 后端代码验收体系](../../../09.ai-applications/agent/coding-agents/ai-code-review.md) — 审核门禁深度版（6 层清单 + 变异测试 + 度量反哺）
+- 主模块：[AI 代码质量全流程](../../../09.ai-applications/agent/coding-agents/ai-code-quality-lifecycle.md) — 留存率 30% 的组织学解释：S6 反哺断链，逃逸缺陷没回流到前序阶段
 - 主模块：[`11.ai/05-applications`](../../../09.ai-applications/agent/case-studies/README.md) — AI 行业应用
 - 故事：[`13.story/43-ai-productivity-paradox`](../../../13.story/43-ai-productivity-paradox.md)
 

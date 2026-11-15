@@ -248,4 +248,10 @@ DORA 4 大指标（出处：[DORA — Accelerate State of DevOps Report](https:/
 
 ---
 
+## 延伸阅读
+
+- [AI 代码质量全流程](../../../09.ai-applications/agent/coding-agents/ai-code-quality-lifecycle.md) —— 本目录 CI/CD 工具链在 AI 代码 S4 门禁 / S5 分级发布阶段的编排位置
+
+---
+
 ← [返回工具链总览](../README.md) · 📅 2026-06-28
