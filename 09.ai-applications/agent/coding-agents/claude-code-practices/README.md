@@ -3,14 +3,14 @@
   slug: ai-applications/agent/coding-agents/claude-code-practices
   type: index
   category: AI 应用子 MOC
-  summary: Claude Code 工程实践——Skill 设计方法学 / Skill 命中率调优 2 大主题。
+  summary: Claude Code 工程实践——Skill 设计方法学 / Skill 命中率调优 / Skill 分层路由 3 大主题。
   depth: ⭐⭐⭐
   status: active
 -->
 
 # Claude Code 实践（Claude Code Practices）
 
-> **定位**：Claude Code 工程实践——Skill 设计方法学与 Skill 命中率调优。
+> **定位**：Claude Code 工程实践——Skill 设计方法学、Skill 命中率调优与 Skill 分层路由。
 
 ## 文章清单
 
@@ -18,6 +18,7 @@
 |---|------|------|------|
 | 1 | Skill 设计 | [skill-design.md](./skill-design.md) | Claude Code Skill 的设计方法、模板与反模式 |
 | 2 | Skill 命中率 | [skill-hit-rate.md](./skill-hit-rate.md) | Skill 命中率调优——触发词、上下文与策略 |
+| 3 | Skill 分层路由 | [skill-hierarchical-routing.md](./skill-hierarchical-routing.md) | Agent 总选错 Skill 的架构解法——单层路由崩溃机理 + 级联分层路由（规则粗筛 → 域收敛 → LLM 精排 → 拒识）+ 漏斗评估 |
 
 ---
 
@@ -97,6 +98,14 @@ mindmap
         准确率
         用户满意度
       长期衰减
+    分层路由
+      skill-hierarchical-routing.md
+        规则粗筛
+        域收敛
+        LLM 精排
+        拒识兜底
+      漏斗评估
+      成本账
     工程实践
       团队标准化
         命名空间
@@ -107,17 +116,17 @@ mindmap
         日志
 ```
 
-## Skill 设计 vs 命中率调优对照表
+## Skill 设计 vs 命中率调优 vs 分层路由对照表
 
-| 维度 | Skill 设计 | Skill 命中率 |
-|------|-----------|--------------|
-| **核心问题** | "这个 Skill 写得好不好?" | "这个 Skill 会被触发吗?" |
-| **衡量指标** | 模板完整性、文档质量、可读性 | 触发率(被触发次数 / 应被触发次数) |
-| **典型优化** | 模板重构、命名清晰、示例丰富 | 触发词调整、上下文压缩、优先级设置 |
-| **常见反模式** | 大而全的 Skill 难以维护 | 触发词太泛导致互相冲突 |
-| **何时关注** | Skill 写完 / 大改后 | 上线后持续观察 |
-| **失败症状** | 团队不愿用 / 维护成本高 | 用了但效果差 / 不该触发时触发 |
-| **配套模块** | [../../agent-architecture/](../../agent-architecture/) | [../../agent-evaluation/](../../agent-evaluation/) |
+| 维度 | Skill 设计 | Skill 命中率 | Skill 分层路由 |
+|------|-----------|--------------|----------------|
+| **核心问题** | "这个 Skill 写得好不好?" | "这个 Skill 会被触发吗?" | "一堆 Skill 里怎么选对?" |
+| **衡量指标** | 模板完整性、文档质量、可读性 | 触发率(被触发次数 / 应被触发次数) | 漏斗各层 recall / 端到端命中率 / 常驻 token |
+| **典型优化** | 模板重构、命名清晰、示例丰富 | 触发词调整、上下文压缩、优先级设置 | 规则粗筛、域收敛、top-K 精排、拒识兜底 |
+| **常见反模式** | 大而全的 Skill 难以维护 | 触发词太泛导致互相冲突 | 单层全量对比、没有 SKIP 路径 |
+| **何时关注** | Skill 写完 / 大改后 | 上线后持续观察 | Skill 数量 > 10-30 且持续增长时 |
+| **失败症状** | 团队不愿用 / 维护成本高 | 用了但效果差 / 不该触发时触发 | 总选错 Skill / 描述越写越细仍选错 |
+| **配套模块** | [../../agent-architecture/](../../agent-architecture/) | [../../agent-evaluation/](../../agent-evaluation/) | [../../production-stability/](../../production-stability/)(级联兜底同构) |
 
 ## 实战建议(速查版)
 
@@ -125,6 +134,7 @@ mindmap
 
 - **🎯 第一次写 Skill**:只读 [skill-design.md](./skill-design.md),先做"能用的最小版本"
 - **🔧 Skill 命中率低**:直接跳到 [skill-hit-rate.md](./skill-hit-rate.md),从触发词开始调
+- **🔀 Skill 太多总选错**:读 [skill-hierarchical-routing.md](./skill-hierarchical-routing.md),先建漏斗评估定位是哪层漏的
 - **👥 要给团队铺**:先 [skill-design.md](./skill-design.md) 的"团队级"章节,再看 [skill-hit-rate.md](./skill-hit-rate.md) 的"评测"章节
 - **📉 Skill 用了一段时间失效**:先 [skill-hit-rate.md](./skill-hit-rate.md) 的"长期衰减"部分,再考虑 Skill 重构
 

@@ -87,6 +87,8 @@ inputs:
 
 **推荐方案**：**规则 + LLM 兜底**。规则兜 80% 常见场景，LLM 兜剩下 20%。**关键是要给 LLM"明确拒识"路径**——"如果都不匹配，返回 SKIP"。
 
+> 🔀 **架构深潜**：Skill 数量 > 30 时"规则 + LLM 兜底"的单层结构仍会崩（描述碰撞 O(N²) + 元数据常驻 O(N)）——需要加一层**域收敛**变成级联分层路由（规则粗筛 → 域路由 → LLM 精排 → 拒识）。详见 [Skill 分层路由](skill-hierarchical-routing.md)。
+
 ### 2.3 L3 加载层（Loading Layer）
 
 Skill 命中后，**怎么把 Skill 上下文喂给 Agent**：
@@ -234,6 +236,7 @@ skills/
 
 **主模块内**：
 - [Claude Code 大型代码库实践](README.md) — Skill 的"渐进式披露"基础
+- [Skill 分层路由](skill-hierarchical-routing.md) — 本文 L2 路由层的架构深潜（级联分层 + 域收敛 + 漏斗评估）
 - Harness Engineering — 上下文工程的总论
 - Context Engineering — Token 预算与上下文压缩
 

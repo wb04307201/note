@@ -354,6 +354,7 @@ evaluation:
 
 **同模块姐妹（写-调双视角）**：
 - [Skill 命中率深度章节](skill-hit-rate.md) — 数量爆炸后**怎么调**（四层模型 + 5 反模式 + 实战）
+- [Skill 分层路由](skill-hierarchical-routing.md) — 一堆 Skill **怎么选**（级联路由架构；本文的 when_not_to_use / 差异化动词是其 L0 规则层的原料）
 
 **同模块基础**：
 - [Claude Code 大型代码库实践](README.md) — Skill 的"渐进式披露"基础
