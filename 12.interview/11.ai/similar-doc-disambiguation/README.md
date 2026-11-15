@@ -79,7 +79,7 @@ RAG 系统把 Doc 1 检索进 Top-K，大模型答"120万"——差了 10 倍。
 - **相对时间先解析**："目前/最新/上季度"→ 规则或 LLM 转绝对条件，再进 pre-filtering（库内 `expr` 下推）
 - **Rerank 只做最后增强**：+10ms 成本不一定值得——先判"面对的是质量歧义还是属性歧义"
 - **度量口径**：黄金集标注"哪条是当前版本"，看 NDCG@K / MRR——"Rerank 前后无提升"正是盲区证据
-- **姊妹题对照**：[Milvus Hybrid Search](../milvus-hybrid-search/README.md)（字面兜底的库内实现）/ [RAG 架构设计](../rag/README.md)
+- **姊妹题对照**：[Milvus Hybrid Search](../milvus-hybrid-search/README.md)（字面兜底的库内实现）/ [RAG 架构设计](../rag/README.md) / [知识冲突解决](../knowledge-conflict-resolution/README.md)（本题管"区分"，它管归因后真矛盾的"裁决"）
 
 ## 四、面试话术（30 秒 + 90 秒）
 
@@ -106,6 +106,7 @@ RAG 系统把 Doc 1 检索进 Top-K，大模型答"120万"——差了 10 倍。
 
 - 同栏目：[RAG 架构设计](../rag/README.md) — 混合检索/Rerank 在 RAG 链路中的位置
 - 同栏目：[Milvus Hybrid Search](../milvus-hybrid-search/README.md) — 字面兜底 + expr 下推的库内实现
+- 同栏目：[知识冲突解决](../knowledge-conflict-resolution/README.md) — 多版本区分不了的真事实矛盾，走检测 + 仲裁流水线
 - 主模块：[相似文档消歧](../../../09.ai-applications/rag/similar-doc-disambiguation/README.md) — 2 业务例子 + Rerank 盲区机制 + 4 方案 + NDCG/MRR 度量 + 决策树（完整版）
 
 ---

@@ -306,6 +306,7 @@ Q5：高风险领域（医疗/法律）怎么特别处理？
 | [rag](../rag/README.md) | RAG 架构 | ⭐⭐⭐⭐⭐ |
 | [rag-permission-isolation](../rag-permission-isolation/README.md) | RAG 多租户权限 | ⭐⭐⭐⭐ |
 | **rag-out-of-domain-rejection**（本篇）| 超范围检测 + 5 拒答模式 + 4 步阈值调优 | ⭐⭐⭐⭐⭐ |
+| 🆕 [knowledge-conflict-resolution](../knowledge-conflict-resolution/README.md) | 矛盾文档归因 + 四层防线 + 仲裁规则 | ⭐⭐⭐⭐ |
 
 ## 🔗 深度版（主模块）
 
@@ -313,6 +314,6 @@ Q5：高风险领域（医疗/法律）怎么特别处理？
 
 ---
 
-> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 6 检测 + 5 拒答 + 4 步阈值 + 5 反模式 + 90 秒话术 + 11 兄弟导航
+> 📅 2026-07-13 · 咬文嚼字 · 11.ai · ⭐⭐⭐⭐ · 6 检测 + 5 拒答 + 4 步阈值 + 5 反模式 + 90 秒话术 + 12 兄弟导航
 
 ← [返回: 咬文嚼字 · 11.ai](../README.md)

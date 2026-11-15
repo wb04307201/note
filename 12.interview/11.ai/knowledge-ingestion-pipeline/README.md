@@ -153,6 +153,10 @@
 
 ---
 
+## 🔗 相关章节
+
+- 🆕 [知识冲突解决](../knowledge-conflict-resolution/README.md) — 入库期版本/权威元数据 + 转载归并是矛盾文档仲裁的第一道防线（L1）
+
 ## 📚 参考来源
 
 1. [LlamaIndex 官方文档：Loading Data](https://docs.llamaindex.ai/en/stable/module_guides/loading/) — LlamaHub、数据加载器与 Ingestion Pipeline。

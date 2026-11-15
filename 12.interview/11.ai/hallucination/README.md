@@ -290,6 +290,7 @@ Query → Generator LLM → Draft Answer
 ## 相关章节
 
 - 深度阅读：[`11.ai`](../../../08.ai-foundations/README.md) — 主模块详细内容
+- 🆕 [知识冲突解决](../knowledge-conflict-resolution/README.md) — Intrinsic 幻觉的上游场景：矛盾文档丢给模型自行判断 = 多数从众 + 折中编造的新幻觉来源
 - **组织层面**：[`13.story/47-boss-hallucination`](../../../13.story/47-boss-hallucination.md) —— 阿明餐厅叙事：当老板看了 AI 报告后...
 
 > 📅 2026-09-01 · 咬文嚼字 · LLM 幻觉 · ⭐⭐⭐（高频面试 + 实战必会）

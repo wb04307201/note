@@ -9,7 +9,7 @@
 
 # AI 咬文嚼字
 
-> AI 高频面试题与新概念深挖：61 题（find 校对 2026-10-28），每篇陷阱 + 反直觉 + 30 秒话术，完整概念见主模块 [`09.ai-applications`](../../09.ai-applications/README.md)。
+> AI 高频面试题与新概念深挖：62 题（find 校对 2026-11-15），每篇陷阱 + 反直觉 + 30 秒话术，完整概念见主模块 [`09.ai-applications`](../../09.ai-applications/README.md)。
 
 > ⚠️ **定位说明**：本目录所有文章都是**面试深挖版**。完整概念文档见主模块对应位置（README 末尾"深度阅读"区有链接）。
 
@@ -17,7 +17,7 @@
 
 ## 🎯 读者角色速查（按身份挑题）
 
-> **61 题**按难度与场景覆盖 6 类读者角色（find 校对 2026-10-28），按身份挑题效率最高。
+> **62 题**按难度与场景覆盖 6 类读者角色（find 校对 2026-11-15），按身份挑题效率最高。
 
 | 读者角色 | 推荐题号 | 推荐阅读顺序 | 关键场景 |
 |---------|---------|------------|---------|
@@ -30,7 +30,7 @@
 
 ---
 
-## 文章清单（共 **61 题**，find 校对 2026-10-28）
+## 文章清单（共 **62 题**，find 校对 2026-11-15）
 
 ### 🎯 真正的面试题（一题一文）
 
@@ -89,6 +89,7 @@
 | **🆕 [Milvus Hybrid Search](milvus-hybrid-search/)** | ⭐⭐⭐ | dense + sparse 双路召回 + AnnSearchRequest + RRFRanker/WeightedRanker + 内置 BM25 Function + ranker/rerank API 陷阱 + 30/90 秒话术 | [rag/hybrid-search §Milvus](../../09.ai-applications/rag/hybrid-search/README.md) |
 | **🆕 [Milvus 架构](milvus-architecture/)** | ⭐⭐⭐ | 存算分离三层架构 + Segment 生命周期 + GuaranteeTs 四级一致性（默认 Bounded）+ Partition Key 分区裁剪 + 2.x/3.x 口径陷阱 | [rag/milvus-architecture](../../09.ai-applications/rag/milvus-architecture/README.md) |
 | **🆕 [相似文档消歧](similar-doc-disambiguation/)** | ⭐⭐⭐⭐ | 同实体多版本/时序相似文档 + Rerank 盲区（语义平滑/细粒度不敏感）+ 语义/属性解耦 4 方案 + 30/90 秒话术 | [rag/similar-doc-disambiguation](../../09.ai-applications/rag/similar-doc-disambiguation/README.md) |
+| **🆕 [知识冲突解决](knowledge-conflict-resolution/)** | ⭐⭐⭐⭐ | RAG 检索回矛盾文档不能丢给模型自行判断（多数从众/位置偏差/折中编造）+ 冲突三分类归因 + 四层防线（入库/检测/仲裁/生成）+ 30/90 秒话术 | [rag/knowledge-conflict-resolution](../../09.ai-applications/rag/knowledge-conflict-resolution/README.md) |
 | **🆕 [Agent 长上下文策略](long-context-agent-strategy/)** | ⭐⭐⭐⭐ | 6 大策略组合（Chunking / RAG / Memory / Sliding Window / Sub-Agents / Long-Context）+ Lost in Middle + 7 道 Q&A | [04-architecture/agent-context](../../09.ai-applications/agent/agent-context/README.md) |
 | **🆕 [思维范式：Prompt vs if-else](llm-thinking-paradigm/)** | ⭐⭐ | 4 信号决策 + 80/20 协同 + 60 秒话术 | [01-thinking-paradigm](../../09.ai-applications/agent/production-stability/01-thinking-paradigm.md) |
 | **🆕 [成本控制：5 层路由](llm-cost-control/)** | ⭐⭐ | 3 道 quota + 5 层降级 + 60 秒话术 | [02-cost-control-and-degradation](../../09.ai-applications/agent/production-stability/02-cost-control-and-degradation.md) |
