@@ -158,7 +158,7 @@ Top-K 检出互相矛盾 →
 ## 📚 参考来源
 
 1. **Knowledge Conflicts for LLMs: A Survey**：Rongwu Xu et al., EMNLP 2024. https://arxiv.org/abs/2403.08319 — 三分类（context-memory / inter-context / intra-memory）出处
-2. **Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts**：Jianming Jing et al., ICLR 2024. https://arxiv.org/abs/2305.13300 — 多数从众/位置偏差等实证行为
+2. **Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts**：Jianming Jing et al., ICLR 2024（arXiv 编号未在本环境核实，收录于下方参考 1 的配套论文清单）— 多数从众/位置偏差等实证行为
 3. **Large Language Models Meet Knowledge Conflicts in Real-World RAG**：Pham et al., Findings of EMNLP 2024. https://aclanthology.org/2024.findings-emnlp.593/ — 真实 RAG 场景冲突显著劣化性能
 4. **Detecting and Addressing Conflicting Sources in Search-Augmented Generation**：2025. https://arxiv.org/abs/2506.08500 — 冲突源检测分类学与数据集
 5. **BordaRAG: Resolving Knowledge Conflict in Retrieval-Augmented Generation**：CIKM 2025. https://dl.acm.org/doi/10.1145/3746252.3761038 — 投票聚合仲裁；**TruthfulRAG**（AAAI 2026, https://arxiv.org/abs/2511.10375）— 事实级冲突消解
