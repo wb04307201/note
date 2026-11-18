@@ -79,6 +79,8 @@ python scripts/check-broken-links.py  # 自动用 CWD 作 KB_DIR
 | §9 | 3 skill × phase 引用契约 | ✅ | 至少 5 行 |
 
 > **§8 是 3 skill 协同核心**——问答读取、沉淀写入、体检稽核都在 §8。**没有 §8 = 3 skill 失效**。
+>
+> **§1.5 角色自描述**（v3.x 起**必填**）：`| 模块名 | 类型(depth/interview/story/other) | 备注 |`——3 skill 的双层/三层/降级判定全靠它。**L1 可选章节**（按角色补，有则 skill 用、无则先例兜底）：story 角色模块建议补 `SPEC.md §3.5`（叙事准入 6 信号）；interview 角色模块建议补 `SPEC.md §5`（生产案例 7 节骨架）与 `§准入判定`（已有则 Phase 1.14 生效）。
 
 ### 2.3 §8 词表最低配置（≥ 5 词）
 
@@ -141,19 +143,23 @@ python scripts/check-broken-links.py SPEC.md 03.<module>/README.md
 | **note-health Phase 1.14 仍硬编码 `12.interview/`** | 借 KB 时若面试题库不叫 `12.interview`，该扫描静默失效 | 见 §5 v3.x 改进路线 / 当前 workaround：把面试题库命名为 `12.interview/` |
 | **主模块前缀跳号** | 体检 §6.7 命名一致性 P3 警告 | §1 命名约定强约束 `NN.<name>/` NN 必须连号（如 01/02/03 不能跳 04） |
 
-## 5. 已知未完美项（v3.x 改进路线）
+## 5. 已知未完美项（2026-11-16 更新 · 跨领域测试后）
 
-本仓库 3 skill 在借 KB 时仍存在一些硬编码盲点（本会话 2026-10-12 元问题 3 smoke test 发现）：
+**v3.x 已实施**（2026-10-12 起）：§1.5 角色自描述指针化、Phase 1.14 读 §1.5、6.10 反例占位符化——2026-11-13 跨领域测试（3 非 IT 域 26 场景）实证指针机制正常运转（准入扫描/词表协同/降级规则全过）。**不再需要 `12.interview/` 命名 workaround**。
 
-| 未完美项 | 影响 | 改进路径（待办） |
-|---------|------|-----------------|
-| **note-health Phase 1.14 仍硬编码 `12.interview/`** | 借 KB 时面试题库若不叫 `12.interview`，扫描静默失效 | SPEC.md 新增 §1.5 自描述「模块角色清单」，Phase 1.14 读 §1.5 找面试题库路径 |
-| **note-knowledge-qa Phase 0 E/G 类型** | 若新 KB 没有「教育背景」区分，QA 流程略退化 | 简化 Phase 0：E/G 可选关 |
-| **note-precipitation-planning Phase 6.10 反例清单 3 条** | 反例绑了 note 的 `12.interview/SPEC.md §准入判定`、`JVM 调优` 等具体路径 | 反例改为 placeholder |
+**已知剩余项**（按严重度）：
 
-**v3.x 计划**（尚未实施）：以上 3 项的反模式彻底 pointer 化。
+| 项 | 影响 | 状态 |
+|----|------|------|
+| 响应模板词汇（A/B/C 回答模板含「面试」系列词） | 非 IT 域输出词汇错位（DEGRADE） | ✅ 已修（模板用词参数化，2026-11-16） |
+| QA Phase 0 教育背景检测顺序 | 无招聘语境 KB 上语义错位 | ✅ 已修（降级判断前置） |
+| leaf-quality 模块专属维度 dispatch | 跨 KB 失效 | ✅ 已修（KB 自定义 + N/A 声明） |
+| new-file-baseline 与 KB SPEC 冲突 | 无裁决规则 | ✅ 已修（KB SPEC 优先） |
+| 5-dim rubric 锚点 IT 化 | 跨域评分锚点失配 | ✅ 已修（锚点域中立化） |
+| story §3.5 / interview §5 L1 章节 | 借 KB 时准入/Bug 特化规则来源缺失 | ⭕ 建议：story 模块补 `SPEC.md §3.5`、interview 模块补 `§5`（可选，先例格式可兜底） |
+| Phase 1.6 单向链接口径 / tags↔§8 桥接口径 / F 模板目录假设 | 扫描噪音 / 语义错位 | ⭕ P2 待办 |
 
-**当前 workaround**：新 KB 命名面试题库叫 `12.interview/`、叙事模块叫 `13.story/`，跟 note 仓库对齐即可规避 80% 硬编码盲点。
+> **历史 workaround（已废弃）**：曾建议新 KB 命名面试题库叫 `12.interview/`——v3.x 指针化后不再必要。
 
 ## 6. Smoke test 验证（一键命令）
 

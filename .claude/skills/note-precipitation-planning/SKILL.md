@@ -298,6 +298,8 @@ done | sort -n
 └─ 内容是理论/原理（非生产 Bug 案例） → 走原 Phase 3 决策树（主模块深读 / 双层）
 ```
 
+> **模板用词参数化（2026-11-16 跨域测试 V1 修复）**：本节与 Quick Reference / §X 中的「面试题 / 面试话术 / 面试版」按 `$KB_DIR/SPEC.md §1.5` 的 interview 角色 **KB 自定义称谓**替换（如「认证问答」「考级题库」）；无 interview 角色的简化 KB 按 R23 降级（跳过双层/三层）。下文保留「面试」为默认用词（note KB 角色名即面试）。
+
 **双层沉淀模板**（commit 格式严格遵循 `$KB_DIR/SPEC.md §2`，`<type>(<scope>): <描述>`）：
 ```
 Commit 1: feat(<强骨架栏目>): <强骨架栏目>/<module> - 新增'<topic>'面试题 + 陷阱表
