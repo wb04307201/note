@@ -65,6 +65,19 @@
 
 详见 `STARTUP-NEW-KB.md §2.2`。**至少 1 个 `interview` 或 `story` 类型模块**才能让 Phase 1.14 / Phase 4 / Phase 0 各自工作。
 
+### 1.6. KB 谓词定义(规则引擎输入)
+
+> **职责切分**:§1.5 管"有没有"(角色存在性);§1.6 管"怎么算"(谓词语义 + 阈值 + 口径)。本节是规则引擎的谓词输入层——规则语义单源见 [`rule-catalog.md`](.claude/skills/note-precipitation-planning/references/rule-catalog.md),本节只定义本 KB 的谓词口径。
+
+| 谓词 | 本 KB 定义 | 影响规则 |
+|------|-----------|---------|
+| 考试价值高 | 12.interview 高频题(高频考点/新人常见疑问) | R4 / R8 |
+| 叙事价值高 | 13.story 叙事准入(§3.5 六信号) | R6 / R9 |
+| 先例口径 | 同栏目「-troubleshooting / 案例」类计数 | R10 |
+| 招聘语境 | 有(12.interview 含方法论模块) | R16 / S1 |
+
+- **无 §1.6 的 KB**:谓词按默认语义(rule-catalog Part 3 默认值列)+ skill 内置降级(R23/S1/R16 行为不变)
+
 ### 2. commit 格式
 
 ```text
@@ -346,6 +359,7 @@ docs: 文档
 | `note-precipitation-planning` | **Phase 0** 主题识别 | `$KB_DIR/SPEC.md §8` | 关键词分析前置 |
 | `note-precipitation-planning` | **Phase 3** 位置决策 | `$KB_DIR/SPEC.md §1`（主模块列表） | 见 `<module>/README.md` 运行时读取 |
 | `note-precipitation-planning` | **Phase 4** 决策树 | `<module>/SPEC.md`（准入判定） | 仅 12.interview 注入 §准入判定 |
+| `note-precipitation-planning` | **Phase 3/4** 三段式决策 | references/rule-catalog.md + $KB_DIR/SPEC.md §1.6 | 规则目录 + 谓词默认值 |
 | `note-precipitation-planning` | **Phase 5.5** 领域 query | `$KB_DIR/SPEC.md §8.3` | 6 大领域 + 词条组 |
 | `note-precipitation-planning` | **Phase 6** 实施 | `$KB_DIR/SPEC.md §2`（commit 格式） | 见 `.claude/ORCHESTRATION.md` |
 | `note-precipitation-planning` | **Phase 6.9** 沉淀后维护 | `$KB_DIR/SPEC.md §8` | （阶段 5 待实施） |
