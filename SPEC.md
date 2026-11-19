@@ -18,7 +18,7 @@
 ### 1.5. 模块角色自描述清单（2026-10-12 通用化 v3.x 新增）
 
 > **本节是 3 skill 通用化 v3.x 关键**——KB 自描述哪个目录是面试题库 / 叙事模块 / 主模块深度原理。
-> `note-health` Phase 1.14 / `note-precipitation-planning` Phase 4 / `note-knowledge-qa` Phase 0 等 pointer 通过读本节**自动适配 KB**，不再硬绑定 `12.interview` / `13.story`。
+> `note-health` Phase 1.14 / `note-precipitation-planning` Phase 3/4 / `note-knowledge-qa` Phase 0 等 pointer 通过读本节**自动适配 KB**，不再硬绑定 `12.interview` / `13.story`。
 > **没有本节 → Phase 1.14 体检静默失效**（详见 `STARTUP-NEW-KB.md §5` workaround）。
 
 #### 1.5.1 note KB 角色清单
@@ -41,7 +41,7 @@
 
 #### 1.5.2 类型语义 + 3 skill 联动
 
-| type | 语义 | `note-health` Phase 1.14 | `note-precipitation-planning` Phase 4 | `note-knowledge-qa` Phase 0 |
+| type | 语义 | `note-health` Phase 1.14 | `note-precipitation-planning` Phase 3/4 | `note-knowledge-qa` Phase 0 |
 |------|------|:---:|:---:|:---:|
 | `depth` | 主模块深度原理 | 不扫（默认） | 默认沉淀位置 | 默认查找 |
 | `interview` | 面试题库 | **扫描 + 准入判定**（`{module}/SPEC.md §准入判定`） | 双层沉淀中可入 | 高频 + 反直觉陷阱 + 30s/90s 话术 |
@@ -63,7 +63,7 @@
 | NN.<story> | story | <叙事章节名> |
 ```
 
-详见 `STARTUP-NEW-KB.md §2.2`。**至少 1 个 `interview` 或 `story` 类型模块**才能让 Phase 1.14 / Phase 4 / Phase 0 各自工作。
+详见 `STARTUP-NEW-KB.md §2.2`。**至少 1 个 `interview` 或 `story` 类型模块**才能让 Phase 1.14 / Phase 3/4 / Phase 0 各自工作。
 
 ### 1.6. KB 谓词定义(规则引擎输入)
 
@@ -74,7 +74,7 @@
 | 考试价值高 | 12.interview 高频题(高频考点/新人常见疑问) | R4 / R8 |
 | 叙事价值高 | 13.story 叙事准入(§3.5 六信号) | R6 / R9 |
 | 先例口径 | 同栏目「-troubleshooting / 案例」类计数 | R10 |
-| 招聘语境 | 有(12.interview 含方法论模块) | R16 / S1 |
+| 招聘语境 | 有(12.interview 含方法论模块) | R16 + QA Phase 0.0 招聘语境检查 |
 
 - **无 §1.6 的 KB**:谓词按默认语义(rule-catalog Part 3 默认值列)+ skill 内置降级(R23/S1/R16 行为不变)
 
@@ -357,8 +357,8 @@ docs: 文档
 | Skill | Phase / 章节 | 引用目标 | 备注 |
 |-------|-------------|---------|------|
 | `note-precipitation-planning` | **Phase 0** 主题识别 | `$KB_DIR/SPEC.md §8` | 关键词分析前置 |
-| `note-precipitation-planning` | **Phase 3** 位置决策 | `$KB_DIR/SPEC.md §1`（主模块列表） | 见 `<module>/README.md` 运行时读取 |
-| `note-precipitation-planning` | **Phase 4** 决策树 | `<module>/SPEC.md`（准入判定） | 仅 12.interview 注入 §准入判定 |
+| `note-precipitation-planning` | **Phase 3/4** 位置决策（旧 Phase 3） | `$KB_DIR/SPEC.md §1`（主模块列表） | 见 `<module>/README.md` 运行时读取 |
+| `note-precipitation-planning` | **Phase 3/4** 准入判定（旧 Phase 4） | `<module>/SPEC.md`（准入判定） | 仅 12.interview 注入 §准入判定 |
 | `note-precipitation-planning` | **Phase 3/4** 三段式决策 | references/rule-catalog.md + $KB_DIR/SPEC.md §1.6 | 规则目录 + 谓词默认值 |
 | `note-precipitation-planning` | **Phase 3.5/6.9** SPEC 生命周期 | references/SPEC-LIFECYCLE.md | 何时/怎么 生成修改 |
 | `note-precipitation-planning` | **Phase 5.5** 领域 query | `$KB_DIR/SPEC.md §8.3` | 6 大领域 + 词条组 |

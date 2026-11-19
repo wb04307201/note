@@ -72,7 +72,7 @@ R1-R25 全量登记。每条 schema:`规则一句话 / 来源 phase / 适用性�
 - **语义位置**:本表(Phase 3/4 语义单源)
 
 ### R10 先例覆盖
-- **规则**:同类先例 ≥3(先例口径)→ **覆盖 R8**,默认单 interview 版(`<现象>-troubleshooting`)
+- **规则**:同类先例 ≥3(先例口径)且用户输入是生产 Bug 案例 → **覆盖 R8**,默认单 interview 版(`<现象>-troubleshooting`)
 - **来源**:precipitation Phase 4 §1.8 先例对照
 - **适用性谓词**:precedent_count ≥3(读 SPEC §1.6)
 - **预案片段**:形态=单篇 troubleshooting · 位置=`<interview>/<现象>-troubleshooting` · commit=1 · 理由=同类先例 ≥3,先例口径覆盖 R8 双层

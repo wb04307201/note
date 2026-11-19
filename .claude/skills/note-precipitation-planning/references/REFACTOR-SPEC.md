@@ -9,6 +9,7 @@
 
 - Phase 6.1 单文件级 relocate 不够
 - 需要跨多个文件/整个模块的拆/合/批量错位
+- 结构重构涉及 SPEC.md 修改时 → 协议见 [SPEC-LIFECYCLE.md](./SPEC-LIFECYCLE.md) ③（何时修改）与 ④（怎么修改）
 
 ---
 
