@@ -63,7 +63,7 @@ python .github/workflows/scripts/check-broken-links.py  # 全库扫描,断链数
 ## Don't use when
 
 - 单文件错位 → Phase 6.1 relocate（不需要本 SOP 这么重）
-- 加新主题到现有模块 → Phase 3 普通决策树
+- 加新主题到现有模块 → Phase 3/4 三段式决策
 - 加全新主模块 → [MODULE-CREATION-SPEC.md](./MODULE-CREATION-SPEC.md)
 
 ---

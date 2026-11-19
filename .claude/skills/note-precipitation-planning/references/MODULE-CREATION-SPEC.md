@@ -10,7 +10,7 @@
 | 用户原话 | 判定 | 走哪 |
 |---------|------|------|
 | "加 14.llm-ops 模块" / "建一个新模块" / "新加一个目录" | **建模块** | 本 SOP |
-| "X 应该放在哪个模块" / "X 沉淀到 09.ai-applications" | 加主题 | Phase 3 普通决策树 |
+| "X 应该放在哪个模块" / "X 沉淀到 09.ai-applications" | 加主题 | Phase 3/4 三段式决策 |
 
 ---
 
@@ -79,7 +79,7 @@
 
 ## Don't use when
 
-- 用户问"X 应该放在哪个现有模块" → 走 Phase 3 普通决策树
+- 用户问"X 应该放在哪个现有模块" → 走 Phase 3/4 三段式决策
 - 用户问"我要拆 09.ai-applications 成两个" → REFACTOR-SPEC（不是这里）
 - 用户问"新加一个子目录到 09.ai-applications" → 本 SOP 的"建子目录"子流程（去掉步骤 1-2，保留 3-5）
 
@@ -88,5 +88,5 @@
 ## 相关文件
 
 - `note-precipitation-planning/SKILL.md` Phase 3.5（指针）
-- `note-precipitation-planning/SKILL.md` Phase 4 普通决策树（替代选项）
+- `note-precipitation-planning/SKILL.md` Phase 3/4 三段式决策（替代选项）
 - `REFACTOR-SPEC.md`（模块级重构 SOP，姊妹文件）

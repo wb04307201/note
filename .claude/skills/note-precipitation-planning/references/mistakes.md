@@ -49,13 +49,13 @@
 
 **症状**：把技术原理放 `13.story`（叙事）/ 把面试题放 `08.ai-foundations/01-fundamentals`（原理）/ 把算法放 `04-architecture`（架构）
 
-**修复**：Phase 3 决策树 + 检查主模块子目录的命名约定（`01-fundamentals` / `02-technology-stack` / `03-engineering` / `04-architecture`）
+**修复**：Phase 3/4 三段式决策 + 检查主模块子目录的命名约定（`01-fundamentals` / `02-technology-stack` / `03-engineering` / `04-architecture`）
 
 ### ❌ Mistake 4: 缺互链
 
 **症状**：新文件是孤岛，没有反向链到已有内容 → 知识碎片化
 
-**修复**：Phase 4 决策时**强制要求**双层/三层沉淀带互链；Phase 7 自检"至少 2 个旧章节互链"
+**修复**：Phase 3/4 决策时**强制要求**双层/三层沉淀带互链；Phase 7 自检"至少 2 个旧章节互链"
 
 ### ❌ Mistake 5: subagent 调 AskUserQuestion 失败
 
