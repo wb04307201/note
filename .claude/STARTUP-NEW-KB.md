@@ -69,6 +69,7 @@ python scripts/check-broken-links.py  # 自动用 CWD 作 KB_DIR
 | § | 内容 | 必填性 | 最低要求 |
 |---|------|:---:|----------|
 | §1 | 命名约定（主模块前缀、子目录规则、文件名规范） | ✅ | 至少 3 条 |
+| §1.6 | KB 谓词定义(规则引擎输入) | ⭕ | 至少 3 行谓词 |
 | §2 | commit 格式（`<type>(<scope>): <描述>` + type 列表） | ✅ | 至少 4 个 type |
 | §3 | 互链规则（`← [返回]` footer + 豁免条件） | ✅ | 至少 3 条 |
 | §4 | frontmatter（3 类 schema：module / question / story） | ⭕ | 至少 1 类 |
@@ -81,6 +82,8 @@ python scripts/check-broken-links.py  # 自动用 CWD 作 KB_DIR
 > **§8 是 3 skill 协同核心**——问答读取、沉淀写入、体检稽核都在 §8。**没有 §8 = 3 skill 失效**。
 >
 > **§1.5 角色自描述**（v3.x 起**必填**）：`| 模块名 | 类型(depth/interview/story/other) | 备注 |`——3 skill 的双层/三层/降级判定全靠它。**L1 可选章节**（按角色补，有则 skill 用、无则先例兜底）：story 角色模块建议补 `SPEC.md §3.5`（叙事准入 6 信号）；interview 角色模块建议补 `SPEC.md §5`（生产案例 7 节骨架）与 `§准入判定`（已有则 Phase 1.14 生效）。
+>
+> **SPEC 生命周期**：SPEC 各节**何时 / 怎么生成与修改**见 [`SPEC-LIFECYCLE.md`](skills/note-precipitation-planning/references/SPEC-LIFECYCLE.md)。
 
 ### 2.3 §8 词表最低配置（≥ 5 词）
 

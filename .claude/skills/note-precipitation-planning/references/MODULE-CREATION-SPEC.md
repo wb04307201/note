@@ -31,6 +31,8 @@
 - 子目录约定
 - 链接回 `../SPEC.md` §7
 
+SPEC 生成顺序与修改协议见 [SPEC-LIFECYCLE.md](SPEC-LIFECYCLE.md)
+
 ### Step 3：建 `README.md`
 
 含：

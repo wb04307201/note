@@ -360,6 +360,7 @@ docs: 文档
 | `note-precipitation-planning` | **Phase 3** 位置决策 | `$KB_DIR/SPEC.md §1`（主模块列表） | 见 `<module>/README.md` 运行时读取 |
 | `note-precipitation-planning` | **Phase 4** 决策树 | `<module>/SPEC.md`（准入判定） | 仅 12.interview 注入 §准入判定 |
 | `note-precipitation-planning` | **Phase 3/4** 三段式决策 | references/rule-catalog.md + $KB_DIR/SPEC.md §1.6 | 规则目录 + 谓词默认值 |
+| `note-precipitation-planning` | **Phase 3.5/6.9** SPEC 生命周期 | references/SPEC-LIFECYCLE.md | 何时/怎么 生成修改 |
 | `note-precipitation-planning` | **Phase 5.5** 领域 query | `$KB_DIR/SPEC.md §8.3` | 6 大领域 + 词条组 |
 | `note-precipitation-planning` | **Phase 6** 实施 | `$KB_DIR/SPEC.md §2`（commit 格式） | 见 `.claude/ORCHESTRATION.md` |
 | `note-precipitation-planning` | **Phase 6.9** 沉淀后维护 | `$KB_DIR/SPEC.md §8` | （阶段 5 待实施） |
