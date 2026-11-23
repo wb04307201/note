@@ -1073,3 +1073,88 @@ D. 暂不沉淀——缺口保留
 3. **正向观察(不计缺陷)**:① R22「不命中」的软域形态首次在册(M1/M5:无可核实断言素材 → 核实义务合法空转,对照 H2/L1 触发支);② 分述三部曲沿用总览「说明」行(「三指条目计数,非事实断言」)把「3 大误区」编号与数字断言口径切开(R1 与类 6 的交界处理先例);③ M5 新文件与预存 chopin 篇体例同构度可作为「技艺笔记体承接叙事素材」的模板证据;④ commit 链卫生:6 commits 全部 `feat(music)` scope 合规(SPEC §2),仅 M4 切分偏差一项记账。
 
 **验证汇总(M 节)**:music KB check-broken-links.py 于 M1 commit 后/M4 逐 commit/M5 commit 后复跑均 = **.md 0 / 目录 0**,最终全库 ✅;music commits eb3dc6e..1dc0cda = **6**(M1:1 + M4:3+1 补登记 + M5:1,scope 合规),tags scenario-M1/M4/M5 全打(M2/M3/M6 只读无 tag);`git status --short` 终态空、SPEC.md 未回写(只读边界,一次误编辑已 `git checkout` 还原核实);新 5 文件 wc = 77/61/59/65/57 全 <100(R7 写时成立,M1 低于假设带下沿 3 行已记);软域终扫:新文件判词陈述句口径=0(raw 唯一命中=runthrough L33 信条引语,豁免口径在案)、「数字+单位」联合模式=0、`story:`/`question:` frontmatter=0、grep「面试」=0;leaf 10→15 全程运行时 find 口径;note 仓库仅 `cross-domain-evidence-r2.md` 被追加(边界 1 ✅)。
+
+## R0 证据（2026-11-23）
+
+> 执行:Task 11 · KB_DIR=`D:/developer/IdeaProjects/note`（note 仓库,**全程 read-only**——沉淀类止于 Phase 5 决策输出，零文件写入零 commit；执行前 `git status --short` 空 ✅）· 标尺 = `cross-domain-r0-baseline.md` 冻结表「期望最终方案」列（2026-11-19 回归记录为次级参照）· 口径 = trace C 节：P1-P5 记三段式+溯源链（P2/P4 只验决策结果）· P6-P10 记类型/维度/分流 · 格式差异允许，最终方案按「位置/层数/commit 数」比对。
+> 谓词输入实测:note `SPEC.md §1.5`（interview=12.interview · story=13.story · 11 depth 主模块，角色齐备 → **R23 两读法均不命中，note KB 无 F0 暴露面**）· `§1.6`（考试价值=12.interview 高频题 / 先例口径=同栏目计数 / 招聘语境=有）。
+
+### P1-P10 重放记录
+
+**P1 「分布式锁」沉淀（决策类:双层）**——三段式（逐字，止于 Phase 5）:
+
+```
+Stage 1 命中表(输入属性:预估 100-300 行[冻结母集口径] · 主题数 1 · §1.5 角色齐备 · §1.6 考试价值高 · 同栏目(12.interview/04.system-design)troubleshooting 类先例实测 find=0)
+R4 命中(考试价值高→interview 角色模块 12.interview)· R5 命中(深度原理→depth 主模块;主题归属=分布式→06.distributed-systems)· R8 命中(预估 100-300 + 考试价值→双层,commit=2)
+R7 不命中(≥100)· R9 排除(预估<300 且无叙事请求)· R10 不命中(双重排除:先例 0<3 + 输入非生产 Bug 案例)· R23 不命中(§1.5 interview/story 均在;catalog 字面「任一缺失」与 SKILL 选项级排除在两读法下均不触发,note KB 无分叉)· R24 不命中(目标栏目无编号系列)
+Phase 1 实测佐证:12.interview/04.system-design/distributed-lock + 12.interview/03.database/redis-distributed-lock + 06.distributed-systems/02-distributed/distributed-lock 已在位——本决策类形态在库内有既存落地同构(历史同型沉淀),双层预案与库内现状一致。
+Stage 2 预案:P1(R8)=双层 commit=2 · P2(R4)=interview 版@12.interview · P3(R5)=depth 版@06.distributed-systems
+Stage 3 综合裁决:最终方案 = 双层;interview+depth 两版互链;2 commit
+溯源链:R8(判据:预估 100-300 行+考试价值) + R4(判据:§1.6 考试价值→interview) + R5(判据:深度原理→06) → 综合 = 双层 2 commit;R10 排除(同栏目先例 0<3)。
+Phase 5:选项 A 双层(推荐)/B 只动一版/C 暂不沉淀——决策输出为止,不实施(note 只读边界)。
+```
+
+判定:冻结期望「双层;interview + depth 两版互链;2 commit」→ 最终方案一致 → **一致 ✅**（格式差异:本轮三段式逐字记录,基线期格式不比对）。
+
+**P2 「大模型思维工程 5 个灵魂拷问」（决策类:拆分）**——Phase 0.2 R1 标注:编号「5 个」+ 5 个并列子主题 → 判定多主题,拆为 5 个 single-topic 文件（每子题独立 frontmatter）。只验决策结果（冻结口径）:一致 → **一致 ✅**。
+
+**P3 「Agent 实战框架」位置决策**——三段式（逐字，止于 Phase 5）:
+
+```
+Stage 1:R5 命中(实战框架=工程深度,SKILL Phase 3 特殊位置判断「实战框架→主模块工程子目录」;§1.5 口径「09.ai-applications = RAG + Agent + Prompt + LLM 推理」→ Agent 归属 09)· R4 评估:工程框架类非高频面试题主体(面试版伴随与否不改变位置判定,基线冻结期望只到「落主模块」粒度)· R23 不命中(角色齐备)· 实测佐证:09.ai-applications/agent/ 在位(production-agent / loop-engineering / agent-evaluation 等)。
+Stage 2:P1(R5)=depth 主模块工程子目录 @ 09.ai-applications/agent/<framework>.md
+Stage 3:最终方案 = 09.ai-applications(工程子目录 agent/)
+溯源链:R5(判据:Agent 实战框架=工程深度,§1.5 09 口径) → 综合 = 09.ai-applications/agent/。
+```
+
+判定:冻结期望=主期望 `08.ai-foundations`,签认裁定 2026-11-19 可接受域「09.ai-applications 亦 PASS」→ 本轮落 09（与 2026-11-19 重放同位）→ **一致 ✅（可接受域内）**。
+
+**P4 「什么是变量」（决策类:拒绝）**——Phase 2 R3 标注:反信号「一句话就能讲清」命中（基础概念无机制层展开,非 4 层面+）→ 拒绝沉淀。只验决策结果:一致 → **一致 ✅**。
+
+**P5 「阿明餐厅的 RAG 故事」（决策类:叙事三层）**——三段式（逐字，止于 Phase 5）:
+
+```
+Stage 1:R6 命中(has_narrative=true[§1.6→13.story 叙事准入] + has_story_role=true[§1.5 13.story] → story 门控)· R9 命中(预估 300+ 行 + 叙事价值过 §3.5 准入:①人物弧(阿明/厨师-CEO 系列视角)②类比落地(餐厅=系统)③事故戏剧化核心信号全过 + ④多代受众⑤体量⑥系列定位 ≥2 过,基线冻结口径)· R4/R5 伴随(双层底座:interview+depth)· R23 不命中(角色齐备)
+Stage 2:P1(R9)=三层 · 位置=<interview>/<depth>/<story> · commit=3(SKILL 三层模板:feat 面试题 + feat 深度 + refactor story 反向链)
+Stage 3:最终方案 = 13.story 三层联动(双层 + 13.story 章节反向链)
+溯源链:R9(判据:300+ 行+叙事价值过 §3.5 准入 6 信号) + R6(判据:has_narrative + has_story_role) → 综合 = 三层。
+实测佐证:13.story/36-rag-retrieval-augmented-generation.md 已在位(系列既存的 RAG 叙事章),三层联动形态在库内有既存同构落地。Phase 5 选项输出为止,不实施。
+```
+
+判定:冻结期望「13.story 三层联动(过 §3.5 准入)」→ 一致 → **一致 ✅**。
+
+**P6 「HashMap 为什么线程不安全?」（查 note → QA A 型）**——R13+R18:Phase 2 §8 前置索引「HashMap」在位;检索实测:深度 ≥3 篇可支撑（`01.java-and-jvm/collection/hashmap.md` 466 行 / `12.interview/01.java/hashmap-resizing/` 327 行 / `12.interview/01.java/hashmap-thread-unsafe/` 225 行）+ 追踪 hashmap-performance.md(140)/ConcurrentHashMap ≤8 终止 ✅ → 类型结论 = **A 型:检索 ≥3 篇 + 📚 知识来源表（必填）**。与冻结期望一致 → **一致 ✅**。
+
+**P7 出一道 JVM 面试题（QA B 型）**——R14:「出一道题」触发 B 型;素材栏目实测 `12.interview/01.java/` jvm-memory / jvm-memory-pitfall / gc-algorithms / class-loading 在位;类型结论 = **B 型:题目 + 三层答案 + 陷阱表 + 话术模板**（note 有 interview 角色 → 默认称谓「面试题/话术」合法,V1 参数化在 note 域不触发替换）。一致 → **一致 ✅**。
+
+**P8 如何设计 SSO（QA C 型）**——R15:「如何设计 X」触发 C 型;多模块检索素材实测:`12.interview/05.security/`（jwt-vs-session / oauth2-flow / access-control-design）+ 06.distributed-systems 会话线在位;类型结论 = **C 型:方案对比表 + 推荐 + 设计点**。一致 → **一致 ✅**。
+
+**P9 评价 12.interview hashmap-thread-unsafe 篇（health 评分）**——R20 路由实测:`note-health/references/leaf-quality.md` 行 25「12.interview/** → 面试题规则（E 类）」+ `12.interview/SPEC.md` E1-E6 专属维度在位（E1 题意拆解/E2 多解对比/E3 ❌✅反例对比…）+ 根 `SPEC.md §5` G1-G6 通用维度;维度结论 = **G1-G6 通用维 + 模块专属 E 类维生效**（目标文件实测存在,225 行）。一致 → **一致 ✅**。
+
+**P10 如何在 note 里修复 Redis 缓存穿透（Phase 0.1 询问）**——R2 分流:关键词「修复」+「如何在 note 里 X」双命中 Phase 0.1 表 → 修复类意图 → **直接修复,不走沉淀规划**;目标文件定位实测:`12.interview/03.database/cache-penetration-breakdown-avalanche/` + `03.data-stack/01-database/06-cache/` 在位。分流结论与冻结期望一致 → **一致 ✅**（read-only:不实施修复）。
+
+### Safeguards 三查（S1）
+
+| 项 | 范围 | 结果 |
+|----|------|:----:|
+| YAML 解析 | 3 个 SKILL.md frontmatter（python yaml.safe_load） | ✅ 3/3 OK |
+| Phase 锚点审计 | CLAUDE.md + 3 SKILL.md + rule-catalog 的 `Phase <n>` 引用 grep 比对现存标题 | ✅ 主要锚点（0.1/0.2/0.5/1/2/3.5/5/5.5/6.1/6.9/6.10/7 · qa Phase 0-4 · health Phase 0-8）全部解析存在;references/MODULE-CREATION-SPEC.md、REFACTOR-SPEC.md、mistakes.md 在位;**1 处元数据指针漂移(轻)**:rule-catalog R24「来源: Mistake 10 / Phase 1.7」+ SKILL L263 同引——SKILL Phase 1 步骤号无 1.7(1.6→1.8 跳号,系列结构检查现为步骤 1.5),Mistake 10 本体存在 ✅ → 记 Phase B 顺手项(改注「Phase 1.5/1.8 盘点」),不构成回退 |
+| 派发 smoke（3 原话读检） | 3 skill description 路由 | ✅ "X 应该沉淀到 note 什么位置"→precipitation(description 原文含)· "扫一遍 note"→note-health(description 原文含)· "查 note"→note-knowledge-qa(description 原文含) |
+| 全库链接校验（附加,沿 2026-11-19 先例） | check-broken-links.py 全库 | ✅ 扫描 1148 .md · .md 断链 0 / 目录断链 0 / 总计 0 |
+
+### R0 判定汇总
+
+| 探针 | 冻结期望（指针） | 本轮实际 | 结论 |
+|------|----------------|---------|:----:|
+| P1 | 双层;interview+depth 互链;2 commit | 双层;两版互链;2 commit;R10 排除（先例 0<3）;三段式+溯源链在案 | ✅ 一致 |
+| P2 | 拆 single-topic 多文件（只验结果） | R1 命中→拆 5 文件 | ✅ 一致 |
+| P3 | 08 主期望（09 亦 PASS） | 09.ai-applications/agent/（可接受域,同 2026-11-19） | ✅ 一致 |
+| P4 | 不沉淀（只验结果） | R3 反信号→拒绝 | ✅ 一致 |
+| P5 | 13.story 三层联动（过 §3.5） | 三层;§3.5 六信号过检记录;3 commit | ✅ 一致 |
+| P6 | A 型 ≥3 篇 + 📚 | A 型;素材实测 ≥3 深度+追踪 ≤8 | ✅ 一致 |
+| P7 | B 型四件套 | B 型;JVM 素材实测在位 | ✅ 一致 |
+| P8 | C 型三件套 | C 型;05.security 素材实测在位 | ✅ 一致 |
+| P9 | G1-G6 + E 类生效 | 路由+维度实测双在案 | ✅ 一致 |
+| P10 | 修复类→直接修复不走规划 | R2 双关键词命中,分流一致 | ✅ 一致 |
+
+**结论:P1-P10 最终方案 10/10 与冻结基线一致,R2 轮 IT 对照零回退。** R23 在 note KB（角色齐备）两读法均不命中——R0 十例不构成 F0 暴露面,F0 实证只能来自单角色域（H 轮已记:分支 2 未触发）。
