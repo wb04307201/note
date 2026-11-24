@@ -1158,3 +1158,79 @@ Stage 3:最终方案 = 13.story 三层联动(双层 + 13.story 章节反向链)
 | P10 | 修复类→直接修复不走规划 | R2 双关键词命中,分流一致 | ✅ 一致 |
 
 **结论:P1-P10 最终方案 10/10 与冻结基线一致,R2 轮 IT 对照零回退。** R23 在 note KB（角色齐备）两读法均不命中——R0 十例不构成 F0 暴露面,F0 实证只能来自单角色域（H 轮已记:分支 2 未触发）。
+
+## R0 回归证据（2026-11-24 · Phase C post-fix 重放）
+
+> 执行:Task 14 · KB_DIR=`D:/developer/IdeaProjects/note`（note 仓库,**全程 read-only**——沉淀类止于 Phase 5 决策输出，零 KB 文件写入零 KB commit；执行前 `git status --short` 空 ✅）· 标尺 = `cross-domain-r0-baseline.md` 冻结「期望最终方案」列 + **双比对** = Task 11 修改前记录（本文件 `## R0 证据（2026-11-23）`）· 口径 = trace C 节（P1-P5 三段式+溯源链,P2/P4 只验结果;P6-P10 类型/维度/分流）· Phase B 改动面 = aee536c（F0/O1/O2）+ 24e7843（P2 背包六项+N 系）+ 4b038ff（L21 幽灵路径+S3 注）。
+
+### P1-P10 重放记录（post-fix）
+
+**P1 「分布式锁」沉淀（双层）**——post-fix Stage 1 复测:输入属性不变（预估 100-300 行[冻结母集口径] · §1.5 角色齐备 · §1.6 考试价值高 · 同栏目 12.interview/04.system-design troubleshooting 先例 `ls|grep -E "troubleshooting|incident"` = **0** 本轮复测）→ R4/R5/R8 命中;**R7 不命中(≥100,SKILL 表已改 <100——O1 对齐后与 catalog 单源同值,判据无位移)**;**R10 排除(先例 0<3;Quick Reference commit 已改 1——O2 对齐,本探针不取 R10 预案,无暴露)**;R23 不命中(角色齐备,SKILL 排除声明示例已改「角色比例降级」措辞——note 双角色下两读法本就同值,零语义变化)。Stage 3 终态 = **双层;12.interview + 06.distributed-systems 两版互链;2 commit**;溯源链 `R8(100-300+考试价值) + R4(§1.6) + R5(深度原理→06) → 双层 2 commit;R10 排除(0<3)`。实测佐证三路径在位复测 ✅（`12.interview/04.system-design/distributed-lock` / `12.interview/03.database/redis-distributed-lock` / `06.distributed-systems/02-distributed/distributed-lock`）。→ 冻结期望 ✅ · Task 11 记录 ✅（三段式结构逐段对齐，仅阈值措辞由双源变单源）。
+
+**P2 「大模型思维工程 5 个灵魂拷问」（拆分）**——Phase 0.2 R1 文本本轮 diff 核对**未改**（24e7843 仅加 R1 登记引注、aee536c 未触判定）→ 判定不变:编号「5 个」+ 并列子主题 → 拆 5 个 single-topic。只验结果:✅✅。
+
+**P3 「Agent 实战框架」位置**——SKILL「特殊位置判断」表（L269「实战框架 → 主模块工程子目录」）post-fix 未改;`09.ai-applications/agent/` 复测在位（agent-architecture / agent-context / agent-evaluation）。R5 判定链不变 → **09.ai-applications/agent/**（可接受域,同 Task 11;主期望 08 口径未动）。✅✅。
+
+**P4 「什么是变量」（拒绝）**——Phase 2 R3 文本未改 → 反信号「一句话讲清」命中 → 拒绝沉淀。只验结果:✅✅。
+
+**P5 「阿明餐厅的 RAG 故事」（三层）**——**F0-d 暴露面行为验证**:catalog R9 预案已改「按角色投影 `<interview?>/<depth>/<story?>`」——note KB `has_interview_role=true + has_story_role=true`（§1.5 复测）→ 投影**退化为全三层**,commit=随存活层数=3,与旧硬编码预案逐字等值（投影语义只在缺角色时收缩,双角色 KB 无语义位移——F0「note 零变化」的行为侧实证）。R6 命中不变（has_narrative + has_story_role）;§3.5 准入六信号文本未改;`13.story/36-rag-retrieval-augmented-generation.md` 复测在位。终态 = **三层;12.interview + depth + 13.story 反向链;3 commit**。✅✅。
+
+**P6 HashMap 线程不安全（A 型）**——qa SKILL Phase 3/4 A 型文本 post-fix 未改（24e7843 仅触 F 型模板注 N3,不影响 A 型）;素材复测:`01.java-and-jvm/collection/hashmap.md` **466 行** / `12.interview/01.java/hashmap-resizing/README.md` **327** / `hashmap-thread-unsafe/README.md` **225** + hashmap-performance.md 追踪,终止条件（≥3 深度+追踪 ≤8）达成 → **A 型:检索 ≥3 篇 + 📚 知识来源表**。✅✅。
+
+**P7 JVM 面试题（B 型）**——R14 文本未改;素材复测 `12.interview/01.java/`:class-loading / gc-algorithms / jvm-memory / jvm-memory-pitfall 在位 → **B 型:题目+三层答案+陷阱表+话术模板**（note 有 interview 角色,V1 参数化不触发替换）。✅✅。
+
+**P8 如何设计 SSO（C 型）**——R15 文本未改;复测 `12.interview/05.security/`:access-control-design 等在位 → **C 型:方案对比表+推荐+设计点**。✅✅。
+
+**P9 12.interview hashmap 篇评分**——路由复测:`note-health/references/leaf-quality.md` L25「12.interview/** → 面试题规则（E 类）」在位（post-fix 未改）+ `12.interview/SPEC.md` E1-E6（题意拆解/多解对比/❌✅反例对比…）复测在位 + 根 SPEC §5 G1-G6 → **G1-G6 通用维 + E 类专属维生效**。health SKILL 本轮改动 = S3 分层注 + K5 桥接口径,未触评分维度。✅✅。
+
+**P10 修复 Redis 缓存穿透（Phase 0.1）**——R2 分流表文本未改;「修复」+「如何在 note 里 X」双关键词命中 → **直接修复,不走沉淀规划**;目标复测 `12.interview/03.database/cache-penetration-breakdown-avalanche` + `03.data-stack/01-database/06-cache/` 在位。✅✅（read-only:不实施）。
+
+### F0 / O1 / O2 专项行为核验（note 双角色 KB 零变化断言）
+
+| 改动 | note KB 暴露面 | 行为结果 |
+|------|---------------|---------|
+| O1:SKILL 单文件表 `<150` → `<100（单源见 catalog R7）` | P1 预估 100-300 行落 R8 带,不触 100-149 歧义带;catalog R7 本就 100 | R7 判定逐字不变（「不命中 ≥100」）;双源风险消除属静态收益,**0 语义位移** ✅ |
+| O2:Quick Reference R10 行 `2-3` → `1（单源见 catalog R10）` | note 十例中 R10 仅 P1 评估且**排除**（先例 0<3）,无探针取 R10 预案 | commit 数判定无暴露;**0 行为变化** ✅ |
+| F0-a/b/c:R23「角色比例降级」统一 | note 角色齐备 → R23 两读法本就均不命中（Task 11 已证「无 F0 暴露面」,本轮文本改后仍不命中） | P1-P5 命中表 R23 行输出不变 ✅ |
+| F0-d:R9 预案 `<interview?>/<depth>/<story?>` 投影 | 双 true → 投影退化为全三层 commit=3 | P5 终态与 Task 11 逐字等值 ✅ |
+| F0-e:Part 2 R10×R23 补定义 | note 无 R23 命中 → 补定义不参与裁决 | 0 变化 ✅ |
+
+### R0 post-fix 判定汇总
+
+| 探针 | 冻结期望 | vs Task 11（修改前） | vs 冻结期望 | 结论 |
+|------|---------|:---:|:---:|:---:|
+| P1 | 双层;互链;2 commit | 一致 | 一致 | ✅✅ |
+| P2 | 拆 single-topic 多文件 | 一致 | 一致 | ✅✅ |
+| P3 | 08 主期望/09 亦可 | 一致（09 可接受域） | 一致 | ✅✅ |
+| P4 | 不沉淀 | 一致 | 一致 | ✅✅ |
+| P5 | 13.story 三层联动 | 一致 | 一致 | ✅✅ |
+| P6 | A 型 ≥3 篇+📚 | 一致 | 一致 | ✅✅ |
+| P7 | B 型四件套 | 一致 | 一致 | ✅✅ |
+| P8 | C 型三件套 | 一致 | 一致 | ✅✅ |
+| P9 | G1-G6+E 类 | 一致 | 一致 | ✅✅ |
+| P10 | 修复类直接修复 | 一致 | 一致 | ✅✅ |
+
+**结论:P1-P10 双比对 10/10 一致,Phase B 修复在 note IT 域零回退（IT 行为只变宽未变差——F0/O1/O2 对 note 为纯文本收敛,零语义位移,行为侧实证闭环）。** 决策类止于 Phase 5,note KB 全程零写入。
+
+### Phase C Safeguards 三查（post-fix + 收口批后复跑）
+
+| 项 | 结果 |
+|----|------|
+| YAML 解析 3 SKILL.md | ✅ 3/3 OK（python yaml.safe_load） |
+| Phase 锚点审计 | ✅ 活跃文档零 `Phase 1.7` 残留（N8 已在 24e7843 修复:rule-catalog R24 来源/语义位置双行 + SKILL 范围行均改「Phase 1 步骤 1.5」;现存 1.7 字样仅两处合法——health Phase 1 表「1.7 系列完整性」为 health 自有编号、R24 注内「旧注 Phase 1.7」为修正说明）;SKILL Phase 1 步骤 1.5/1.8 标题行复测在位（L209/L220）;§7.1/§7.2 在位（L596/L613）;跨文件 Phase 引用全集（0/0.1/0.2/0.5/1/2/3/3.5/4/5/5.5/6/6.1/6.5/6.9/6.10/7/8 · qa 0-4 · health 0-8,1.13-1.17）对标题逐一解析 ✅ 无新漂移 |
+| 派发 smoke 3 原话 | ✅ precipitation description 含「X 应该沉淀到 note 什么位置」· health 含「扫一遍 note」· qa 含「查 note」（grep 命中 1/3/1） |
+| 全库链接（附加） | ✅ 1148 .md · 断链 0/0/0（post-fix 全库） |
+
+### note-temp 冒烟（S2 全实施,KB_DIR=`D:/developer/IdeaProjects/note-temp`）
+
+前置事实:note-temp **原无 git** → `git init` + baseline commit `aca45c4`（初始快照,冒烟可追溯基线;CRLF warning 属 Windows 常态）。skill 副本核对:**Phase B 修复未同步到 note-temp 副本**（diff 证实:pre-F0 状态,O1/O2/F0/N1/N2/S2/V4/V5/N3/S3/K5/N8 全缺）——冒烟按 **note 仓库 post-fix SKILL 文本执行、KB 用 note-temp**,「新修复在借用 KB 上跑通」为有效验证;副本整体同步留 Phase D/收口议题（见报告 Minor）。
+
+- **沉淀 1 主题（分布式锁,R8 双层——顺带行为验证 F0 角色比例降级）**:`02.distributed-systems/distributed-lock/`（**59 行** module: frontmatter 含 parent/slug/type/status/tags/category/summary）+ `03.interview/distributed-lock/`（30 行,引子/三段话/陷阱表/30s 话术,对齐库内 cookie-troubleshooting 体例）。Stage 1 输入属性:预估 2 文件合计 ~100 行量级;谓词读法注记:**note-temp 无 §1.5/§1.6 声明节**（最小借 KB,README+§8 表结构可判 03.interview=interview 角色、无 story 专栏）→ 按 rule-catalog Part 3 默认值列推导 has_exam=has_interview_role=true → R4/R5/R8 命中;**R23 命中(缺 story)按 post-fix 角色比例降级只排除 R6/R9,R4/R8 存活**（F0 修复在借用 IT-KB 的正向行为样本:旧「任一缺即全降级」字面读法会误杀双层,新文本下双层正确存活）;R10 不命中(同栏目 troubleshooting 先例=1<3,cookie-troubleshooting 实测)。depth↔interview 双向互链 + 两父 README 登记（02 模块 README 为本次新建）+ 根 README 已列 02 模块（grep 复测）;§8「分布式锁」行**既有** → R12 判定已覆盖跳过新行,tags 含同主题词。**commit=2**（`27e0425` feat 深度版 / `3f06def` feat 面试题版,`feat(note):` per note-temp SPEC §2）。N1 落地复判:59<95 不触边界带,形态不翻转,记录。链接防护链实证:首轮 §7.2 单文件自检**抓到 1 处真实断链**（depth 文面试版相对链接少一级 `../` → `../../`）→ 修复 → 复检 0/0 → 才 commit——借用 KB 无 pre-commit hook（git 本轮新建）,§7.2 手动兜底生效。
+- **体检 1 篇（cdn-cache,G1-G6）**:`01.java-basics/cdn-cache/README.md` 83 行——G1 ✅ frontmatter 字段齐 / G2 ✅ 一句话定位 / G3 ✅ 代码块规范 / G4 ⚠ **真实 findings**:回链 ✅,但「相关章节」3 条为代码格式引用非 md 链接（机械扫描不可见）,实测 2/3 指向不存在路径（`01.java-basics/cache/`、`03.interview/cdn-design/`——§8 CDN 行同款预置死路径,属 KB fixture 遗留）且 cookie 篇无 cdn 反链 / G5 ✅ 5 陷阱+4 实践+引子 / G6 ✅。单篇不开重机器（R21）遵守。输出 6 维表+findings 闭环 OK。
+- **问答 1 题（A 型「Cookie 跨域丢失怎么排查?」）**:`scripts/qa-double-layer.sh "Cookie"` 跑通（退出 0,主模块命中排序;注:段头标签 `12.interview/13.story/11.product-and-pm` 为脚本硬编码,note-temp 无同名模块→后三段 0 命中——脚本层 IT 字面残留,SKILL 侧 V5 口径只管正文,记 hygiene 观察非回退）;§8「Cookie」行命中;深度实读 cookie(22)+cookie-troubleshooting(21)+追踪 cdn-cache——**小 KB 实测深度仅 2 篇 < R18 终止 ≥3**,按 SKILL 终止条件「已覆盖主要维度」显式收束并声明规模限制;📚 来源表 3 行路径 `os.path.isfile` 3/3 ✅。
+- **链接脚本可用性（P2-6 修复后）**:note-temp `scripts/check-broken-links.py` **在位且可执行**（KB_DIR 解析 OK）;冒烟前全库 6 文件 0/0;冒烟中 4 新文件 1→0（如上）;终态全库 **0/0/0**。冒烟前该脚本缺失的 P2 问题闭环确认。
+- **D1 部分补覆盖（R22 真核实支）**:本轮环境 **WebSearch 可用**——沉淀文含数字断言「Gilbert & Lynch 2002 证明 / Brewer 2000 猜想」,按 R22 走窄查询「Gilbert Lynch CAP theorem impossibility proof 2002 Brewer 2000」**真核实支首次正例命中**（MIT CSAIL PDF + ACM DL 等一手源,结论=断言成立,已落文末 📚 参考来源带 URL+核实日期）;WebFetch 仍被企业策略拦截（域名安全校验失败 → fetch 通道 fallback 依旧）。D1 结论:「真核实支」通道实证可走通,H/L 轮 fallback-only 局面部分补上。
+
+### Phase C 终判
+
+**R0 双比对 10/10 · Safeguards 4/4 · note-temp 三场景全走通（含 1 处断链被自检拦截的真实战果）· D1 部分覆盖 —— 回归门禁通过,Phase B 13 项修复无一需要 revert。**

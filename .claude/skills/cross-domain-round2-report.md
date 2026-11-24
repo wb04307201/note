@@ -192,3 +192,60 @@ Phase B 修后必跑：Safeguards 三查 + R0 十例重放（Phase C 门禁）�
 | KB commit 区间 | health `d51a182..HEAD`（26）· law `95284d2..cffb9ec`（6）· music `eb3dc6e..1dc0cda`（6） |
 | Task 8/9/10 执行报告 + review ledger | `.superpowers/sdd/cross-domain-round2-test-plan/task-{8,9,10}-report.md` · `progress.md` |
 | R1 前案（方法论基座） | `.claude/skills/cross-domain-generality-report.md` · `cross-domain-rule-trace.md` Part 1-3 |
+
+## 回归结果（2026-11-24 · Phase C IT 回归,Task 14）
+
+> **执行**:Task 14 单独执行者(无 subagent)· note 仓库 R0 重放全程 read-only（执行前 `git status --short` 空,沉淀类止于 Phase 5）· 逐探针明细在 `cross-domain-evidence-r2.md` `## R0 回归证据（2026-11-24 · Phase C post-fix 重放）` 节 · 本节为收口记录,上方 §1-§6 冻结内容零改动。
+> **标尺**:双比对 =（a）Task 11 修改前重放（本文件 §2.2 + 证据 R0 2026-11-23 节）+（b）`cross-domain-r0-baseline.md` 冻结期望列。口径:决策语义不得回退,三段式格式允许演进。
+
+### R0 十例双比对总表
+
+| 探针 | 冻结期望（指针） | vs Task 11 修改前 | vs 冻结期望 | 结论 |
+|------|----------------|:---:|:---:|:---:|
+| P1 分布式锁 | 双层;interview+depth 互链;2 commit | 一致（R7 阈值双源→单源,判定行「不命中(≥100)」逐字不变;R10 排除先例复测 0<3） | 一致 | ✅✅ |
+| P2 5 灵魂拷问 | 拆 single-topic 多文件（只验结果） | 一致（Phase 0.2 R1 文本未改） | 一致 | ✅✅ |
+| P3 Agent 实战框架 | 08 主期望/09 亦可 | 一致（09.ai-applications/agent/ 复测在位） | 一致（可接受域） | ✅✅ |
+| P4 什么是变量 | 不沉淀（只验结果） | 一致（Phase 2 R3 文本未改） | 一致 | ✅✅ |
+| P5 阿明餐厅 RAG | 13.story 三层联动 | 一致（**F0-d 投影在双角色 KB 退化为全三层 commit=3,逐字等值**） | 一致 | ✅✅ |
+| P6 HashMap | A 型 ≥3 篇+📚 | 一致（素材复测 466/327/225+N3 注不触 A 型） | 一致 | ✅✅ |
+| P7 JVM 出题 | B 型四件套 | 一致 | 一致 | ✅✅ |
+| P8 SSO 设计 | C 型三件套 | 一致 | 一致 | ✅✅ |
+| P9 hashmap 评分 | G1-G6+E 类 | 一致（leaf-quality L25 路由+E1-E6 复测在位;S3/K5 注不触评分维度） | 一致 | ✅✅ |
+| P10 Redis 穿透修复 | Phase 0.1 直接修复 | 一致（R2 分流表文本未改） | 一致 | ✅✅ |
+
+**专项核验（决策者点名 3 项）**:O1（R7 `<150→<100`）note 十例无探针落 100-149 歧义带 → 0 语义位移;O2（R10 commit `2-3→1`）note 探针均不取 R10 预案 → 0 暴露;F0（R23/R9/R10 语义）note 角色齐备 → R23 两读法本就均不命中、R9 投影退化恒等 → **双角色 KB 零变化,行为侧与 Task 12/13 静态验证闭环**。
+
+### Safeguards 三查结果（post-fix）
+
+| 项 | 结果 |
+|----|------|
+| YAML 解析 | ✅ 3/3 OK |
+| Phase 锚点审计 | ✅ **N8 修复复验通过**:活跃文档（SKILL/rule-catalog/CLAUDE.md）零悬挂「Phase 1.7」引用——rule-catalog R24 来源/语义位置双行 + SKILL 范围行均改「Phase 1 步骤 1.5」并带修正注;**无新漂移**（health SKILL 表「1.7 系列完整性」为 health 自有扫描编号,非悬挂引用）;跨文件 Phase 引用全集逐一解析在位（含 §7.1/§7.2、步骤 1.5/1.8、V4 新行、N1 新行） |
+| 派发 smoke | ✅ 3 原话各自路由正确（description 原文命中 1/3/1） |
+| 全库链接（附加） | ✅ 1148 .md · 0/0/0 |
+
+### note-temp 冒烟（S2 全实施,KB_DIR=note-temp）
+
+| 场景 | 结果 |
+|------|------|
+| 沉淀「分布式锁」双层 | ✅ 全实施:depth 59 行 + interview 30 行,双向互链+父 README 登记,**2 commit**（aca45c4 baseline / 27e0425 / 3f06def）;F0 角色比例降级正向样本（缺 story 只杀 R6/R9,双层存活）;§7.2 自检拦截 1 处真实断链（少一级 `../`）修复后才 commit;N1 复判 59<95 不翻转 |
+| 体检 cdn-cache 单篇 | ✅ G1-G6 输出+真实 findings（G4:相关章节 2/3 代码格式死路径=KB fixture 遗留;R21 不开重机器遵守;模块专属维 N/A——note-temp 无 §1.5/§1.6） |
+| 问答 A 型 Cookie 跨域 | ✅ §8 命中+📚 表 isfile 3/3;小 KB 深度 2 篇<3 显式声明收束（非卡死非硬凑）;qa-double-layer.sh 跑通（段头标签脚本级 IT 硬编码,记 hygiene 观察,SKILL 正文 V5 口径不受影响） |
+| 链接脚本 P2-6 闭环 | ✅ note-temp `scripts/check-broken-links.py` 在位可执行、KB_DIR 解析 OK、全库终态 0/0/0 |
+| 环境注记 | note-temp 原无 git（与 24e7843 提交注记一致）→ 本轮 `git init`+baseline 以满足「全实施含 commit」;其 `.claude/skills/` 副本仍为 **pre-Phase B 旧版**（diff 证实 O1/O2/F0/N/S/V 全缺）——冒烟按 note 仓库 post-fix SKILL 文本执行,副本整体同步建议列 Phase D 顺手项（见下方 Minor 表） |
+
+### D1 覆盖注（R22 真核实支）
+
+本轮环境 **WebSearch 可用**:沉淀断言「Brewer 2000 猜想 / Gilbert & Lynch 2002 证明」走窄查询**真核实支首次正例命中**（MIT CSAIL PDF + ACM DL,已落 📚 参考来源带 URL+日期）;WebFetch 仍被域名安全校验拦截 → fetch 通道 fallback 依旧。**D1 从「零覆盖」升为「部分覆盖（正例 ×1）」**,Phase A D1 注记的「核实成功路径无证据」状态被部分补上。
+
+### 回归判定
+
+**IT 行为只变宽未变差——P1-P10 双比对 10/10 一致,Safeguards 4/4,note-temp 三场景走通,0 回退,Phase B 全部修复（F0 五项+O1/O2+背包六项+N 系）无一需要 revert。Phase C 门禁通过,放行 Phase D。**
+
+### 收口批（本 commit 落地）
+
+| # | 项 | 处置 |
+|---|----|------|
+| N1 | rule-catalog R7 补「落地复判边界带 95-105（系列带语境按该系列实测行数带,如 94-106）」 | ✅ SKILL Phase 7 指针不再悬空（本文件 §5-P2 收口） |
+| K5 | health SKILL Phase 1.17 编号项 3 加「K5 注口径」指针 | ✅ 同块两读法消除（长尾标签仅满足 §8 准入才计 P3,指向本节末桥接口径说明） |
+| 观察项（不修） | note-temp skill 副本旧版同步 / qa-double-layer.sh 段头标签 / note-temp §8 预置死路径（cache/、cdn-design/、session/、cap-theorem/ 等） | 均记 Phase D/KB 侧议题——属 fixture/脚本卫生,非 skill 缺陷,Phase C 边界内不动 |
