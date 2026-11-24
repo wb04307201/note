@@ -1,6 +1,6 @@
-# 跨域通用性测试 R2 报告（草稿 · Phase A 完结版）
+# 跨域通用性测试 R2 报告（终版）
 
-> **Status**: 草稿（Task 11，2026-11-23）——**Phase A（发现）已完结；Phase B（修复）/ C（IT 回归）/ D（复测）未开始**。本报告的「达成」结论仅覆盖测试执行本身，不覆盖修复闭环。
+> **Status**: 终版（Task 15，2026-11-24）——**Phase A（发现，26 场景全 PASS）/ B（修复，GATE 批准清单 P1×6 + P2×10 全落地）/ C（IT 回归，R0 双比对 10/10 · Safeguards 4/4 · 零 revert）/ D（复测，探针 5/5 PASS + F0 文本级静态断言 9/9 位一致）全部完结**。本报告的「达成」结论覆盖修复闭环全程；Phase C 记录见文末「回归结果」节，Phase D 复测与终版验收见文末「Phase D 复测与终版收口」节及 §7。
 > **标尺链**: 设计 `cross-domain-round2-test-design.md` → 溯源表 `cross-domain-rule-trace.md` R2 节（已签认冻结 2026-11-23）→ 证据 `cross-domain-evidence-r2.md`（H/L/M/R0 四节）→ R0 基线 `cross-domain-r0-baseline.md`（冻结 2026-11-19）
 > **执行方式**: 测试执行者读 3 个 SKILL.md + rule-catalog.md 后按文档化 Phase 亲自执行（inline，非黑盒）；沉淀类场景在测试 KB 全实施（含 commit），note 仓库全程 read-only。
 
@@ -8,14 +8,14 @@
 
 | Goal | 判定 | 依据 |
 |------|------|------|
-| **G1 通用**：26 非 IT 场景 0 FAIL | ✅ **达成** | 26 PASS / 0 DEGRADE / 0 FAIL（health 12 + law 8 + music 6，逐行对冻结表判定在证据文件）；「跨域复现 DEGRADE 修复后复测转 PASS」项本轮无 DEGRADE 需复测（V4 为已知-已排期口径） |
-| **G2 稳定**：R0 十例 10/10 + Safeguards | ✅ **达成** | R0 重放 10/10 最终方案与冻结基线一致（零回退）；Safeguards 三查全过（YAML 3/3 · 锚点审计 1 处轻漂移不构成回退 · 派发 smoke 3/3），附加全库链接扫描 .md 0/目录 0 |
-| **G3 可用**：降级全显式、三段式全完整 | ✅ **达成** | R23/R16 类降级路径 26 场景均显式声明零卡死（含 L2/M5 叙事降级、H12/L5 称谓降级、H10 workflow 手工降级声明）；沉淀类三段式（命中表/预案/裁决+溯源链）逐字落证据 |
-| **G4 引擎溯源质量**：断链/编造 R# = FAIL 可追溯 | ✅ **达成** | 全 26+10 例溯源链 R# 均可解析回 rule-catalog，无编造 R#、无缺段（reviewer 独立审计 H/L/M 三轮均确认「无编造 R#/无引导」） |
-| **G5 单角色中 KB 规模启发式** | ✅ **达成** | health（有 story 无 interview，106 leaf 终态）：采样（H10 >50≤1000 不询问）、系列（H6 N=11 运行时 + 10 兄弟互链）、先例（H1 同栏目 0 排除 / H7 同命名族 3 命中）、分批（H10 P0-P3）均按冻结口径正确运转 |
-| **G6 P2 背包闭环 + F0 修复** | ⚠️ **部分——修复未开始** | 已闭环：V3 跨域复验 PASS（M3）· V1 复验通过（H12/L5 零「面试」原词）· V4 复现已记账（L7）。**未做**：F0 语义对齐 + 背包其余 5 项 + 本轮新发现修复——全部属 Phase B，修复清单候选见 §5（Task 12 GATE 待用户批准） |
+| **G1 通用**：26 非 IT 场景 0 FAIL + 跨域复现 DEGRADE 复测转 PASS | ✅ **达成** | 26 PASS / 0 DEGRADE / 0 FAIL（health 12 + law 8 + music 6，逐行对冻结表判定在证据文件）；Phase D 探针复测 5/5 PASS（H3/H7/L2/M5/M3 按快照重跑，post-fix 引擎决策与注册期望恒等，明细见证据文件 `## Phase D 复测证据` 节与本文 §4.3）；「DEGRADE 修复后复测转 PASS」本轮无原 DEGRADE 行需复测（V4 为已知-已排期口径，F0 分岔以 §4.4 静态断言代证） |
+| **G2 稳定**：R0 十例 10/10 + Safeguards | ✅ **达成** | Phase A 重放 10/10 与冻结基线一致 + **Phase C post-fix 双比对 10/10 一致、0 revert**（文末「回归结果」节）；Safeguards 修改前/后各一轮全过（YAML 3/3 · 锚点审计 · 派发 smoke 3/3 · 全库链接 0/0），N8 修复复验通过 |
+| **G3 可用**：降级全显式、三段式全完整 | ✅ **达成** | R23/R16 类降级路径 26 场景均显式声明零卡死；沉淀类三段式逐字落证据；Phase D 复测中双缺行显式声明义务维持（声明三处仍要求）、单缺行存活/排除组两侧仍写明——修复后全部降级仍显式 |
+| **G4 引擎溯源质量**：断链/编造 R# = FAIL 可追溯 | ✅ **达成** | 全 26+10 例溯源链 R# 均可解析回 rule-catalog，无编造 R#、无缺段（三轮 reviewer 独立审计确认）；Phase D 复测溯源链同样逐段可解析 |
+| **G5 单角色中 KB 规模启发式** | ✅ **达成** | health（有 story 无 interview，终态 **106** leaf 实测）：采样/系列（H6 N=11 运行时）/先例（H1 排除、H7 先例 3≥3）/分批均按冻结口径正确运转；Phase D 在快照上运行时先例复算（find=3）口径不变 |
+| **G6 P2 背包闭环 + F0 修复** | ✅ **达成**（含诚实限定 ×2，见下） | GATE 批准清单 **P1×6 + P2×10 全落地**（commits `aee536c`/`24e7843`/`645e756`/`4b038ff`/`233f561` + music KB `630d906`，明细 §5）；Phase C 回归零 revert；Phase D 探针复测 5/5 PASS + **F0 文本级静态断言 9/9 位一致**（§4.4，D2 推荐口径）。限定 1：F0 分支 2 的 live 复现以静态断言替代（结构性不可达，非回避）；限定 2：R22 真核实支仅正例 ×1（D1，§3.4） |
 
-**一句话总判**：规则引擎（三段式 + R# 溯源链 + §1.5/§1.6 谓词层）跨域首考**通过**——36 判定（26 非 IT + 10 R0）0 FAIL 0 回退，冲突探针 4 行处置一致性无违背；遗留问题集中在 **F0 语义单源破坏（预注册 P1，本轮实证分支 2 零触发但未改变文本矛盾事实）** 与 Phase B 修复清单（§5）。
+**一句话总判**：规则引擎（三段式 + R# 溯源链 + §1.5/§1.6 谓词层）跨域首考**通过**且**修复闭环完成**——Phase A 26+10 全 PASS、Phase B 16 项修复全落地、Phase C 零回退、Phase D 探针决策恒等且裁定语义升级为**文本唯一机械读法**（F0 矛盾在活文档层已消失）。遗留可见限定：**D1**（R22 真核实支仅 1 正例）与 **D2**（F0 分支 2 以静态断言替代 live 复现），见 §3.4。
 
 ## §2 场景矩阵终版
 
@@ -65,7 +65,7 @@ Safeguards：YAML 3/3 ✅ · 锚点审计 ✅（1 处轻漂移：R24「Phase 1.7
 | 场景数 | 12 | 8 | 6 | 合计 26 |
 | 判定 | 12 PASS | 8 PASS | 6 PASS | **26 PASS / 0 DEGRADE / 0 FAIL** |
 | leaf（终态，排除 README/SPEC） | **106**（01:24/02:34/03:17/04:18/05:13；全 .md=113） | **16**（基线 10+6 新） | **15**（基线 10+5 新） | 基线：81/10/10（trace 0.3） |
-| KB commits（场景期） | **26**（d51a182..HEAD） | **6**（95284d2..cffb9ec） | **6**（eb3dc6e..1dc0cda） | scope 合规（fix round 后无残留违例） |
+| KB commits（场景期） | **26**（d51a182..HEAD） | **6**（95284d2..cffb9ec） | **6**（eb3dc6e..1dc0cda）；终态 HEAD 再 +1（**7**，eb3dc6e..630d906=630d906 为 Phase B N7 修复 commit） | scope 合规（fix round 后无残留违例）；health/law/music 终态 HEAD 见 §4.3 |
 | 快照 tags | 8（H1-H8） | 5（L1/L2/L3/L4/L7） | 3（M1/M4/M5） | 16 个，Phase D 复测锚点 |
 | 断链 | 0/0 | 0/0 | 0/0 | 每状态变更 commit 后均跑 |
 | 工作树 | clean | clean | clean | note 仓库执行期仅证据文件变化 |
@@ -153,30 +153,49 @@ R1 P2 背包 6 项中：**V4 复现=是**（L7，见 3.3）；**V1 已修复验�
 - **为什么复现不出来**：引擎消费侧文本恒为 SKILL Phase 3/4（其选项级排除示例 F0-c 承载裁定意图）+ catalog 同读；H3/H7 溯源显示引擎是**显式对照 catalog 字面宽读法后弃用**（非未察觉），说明当前 skill 消费面在单缺域稳定产出裁定语义。
 - **测试设计含义**（D2）：若要实证分支 2 的可达性，需「只给 catalog、不给 SKILL 排除示例」的对照执行（脱离 skill 消费协议，非常规场景）；更务实的路径是 **Phase B 修 F0 后以文本级回归断言（三处语义对齐检查）替代 live 分支复现**，Phase D 复测 H3/H7 按快照转 PASS 计入 G6。
 
-## §5 Phase B 修复清单候选（待 Task 12 GATE 用户批准，非最终清单）
+### 4.3 Phase D 复测结果（2026-11-24，post-fix 引擎 · 决策只读）
 
-**P0：无**（26+10 零 FAIL，无阻塞缺陷）。
+本轮无原 FAIL/DEGRADE 行（Phase A 26 全 PASS），设计 §7「原 FAIL/DEGRADE 场景重跑」收敛为：**4 冲突探针 + M3 按快照/终态重跑**（`git checkout scenario-*` 输入态保真 → post-fix skill 三段式重推 → 复测后切回终态 HEAD；三 KB 零内容 commit，worktree 实测 clean：health `d942be1` / law `cffb9ec` / music `630d906`）。
 
-| 级别 | 项 | 一句话方案 |
-|:----:|----|-----------|
-| **P1** | F0-a/b/c 语义对齐 | rule-catalog R23 正文/谓词/SKILL 排除示例三处统一为「角色比例降级」口径（缺哪个角色杀哪组门控规则），并加「单角色 KB 示例」行 |
-| **P1** | F0-d R9 层位参数化 | R9/R8 预案位置改为按角色投影 `<interview?>/<depth>/<story?>`，缺角色层自动缺省并声明（health 型=commit 2 终态） |
-| **P1** | F0-e R10×R23 优先级 | Part 2 覆盖序补一行：R10 先例覆盖语义角色无关、落位=先例系列所在栏目（H7 已按此执行，落文即可） |
-| **P1** | O1 R7 阈值双源 | SKILL「3 大沉淀模式」表 `<150 行` 改 `<100 行（单源见 rule-catalog R7）` |
-| **P1** | O2 R10 commit 双源 | SKILL Quick Reference R10 行 `2-3` 改 `1（单源见 rule-catalog R10）` |
-| **P1** | 背包 V4 | Phase 5.5 领域 query 模板补非 IT 域行（含法律/医学示例措辞），降低「全押 fallback」依赖 |
-| **P2** | N1 R7 落地复判 | Phase 7/实施后自检补「wc 复判 95-105 边界带」一条目（形态不翻转则仅记录） |
-| **P2** | N2 R11 碎片处置边界 | Phase 6.1 拆分处置补「已覆盖节可弃用，但须列弃用清单并计入 Phase 5 选项影响」 |
-| **P2** | N3 F 模板层目录占位 | 模板注补「层目录占位仅当 KB 实际存在子目录时填充，平铺 KB 落模块根」 |
-| **P2** | N4 约定 8 扩写（测试侧文档） | 「缺口/覆盖类输入属性同样以执行时点复测；前置翻转须记账」 |
-| **P2** | N6 拆分行 commit 口径（溯源表侧，冻结表本体不改） | 后续表修订时拆分行统一「commit 数非硬判据、终态登记完整为硬判据」免责措辞 |
-| **P2** | N7 纯度扫描口径（测试 KB 规范+扫描脚本） | 判词检测加「陈述句 vs 引语」二级口径；数字模式扩中文数词形 |
-| **P2** | N8 锚点漂移 | rule-catalog/SKILL「Phase 1.7」注改现存步骤号（1.5/1.8 盘点） |
-| **P2** | 背包其余 S3/S2/K5/V5 + note-temp 链接脚本同步（S2 冒烟=Task 14） | 按 R1 背包原方案执行 |
-| **P2** | QA capture 时点条款 | R2 执行协议（Task 12 文档侧）补「问答类输出须在下一场景前完成逐字 capture」 |
-| **P2** | O4 口径升格 | 「频次字段不作硬判据」由 health 注册升为跨 KB 通用措辞（表侧注记，见 N6 同批） |
+| 探针 | 输入态 | post-fix 引擎分支 | 判定 |
+|------|--------|------------------|:---:|
+| H3 | scenario-H3（story 12 篇，N=13 运行时） | **裁定语义 = 文本唯一机械读法**：R23 谓词「任一缺失即命中+作用范围成比例」直出排除 R4/R8、R6/R9 存活；R9 投影 `<depth>/<story>` commit=2 预案直供——旧「对照 catalog 字面宽读法后弃用」步骤**消失**（矛盾文本已不存在） | ✅ PASS（决策与 Phase A 恒等） |
+| H7 | scenario-H7（先例 find=3 快照复算） | R10 命中→**落位=先例栏目 04 由预案文本直供**；Part 2「R10×R23 补定义」使 F0-e 缺口关闭——溯源链不再需要「规则缺口显式声明」，改为引用补定义行 | ✅ PASS |
+| L2 | scenario-L2（双缺，02 系列 max=04→N=05） | 两读法收敛终态不变（depth 单文件+**显式声明三处仍要求**）；修复把「巧合收敛」升级为「文本保证收敛」 | ✅ PASS |
+| M5 | scenario-M5（双缺，技艺笔记体例在位） | 同 L2 构型逐项恒等（§1.6 口径注记+§1.5 护栏引用义务不变） | ✅ PASS |
+| M3 | music 终态 HEAD（只读） | N3 层目录占位口径注在文（qa SKILL Phase 4 F 模板注，find 非空判据）——**平铺 KB 落模块根由模板本体授权**，不再依赖 §2.1 兜底；V3 四项硬判据维持 | ✅ PASS（V3+N3 双闭环） |
 
-Phase B 修后必跑：Safeguards 三查 + R0 十例重放（Phase C 门禁）；Phase D 按 16 个 scenario tag 复测 H3/H7（F0 修复转 PASS 计入 G6）。
+**复测计数：5/5 PASS，0 决策漂移**——F0 修复的行为侧验收（裁定语义机械推导化）与终态稳定性（双缺收敛不变）同时成立；逐项三段式记录在证据文件 `## Phase D 复测证据（2026-11-24）` 节。
+
+### 4.4 F0 文本级回归断言（D2 推荐口径执行，§4.2 闭环）
+
+按 §4.2 预定方案，live 分支 2 结构不可达处以静态断言代证：四强记位（catalog R23 正文 / R23 谓词 / SKILL 排除示例 / Part 2 覆盖序）+ 辅位（R9 投影、R10 落位+commit、R23 单角色示例、O1/O2 SKILL 行）共 **9/9 位口径一致**，旧矛盾文本在活文档（rule-catalog + precipitation SKILL）grep 残留 **= 0**（9 断言位逐位命中数与旧串零残留记录在证据文件 F0 断言表）。**结论：F0-a/b/c/d/e 语义单源恢复；分支 2 不再是「不可达」而是「无旧义可读」——分歧文本已不存在**。
+
+## §5 Phase B 修复清单（✅ 全部落地 · GATE 批准 2026-11-24 · 修复后状态列）
+
+**P0：无**（26+10 零 FAIL，无阻塞缺陷）。落地批：`aee536c`（F0 五项+O1/O2）· `24e7843`（P2 主批 11 项）· `645e756`（trace 追加节=N4/N5/N6/O4 落位）· `4b038ff`（补充批：L21 幽灵路径+structural-checks 分层注）· `233f561`（收口批：N1 catalog 边界带 + K5 指针）· music KB `630d906`（N7）。
+
+| 级别 | 项 | 一句话方案 | 落地状态 |
+|:----:|----|-----------|---------|
+| **P1** | F0-a/b/c 语义对齐 | rule-catalog R23 正文/谓词/SKILL 排除示例三处统一为「角色比例降级」口径（缺哪个角色杀哪组门控规则），并加「单角色 KB 示例」行 | ✅ `aee536c`；Phase D 静态断言 9/9 + 探针复测（§4.3/§4.4） |
+| **P1** | F0-d R9 层位参数化 | R9/R8 预案位置改为按角色投影 `<interview?>/<depth>/<story?>`，缺角色层自动缺省并声明（health 型=commit 2 终态） | ✅ `aee536c`（R8 层门控注同批）；H3 复测 R9 投影直供终态 |
+| **P1** | F0-e R10×R23 优先级 | Part 2 覆盖序补一行：R10 先例覆盖语义角色无关、落位=先例系列所在栏目（H7 已按此执行，落文即可） | ✅ `aee536c`；H7 复测缺口关闭 |
+| **P1** | O1 R7 阈值双源 | SKILL「3 大沉淀模式」表 `<150 行` 改 `<100 行（单源见 rule-catalog R7）` | ✅ `aee536c`；R0 P1 判定行逐字不变（Phase C 核验 0 语义位移） |
+| **P1** | O2 R10 commit 双源 | SKILL Quick Reference R10 行 `2-3` 改 `1（单源见 rule-catalog R10）` | ✅ `aee536c`；QR 其余行 reviewer 复核与 catalog 一致无双源 |
+| **P1** | 背包 V4 | Phase 5.5 领域 query 模板补非 IT 域行（含法律/医学示例措辞），降低「全押 fallback」依赖 | ✅ `24e7843`（纯增行，IT 5 行原样=变宽不变差） |
+| **P2** | N1 R7 落地复判 | Phase 7/实施后自检补「wc 复判 95-105 边界带」一条目（形态不翻转则仅记录） | ✅ `24e7843`（SKILL 条目）+ `233f561`（catalog R7 边界带登记，指针收口） |
+| **P2** | N2 R11 碎片处置边界 | Phase 6.1 拆分处置补「已覆盖节可弃用，但须列弃用清单并计入 Phase 5 选项影响」 | ✅ `24e7843` |
+| **P2** | N3 F 模板层目录占位 | 模板注补「层目录占位仅当 KB 实际存在子目录时填充，平铺 KB 落模块根」 | ✅ `24e7843`（qa SKILL）；M3 复测验证显式支持到位 |
+| **P2** | N4 约定 8 扩写（测试侧文档） | 「缺口/覆盖类输入属性同样以执行时点复测；前置翻转须记账」 | ✅ `645e756`（trace 追加节，冻结本体零改动） |
+| **P2** | N6 拆分行 commit 口径（溯源表侧，冻结表本体不改） | 后续表修订时拆分行统一「commit 数非硬判据、终态登记完整为硬判据」免责措辞 | ✅ `645e756` 追加节 |
+| **P2** | N7 纯度扫描口径（测试 KB 规范+扫描脚本） | 判词检测加「陈述句 vs 引语」二级口径；数字模式扩中文数词形 | ✅ music KB `630d906`（外部仓库，N7 唯一落 KB 侧项） |
+| **P2** | N8 锚点漂移 | rule-catalog/SKILL「Phase 1.7」注改现存步骤号（1.5/1.8 盘点） | ✅ `24e7843`；Phase C 锚点审计复验零悬挂引用 |
+| **P2** | 背包其余 S3/S2/K5/V5 + note-temp 链接脚本同步（S2 冒烟=Task 14） | 按 R1 背包原方案执行 | ✅ `24e7843`/`4b038ff`（S3/S2/V5+L21 同族）/`233f561`（K5 指针）/note-temp scripts 同步（Task 13 复制；Task 14 冒烟全实施+链接脚本在位 0/0/0） |
+| **P2** | QA capture 时点条款 | R2 执行协议补「问答类输出须在下一场景前完成逐字 capture」 | ✅ `645e756` 追加节 N5 行 |
+| **P2** | O4 口径升格 | 「频次字段不作硬判据」由 health 注册升为跨 KB 通用措辞（表侧注记，见 N6 同批） | ✅ `645e756` 追加节 O4 行 |
+| **P2** | 顺手 polish | R9/R8 谓词基句收紧 + R9 预案 L71 指代消解（三构型追踪表零行为变化确证） | ✅ `24e7843`（catalog）|
+
+Phase B 修后必跑：Safeguards 三查 + R0 十例重放（Phase C 门禁）——**已过**（文末「回归结果」节：双比对 10/10，零 revert）；Phase D 复测 H3/H7/L2/M5/M3——**5/5 PASS**（§4.3）。
 
 ## §6 附录（指针）
 
@@ -184,7 +203,7 @@ Phase B 修后必跑：Safeguards 三查 + R0 十例重放（Phase C 门禁）�
 |----|------|
 | 设计（G1-G6/§6.1/§7） | `.claude/skills/cross-domain-round2-test-design.md` |
 | 规则溯源表 R2 节（26+10 行，签认冻结 2026-11-23） | `.claude/skills/cross-domain-rule-trace.md` |
-| 证据（H/L/M/R0 四节，三段式逐字） | `.claude/skills/cross-domain-evidence-r2.md`（当前 1160 行；H=55b0617 / L=7061e80 / M=56da03a+925cb95 / R0=本 commit） |
+| 证据（H/L/M/R0 四节 + Phase D 复测证据节，三段式逐字） | `.claude/skills/cross-domain-evidence-r2.md`（当前 1325 行；H=55b0617 / L=7061e80 / M=56da03a+925cb95 / R0=6f5ecd6 / R0 回归+Phase C=60962f0 / Phase D=本文终检批） |
 | R0 冻结基线 + 2026-11-19 回归 | `.claude/skills/cross-domain-r0-baseline.md` |
 | 规则单源 / 谓词层 | `.claude/skills/note-precipitation-planning/references/rule-catalog.md` · `SPEC.md §1.5/§1.6` |
 | 测试 KB | `D:/developer/IdeaProjects/note-kb-test/{health,law,music}`（外部留档，不入本仓库；H5 素材 `note-kb-test/inbox-h5/`） |
@@ -249,3 +268,41 @@ Phase B 修后必跑：Safeguards 三查 + R0 十例重放（Phase C 门禁）�
 | N1 | rule-catalog R7 补「落地复判边界带 95-105（系列带语境按该系列实测行数带,如 94-106）」 | ✅ SKILL Phase 7 指针不再悬空（本文件 §5-P2 收口） |
 | K5 | health SKILL Phase 1.17 编号项 3 加「K5 注口径」指针 | ✅ 同块两读法消除（长尾标签仅满足 §8 准入才计 P3,指向本节末桥接口径说明） |
 | 观察项（不修） | note-temp skill 副本旧版同步 / qa-double-layer.sh 段头标签 / note-temp §8 预置死路径（cache/、cdn-design/、session/、cap-theorem/ 等） | 均记 Phase D/KB 侧议题——属 fixture/脚本卫生,非 skill 缺陷,Phase C 边界内不动 |
+
+## Phase D 复测与终版收口（2026-11-24 · Task 15）
+
+> **执行**:Task 15 单独执行者(无 subagent)· 复测协议见 §4.3(post-fix skill + scenario tag 快照决策重跑,KB 复测后已全部切回终态 HEAD、零内容 commit)· 逐项三段式/F0 断言/9 断言位记录在 `cross-domain-evidence-r2.md` `## Phase D 复测证据（2026-11-24）` 节 · 上方 §1-§6 与「回归结果」节内容维持,§1/§2.3/§4/§5 已按 Phase C/D 实况终版化(草稿标记移除)。
+
+### 收口批观察项处置(Phase C 末表兑现)
+
+| 观察项 | Phase D 处置 |
+|--------|-------------|
+| note-temp skill 副本旧版同步 | ✅ **已同步**:三 skill 全套(SKILL+references+scripts)+ ORCHESTRATION.md + STARTUP-NEW-KB.md + check-broken-links.py 按 `STARTUP-NEW-KB.md §1` 契约整体复制 post-fix 版,`diff -rq` 零差异(__pycache__ 清理后);note-temp git 提交 `a7a7c01`(scope=note-temp 按其 SPEC §2,冒烟产物基线 aca45c4 之上)**——冒烟效度不受损结论(Phase C 按 note 仓文本执行)保持不变,副本陈旧问题关闭 |
+| qa-double-layer.sh 段头标签 IT 硬编码 | ✅ **已参数化(小改,判定属「小参数化」)**:`parse_role` 运行时解析 SPEC §1.5 角色表(type=interview/story)取栏目名、无角色模块整段跳过(旧版在 health/law/music 打 3 个空段头+假栏目建议序)、无 §1.5 旧式 KB 回退探测默认目录(note 行为恒等:SSO 双比对命中清单逐项一致,建议序 `主模块→12.interview→13.story` 恒等)。「面试方法论」段保留 11.product-and-pm 存在性探测(角色表无 methodology 类型,泛化属 R3 backlog,不过度设计)。**顺带修复既有健壮性缺陷**:旧脚本在 pipefail 下、目录存在但 0 命中的角色段 grep 空返回即中途退出、丢弃「无命中」行+建议序输出行(旧版终检基线实证:note@「SSO」在 11.product-and-pm 段死亡,exit=1、尾两行消失;note-temp@Cookie 旧版后三段空段头照打——新脚本改为角色缺失整段跳过)——新版各管道 `|| true` 兜底、终码统一由全库命中数决定。脚本改动落 note 仓(本批)+ 同步至 note-temp 副本;SKILL §3.3「模块列表从 §1 自动解析」口径由文档宣称升级为脚本实际(§1.5 角色表) |
+| note-temp §8 预置死路径 | 维持不修——KB fixture 侧议题(非 skill 缺陷),留 KB 侧 |
+
+### 数字终检(2026-11-24 find/git 实测,终态 HEAD)
+
+| 指标 | 实测 |
+|------|------|
+| health leaf(排除 README/SPEC)/全 .md | **106**(01:24/02:34/03:17/04:18/05:13)/ 113 |
+| law leaf / music leaf | **16** / **15** |
+| KB commits(场景期)| health 26 / law 6 / music 6(终态 HEAD 再 +1=N7 批 630d906,合计 7) |
+| scenario tags | 8+5+3=**16** |
+| note 仓 .md(CLAUDE.md 口径)/ README | **1200** / **815** |
+| R2 campaign note 仓 commits(8b4ebf2 签收件起)| **14**(含本批 2 commit:`fix(skill)` 脚本参数化 + `docs(skill)` 终版报告收口;收口前实测 12) |
+| note-temp 仓 commits | **4**(aca45c4 baseline + 冒烟 2 + 本批同步 a7a7c01) |
+| 全库断链 | **0/0/0**(本批终检复跑) |
+
+## §7 终版验收表(G1-G6 × 状态 × 证据)
+
+| Goal | 状态 | 关键证据(指针) | 诚实限定 |
+|------|:---:|---------------|---------|
+| **G1 通用**(26 场景 0 FAIL;DEGRADE 修复后复测转 PASS) | ✅ 达成 | §2.1 26 PASS/0 DEGRADE/0 FAIL;§4.3 Phase D 5/5 PASS(H3/H7/L2/M5/M3,决策恒等) | 无原 DEGRADE 行,live「转 PASS」计数=0,以探针复测+静态断言代证(D2) |
+| **G2 稳定**(R0 10/10 + Safeguards) | ✅ 达成 | 「回归结果」节双比对 10/10 + Safeguards 4/4(post-fix,N8 复验);零 revert | 锚点审计含 1 处历史冻结节旧引(trace L37,纪律不改,已记账) |
+| **G3 可用**(降级全显式 + 三段式全完整) | ✅ 达成 | §1 G3 行;证据文件 26+10 三段式逐字;§4.3 复测声明义务维持 | — |
+| **G4 溯源质量**(0 编造 R#/断链) | ✅ 达成 | 三轮 reviewer 独立审计 + Phase D 复测溯源链可解析 | — |
+| **G5 单角色中 KB 启发式** | ✅ 达成 | §1 G5 行 + H1/H6/H7/H10 逐项;§4.3 先例复算(快照 find=3)口径不变 | 终态 106 leaf 实测(§2.3) |
+| **G6 背包+F0 闭环** | ✅ 达成(限定×2) | §5 修复全落地(5 note commits + music 630d906);§4.4 F0 静态断言 9/9 位一致、旧矛盾文本活文档零残留;§4.3 行为佐证 | **D1**:R22 真核实支仅正例×1(Phase C);**D2**:F0 分支 2 以文本级回归断言替代 live 复现(结构不可达——修复后为「无旧义可读」的更强闭合) |
+
+**总判(R2 完结)**:规则引擎跨域首考**通过**,且 R1 遗留 P2 背包与 F0 语义冲突**全部闭环**——设计 §6 验收口径逐项核销:26 场景 0 FAIL ✅ · R0 10/10 ✅ · Safeguards 全过 ✅ · 降级全显式 ✅ · 三段式+溯源链全完整 ✅ · P2 六项+M3 复验闭环 ✅ · F0 修复后冲突探针行全 PASS ✅(5/5 复测 + 静态断言)。后续轮建议:R22 真核实支补覆盖(D1)、`11.product-and-pm`/methodology 角色表泛化、R7 预估-落地带进一步收敛(C2 行数落带偏差)均入 R3 议题池。

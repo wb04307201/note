@@ -60,6 +60,8 @@
 
 **P2 待办**（下轮）：1.6 口径分层 · 回链 checklist 强化 · tags↔§8 口径说明 · F 模板目录参数化 · Phase 5.5 域模板位 · 13.story 残留清理 · note-temp 链接脚本同步。
 
+> **R2 闭环标注（2026-11-24，追加不改写上方历史）**：本节 7 项 P2 待办已在 R2 战役全部处置完毕——S3/S2/K5/V4/V5 五项 skill 修复落 `24e7843`+`4b038ff`+`233f561`（K5 指针收口）；V3 于 `7aa6a57` 修、R2 场景 M3 跨域复验 PASS 闭环（R2 Phase D 复测维持并获 N3 模板显式支持）；note-temp 链接脚本同步落 Task 13 复制 + Phase C 冒烟终态 0/0/0，且 Phase D 顺手项将 note-temp skill 副本整体同步至 post-fix 版（note-temp `a7a7c01`）。V4 行为复现（L7）记已知-已排期后随模板补行关闭。终版账目见 `cross-domain-round2-report.md` §5/§7。
+
 **P1（六项，建议本轮做）**
 1. **响应模板词汇参数化**（V1）：A/B/C/D/E/F/G 模板的「面试」系列词改为按 `SPEC.md §1.5` 角色名动态取词（如 interview 角色名 = 「认证问答」时模板自动替换）——沿 v3.x 参数化老路
 2. **STARTUP-NEW-KB.md 更新**（K4+K1）：v3.x 状态修正 + §1.5/§1.6 契约要求补齐（story §3.5 / interview §5 可选项声明）

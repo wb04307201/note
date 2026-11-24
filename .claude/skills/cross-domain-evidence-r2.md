@@ -1234,3 +1234,92 @@ Stage 3:最终方案 = 13.story 三层联动(双层 + 13.story 章节反向链)
 ### Phase C 终判
 
 **R0 双比对 10/10 · Safeguards 4/4 · note-temp 三场景全走通（含 1 处断链被自检拦截的真实战果）· D1 部分覆盖 —— 回归门禁通过,Phase B 13 项修复无一需要 revert。**
+
+## Phase D 复测证据（2026-11-24）
+
+> **协议**（设计 §7 Phase D）：冲突探针在原 `scenario-*` tag 快照上以 **post-fix skill**（本轮 rule-catalog/SKILL 全文重读）重跑沉淀决策流程，止于决策输出（**不重新实施文件**——checkout 仅为输入状态保真）；QA/M3 类只读场景在 KB **终态 HEAD** 重跑。每探针记三段式 + 引擎分支。复测后全部 KB 已切回终态 HEAD（`git status` 全 clean，见本节末）。
+> **前置**：本轮原 FAIL=0 / 原 DEGRADE=0（Phase A 26 全 PASS），复测对象 = 4 冲突探针（分支 1/收敛行）+ M3（V3/N3 行）+ F0 文本级静态断言（D2 推荐替代口径）。
+
+### H3 复测（health @ scenario-H3 = 226de59，post-fix 引擎）
+
+**post-fix skill 文本实测（复测前先验）**：rule-catalog R23 正文=「角色比例降级」口径（作用范围恒只限缺失角色门控的形态选项）✓ / R23 谓词行=「任一缺失即命中；作用范围与缺失角色成比例：缺 interview→排除 R4/R8，缺 story→排除 R6/R9，双缺→四者全排除」✓ / R9 预案=「按角色投影 `<interview?>/<depth>/<story?>`：interview 缺 → `<depth>/<story>` commit=2」✓ / Part 2 =「R23 ⊃ R4/R6/R8/R9（角色比例）+ R10×R23 补定义」✓ / SKILL L257 排除示例同口径 ✓。
+
+**快照输入复测**（运行时 find）：SPEC §1.5 interview=无 / story=05.medical-stories（唯一角色模块）；§1.6 has_narrative=true；05 stories find=12（01-12）→ N=13 运行时口径；04 其他栏目临床案例先例=3（跨栏目，R10 不命中同 H1 口径）。
+
+**三段式（决策复测，逐字要点）**：
+
+```
+Stage 1 命中表
+| R23 | 命中(缺 interview) | 新谓词文本机械推导 → 排除组=R4/R8(interview 门控组)；存活组=R6/R9(story 门控组)——排除组与存活组直接由 catalog 正文/谓词/Part 2 三处同一口径给出，无需「对照字面读法后弃用」（Phase A 记录中该对照动作的存在理由已消失） |
+| R6  | 命中 | has_narrative=true + has_story_role=true（门控存活，机械推导）→ story 篇 @05.medical-stories |
+| R5  | 命中 | 机制部分可独立 → 01.body-basics |
+| R7  | 命中×2 | 两部分各 <100 行 → 各单文件 |
+| R9  | 评估 | 115<300 行数判据不满足；且投影文本已直接给出单角色终态 `<depth>/<story>` commit=2（F0-d 修复：预案不再硬编码 `<interview>`，无需缺省层推导） |
+| R10 | 不命中 | 输入=story 叙事章节非临床案例体(约定 7) |
+Stage 3 裁决
+最终方案 = 05/13-<slug> story 篇 + 01 机制 depth 篇双向互链,commit=2
+溯源链:R23(判据:§1.5 interview 缺→排除 R4/R8,存活 R6/R9) + R6 + R5 + R7 → 综合 = depth+story 双篇,2 commit。
+```
+
+**分支记录**：**分支 1（裁定语义）**，且裁定语义 = **post-fix 文本唯一机械读法**（旧 F0-a/b/c 三分岔在文本层已消除；grep 活文档零残留旧口径）。准入 6 信号过检按 O3 口径（health 05 无模块 SPEC）仍成立、不变。**Expected 三项验证达成**：R23 谓词读角色比例 ✓ / R9 投影直出 `<depth>/<story>` commit=2 ✓ / 矛盾弃用动作不再需要 ✓。**判定：复测 PASS（决策与 Phase A 注册期望恒等，推导成本下降=修复生效的行为侧证据）**。
+
+### H7 复测（health @ scenario-H7 = b5caa0f，post-fix 引擎）
+
+**快照输入复测**：clinical-case find=3（87/85/84 行三篇在位）→ precedent_count=3≥3 运行时复算 ✓；输入=临床案例体（约定 7 翻译）✓。
+
+**三段式（决策复测要点）**：
+
+```
+Stage 1 命中表
+| R10 | 命中 | precedent 3≥3 + 临床案例体;落位/命名=「先例系列所在栏目,命名随先例惯例」(catalog R10 正文+预案双行直接给出,Part 2「R10×R23 补定义」明文:缺 interview 不排除 R10、独立价值存活优先于全降级读法)——F0-e 缺口已由文本补定义,裁决不再依赖设计者裁定外注 |
+| R23 | 命中(缺 interview) | 排除 R4/R8;R10 独立价值按 Part 2 存活(机械可读,无缺口声明义务残留——旧「F0-e 规则缺口显式声明」项在新文本下改为「引用 Part 2 补定义行」) |
+| R7/R24/R22/R12 | 同 Phase A | 单文件<100 / clinical-case 族导航 3 兄弟 / 指南阈值口径 / troubleshooting 类=clinical-case 类跳过 §8 |
+Stage 3 裁决
+最终方案 = 04.common-conditions/clinical-case-04-<slug>.md 单篇,commit=1;零「面试」原词。
+```
+
+**Expected 验证**：R10 落位=先例栏目 **directly from 预案文本** ✓（`<interview>/<现象>-troubleshooting` 硬编码已不存在，grep 零残留）；commit=1 单源（O2 修复后 QR=「1（单源见 rule-catalog R10）」）✓。**判定：复测 PASS（分支 1 恒等，F0-e 缺口关闭）**。
+
+### L2 / M5 复测（双缺行，scenario-L2 = d34fbbd / scenario-M5 = 883f916）
+
+- **law@L2 快照**：§1.5 双缺、02 系列 max=04→N=05、无 story 模块（find 复测在位状态与 Phase A 一致）。**post-fix 两读法核验**：R23 正文「双缺才整体降级」与谓词「任一缺失即命中→双缺→排除 R4/R6/R8/R9」+ Part 2「双缺→四者全⊃」**同真同果**——收敛终态 = depth 单文件（02/05 编号入系列）+ 叙事请求落「文本变迁总表+修订时间线」体例节 + **显式声明三处**（声明义务不变：预案双缺分支仍明文要求显式声明 + 存活/排除组写明,溯源链含谓词值对 has_story_role=false/has_narrative=false）。复测决策输出与 Phase A 注册期望逐项恒等。**判定：复测 PASS（收敛终态未变，显式声明仍要求）**。
+- **music@M5 快照**：§1.5 双缺、precedent=0、03 技艺笔记体例在位、chopin 篇开篇文体声明可作体例锚。**post-fix 核验**同 L2 构型：两读法收敛、技艺笔记体 depth 单文件 1 commit、声明三处 + §1.6 口径注记引用 + §1.5 反补齐护栏（R25 仅选项）——逐项恒等。**判定：复测 PASS**。
+- 双缺行的修复影响：F0 修复后 catalog 在双缺输入下两读法**文本层等价**（正文与谓词/Part 2 三分岔消失），B.0 预注册的「收敛=B.3/B.4 预期」由「巧合收敛」升级为「文本保证收敛」——强化非改变。
+
+### M3 复测（music 终态 HEAD 630d906，只读；N3 模板层支持验证）
+
+- **Task 13 N3 修复在文实测**：qa SKILL Phase 4 F 模板注新增「**层目录占位口径（R2 N3，2026-11-24）**」明文（L404）：「`{入门层目录}`…仅当该模块实际存在对应子目录（`find -mindepth 1 -type d` 非空）时填充；**平铺 KB 各 Level 一律落模块根**…禁止为套模板虚构不存在的目录路径」。
+- **机械推导验证**：music SPEC §1 明文「本 KB 不设子目录,leaf 平铺在模块根」+ `find . -mindepth 2 -type d`（排除 .git）= **空** → 模板注的「实际存在子目录」判据运行时可判，平铺落模块根由**模板本体授权**（Phase A 时依赖 §2.1 兜底条款=引擎兜底，现升级为模板显式条款）。
+- 终态 HEAD 上 M3 输出引用路径复验：📚 表 + 知识地图共 **9 条唯一文件路径**（improv-path / harmonic-progression / harmonic-rhythm / mode-color / rhythm-groove / plan-principles / autumn-leaves / chopin / ear-training）isfile **9/9 OK**（另 misconception-waiting 顺带复验 OK）。称谓零「面试」原词、Level 标签非 IT 目录名——四项 V3 硬判据维持（Phase A 已判，本轮无变化）；commit 序列不受影响。
+- **判定：复测 PASS——平铺 KB 落模块根行为已获显式模板支持（N3 闭环，V3 跨域复验维持）**。
+
+### F0 文本级回归断言（D2 推荐口径：live 分支 2 结构不可达 → 静态断言代证）
+
+四强记 + 双源行逐项 grep（活文档=rule-catalog.md + precipitation SKILL.md；冻结归档文件不计）：
+
+| 断言位 | 检查 | 结果 |
+|--------|------|:---:|
+| catalog R23 正文（F0-a） | 「降级范围恒只限缺失角色所门控」命中 1；旧「无 interview/story 角色模块 → 跳过双层」= 0 | ✅ |
+| catalog R23 谓词/预案（F0-b） | 「作用范围与缺失角色成比例」命中 1 | ✅ |
+| SKILL 排除示例（F0-c） | L257「角色比例降级——降级只杀缺失角色门控的那组规则」命中 1；L299 模板参数化段同步引用 | ✅ |
+| catalog Part 2（F0-c/d/e 裁决层） | 「缺 interview → R23 ⊃ R4/R8」命中 1；「R10 × R23 优先级(补定义)」命中 1；旧「R23 ⊃ R8/R9」无角色限定式 = 0 | ✅ |
+| R9 预案（F0-d） | 「按角色投影」命中 1；硬编码 `<interview>/<depth>/<story>` 无 `?` 式 = 0 | ✅ |
+| R10 预案（F0-d/e） | 「先例系列所在栏目」命中 3（R10 正文/预案/Part 2）；旧「默认单 interview 版」= 0 | ✅ |
+| R23 单角色 KB 示例行 | 命中 1（Phase B 要求新增） | ✅ |
+| O1（R7 阈值） | SKILL L79「< 100 行（单源见 rule-catalog R7）」命中 1 | ✅ |
+| O2（R10 commit） | SKILL L649「1（单源见 rule-catalog R10）」命中 1 | ✅ |
+
+**断言结论**：F0-a/b/c/d/e 五子项在消费面文本（catalog 正文/谓词/Part 2 + SKILL 排除示例）已**四强记口径一致**，旧矛盾文本活文档零残留——单缺域的字面读法与裁定读法**合流为同一读法**，「分支 2」在修复后文本上**不可达且无旧义可读**（更强的闭合：不再是「分支不可达」而是「分歧文本已不存在」）。**F0 闭环成立**；H3/H7 复测（决策恒等+推导机械化）为其行为侧佐证。
+
+### Phase D 复测汇总
+
+| 探针 | 输入态 | post-fix 分支/终态 | vs Phase A | 判定 |
+|------|--------|-----------------|-----------|:---:|
+| H3 | scenario-H3 快照 | 分支 1（裁定=唯一机械读法），commit=2 双篇 | 决策恒等,推导成本↓ | ✅ PASS |
+| H7 | scenario-H7 快照 | 分支 1,R10 落位/优先级文本直供（缺口已关） | 决策恒等 | ✅ PASS |
+| L2 | scenario-L2 快照 | 双缺收敛+显式声明三处 | 恒等（收敛由文本保证） | ✅ PASS |
+| M5 | scenario-M5 快照 | 同 L2 构型 | 恒等 | ✅ PASS |
+| M3 | music 终态 HEAD | 平铺落根获模板显式支持 | V3 维持+N3 闭环 | ✅ PASS |
+| F0 | 静态断言 | 9/9 断言位一致 | 修复验收 | ✅ 闭环 |
+
+**复测 5/5 + F0 静态断言全过。KB 状态归还**：health → d942be1 / law → cffb9ec / music → 630d906（三仓 `git status --short` 均空、`git branch --show-current`=master；无新增内容 commit——复测全部决策只读）。
