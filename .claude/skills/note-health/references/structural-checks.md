@@ -275,6 +275,12 @@ print(os.path.normpath(os.path.join(os.path.dirname(sys.argv[1]), sys.argv[2])))
 }
 
 echo "=== 单向链接扫描（child → parent 但 parent 不回链）==="
+# 🆕 2026-11-24 口径分层（R2 背包 S3，与 SKILL.md Phase 1 表下注同步）：
+#   命中结果必须分 2 类分别报告，不得混入同一计数——
+#   ① 索引行单向（README 目录表 / 总表 → leaf 登记缺失）= G4 登记载体问题，
+#      报 P3 并入 1.3 孤链 / 3.6 总目录反查口径处理；
+#   ② 正文链单向（leaf 正文链出、目标正文未回链）= P2 互链缺失（实质项）。
+#   README↔README / README→leaf 导航载体与 1.13「合规模板」同类，保留不修。
 for child in $(find "$KB_DIR" -name "*.md"); do
   # 找 child 文件链到的所有 target（粗略正则，可能有误差，需人工复核）
   grep -oE '\]\(([^)]+\.md)' "$child" 2>/dev/null | sed 's/](//' | while read target; do
