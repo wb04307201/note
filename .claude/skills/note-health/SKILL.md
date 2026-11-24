@@ -168,6 +168,12 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 
 > 详细 11 类扫描规则的执行步骤、误判识别、自动化脚本、输出落盘格式，均见 [`references/structural-checks.md`](references/structural-checks.md)。
 
+> **🆕 Phase 1.6 口径分层（R2 背包 S3，2026-11-24）**：单向链接扫描必须按**链接载体**分两层报告，不得混报（与 Phase 1.13 三分类对齐）：
+> - **① 索引行缺失**（README 目录表 / 总表未登记 leaf，或 leaf 未回链父 README 的登记行）→ G4 登记载体问题，报 **P3 登记缺失**，口径并入 1.3 孤链 / 3.6 总目录反查处理；
+> - **② 正文链单向**（leaf 正文链出、目标正文未回链）→ **P2 互链缺失**，才是需要修 G4 双向性的实质项。
+>
+> 混报会把「README↔README / README→leaf 导航载体」算进单向 P2，与 1.13 的「合规模板保留不修」口径打架（R1 实测 C10 即此现象）。执行细节同步见 [`references/structural-checks.md`](references/structural-checks.md) 单向链接扫描节。
+
 > **🆕 2026-10-12 v3.x 通用化**：准入判定扫描（Phase 1.14）通用化 —— **通过读 [`SPEC.md §1.5`](../../../SPEC.md) 找 `type=interview` 的模块目录**（不再硬绑定 `12.interview/`）；对该模块跑判定词库（**详见 `<该模块>/SPEC.md §准入判定`**），命中 4 类不适合样本的标记为 `P3 misplaced-warning`。
 >
 > **KB 未配置 §1.5 时**：Phase 1.14 静默失效 + 报告 P3「missing §1.5，参见 [`STARTUP-NEW-KB.md`](../../STARTUP-NEW-KB.md) §1.5.3」。
@@ -215,6 +221,8 @@ LEAF_COUNT=$(find "$KB_DIR" -name "*.md" | wc -l)
 > 4. **同步范围**：仅 tag 主题词字符串，不验证路径（路径审计是 Phase 1.15）
 >
 > 实施细节：扫描走 [`scripts/keyword-mapping-audit.py`](../../../scripts/keyword-mapping-audit.py)（新增）；不主动改文件，只报告。
+>
+> **🆕 桥接口径说明（R2 背包 K5，2026-11-24）**：`tags` 与 `§8` 是**两种集合**，天然差异不是 bug——frontmatter `tags:` 是**自由描述标签**（作者按需细粒度打标，长尾多），`§8` 是**路由词表**（仅收录有跨模块检索价值的高频主题词，troubleshooting/工具配置类本就不收录）。note 实测 tags 全集 202 词中仅约 17 词进 §8（185/202 类差异属设计使然）。差异报告须分层：「§8 → tags 词条未回流」保留 P2（路由词条应可被 tags 命中）；「tags → §8 新词未登记」**仅当该词满足 §8 准入（跨模块检索价值，见 precipitation Phase 6.10 触发条件）才报 P3**，其余长尾标签汇总为候选清单（一行计数 + 样例 ≤5），不逐词报警——避免把口径差异当缺陷刷屏。
 >
 > **为何需要**：write-time 同步（Phase 6.10）兜底 + 长期漂移检测（tags 与 §8 双向健康度）。
 > 详见 [`SPEC.md §4 tags 双向 bridge`](../../../SPEC.md) + `references/structural-checks.md` §11（待补）

@@ -60,15 +60,15 @@ R1-R25 全量登记。每条 schema:`规则一句话 / 来源 phase / 适用性�
 ### R8 双层沉淀
 - **规则**:预估 100-300 行 + 考试/问答价值 → 双层(interview 版 + depth 版互链,2 commit)
 - **来源**:precipitation Phase 4 决策树
-- **适用性谓词**:has_exam(读 SPEC §1.6);has_interview_role(读 SPEC §1.5)——任一不满足 → 被 R23 覆盖
+- **适用性谓词**:has_exam(读 SPEC §1.6);has_interview_role(读 SPEC §1.5)——**谓词任一不满足 → R8 不命中**(缺 interview 角色时另被 R23 排除组收录,见 R23 与 Part 2)
 - **预案片段**:形态=双层 · 位置=`<interview>/<depth>` · commit=2 · 理由=问答价值与深度需求并存 · **层门控注**:R8 整体由 interview 角色门控,缺 interview 角色时 R8 **整条被 R23 排除**(不投影、不缺省——双层无问答版即不成立;角色投影缺省只适用于 R9,见 R9)
 - **语义位置**:本表(Phase 3/4 语义单源)
 
 ### R9 三层沉淀
 - **规则**:预估 300+ 行 + 叙事价值(过叙事准入 6 信号)→ 三层(双层 + story 联动)
 - **来源**:precipitation Phase 4 决策树
-- **适用性谓词**:has_narrative(读 SPEC §1.6);has_story_role(读 SPEC §1.5)——任一不满足 → 被 R23 覆盖(R9 属 **story 门控组**:仅缺 story 角色时被排除;缺 interview 而 story 在 → R9 存活,按下方层位投影缺省 interview 层,见 R23 与 Part 2)
-- **预案片段**:形态=三层 · 位置=**按角色投影** `<interview?>/<depth>/<story?>`(缺失角色层自动缺省并在溯源链显式声明:interview 缺 → `<depth>/<story>`,commit=2,即单角色 KB 终态;story 缺 → R9 已被 R23 排除,不适用投影;双缺 → 同左,走 R23 全降级) · commit=随存活层数(全三层=3 / 缺层=2) · 理由=体量大 + 叙事价值过准入,三层联动;缺角色层投影而非硬造路径
+- **适用性谓词**:has_narrative(读 SPEC §1.6);has_story_role(读 SPEC §1.5)——**谓词任一不满足 → R9 不命中;其中 has_story_role=false 时另被 R23 排除**(R9 属 **story 门控组**:缺 interview 而 story 在 → R9 存活,按下方层位投影缺省 interview 层,见 R23 与 Part 2)
+- **预案片段**:形态=三层 · 位置=**按角色投影** `<interview?>/<depth>/<story?>`(缺失角色层自动缺省并在溯源链显式声明:interview 缺 → `<depth>/<story>`,commit=2,即单角色 KB 终态;story 缺 → R9 谓词已不满足(R23 亦排除),不适用投影;双缺(interview+story 全缺) → R9 同样不适用,终态走 R23 双缺全降级(depth 单文件)) · commit=随存活层数(全三层=3 / 缺层=2) · 理由=体量大 + 叙事价值过准入,三层联动;缺角色层投影而非硬造路径
 - **语义位置**:本表(Phase 3/4 语义单源)
 
 ### R10 先例覆盖
@@ -149,10 +149,10 @@ R1-R25 全量登记。每条 schema:`规则一句话 / 来源 phase / 适用性�
 
 ### R24 系列互链
 - **规则**:系列互链:新篇链所有兄弟 + 兄弟回链 + 系列导航表
-- **来源**:precipitation Mistake 10 / Phase 1.7
+- **来源**:precipitation Mistake 10 / Phase 1 步骤 1.5(系列结构检查→系列内互链义务;N8 修正 2026-11-24:旧注「Phase 1.7」为已跳号步骤,Mistake 10 本体在位不动)
 - **适用性谓词**:is_series(读 SPEC §1.6;目标目录存在编号系列,运行时 find 判定)
 - **预案片段**:形态=随主预案 + 互链义务 · 位置=原系列目录 · commit=随主预案 · 理由=系列双向互链 + 导航表更新
-- **语义位置**:语义见 SKILL precipitation Mistake 10 / Phase 1.7(原地保留;预案片段供 Stage 3 组合裁决)
+- **语义位置**:语义见 SKILL precipitation Mistake 10 / Phase 1 步骤 1.5(原地保留;预案片段供 Stage 3 组合裁决)
 
 ### R25 建新模块选项
 - **规则**:建新模块 / 新角色模块是合法**附加选项**(走 MODULE-CREATION SOP),但不得作为默认方案违反 R23
