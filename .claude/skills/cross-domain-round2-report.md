@@ -15,7 +15,7 @@
 | **G5 单角色中 KB 规模启发式** | ✅ **达成** | health（有 story 无 interview，终态 **106** leaf 实测）：采样/系列（H6 N=11 运行时）/先例（H1 排除、H7 先例 3≥3）/分批均按冻结口径正确运转；Phase D 在快照上运行时先例复算（find=3）口径不变 |
 | **G6 P2 背包闭环 + F0 修复** | ✅ **达成**（含诚实限定 ×2，见下） | GATE 批准清单 **P1×6 + P2×10 全落地**（commits `aee536c`/`24e7843`/`645e756`/`4b038ff`/`233f561` + music KB `630d906`，明细 §5）；Phase C 回归零 revert；Phase D 探针复测 5/5 PASS + **F0 文本级静态断言 9/9 位一致**（§4.4，D2 推荐口径）。限定 1：F0 分支 2 的 live 复现以静态断言替代（结构性不可达，非回避）；限定 2：R22 真核实支仅正例 ×1（D1，§3.4） |
 
-**一句话总判**：规则引擎（三段式 + R# 溯源链 + §1.5/§1.6 谓词层）跨域首考**通过**且**修复闭环完成**——Phase A 26+10 全 PASS、Phase B 16 项修复全落地、Phase C 零回退、Phase D 探针决策恒等且裁定语义升级为**文本唯一机械读法**（F0 矛盾在活文档层已消失）。遗留可见限定：**D1**（R22 真核实支仅 1 正例）与 **D2**（F0 分支 2 以静态断言替代 live 复现），见 §3.4。
+**一句话总判**：规则引擎（三段式 + R# 溯源链 + §1.5/§1.6 谓词层）跨域首考**通过**且**修复闭环完成**——Phase A 26+10 全 PASS、Phase B 17 项修复全落地（16 批准项 + 1 顺手 polish）、Phase C 零回退、Phase D 探针决策恒等且裁定语义升级为**文本唯一机械读法**（F0 矛盾在活文档层已消失）。遗留可见限定：**D1**（R22 真核实支仅 1 正例）与 **D2**（F0 分支 2 以静态断言替代 live 复现），见 §3.4。
 
 ## §2 场景矩阵终版
 
@@ -25,7 +25,7 @@
 |----|---|-----------|--------|:----:|-----------|
 | health（12） | H1 | 睡眠双进程整合篇沉淀 | R5/R7/R23/R10 排除 | PASS | 单文件 depth 78 行，1 commit |
 | | H2 | 维 D 补充决策篇沉淀 | R5/R7/R22/R23 | PASS | 95 行；R22 转引+未核实标注（通道受阻 fallback） |
-| | H3 | 罕见病诊疗叙事【**探针**】 | R5/R6/R7/R9 排除/R23 | PASS(分支 1) | depth 82 + story 13（N=13 运行时），2 commit；准入 6 信号过检 |
+| | H3 | 罕见病诊疗叙事【**探针**】 | R5/R6/R7/R9 排除/R23 | PASS(分支 1) | depth 82 行 + story 63 行（第 13 章；N=13 运行时），2 commit；准入 6 信号过检 |
 | | H4 | 补钙 5 误区拆分 | R1(+R22/R24 条件) | PASS | 5 篇（56/56/67/67/56 行），5 commit，兄弟互链+五谈导航 |
 | | H5 | 批量导入 15 篇 | R11/R5/R22/R23 | PASS | 合并 2 组/拆 1→2/移 2/正常 8=14 产出，14 commit；弃用 2 节（controller 裁定成立） |
 | | H6 | 常见病系列第 11 篇 | R24/R22(+R5/R7) | PASS | N=11 运行时，10 兄弟互链+导航全更，1 commit；**实测 101 行 >R7 预估带 →N1** |
@@ -114,10 +114,11 @@ note 仓库：R0 10/10 一致；全库链接扫描 1148 .md · 断链 0/0/0。
 
 | # | 问题 | 记账 |
 |---|------|------|
-| C1 | health 根 README「81 篇 leaf」vs 实测 106、04 README summary「首批 10 项」vs 11 篇 | H10 报告 P1 Batch 1（收口批修，体检只读不越界） |
+| C1 | health 根 README「81 篇 leaf」vs 实测 106、04 README summary「首批 10 项」vs 11 篇 | H10 报告 P1 Batch 1 → **终审改判：「收口批修」未执行，属外部 health KB fixture 侧 open backlog**（R3 批处理或 closed-as-fixture；体检只读不越界，本轮不动 health KB；HEAD 实测 README「81 篇」仍在） |
 | C2 | 行数落带偏差：H4 三篇 56 行、M1 77 行、M4 二篇 59 行低于假设带下沿；H6 101 行超上沿（同 N1 边界带） | 记录口径；R7 硬判据均不受影响 |
-| C3 | §8 频次字段随场景累积漂移（health 4 词、law 新增 2 行 `-`、music 练习方法 4→7） | O4 允许；KB SPEC 测试期只读，收口批统一重算 |
+| C3 | §8 频次字段随场景累积漂移（health 4 词、law 新增 2 行 `-`、music 练习方法 4→7） | O4 允许；KB SPEC 测试期只读 → **终审改判：「收口批统一重算」未执行，属外部 KB fixture 侧 open backlog**（R3 批处理或 closed-as-fixture） |
 | C4 | 输入口径用词形差：H1 快照 grep「双进程」vs KB 实际「双过程」 | 缺口判定不受影响；Phase B 输入属性口径可固定用词变体清单 |
+| C5 | law KB 内容瑕疵（终审补记，恢复 ledger Task 5「内容问题单列」口径）：`01.legal-basics/sources-of-law-effect-hierarchy.md:31`「第 1260 款」应为「条」+ :77 链文「逾期办证」vs 目标案例实为「逾期交房」+ 02 系列冷静期口径注记 | KB fixture backlog（外部 law KB，非 skill 发现；R3 fixture 批处理或标 closed-as-fixture） |
 
 ### 3.6 已知-已排期桶（不重复计数）
 
@@ -173,7 +174,7 @@ R1 P2 背包 6 项中：**V4 复现=是**（L7，见 3.3）；**V1 已修复验�
 
 ## §5 Phase B 修复清单（✅ 全部落地 · GATE 批准 2026-11-24 · 修复后状态列）
 
-**P0：无**（26+10 零 FAIL，无阻塞缺陷）。落地批：`aee536c`（F0 五项+O1/O2）· `24e7843`（P2 主批 11 项）· `645e756`（trace 追加节=N4/N5/N6/O4 落位）· `4b038ff`（补充批：L21 幽灵路径+structural-checks 分层注）· `233f561`（收口批：N1 catalog 边界带 + K5 指针）· music KB `630d906`（N7）。
+**P0：无**（26+10 零 FAIL，无阻塞缺陷）。§5 表 17 行 = GATE 批准 16 项（P1×6 + P2×10）+ 顺手 polish 1 项。落地批：`aee536c`（F0 五项+O1/O2）· `24e7843`（P2 主批 11 项）· `645e756`（trace 追加节=N4/N5/N6/O4 落位）· `4b038ff`（补充批：L21 幽灵路径+structural-checks 分层注）· `233f561`（收口批：N1 catalog 边界带 + K5 指针）· music KB `630d906`（N7）。
 
 | 级别 | 项 | 一句话方案 | 落地状态 |
 |:----:|----|-----------|---------|
@@ -277,7 +278,7 @@ Phase B 修后必跑：Safeguards 三查 + R0 十例重放（Phase C 门禁）�
 
 | 观察项 | Phase D 处置 |
 |--------|-------------|
-| note-temp skill 副本旧版同步 | ✅ **已同步**:三 skill 全套(SKILL+references+scripts)+ ORCHESTRATION.md + STARTUP-NEW-KB.md + check-broken-links.py 按 `STARTUP-NEW-KB.md §1` 契约整体复制 post-fix 版,`diff -rq` 零差异(__pycache__ 清理后);note-temp git 提交 `a7a7c01`(scope=note-temp 按其 SPEC §2,冒烟产物基线 aca45c4 之上)**——冒烟效度不受损结论(Phase C 按 note 仓文本执行)保持不变,副本陈旧问题关闭 |
+| note-temp skill 副本旧版同步 | ✅ **已同步**:三 skill 全套(SKILL+references+scripts)+ ORCHESTRATION.md + STARTUP-NEW-KB.md + check-broken-links.py 按 `STARTUP-NEW-KB.md §1` 契约整体复制 post-fix 版,**契约范围(3 skill 目录 + ORCHESTRATION.md + STARTUP-NEW-KB.md + check-broken-links.py 链接脚本)`diff -rq` 零差异**(__pycache__ 清理后;campaign 过程文档如本报告/证据文件不在复制契约内,note-temp 副本无之属预期);note-temp git 提交 `a7a7c01`(scope=note-temp 按其 SPEC §2,冒烟产物基线 aca45c4 之上)**——冒烟效度不受损结论(Phase C 按 note 仓文本执行)保持不变,副本陈旧问题关闭 |
 | qa-double-layer.sh 段头标签 IT 硬编码 | ✅ **已参数化(小改,判定属「小参数化」)**:`parse_role` 运行时解析 SPEC §1.5 角色表(type=interview/story)取栏目名、无角色模块整段跳过(旧版在 health/law/music 打 3 个空段头+假栏目建议序)、无 §1.5 旧式 KB 回退探测默认目录(note 行为恒等:SSO 双比对命中清单逐项一致,建议序 `主模块→12.interview→13.story` 恒等)。「面试方法论」段保留 11.product-and-pm 存在性探测(角色表无 methodology 类型,泛化属 R3 backlog,不过度设计)。**顺带修复既有健壮性缺陷**:旧脚本在 pipefail 下、目录存在但 0 命中的角色段 grep 空返回即中途退出、丢弃「无命中」行+建议序输出行(旧版终检基线实证:note@「SSO」在 11.product-and-pm 段死亡,exit=1、尾两行消失;note-temp@Cookie 旧版后三段空段头照打——新脚本改为角色缺失整段跳过)——新版各管道 `|| true` 兜底、终码统一由全库命中数决定。脚本改动落 note 仓(本批)+ 同步至 note-temp 副本;SKILL §3.3「模块列表从 §1 自动解析」口径由文档宣称升级为脚本实际(§1.5 角色表) |
 | note-temp §8 预置死路径 | 维持不修——KB fixture 侧议题(非 skill 缺陷),留 KB 侧 |
 
