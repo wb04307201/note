@@ -18,7 +18,7 @@ description: Use when user wants to retrieve or use the knowledge base — 技�
 >
 > 文档中所有 `$KB_DIR/...` 字面量是 LLM 路径示意，不参与 shell 展开；实操时用守卫段导出 `$KB_DIR` 让脚本内引用生效。
 
-> **规则来源**：执行前用 `find "$KB_DIR" -maxdepth 1 -type d` 读取当前模块结构，读 `$KB_DIR/SPEC.md` 了解全局规范（含 §7 SPEC 分层元规范），读目标模块的 `<module>/SPEC.md` 了解专属维度；若该模块存在 `*-FORMAT-SPEC.md`（如 `$KB_DIR/12.interview/QUESTION-FORMAT-SPEC.md`）也一并读取（确保回答引用合规；13.story 已合并入 `<module>/SPEC.md` §4）。模块数 / 文件数在运行时统计，不硬编码。
+> **规则来源**：执行前用 `find "$KB_DIR" -maxdepth 1 -type d` 读取当前模块结构，读 `$KB_DIR/SPEC.md` 了解全局规范（含 §7 SPEC 分层元规范），读目标模块的 `<module>/SPEC.md` 了解专属维度；**若目标模块有强骨架规范**（如 `$KB_DIR/12.interview/SPEC.md` 的 §4 强骨架节）也一并读取该节（确保回答引用合规；v2.0 起无独立 `*-FORMAT-SPEC.md`，13.story 等已合并入 `<module>/SPEC.md` §4）。模块数 / 文件数在运行时统计，不硬编码。
 
 # note 知识库问答
 

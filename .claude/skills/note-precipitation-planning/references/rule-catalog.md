@@ -143,7 +143,7 @@ R1-R25 全量登记。每条 schema:`规则一句话 / 来源 phase / 适用性�
 ### R23 简化 KB 降级(角色比例降级)
 - **规则**:**简化 KB 降级 = 角色比例降级**:interview/story 角色模块**任一缺失即命中**,但降级范围**恒只限缺失角色所门控的形态选项**——缺 interview → 跳过 interview 门控形态(R4/R8 不可用);缺 story → 跳过 story 门控形态(R6/R9 不可用);**双缺**才整体降级(= depth 单文件 + 显式声明)。已声明角色的门控形态**存活**,不把该角色内容降级扔进另一角色单文件(如把叙事从已声明的 story 模块并入 depth 单文件,语义不成立)
 - **来源**:precipitation Phase 3「简化笔记库」
-- **适用性谓词**:has_interview_role / has_story_role(读 SPEC §1.5)——任一缺失即命中;**作用范围与缺失角色成比例**:缺 interview → 排除 R4/R8;缺 story → 排除 R6/R9(含 R25 story 联动选项);双缺 → 排除 R4/R6/R8/R9
+- **适用性谓词**:has_interview_role / has_story_role(读 SPEC §1.5)——任一缺失即命中;**作用范围与缺失角色成比例**:缺 interview → 排除 R4/R8;缺 story → 排除 R6/R9(R25 story 联动仅作非默认附加选项、不作默认预案——排除组不禁 R25 建模块建议选项本身出现,见 R25 行 + trace 约定 5「选项出现≠FAIL」);双缺 → 排除 R4/R6/R8/R9
 - **预案片段**:双缺:形态=depth 单文件(降级) · 位置=`<depth>/<topic>` · commit=1 · 显式声明。单缺:仅排除缺失角色门控的规则;存活角色侧终态取其门控规则预案——缺 story(有 interview):双层仍可用 `<interview>/<depth>` commit=2;缺 interview(有 story):story 门控形态存活,R9 缺省 interview 层 = `<depth>/<story>` commit=2(见 R9 层位投影) · 理由=降级杀的是「缺失角色承载的形态」,不是全库形态;声明时写明排除组与存活组两侧
 - **单角色 KB 示例**:KB 声明 story 角色、无 interview 角色,沉淀「机制 + 叙事」组合素材 → R23 命中(缺 interview):排除 R4/R8(interview 门控组)并声明;**R6/R9(story 门控组)存活** → 终态 = depth 机制篇 + story 章节篇双向互链,commit=2 —— story 内容**不**降级进 depth 单文件
 - **语义位置**:本表(Phase 3/4 语义单源)

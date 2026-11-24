@@ -44,7 +44,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```
 
 **3 大沉淀模式**(沉淀主题时按规模选):
-- **单文件**(< 150 行):主模块子 README(如 `03.data-stack/02.cache/01.redis-persistence.md`)
+- **单文件**(< 100 行（单源见 rule-catalog R7）):主模块子 README(如 `03.data-stack/02.cache/01.redis-persistence.md`)
 - **双层**(最常用):`12.interview/<topic>/`(高频面试题版本)+ 对应主模块 `<topic>/`(深度原理版本)+ 互链回指
 - **三层 + 13.story 联动**:双层 + `13.story/<NN>-xxx.md` 加章节反向链(叙事层包装讲透)
 
